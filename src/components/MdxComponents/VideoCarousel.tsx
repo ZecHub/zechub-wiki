@@ -9,6 +9,7 @@ type Video = { id: string; title: string };
 // A featured player plus a scrollable strip with every video of a YouTube playlist.
 export default function VideoCarousel(props: Record<string, unknown>) {
   const list = String(props.list ?? "");
+  const label = String(props.label ?? "All sessions");
   const [videos, setVideos] = useState<Video[] | null>(null);
   const [active, setActive] = useState(0);
   const rail = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export default function VideoCarousel(props: Record<string, unknown>) {
 
       <div className="mt-6 flex items-center justify-between">
         <h3 className="m-0 text-sm font-medium uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">
-          All sessions ({videos.length})
+          {label} ({videos.length})
         </h3>
         <div className="flex gap-2">
           {([-1, 1] as const).map((d) => (

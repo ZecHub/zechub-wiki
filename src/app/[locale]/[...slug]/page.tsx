@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1447,6 +1447,26 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
 
       if (lead > -1) rows.splice(lead + 1, 0, ...buttons);
     }
+    if (opts.media && Array.isArray(tree.children)) {
+      // Zcash Media: quote as lead, playlist player replaced by the video carousel.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && textOf(x).trim().length > 80);
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      const embed = rows.findIndex((x) => x && !isEl(x, "p") && x.type !== "text" && JSON.stringify(x).includes("videoseries"));
+      const list = embed > -1 ? (JSON.stringify(rows[embed]).match(/list=(PL[\w-]{10,40})/) || [])[1] : "";
+      if (embed > -1 && list) {
+        rows.splice(embed, 1,
+          { type: "element", tagName: "videocarousel", properties: { list, label: "All videos" }, children: [] },
+          { type: "element", tagName: "linkbutton", properties: { href: `https://www.youtube.com/playlist?list=${list}`, label: "Open playlist on YouTube" }, children: [] },
+        );
+      }
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -2622,6 +2642,7 @@ export default async function Page(props: {
             sec: slug[0] === "zcash-community" && slug[1] === "zcash-ecosystem-security",
             eo: slug[0] === "zcash-community" && slug[1] === "zcash-engineering-office-hours",
             amb: slug[0] === "zcash-community" && slug[1] === "zcash-global-ambassadors",
+            media: slug[0] === "zcash-community" && slug[1] === "zcash-media",
           },
         ],
       ],
