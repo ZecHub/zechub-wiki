@@ -698,7 +698,7 @@
         },
         "whereSubmit": {
           "question": "Ɛhe na yɛde nnwuma ahorow kɔma?",
-          "answer": "Kyɛ wo video demo wɔ Zcash Global Discord mu na fa adekorabea anaa demo link biara a ɛfa ho ka ho."
+          "answer": "Kyɛ wo video demo wɔ Zcash Discord mu na fa adekorabea anaa demo link biara a ɛfa ho ka ho."
         },
         "winnersSelected": {
           "question": "Ɔkwan bɛn so na wɔpaw nkonimdifo?",
@@ -733,7 +733,7 @@
         },
         "share": {
           "title": "Kyɛfa wɔ Akasakasa mu",
-          "description": "Fa wo video demo to Zcash Global Discord no mu a wo repo ne demo links ka ho ansa na July 15, 2026 (UTC) adu."
+          "description": "Fa wo video demo to Zcash Discord no mu a wo repo ne demo links ka ho ansa na July 15, 2026 (UTC) adu."
         }
       },
       "deadlineLabel": "Awieeɛ da:",
@@ -752,7 +752,7 @@
       "buildsCount": "{count} kyekye",
       "viewProject": "Hwɛ adwuma no",
       "needHelpTitle": "Wohia mmoa?",
-      "needHelpDesc": "Zcash Global Discord yɛ beae a eye sen biara ma nsɛmmisa a wɔde si dan, infra afotu, ne hackathon nkɔmmɔbɔ.",
+      "needHelpDesc": "Zcash Discord yɛ beae a eye sen biara ma nsɛmmisa a wɔde si dan, infra afotu, ne hackathon nkɔmmɔbɔ.",
       "joinDiscord": "Kɔka Discord ho",
       "supportDonation": "Fa ntoboa boa",
       "popup": {

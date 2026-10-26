@@ -704,7 +704,7 @@
         },
         "whereSubmit": {
           "question": "أين نرسل المشاريع؟",
-          "answer": "شارك عرض الفيديو التوضيحي في Zcash Global Discord وأدرج أي روابط ذات صلة للمستودع أو العرض التوضيحي."
+          "answer": "شارك عرض الفيديو التوضيحي في Zcash Discord وأدرج أي روابط ذات صلة للمستودع أو العرض التوضيحي."
         },
         "winnersSelected": {
           "question": "كيف يتم اختيار الفائزين؟",
@@ -739,7 +739,7 @@
         },
         "share": {
           "title": "شارك في Discord",
-          "description": "انشر عرض الفيديو التوضيحي في Zcash Global Discord مع روابط المستودع والعرض التوضيحي قبل 15 يوليو 2026 (UTC)."
+          "description": "انشر عرض الفيديو التوضيحي في Zcash Discord مع روابط المستودع والعرض التوضيحي قبل 15 يوليو 2026 (UTC)."
         }
       },
       "deadlineLabel": "الموعد النهائي:",
@@ -758,7 +758,7 @@
       "buildsCount": "{count} مشاريع",
       "viewProject": "عرض المشروع",
       "needHelpTitle": "هل تحتاج إلى مساعدة؟",
-      "needHelpDesc": "يُعد Zcash Global Discord أفضل مكان لأسئلة البناء ونصائح البنية التحتية وأحاديث الهاكاثون.",
+      "needHelpDesc": "يُعد Zcash Discord أفضل مكان لأسئلة البناء ونصائح البنية التحتية وأحاديث الهاكاثون.",
       "joinDiscord": "انضم إلى Discord",
       "supportDonation": "ادعم بتبرع",
       "popup": {

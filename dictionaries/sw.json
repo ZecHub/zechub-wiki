@@ -699,7 +699,7 @@
         },
         "whereSubmit": {
           "question": "Tunatoa wapi miradi?",
-          "answer": "Shiriki demo yako ya video kwenye Zcash Global Discord na ujumuishe hifadhidata yoyote muhimu au viungo vya demo."
+          "answer": "Shiriki demo yako ya video kwenye Zcash Discord na ujumuishe hifadhidata yoyote muhimu au viungo vya demo."
         },
         "winnersSelected": {
           "question": "Washindi huchaguliwaje?",
@@ -734,7 +734,7 @@
         },
         "share": {
           "title": "Kushiriki Katika Kutoelewana",
-          "description": "Chapisha demo yako ya video kwenye Zcash Global Discord pamoja na viungo vyako vya repo na demo kabla ya Julai 15, 2026 (UTC)."
+          "description": "Chapisha demo yako ya video kwenye Zcash Discord pamoja na viungo vyako vya repo na demo kabla ya Julai 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Tarehe ya mwisho:",
@@ -753,7 +753,7 @@
       "buildsCount": "{hesabu} hujenga",
       "viewProject": "Angalia mradi",
       "needHelpTitle": "Unahitaji msaada?",
-      "needHelpDesc": "Zcash Global Discord ni mahali bora kwa kujenga maswali, vidokezo infra, na hackathon mazungumzo.",
+      "needHelpDesc": "Zcash Discord ni mahali bora kwa kujenga maswali, vidokezo infra, na hackathon mazungumzo.",
       "joinDiscord": "Jiunge na Kutoelewana",
       "supportDonation": "Msaada kwa mchango",
       "popup": {

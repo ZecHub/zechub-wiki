@@ -704,7 +704,7 @@
         },
         "whereSubmit": {
           "question": "我们在哪里提交项目？",
-          "answer": "请在 Zcash Global Discord 分享你的视频演示，并附上相关仓库或演示链接。"
+          "answer": "请在 Zcash Discord 分享你的视频演示，并附上相关仓库或演示链接。"
         },
         "winnersSelected": {
           "question": "获奖者如何选出？",
@@ -739,7 +739,7 @@
         },
         "share": {
           "title": "分享到 Discord",
-          "description": "请在 2026 年 7 月 15 日（UTC）之前，在 Zcash Global Discord 发布你的视频演示，并附上仓库和演示链接。"
+          "description": "请在 2026 年 7 月 15 日（UTC）之前，在 Zcash Discord 发布你的视频演示，并附上仓库和演示链接。"
         }
       },
       "deadlineLabel": "截止日期：",
@@ -758,7 +758,7 @@
       "buildsCount": "{count} 个构建",
       "viewProject": "查看项目",
       "needHelpTitle": "需要帮助？",
-      "needHelpDesc": "Zcash Global Discord 是提问构建问题、获取基础设施建议和交流黑客松话题的最佳场所。",
+      "needHelpDesc": "Zcash Discord 是提问构建问题、获取基础设施建议和交流黑客松话题的最佳场所。",
       "joinDiscord": "加入 Discord",
       "supportDonation": "通过捐赠支持",
       "popup": {

@@ -698,7 +698,7 @@
         },
         "whereSubmit": {
           "question": "Ibo la ti máa ń fi àwọn ìwéwèé ránṣẹ́?",
-          "answer": "Ṣe àfihàn fídíò rẹ ní Zcash Global Discord kí o sì fi ìjápọ̀ ìpamọ́ tàbí ìjábọ̀ tí ó bá yẹ kún un."
+          "answer": "Ṣe àfihàn fídíò rẹ ní Zcash Discord kí o sì fi ìjápọ̀ ìpamọ́ tàbí ìjábọ̀ tí ó bá yẹ kún un."
         },
         "winnersSelected": {
           "question": "Báwo la ṣe máa ń yan àwọn tó máa gba àmì ẹ̀yẹ?",
@@ -733,7 +733,7 @@
         },
         "share": {
           "title": "Àwọn Tó Wà Ní Ìkùdíẹ̀-káàtó",
-          "description": "Fi àfihàn fídíò rẹ sínú Zcash Global Discord pẹ̀lú àwọn ìjápọ̀ repo àti àfihán rẹ ṣáájú July 15, 2026 (UTC)."
+          "description": "Fi àfihàn fídíò rẹ sínú Zcash Discord pẹ̀lú àwọn ìjápọ̀ repo àti àfihán rẹ ṣáájú July 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Àkókò tí a yàn:",
@@ -752,7 +752,7 @@
       "buildsCount": "{count} ń kọ́lé",
       "viewProject": "Wo iṣẹ-ṣiṣe",
       "needHelpTitle": "Ṣé o nílò ìrànlọ́wọ́?",
-      "needHelpDesc": "Zcash Global Discord ni ibi tó dára jùlọ fún àwọn ìbéèrè nípa ìpilẹ̀ṣẹ̀, àwọn ìmọ̀ràn nípa ìsọfúnni, àti ìfọ̀rọ̀wérọ̀ nípa ìdìbò.",
+      "needHelpDesc": "Zcash Discord ni ibi tó dára jùlọ fún àwọn ìbéèrè nípa ìpilẹ̀ṣẹ̀, àwọn ìmọ̀ràn nípa ìsọfúnni, àti ìfọ̀rọ̀wérọ̀ nípa ìdìbò.",
       "joinDiscord": "Darapọ̀ mọ́ Àríyànjiyàn",
       "supportDonation": "Ìrànlọ́wọ́ nípa ọrẹ",
       "popup": {

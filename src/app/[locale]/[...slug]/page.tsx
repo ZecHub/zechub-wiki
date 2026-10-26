@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -145,6 +145,19 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
     return kids.length === 1 ? kids[0] : null;
   };
   return (tree: any) => {
+    // The community server is just "Zcash Discord" now: rename it everywhere in wiki content (text, link labels, titles).
+    const renameDiscord = (n: any) => {
+      if (!n || typeof n !== "object") return;
+      if (n.type === "text" && typeof n.value === "string") n.value = n.value.replace(/\b(?:Zcash Global|Global Zcash) Discord\b/gi, "Zcash Discord");
+      for (const at of n.attributes || []) {
+        if (typeof at.value === "string") at.value = at.value.replace(/\b(?:Zcash Global|Global Zcash) Discord\b/gi, "Zcash Discord");
+      }
+      for (const k of ["title", "alt", "ariaLabel"]) {
+        if (n.properties && typeof n.properties[k] === "string") n.properties[k] = n.properties[k].replace(/\b(?:Zcash Global|Global Zcash) Discord\b/gi, "Zcash Discord");
+      }
+      (n.children || []).forEach(renameDiscord);
+    };
+    renameDiscord(tree);
     const stepCount = { n: 0, leadDone: false };
     if (opts.pools && Array.isArray(tree.children)) {
       // Shielded pools guide: shortcuts, numbered sections, status pills, framed charts and a
@@ -1933,6 +1946,215 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       };
       rows.forEach(swapBtn);
     }
+    if (opts.mig && Array.isArray(tree.children)) {
+      // zcashd -> Zebra/Zallet migration: bold-only paragraphs become numbered steps and sub-headings.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const blank = (c: any) => c.type === "text" && !String(c.value).trim();
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      const out: any[] = [];
+      for (let i = 0; i < rows.length; i++) {
+        const x = rows[i];
+        const kids = isEl(x, "p") ? (x.children || []).filter((c: any) => !blank(c)) : [];
+        const strong = kids[0] && isEl(kids[0], "strong") ? kids[0] : null;
+        if (!strong || i <= lead) { out.push(x); continue; }
+        const t = textOf(strong).trim();
+        const rest = kids.slice(1).filter((c: any) => !isEl(c, "br"));
+        const restText = rest.map((c: any) => textOf(c)).join("").trim();
+        const m = /^(\d+)\.\s+(.+)$/.exec(t);
+        let head: any = null;
+        if (m) {
+          const plain = /^(troubleshooting|conclusion)$/i.test(m[2].trim());
+          head = { type: "element", tagName: "h2", properties: plain ? {} : { dataStep: m[1] }, children: [{ type: "text", value: m[2] }] };
+        } else if (/[.:]$/.test(t) && restText && !/^option [ab]/i.test(t)) {
+          out.push(x); // bold lead-in sentence ("What does not come across. ...") stays as a paragraph
+          continue;
+        } else if (!restText && /:$/.test(t)) {
+          out.push(x); // bold label introducing a code block ("Start the node:") stays a paragraph
+          continue;
+        } else if (!restText || /^option [ab]/i.test(t)) {
+          head = { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: [{ type: "text", value: t }] };
+        } else { out.push(x); continue; }
+        out.push(head);
+        if (restText) {
+          if (rest[0]?.type === "text") rest[0] = { ...rest[0], value: String(rest[0].value).replace(/^\s+/, "") };
+          out.push({ type: "element", tagName: "p", properties: {}, children: rest });
+        }
+      }
+      rows.splice(0, rows.length, ...out);
+      // Commands that were pasted as code screenshots become real, copyable code blocks (text read from the images / their SVG source).
+      const SHOTS: Record<string, string> = {
+        "SJ_0mUtTxg": "cp ~/.zcash/wallet.dat ~/wallet_backup.dat",
+        "HJhYu8Y6el": "curl -L https://get.zebra.zfnd.org | bash",
+        "Syg8FUK6eg": "git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ncargo build --release",
+        "BJ0zjLY6ll": "sudo mv target/release/zebrad /usr/local/bin/",
+        "HJV1C8tTxx": "zebrad generate-config > ~/.config/zebra/zebrad.toml",
+        "H1KPkvt6gl": "zebrad start",
+        "SyUFxvFTex": "git clone https://github.com/ZcashFoundation/zallet.git\ncd zallet\ncargo build --release",
+        "SyIyVDY6xl": "zebrad metrics",
+        "r1HfVPF6gg": "tail -f ~/.local/share/zebra/zebrad.log",
+      };
+      const srcOf = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if ((x.tagName || x.name) === "img") {
+          return String(x.properties?.src ?? (x.attributes || []).find((at: any) => at.name === "src")?.value ?? "");
+        }
+        for (const c of x.children || []) {
+          const r = srcOf(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      for (let i = 0; i < rows.length; i++) {
+        const src = srcOf(rows[i]);
+        const key = Object.keys(SHOTS).find((k) => src.includes(k));
+        if (!key || textOf(rows[i]).trim()) continue;
+        rows[i] = { type: "element", tagName: "pre", properties: {}, children: [{ type: "element", tagName: "code", properties: { className: ["language-bash"] }, children: [{ type: "text", value: SHOTS[key] }] }] };
+      }
+      const fixPre = (x: any) => {
+        if (!x || typeof x !== "object") return;
+        if (isEl(x, "pre")) {
+          for (const c of x.children || []) {
+            if (isEl(c, "code")) {
+              const cur = Array.isArray(c.properties?.className) ? c.properties.className : [];
+              if (!cur.some((k: string) => String(k).startsWith("language-"))) c.properties = { ...(c.properties || {}), className: [...cur, "language-bash"] };
+            }
+          }
+        }
+        (x.children || []).forEach(fixPre);
+      };
+      rows.forEach(fixPre);
+    }
+    if (opts.mstake && Array.isArray(tree.children)) {
+      // Mining & staking privacy: the page ships rainbow cards (emerald/blue/amber/rose); restyle them with the site theme.
+      const rows: any[] = tree.children;
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const recolor = (cls: string): string => {
+        let c = cls;
+        if (/rose-/.test(c)) {
+          return c
+            .replace(/dark:border-rose-\d+/g, "dark:border-amber-500/40")
+            .replace(/border-rose-\d+/g, "border-amber-500/40")
+            .replace(/dark:bg-rose-\d+/g, "dark:bg-amber-500/10")
+            .replace(/bg-rose-\d+/g, "bg-amber-500/10")
+            .replace(/dark:text-rose-300/g, "dark:text-amber-400")
+            .replace(/text-rose-700/g, "text-amber-700")
+            .replace(/dark:text-rose-\d+/g, "dark:text-slate-200")
+            .replace(/text-rose-\d+/g, "text-slate-800");
+        }
+        if (/rounded-full/.test(c) && /bg-(emerald|blue|amber)-600/.test(c)) {
+          return c.replace(/bg-(emerald|blue|amber)-600/, "border border-brand/50 bg-brand/10").replace(/\btext-white\b/, "text-brand dark:text-brand-soft");
+        }
+        return c
+          .replace(/dark:border-(emerald|blue|amber)-\d+/g, "dark:border-white/10")
+          .replace(/border-(emerald|blue|amber)-\d+/g, "border-slate-200")
+          .replace(/dark:bg-(emerald|blue|amber)-\d+/g, "dark:bg-white/5")
+          .replace(/bg-(emerald|blue|amber)-\d+/g, "bg-slate-50/60")
+          .replace(/dark:text-(emerald|blue|amber)-300/g, "dark:text-brand-soft")
+          .replace(/text-(emerald|blue|amber)-700/g, "text-brand")
+          .replace(/dark:text-(emerald|blue|amber)-(50|100)/g, "dark:text-slate-100")
+          .replace(/text-(emerald|blue|amber)-(900|950)/g, "text-slate-800");
+      };
+      const walkCls = (x: any) => {
+        if (!x || typeof x !== "object") return;
+        if (x.properties?.className) {
+          const v = x.properties.className;
+          x.properties.className = Array.isArray(v) ? recolor(v.join(" ")).split(/\s+/).filter(Boolean) : recolor(String(v));
+        }
+        for (const at of x.attributes || []) {
+          if ((at.name === "className" || at.name === "class") && typeof at.value === "string") at.value = recolor(at.value);
+        }
+        (x.children || []).forEach(walkCls);
+      };
+      rows.forEach(walkCls);
+      // Lists inside the raw HTML cards come without list styling.
+      const walkUl = (x: any) => {
+        if (!x || typeof x !== "object") return;
+        const tag = x.tagName || x.name;
+        if (tag === "ul") {
+          const cls = "list-disc space-y-1 pl-5 marker:text-amber-600 dark:marker:text-amber-400";
+          if (x.attributes) {
+            const hit = x.attributes.find((at: any) => at.name === "className" || at.name === "class");
+            if (hit) hit.value = `${hit.value || ""} ${cls}`.trim();
+            else x.attributes.push({ type: "mdxJsxAttribute", name: "className", value: cls });
+          } else {
+            const cur = Array.isArray(x.properties?.className) ? x.properties.className : [];
+            x.properties = { ...(x.properties || {}), className: [...cur, ...cls.split(" ")] };
+          }
+        }
+        (x.children || []).forEach(walkUl);
+      };
+      rows.forEach(walkUl);
+    }
+    if (opts.wb && Array.isArray(tree.children)) {
+      // My First Zcash Workbook: numbered sections with a jump list, buttons for the links, creators as cards.
+      let rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const blank = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const hrefOf = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if ((x.tagName || x.name) === "a" && x.properties?.href) return String(x.properties.href);
+        for (const c of x.children || []) {
+          const r = hrefOf(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      const slugify = (t: string) => t.toLowerCase().replace(/[^\w\s-]/g, "").trim().replace(/[\s-]+/g, "-");
+      rows = rows.filter((x) => !(isEl(x, "hr") || blank(x)) && !(x && (x.type === "mdxJsxFlowElement") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")));
+      // Lead paragraph + link buttons for download / outline / repo.
+      const intro = rows.findIndex((x) => isEl(x, "h2") && /^introduction/i.test(textOf(x).trim()));
+      const firstP = rows.findIndex((x, i) => i > intro && isEl(x, "p"));
+      if (firstP > -1) rows[firstP].properties = { ...(rows[firstP].properties || {}), dataLead: "true" };
+      const linkLabels: Record<string, string> = { outline: "Download the workbook (PDF)", "github repo": "GitHub repository", "zcash discord": "Join the Zcash Discord", license: "Read the license" };
+      for (let i = 0; i < rows.length; i++) {
+        const x = rows[i];
+        if (!isEl(x, "p")) continue;
+        const t = textOf(x).trim().toLowerCase();
+        const href = hrefOf(x);
+        if (linkLabels[t] && href && textOf(x).trim().length < 30) {
+          rows[i] = { type: "element", tagName: "linkbutton", properties: { href, label: linkLabels[t] }, children: [] };
+        }
+      }
+      // Drop the lead-in sentence that only introduced the PDF link (the button says it).
+      // Sections: "N. Title" -> numbered step.
+      const nav: any[] = [];
+      const lic = rows.findIndex((x) => isEl(x, "h1") && /^license/i.test(textOf(x).trim()));
+      if (lic > -1) rows[lic] = { ...rows[lic], tagName: "h2" };
+      for (const x of rows) {
+        if (!isEl(x, "h2")) continue;
+        const m = /^(\d+)\.\s+(.+)$/.exec(textOf(x).trim());
+        if (!m) continue;
+        x.properties = { ...(x.properties || {}), dataStep: m[1] };
+        x.children = [{ type: "text", value: m[2] }];
+        nav.push({ label: m[2].replace(/^Meet the Creators.*/i, "Meet the creators"), hint: `Section ${m[1]}`, href: `#${slugify(m[2])}` });
+      }
+      // Creators: name / description paragraph pairs become cards.
+      const cr = rows.findIndex((x) => isEl(x, "h2") && /meet the creators/i.test(textOf(x)));
+      if (cr > -1) {
+        let j = cr + 2; // skip heading and its intro paragraph
+        const cards: any[] = [];
+        while (j + 1 < rows.length && isEl(rows[j], "p") && isEl(rows[j + 1], "p") && textOf(rows[j]).trim().length < 50) {
+          let desc = textOf(rows[j + 1]).trim();
+          // Zksquirrel is no longer a Zcash Arborist; now part of the ZecHub core team.
+          if (/^zksquirrel/i.test(textOf(rows[j]).trim())) desc = desc.replace(/Zcash Arborist/i, "ZecHub core team member");
+          cards.push({ type: "element", tagName: "communitycard", properties: { name: textOf(rows[j]).trim(), desc, icon: "users" }, children: [] });
+          j += 2;
+        }
+        if (cards.length) rows.splice(cr + 2, j - (cr + 2), { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+      }
+      // Jump list of the nine sections after the intro buttons.
+      const firstStep = rows.findIndex((x) => isEl(x, "h2") && x.properties?.dataStep === "1");
+      if (firstStep > -1 && nav.length) {
+        rows.splice(firstStep, 0, { type: "element", tagName: "jumpnav", properties: { title: "Sections", items: JSON.stringify(nav) }, children: [] });
+      }
+      tree.children = rows;
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -3085,6 +3307,9 @@ export default async function Page(props: {
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
             hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
             akash: slug[0] === "guides" && (slug[1] === "akash-network-zcashd" || slug[1] === "akash-network-zebra"),
+            wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
+            mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
+            mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
             akashBtn: slug[0] === "guides" && slug[1] === "akash-network-zebra",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",

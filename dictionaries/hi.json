@@ -704,7 +704,7 @@
         },
         "whereSubmit": {
           "question": "हम प्रोजेक्ट कहाँ सबमिट करें?",
-          "answer": "Zcash Global Discord में अपना वीडियो डेमो साझा करें और कोई भी प्रासंगिक repository या demo links शामिल करें।"
+          "answer": "Zcash Discord में अपना वीडियो डेमो साझा करें और कोई भी प्रासंगिक repository या demo links शामिल करें।"
         },
         "winnersSelected": {
           "question": "विजेताओं का चयन कैसे किया जाता है?",
@@ -739,7 +739,7 @@
         },
         "share": {
           "title": "Discord में साझा करें",
-          "description": "15 जुलाई, 2026 (UTC) से पहले Zcash Global Discord में अपना वीडियो डेमो अपने repo और demo links के साथ पोस्ट करें।"
+          "description": "15 जुलाई, 2026 (UTC) से पहले Zcash Discord में अपना वीडियो डेमो अपने repo और demo links के साथ पोस्ट करें।"
         }
       },
       "deadlineLabel": "अंतिम तिथि:",
@@ -758,7 +758,7 @@
       "buildsCount": "{count} builds",
       "viewProject": "Project देखें",
       "needHelpTitle": "मदद चाहिए?",
-      "needHelpDesc": "Zcash Global Discord निर्माण संबंधी प्रश्नों, infra सुझावों और hackathon चर्चाओं के लिए सबसे बेहतरीन जगह है।",
+      "needHelpDesc": "Zcash Discord निर्माण संबंधी प्रश्नों, infra सुझावों और hackathon चर्चाओं के लिए सबसे बेहतरीन जगह है।",
       "joinDiscord": "Discord से जुड़ें",
       "supportDonation": "दान के साथ समर्थन करें",
       "popup": {

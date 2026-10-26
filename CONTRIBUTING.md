@@ -17,7 +17,7 @@ workflow and how to add a language without reading the whole codebase.
 
 ## Join the conversation
 
-First, join the conversation in the [Zcash Global discord](https://discord.gg/zcash). There's a ZecHub channel ( 💭┊zechub ) where we chat about all things ZecHub :smile:
+First, join the conversation in the [Zcash Discord](https://discord.gg/zcash). There's a ZecHub channel ( 💭┊zechub ) where we chat about all things ZecHub :smile:
 
 ## Bounty
 

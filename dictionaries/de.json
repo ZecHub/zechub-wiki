@@ -704,7 +704,7 @@
         },
         "whereSubmit": {
           "question": "Wo reichen wir Projekte ein?",
-          "answer": "Teilt eure Video-Demo im Zcash Global Discord und fügt alle relevanten Repository- oder Demo-Links hinzu."
+          "answer": "Teilt eure Video-Demo im Zcash Discord und fügt alle relevanten Repository- oder Demo-Links hinzu."
         },
         "winnersSelected": {
           "question": "Wie werden die Gewinner ausgewählt?",
@@ -739,7 +739,7 @@
         },
         "share": {
           "title": "In Discord teilen",
-          "description": "Poste deine Video-Demo im Zcash Global Discord zusammen mit deinen Repo- und Demo-Links vor dem 15. Juli 2026 (UTC)."
+          "description": "Poste deine Video-Demo im Zcash Discord zusammen mit deinen Repo- und Demo-Links vor dem 15. Juli 2026 (UTC)."
         }
       },
       "deadlineLabel": "Frist:",
@@ -758,7 +758,7 @@
       "buildsCount": "{count} Builds",
       "viewProject": "Projekt ansehen",
       "needHelpTitle": "Brauchst du Hilfe?",
-      "needHelpDesc": "Der Zcash Global Discord ist der beste Ort für Fragen zum Entwickeln, Infrastruktur-Tipps und Hackathon-Austausch.",
+      "needHelpDesc": "Der Zcash Discord ist der beste Ort für Fragen zum Entwickeln, Infrastruktur-Tipps und Hackathon-Austausch.",
       "joinDiscord": "Discord beitreten",
       "supportDonation": "Mit einer Spende unterstützen",
       "popup": {

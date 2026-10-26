@@ -704,7 +704,7 @@
         },
         "whereSubmit": {
           "question": "Projeleri nereye gönderiyoruz?",
-          "answer": "Video demonuzu Zcash Global Discord'da paylaşın ve ilgili depo veya demo bağlantılarını ekleyin."
+          "answer": "Video demonuzu Zcash Discord'da paylaşın ve ilgili depo veya demo bağlantılarını ekleyin."
         },
         "winnersSelected": {
           "question": "Kazananlar nasıl seçiliyor?",
@@ -739,7 +739,7 @@
         },
         "share": {
           "title": "Discord'da paylaşın",
-          "description": "Video demonuzu, repo ve demo bağlantılarınızla birlikte 15 Temmuz 2026'dan (UTC) önce Zcash Global Discord'da paylaşın."
+          "description": "Video demonuzu, repo ve demo bağlantılarınızla birlikte 15 Temmuz 2026'dan (UTC) önce Zcash Discord'da paylaşın."
         }
       },
       "deadlineLabel": "Son tarih:",
@@ -758,7 +758,7 @@
       "buildsCount": "{count} yapı",
       "viewProject": "Projeyi görüntüle",
       "needHelpTitle": "Yardıma mı ihtiyacınız var?",
-      "needHelpDesc": "Zcash Global Discord, geliştirme soruları, altyapı ipuçları ve hackathon sohbetleri için en iyi yerdir.",
+      "needHelpDesc": "Zcash Discord, geliştirme soruları, altyapı ipuçları ve hackathon sohbetleri için en iyi yerdir.",
       "joinDiscord": "Discord'a Katıl",
       "supportDonation": "Bağışla destek olun",
       "popup": {

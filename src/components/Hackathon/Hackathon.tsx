@@ -528,7 +528,7 @@ const faqItems = [
   {
     question: "Where do we submit projects?",
     answer:
-      "Share your entry in the Zcash Global Discord and include any relevant repository or demo links.",
+      "Share your entry in the Zcash Discord and include any relevant repository or demo links.",
   },
   {
     question: "How are winners selected?",
@@ -1275,7 +1275,7 @@ const Hackathon = ({
           <div className="relative">
             <h2 className="mb-2 text-2xl font-bold md:text-3xl">Need help?</h2>
             <p className="mb-6 max-w-xl text-slate-600 dark:text-slate-400">
-              The Zcash Global Discord is the best place for build questions,
+              The Zcash Discord is the best place for build questions,
               infra tips, and hackathon chatter.
             </p>
             <div className="flex flex-wrap gap-3">
