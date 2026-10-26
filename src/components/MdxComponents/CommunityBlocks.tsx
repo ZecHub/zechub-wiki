@@ -1,4 +1,4 @@
-import { ArrowUpRight, Coins, Cpu, Globe, HandCoins, MessageSquareText, Scale, ShieldAlert, ShieldCheck, Users, Vote } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Coins, Cpu, Globe, HandCoins, Languages, Megaphone, MessageSquareText, Presentation, Scale, ShieldAlert, ShieldCheck, UserPlus, Users, Vote } from "lucide-react";
 import { SiDiscord, SiElement } from "react-icons/si";
 import { socialIcons } from "@/components/UI/SvgIcons";
 
@@ -18,6 +18,11 @@ const ICONS: Record<string, React.ReactNode> = {
   shield: <ShieldCheck aria-hidden="true" className="h-6 w-6" />,
   users: <Users aria-hidden="true" className="h-6 w-6" />,
   alert: <ShieldAlert aria-hidden="true" className="h-6 w-6" />,
+  calendar: <CalendarDays aria-hidden="true" className="h-6 w-6" />,
+  megaphone: <Megaphone aria-hidden="true" className="h-6 w-6" />,
+  languages: <Languages aria-hidden="true" className="h-6 w-6" />,
+  userplus: <UserPlus aria-hidden="true" className="h-6 w-6" />,
+  presentation: <Presentation aria-hidden="true" className="h-6 w-6" />,
 };
 
 const TILE =

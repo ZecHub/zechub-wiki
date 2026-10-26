@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1336,6 +1336,117 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(insertAt, 0, carousel, button);
       }
     }
+    if (opts.amb && Array.isArray(tree.children)) {
+      // Global Ambassadors (text page): duties and communities as cards, website as a button.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const nameOf = (x: any): string => x.tagName || x.name || "";
+      const findHref = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if (nameOf(x) === "a" && x.properties?.href && !String(x.properties.href).startsWith("#")) return String(x.properties.href);
+        for (const c of x.children || []) {
+          const r = findHref(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      const findTag = (x: any, tag: string): any[] => {
+        const out: any[] = [];
+        const go = (n: any) => {
+          if (!n || typeof n !== "object") return;
+          if (n.type === "element" && n.tagName === tag) out.push(n);
+          (n.children || []).forEach(go);
+        };
+        go(x);
+        return out;
+      };
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h2At = (re: RegExp) => rows.findIndex((x) => isEl(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      const nextOf = (from: number, tag: string) => {
+        let i = from + 1;
+        while (i < rows.length && !isEl(rows[i], tag) && !isEl(rows[i], "h2")) i++;
+        return isEl(rows[i], tag) ? i : -1;
+      };
+      const card = (properties: Record<string, unknown>) => ({ type: "element", tagName: "communitycard", properties, children: [] });
+      const grid = (children: any[]) => ({ type: "element", tagName: "communitygrid", properties: {}, children });
+
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && textOf(x).trim().length > 80);
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+
+      // Website heading -> buttons right under the lead (the link on the wiki is an archived snapshot).
+      const web = h2At(/^global ambassador website/i);
+      let buttons: any[] = [];
+      if (web > -1) {
+        const href = findHref(rows[web]);
+        rows.splice(web, 1);
+        if (href) buttons.push({ type: "element", tagName: "linkbutton", properties: { href, label: "Global Ambassador Website" }, children: [] });
+      }
+      buttons.push({ type: "element", tagName: "linkbutton", properties: { href: "/zcash-global-ambassadors", label: "Explore the ambassador map" }, children: [] });
+
+      // Duties.
+      const duty = h2At(/^what does an ambassador do/i);
+      if (duty > -1) {
+        const ui = nextOf(duty, "ul");
+        if (ui > -1) {
+          const iconFor = (t: string) =>
+            /meetup|event/i.test(t) && /host/i.test(t) ? "calendar"
+              : /social media|content/i.test(t) ? "megaphone"
+              : /translate/i.test(t) ? "languages"
+              : /onboard/i.test(t) ? "userplus"
+              : /conference|represent/i.test(t) ? "presentation" : "globe";
+          const cards = (rows[ui].children || [])
+            .filter((li: any) => isEl(li, "li") && textOf(li).trim())
+            .map((li: any) => card({ name: textOf(li).trim(), desc: "", href: "", icon: iconFor(textOf(li)) }));
+          if (cards.length) rows.splice(ui, 1, grid(cards));
+        }
+      }
+
+      // Communities table -> cards.
+      const comm = h2At(/^active ambassador communities/i);
+      if (comm > -1) {
+        let ti = comm + 1;
+        let table: any = null;
+        for (; ti < rows.length && !isEl(rows[ti], "h2"); ti++) {
+          const t = findTag(rows[ti], "table")[0];
+          if (t) { table = t; break; }
+        }
+        if (table) {
+          const cards: any[] = [];
+          for (const tr of findTag(table, "tr")) {
+            const cells = (tr.children || []).filter((c: any) => isEl(c, "td"));
+            if (cells.length < 2) continue;
+            const region = textOf(cells[0]).trim();
+            const name = textOf(cells[1]).trim().replace(/^Zcask\b/, "Zcash");
+            let act = cells[2] ? textOf(cells[2]).trim() : "";
+            if (act.toLowerCase() === region.toLowerCase()) act = "";
+            act = act.replace(new RegExp("^" + region.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ",\\s*", "i"), "");
+            cards.push(card({ name, desc: act ? `${region} \u00b7 ${act}` : region, href: findHref(cells[1]), icon: "x" }));
+          }
+          if (cards.length) rows.splice(ti, 1, grid(cards));
+        }
+      }
+
+      // Get involved links.
+      const apply = h2At(/^apply to become an ambassador/i);
+      if (apply > -1) {
+        const ui = nextOf(apply, "ul");
+        if (ui > -1) {
+          const cards = (rows[ui].children || [])
+            .filter((li: any) => isEl(li, "li") && textOf(li).trim())
+            .map((li: any) => {
+              const t = textOf(li).trim();
+              return card({ name: t, desc: "", href: findHref(li), icon: /discord/i.test(t) ? "discord" : /bount/i.test(t) ? "coins" : "globe" });
+            });
+          if (cards.length) rows.splice(ui, 1, grid(cards));
+        }
+      }
+
+      if (lead > -1) rows.splice(lead + 1, 0, ...buttons);
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -2510,6 +2621,7 @@ export default async function Page(props: {
             zcap: slug[0] === "zcash-community" && slug[1] === "zcap",
             sec: slug[0] === "zcash-community" && slug[1] === "zcash-ecosystem-security",
             eo: slug[0] === "zcash-community" && slug[1] === "zcash-engineering-office-hours",
+            amb: slug[0] === "zcash-community" && slug[1] === "zcash-global-ambassadors",
           },
         ],
       ],
