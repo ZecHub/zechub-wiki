@@ -278,7 +278,7 @@
     "heroTitle": "A kí ọ káàbò sí ZecHub",
     "heroSubtitle": "Aarin ẹkọ orisun ṣiṣi fun Zcash",
     "heroDescription": "Mọ nipa imọ-ẹrọ aṣiri Zcash, ṣawari awọn oluṣiro ibaraenisepo, ki o si ṣe alabapin si ilolupo eda abemi",
-    "description": "ZecHub jẹ agbegbe ti o jẹ ẹkọ ẹkọ fun cryptocurrency Zcash (ZEC). Zcash jẹ owo oni-nọmba ti o pese awọn isanwo ti o ni idaduro, ailewu & ikọkọ. Zcash Blockchain nlo zk-snarks 'iṣayẹwo' ti o ti ni ilọsiwaju pupọ ti ko nilo Eto Igbẹkẹle lẹhin igbesoke nẹtiwọọki NU5 ni 2022.",
+    "description": "ZecHub ni ibudo eto-ẹkọ ti agbegbe n dari fun Zcash (ZEC), owo oni-nọmba ti a ko kaakiri ti a ṣe fun awọn isanwo ikọkọ ati aabo ti o kọju si idena. Zcash nlo imọ-ọrọ ti o ni ilọsiwaju odo-imọ, nitorinaa a le jẹrisi otitọ awọn iṣowo laisi fi alaye inawo ti o ni oye han. Ni ọdun 2026 o ṣe agbekalẹ adagun aabo Ironwood, eyiti a ṣe idanwo ni deede pẹlu awọn ẹri iṣiro ti a ṣayẹwo nipasẹ ẹrọ ati ṣe idaniloju iduroṣinṣin ti awọn iwọntunwọnsi. Project Tachyon n ṣe agbekalẹ ilana aabo iran tuntun ti a ṣe apẹrẹ lati mu iwọn awọn isanwo ikọkọ dara si pupọ, dinku idagbasoke ti ipo afọwọsi, ati gbe Zcash si ikọkọ ti o ni aabo patapata lodi si awọn kọnputa kuatomu.",
     "featuredSection": "Àwọn Àlàfo tó Wà",
     "latestUpdates": "Àwọn Àtúnṣe Tẹ́lẹ̀",
     "getInvolved": "Kọ́wọ́ Rẹ Dí Nínú Ọ̀ràn Náà",
@@ -985,12 +985,12 @@
       "configure": "Ṣiṣeto",
       "runZainod": "Ẹ sáré lọ bí ẹ ti ń rìn",
       "installingZingoCli": "Fifi sori ẹrọ Zingo CLI",
-      "zingoCliInfo": "is a command-line lightwalletd-proxy client built in Rust. Àwọn ìfilọ́lẹ̀ wọ̀nyí jẹ́ fúngbà díẹ̀  this guide covers compiling from source.",
-      "buildZingoCli": "Ṣẹda Zingo CLI",
+      "zingoCliInfo": "jẹ́ àpò ìmọ́lẹ̀ àṣẹ-ìlànà fún Zcash. v7 ń kọ́ ìrìnnà mixnet Nym nípasẹ̀ àìṣeédá àti àwọn ìdìpọ̀ nym-proxy lẹ́gbẹ̀ẹ́ binary. Ìtọ́sọ́nà yìí bo kíkójọpọ̀ láti orísun.",
+      "buildZingoCli": "Kọ́ Zingo CLI (v7)",
       "running": "Rírìn",
-      "startZingoCliDefault": "Bẹrẹ Zingo CLI (Awọn Afowoyi)",
-      "startZingoCliCustom": "Bẹrẹ Zingo CLI (Awọn aṣa)",
-      "zingoSyncWarning": " Èyí yóò ṣe àpapọ̀ ìmúṣiṣẹ́pọ̀ ní ìgbà àkọ́kọ́, bíi ti lightwalletd.",
+      "startZingoCliDefault": "Bẹ̀rẹ̀ Zingo CLI (Àìyípadà, láìsí ìsopọ̀mọ́ra)",
+      "startZingoCliCustom": "Bẹ̀rẹ̀ Zingo CLI (lórí ayélujára nípasẹ̀ atọ́ka agbègbè)",
+      "zingoSyncWarning": "⚠ Ìpàdé tuntun kan wà láìsí ìsopọ̀mọ́ títí tí o fi fún ni àṣẹ (--online, --remember-online, tàbí --server). A yanjú àṣojú Nym láti --nym-proxy, $ZINGO_NYM_PROXY, binary lẹ́gbẹ̀ẹ́ zingo-cli, tàbí PATH. Ìṣiṣẹ́pọ̀ náà ń tẹ̀síwájú lẹ́yìn àbá ìsopọ̀mọ́ra nípasẹ̀ àìyípadà. Ìṣiṣẹ́ àkọ́kọ́ lórí ayélujára ń ṣe ìṣọ̀kan pípé. Láti kọ́ láìsí mixnet (offline-only): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Àwọn Ìgbésẹ̀ Mìíràn àti Àwọn Ohun Ìrànlọ́wọ́",
       "readyToBuild": "Ṣé O Ti Múra Tán Láti Bẹ̀rẹ̀?",
       "officialDocumentation": "Àkọsílẹ̀ Ìjọba",
@@ -1131,7 +1131,7 @@
       "formalVerificationSeriesDescription": "Ìtòlẹ́sẹẹsẹ apá mẹ́ta tí ó ṣàlàyé ìjẹ́rìísí ìlànà láti ìpilẹ̀ṣẹ̀, tí ó ń rìn nípasẹ̀ àṣìṣe ìdánilójú Orchard ti ọdún 2026, tí ó sì fi hàn bí Ironwood ṣe dáhùn sí i pẹ̀lú ẹ̀rí ìṣirò tí ẹ̀rọ ṣàyẹ̀wò.",
       "newSeriesBadge": "Ìtòlẹ́sẹẹsẹ Tuntun"
     },
-    "browseSidebar": "Ṣàwákiri àwọn àpilẹ̀kọ náà nípa lílo ọ̀pá ìsàlẹ̀ òsì ",
+    "browseSidebar": "Ṣí ìtọ́sọ́nà láti wo àwọn àpilẹ̀kọ inú abala yìí.",
     "zcashGlobalAmbassadors": {
       "title": "Àwọn Aṣojú Àgbáyé Zcash",
       "description": "Zcash Global Ambassadors jẹ awọn oludari agbegbe ti a ṣe iyasọtọ si igbega gbigba ati ẹkọ cryptocurrency ti o ni idojukọ asiri ni kariaye. Iṣẹ akanṣe aṣoju kọọkan fojusi lori kikọ imoye ati adehun laarin awọn agbegbe wọn.",
@@ -1245,7 +1245,7 @@
     }
   },
   "sideMenu": {
-    "navigation": "Ìrìn-àjò ojú omi",
+    "navigation": "Ìtọ́sọ́nà",
     "explore": "Ṣàwárí"
   },
   "meta": {

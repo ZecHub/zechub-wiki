@@ -278,7 +278,7 @@
     "heroTitle": "Nabata na ZecHub",
     "heroSubtitle": "Ebe agụmakwụkwọ mepere emepe maka Zcash",
     "heroDescription": "Mụta maka teknụzụ nzuzo Zcash, nyochaa ihe ngosi mmekọrịta, ma nye aka na gburugburu ebe obibi",
-    "description": "ZecHub bụ ebe agụmakwụkwọ nke obodo na-eduzi maka Zcash cryptocurrency (ZEC). Zcash bụ ego dijitalụ na-enye nkwụsi ike na-eguzogide, nchekwa & ịkwụ ụgwọ nkeonwe. Zcash Blockchain na-eji zk-snarks 'nyocha' dị elu nke na-anaghị achọ Ntọala tụkwasịrị obi mgbe emelitere netwọk NU5 na 2022.",
+    "description": "ZecHub bụ ebe agụmakwụkwọ obodo na-achịkwa maka Zcash (ZEC), ego dijitalụ nke a na-ahazighị ahazi maka ịkwụ ụgwọ ndị na-anaghị egbochi nnyocha, nchekwa na nkeonwe. Zcash na-eji nchekwa ihe ọmụma efu dị elu iji mee ka azụmahịa ndị a nwere ike ịchọpụta na ha dị irè na-ekpugheghị ozi ego dị mkpa. Na 2026, e webatara ọdọ mmiri nchekwa Ironwood, nke a kwadoro nke ọma site na iji ihe akaebe mgbakọ na mwepụ nke igwe elelere, ọ na-ekwe nkwa nguzozi nguzozi. Ọrụ Tachyon na-emepụta usoro nchekwa ọgbọ na-abịa nke a tụrụ aro iji melite oke nke ịkwụ ụgwọ nkeonwe, belata uto steeti nkwenye ma kwalite Zcash gaa na nzuzo nchekwa zuru oke mgbe quantum gasịrị.",
     "featuredSection": "Ihe Ndị E Gosiri",
     "latestUpdates": "Mmelite kachasị ọhụrụ",
     "getInvolved": "Na-etinye Aka na Ya",
@@ -985,12 +985,12 @@
       "configure": "Ịhazi",
       "runZainod": "Na-agba ọsọ zainod",
       "installingZingoCli": "Ịwụnye Zingo CLI",
-      "zingoCliInfo": "bụ iwu-akara lightwalletd-proxy onye ahịa wuru na Rust. Nwepụta bụ ugbu a nwa oge  ntuziaka a na-ekpuchi nchịkọta site na isi iyi.",
-      "buildZingoCli": "Wụpụta Zingo CLI",
+      "zingoCliInfo": "bụ obere akpa iwu maka Zcash. v7 na-ewulite Nym mixnet transport site na ndabara ma na-ejikọta nym-proxy n'akụkụ binary. Ntuziaka a na-ekpuchi nchịkọta site na isi mmalite.",
+      "buildZingoCli": "Wulite Zingo CLI (v7)",
       "running": "Ịgba ọsọ",
-      "startZingoCliDefault": "Malite Zingo CLI (Ntọala)",
-      "startZingoCliCustom": "Malite Zingo CLI (Omenala)",
-      "zingoSyncWarning": " Nke a ga-eme nhazi zuru oke na nke mbụ, yiri lightwalletd.",
+      "startZingoCliDefault": "Malite Zingo CLI (Ndabara, na-anọghị n'ịntanetị)",
+      "startZingoCliCustom": "Malite Zingo CLI (n'ịntanetị site na ihe nlele mpaghara)",
+      "zingoSyncWarning": "⚠ Oge ọhụrụ na-anọghị n'ịntanetị ruo mgbe ị nyere nkwenye (--online, --remember-online, ma ọ bụ --server). A na-edozi proxy Nym site na --nym-proxy, $ZINGO_NYM_PROXY, binary dị n'akụkụ zingo-cli, ma ọ bụ PATH. Mmekọrịta na-aga n'ihu mgbe usoro a gasịrị na ndabara. Oge mbụ n'ịntanetị na-eme mmekọrịta zuru oke. Iji wuo na-enweghị mixnet (naanị offline): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Nzọụkwụ Ndị Ọzọ na Akụrụngwa",
       "readyToBuild": "Ì Jikerela Ịrụ Ụlọ?",
       "officialDocumentation": "Akwụkwọ Ọrụ",
@@ -1131,7 +1131,7 @@
       "formalVerificationSeriesDescription": "Usoro nwere akụkụ atọ nke na-akọwa nkwenye iwu site n'ụkpụrụ mbụ, na-agafe njehie nkwụsi ike Orchard nke 2026, ma na-egosi otú Ironwood siri jiri ihe akaebe mgbakọ na mwepụ nke igwe nyochara zaa ya.",
       "newSeriesBadge": "Usoro ọhụrụ"
     },
-    "browseSidebar": "Chọgharịa isiokwu ndị ahụ site na iji sidebar dị n'aka ekpe ",
+    "browseSidebar": "Mepee Ntugharị iji lelee akụkọ ndị dị na ngalaba a.",
     "zcashGlobalAmbassadors": {
       "title": "Ndị nnọchi anya Zcash Global",
       "description": "Ndị nnọchi anya Zcash Global bụ ndị isi obodo raara onwe ha nye na-akwalite nnabata cryptocurrency na agụmakwụkwọ na-elekwasị anya na nzuzo n'ụwa niile. Onye ọ bụla na-ekwuchitere ọrụ na-etinye uche na iwulite mmata na itinye aka na mpaghara ha.",
@@ -1245,7 +1245,7 @@
     }
   },
   "sideMenu": {
-    "navigation": "Ụgbọ mmiri",
+    "navigation": "Ntugharị",
     "explore": "Nyochaa"
   },
   "meta": {
