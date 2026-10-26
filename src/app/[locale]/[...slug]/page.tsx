@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1696,6 +1696,114 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         }
       }
     }
+    if (opts.rpi4z && Array.isArray(tree.children)) {
+      // Raspberry Pi 4 Zebra guide: the Installation list becomes numbered steps; pointer to the newer full-node guide.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const inst = rows.findIndex((x) => isEl(x, "h2") && /^installation/i.test(textOf(x).trim()));
+      const ol = rows.findIndex((x, i) => i > inst && isEl(x, "ol"));
+      if (inst > -1 && ol > -1) {
+        const out: any[] = [];
+        let n = 0;
+        for (const li of rows[ol].children || []) {
+          if (!isEl(li, "li")) continue;
+          const kids = (li.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
+          const first = kids[0];
+          const strong = isEl(first, "p") ? (first.children || []).find((c: any) => isEl(c, "strong")) : null;
+          if (!strong) { out.push(...kids); continue; }
+          n += 1;
+          out.push({ type: "element", tagName: "h3", properties: { dataStep: String(n) }, children: [{ type: "text", value: textOf(strong).trim() }] });
+          const rest = (first.children || []).filter((c: any) => c !== strong && !(c.type === "text" && !String(c.value).trim()));
+          if (rest.length) {
+            const lead = rest[0];
+            if (lead.type === "text") lead.value = String(lead.value).replace(/^\s+/, "");
+            out.push({ ...first, children: rest });
+          }
+          // Commands are bold-only paragraphs: group them into one code block per step.
+          const cmd = (x: any): string => {
+            if (!isEl(x, "p")) return "";
+            const k = (x.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
+            if (k.length && k.every((c: any) => isEl(c, "strong") || isEl(c, "code") || c.type === "text" || isEl(c, "a"))) {
+              const t = textOf(x).trim();
+              return /^(sudo |git |cd |cargo |cp |\.\/|mkdir |curl |wget )/.test(t) ? t : "";
+            }
+            return "";
+          };
+          let buf: string[] = [];
+          const flush = () => {
+            if (!buf.length) return;
+            out.push({ type: "element", tagName: "pre", properties: {}, children: [{ type: "element", tagName: "code", properties: { className: ["language-bash"] }, children: [{ type: "text", value: buf.join("\n") }] }] });
+            buf = [];
+          };
+          for (const c of kids.slice(1)) {
+            const t = cmd(c);
+            if (t) buf.push(t);
+            else { flush(); out.push(c); }
+          }
+          flush();
+        }
+        rows.splice(ol, 1, ...out);
+      }
+      // The loose Zebra logo near the end joins the Raspberry Pi photo at the top as a pair.
+      const tagOf = (x: any): string => x?.tagName || x?.name || "";
+      const imgOf = (x: any): any => {
+        if (!x || typeof x !== "object") return null;
+        if (tagOf(x) === "img") return x;
+        for (const c of x.children || []) {
+          const r = imgOf(c);
+          if (r) return r;
+        }
+        return null;
+      };
+      const altOf = (x: any): string => {
+        const im = imgOf(x);
+        if (!im) return "";
+        if (im.properties?.alt != null) return String(im.properties.alt);
+        const hit = (im.attributes || []).find((at: any) => at.name === "alt");
+        return hit && typeof hit.value === "string" ? hit.value : "";
+      };
+      const piAt = rows.findIndex((x) => /raspberry pi/i.test(altOf(x)));
+      const zbAt = rows.findIndex((x) => /zebra logo/i.test(altOf(x)));
+      if (piAt > -1 && zbAt > -1) {
+        // One combined illustration (Pi 4 board with the Zebra logo), centered.
+        rows[piAt] = {
+          type: "element",
+          tagName: "div",
+          properties: { className: ["my-8", "flex", "justify-center"] },
+          children: [
+            {
+              type: "element",
+              tagName: "img",
+              properties: { src: "/rpi4-zebra.webp", alt: "Raspberry Pi 4 board with the Zebra logo", className: ["w-full", "max-w-2xl", "h-auto"] },
+              children: [],
+            },
+          ],
+        };
+        rows.splice(zbAt, 1);
+      }
+      const lead = rows.findIndex((x) => isEl(x, "p") && textOf(x).trim().length > 60);
+      if (lead > -1) {
+        rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+        const note = {
+          type: "element",
+          tagName: "guidecallout",
+          properties: { title: "Newer guide available" },
+          children: [
+            {
+              type: "element",
+              tagName: "p",
+              properties: {},
+              children: [
+                { type: "text", value: "Looking for the complete setup with Zebra and the Zallet wallet on a Pi 4? See the " },
+                { type: "element", tagName: "a", properties: { href: "/guides/raspberry-pi-4-full-node" }, children: [{ type: "text", value: "full node guide" }] },
+                { type: "text", value: "." },
+              ],
+            },
+          ],
+        };
+        rows.splice(lead + 1, 0, note);
+      }
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -2845,7 +2953,8 @@ export default async function Page(props: {
           {
             boldLinkButtons: slug[0] === "using-zcash",
             videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
-            rpi5: slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo",
+            rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
+            rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
