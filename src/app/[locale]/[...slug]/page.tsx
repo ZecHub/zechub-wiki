@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1769,12 +1769,12 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows[piAt] = {
           type: "element",
           tagName: "div",
-          properties: { className: ["my-8", "flex", "justify-center"] },
+          properties: { className: ["my-8", "mx-auto", "max-w-md"] },
           children: [
             {
               type: "element",
               tagName: "img",
-              properties: { src: "/rpi4-zebra.webp", alt: "Raspberry Pi 4 board with the Zebra logo", className: ["w-full", "max-w-2xl", "h-auto"] },
+              properties: { src: "/rpi4-zebra.webp", alt: "Raspberry Pi 4 board with the Zebra logo", className: ["w-full", "max-w-md", "h-auto"] },
               children: [],
             },
           ],
@@ -1849,6 +1849,63 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           }
         }
       }
+    }
+    if (opts.akash && Array.isArray(tree.children)) {
+      // Akash zcashd guide (deprecated): callout for the notice, "->" paragraphs as real lists, code blocks with a language.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const bq = rows.findIndex((x) => isEl(x, "blockquote"));
+      if (bq > -1) {
+        const kids = (rows[bq].children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
+        rows[bq] = { type: "element", tagName: "guidecallout", properties: { title: "zcashd is no longer supported" }, children: kids };
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && /^guide for deploying/i.test(textOf(x).trim()));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      const arrow = (x: any) => isEl(x, "p") && /^->\s/.test(textOf(x).trim());
+      for (let i = 0; i < rows.length; i++) {
+        if (!arrow(rows[i])) continue;
+        let j = i;
+        const items: any[] = [];
+        while (j < rows.length && (arrow(rows[j]) || (rows[j].type === "text" && !String(rows[j].value).trim()))) {
+          if (arrow(rows[j])) {
+            const ch = [...(rows[j].children || [])];
+            if (ch[0]?.type === "text") ch[0] = { ...ch[0], value: String(ch[0].value).replace(/^\s*->\s*/, "") };
+            items.push({ type: "element", tagName: "li", properties: {}, children: ch });
+          }
+          j++;
+        }
+        rows.splice(i, j - i, { type: "element", tagName: "ul", properties: {}, children: items });
+      }
+      const fixPre = (x: any) => {
+        if (!x || typeof x !== "object") return;
+        if (isEl(x, "pre")) {
+          for (const c of x.children || []) {
+            if (isEl(c, "code")) {
+              const cur = Array.isArray(c.properties?.className) ? c.properties.className : [];
+              if (!cur.some((k: string) => String(k).startsWith("language-"))) c.properties = { ...(c.properties || {}), className: [...cur, "language-bash"] };
+            }
+          }
+        }
+        (x.children || []).forEach(fixPre);
+      };
+      rows.forEach(fixPre);
+      // Swap the "Deploy on Akash" button image for the current one.
+      const swapBtn = (x: any) => {
+        if (!x || typeof x !== "object") return;
+        if ((x.tagName || x.name) === "img") {
+          const alt = x.properties?.alt ?? (x.attributes || []).find((at: any) => at.name === "alt")?.value ?? "";
+          if (/deploy (on|with) akash/i.test(String(alt))) {
+            if (x.attributes) {
+              for (const at of x.attributes) if (at.name === "src") at.value = "/deploy-with-akash.png";
+            } else {
+              x.properties = { ...(x.properties || {}), src: "/deploy-with-akash.png" };
+            }
+          }
+        }
+        (x.children || []).forEach(swapBtn);
+      };
+      rows.forEach(swapBtn);
     }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
@@ -2998,9 +3055,10 @@ export default async function Page(props: {
           rehypeWikiPatterns,
           {
             boldLinkButtons: slug[0] === "using-zcash",
-            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
+            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
             hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
+            akash: slug[0] === "guides" && slug[1] === "akash-network-zcashd",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
@@ -3011,7 +3069,7 @@ export default async function Page(props: {
             prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
             node: slug[0] === "guides" && slug[1] === "raspberry-pi-4-full-node",
-            snap: (slug[0] === "guides" && slug[1] === "raspberry-pi-4-full-node") || slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
+            snap: (slug[0] === "guides" && (slug[1] === "raspberry-pi-4-full-node" || slug[1] === "akash-network-zcashd")) || slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
             swap: slug[0] === "using-zcash" && slug[1] === "solswap",
             tnet: slug[0] === "using-zcash" && slug[1] === "testnet",
             txn: slug[0] === "using-zcash" && slug[1] === "transactions",
