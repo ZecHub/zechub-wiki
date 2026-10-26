@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1299,6 +1299,41 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           }));
           if (cards.length) rows.splice(ui, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
         }
+      }
+    }
+    if (opts.eo && Array.isArray(tree.children)) {
+      // Engineering Office Hours: title first, description as lead, one player + carousel with the whole playlist.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const blank = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const dump = JSON.stringify(rows);
+      const list = (dump.match(/list=(PL[\w-]{10,40})/) || [])[1];
+      // The short "Collection of ..." line sits above the H1; move it below as a normal paragraph.
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const note = rows.findIndex((x, i) => i < h1 && isEl(x, "p") && /^collection of/i.test(textOf(x).trim()));
+      if (h1 > -1 && note > -1) {
+        const [n] = rows.splice(note, 1);
+        rows.splice(h1, 0, rows.splice(rows.findIndex((x) => isEl(x, "h1")), 1)[0]);
+        const nh = rows.findIndex((x) => isEl(x, "h1"));
+        rows.splice(nh + 1, 0, n);
+      }
+      const lead = rows.findIndex((x) => isEl(x, "p") && textOf(x).trim().length > 120);
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      if (list) {
+        // Drop the playlist link paragraph and the embedded playlist player; the carousel replaces both.
+        const link = rows.findIndex((x) => isEl(x, "p") && /office hours playlist/i.test(textOf(x)));
+        const embed = rows.findIndex((x) => !isEl(x, "p") && !blank(x) && JSON.stringify(x).includes("videoseries"));
+        const at = embed > -1 ? embed : link;
+        const carousel = { type: "element", tagName: "videocarousel", properties: { list }, children: [] };
+        const button = { type: "element", tagName: "linkbutton", properties: { href: `https://www.youtube.com/playlist?list=${list}`, label: "Open playlist on YouTube" }, children: [] };
+        const drop = [link, embed].filter((i) => i > -1).sort((a, b) => b - a);
+        const insertAt = Math.min(...drop.length ? drop : [rows.length]);
+        for (const i of drop) rows.splice(i, 1);
+        rows.splice(insertAt, 0, carousel, button);
       }
     }
     if (opts.cz && Array.isArray(tree.children)) {
@@ -2474,6 +2509,7 @@ export default async function Page(props: {
             gov: slug[0] === "zcash-community" && slug[1] === "zcash-governance",
             zcap: slug[0] === "zcash-community" && slug[1] === "zcap",
             sec: slug[0] === "zcash-community" && slug[1] === "zcash-ecosystem-security",
+            eo: slug[0] === "zcash-community" && slug[1] === "zcash-engineering-office-hours",
           },
         ],
       ],

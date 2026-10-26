@@ -16,6 +16,7 @@ import LinkButton from "./LinkButton";
 import { CommunityGrid, CommunityGroup, CommunityCard, StatGrid, StatCard, OrgCard, MemberCard, TimelineList, TimelineItem } from "./CommunityBlocks";
 import JumpNav from "./JumpNav";
 import SecurityFeed from "./SecurityFeed";
+import VideoCarousel from "./VideoCarousel";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 import CodeBlock from "./CodeBlock";
@@ -79,6 +80,7 @@ const MdxComponents = {
   orgcard: OrgCard,
   membercard: MemberCard,
   securityfeed: SecurityFeed,
+  videocarousel: VideoCarousel,
   timelinelist: TimelineList,
   timelineitem: TimelineItem,
   statgrid: StatGrid,
