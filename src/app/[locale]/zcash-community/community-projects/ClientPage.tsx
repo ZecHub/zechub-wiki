@@ -257,6 +257,7 @@ const CommunityProjectsClient = ({ projects }: Props) => {
                     url={itm.url}
                     features={itm.features}
                     ctaLabel={cta}
+                    logoTile="light"
                   />
                 ))}
               </div>

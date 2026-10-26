@@ -37,7 +37,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "MonteZecret": "/community-projects/montezecret.png",
   "Gem Wallet": "/community-projects/gem-wallet.png",
   "TIPZ": "/community-projects/tipz.png",
-  "CYZE": "/community-projects/cyze.png",
+  "CYZE": "/community-projects/cyze.jpg",
   "Pendrake Watch": "/community-projects/pendrake-watch.png",
 
   // Explorers, Data, and Network Dashboards
@@ -50,7 +50,6 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "ZECping": "/community-projects/zecping.png",
   "ZecStats": "/community-projects/zecstats.jpg",
   "zecprice": "/community-projects/zecprice.png",
-  "Zlink": "/community-projects/zlink.png",
   "Zecmarket": "/community-projects/zecmarket.png",
   "Zecsite": "/community-projects/zecsite.png",
   "ZEC-OS": "/community-projects/zec-os.png",
@@ -83,6 +82,17 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Nano-GPT": "/community-projects/nano-gpt.png",
   "zk.poker": "/community-projects/zk-poker.png",
 
+  // Added after the upstream list was renamed / extended
+  "ZecBlock": "/community-projects/CipherScan.png",
+  "ZecZcash": "/community-projects/zeczcash.png",
+  "Ztreamer": "/community-projects/ztreamer.png",
+  "ZcashToCash": "/community-projects/zcashtocash.png",
+  "Zipher": "/community-projects/zipher.png",
+  "Vizor": "/community-projects/vizor.png",
+  "Zaino Indexer": "/community-projects/zaino.png",
+  "Zecd": "/community-projects/zecd.png",
+  "Zero Indexer": "/community-projects/zero-indexer.png",
+
   // Organizations & Labs
   "Shielded Labs": "/community-projects/Sl.png",
   "Cypherpunk": "/community-projects/cypherPunk.png",
@@ -91,8 +101,14 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
 export function attachImages(
   projects: CommunityProject[]
 ): CommunityProject[] {
+  // Upstream titles drift in case/spacing (CipherPay vs Cipherpay, Zec App vs ZEC App),
+  // so look images up by a normalised key.
+  const key = (t: string) => t.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const byKey = new Map(
+    Object.entries(COMMUNITY_PROJECT_IMAGES).map(([t, img]) => [key(t), img] as const)
+  );
   return projects.map((p) => ({
     ...p,
-    thumbnailImage: COMMUNITY_PROJECT_IMAGES[p.title],
+    thumbnailImage: COMMUNITY_PROJECT_IMAGES[p.title] ?? byKey.get(key(p.title)),
   }));
 }

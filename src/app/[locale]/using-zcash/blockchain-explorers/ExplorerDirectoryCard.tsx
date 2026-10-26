@@ -11,6 +11,8 @@ type ExplorerDirectoryCardProps = {
   thumbnailImage: string;
   ctaLabel: string;
   features?: string[];
+  /** "light": larger logo tile on a neutral light background (for mixed-format logos). */
+  logoTile?: "default" | "light";
 };
 
 const sectionLabel =
@@ -33,24 +35,39 @@ export default function ExplorerDirectoryCard({
   thumbnailImage,
   ctaLabel,
   features = [],
+  logoTile = "default",
 }: ExplorerDirectoryCardProps) {
   const host = hostOf(url);
+  const light = logoTile === "light";
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
       <div className="flex flex-1 flex-col p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 p-1.5 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10">
+            <div
+              className={
+                light
+                  ? "flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white p-2 shadow-sm ring-1 ring-slate-200 dark:ring-white/15"
+                  : "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 p-1.5 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10"
+              }
+            >
               {thumbnailImage ? (
                 <Image
                   src={thumbnailImage}
                   alt={`${title} logo`}
-                  width={48}
-                  height={48}
+                  width={56}
+                  height={56}
                   className={`h-full w-full object-contain ${thumbnailImage.includes("messari") ? "dark:invert" : ""}`}
                 />
               ) : (
-                <span aria-hidden="true" className="text-lg font-semibold text-brand">
+                <span
+                  aria-hidden="true"
+                  className={
+                    light
+                      ? "flex h-full w-full items-center justify-center rounded-lg bg-brand/10 text-xl font-semibold text-brand"
+                      : "text-lg font-semibold text-brand"
+                  }
+                >
                   {title.charAt(0).toUpperCase()}
                 </span>
               )}
