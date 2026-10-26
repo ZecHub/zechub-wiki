@@ -1,4 +1,4 @@
-import { ArrowUpRight, Coins, Cpu, Globe, HandCoins, MessageSquareText, Scale, ShieldCheck, Users, Vote } from "lucide-react";
+import { ArrowUpRight, Coins, Cpu, Globe, HandCoins, MessageSquareText, Scale, ShieldAlert, ShieldCheck, Users, Vote } from "lucide-react";
 import { SiDiscord, SiElement } from "react-icons/si";
 import { socialIcons } from "@/components/UI/SvgIcons";
 
@@ -17,6 +17,7 @@ const ICONS: Record<string, React.ReactNode> = {
   grants: <HandCoins aria-hidden="true" className="h-6 w-6" />,
   shield: <ShieldCheck aria-hidden="true" className="h-6 w-6" />,
   users: <Users aria-hidden="true" className="h-6 w-6" />,
+  alert: <ShieldAlert aria-hidden="true" className="h-6 w-6" />,
 };
 
 const TILE =
@@ -167,6 +168,22 @@ export function MemberCard(props: Record<string, unknown>) {
         {initials}
       </span>
       <span className="min-w-0 text-base font-semibold leading-tight text-slate-900 dark:text-white">{name}</span>
+    </div>
+  );
+}
+
+// Vertical list of dated entries (year / period on the left, content with its links on the right).
+export function TimelineList({ children }: { children?: React.ReactNode }) {
+  return <div className="not-prose my-6 space-y-3">{children}</div>;
+}
+
+export function TimelineItem(props: Record<string, unknown> & { children?: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1 rounded-xl border border-slate-200 bg-slate-50/60 p-4 dark:border-white/10 dark:bg-white/[0.03] sm:flex-row sm:gap-5">
+      <span className="shrink-0 text-base font-semibold tracking-tight text-brand dark:text-brand-soft sm:w-32">
+        {String(props.year ?? "")}
+      </span>
+      <div className="min-w-0 text-[0.95rem] leading-6 text-slate-700 dark:text-slate-300 [&>p]:m-0">{props.children}</div>
     </div>
   );
 }

@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1228,6 +1228,77 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         let ui = pm + 1;
         while (ui < rows.length && !isEl(rows[ui], "ul") && !isEl(rows[ui], "h2")) ui++;
         rows.splice(pm, (isEl(rows[ui], "ul") ? ui + 1 : pm + 1) - pm);
+      }
+    }
+    if (opts.sec && Array.isArray(tree.children)) {
+      // Ecosystem Security: lead + timeline, updates and resources as cards, edit badge removed.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const nameOf = (x: any): string => x.tagName || x.name || "";
+      const findHref = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if (nameOf(x) === "a" && x.properties?.href) return String(x.properties.href);
+        for (const c of x.children || []) {
+          const r = findHref(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h2At = (re: RegExp) => rows.findIndex((x) => isEl(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      const nextUl = (from: number) => {
+        let i = from + 1;
+        while (i < rows.length && !isEl(rows[i], "ul") && !isEl(rows[i], "h2")) i++;
+        return isEl(rows[i], "ul") ? i : -1;
+      };
+      const items = (ul: any) => (ul.children || []).filter((li: any) => isEl(li, "li") && textOf(li).trim());
+
+      const roleH = h2At(/^ecosystem security lead/i);
+      if (roleH > -1) {
+        const lead = rows.findIndex((x, i) => i > roleH && isEl(x, "p") && textOf(x).trim().length > 60);
+        if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+        const ui = nextUl(roleH);
+        if (ui > -1) {
+          const list = items(rows[ui]).map((li: any) => {
+            const kids: any[] = li.children || [];
+            const si = kids.findIndex((c) => isEl(c, "strong"));
+            const year = si > -1 ? textOf(kids[si]).replace(/:\s*$/, "").trim() : "";
+            const rest = kids.filter((_, i) => i !== si);
+            if (rest[0] && rest[0].type === "text") rest[0] = { ...rest[0], value: rest[0].value.replace(/^\s+/, "") };
+            return { type: "element", tagName: "timelineitem", properties: { year }, children: rest };
+          });
+          if (list.length) rows.splice(ui, 1, { type: "element", tagName: "timelinelist", properties: {}, children: list });
+        }
+      }
+
+      const upd = h2At(/^recent security updates/i);
+      if (upd > -1) {
+        const ui = nextUl(upd);
+        if (ui > -1) {
+          // The hand-written list goes stale (it still named Zebra 4.4.1), so the live feed replaces it.
+          rows[upd] = { ...rows[upd], children: [{ type: "text", value: "Recent Security Updates" }] };
+          rows.splice(ui, 1,
+            { type: "element", tagName: "p", properties: {}, children: [{ type: "text", value: "Live from GitHub (Zebra, zcashd and librustzcash). Updated hourly." }] },
+            { type: "element", tagName: "securityfeed", properties: {}, children: [] },
+          );
+        }
+      }
+
+      const res = h2At(/^security resources/i);
+      if (res > -1) {
+        const ui = nextUl(res);
+        if (ui > -1) {
+          const cards = items(rows[ui]).map((li: any) => ({
+            type: "element",
+            tagName: "communitycard",
+            properties: { name: textOf(li).trim(), desc: "", href: findHref(li), icon: "shield" },
+            children: [],
+          }));
+          if (cards.length) rows.splice(ui, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+        }
       }
     }
     if (opts.cz && Array.isArray(tree.children)) {
@@ -2402,6 +2473,7 @@ export default async function Page(props: {
             cz: slug[0] === "zcash-community" && slug[1] === "cypherpunk-zero-nft",
             gov: slug[0] === "zcash-community" && slug[1] === "zcash-governance",
             zcap: slug[0] === "zcash-community" && slug[1] === "zcap",
+            sec: slug[0] === "zcash-community" && slug[1] === "zcash-ecosystem-security",
           },
         ],
       ],

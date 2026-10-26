@@ -13,8 +13,9 @@ import FaucetCard, { FaucetList } from "./FaucetCard";
 import { RecoveryNav, GuideCallout } from "./RecoveryBlocks";
 import { PointList, PointItem } from "./GuidePoints";
 import LinkButton from "./LinkButton";
-import { CommunityGrid, CommunityGroup, CommunityCard, StatGrid, StatCard, OrgCard, MemberCard } from "./CommunityBlocks";
+import { CommunityGrid, CommunityGroup, CommunityCard, StatGrid, StatCard, OrgCard, MemberCard, TimelineList, TimelineItem } from "./CommunityBlocks";
 import JumpNav from "./JumpNav";
+import SecurityFeed from "./SecurityFeed";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 import CodeBlock from "./CodeBlock";
@@ -77,6 +78,9 @@ const MdxComponents = {
   communitycard: CommunityCard,
   orgcard: OrgCard,
   membercard: MemberCard,
+  securityfeed: SecurityFeed,
+  timelinelist: TimelineList,
+  timelineitem: TimelineItem,
   statgrid: StatGrid,
   statcard: StatCard,
   pointlist: PointList,
