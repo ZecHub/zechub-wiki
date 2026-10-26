@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1854,13 +1854,39 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       // Akash zcashd guide (deprecated): callout for the notice, "->" paragraphs as real lists, code blocks with a language.
       const rows: any[] = tree.children;
       const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      if (opts.akashBtn) {
+        // Zebra version: heading levels are off by one (sections are H3, steps H4, options H5).
+        let step = 0;
+        for (const x of rows) {
+          if (!isEl(x)) continue;
+          const t = textOf(x).trim();
+          if (x.tagName === "h3") {
+            if (/^important:/i.test(t)) x.properties = { ...(x.properties || {}), dataRule: "true" };
+            else x.tagName = "h2";
+          } else if (x.tagName === "h4") {
+            const m = /^Step\s+(\d+):\s*(.+)$/i.exec(t);
+            if (m) {
+              step = Number(m[1]);
+              x.tagName = "h2";
+              x.properties = { ...(x.properties || {}), dataStep: m[1] };
+              x.children = [{ type: "text", value: m[2] }];
+            } else {
+              x.tagName = "h3";
+              x.properties = { ...(x.properties || {}), dataRule: "true" };
+            }
+          } else if (x.tagName === "h5") {
+            x.tagName = "h3";
+            x.properties = { ...(x.properties || {}), dataRule: "true" };
+          }
+        }
+      }
       const bq = rows.findIndex((x) => isEl(x, "blockquote"));
       if (bq > -1) {
         const kids = (rows[bq].children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
         rows[bq] = { type: "element", tagName: "guidecallout", properties: { title: "zcashd is no longer supported" }, children: kids };
       }
       const h1 = rows.findIndex((x) => isEl(x, "h1"));
-      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && /^guide for deploying/i.test(textOf(x).trim()));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && /(^|\s)guide for deploying/i.test(textOf(x).trim()));
       if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
       const arrow = (x: any) => isEl(x, "p") && /^->\s/.test(textOf(x).trim());
       for (let i = 0; i < rows.length; i++) {
@@ -3058,7 +3084,8 @@ export default async function Page(props: {
             videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
             hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
-            akash: slug[0] === "guides" && slug[1] === "akash-network-zcashd",
+            akash: slug[0] === "guides" && (slug[1] === "akash-network-zcashd" || slug[1] === "akash-network-zebra"),
+            akashBtn: slug[0] === "guides" && slug[1] === "akash-network-zebra",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
