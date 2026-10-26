@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1072,6 +1072,100 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               };
             });
           if (cards.length) rows.splice(j, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+        }
+      }
+    }
+    if (opts.gov && Array.isArray(tree.children)) {
+      // Funding & Governance: lead line, organizations as cards, resources as link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const nameOf = (x: any): string => x.tagName || x.name || "";
+      const collectLinks = (x: any, out: { label: string; href: string }[] = []) => {
+        if (!x || typeof x !== "object") return out;
+        if (nameOf(x) === "a" && x.properties?.href) out.push({ label: textOf(x).trim(), href: String(x.properties.href) });
+        (x.children || []).forEach((c: any) => collectLinks(c, out));
+        return out;
+      };
+      const orgLogo = (name: string): { logo: string; logoDark?: string } => {
+        const n = name.toLowerCase();
+        if (/electric coin|bootstrap/.test(n)) return { logo: "/org-logos/ecc.png" };
+        if (/open development lab|zodl/.test(n)) return { logo: "/org-logos/zodl-light.png", logoDark: "/org-logos/zodl-dark.png" };
+        if (/zcash foundation/.test(n)) return { logo: "/org-logos/zf-light.png", logoDark: "/org-logos/zf-dark.png" };
+        if (/community grants/.test(n)) return { logo: "/org-logos/zcg.png", logoDark: "/org-logos/zcg-dark.png" };
+        if (/financial privacy/.test(n)) return { logo: "/org-logos/fpf-light.png", logoDark: "/org-logos/fpf-dark.png" };
+        if (/shielded labs/.test(n)) return { logo: "/org-logos/sl.png" };
+        return { logo: "" };
+      };
+      const h2At = (re: RegExp) => rows.findIndex((x) => isEl(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      const sectionEnd = (from: number) => {
+        let end = from + 1;
+        while (end < rows.length && !isEl(rows[end], "h2")) end++;
+        return end;
+      };
+
+      const lead = rows.findIndex((x) => isEl(x, "p") && textOf(x).trim().length > 40);
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+
+      // Organizations: <p><strong>Name</strong></p> + <ul>; the "-> See full profile / Official site" lines become buttons.
+      const orgs = h2At(/^2\.\s*the core organizations/i);
+      if (orgs > -1) {
+        const end = sectionEnd(orgs);
+        const cards: any[] = [];
+        const section = rows.slice(orgs + 1, end).filter((x: any) => !(x.type === "text" && !String(x.value).trim()));
+        for (let i = 0; i < section.length; i++) {
+          const head = section[i];
+          const list = section[i + 1];
+          if (!isEl(head, "p") || !isEl(list, "ul") || !textOf(head).trim()) continue;
+          const links: { label: string; href: string }[] = [];
+          list.children = (list.children || []).filter((li: any) => {
+            if (!isEl(li, "li")) return true;
+            const kids: any[] = li.children || [];
+            const at = kids.findIndex((c) => c.type === "text" && /(->|\u2192)/.test(c.value));
+            if (at < 0) return true;
+            const tail = kids.slice(at);
+            let pending = "";
+            for (const c of tail) {
+              if (c.type === "text") pending = c.value;
+              else if (nameOf(c) === "a" && c.properties?.href) {
+                links.push({ label: /official site/i.test(pending) ? "Official site" : "Full profile", href: String(c.properties.href) });
+                pending = "";
+              }
+            }
+            const before = kids.slice(0, at).filter((c) => !(isEl(c, "br")));
+            const cut = kids[at].value.split(/(->|\u2192)/)[0];
+            if (cut.trim()) before.push({ type: "text", value: cut.trim() });
+            li.children = before;
+            return textOf(li).trim().length > 0;
+          });
+          cards.push({
+            type: "element",
+            tagName: "orgcard",
+            properties: { name: textOf(head).trim(), links: JSON.stringify(links), ...orgLogo(textOf(head)) },
+            children: [list],
+          });
+          i++;
+        }
+        if (cards.length) {
+          rows.splice(orgs + 1, end - orgs - 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+        }
+      }
+
+      // Related resources: one link card per entry.
+      const res = h2At(/^5\.\s*related resources/i);
+      if (res > -1) {
+        let ri = res + 1;
+        while (ri < rows.length && rows[ri].type === "text" && !String(rows[ri].value).trim()) ri++;
+        const ul = rows[ri];
+        if (isEl(ul, "ul")) {
+          const cards: any[] = [];
+          for (const li of ul.children || []) {
+            if (!isEl(li, "li")) continue;
+            const l = collectLinks(li)[0];
+            if (!l) continue;
+            const name = textOf(li).split(/->|\u2192/)[0].trim();
+            cards.push({ type: "element", tagName: "communitycard", properties: { name, desc: l.label, href: l.href }, children: [] });
+          }
+          if (cards.length) rows.splice(ri, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
         }
       }
     }
@@ -2245,6 +2339,7 @@ export default async function Page(props: {
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
             comm: slug[0] === "zcash-community" && slug[1] === "community-links",
             cz: slug[0] === "zcash-community" && slug[1] === "cypherpunk-zero-nft",
+            gov: slug[0] === "zcash-community" && slug[1] === "zcash-governance",
           },
         ],
       ],

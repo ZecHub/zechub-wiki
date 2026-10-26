@@ -88,3 +88,58 @@ export function StatCard(props: Record<string, unknown>) {
     </div>
   );
 }
+
+// One organization: name, its bullet list (children) and profile / website buttons.
+export function OrgCard(props: Record<string, unknown> & { children?: React.ReactNode }) {
+  let links: { label: string; href: string }[] = [];
+  try {
+    links = JSON.parse(String(props.links ?? "[]"));
+  } catch {
+    links = [];
+  }
+  return (
+    <div className="flex h-full min-w-0 flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 dark:border-white/10 dark:bg-white/[0.03]">
+      <div className="flex items-center gap-3">
+        {props.logo ? (
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={String(props.logo)}
+              alt=""
+              width={56}
+              height={56}
+              loading="lazy"
+              className={`m-0 h-14 w-14 object-contain ${props.logoDark ? "dark:hidden" : ""}`}
+            />
+            {props.logoDark ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={String(props.logoDark)} alt="" width={56} height={56} loading="lazy" className="m-0 hidden h-14 w-14 object-contain dark:block" />
+            ) : null}
+          </span>
+        ) : (
+          <span className={TILE}>{ICONS.globe}</span>
+        )}
+        <h3 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">{String(props.name ?? "")}</h3>
+      </div>
+      <div className="min-w-0 flex-1 text-[0.95rem] leading-6 text-slate-700 dark:text-slate-300 [&>ul]:my-0 [&>ul]:space-y-2">
+        {props.children}
+      </div>
+      {links.length > 0 && (
+        <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-white/10">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-brand/50 px-3 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
+            >
+              {l.label}
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
