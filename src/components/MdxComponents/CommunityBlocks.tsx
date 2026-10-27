@@ -1,4 +1,4 @@
-import { ArrowUpRight, CalendarDays, Code, Coins, Cpu, FileText, Globe, HandCoins, Languages, Megaphone, MessageSquareText, Presentation, Scale, ShieldAlert, ShieldCheck, UserPlus, Users, Vote } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Code, Coins, Cpu, FileText, Globe, HandCoins, Languages, Megaphone, MessageSquareText, Presentation, Scale, ShieldAlert, ShieldCheck, UserPlus, Users, Video, Vote } from "lucide-react";
 import { SiDiscord, SiElement } from "react-icons/si";
 import { socialIcons } from "@/components/UI/SvgIcons";
 import { Link } from "@/i18n/navigation";
@@ -13,6 +13,7 @@ const ICONS: Record<string, React.ReactNode> = {
   globe: <Globe aria-hidden="true" className="h-6 w-6" />,
   file: <FileText aria-hidden="true" className="h-6 w-6" />,
   code: <Code aria-hidden="true" className="h-6 w-6" />,
+  video: <Video aria-hidden="true" className="h-6 w-6" />,
   scale: <Scale aria-hidden="true" className="h-6 w-6" />,
   coins: <Coins aria-hidden="true" className="h-6 w-6" />,
   cpu: <Cpu aria-hidden="true" className="h-6 w-6" />,

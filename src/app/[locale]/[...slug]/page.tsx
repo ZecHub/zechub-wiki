@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2180,6 +2180,111 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       tree.children = rows;
     }
+    if (opts.zenith && Array.isArray(tree.children)) {
+      // Zenith installation: videos as a carousel, commands as code blocks, numbered steps, caution notice, jump list.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x)) rows.splice(i, 1);
+        else if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const codeBlock = (lines: string[], lang: string) => el("pre", {}, [el("code", { className: ["language-" + lang] }, [txt(lines.join("\n") + "\n")])]);
+      const iframesIn = (n: any, acc: any[] = []) => {
+        if (isEl(n, "iframe") || (n && n.type === "mdxJsxFlowElement" && String(n.name) === "iframe")) acc.push(n);
+        (n?.children || []).forEach((c: any) => iframesIn(c, acc));
+        return acc;
+      };
+      const srcOf = (f: any) => String(f.properties?.src ?? (f.attributes || []).find((a: any) => a.name === "src")?.value ?? "");
+      const titleOf = (f: any) => String(f.properties?.title ?? (f.attributes || []).find((a: any) => a.name === "title")?.value ?? "Video");
+      // 1. Videos: one carousel under "Video Tutorial".
+      const vh = rows.findIndex((x) => isEl(x, "h2") && /^video tutorial/i.test(h2Text(x)));
+      if (vh > -1) {
+        let end = vh + 1;
+        const videos: { id: string; title: string }[] = [];
+        while (end < rows.length && !isEl(rows[end], "h2")) {
+          for (const f of iframesIn(rows[end])) {
+            const m = /embed\/([\w-]{6,})/.exec(srcOf(f));
+            if (m) videos.push({ id: m[1], title: titleOf(f) });
+          }
+          end += 1;
+        }
+        if (videos.length) rows.splice(vh + 1, end - vh - 1, el("videoslider", { videos: JSON.stringify(videos) }));
+      }
+      // 2. Commands written as blockquotes, bullet lists and bare lines become code blocks.
+      const bqText = (x: any) => textOf(x).replace(/\s+$/g, "").trim();
+      const isCmd = (x: any) => isEl(x, "blockquote") && bqText(x).length > 0;
+      let i = 0;
+      while (i < rows.length) {
+        if (isCmd(rows[i])) {
+          let j = i;
+          const lines: string[] = [];
+          while (j < rows.length && isCmd(rows[j])) { lines.push(bqText(rows[j])); j += 1; }
+          rows.splice(i, j - i, codeBlock(lines, "bash"));
+        }
+        i += 1;
+      }
+      // Compile list ("./configure", "cabal build", ...) becomes one block.
+      for (let k = 0; k < rows.length; k++) {
+        if (isEl(rows[k], "ul") && /^\s*\.\/configure/.test(textOf(rows[k]))) {
+          const lines = (rows[k].children || []).filter((c: any) => isEl(c, "li")).map((c: any) => textOf(c).trim());
+          rows[k] = codeBlock(lines, "bash");
+        }
+      }
+      // zebrad.toml options: comment headings plus option lines become one config block.
+      const zi = rows.findIndex((x) => isEl(x, "h2") && /^install zebra/i.test(h2Text(x)));
+      if (zi > -1) {
+        let a = zi + 1;
+        while (a < rows.length && !(isEl(rows[a], "h4") || (isEl(rows[a], "p") && /^[a-z_]+\s=\s/.test(textOf(rows[a]).trim())))) a += 1;
+        let b = a;
+        const lines: string[] = [];
+        while (b < rows.length && !isEl(rows[b], "h2") && !isEl(rows[b], "h3") && (isEl(rows[b], "h4") || isEl(rows[b], "p") || isEl(rows[b], "pre"))) {
+          const t = textOf(rows[b]).trim();
+          if (isEl(rows[b], "h4")) lines.push("# " + t);
+          else lines.push(t);
+          b += 1;
+        }
+        if (lines.length && b > a) rows.splice(a, b - a, codeBlock(lines, "toml"));
+      }
+      // zenith.cfg options ("key = value" paragraphs) become one config block.
+      for (let k = 0; k < rows.length; k++) {
+        if (isEl(rows[k], "p") && /^(nodeUser|nodePwd|nodePort|dbFileName|zebraHost|zebraPort)\s=\s/.test(textOf(rows[k]).trim())) {
+          let e = k;
+          const lines: string[] = [];
+          while (e < rows.length && isEl(rows[e], "p") && /^\w+\s=\s/.test(textOf(rows[e]).trim())) { lines.push(textOf(rows[e]).trim()); e += 1; }
+          rows.splice(k, e - k, codeBlock(lines, "ini"));
+        }
+      }
+      // 3. Heading polish and numbered steps.
+      let n = 0;
+      for (const r of rows) {
+        if (isEl(r, "h3") && /^install depedencies$/i.test(textOf(r).trim())) r.children = [txt("Install Dependencies")];
+        if (!isEl(r, "h2")) continue;
+        const t = h2Text(r);
+        if (/^video tutorial|^rpc/i.test(t)) continue;
+        n += 1;
+        r.properties = { ...(r.properties || {}), dataStep: String(n) };
+      }
+      // 4. Caution notice and jump list after the title.
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const notice = {
+        type: "element",
+        tagName: "guidecallout",
+        properties: { title: "Before you start" },
+        children: [el("p", { className: ["m-0"] }, [txt("This guide builds Zenith on a Raspberry Pi (aarch64) against a local Zebra node, and it pins Zebra v2.1.0 and Zenith 0.7.2.0-beta. Zebra v2.1.0 is an old release: network upgrades since then, including NU6.2 and NU6.3 (Ironwood), need newer Zebra releases, so build a current Zebra release instead of the pinned tag. This guide has not been updated for Ironwood, so check the Zenith project for NU6.3 support before using it with real funds.")])],
+      };
+      const items = [
+        { label: "Zebra", hint: "Build and configure the node", href: "#install-zebra" },
+        { label: "Zenith", hint: "Download, build and configure", href: "#install-zenith" },
+        { label: "Raspberry Pi", hint: "Graphics driver setup", href: "#raspi-config" },
+        { label: "Run", hint: "GUI, TUI or server", href: "#run-zenith" },
+      ];
+      if (h1 > -1) rows.splice(h1 + 1, 0, notice, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+    }
     if (opts.nrpc && Array.isArray(tree.children)) {
       // Node RPC and indexing: no Edit badge, end-of-life notice as a callout, targeted wording fixes pending an upstream PR,
       // NU6.3 / Ironwood sections for operators and a jump list. Port facts: Z3 z3-contract.yaml and docs/regtest.md; NU6.3 and
@@ -2305,6 +2410,131 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           { label: "Ironwood", hint: "What changes for operators", href: "#ironwood-nu63-for-node-operators" },
         ];
         rows.splice(sec, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.zkdecoy && Array.isArray(tree.children)) {
+      // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const findAll = (n: any, tag: string, acc: any[] = []) => {
+        if (isEl(n, tag)) acc.push(n);
+        (n?.children || []).forEach((c: any) => findAll(c, tag, acc));
+        return acc;
+      };
+      const replaceText = (n: any, a: string, b: string) => {
+        if (n?.type === "text" && String(n.value).includes(a)) n.value = String(n.value).replace(a, b);
+        (n?.children || []).forEach((c: any) => replaceText(c, a, b));
+      };
+      const BANNER = "257773807-af8ae27d";
+      const STOCK = "257788813-509f1139";
+      const KEYS = "257793324-2dcc6047";
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x) : "";
+        const simple = x && (x.type === "mdxJsxFlowElement" || isEl(x, "p") || isEl(x, "a") || isEl(x, "img")) && !textOf(x).trim();
+        if (isWs(x) || j.toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+        else if (simple && (j.includes(BANNER) || j.includes(STOCK))) rows.splice(i, 1);
+        else if (isEl(x, "hr")) rows.splice(i, 1);
+      }
+      // Quote and lead.
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const q = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && /^["“]/.test(textOf(x).trim()));
+      if (q > -1) rows[q] = el("blockquote", {}, [rows[q]]);
+      const lead = rows.findIndex((x, i) => i > Math.max(q, h1) && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // At a glance: only points that the guide itself makes.
+      const cell = (tag: string, t: string) => el(tag, {}, [txt(t)]);
+      const row = (a: string, b: string, c: string) => el("tr", {}, [cell("td", a), cell("td", b), cell("td", c)]);
+      const table = el("table", {}, [
+        el("thead", {}, [el("tr", {}, [cell("th", ""), cell("th", "Zcash (zero-knowledge proofs)"), cell("th", "Decoy-based (e.g. Monero RingCT)")])]),
+        el("tbody", {}, [
+          row("Core idea", "A zk-SNARK proves a transaction is valid without revealing the sender, receiver or amount.", "Real inputs are mixed with decoys, and range proofs show the amount is spendable."),
+          row("What stays visible", "Shielded transaction details stay confidential.", "Encrypted inputs stay visible, and the flow of transactions between users can still be gathered."),
+          row("Anonymity set", "All transactions that ever occurred in the same shielded pool.", "Depends on the number of real users on the network."),
+        ]),
+      ]);
+      const h2a = rows.findIndex((x) => isEl(x, "h2"));
+      if (h2a > -1) rows.splice(h2a, 0, el("h2", { id: "at-a-glance" }, [txt("At a glance")]), table);
+      // Important Note becomes a callout, followed by an update note on Monero.
+      const inote = rows.findIndex((x) => isEl(x, "p") && /^important note/i.test(textOf(x).trim()));
+      if (inote > -1) {
+        const kids = rows[inote].children || [];
+        const first = kids.findIndex((c: any) => !isWs(c));
+        if (first > -1 && isEl(kids[first], "strong") && /^important note:?$/i.test(textOf(kids[first]).trim())) {
+          kids.splice(first, 1);
+          const nx = kids[first];
+          if (nx && nx.type === "text") nx.value = String(nx.value).replace(/^\s*:\s*/, "");
+        }
+        const mon = el("guidecallout", { title: "Monero is changing" }, [el("p", { className: ["m-0"] }, [txt("This guide describes decoy-based privacy as Monero has used it so far. Monero has been developing FCMP++, a design that replaces ring signatures with a proof over the full set of outputs, so check the official Monero announcements for its current status before relying on this comparison.")])]);
+        rows.splice(inote, 1, el("guidecallout", { title: "Important note" }, [rows[inote]]), mon);
+      }
+      // Wording that aged: NU5 is no longer recent.
+      for (const r of rows) replaceText(r, "recent NU5 upgrade", "NU5 upgrade (May 2022)");
+      for (const r of rows) replaceText(r, "There are a number of instances in which bugs have been identified in", "In the past, bugs have been identified in");
+      // The five advantages become one numbered list; paragraphs between the lists belong to the preceding item.
+      const firstOl = rows.findIndex((x) => isEl(x, "ol"));
+      const summary = rows.findIndex((x, i) => i > firstOl && isEl(x, "p") && /^in summary/i.test(textOf(x).trim()));
+      if (firstOl > -1 && summary > firstOl) {
+        const items: any[] = [];
+        for (let k = firstOl; k < summary; k++) {
+          const x = rows[k];
+          if (isEl(x, "ol")) {
+            for (const li of (x.children || []).filter((c: any) => isEl(c, "li"))) {
+              const strong = findAll(li, "strong")[0];
+              const title = strong ? textOf(strong).replace(/[:\s]+$/, "").trim() : "";
+              const kids: any[] = li.children || [];
+              if (strong) {
+                const drop = (n: any): boolean => {
+                  const ch: any[] = n.children || [];
+                  const idx = ch.indexOf(strong);
+                  if (idx > -1) {
+                    ch.splice(idx, 1);
+                    const nx = ch[idx];
+                    if (nx && nx.type === "text") nx.value = String(nx.value).replace(/^\s*:\s*/, "");
+                    return true;
+                  }
+                  return ch.some((c) => drop(c));
+                };
+                drop(li);
+              }
+              const body = kids.filter((c: any) => !isWs(c));
+              const hasBlock = body.some((c: any) => isEl(c, "p"));
+              items.push(el("pointitem", { n: String(items.length + 1), title }, hasBlock ? body : [el("p", {}, body)]));
+            }
+          } else if (items.length) {
+            items[items.length - 1].children.push(x);
+          }
+        }
+        if (items.length) {
+          const pools = el("guidecallout", { title: "Shielded pools after NU6.3" }, [el("p", { className: ["m-0"] }, [txt("Zcash now has more than one shielded pool. Ironwood, introduced by the NU6.3 upgrade (mainnet block 3,428,143), uses the Orchard shielded protocol but keeps its own value pool, and the anonymity set described above applies within a pool. Because Ironwood uses the same protocol as Orchard, it does not require a trusted setup either.")])]);
+          rows.splice(firstOl, summary - firstOl, el("pointlist", {}, items), pools);
+        }
+      }
+      // Reference links become source cards.
+      const meta: [string, string, string][] = [
+        ["z.cash/learn", "Zcash: Learn", "Official introduction to Zcash"],
+        ["getmonero.org/get-started", "What is Monero?", "Official introduction to Monero"],
+        ["9s3EbSKDA3o", "Ian Miers at Devcon4", "Talk quoted at the top of this guide"],
+        ["nu5-activates", "NU5 activates on mainnet", "Electric Coin Company blog"],
+        ["XpRzKqEfpP4", "Zooko at the Orchid (priv8) AMA", "Live session on reducing information leaks"],
+        ["zcash-evolution", "The evolution of Zcash", "Electric Coin Company blog"],
+        ["zcash-metrics", "Zcash metrics (archived)", "Wayback Machine snapshot, March 2024"],
+        ["viewing-keys-selective-disclosure", "Viewing keys and selective disclosure", "Electric Coin Company blog"],
+      ];
+      const rl = rows.findIndex((x) => isEl(x, "p") && /^reference links$/i.test(textOf(x).trim()));
+      if (rl > -1) {
+        const hrefs: string[] = [];
+        for (let k = rl + 1; k < rows.length; k++) for (const a of findAll(rows[k], "a")) hrefs.push(String(a.properties?.href || ""));
+        const cards = meta
+          .map(([key, name, desc]) => {
+            const href = hrefs.find((h) => h.includes(key));
+            return href ? el("communitycard", { name, desc, href, icon: /youtu/.test(href) ? "video" : "file" }, []) : null;
+          })
+          .filter(Boolean);
+        if (cards.length) rows.splice(rl, rows.length - rl, el("h2", { id: "reference-links" }, [txt("Reference links")]), el("addressgrid", {}, cards));
       }
     }
     if (opts.zips && Array.isArray(tree.children)) {
@@ -4184,6 +4414,8 @@ export default async function Page(props: {
             dtool: slug[0] === "guides" && slug[1] === "zcash-devtool",
             zips: slug[0] === "guides" && slug[1] === "zcash-improvement-proposals",
             nrpc: slug[0] === "guides" && slug[1] === "zcash-node-rpc-and-indexing",
+            zenith: slug[0] === "guides" && slug[1] === "zenith-installation",
+            zkdecoy: slug[0] === "guides" && slug[1] === "zero-knowledge-vs-decoys",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",

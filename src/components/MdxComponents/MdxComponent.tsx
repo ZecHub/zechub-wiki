@@ -18,6 +18,7 @@ import { CommunityGrid, CommunityGroup, CommunityCard, StatGrid, StatCard, OrgCa
 import JumpNav from "./JumpNav";
 import SecurityFeed from "./SecurityFeed";
 import VideoCarousel from "./VideoCarousel";
+import VideoSlider from "./VideoSlider";
 import PodcastShow from "./PodcastShow";
 import { ZconEdition, ChipNav } from "./ZconEdition";
 import ExchangeLinkCard from "./ExchangeLinkCard";
@@ -86,6 +87,7 @@ const MdxComponents = {
   membercard: MemberCard,
   securityfeed: SecurityFeed,
   videocarousel: VideoCarousel,
+  videoslider: VideoSlider,
   podcastshow: PodcastShow,
   zconedition: ZconEdition,
   chipnav: ChipNav,
