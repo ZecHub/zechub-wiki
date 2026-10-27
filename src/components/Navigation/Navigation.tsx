@@ -1146,7 +1146,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          {/* mx-4 is mirrored in useNavFit (NAV_MARGINS). No max width: the bar
+          {/* No max width: the bar
               uses all the room between the logo and the header buttons. */}
           <nav
             ref={navRef}
