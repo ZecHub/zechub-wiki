@@ -88,11 +88,15 @@ export default function VideoSlider(props: Record<string, unknown>) {
       </div>
       <div className="mt-3 flex items-center justify-between gap-3">
         <p className="m-0 min-w-0 truncate text-sm text-slate-600 dark:text-slate-300">
-          <span className="font-semibold text-slate-900 dark:text-white">{index + 1} / {videos.length}</span>
-          <span className="mx-2 text-slate-400">·</span>
+          {videos.length > 1 && (
+            <>
+              <span className="font-semibold text-slate-900 dark:text-white">{index + 1} / {videos.length}</span>
+              <span className="mx-2 text-slate-400">·</span>
+            </>
+          )}
           {current?.title}
         </p>
-        <div className="flex shrink-0 items-center gap-2">
+        <div className={videos.length > 1 ? "flex shrink-0 items-center gap-2" : "hidden"}>
           <button type="button" aria-label="Previous video" className={btn} disabled={index <= 0} onClick={() => goTo(index - 1)}>
             <ChevronLeft aria-hidden="true" className="h-5 w-5" />
           </button>

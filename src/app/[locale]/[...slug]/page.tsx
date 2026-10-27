@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2412,6 +2412,89 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(sec, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
       }
     }
+    if (opts.z3zaino && Array.isArray(tree.children)) {
+      // Zebra + Zaino + zingo-cli: component cards, lead, outdated-guide notice, numbered install steps, monospace commands.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const replaceText = (n: any, a: string, b: string) => {
+        if (n?.type === "text" && String(n.value).includes(a)) n.value = String(n.value).replace(a, b);
+        (n?.children || []).forEach((c: any) => replaceText(c, a, b));
+      };
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x).toLowerCase() : "";
+        if (isWs(x) || j.includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      // The embedded video becomes a thumbnail slide (single video, so no arrows).
+      const frameIn = (n: any): any => (isEl(n, "iframe") || (n && n.type === "mdxJsxFlowElement" && String(n.name) === "iframe") ? n : (n?.children || []).map(frameIn).find(Boolean));
+      for (let q = 0; q < rows.length; q++) {
+        const f = isEl(rows[q], "div") || (rows[q] && rows[q].type === "mdxJsxFlowElement") ? frameIn(rows[q]) : null;
+        if (!f) continue;
+        const src = String(f.properties?.src ?? (f.attributes || []).find((a: any) => a.name === "src")?.value ?? "");
+        const title = String(f.properties?.title ?? (f.attributes || []).find((a: any) => a.name === "title")?.value ?? "Video");
+        const m = /embed\/([\w-]{6,})/.exec(src);
+        if (m) rows[q] = el("videoslider", { videos: JSON.stringify([{ id: m[1], title }]) }, []);
+      }
+      // "name : description" lines become component cards.
+      const defs: Record<string, { icon: string; href: string }> = {
+        zebrad: { icon: "cpu", href: "https://github.com/ZcashFoundation/zebra" },
+        zaino: { icon: "file", href: "https://github.com/zingolabs/zaino" },
+        "zingo-cli": { icon: "code", href: "https://github.com/zingolabs/zingolib" },
+      };
+      const cards: any[] = [];
+      let first = -1;
+      let k = h1 + 1;
+      while (k < rows.length && isEl(rows[k], "p")) {
+        const m = /^\s*([\w-]+)\s*:\s*([\s\S]+)$/.exec(textOf(rows[k]));
+        if (!m || !defs[m[1].toLowerCase()]) break;
+        if (first < 0) first = k;
+        const d = defs[m[1].toLowerCase()];
+        cards.push(el("communitycard", { name: m[1], desc: m[2].replace(/\s+/g, " ").trim().replace(/^./, (c) => c.toUpperCase()), href: d.href, icon: d.icon }, []));
+        k += 1;
+      }
+      if (cards.length) {
+        const lead = el("p", { dataLead: "true" }, [txt("This guide builds a small Zcash stack from source: a Zebra full node, the Zaino indexer on top of it, and the zingo-cli command-line client that connects to Zaino.")]);
+        const notice = el("guidecallout", { title: "Check versions before you start" }, [
+          el("p", { className: ["m-0"] }, [txt("The commands below pin Zebra v2.0.1, which predates the NU6.2 and NU6.3 (Ironwood) network upgrades, so build a current Zebra release instead. Zaino added Ironwood support in 0.6.0, and 0.10.1 is its latest release. zcashd has reached end of life, so Zebra is the node to run. The Z3 project packages Zebra and Zallet with Docker Compose, with Zaino as an optional indexer for light wallets. Whether zingo-cli, the config file name and the ports below match current releases has not been verified, so check each project's documentation.")]),
+        ]);
+        const z3 = el("linkbutton", { href: "https://github.com/ZcashFoundation/z3", label: "Open the Z3 repository" }, []);
+        rows.splice(first, cards.length, lead, el("addressgrid", {}, cards), notice, z3);
+      }
+      // Architecture steps are an ordered flow.
+      const bp = rows.findIndex((x) => isEl(x, "h2") && /^big picture$/i.test(h2Text(x)));
+      if (bp > -1) for (let q = bp + 1; q < rows.length && !isEl(rows[q], "h2"); q++) if (isEl(rows[q], "ul")) rows[q].tagName = "ol";
+      // Wording and spelling.
+      for (const r of rows) {
+        replaceText(r, "You will need to intall 3 things", "You will need to install 3 things");
+        replaceText(r, "They can send/recieve ZEC", "They can send/receive ZEC");
+        replaceText(r, "(Zcash user doesnt care", "(Zcash user doesn't care");
+        replaceText(r, "Zaino allows access to either zebrad or zcashd", "Zaino indexes the chain from zebrad (zcashd has reached end of life)");
+        replaceText(r, "If your running these", "If you're running these");
+        replaceText(r, "just like lightwalletd did.", "as zebrad does.");
+      }
+      // The single "sudo apt install screen" line becomes a code block.
+      const ap = rows.findIndex((x) => isEl(x, "p") && /^sudo apt install screen$/.test(textOf(x).trim()));
+      if (ap > -1) rows[ap] = el("pre", {}, [el("code", { className: ["language-bash"] }, [txt("sudo apt install screen\n")])]);
+      // Install steps are numbered, and commands use the monospace style.
+      let n = 0;
+      const ins = rows.findIndex((x) => isEl(x, "h2") && /^installation$/i.test(h2Text(x)));
+      for (let q = ins + 1; ins > -1 && q < rows.length && !isEl(rows[q], "h2"); q++) {
+        if (isEl(rows[q], "h3")) {
+          n += 1;
+          rows[q].properties = { ...(rows[q].properties || {}), dataStep: String(n) };
+        }
+      }
+      for (const r of rows) {
+        if (!isEl(r, "pre")) continue;
+        const code = (r.children || []).find((c: any) => isEl(c, "code"));
+        if (code && !(code.properties?.className || []).some((c: string) => String(c).startsWith("language-"))) code.properties = { ...(code.properties || {}), className: ["language-bash"] };
+      }
+    }
     if (opts.zgo && Array.isArray(tree.children)) {
       // ZGo payment processor: lead, caution notice, jump list instead of the manual index, features as numbered points, no decorative image.
       const rows: any[] = tree.children;
@@ -4487,6 +4570,7 @@ export default async function Page(props: {
             zenith: slug[0] === "guides" && slug[1] === "zenith-installation",
             zkdecoy: slug[0] === "guides" && slug[1] === "zero-knowledge-vs-decoys",
             zgo: slug[0] === "guides" && slug[1] === "zgo-payment-processor",
+            z3zaino: slug[0] === "guides" && slug[1] === "zingolib-and-zaino-tutorial",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
