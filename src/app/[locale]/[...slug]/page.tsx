@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2180,6 +2180,201 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       tree.children = rows;
     }
+    if (opts.nrpc && Array.isArray(tree.children)) {
+      // Node RPC and indexing: no Edit badge, end-of-life notice as a callout, targeted wording fixes pending an upstream PR,
+      // NU6.3 / Ironwood sections for operators and a jump list. Port facts: Z3 z3-contract.yaml and docs/regtest.md; NU6.3 and
+      // Orchard pool rules: ZIP 258; receivers: ZIP 229 and ZIP 326; getdeprecationinfo: Zebra 6.3.0 release notes; Zaino 0.10.1 release notes.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const code = (t: string) => el("code", {}, [txt(t)]);
+      const link = (t: string, href: string) => el("a", { href, target: "_blank", rel: "noreferrer" }, [txt(t)]);
+      const P = (kids: any[], cls: string[] = ["my-5"]) => el("p", { className: cls }, kids);
+      const UL = (items: any[][]) => el("ul", { className: ["my-0", "list-disc", "space-y-1.5", "pl-5", "marker:text-slate-400", "dark:marker:text-slate-500"] }, items.map((k) => el("li", {}, k)));
+      const group = (title: string, icon: string, items: any[][]) => el("communitygroup", { title, icon, wide: "false" }, [UL(items)]);
+      const small = ["text-sm", "text-slate-500", "dark:text-slate-400", "my-4"];
+      const replaceText = (n: any, from: string, to: string) => {
+        if (!n) return;
+        if (n.type === "text" && typeof n.value === "string" && n.value.includes(from)) n.value = n.value.split(from).join(to);
+        (n.children || []).forEach((c: any) => replaceText(c, from, to));
+      };
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // 1. End-of-life notice.
+      const eol = rows.findIndex((x) => isEl(x, "p") && /^zcashd reached end of life/i.test(textOf(x).trim()));
+      if (eol > -1) {
+        rows[eol] = el("guidecallout", { title: "zcashd Has Reached End of Life" }, [
+          P([code("zcashd"), txt(" 6.20.0 reached its automatic end-of-support halt at block 3,417,100 on 18 July 2026, and "), code("zcashd"), txt(" does not support NU6.3. Operators should migrate to a maintained consensus node implementation such as Zebra or Zakura. Wallet and indexing functionality may require separate services, for example Zallet and Zaino in the Z3 stack.")], ["m-0"]),
+        ]);
+      }
+      // 2. Z3 ports are defaults of the Z3 deployment.
+      const pm = rows.findIndex((x) => isEl(x, "p") && /^port matrix and compose project names/i.test(textOf(x).trim()));
+      if (pm > -1) rows.splice(pm + 1, 0, P([txt("The ports above are the mainnet host-port defaults of the Z3 deployment, not universal defaults. Testnet and regtest use different host ports, and a standalone Zebra, Zallet or Zaino installation can use others. The authoritative per-network matrix is "), link("z3-contract.yaml", "https://github.com/ZcashFoundation/z3/blob/main/z3-contract.yaml"), txt(". Zebra validates and serves node RPC, Zallet is the wallet and serves wallet RPC, and Zaino indexes and serves lightwalletd-compatible services; Zaino is not a consensus node.")], small));
+      // 3. Regtest troubleshooting.
+      const hc = rows.findIndex((x) => isEl(x, "p") && /if curl hangs, the router is not up/i.test(textOf(x)));
+      if (hc > -1) rows[hc] = P([txt("A healthy "), code("getblockchaininfo"), txt(" result includes “blocks” and an “upgrades” map. If the request times out or hangs, check the "), code("rpc-router"), txt(" container, its logs, network connectivity, and the availability of its upstream services (Zebra and Zallet). An HTTP 401 response indicates an authentication problem, so check the credentials you are sending; it does not by itself prove that the request reached Zebra directly. On regtest, Zebra’s host port is 29232.")]);
+      // 4. Cookies are credentials.
+      const ck = rows.findIndex((x) => isEl(x, "p") && /^on mainnet and testnet, zallet and the optional zaino/i.test(textOf(x).trim()));
+      if (ck > -1) (rows[ck].children = rows[ck].children || []).push(txt(" The cookie is a credential, not a wallet backup: do not share it or commit it to version control."));
+      // 5. Alternative indexers and wording that could not be verified.
+      for (const r of rows) {
+        replaceText(r, "is a Zakura-backed indexer; it is not what Z3 ships.", "is a separate indexer project; it is not what Z3 ships.");
+        replaceText(r, "a Zakura-backed indexer and CompactTxStreamer implementation. It is not a Z3 service.", "an indexer project that is not part of Z3.");
+        replaceText(r, "the older compact-block server. Still deployed in the wild; Zaino is the successor path for this role.", "the compact-block server maintained at zcash/lightwalletd. It is still released and deployed; Zaino is the indexer that Z3 ships.");
+        replaceText(r, "September 2026", "October 2026");
+      }
+      const fixLi = (list: any[]) => {
+        for (const x of list) {
+          if (!x || x.type !== "element") continue;
+          if (x.tagName === "li" && /^ztreamer\s*\u2014\s*a zakura-backed/i.test(textOf(x).trim())) {
+            const kids: any[] = x.children || [];
+            const strong = kids.find((c: any) => isEl(c, "strong"));
+            const a = kids.find((c: any) => isEl(c, "a"));
+            if (strong && a) x.children = [strong, txt(" \u2014 an indexer project that is not part of Z3. See the "), a, txt(" for its supported backends and status.")];
+          } else if (Array.isArray(x.children)) fixLi(x.children);
+        }
+      };
+      fixLi(rows);
+      // 6. NU6.3 sections for operators, placed before "Common mistakes".
+      const nu = [
+        el("h2", {}, [txt("Ironwood (NU6.3) for Node Operators")]),
+        P([txt("Network Upgrade 6.3 (NU6.3) activated on mainnet at block 3,428,143 (about 28 July 2026) and introduced the Ironwood shielded pool; ZIP 258 specifies the height. Ironwood uses the Orchard shielded protocol but keeps a separate value pool, with its own note commitment tree, anchor and chain value pool balance. NU6.3 is a consensus upgrade, so a node that does not implement it stops following the chain.")]),
+        el("addressgrid", {}, [
+          group("Nodes", "cpu", [
+            [code("zcashd"), txt(" does not implement NU6.3. Zebra is expected to be the only full validator that follows the chain after activation.")],
+            [txt("NU6.3 uses network protocol version 170160 on mainnet and testnet, and NU6.3 nodes disconnect peers that use lower versions.")],
+            [txt("Run a current Zebra release. "), code("getdeprecationinfo"), txt(", added in Zebra 6.3.0, reports the height and estimated time at which a release halts for end of support, in the "), code("zcashd"), txt(" "), code("end_of_service"), txt(" format. The "), code("end_of_service"), txt(" object is present on mainnet only, where end of support is enforced.")],
+          ]),
+          group("The original Orchard pool", "coins", [
+            [txt("Since NU6.3, no new value can enter the original Orchard pool, and ordinary transfers within it are restricted; change outputs are still allowed.")],
+            [txt("Existing value can still leave the pool under the applicable consensus rules, including into Ironwood. Nothing was deleted and no funds disappeared.")],
+            [txt("Moving value out needs wallet software that supports migration.")],
+          ]),
+        ]),
+        el("h2", {}, [txt("RPC and Indexer Compatibility After NU6.3")]),
+        P([txt("Pair every component with a release that supports NU6.3 and read each project’s release notes before upgrading. Avoid pinning guidance to a specific historical version, because releases move quickly. Two documented examples:")]),
+        UL([
+          [txt("Zaino 0.10.1 reports the transparent, lockbox and ironwood pools in "), code("getblockchaininfo"), txt(", and its "), code("chainSupply"), txt(" is the total across all pools. See the "), link("Zaino 0.10.1 release notes", "https://github.com/zingolabs/zaino/releases/tag/0.10.1"), txt(".")],
+          [txt("Zebra 6.3.0 rejects blocks whose total chain value pool balance would exceed "), code("MAX_MONEY"), txt(". See the "), link("Zebra 6.3.0 release notes", "https://github.com/ZcashFoundation/zebra/releases/tag/v6.3.0"), txt(".")],
+        ]),
+        P([txt("Do not rely on the exact field layout of RPC responses for pool balances across versions; check the response of the version you run.")], small),
+        el("h2", {}, [txt("Wallets, Unified Addresses, and Ironwood")]),
+        el("addressgrid", {}, [
+          group("Addresses", "shield", [
+            [txt("Existing Orchard-protocol receivers remain compatible with Ironwood, so previously shared Unified Addresses can continue receiving payments through NU6.3-compatible wallet software (ZIP 229, ZIP 326).")],
+            [txt("Ironwood is a pool, not a fourth address format. ZIP 316 defines no separate Ironwood receiver type.")],
+          ]),
+          group("Balances", "coins", [
+            [txt("Address compatibility and balance migration are separate. An address can keep working while funds received earlier in the original Orchard pool still need to be migrated.")],
+            [txt("Migration depends on the wallet implementation and on the protocol rules. Do not assume that every wallet migrates Orchard balances automatically.")],
+            [txt("A transfer that crosses between pools reveals the transferred amount on chain. This does not make the rest of the transaction data public.")],
+          ]),
+        ]),
+        el("h2", {}, [txt("Check Before You Rely on It")]),
+        UL([
+          [txt("Confirm the current release of Zebra, Zallet, Zaino and any lightwalletd-compatible server on each project’s release page.")],
+          [txt("Treat the ports in this guide as Z3 defaults and confirm them against "), code("z3-contract.yaml"), txt(" for your network.")],
+          [txt("Zallet is beta software, and many legacy "), code("zcashd"), txt(" wallet RPC methods may be missing. Check the Zallet documentation for the methods you need.")],
+        ]),
+      ];
+      const cm = rows.findIndex((x) => isEl(x, "h2") && /^common mistakes/i.test(textOf(x).replace(/#$/, "").trim()));
+      rows.splice(cm > -1 ? cm : rows.length, 0, ...nu);
+      // 7. Primary sources, before the "Last updated" line.
+      const src = [
+        el("h2", {}, [txt("Sources")]),
+        UL([
+          [link("ZIP 258: Deployment of the NU6.3 Network Upgrade", "https://zips.z.cash/zip-0258")],
+          [link("ZIP 229: Version 6 Transaction Format", "https://zips.z.cash/zip-0229"), txt(" and "), link("ZIP 326: NU6.3 Consequences for Wallets", "https://zips.z.cash/zip-0326")],
+          [link("ZIP 257: Orchard Temporary Vulnerability Mitigation and NU6.2", "https://zips.z.cash/zip-0257")],
+          [link("Z3 port matrix (z3-contract.yaml)", "https://github.com/ZcashFoundation/z3/blob/main/z3-contract.yaml"), txt(" and "), link("Z3 regtest documentation", "https://github.com/ZcashFoundation/z3/blob/main/docs/regtest.md")],
+          [link("Zebra 6.3.0 release notes", "https://github.com/ZcashFoundation/zebra/releases/tag/v6.3.0"), txt(" and "), link("Zaino 0.10.1 release notes", "https://github.com/zingolabs/zaino/releases/tag/0.10.1")],
+          [link("The zcashd Book: End of Life", "https://zcash.github.io/zcash/user/end-of-life.html")],
+        ]),
+      ];
+      const lu = rows.findIndex((x) => isEl(x, "p") && /^last updated/i.test(textOf(x).trim()));
+      rows.splice(lu > -1 ? lu : rows.length, 0, ...src);
+      const sec = rows.findIndex((x) => isEl(x, "h2") && /^which process answers/i.test(textOf(x).replace(/#$/, "").trim()));
+      if (sec > -1) {
+        const items = [
+          { label: "Which process", hint: "Who answers which call", href: "#which-process-answers-which-call" },
+          { label: "Regtest", hint: "Practice without syncing", href: "#practice-on-regtest-first" },
+          { label: "Indexers", hint: "Zaino and alternatives", href: "#attach-an-indexer" },
+          { label: "Ironwood", hint: "What changes for operators", href: "#ironwood-nu63-for-node-operators" },
+        ];
+        rows.splice(sec, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.zips && Array.isArray(tree.children)) {
+      // Zcash Improvement Proposals: no Edit badge or banner photo, lead, editors list, ZIP cards, jump list.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const findA = (n: any): any => (n && n.type === "element" && n.tagName === "a" ? n : (n?.children || []).map(findA).find(Boolean));
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x).toLowerCase() : "";
+        if (isWs(x) || j.includes("shields.io/badge/edit") || isEl(x, "img")) rows.splice(i, 1);
+        else if (x && x.type === "mdxJsxFlowElement" && String(x.name) === "img") rows.splice(i, 1);
+        else if (isEl(x, "p") && (x.children || []).filter((c: any) => !isWs(c)).length === 1 && (x.children || []).filter((c: any) => !isWs(c)).every((c: any) => isEl(c, "img") || (c.type === "mdxJsxTextElement" && String(c.name) === "img"))) rows.splice(i, 1);
+      }
+      const h1s = rows.map((x, i) => (isEl(x, "h1") ? i : -1)).filter((i) => i >= 0);
+      if (h1s.length > 1) for (const i of h1s.slice(1)) rows[i].tagName = "h2";
+      const first = rows.findIndex((x, i) => i > (h1s[0] ?? -1) && isEl(x, "p"));
+      if (first > -1) rows[first].properties = { ...(rows[first].properties || {}), dataLead: "true" };
+      // "-> zips.z.cash" becomes a button.
+      const lk = rows.findIndex((x) => isEl(x, "p") && /^\s*(->|\u2192)\s*zips\.z\.cash\s*$/i.test(textOf(x)) && findA(x));
+      if (lk > -1) rows[lk] = el("linkbutton", { href: String(findA(rows[lk]).properties?.href || "https://zips.z.cash"), label: "Open the ZIP index (zips.z.cash)" });
+      // The editors list is written as a code fence of bullets: render it as a real list.
+      for (let i = 0; i < rows.length; i++) {
+        const x = rows[i];
+        if ((isEl(x, "div") || isEl(x, "pre")) && /^\s*\*\s/.test(textOf(x))) {
+          const lines = textOf(x).split("\n").map((l: string) => l.replace(/^\s*\*\s*/, "").trim()).filter(Boolean);
+          rows[i] = el("ul", {}, lines.map((l: string) => el("li", {}, [txt(l)])));
+        }
+      }
+      // "Status: [Title](zip)" blockquotes become ZIP cards.
+      const toCard = (bq: any) => {
+        const p = (bq.children || []).find((c: any) => isEl(c, "p"));
+        const a = p && findA(p);
+        if (!p || !a) return null;
+        const kids: any[] = p.children || [];
+        const ai = kids.findIndex((c) => c === a || findA(c) === a);
+        const status = kids.slice(0, ai).map((c) => textOf(c)).join("").replace(/[:\s]+$/, "").trim();
+        const after = kids.slice(ai + 1).map((c) => textOf(c)).join("").replace(/^[\s\u2014\u2013-]+/, "").trim();
+        const href = String(a.properties?.href || "");
+        const m = /zip-0*(\d+)/i.exec(href);
+        const zip = m ? "ZIP " + m[1] : "";
+        const desc = [[zip, status].filter(Boolean).join(" \u00b7 "), after].filter(Boolean).join(" \u2014 ");
+        return el("communitycard", { name: textOf(a).trim(), desc, href, icon: "file" });
+      };
+      for (let i = 0; i < rows.length; i++) {
+        if (!isEl(rows[i], "blockquote") || !toCard(rows[i])) continue;
+        let j = i;
+        const cards: any[] = [];
+        while (j < rows.length && isEl(rows[j], "blockquote")) {
+          const c = toCard(rows[j]);
+          if (!c) break;
+          cards.push(c);
+          j += 1;
+        }
+        rows.splice(i, j - i, el("addressgrid", {}, cards));
+      }
+      const ed = rows.findIndex((x) => isEl(x, "h2") && /^zip editors/i.test(textOf(x).replace(/#$/, "").trim()));
+      if (ed > -1) {
+        const items = [
+          { label: "What is a ZIP", hint: "Purpose and process", href: "#what-is-zip" },
+          { label: "Editors", hint: "Who reviews ZIPs", href: "#zip-editors" },
+          { label: "Notable ZIPs", hint: "Current proposals", href: "#notable-current-zips" },
+          { label: "NU6.3 (Ironwood)", hint: "Network upgrade ZIPs", href: "#nu63-ironwood-zips" },
+        ];
+        rows.splice(ed, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
     if (opts.dtool && Array.isArray(tree.children)) {
       // Zcash devtool: lead, README link as a button, numbered quick-start steps, security warning as a callout, jump list.
       const rows: any[] = tree.children;
@@ -3987,6 +4182,8 @@ export default async function Page(props: {
             vnet: slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network",
             yfrost: slug[0] === "guides" && slug[1] === "ywallet-frost-demo",
             dtool: slug[0] === "guides" && slug[1] === "zcash-devtool",
+            zips: slug[0] === "guides" && slug[1] === "zcash-improvement-proposals",
+            nrpc: slug[0] === "guides" && slug[1] === "zcash-node-rpc-and-indexing",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
