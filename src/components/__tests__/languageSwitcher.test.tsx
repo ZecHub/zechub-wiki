@@ -175,6 +175,24 @@ describe("LanguageSwitcher", () => {
     expectNoSelection();
   });
 
+  it("marks only the current language with the accent badge, and not by colour alone", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+
+    const badges = document.querySelectorAll("[data-current-badge]");
+    expect(badges).toHaveLength(1);
+    expect(option(/Español/)).toContainElement(badges[0] as HTMLElement);
+    expect(badges[0]).toHaveTextContent("ES");
+    // Colour is never the only cue: the current row is also selected and checked.
+    expect(option(/Español/)).toHaveAttribute("aria-selected", "true");
+    expect(option(/Español/).querySelector("svg")).not.toBeNull();
+    expect(option(/English/).querySelector("svg")).toBeNull();
+    // Keyboard focus must not make the current row look less selected.
+    expect(option(/Español/).className).not.toContain("focus-visible:bg-[#F4B728]/10");
+    expect(option(/English/).className).toContain("focus-visible:bg-[#F4B728]/10");
+  });
+
   it("says so when no language matches", async () => {
     const user = userEvent.setup();
     renderPicker();

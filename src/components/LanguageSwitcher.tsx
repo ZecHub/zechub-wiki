@@ -29,11 +29,19 @@ function browserLocales(): string[] {
   return out;
 }
 
-function CodeBadge({ code }: { code: string }) {
+// ZecHub accent (#F4B728): the current language gets a filled badge, and
+// hover/focus tint the row and outline the badge. Colour is never the only
+// cue: the current row is also bold, checked and aria-selected.
+function CodeBadge({ code, current = false }: { code: string; current?: boolean }) {
   return (
     <span
       aria-hidden="true"
-      className="inline-flex items-center justify-center w-8 h-6 shrink-0 rounded-md border border-slate-300 dark:border-slate-600 text-[11px] font-semibold tracking-wide text-slate-600 dark:text-slate-300 bg-white/60 dark:bg-slate-900/40"
+      data-current-badge={current ? '' : undefined}
+      className={`inline-flex items-center justify-center w-8 h-6 shrink-0 rounded-md border text-[11px] font-semibold tracking-wide transition-colors ${
+        current
+          ? 'border-[#F4B728] bg-[#F4B728] text-slate-900'
+          : 'border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 bg-white/60 dark:bg-slate-900/40 group-hover:border-[#F4B728] group-focus-visible:border-[#F4B728]'
+      }`}
     >
       {code.toUpperCase()}
     </span>
@@ -258,23 +266,25 @@ export function LanguageSwitcher() {
       data-code={lang.code}
       aria-selected={lang.code === locale}
       onClick={() => handleSelect(lang.code)}
-      className={`w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 focus-visible:bg-slate-200 dark:focus-visible:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-500 transition-colors cursor-pointer ${
-        lang.code === locale ? 'bg-slate-200 dark:bg-slate-700' : ''
+      className={`group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-700 dark:focus-visible:ring-[#F4B728] transition-colors cursor-pointer ${
+        lang.code === locale
+          ? 'bg-[#F4B728]/20 hover:bg-[#F4B728]/25 focus-visible:bg-[#F4B728]/25'
+          : 'hover:bg-[#F4B728]/10 focus-visible:bg-[#F4B728]/10'
       }`}
     >
-      <CodeBadge code={lang.code} />
+      <CodeBadge code={lang.code} current={lang.code === locale} />
       <span className="flex flex-col min-w-0">
         <span lang={lang.code} className={`text-sm leading-tight truncate ${lang.code === locale ? 'font-semibold' : 'font-medium'}`}>
           {lang.nativeLabel}
         </span>
         {lang.nativeLabel !== lang.label && (
-          <span lang="en" className="text-xs leading-tight text-slate-500 dark:text-slate-400 truncate">
+          <span lang="en" className="text-xs leading-tight text-slate-600 dark:text-slate-300 truncate">
             {lang.label}
           </span>
         )}
       </span>
       {lang.code === locale && (
-        <svg className="ms-auto w-4 h-4 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <svg className="ms-auto w-4 h-4 text-amber-700 dark:text-[#F4B728] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
       )}
@@ -394,7 +404,7 @@ export function LanguageSwitcher() {
         // blurs (closing the panel) and the click then opens it again.
         onMouseDown={(e) => { if (isOpen) e.preventDefault(); }}
         onClick={() => (isOpen ? close(true) : setIsOpen(true))}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-amber-500 transition-all cursor-pointer"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:border-[#F4B728] hover:bg-[#F4B728]/10 focus-visible:ring-2 focus-visible:ring-amber-700 dark:focus-visible:ring-[#F4B728] transition-all cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="dialog"
