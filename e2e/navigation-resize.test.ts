@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 for (const desktopWidth of [1280, 1281, 1530]) {
   test(`mobile drawer releases the page at ${desktopWidth}px`, async ({ page }) => {
-    await page.setViewportSize({ width: 1278, height: 900 });
+    await page.setViewportSize({ width: 400, height: 900 });
     await page.goto("/");
     const trigger = page.locator("header button[data-nav-menu-button]");
     const dialog = page.getByRole("dialog");
@@ -13,7 +13,7 @@ for (const desktopWidth of [1280, 1281, 1530]) {
 
     await trigger.click();
     await expect(dialog).toBeVisible();
-    await page.setViewportSize({ width: 1279, height: 900 });
+    await page.setViewportSize({ width: 420, height: 900 });
     await expect(dialog).toBeVisible();
 
     await page.setViewportSize({ width: desktopWidth, height: 900 });
@@ -64,3 +64,96 @@ for (const desktopWidth of [1280, 1281, 1530]) {
     await expect(dialog).toHaveCount(0);
   });
 }
+
+test("the drawer stays open while a long language still needs the menu button", async ({ page }) => {
+  await page.setViewportSize({ width: 400, height: 900 });
+  await page.goto("/ru");
+  const trigger = page.locator("header button[data-nav-menu-button]");
+  const dialog = page.getByRole("dialog");
+  await trigger.click();
+  await expect(dialog).toBeVisible();
+
+  // 520px: the bar is allowed, but the Russian labels do not fit even at the
+  // smallest level, so the menu button (and its open drawer) must stay.
+  await page.setViewportSize({ width: 520, height: 900 });
+  // Longer than the drawer's closing animation.
+  await page.waitForTimeout(1500);
+  await expect(trigger).toBeVisible();
+  await expect(dialog).toBeVisible();
+
+  // Wide enough for the bar: the drawer closes.
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await expect(page.locator("header nav")).toBeVisible();
+  await expect(dialog).toHaveCount(0);
+});
+
+test("on a narrow window the bar shrinks and moved menus stay usable", async ({ page }) => {
+  await page.setViewportSize({ width: 600, height: 900 });
+  await page.goto("/it");
+  const nav = page.locator("header nav");
+  await expect(nav).toBeVisible();
+  await expect(page.locator("header button[data-nav-menu-button]")).toBeHidden();
+  await expect
+    .poll(async () => Number(await nav.getAttribute("data-nav-level")))
+    .toBeGreaterThanOrEqual(3);
+  // Menus moved into "More" open with the keyboard and stay on screen.
+  await page.locator("header nav button[aria-expanded]").filter({ hasText: "Altro" }).click();
+  // Below md the Bounties / Dashboard buttons are offered in the More row.
+  await expect(page.locator("#nav-more-row").getByRole("link", { name: "Bounties" })).toBeVisible();
+  const moved = page.locator("#nav-more-row [data-nav-moved] button").first();
+  await moved.focus();
+  await page.keyboard.press("Enter");
+  const panel = page.locator("#nav-more-row [data-nav-moved] [id]").first();
+  await expect(panel).toBeVisible();
+  const box = await panel.boundingBox();
+  expect(box!.x).toBeGreaterThanOrEqual(0);
+  expect(box!.x + box!.width).toBeLessThanOrEqual(600);
+  await page.keyboard.press("Escape");
+  await expect(panel).toBeHidden();
+  await expect(moved).toBeFocused();
+});
+
+for (const width of [520, 700, 1280]) {
+  test(`nested flyouts stay on screen and Escape closes only them at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    // Let the bar settle on its level (hydration, fonts) before using it.
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(500);
+    const first = page.locator("header nav button[aria-expanded]").first();
+    await first.focus();
+    await page.keyboard.press("Enter");
+    // "Use Zcash" has nested groups (Use Cases, Spend Zcash...).
+    const nested = page.locator("header nav [aria-expanded]").nth(1);
+    await nested.focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(nested).toHaveAttribute("aria-expanded", "true");
+    const flyout = nested.locator("xpath=following-sibling::div[1]");
+    await expect(flyout).toBeVisible();
+    // ArrowDown moved focus into the flyout.
+    await expect(flyout.locator("a").first()).toBeFocused();
+    const box = await flyout.boundingBox();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(width);
+
+    await page.keyboard.press("Escape");
+    await expect(nested).toHaveAttribute("aria-expanded", "false");
+    await expect(nested).toBeFocused();
+    await expect(first).toHaveAttribute("aria-expanded", "true");
+  });
+}
+
+test("a mouse click after hovering keeps the menu open", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(500);
+  const first = page.locator("header nav button[aria-expanded]").first();
+  await first.hover();
+  await expect(first).toHaveAttribute("aria-expanded", "true");
+  await first.click();
+  await expect(first).toHaveAttribute("aria-expanded", "true");
+  // A click outside closes it.
+  await page.mouse.click(5, 600);
+  await expect(first).toHaveAttribute("aria-expanded", "false");
+});

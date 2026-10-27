@@ -2,8 +2,8 @@
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
-import { useEffect, useState, useRef } from "react";
-import { useNavTooWide } from "@/hooks/useNavTooWide";
+import { useEffect, useId, useLayoutEffect, useState, useRef } from "react";
+import { navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
@@ -33,6 +33,17 @@ import type { Searcher } from "@/types";
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 const PRIMARY_NAV_COUNT = 4;
 const overflowNavigations = navigations.slice(PRIMARY_NAV_COUNT);
+const NAV_MAX_BAR_LEVEL = navMaxBarLevel(PRIMARY_NAV_COUNT);
+// What the desktop bar looks like at a given fit level (see useNavFit).
+function navLayout(level: number) {
+  const moved = Math.min(Math.max(0, level - 2), PRIMARY_NAV_COUNT - 1);
+  return {
+    compact: level >= 1,
+    iconButtons: level >= 2,
+    visible: navigations.slice(0, PRIMARY_NAV_COUNT - moved),
+    moved: navigations.slice(PRIMARY_NAV_COUNT - moved, PRIMARY_NAV_COUNT),
+  };
+}
 const MORE_ROW_ORDER = [
   "Tutorials",
   "Developers",
@@ -349,6 +360,62 @@ const getTranslatedLabel = (
   );
 };
 // ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
+// Keeps an open panel inside the viewport: on narrow windows a dropdown that
+// starts at its trigger can run past the screen edge. Shifts it back in, and
+// flips a nested flyout to the other side when there is no room on its side.
+const VIEWPORT_MARGIN = 8;
+function useKeepInViewport(ref: React.RefObject<HTMLElement | null>, open: boolean, flip = false) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!open || !el) return;
+    const place = () => {
+      Object.assign(el.style, { translate: "", insetInlineStart: "", insetInlineEnd: "", top: "" });
+      const vw = document.documentElement.clientWidth;
+      const outside = (r: DOMRect) => r.left < VIEWPORT_MARGIN || r.right > vw - VIEWPORT_MARGIN;
+      if (flip && outside(el.getBoundingClientRect())) {
+        // Open on the other side of the parent item instead...
+        Object.assign(el.style, { insetInlineEnd: "auto", insetInlineStart: "100%" });
+        if (outside(el.getBoundingClientRect())) {
+          // ...or, when neither side has room (narrow windows), below it.
+          Object.assign(el.style, { insetInlineStart: "0", top: "100%" });
+        }
+      }
+      const r = el.getBoundingClientRect();
+      let dx = 0;
+      if (r.right > vw - VIEWPORT_MARGIN) dx = vw - VIEWPORT_MARGIN - r.right;
+      if (r.left + dx < VIEWPORT_MARGIN) dx = VIEWPORT_MARGIN - r.left;
+      if (dx) el.style.translate = `${dx}px 0`;
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [ref, open, flip]);
+}
+// Closes an open menu when the pointer goes down outside it (a tap does not
+// focus the trigger on every browser, so blur alone is not enough).
+function useCloseOnOutsidePointer(
+  ref: React.RefObject<HTMLElement | null>,
+  open: boolean,
+  close: () => void,
+) {
+  const closeRef = useRef(close);
+  closeRef.current = close;
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) closeRef.current();
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [ref, open]);
+}
+// Hover opens menus for a mouse only: on touch, the emulated mouseenter
+// followed by the click would open and close the menu in one tap.
+const isMouse = (e: React.PointerEvent) => e.pointerType === "mouse";
+// Moves focus to the first link of a panel opened with ArrowDown.
+function focusFirstIn(el: HTMLElement | null) {
+  el?.querySelector<HTMLElement>("a[href], button")?.focus();
+}
 const FlyoutLinkItem = ({
   link,
   parentItem,
@@ -362,6 +429,13 @@ const FlyoutLinkItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flyoutRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const focusFirstRef = useRef(false);
+  useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }, []);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -369,6 +443,12 @@ const FlyoutLinkItem = ({
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
   };
+  useKeepInViewport(flyoutRef, flyoutOpen, true);
+  useCloseOnOutsidePointer(itemRef, flyoutOpen, () => setFlyoutOpen(false));
+  useEffect(() => {
+    if (flyoutOpen && focusFirstRef.current) focusFirstIn(flyoutRef.current);
+    focusFirstRef.current = false;
+  }, [flyoutOpen]);
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
   if (!link.links || link.links.length === 0) {
     return (
@@ -397,12 +477,37 @@ const FlyoutLinkItem = ({
   // Has nested children — render with flyout opening to the left
   return (
     <div
+      ref={itemRef}
       className="relative"
-      onMouseEnter={openFlyout}
-      onMouseLeave={closeFlyout}
+      onPointerEnter={(e) => isMouse(e) && openFlyout()}
+      onPointerLeave={(e) => isMouse(e) && closeFlyout()}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFlyoutOpen(false);
+      }}
+      onKeyDown={(e) => {
+        // Escape closes this flyout only, not the menu around it.
+        if (e.key === "Escape" && flyoutOpen) {
+          e.preventDefault();
+          e.stopPropagation();
+          setFlyoutOpen(false);
+          triggerRef.current?.focus();
+        }
+      }}
     >
-      <div
-        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-expanded={flyoutOpen}
+        onClick={() => openFlyout()}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            focusFirstRef.current = true;
+            if (flyoutOpen) focusFirstIn(flyoutRef.current);
+            else openFlyout();
+          }
+        }}
+        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-start text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
       >
         <span className="flex items-center gap-2">
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
@@ -413,13 +518,14 @@ const FlyoutLinkItem = ({
           )}
           {label}
         </span>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180" />
-      </div>
+        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180 rtl:rotate-0" />
+      </button>
       {flyoutOpen && (
         <div
-          className="absolute right-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
-          onMouseEnter={openFlyout}
-          onMouseLeave={closeFlyout}
+          ref={flyoutRef}
+          className="absolute end-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
+          onPointerEnter={(e) => isMouse(e) && openFlyout()}
+          onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
           {link.links.map((child, idx) => (
             <Link
@@ -447,7 +553,7 @@ const FlyoutLinkItem = ({
     </div>
   );
 };
-// ─── Primary dropdown (hover) ────────────────────────────────────────────────
+// ─── Primary dropdown (hover, or click / keyboard) ──────────────────────────
 const Dropdown = ({
   label,
   children,
@@ -456,21 +562,80 @@ const Dropdown = ({
   children: React.ReactNode;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const focusFirstRef = useRef(false);
+  // A mouse that hovered the trigger already opened the menu: the click that
+  // usually follows must not close it again.
+  const openedByHoverRef = useRef(false);
+  const panelId = useId();
+  useKeepInViewport(panelRef, isOpen);
+  useCloseOnOutsidePointer(rootRef, isOpen, () => setIsOpen(false));
+  useEffect(() => {
+    if (isOpen && focusFirstRef.current) focusFirstIn(panelRef.current);
+    focusFirstRef.current = false;
+    if (!isOpen) openedByHoverRef.current = false;
+  }, [isOpen]);
   return (
     <div
+      ref={rootRef}
       className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onPointerEnter={(e) => {
+        if (!isMouse(e)) return;
+        if (!isOpen) openedByHoverRef.current = true;
+        setIsOpen(true);
+      }}
+      onPointerLeave={(e) => isMouse(e) && setIsOpen(false)}
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && isOpen) {
+          // React's root is the document, so stopPropagation does not stop the
+          // header's own Escape listener there: it checks defaultPrevented.
+          e.preventDefault();
+          e.stopPropagation();
+          setIsOpen(false);
+          buttonRef.current?.focus();
+        }
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsOpen(false);
+      }}
     >
       {/* nowrap: longer translations ("Χρήση του Zcash") wrapped onto 3 lines. */}
-      <div className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? panelId : undefined}
+        onClick={() => {
+          if (openedByHoverRef.current) {
+            openedByHoverRef.current = false;
+            return;
+          }
+          setIsOpen((open) => !open);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            focusFirstRef.current = true;
+            if (isOpen) focusFirstIn(panelRef.current);
+            else setIsOpen(true);
+          }
+        }}
+        className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+      >
         {label}
         <ChevronDown
+          aria-hidden="true"
           className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
-      </div>
+      </button>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 gap-2 p-2 transition-all duration-150">
+        <div
+          id={panelId}
+          ref={panelRef}
+          className="absolute top-full start-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg w-max min-w-[min(600px,calc(100vw-16px))] max-w-[calc(100vw-16px)] mt-0 grid grid-cols-1 md:grid-cols-2 gap-2 p-2 transition-opacity duration-150"
+        >
           {children}
         </div>
       )}
@@ -490,7 +655,7 @@ const MoreToggle = ({
     <button
       type="button"
       aria-expanded={moreOpen}
-      aria-controls="nav-more-row"
+      aria-controls={moreOpen ? "nav-more-row" : undefined}
       onClick={onToggle}
       className={`flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2 ${
         moreOpen ? "text-nav-hover" : ""
@@ -498,6 +663,7 @@ const MoreToggle = ({
     >
       {t.navigation?.more || "More"}
       <ChevronDown
+        aria-hidden="true"
         className={`h-4 w-4 transition-transform duration-200 ${moreOpen ? "rotate-180" : ""}`}
       />
     </button>
@@ -506,9 +672,11 @@ const MoreToggle = ({
 
 const MoreRow = ({
   items,
+  moved,
   onLinkClick,
 }: {
   items: typeof navigations;
+  moved: typeof navigations;
   onLinkClick: () => void;
 }) => {
   const { t } = useLanguage();
@@ -545,8 +713,47 @@ const MoreRow = ({
   return (
     <div
       id="nav-more-row"
-      className="hidden min-[1280px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
+      className="hidden min-[480px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
+      {/* Below md the Bounties / Dashboard buttons are hidden: offer them here. */}
+      <Link
+        prefetch
+        href="https://bounties.zechub.wiki/"
+        target="_blank"
+        onClick={onLinkClick}
+        className={`md:hidden flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover ${liStyle}`}
+      >
+        <Trophy aria-hidden="true" className="w-4 h-4 shrink-0" />
+        {t.navigation?.bounties || "Bounties"}
+      </Link>
+      <Link
+        prefetch
+        href="/dashboard"
+        onClick={onLinkClick}
+        className={`md:hidden flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover ${liStyle}`}
+      >
+        <LayoutDashboard aria-hidden="true" className="w-4 h-4 shrink-0" />
+        {t.navigation?.dashboard || "Dashboard"}
+      </Link>
+      {/* Primary menus that no longer fit in the bar, still as menus. */}
+      {moved.map((item) => (
+        <div key={item.name} data-nav-moved="" className="px-2 text-sm">
+          <Dropdown label={getTranslatedLabel(item.name, item.label, t, item.label)}>
+            {item.links?.map((link, j) => (
+              <FlyoutLinkItem
+                key={`${link.name}-${j}`}
+                link={link}
+                parentItem={item}
+                t={t}
+                onLinkClick={onLinkClick}
+              />
+            ))}
+          </Dropdown>
+        </div>
+      ))}
+      {moved.length > 0 && (
+        <span aria-hidden="true" className="h-5 border-l border-slate-300 dark:border-slate-600" />
+      )}
       {entries.map((entry) => (
         <Link
           prefetch
@@ -576,24 +783,28 @@ const NavLinks = ({
   moreOpen,
   onMoreToggle,
   onMoreClose,
+  level = 0,
 }: {
   classes: string;
   closeMenu: () => void;
   moreOpen: boolean;
   onMoreToggle: () => void;
   onMoreClose: () => void;
+  level?: number;
 }) => {
   const { t } = useLanguage();
+  const { compact, iconButtons, visible } = navLayout(level);
   const handleLinkClick = () => {
     closeMenu();
     onMoreClose();
   };
-  const [openIndex, setOpenIndex] = useState<null | number>(null);
   return (
     <div className={`flex items-center ${classes}`}>
-      {/* Large screens */}
-      <div className="hidden lg:flex items-center space-x-4 xl:space-x-5">
-        {navigations.slice(0, 4).map((item, i) =>
+      {/* Desktop bar (480px and up); useNavFit shrinks it step by step */}
+      <div
+        className={`hidden min-[480px]:flex items-center ${compact ? "space-x-3" : "space-x-4 xl:space-x-5"}`}
+      >
+        {visible.map((item, i) =>
           item.links ? (
             <Dropdown
               label={getTranslatedLabel(item.name, item.label, t, item.label)}
@@ -629,114 +840,10 @@ const NavLinks = ({
           <MoreToggle moreOpen={moreOpen} onToggle={onMoreToggle} />
         )}
       </div>
-      {/* Medium screens (md–lg) */}
-      <div className="hidden md:flex lg:hidden items-center space-x-12">
-        {navigations.slice(0, 3).map((item, i) => (
-          <Dropdown
-            label={getTranslatedLabel(item.name, item.label, t, item.label)}
-            key={`${item.name}-${i}`}
-          >
-            {item.links?.map((link, j) => (
-              <FlyoutLinkItem
-                key={`${link.name}-${j}`}
-                link={link}
-                parentItem={item}
-                t={t}
-                onLinkClick={handleLinkClick}
-              />
-            ))}
-          </Dropdown>
-        ))}
-        {navigations.length > 2 && (
-          <Dropdown label={t.navigation?.more || "More"}>
-            <div onMouseLeave={() => setOpenIndex(null)}>
-              {navigations.slice(3).map((item, i) => {
-                const isOpen = openIndex === i;
-                return (
-                  <div
-                    key={`${item.name}-${i}`}
-                    className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200"
-                  >
-                    {item.links ? (
-                      <>
-                        <div
-                          className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
-                          onClick={() => setOpenIndex(isOpen ? null : i)}
-                        >
-                          {getTranslatedLabel(
-                            item.name,
-                            item.label,
-                            t,
-                            item.label,
-                          )}
-                          <ChevronDown
-                            className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                          />
-                        </div>
-                        {isOpen &&
-                          item.links.map((link, j) => (
-                            <div
-                              key={`${link.name}-${j}`}
-                              className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
-                            >
-                              <Link
-                                prefetch
-                                href={link.path ?? "#"}
-                                onClick={handleLinkClick}
-                                className="flex items-center gap-2 text-sm w-full"
-                                {...(link.newTab && {
-                                  target: "_blank",
-                                  rel: "noopener noreferrer",
-                                })}
-                              >
-                                {(link.icon ||
-                                  matchIcons(item.name, link.name)) && (
-                                  <Icon
-                                    icon={
-                                      link.icon ??
-                                      matchIcons(item.name, link.name)
-                                    }
-                                    className="xl:w-6 w-4 h-4 xl:h-6"
-                                  />
-                                )}
-                                {getTranslatedLabel(
-                                  item.name,
-                                  link.name,
-                                  t,
-                                  link.label,
-                                )}
-                              </Link>
-                            </div>
-                          ))}
-                      </>
-                    ) : (
-                      <Link
-                        prefetch
-                        href={item.path ?? "#"}
-                        onClick={handleLinkClick}
-                        className="w-full text-white hover:text-nav-hover"
-                        {...(item.newTab && {
-                          target: "_blank",
-                          rel: "noopener noreferrer",
-                        })}
-                      >
-                        {getTranslatedLabel(
-                          item.name,
-                          item.label,
-                          t,
-                          item.label,
-                        )}
-                      </Link>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </Dropdown>
-        )}
-      </div>
       {/* CTA buttons */}
-      <div className="hidden md:flex items-center gap-3 ml-5 pl-5 border-l border-slate-400 dark:border-slate-600">
+      <div
+        className={`hidden md:flex items-center border-s border-slate-400 dark:border-slate-600 ${compact ? "gap-2 ms-3 ps-3" : "gap-3 ms-5 ps-5"}`}
+      >
         <Button
           asChild
           variant="default"
@@ -759,8 +866,17 @@ const NavLinks = ({
             href="https://bounties.zechub.wiki/"
             target="_blank"
             onClick={handleLinkClick}
+            data-nav-cta=""
+            {...(iconButtons && {
+              "aria-label": t.navigation?.bounties || "Bounties",
+              title: t.navigation?.bounties || "Bounties",
+            })}
           >
-            {t.navigation?.bounties || "Bounties"}
+            {iconButtons ? (
+              <Trophy aria-hidden="true" className="h-4 w-4" />
+            ) : (
+              t.navigation?.bounties || "Bounties"
+            )}
           </Link>
         </Button>
         <Button
@@ -780,8 +896,21 @@ const NavLinks = ({
             e.currentTarget.style.setProperty("--mouse-y", "50%");
           }}
         >
-          <Link prefetch href="/dashboard" onClick={handleLinkClick}>
-            {t.navigation?.dashboard || "Dashboard"}
+          <Link
+            prefetch
+            href="/dashboard"
+            onClick={handleLinkClick}
+            data-nav-cta=""
+            {...(iconButtons && {
+              "aria-label": t.navigation?.dashboard || "Dashboard",
+              title: t.navigation?.dashboard || "Dashboard",
+            })}
+          >
+            {iconButtons ? (
+              <LayoutDashboard aria-hidden="true" className="h-4 w-4" />
+            ) : (
+              t.navigation?.dashboard || "Dashboard"
+            )}
           </Link>
         </Button>
       </div>
@@ -971,7 +1100,11 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { t } = useLanguage();
   const rowRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const navTooWide = useNavTooWide(rowRef, navRef, t);
+  // The drawer closes only once the bar has been measured and fits: the media
+  // query alone would close it while the bar is still being fitted (and may
+  // end up on the menu button after all).
+  const navLevel = useNavFit(rowRef, navRef, t, NAV_MAX_BAR_LEVEL, () => setIsOpen(false));
+  const navTooWide = navLevel > NAV_MAX_BAR_LEVEL;
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -983,23 +1116,12 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     setMounted(true);
   }, []);
   useEffect(() => {
-    const desktopNavigation = window.matchMedia("(min-width: 1280px)");
-    const closeMobileMenuOnDesktop = () => {
-      if (desktopNavigation.matches && !navTooWide) setIsOpen(false);
-    };
-    closeMobileMenuOnDesktop();
-    desktopNavigation.addEventListener("change", closeMobileMenuOnDesktop);
-    return () => {
-      desktopNavigation.removeEventListener("change", closeMobileMenuOnDesktop);
-    };
-  }, [navTooWide]);
-  useEffect(() => {
     if (navTooWide) setMoreOpen(false);
   }, [navTooWide]);
   useEffect(() => {
     if (!moreOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMoreOpen(false);
+      if (e.key === "Escape" && !e.defaultPrevented) setMoreOpen(false);
     };
     const onPointer = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
@@ -1024,10 +1146,12 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          {/* max-w-5xl and mx-4 are mirrored in useNavTooWide (NAV_MAX_WIDTH, NAV_MARGINS). */}
+          {/* No max width: the bar
+              uses all the room between the logo and the header buttons. */}
           <nav
             ref={navRef}
-            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center max-w-5xl mx-4`}
+            data-nav-level={navLevel}
+            className={`hidden ${navTooWide ? "" : "min-[480px]:flex"} flex-1 min-w-0 justify-center mx-4`}
           >
             <NavLinks
               classes="w-full justify-start"
@@ -1035,6 +1159,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               moreOpen={moreOpen}
               onMoreToggle={() => setMoreOpen((open) => !open)}
               onMoreClose={closeMore}
+              level={navLevel}
             />
           </nav>
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
@@ -1089,7 +1214,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             </div>
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className={navTooWide ? "" : "min-[1280px]:hidden"} asChild>
+                <SheetTrigger className={navTooWide ? "" : "min-[480px]:hidden"} asChild>
                   <Button
                     data-nav-menu-button=""
                     variant="ghost"
@@ -1107,7 +1232,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <div className={navTooWide ? "" : "min-[1280px]:hidden"}>
+              <div className={navTooWide ? "" : "min-[480px]:hidden"}>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -1120,9 +1245,10 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             )}
           </div>
         </div>
-        {moreOpen && (
+        {moreOpen && !navTooWide && (
           <MoreRow
             items={overflowNavigations}
+            moved={navLayout(navLevel).moved}
             onLinkClick={() => {
               setMoreOpen(false);
               setIsOpen(false);
