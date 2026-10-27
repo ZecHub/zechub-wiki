@@ -166,7 +166,11 @@
     "searchTryDifferent": "더 짧은 검색어, 동의어 또는 다른 단어를 사용해 보세요.",
     "searchSuggested": "추천 페이지",
     "searchResultsLabel": "결과",
-    "skipToContent": "본문 바로가기"
+    "skipToContent": "본문 바로가기",
+    "languageSearch": "언어 검색",
+    "languageSuggested": "추천",
+    "languageAll": "모든 언어",
+    "languageNone": "언어를 찾을 수 없음"
   },
   "navigation": {
     "wallets": "지갑",
@@ -278,7 +282,7 @@
     "heroTitle": "ZecHub에 오신 것을 환영합니다",
     "heroSubtitle": "Zcash를 위한 오픈 소스 교육 허브",
     "heroDescription": "Zcash 프라이버시 기술에 대해 배우고, 인터랙티브 시각화 도구를 탐색하며, 생태계에 기여하세요",
-    "description": "ZecHub는 Zcash 암호화폐(ZEC)를 위한 커뮤니티 주도형 교육 허브입니다. Zcash는 검열 저항성, 보안성, 그리고 프라이버시를 갖춘 결제를 제공하는 디지털 화폐입니다. Zcash 블록체인은 2022년 NU5 네트워크 업그레이드 이후 Trusted Setup이 필요 없는, 매우 진보된 '검증 가능한' zk-snarks를 활용합니다.",
+    "description": "ZecHub은 검열 저항성, 보안성 및 개인정보 보호 결제를 위해 구축된 탈중앙화 디지털 화폐 Zcash(ZEC)의 커뮤니티 주도형 교육 허브입니다. Zcash는 고급 영지식 암호학을 사용하여 민감한 금융 정보를 공개하지 않고도 유효성을 검증할 수 있는 거래를 구현합니다. 2026년에 도입된 Ironwood 실드 풀은 기계로 검증된 수학적 증명을 통해 공식 검증되었으며, 잔액 무결성을 보장합니다. Project Tachyon은 비공개 결제의 확장성을 획기적으로 개선하고 검증자 상태 증가를 줄이며 Zcash를 완전한 포스트 양자 보안 개인정보 보호로 발전시키도록 설계된 차세대 실드 프로토콜을 제안하고 개발하고 있습니다.",
     "featuredSection": "주요 리소스",
     "latestUpdates": "최신 업데이트",
     "getInvolved": "참여하기",
@@ -985,12 +989,12 @@
       "configure": "구성",
       "runZainod": "zainod 실행하기",
       "installingZingoCli": "Zingo CLI 설치하기",
-      "zingoCliInfo": "Rust로 구축된 command-line lightwalletd-proxy 클라이언트입니다. 현재 릴리스는 잠정적이며, 이 가이드는 소스에서 컴파일하는 방법을 다룹니다.",
-      "buildZingoCli": "Zingo CLI 빌드하기",
+      "zingoCliInfo": "는 Zcash용 명령줄 경량 지갑입니다. v7은 기본적으로 Nym 믹스넷 전송을 빌드하고 바이너리 옆에 nym-proxy를 함께 제공합니다. 이 가이드에서는 소스에서 컴파일하는 방법을 다룹니다.",
+      "buildZingoCli": "Zingo CLI 빌드(v7)",
       "running": "실행하기",
-      "startZingoCliDefault": "Zingo CLI 시작하기 (기본값)",
-      "startZingoCliCustom": "Zingo CLI 시작하기 (사용자 지정)",
-      "zingoSyncWarning": "⚠ 이것은 첫 실행 시 lightwalletd와 유사하게 전체 동기화를 수행합니다.",
+      "startZingoCliDefault": "Zingo CLI 시작(기본값, 오프라인)",
+      "startZingoCliCustom": "Zingo CLI 시작(로컬 인덱서를 통한 온라인)",
+      "zingoSyncWarning": "⚠ 새 세션은 동의를 부여할 때까지 오프라인 상태입니다(--online, --remember-online 또는 --server). Nym 프록시는 --nym-proxy, $ZINGO_NYM_PROXY, zingo-cli 옆의 바이너리 또는 PATH에서 확인됩니다. 기본적으로 동기화는 체인 팁 이후에도 계속됩니다. 첫 온라인 실행에서는 전체 동기화가 수행됩니다. 믹스넷 없이 빌드하려면(오프라인 전용): makers run-cli --nakednet --build-only를 실행하세요.",
       "nextStepsResources": "다음 단계 및 리소스",
       "readyToBuild": "빌드할 준비가 되셨나요?",
       "officialDocumentation": "공식 문서",
@@ -1131,7 +1135,7 @@
       "formalVerificationSeriesDescription": "형식 검증을 첫 원리부터 설명하고, 2026년 Orchard 건전성 버그를 살펴보며, Ironwood가 기계 검증된 수학적 증명으로 이에 어떻게 답했는지 보여주는 3부작 시리즈.",
       "newSeriesBadge": "새 시리즈"
     },
-    "browseSidebar": "왼쪽 사이드바를 사용해 글을 둘러보세요 👈",
+    "browseSidebar": "이 섹션의 문서를 찾아보려면 탐색 메뉴를 여세요.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash 글로벌 앰배서더",
       "description": "Zcash 글로벌 앰배서더는 전 세계적으로 프라이버시 중심 암호화폐의 채택과 교육을 촉진하는 데 헌신하는 커뮤니티 리더들입니다. 각 앰배서더 프로젝트는 해당 지역 내에서 인지도와 참여를 구축하는 데 중점을 둡니다.",

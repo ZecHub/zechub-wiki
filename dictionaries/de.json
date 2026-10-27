@@ -166,7 +166,11 @@
     "searchTryDifferent": "Versuche kürzere Suchanfragen, Synonyme oder andere Wörter.",
     "searchSuggested": "Vorgeschlagene Seiten",
     "searchResultsLabel": "Ergebnisse",
-    "skipToContent": "Zum Inhalt springen"
+    "skipToContent": "Zum Inhalt springen",
+    "languageSearch": "Sprachen suchen",
+    "languageSuggested": "Vorgeschlagen",
+    "languageAll": "Alle Sprachen",
+    "languageNone": "Keine Sprache gefunden"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -278,7 +282,7 @@
     "heroTitle": "Willkommen bei ZecHub",
     "heroSubtitle": "Ein Open-Source-Bildungshub für Zcash",
     "heroDescription": "Lerne die Datenschutztechnologie von Zcash kennen, erkunde interaktive Visualisierungen und trage zum Ökosystem bei",
-    "description": "ZecHub ist der von der Community getragene Bildungshub für die Zcash-Kryptowährung (ZEC). Zcash ist eine digitale Währung, die zensurresistente, sichere und private Zahlungen ermöglicht. Die Zcash-Blockchain nutzt hochentwickelte \"verifizierbare\" zk-snarks, die seit dem NU5-Netzwerkupgrade im Jahr 2022 kein Trusted Setup mehr erfordern.",
+    "description": "ZecHub ist das von der Community getragene Bildungszentrum für Zcash (ZEC), eine dezentrale digitale Währung für zensurresistente, sichere und private Zahlungen. Zcash nutzt fortschrittliche Zero-Knowledge-Kryptografie, um Transaktionen zu ermöglichen, deren Gültigkeit überprüft werden kann, ohne sensible Finanzinformationen offenzulegen. Im Jahr 2026 wurde der Ironwood Shielded Pool eingeführt, der formal mithilfe maschinell geprüfter mathematischer Beweise verifiziert wurde und die Integrität der Guthaben gewährleistet. Project Tachyon entwickelt ein vorgeschlagenes Shielded-Protokoll der nächsten Generation, das die Skalierbarkeit privater Zahlungen drastisch verbessern, das Wachstum des Validator-Zustands verringern und Zcash zu vollständig post-quanten-sicherer Privatsphäre weiterentwickeln soll.",
     "featuredSection": "Ausgewählte Ressourcen",
     "latestUpdates": "Neueste Updates",
     "getInvolved": "Mach mit",
@@ -985,12 +989,12 @@
       "configure": "Konfigurieren",
       "runZainod": "zainod ausführen",
       "installingZingoCli": "Zingo CLI installieren",
-      "zingoCliInfo": "ist ein in Rust gebauter lightwalletd-Proxy-Client für die Befehlszeile. Releases sind derzeit noch vorläufig — diese Anleitung behandelt das Kompilieren aus dem Quellcode.",
-      "buildZingoCli": "Zingo CLI bauen",
+      "zingoCliInfo": "ist eine Kommandozeilen-Light-Wallet für Zcash. v7 erstellt standardmäßig den Nym-Mixnet-Transport und bündelt nym-proxy neben der Binärdatei. Dieser Leitfaden behandelt die Kompilierung aus dem Quellcode.",
+      "buildZingoCli": "Zingo CLI erstellen (v7)",
       "running": "Ausführung",
-      "startZingoCliDefault": "Zingo CLI starten (Standard)",
-      "startZingoCliCustom": "Zingo CLI starten (Benutzerdefiniert)",
-      "zingoSyncWarning": "⚠ Dies führt beim ersten Start eine vollständige Synchronisierung durch, ähnlich wie bei lightwalletd.",
+      "startZingoCliDefault": "Zingo CLI starten (Standard, offline)",
+      "startZingoCliCustom": "Zingo CLI starten (online über lokalen Indexer)",
+      "zingoSyncWarning": "⚠ Eine neue Sitzung ist offline, bis du deine Zustimmung erteilst (--online, --remember-online oder --server). Der Nym-Proxy wird über --nym-proxy, $ZINGO_NYM_PROXY, die Binärdatei neben zingo-cli oder PATH aufgelöst. Die Synchronisierung wird standardmäßig nach dem Chain-Tip fortgesetzt. Der erste Online-Lauf führt eine vollständige Synchronisierung durch. Um ohne das Mixnet zu erstellen (nur offline): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Nächste Schritte & Ressourcen",
       "readyToBuild": "Bereit zum Bauen?",
       "officialDocumentation": "Offizielle Dokumentation",
@@ -1131,7 +1135,7 @@
       "formalVerificationSeriesDescription": "Eine dreiteilige Reihe, die formale Verifikation von Grund auf erklärt, den Orchard-Soundness-Bug von 2026 erläutert und zeigt, wie Ironwood ihn mit einem maschinell geprüften mathematischen Beweis beantwortete.",
       "newSeriesBadge": "Neue Reihe"
     },
-    "browseSidebar": "Durchsuche die Artikel über die linke Seitenleiste 👈",
+    "browseSidebar": "Öffne die Navigation, um die Artikel in diesem Abschnitt zu durchsuchen.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Global Ambassadors",
       "description": "Die Zcash Global Ambassadors sind Community-Leader, die sich weltweit für die Verbreitung und Aufklärung rund um datenschutzorientierte Kryptowährungen einsetzen. Jedes Ambassador-Projekt konzentriert sich darauf, in der jeweiligen Region Bewusstsein, Interesse und Beteiligung zu fördern.",

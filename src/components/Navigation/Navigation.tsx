@@ -3,6 +3,7 @@ import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useState, useRef } from "react";
+import { useNavTooWide } from "@/hooks/useNavTooWide";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
@@ -461,10 +462,11 @@ const Dropdown = ({
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+      {/* nowrap: longer translations ("Χρήση του Zcash") wrapped onto 3 lines. */}
+      <div className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
         {label}
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </div>
       {isOpen && (
@@ -590,7 +592,7 @@ const NavLinks = ({
   return (
     <div className={`flex items-center ${classes}`}>
       {/* Large screens */}
-      <div className="hidden lg:flex items-center space-x-4 xl:space-x-10">
+      <div className="hidden lg:flex items-center space-x-4 xl:space-x-5">
         {navigations.slice(0, 4).map((item, i) =>
           item.links ? (
             <Dropdown
@@ -734,7 +736,7 @@ const NavLinks = ({
         )}
       </div>
       {/* CTA buttons */}
-      <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
+      <div className="hidden md:flex items-center gap-3 ml-5 pl-5 border-l border-slate-400 dark:border-slate-600">
         <Button
           asChild
           variant="default"
@@ -967,6 +969,9 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
 const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
+  const rowRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const navTooWide = useNavTooWide(rowRef, navRef, t);
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -980,14 +985,17 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   useEffect(() => {
     const desktopNavigation = window.matchMedia("(min-width: 1280px)");
     const closeMobileMenuOnDesktop = () => {
-      if (desktopNavigation.matches) setIsOpen(false);
+      if (desktopNavigation.matches && !navTooWide) setIsOpen(false);
     };
     closeMobileMenuOnDesktop();
     desktopNavigation.addEventListener("change", closeMobileMenuOnDesktop);
     return () => {
       desktopNavigation.removeEventListener("change", closeMobileMenuOnDesktop);
     };
-  }, []);
+  }, [navTooWide]);
+  useEffect(() => {
+    if (navTooWide) setMoreOpen(false);
+  }, [navTooWide]);
   useEffect(() => {
     if (!moreOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -1012,11 +1020,15 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
       className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200"
     >
       <div className="mx-auto w-full max-w-372 px-2 md:px-4">
-        <div className="flex items-center justify-between py-3 md:py-4">
+        <div ref={rowRef} className="flex items-center justify-between py-3 md:py-4">
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          <nav className="hidden min-[1280px]:flex flex-1 justify-center max-w-4xl mx-8">
+          {/* max-w-5xl and mx-4 are mirrored in useNavTooWide (NAV_MAX_WIDTH, NAV_MARGINS). */}
+          <nav
+            ref={navRef}
+            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center max-w-5xl mx-4`}
+          >
             <NavLinks
               classes="w-full justify-start"
               closeMenu={() => setIsOpen(false)}
@@ -1077,8 +1089,9 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             </div>
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className="min-[1280px]:hidden" asChild>
+                <SheetTrigger className={navTooWide ? "" : "min-[1280px]:hidden"} asChild>
                   <Button
+                    data-nav-menu-button=""
                     variant="ghost"
                     size="sm"
                     className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
@@ -1094,7 +1107,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <div className="min-[1280px]:hidden">
+              <div className={navTooWide ? "" : "min-[1280px]:hidden"}>
                 <Button
                   variant="ghost"
                   size="sm"

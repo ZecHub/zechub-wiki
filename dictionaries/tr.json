@@ -166,7 +166,11 @@
     "searchTryDifferent": "Daha kısa sorgular, eş anlamlılar veya farklı kelimeler deneyin.",
     "searchSuggested": "Önerilen sayfalar",
     "searchResultsLabel": "Sonuçlar",
-    "skipToContent": "İçeriğe atla"
+    "skipToContent": "İçeriğe atla",
+    "languageSearch": "Dil ara",
+    "languageSuggested": "Önerilen",
+    "languageAll": "Tüm diller",
+    "languageNone": "Dil bulunamadı"
   },
   "navigation": {
     "wallets": "Cüzdanlar",
@@ -278,7 +282,7 @@
     "heroTitle": "ZecHub'a hoş geldiniz",
     "heroSubtitle": "Zcash için açık kaynaklı bir eğitim merkezi",
     "heroDescription": "Zcash gizlilik teknolojisi hakkında bilgi edinin, etkileşimli görselleştiricileri keşfedin ve ekosisteme katkıda bulunun",
-    "description": "ZecHub, Zcash kripto para birimi (ZEC) için topluluk tarafından yönlendirilen eğitim merkezidir. Zcash, sansüre dayanıklı, güvenli ve özel ödemeler sağlayan bir dijital para birimidir. Zcash Blockchain, 2022'deki NU5 ağ yükseltmesinin ardından Trusted Setup gerektirmeyen son derece gelişmiş 'verifiable' zk-snarks kullanır.",
+    "description": "ZecHub; sansüre dayanıklı, güvenli ve özel ödemeler için tasarlanmış merkeziyetsiz dijital para birimi Zcash (ZEC) hakkında topluluk odaklı bir eğitim merkezidir. Zcash, hassas finansal bilgileri açığa çıkarmadan geçerliliği doğrulanabilen işlemleri mümkün kılmak için gelişmiş sıfır bilgi kriptografisini kullanır. 2026'da tanıtılan Ironwood korumalı havuzu, makine tarafından denetlenen matematiksel kanıtlarla resmî olarak doğrulanmıştır ve bakiye bütünlüğünü garanti eder. Project Tachyon; özel ödemelerin ölçeklenebilirliğini önemli ölçüde iyileştirmek, doğrulayıcı durumundaki büyümeyi azaltmak ve Zcash'i tamamen kuantum sonrası güvenli gizliliğe yaklaştırmak üzere tasarlanan, önerilen yeni nesil korumalı bir protokol geliştiriyor.",
     "featuredSection": "Öne Çıkan Kaynaklar",
     "latestUpdates": "En Son Güncellemeler",
     "getInvolved": "Katılın",
@@ -985,12 +989,12 @@
       "configure": "Yapılandır",
       "runZainod": "zainod çalıştır",
       "installingZingoCli": "Zingo CLI kurulumu",
-      "zingoCliInfo": "Rust ile geliştirilmiş, komut satırı tabanlı bir lightwalletd-proxy istemcisidir. Sürümler şu anda geçicidir — bu kılavuz kaynaktan derlemeyi kapsar.",
-      "buildZingoCli": "Zingo CLI derleme",
+      "zingoCliInfo": "Zcash için komut satırı hafif cüzdanıdır. v7 varsayılan olarak Nym mixnet aktarımını oluşturur ve ikili dosyanın yanında nym-proxy'yi paketler. Bu rehber, kaynaktan derlemeyi kapsar.",
+      "buildZingoCli": "Zingo CLI'yi Derle (v7)",
       "running": "Çalıştırma",
-      "startZingoCliDefault": "Zingo CLI başlat (Varsayılan)",
-      "startZingoCliCustom": "Zingo CLI başlat (Özel)",
-      "zingoSyncWarning": "⚠ Bu, ilk çalıştırmada lightwalletd benzeri tam bir senkronizasyon gerçekleştirecektir.",
+      "startZingoCliDefault": "Zingo CLI'yi Başlat (Varsayılan, çevrimdışı)",
+      "startZingoCliCustom": "Zingo CLI'yi Başlat (yerel indeksleyici üzerinden çevrimiçi)",
+      "zingoSyncWarning": "⚠ Yeni bir oturum, onay verene kadar çevrimdışıdır (--online, --remember-online veya --server). Nym proxy'si --nym-proxy, $ZINGO_NYM_PROXY, zingo-cli'nin yanındaki ikili dosya ya da PATH üzerinden çözülür. Senkronizasyon varsayılan olarak zincir ucundan sonra devam eder. İlk çevrimiçi çalıştırma tam senkronizasyon gerçekleştirir. Mixnet olmadan derlemek için (yalnızca çevrimdışı): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Sonraki Adımlar ve Kaynaklar",
       "readyToBuild": "İnşa Etmeye Hazır mısınız?",
       "officialDocumentation": "Resmî Belgeler",
@@ -1131,7 +1135,7 @@
       "formalVerificationSeriesDescription": "Biçimsel doğrulamayı ilk ilkelerden açıklayan, 2026 Orchard sağlamlık hatasını ele alan ve Ironwood’un makine tarafından denetlenmiş matematiksel bir kanıtla buna nasıl yanıt verdiğini gösteren üç bölümlük bir seri.",
       "newSeriesBadge": "Yeni Seri"
     },
-    "browseSidebar": "Makalelere soldaki kenar çubuğunu kullanarak göz atın 👈",
+    "browseSidebar": "Bu bölümdeki makalelere göz atmak için Gezinme'yi açın.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Küresel Elçileri",
       "description": "Zcash Küresel Elçileri, dünya çapında gizlilik odaklı kripto para benimsenmesini ve eğitimini teşvik etmeye adanmış topluluk liderleridir. Her elçi projesi, kendi bölgesinde farkındalık ve etkileşim oluşturmaya odaklanır.",
