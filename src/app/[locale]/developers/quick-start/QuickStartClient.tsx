@@ -396,13 +396,13 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v6.3.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
             />
           </>
         )}
@@ -419,13 +419,13 @@ const ZebradTab = () => {
               {qs?.manualDownload ?? "Manual Download"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v6.3.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
             />
           </>
         )}
@@ -444,13 +444,13 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v6.3.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
             />
           </>
         )}
@@ -568,9 +568,7 @@ use_color = true`}
             "is a server that provides a lightweight interface to the Zcash blockchain, designed for mobile and desktop wallets that don't need to run a full node."}
         </InfoBox>
 
-        <div
-          className="grid grid-cols-1 imd:grid-cols-2 gap-5"
-        >
+        <div className="grid grid-cols-1 imd:grid-cols-2 gap-5">
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.prerequisites ?? "Prerequisites"}</SubLabel>
             <CodeBlock
@@ -743,7 +741,8 @@ cp target/release/nym-proxy ~/.cargo/bin/`}
           <SectionCard title={qs?.running ?? "Running"}>
             <div className="pb-4">
               <SubLabel>
-                {qs?.startZingoCliDefault ?? "Start Zingo CLI (Default, offline)"}
+                {qs?.startZingoCliDefault ??
+                  "Start Zingo CLI (Default, offline)"}
               </SubLabel>
               <CodeBlock
                 code={`zingo-cli --data-dir /path/to/your/wallet/data`}
@@ -751,15 +750,14 @@ cp target/release/nym-proxy ~/.cargo/bin/`}
             </div>
             <div className="pb-4">
               <SubLabel>
-                {qs?.startZingoCliCustom ?? "Start Zingo CLI (online via local indexer)"}
+                {qs?.startZingoCliCustom ??
+                  "Start Zingo CLI (online via local indexer)"}
               </SubLabel>
               <CodeBlock
                 code={`zingo-cli --server http://127.0.0.1:8137 \\
   --data-dir /path/to/wallet`}
               />
-              <SubLabel className="mt-3">
-                Or consent for this session
-              </SubLabel>
+              <SubLabel className="mt-3">Or consent for this session</SubLabel>
               <CodeBlock
                 code={`zingo-cli --online \\
   --data-dir /path/to/wallet`}
@@ -1181,7 +1179,9 @@ export default function QuickStartClient() {
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
       `}</style>
 
-      <div className={`min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200 ${spaceMono.variable}`}>
+      <div
+        className={`min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200 ${spaceMono.variable}`}
+      >
         {/* Hero */}
         <div
           className="relative overflow-hidden px-10 pt-20 pb-[72px] text-center
