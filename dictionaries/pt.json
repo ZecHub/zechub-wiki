@@ -311,7 +311,7 @@
       },
       "zcashMe": {
         "title": "Zcash.me",
-        "description": "Zcash.Me é um diretório público de usuários do Zcash com mensagens privadas, rankings e usuários verificados. Conecte-se, explore e interaja com a Comunidade Zcash.",
+        "description": "Zcash.Me é um diretório público de usuários do Zcash com mensagens privadas, rankings e usuários verificados. Conecte-se, explore e interaja com a comunidade Zcash.",
         "link": "Visite Zcash.Me"
       },
       "globalAmbassadors": {
@@ -565,7 +565,7 @@
         "THORChain": "Corretora cross-chain descentralizada de Layer 1. Faça conversões de ativos nativos como ZEC, BTC e ETH diretamente, sem pontes, wrapped tokens ou intermediários.",
         "Loofta": "Plataforma privada de pagamentos e conversões sem custódia. Envie e receba cripto com privacidade entre diferentes chains, com o Zcash como camada de liquidação para maior privacidade financeira."
       },
-      "disclaimer": "A ZecHub não endossa nenhum serviço específico de corretora; faça sua própria pesquisa."
+      "disclaimer": "O ZecHub não endossa nenhum serviço específico de corretora; faça sua própria pesquisa."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -989,7 +989,7 @@
       "configure": "Configurar",
       "runZainod": "Executar zainod",
       "installingZingoCli": "Instalando Zingo CLI",
-      "zingoCliInfo": "é uma carteira de linha de comando para Zcash. A v7 cria o transporte Nym mixnet por padrão e inclui o nym-proxy ao lado do binário. Este guia aborda a compilação do código-fonte.",
+      "zingoCliInfo": "é uma carteira leve de linha de comando para Zcash. A v7 cria o transporte Nym mixnet por padrão e inclui o nym-proxy ao lado do binário. Este guia aborda a compilação do código-fonte.",
       "buildZingoCli": "Compilar Zingo CLI (v7)",
       "running": "Execução",
       "startZingoCliDefault": "Iniciar Zingo CLI (padrão, offline)",
@@ -1191,7 +1191,7 @@
   },
   "components": {
     "newsletter": {
-      "title": "Newsletter blindada da ZecHub",
+      "title": "Newsletter blindada do ZecHub",
       "subtitle": "Assine as atualizações inserindo seu endereço unificado.",
       "feeLine": "Uma taxa única de assinatura de 0,05 ZEC",
       "feeLineRest": "é necessária para cobrir os custos da transação.",
@@ -1207,8 +1207,8 @@
       "box1Title": "O que é este serviço?",
       "box1Desc": "Receba notícias do ecossistema Zcash e estatísticas da rede diretamente pela rede Zcash usando memorandos criptografados.",
       "box2Title": "Como funciona",
-      "box2DescPre": "Enviamos newsletters uma vez por semana para vários destinatários em uma única transação blindada usando o",
-      "box2DescPost": "método RPC.",
+      "box2DescPre": "Enviamos newsletters uma vez por semana para vários destinatários em uma única transação blindada usando o método",
+      "box2DescPost": "RPC.",
       "box3Title": "Como receber atualizações",
       "box3DescPre": "Digite seu",
       "box3DescBold": "endereço blindado do Zcash",
