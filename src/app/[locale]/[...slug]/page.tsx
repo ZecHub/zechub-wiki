@@ -2770,6 +2770,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       const h1 = rows.findIndex((x) => isEl(x, "h1"));
       // "[What is the zcash-devtool?](readme)" sits above the intro: the intro becomes the lead and the link a button below it.
       const findA = (n: any): any => (n && n.type === "element" && n.tagName === "a" ? n : (n?.children || []).map(findA).find(Boolean));
+      let dtoolNote = "";
       const lk = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && /^what is the zcash-devtool\??$/i.test(textOf(x).trim()) && findA(x));
       let nx = lk + 1;
       while (lk > -1 && rows[nx] && rows[nx].type === "text" && !String(rows[nx].value).trim()) nx++;
@@ -2777,7 +2778,13 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const a = findA(rows[lk]);
         const intro = rows[nx];
         intro.properties = { ...(intro.properties || {}), dataLead: "true" };
-        rows.splice(lk, nx - lk + 1, intro, el("linkbutton", { href: String(a.properties?.href || ""), label: "Read the zcash-devtool README" }));
+        // The lead keeps the description; the production warning moves into one notice below it.
+        const mm = /^([\s\S]*?functionality)[;.]\s+and should not be considered production-ready\.\s*([\s\S]*)$/.exec(textOf(intro).trim());
+        if (mm && (intro.children || []).every((c: any) => c.type === "text")) {
+          intro.children = [{ type: "text", value: mm[1] + "." }];
+          dtoolNote = "This tool should not be considered production-ready. " + mm[2].replace(/DO NOT commit/, "Do not commit");
+        }
+        rows.splice(lk, nx - lk + 1, intro, el("linkbutton", { href: String(a.properties?.href || "").replace(/\?tab=readme-ov-file$/, ""), label: "Read the zcash-devtool README" }));
       }
       // Heading polish and numbered quick-start steps.
       let n = 0;
@@ -2787,20 +2794,28 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         else if (isEl(r, "h3")) {
           const t = textOf(r).replace(/#$/, "").trim();
           if (/^video tutorial/i.test(t)) r.children = [{ type: "text", value: t.replace(/:$/, "") }];
-          else if (/^advanced \(/i.test(t)) r.children = [{ type: "text", value: t.replace(/\s+\)$/, ")") }];
+          else if (/^advanced \(/i.test(t)) {
+            r.tagName = "h2";
+            r.children = [{ type: "text", value: "Advanced: librustzcash tutorial" }];
+          }
           else if (inQuick && !/^advanced/i.test(t)) {
             n += 1;
             r.properties = { ...(r.properties || {}), dataStep: String(n) };
           }
         }
       }
-      // "Security Warnings: DO NOT USE THIS IN PRODUCTION" becomes a callout.
+      // "Security Warnings: DO NOT USE THIS IN PRODUCTION" and the lead's warning become one callout below the lead.
+      let dtoolNotice: any = null;
       const sw = rows.findIndex((x) => isEl(x, "p") && /^security warnings?:/i.test(textOf(x).trim()));
       if (sw > -1) {
         const kids = (rows[sw].children || []).slice();
         if (isEl(kids[0], "strong")) kids.shift();
         while (kids.length && ((kids[0].type === "text" && !String(kids[0].value).trim()) || isEl(kids[0], "br"))) kids.shift();
-        rows[sw] = el("guidecallout", { title: "Security warning" }, [el("p", { className: ["m-0"] }, kids)]);
+        for (const kd of kids) if (kd.type === "text") kd.value = String(kd.value).replace(/^\s*DO NOT USE THIS IN PRODUCTION!*\s*/i, "");
+        const body = [el("p", { className: [dtoolNote ? "mt-2" : "mt-0", "mb-0", "mx-0"] }, kids)];
+        if (dtoolNote) body.unshift(el("p", { className: ["m-0"] }, [{ type: "text", value: dtoolNote }]));
+        dtoolNotice = el("guidecallout", { title: "Not production-ready" }, body);
+        rows.splice(sw, 1);
       }
       const video = rows.findIndex((x) => isEl(x, "h3") && /^video tutorial/i.test(textOf(x)));
       if (video > -1) {
@@ -2810,7 +2825,16 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           { label: "PCZTs", hint: "Build transactions in steps", href: "#build-transactions-in-steps-with-pczts" },
           { label: "Ironwood", hint: "Move funds from Orchard", href: "#move-funds-from-orchard-to-ironwood" },
         ];
-        rows.splice(video, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+        const jump = { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] };
+        if (!dtoolNotice && dtoolNote) dtoolNotice = el("guidecallout", { title: "Not production-ready" }, [el("p", { className: ["m-0"] }, [{ type: "text", value: dtoolNote }])]);
+        rows.splice(video, 0, ...(dtoolNotice ? [dtoolNotice] : []), jump);
+      }
+      // "view video here" becomes a short introduction with a bullet link.
+      const vh = rows.findIndex((x) => isEl(x, "p") && /^view video here$/i.test(textOf(x).trim()) && findA(x));
+      if (vh > -1) {
+        const a = findA(rows[vh]);
+        a.children = [{ type: "text", value: "Watch the librustzcash tutorial (video, hosted on Free2z)" }];
+        rows.splice(vh, 1, el("p", {}, [{ type: "text", value: "A video tutorial on the librustzcash Rust crates, the libraries that zcash-devtool builds on." }]), el("ul", {}, [el("li", {}, [a])]));
       }
     }
     if (opts.yfrost && Array.isArray(tree.children)) {
