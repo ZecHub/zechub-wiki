@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1634,6 +1634,28 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const pre = rows.findIndex((x) => isEl(x, "h2") && /^prerequisites/i.test(textOf(x).trim()));
         rows.splice(pre > -1 ? pre : firstStep, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
       }
+      // Additional resources: bullet list of "Link — description" -> link cards.
+      const resH = rows.findIndex((x) => isEl(x, "h2") && /^additional resources/i.test(textOf(x).replace(/#$/, "").trim()));
+      let resUl = resH + 1;
+      while (resH > -1 && rows[resUl] && rows[resUl].type === "text" && !String(rows[resUl].value).trim()) resUl++;
+      if (resH > -1 && isEl(rows[resUl], "ul")) {
+        const cards: any[] = [];
+        for (const li of rows[resUl].children || []) {
+          if (!isEl(li, "li")) continue;
+          const a = (li.children || []).find((c: any) => isEl(c, "a"));
+          if (!a) continue;
+          const full = textOf(li).trim();
+          const name = textOf(a).trim();
+          let desc = full.slice(full.indexOf(name) + name.length).replace(/^\s*[\u2014\u2013-]\s*/, "").trim();
+          desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+          cards.push({ type: "element", tagName: "communitycard", properties: { name, desc, href: String(a.properties?.href || ""), icon: "globe" }, children: [] });
+        }
+        if (cards.length) rows.splice(resUl, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+      }
+      // Hide an unfilled drafting placeholder left in the source content.
+      for (let i = rows.length - 1; i >= 0; i--) {
+        if (isEl(rows[i]) && /\[insert current ZecHub donation/i.test(textOf(rows[i]))) rows.splice(i, 1);
+      }
     }
     if (opts.rpi5 && Array.isArray(tree.children)) {
       // RPi5 Zebra + lightwalletd + Zingo: numbered steps, no Edit badge, sources as a link list.
@@ -2157,6 +2179,463 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(firstStep, 0, { type: "element", tagName: "jumpnav", properties: { title: "Sections", items: JSON.stringify(nav) }, children: [] });
       }
       tree.children = rows;
+    }
+    if (opts.vaddr && Array.isArray(tree.children)) {
+      // Visualizing Zcash addresses: no Edit badge, lead, jump list, Ironwood section, sources as link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // The upstream list of UA lengths is replaced by the specimen cards, so the sentence that introduced it must not end in a colon.
+      const fixLengths = (n: any) => {
+        if (n && n.type === "text" && typeof n.value === "string" && n.value.includes("lengths of each type of UA:")) n.value = n.value.replace("lengths of each type of UA:", "lengths of each type of UA, shown on each card above.");
+        (n && Array.isArray(n.children) ? n.children : []).forEach(fixLengths);
+      };
+      rows.forEach(fixLengths);
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // Example addresses: label + screenshot pairs and the "N characters" lists become specimen cards with generated QR codes.
+      {
+        const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+        const nextIdx = (i: number) => { let k = i + 1; while (rows[k] && isWs(rows[k])) k++; return k; };
+        const onlyImg = (x: any) => isEl(x, "p") && (x.children || []).filter((c: any) => !isWs(c)).every((c: any) => c.tagName === "img" || (c.type === "mdxJsxFlowElement" && String(c.name) === "img"));
+        const pairs: { l: number; im: number; label: string }[] = [];
+        rows.forEach((x, i) => {
+          if (!isEl(x, "ul")) return;
+          const lis = (x.children || []).filter((c: any) => isEl(c, "li"));
+          const t = textOf(x).trim();
+          if (lis.length !== 1 || !t || t.length > 40) return;
+          const k = nextIdx(i);
+          if (onlyImg(rows[k]) && (rows[k].children || []).some((c: any) => c.tagName === "img")) pairs.push({ l: i, im: k, label: t });
+        });
+        const groups: typeof pairs[] = [];
+        for (const pr of pairs) {
+          const last = groups[groups.length - 1];
+          if (last && nextIdx(last[last.length - 1].im) === pr.l) last.push(pr); else groups.push([pr]);
+        }
+        const lists = rows.map((x, i) => ({ x, i })).filter(({ x }) => isEl(x, "ul"));
+        const parse = (re: RegExp) => lists.map(({ x, i }) => {
+          const lis = (x.children || []).filter((c: any) => isEl(c, "li"));
+          const m = lis.map((li: any) => re.exec(textOf(li).trim().replace(/\s+/g, " ")));
+          return lis.length > 0 && m.every(Boolean) ? { i, m: m as RegExpExecArray[] } : null;
+        }).find(Boolean) as { i: number; m: RegExpExecArray[] } | undefined;
+        const typeAddr = parse(/^(\S+) is (\d+) characters/i);
+        const uaAddr = parse(/^(\S+) (u1\S+) (\d+) characters/i);
+        const ops: { start: number; end: number; rep: any[] }[] = [];
+        const mk = (label: string, address: string, length: string) => el("addressspecimen", { label, address, length }, []);
+        if (groups[0] && typeAddr && groups[0].length === typeAddr.m.length) {
+          const g = groups[0];
+          ops.push({ start: g[0].l, end: g[g.length - 1].im, rep: [el("addressgrid", {}, g.map((pr, k) => mk(pr.label, typeAddr.m[k][1], typeAddr.m[k][2])))] });
+          ops.push({ start: typeAddr.i, end: typeAddr.i, rep: [] });
+        }
+        if (groups[1] && uaAddr && groups[1].length === uaAddr.m.length) {
+          const g = groups[1];
+          ops.push({ start: g[0].l, end: g[g.length - 1].im, rep: [el("addressgrid", {}, g.map((pr, k) => mk(pr.label.replace(/\s*\+\s*/g, " + "), uaAddr.m[k][2], uaAddr.m[k][3])))] });
+          ops.push({ start: uaAddr.i, end: uaAddr.i, rep: [] });
+        }
+        ops.sort((p, q) => q.start - p.start).forEach((o) => rows.splice(o.start, o.end - o.start + 1, ...o.rep));
+      }
+      // Sources: bare URL paragraphs -> link cards.
+      const srcH = rows.findIndex((x) => isEl(x, "h2") && /^sources$/i.test(textOf(x).replace(/#$/, "").trim()));
+      if (srcH > -1) {
+        const cards: any[] = [];
+        let j = srcH + 1;
+        for (; j < rows.length; j++) {
+          const x = rows[j];
+          if (x.type === "text" && !String(x.value).trim()) continue;
+          const stack = [x]; let a: any = null;
+          while (stack.length && !a) { const n = stack.shift(); if (isEl(n, "a")) a = n; else if (n && n.children) stack.push(...n.children); }
+          if (!isEl(x, "p") || !a) break;
+          const href = String(a.properties?.href || "");
+          let host = href; let path = "";
+          try { const u = new URL(href); host = u.hostname.replace(/^www\./, ""); path = u.pathname.replace(/\/$/, ""); } catch {}
+          cards.push(el("communitycard", { name: host, desc: path, href, icon: "globe" }));
+        }
+        if (cards.length) rows.splice(srcH + 1, j - srcH - 1, el("addressgrid", {}, cards));
+      }
+      // Ironwood sections, placed before Sources.
+      const P = (kids: any[], cls: string[] = ["my-5"]) => el("p", { className: cls }, kids);
+      const B = (t: string) => el("strong", {}, [txt(t)]);
+      const UL = (items: any[][]) => el("ul", { className: ["my-0", "list-disc", "space-y-1.5", "pl-5", "marker:text-slate-400", "dark:marker:text-slate-500"] }, items.map((k) => el("li", {}, k)));
+      const badge = (label: string, tone: "legacy" | "active") => el("p", { className: ["mb-3", "mt-0"] }, [
+        el("span", {
+          className: tone === "active"
+            ? ["inline-flex", "items-center", "gap-1.5", "rounded-md", "border", "border-emerald-500/30", "bg-emerald-500/10", "px-2", "py-0.5", "text-xs", "font-medium", "text-emerald-700", "dark:text-emerald-300"]
+            : ["inline-flex", "items-center", "gap-1.5", "rounded-md", "border", "border-slate-400/30", "bg-slate-500/10", "px-2", "py-0.5", "text-xs", "font-medium", "text-slate-600", "dark:text-slate-300"],
+        }, [txt("Status: " + label)]),
+      ]);
+      const note = ["text-sm", "text-slate-500", "dark:text-slate-400", "my-4"];
+      const ironwood = [
+        el("h2", {}, [txt("Ironwood and Zcash Addresses")]),
+        P([txt("Ironwood is the shielded pool activated by Network Upgrade 6.3 (NU6.3) on 28 July 2026, at block 3,428,143. It reuses the Orchard protocol and the same receiver structure, so the upgrade changed where shielded payments arrive without introducing a new address format. Ironwood is a pool, not a fourth type of address.")]),
+        el("addressgrid", {}, [
+          el("communitygroup", { title: "Orchard \u2014 Legacy Shielded Pool", icon: "coins", wide: "false" }, [
+            badge("Restricted", "legacy"),
+            UL([
+              [txt("Introduced with NU5 in May 2022.")],
+              [txt("A soundness vulnerability in its proof circuit was disclosed in 2026 (see below).")],
+              [txt("Since NU6.3, new value can no longer enter the pool.")],
+              [txt("Existing funds can still be spent out of the pool; wallets are expected to move them into Ironwood.")],
+              [txt("Moving them needs wallet software that supports migration.")],
+            ]),
+          ]),
+          el("communitygroup", { title: "Ironwood \u2014 Current Shielded Pool", icon: "shield", wide: "false" }, [
+            badge("Active", "active"),
+            UL([
+              [txt("Activated with NU6.3 on 28 July 2026.")],
+              [txt("Now receives new shielded payments sent to existing Orchard receivers.")],
+              [txt("Existing unified addresses remain usable. No new address is needed.")],
+              [txt("Built on the Orchard protocol, with formal verification and additional independent audits.")],
+              [txt("Keep your wallet software up to date.")],
+            ]),
+          ]),
+        ]),
+        P([B("Migration depends on your wallet."), txt(" Activation did not move any coins, and the sources reviewed give no migration deadline. Some wallets migrate automatically, some ask you to start a manual migration, and some have not added Ironwood support. The amount crossing from Orchard to Ironwood is public on the blockchain, while senders and recipients stay private.")]),
+        el("h2", {}, [txt("Why was Ironwood introduced?")]),
+        P([txt("In 2026, a critical soundness vulnerability was found in the original Orchard shielded pool and reported responsibly. It concerned the integrity of the money supply, not the confidentiality of shielded transaction data. The flaw was fixed in June 2026, and Ironwood was introduced as part of the network\u2019s response. Here is what is, and is not, established:")]),
+        el("addressgrid", {}, [
+          el("communitygroup", { title: "The flaw", icon: "cpu", wide: "false" }, [P([txt("A missing constraint in the Orchard proof circuit could, under certain conditions, have let an attacker create invalid shielded value without the proof system detecting it. It did not affect the privacy of funds in any pool.")], ["m-0"])]),
+          el("communitygroup", { title: "Exploitation", icon: "shield", wide: "false" }, [P([txt("Public technical reports state that no exploitation has been found or confirmed. A vulnerability that could permit counterfeiting is not evidence that counterfeiting occurred.")], ["m-0"])]),
+          el("communitygroup", { title: "Limits of verification", icon: "scale", wide: "false" }, [P([txt("Shielded transactions hide amounts and notes by design, so a past exploit of this kind may leave no definitive on-chain evidence. That is why the risk cannot be conclusively ruled out from the chain alone.")], ["m-0"])]),
+          el("communitygroup", { title: "What NU6.3 adds", icon: "coins", wide: "false" }, [P([txt("A new pool built on the corrected Orchard protocol, and a turnstile that stops the old pool from paying out more ZEC than verifiably entered it. This keeps total supply auditable whether or not everyone migrates.")], ["m-0"])]),
+        ]),
+        P([txt("Based on ZIPs 229, 257, 258, 316 and 326, the Zcash Foundation\u2019s NU6.2 announcement, Zodl\u2019s Ironwood documentation and BlockSec\u2019s technical analysis of the Orchard bug.")], note),
+      ];
+      const srcAt = rows.findIndex((x) => isEl(x, "h2") && /^sources$/i.test(textOf(x).replace(/#$/, "").trim()));
+      rows.splice(srcAt > -1 ? srcAt : rows.length, 0, ...ironwood);
+      // Note under the unified address receiver cards.
+      const grids = rows.map((x, i) => (isEl(x, "addressgrid") ? i : -1)).filter((i) => i >= 0);
+      if (grids.length >= 2) {
+        rows.splice(grids[1] + 1, 0,
+          P([B("Receivers and pools are different things."), txt(" A unified address holds one receiver per protocol it supports. The Orchard pool is the legacy shielded pool described below; an Orchard receiver is the part of an address that Orchard-compatible wallets use to receive shielded funds. ZIP 316 defines no separate Ironwood receiver type: Ironwood is an Orchard-protocol pool, and ZIP 229 states that address structures and encodings do not change. Existing unified addresses, including the four combinations above, keep working, and an Orchard receiver can receive funds in the Ironwood pool. New payments to it are expected to arrive there, so an Orchard receiver does not by itself mean a payment lands in the original, now restricted, Orchard pool.")], ["my-5", "text-[0.95rem]"]));
+      }
+      // Extra source cards (name = site, desc = page).
+      const srcGrid = rows.findIndex((x) => isEl(x, "addressgrid") && (x.children || []).every((c: any) => isEl(c, "communitycard")));
+      if (srcGrid > -1) {
+        const extra = [
+          { name: "zips.z.cash", desc: "ZIP 258: Deployment of the NU6.3 network upgrade", href: "https://zips.z.cash/zip-0258" },
+          { name: "zips.z.cash", desc: "ZIP 257: NU6.2 and the Orchard mitigation", href: "https://zips.z.cash/zip-0257" },
+          { name: "zips.z.cash", desc: "ZIP 316: Unified Addresses and typecodes", href: "https://zips.z.cash/zip-0316" },
+          { name: "zips.z.cash", desc: "ZIP 326: NU6.3 consequences for wallets", href: "https://zips.z.cash/zip-0326" },
+          { name: "support.zodl.com", desc: "What is the Ironwood shielded pool?", href: "https://support.zodl.com/article/56-what-is-the-ironwood-shielded-pool" },
+          { name: "zodl.com", desc: "Ironwood is live on Zcash", href: "https://zodl.com/ironwood-is-live-on-zcash/" },
+          { name: "zodl.com", desc: "Ironwood: a new shielded pool for Zcash", href: "https://zodl.com/ironwood-a-new-shielded-pool-for-zcash/" },
+          { name: "blocksec.com", desc: "Zcash Orchard soundness bug analysis", href: "https://blocksec.com/blog/web3-security-zcash-orchard-soundness-bug-analysis" },
+          { name: "docs.cakewallet.com", desc: "Ironwood migration", href: "https://docs.cakewallet.com/cryptos/zcash/ironwood-migration" },
+        ];
+        rows[srcGrid].children.push(...extra.map((e) => el("communitycard", { ...e, icon: "globe" })));
+      }
+      const first = rows.findIndex((x) => isEl(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "Address Types", hint: "Transparent, Sapling, unified", href: "#types-of-zcash-addresses" },
+          { label: "UA Receivers", hint: "Combinations of receivers", href: "#unified-address-receivers" },
+          { label: "Ironwood", hint: "What changes for addresses", href: "#ironwood-and-zcash-addresses" },
+          { label: "Why Ironwood?", hint: "The Orchard vulnerability", href: "#why-was-ironwood-introduced" },
+          { label: "Sources", hint: "Further reading", href: "#sources" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.vkx && Array.isArray(tree.children)) {
+      // Viewing key export guide: no Edit badge, lead paragraph, jump list.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // Short lead-in paragraphs inside Option 2 act as subheadings.
+      for (let i = 0; i < rows.length; i++) {
+        const x = rows[i];
+        if (isEl(x, "p") && /^(later runs|a few things to know about the output):?$/i.test(textOf(x).trim())) {
+          rows[i] = { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: [{ type: "text", value: textOf(x).trim().replace(/:$/, "") }] };
+        }
+      }
+      const first = rows.findIndex((x) => isEl(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "Before you start", hint: "UFVK and birth height", href: "#before-you-start" },
+          { label: "Keep it private", hint: "Risks and safe setup", href: "#keep-it-private" },
+          { label: "Zkool GraphQL", hint: "Option 1, step by step", href: "#option-1-zkool-graphql" },
+          { label: "zingo-cli", hint: "Option 2, command line", href: "#option-2-zingo-cli" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.vrel && Array.isArray(tree.children)) {
+      // Verifying releases: no Edit badge, numbered steps, jump list, "verified against" line as a note.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const walkSteps = (list: any[]) => {
+        for (const x of list) {
+          if (!x || x.type !== "element") continue;
+          if (x.tagName === "h3") {
+            const m = /^Step\s+(\d+[a-z]?)\s*[\u2014\u2013-]\s*(.+)$/i.exec(textOf(x).trim());
+            if (m) {
+              x.properties = { ...(x.properties || {}), dataStep: m[1] };
+              x.children = [{ type: "text", value: m[2] }];
+            }
+          }
+          if (Array.isArray(x.children)) walkSteps(x.children);
+        }
+      };
+      walkSteps(rows);
+      // Output blocks written without a language still render as code blocks.
+      const fixCode = (list: any[]) => {
+        for (const x of list) {
+          if (!x || x.type !== "element") continue;
+          if (x.tagName === "pre") {
+            for (const c of x.children || []) {
+              if (isEl(c, "code")) {
+                const cls = Array.isArray(c.properties?.className) ? c.properties.className : [];
+                if (!cls.some((k: any) => String(k).startsWith("language-"))) c.properties = { ...(c.properties || {}), className: [...cls, "language-text"] };
+              }
+            }
+          } else if (Array.isArray(x.children)) fixCode(x.children);
+        }
+      };
+      fixCode(rows);
+      const why = rows.findIndex((x) => isEl(x, "h2") && /^why this matters/i.test(textOf(x).replace(/#$/, "").trim()));
+      if (why > -1) {
+        const items = [
+          { label: "Threat model", hint: "What verification catches", href: "#threat-model-what-verification-does-and-does-not-catch" },
+          { label: "Zebra", hint: "Checksums and Sigstore", href: "#part-1-zebra-checksums-and-sigstore" },
+          { label: "Zallet", hint: "GPG signatures and key rotation", href: "#part-2-zallet-gpg-signatures" },
+          { label: "If it fails", hint: "What to do", href: "#part-3-a-verification-that-fails" },
+        ];
+        rows.splice(why, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.defi && Array.isArray(tree.children)) {
+      // Zcash in DeFi: no Edit badge, jump list before the first protocol section.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // "Learn More: <link>" paragraphs become outlined link buttons.
+      const linksIn = (n: any, acc: any[] = []) => {
+        if (n && n.type === "element" && n.tagName === "a" && n.properties?.href) acc.push(n);
+        (n?.children || []).forEach((c: any) => linksIn(c, acc));
+        return acc;
+      };
+      const learnMore = (list: any[]) => {
+        for (let i = 0; i < list.length; i++) {
+          const x = list[i];
+          if (!x || x.type !== "element") continue;
+          if (x.tagName === "p" && /^\s*learn more/i.test(textOf(x))) {
+            const links = linksIn(x);
+            if (links.length) {
+              const linkCls = ["font-semibold", "text-brand", "no-underline", "underline-offset-4", "hover:underline", "dark:text-brand-soft"];
+              const mk = (l: any, label: string) => ({
+                type: "element",
+                tagName: "a",
+                properties: { href: String(l.properties.href), target: "_blank", rel: "noreferrer", className: linkCls },
+                children: [{ type: "text", value: label + " \u2197" }],
+              });
+              const kids: any[] = [];
+              if (links.length === 1) kids.push(mk(links[0], "Learn more"));
+              else {
+                kids.push({ type: "text", value: "Learn more: " });
+                links.forEach((l, k) => {
+                  if (k) kids.push({ type: "text", value: "  \u00b7  " });
+                  kids.push(mk(l, textOf(l).replace(/\.$/, "").replace(/\s+Learn$/i, "").trim()));
+                });
+              }
+              list.splice(i, 1, { type: "element", tagName: "p", properties: { className: ["my-4", "text-sm", "text-slate-500", "dark:text-slate-400"] }, children: kids });
+              continue;
+            }
+          }
+          if (Array.isArray(x.children)) learnMore(x.children);
+        }
+      };
+      learnMore(rows);
+      // Resources: consecutive link paragraphs under the "Resources:" heading -> bullet list.
+      const resI = rows.findIndex((x) => isEl(x, "h3") && /^resources/i.test(textOf(x).trim()));
+      if (resI > -1) {
+        const items: any[] = [];
+        let j = resI + 1;
+        while (j < rows.length) {
+          const x = rows[j];
+          if (x.type === "text" && !String(x.value).trim()) { j++; continue; }
+          if (isEl(x, "p") && linksIn(x).length) {
+            items.push({ type: "element", tagName: "li", properties: {}, children: (x.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim())) });
+            j++;
+            continue;
+          }
+          break;
+        }
+        if (items.length) rows.splice(resI + 1, j - resI - 1, { type: "element", tagName: "ul", properties: {}, children: items });
+      }
+      // Innovation section: bold-only paragraphs act as subheadings.
+      const innov = rows.findIndex((x) => isEl(x, "h2") && /^innovation/i.test(textOf(x).replace(/#$/, "").trim()));
+      if (innov > -1) {
+        for (let i = innov + 1; i < rows.length; i++) {
+          const x = rows[i];
+          if (!isEl(x, "p")) continue;
+          const kids = (x.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
+          if (kids.length === 1 && isEl(kids[0], "strong") && textOf(x).trim().length < 40) {
+            rows[i] = { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: kids[0].children };
+          }
+        }
+      }
+      // The rule-style h3 already draws a divider; drop a separator right before it.
+      for (let i = rows.length - 2; i >= 0; i--) {
+        let j = i + 1;
+        while (rows[j] && rows[j].type === "text" && !String(rows[j].value).trim()) j++;
+        if (isEl(rows[i], "hr") && isEl(rows[j], "h3")) rows.splice(i, 1);
+      }
+      const first = rows.findIndex((x) => isEl(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "NEAR Intents", hint: "Fee-free cross-chain swaps", href: "#near-intents" },
+          { label: "Solana", hint: "Kamino, Meteora, Orca, Raydium", href: "#kamino" },
+          { label: "THORChain", hint: "Native ZEC liquidity", href: "#thorchain-thorswap" },
+          { label: "Base (cbZEC)", hint: "Aerodrome, Uniswap, Morpho", href: "#using-cbzec-on-defi-base" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.nymvpn && Array.isArray(tree.children)) {
+      // Nym VPN overview: lead, action buttons, use-case cards, install-guide cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const linksOf = (n: any, acc: any[] = []) => {
+        if (n && n.type === "element" && n.tagName === "a" && n.properties?.href) acc.push(n);
+        (n?.children || []).forEach((c: any) => linksOf(c, acc));
+        return acc;
+      };
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) {
+        rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+        let btnRow = lead + 1;
+        while (rows[btnRow] && rows[btnRow].type === "text" && !String(rows[btnRow].value).trim()) btnRow++;
+        if (isEl(rows[btnRow], "p")) {
+          const links = linksOf(rows[btnRow]);
+          if (links.length) rows.splice(btnRow, 1, ...links.map((a) => el("linkbutton", { href: String(a.properties.href), label: textOf(a).trim() })));
+        }
+      }
+      // Use cases: consecutive h3 + p pairs under "Tutorial" -> card grid.
+      const icons: Record<string, string> = { geo: "globe", wifi: "shield", advanced: "shield", anonymous: "users", bandwidth: "cpu", surveillance: "alert", banking: "coins", pricing: "coins", crypto: "coins" };
+      const iconFor = (t: string) => { const k = Object.keys(icons).find((k) => t.toLowerCase().includes(k)); return k ? icons[k] : "shield"; };
+      const firstH3 = rows.findIndex((x) => isEl(x, "h3"));
+      const instH2 = rows.findIndex((x) => isEl(x, "h2") && /installation guides/i.test(textOf(x)));
+      if (firstH3 > -1 && instH2 > firstH3) {
+        const cards: any[] = [];
+        for (let i = firstH3; i < instH2; i++) {
+          if (!isEl(rows[i], "h3")) continue;
+          const body: any[] = [];
+          let j = i + 1;
+          while (j < instH2 && !isEl(rows[j], "h3")) { if (isEl(rows[j])) body.push(rows[j]); j++; }
+          cards.push(el("communitygroup", { title: textOf(rows[i]).replace(/#$/, "").trim(), icon: iconFor(textOf(rows[i]) + " " + (body[0] ? textOf(body[0]) : "")), wide: "false" }, body));
+        }
+        const intro = el("p", { className: ["mt-8", "mb-4", "text-xs", "font-semibold", "uppercase", "tracking-[0.14em]", "text-slate-500", "dark:text-slate-400"] }, [{ type: "text", value: "What you can use it for" }]);
+        rows.splice(firstH3, instH2 - firstH3, intro, el("communitygrid", {}, cards));
+      }
+      // Installation guides: p>a (video) pairs -> link cards, keep trailing paragraph.
+      const inst = rows.findIndex((x) => isEl(x, "h2") && /installation guides/i.test(textOf(x)));
+      if (inst > -1) {
+        const cards: any[] = [];
+        let j = inst + 1;
+        while (j < rows.length && (isEl(rows[j], "p") || (rows[j].type === "text" && !String(rows[j].value).trim()))) {
+          if (rows[j].type === "text") { j++; continue; }
+          const a = linksOf(rows[j]);
+          const label = textOf(rows[j]).trim();
+          if (a.length === 1 && /vimeo\.com/.test(String(a[0].properties.href)) && label.length < 20) {
+            cards.push(el("communitycard", { name: label, desc: "Video walkthrough", href: String(a[0].properties.href), icon: "globe" }));
+            j++;
+          } else break;
+        }
+        if (cards.length) rows.splice(inst + 1, j - inst - 1, el("communitygrid", {}, cards));
+      }
+    }
+    if (opts.nym && Array.isArray(tree.children)) {
+      // Nym mixnet guide: lead, jump list, source lists as quiet panels, settings path as a code line.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const bq = rows.findIndex((x) => isEl(x, "blockquote"));
+      const lead = rows.findIndex((x, i) => i > bq && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      const fixList = (list: any[]) => {
+        const out: any[] = [];
+        for (let i = 0; i < list.length; i++) {
+          const x = list[i];
+          if (x && Array.isArray(x.children) && x.type === "element" && x.tagName !== "ul" && x.tagName !== "p") fixList(x.children);
+          let j = i + 1;
+          while (list[j] && list[j].type === "text" && !String(list[j].value).trim()) j++;
+          if (isEl(x, "p") && /^sources:$/i.test(textOf(x).trim()) && isEl(list[j], "ul")) {
+            out.push({
+              type: "element",
+              tagName: "div",
+              properties: { className: ["my-5", "rounded-xl", "border", "border-slate-200", "bg-slate-50/60", "p-4", "text-sm", "dark:border-white/10", "dark:bg-white/[0.03]", "[&_ul]:mb-0", "[&_ul]:space-y-1", "[&_li]:break-all"] },
+              children: [
+                { type: "element", tagName: "p", properties: { className: ["mb-2", "mt-0", "text-xs", "font-semibold", "uppercase", "tracking-[0.14em]", "text-slate-500", "dark:text-slate-400"] }, children: [{ type: "text", value: "Sources" }] },
+                list[j],
+              ],
+            });
+            i = j;
+            continue;
+          }
+          if (isEl(x, "p") && /^zodl tor settings:?$/i.test(textOf(x).trim()) && isEl(list[j], "p")) {
+            out.push(x);
+            out.push({ type: "element", tagName: "pre", properties: {}, children: [{ type: "element", tagName: "code", properties: { className: ["language-text"] }, children: [{ type: "text", value: textOf(list[j]).trim() }] }] });
+            i = j;
+            continue;
+          }
+          out.push(x);
+        }
+        list.splice(0, list.length, ...out);
+      };
+      fixList(rows);
+      // Final "Sources" section: "Label: URL" bullets -> link cards.
+      const srcH = rows.findIndex((x) => isEl(x, "h2") && /^sources$/i.test(textOf(x).replace(/#$/, "").trim()));
+      let srcUl = srcH + 1;
+      while (srcH > -1 && rows[srcUl] && rows[srcUl].type === "text" && !String(rows[srcUl].value).trim()) srcUl++;
+      if (srcH > -1 && isEl(rows[srcUl], "ul")) {
+        const cards: any[] = [];
+        for (const li of rows[srcUl].children || []) {
+          if (!isEl(li, "li")) continue;
+          const stack = [li]; let a: any = null;
+          while (stack.length && !a) { const n = stack.shift(); if (isEl(n, "a")) a = n; else stack.push(...(n.children || [])); }
+          if (!a) continue;
+          const href = String(a.properties?.href || "");
+          const label = textOf(li).trim().replace(href, "").replace(/:\s*$/, "").trim();
+          let host = ""; try { host = new URL(href).hostname.replace(/^www\./, ""); } catch {}
+          const dm = label.match(/^(.*?),?\s+((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4})$/);
+          cards.push({ type: "element", tagName: "communitycard", properties: { name: dm ? dm[1].trim() : label || host, desc: dm ? `${host} \u00b7 ${dm[2]}` : host, href, icon: "globe" }, children: [] });
+        }
+        if (cards.length) rows.splice(srcUl, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+      }
+      const first = rows.findIndex((x, i) => i > bq && isEl(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "What Nym adds", hint: "And what it does not", href: "#what-nym-adds-and-what-it-does-not" },
+          { label: "Native support", hint: "Zingo, Zkool, Nozy, Zodl", href: "#native-nym-support-use-this-first-when-available" },
+          { label: "System-level NymVPN", hint: "Step-by-step fallback", href: "#fallback-system-level-nymvpn" },
+          { label: "Trade-offs", hint: "Speed, mobile, checklist", href: "#performance-and-timeout-trade-offs" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
     }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
@@ -3306,10 +3785,16 @@ export default async function Page(props: {
           rehypeWikiPatterns,
           {
             boldLinkButtons: slug[0] === "using-zcash",
-            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
+            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "nym-vpn") || (slug[0] === "guides" && slug[1] === "using-zec-in-defi") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
             hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
             akash: slug[0] === "guides" && (slug[1] === "akash-network-zcashd" || slug[1] === "akash-network-zebra"),
+            nym: slug[0] === "guides" && slug[1] === "nym-mixnet-wallet-setup",
+            nymvpn: slug[0] === "guides" && slug[1] === "nym-vpn",
+            defi: slug[0] === "guides" && slug[1] === "using-zec-in-defi",
+            vrel: slug[0] === "guides" && slug[1] === "verifying-zcash-releases",
+            vkx: slug[0] === "guides" && slug[1] === "viewing-key-transaction-export",
+            vaddr: slug[0] === "guides" && slug[1] === "visualizing-zcash-addresses",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
@@ -3324,7 +3809,7 @@ export default async function Page(props: {
             prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
             node: slug[0] === "guides" && slug[1] === "raspberry-pi-4-full-node",
-            snap: (slug[0] === "guides" && (slug[1] === "raspberry-pi-4-full-node" || slug[1] === "akash-network-zcashd")) || slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
+            snap: (slug[0] === "guides" && (slug[1] === "viewing-key-transaction-export" || slug[1] === "using-zec-in-defi" || slug[1] === "nym-mixnet-wallet-setup" || slug[1] === "raspberry-pi-4-full-node" || slug[1] === "akash-network-zcashd")) || slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
             swap: slug[0] === "using-zcash" && slug[1] === "solswap",
             tnet: slug[0] === "using-zcash" && slug[1] === "testnet",
             txn: slug[0] === "using-zcash" && slug[1] === "transactions",
