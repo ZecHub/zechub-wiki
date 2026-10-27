@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2412,6 +2412,76 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(sec, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
       }
     }
+    if (opts.zgo && Array.isArray(tree.children)) {
+      // ZGo payment processor: lead, caution notice, jump list instead of the manual index, features as numbered points, no decorative image.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const WOO_BANNER = "55a791bb-1947-4f55-b5b9-55083be8ed49";
+      const OLD_FLOW = "de50885b-b068-4157-bbda-0981ca23efc8";
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x) : "";
+        const simple = x && (x.type === "mdxJsxFlowElement" || isEl(x, "p") || isEl(x, "a") || isEl(x, "img")) && !textOf(x).trim();
+        if (isWs(x) || j.toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+        else if (simple && j.includes(WOO_BANNER)) rows.splice(i, 1);
+        else if (simple && j.includes(OLD_FLOW)) {
+          // The flow diagram is replaced by a sharper version of the same picture.
+          rows[i] = el("p", {}, [el("img", { src: "/content-images/zgo-payment-flow.webp", alt: "Diagram of the ZGo payment flow between the customer, Zcash, ZGo, the invoice, a WooCommerce store and the payment confirmation.", width: 1671, height: 941 }, [])]);
+        }
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // The guide lists three common mistakes, not two.
+      const fixCount = (n: any) => {
+        if (n?.type === "text" && String(n.value).includes("the two mistakes")) n.value = String(n.value).replace("the two mistakes", "the three mistakes");
+        (n?.children || []).forEach(fixCount);
+      };
+      rows.forEach(fixCount);
+      // Features: "Label. Explanation." paragraphs become numbered points.
+      const fi = rows.findIndex((x) => isEl(x, "h2") && /^features$/i.test(h2Text(x)));
+      if (fi > -1) {
+        let end = fi + 1;
+        const items: any[] = [];
+        while (end < rows.length && !isEl(rows[end], "h2")) {
+          const pEl = rows[end];
+          const kids: any[] = pEl.children || [];
+          const si = kids.findIndex((c) => !isWs(c));
+          if (isEl(pEl, "p") && si > -1 && isEl(kids[si], "strong")) {
+            const title = textOf(kids[si]).replace(/[.:\s]+$/, "").trim();
+            const rest = kids.filter((_: any, k: number) => k !== si);
+            const first = rest.findIndex((c: any) => c.type === "text");
+            if (first > -1) rest[first] = txt(String(rest[first].value).replace(/^\s+/, ""));
+            items.push(el("pointitem", { n: String(items.length + 1), title }, [el("p", {}, rest)]));
+          } else {
+            items.length = 0;
+            break;
+          }
+          end += 1;
+        }
+        if (items.length) rows.splice(fi + 1, end - fi - 1, el("pointlist", {}, items));
+      }
+      // Manual "On this page" index becomes the jump list.
+      const op = rows.findIndex((x) => isEl(x, "h2") && /^on this page$/i.test(h2Text(x)));
+      const notice = el("guidecallout", { title: "Before you rely on it" }, [
+        el("p", { className: ["m-0"] }, [txt("ZGo's WooCommerce plugin lists version 1.0 with a \"Development\" status in its README, tested up to WordPress 6.1.1 and WooCommerce 7.1. This guide has not been checked against the NU6.3 (Ironwood) upgrade, so run a small test payment end to end on your own store, and confirm the current plugin version with Vergara Tech, before accepting real orders.")]),
+      ]);
+      const items = [
+        { label: "How ZGo works", hint: "Payment flow and confirmations", href: "#how-zgo-works" },
+        { label: "Account setup", hint: "Create and verify your account", href: "#setting-up-an-account" },
+        { label: "Integrations", hint: "Xero and WooCommerce", href: "#zgo-with-xero" },
+        { label: "Common mistakes", hint: "What breaks first setups", href: "#common-mistakes" },
+      ];
+      const jump = el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []);
+      if (op > -1) {
+        const nx = isEl(rows[op + 1], "ol") ? 2 : 1;
+        rows.splice(op, nx, notice, jump);
+      } else if (lead > -1) rows.splice(lead + 1, 0, notice, jump);
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -4416,6 +4486,7 @@ export default async function Page(props: {
             nrpc: slug[0] === "guides" && slug[1] === "zcash-node-rpc-and-indexing",
             zenith: slug[0] === "guides" && slug[1] === "zenith-installation",
             zkdecoy: slug[0] === "guides" && slug[1] === "zero-knowledge-vs-decoys",
+            zgo: slug[0] === "guides" && slug[1] === "zgo-payment-processor",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
