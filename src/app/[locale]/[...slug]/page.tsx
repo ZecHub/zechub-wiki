@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2180,6 +2180,103 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       tree.children = rows;
     }
+    if (opts.vnet && Array.isArray(tree.children)) {
+      // Visualizing the Zcash network: no Edit badge, lead, numbered steps, tool and repo link cards, jump list, tips as headings.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+        else if (isEl(x, "hr") || isWs(x)) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // Headings: drop trailing colons, number the three stages, demote "Optional".
+      const tidy = (s: string) => s.replace(/#$/, "").replace(/[:!\s]+$/, "").trim();
+      let step = 0;
+      for (const r of rows) {
+        if (!isEl(r, "h2")) continue;
+        const t = tidy(textOf(r));
+        if (/^install requirements/i.test(t)) r.children = [txt(t)];
+        else if (/^optional/i.test(t)) {
+          r.tagName = "h3";
+          r.properties = { ...(r.properties || {}), dataRule: "true" };
+          r.children = [txt("Optional tools")];
+        } else {
+          step += 1;
+          r.properties = { ...(r.properties || {}), dataStep: String(step) };
+          r.children = [txt(t)];
+        }
+      }
+      // "Name -> link (why)" and "Name | link" lines become link cards.
+      const parseLine = (x: any) => {
+        if (!isEl(x, "p")) return null;
+        const kids: any[] = x.children || [];
+        const ai = kids.findIndex((c) => isEl(c, "a"));
+        if (ai < 1) return null;
+        const before = kids.slice(0, ai).map((c) => textOf(c)).join("");
+        const m = /^(.*?)\s*(->|\|)\s*$/.exec(before.trim());
+        if (!m || !m[1]) return null;
+        const href = String(kids[ai].properties?.href || "").replace(/\.git$/, "");
+        const after = kids.slice(ai + 1).map((c) => textOf(c)).join("").replace(/^[\s(]+|[\s)]+$/g, "").replace(/^for\s+/i, "");
+        let host = href;
+        try { const u = new URL(href); host = u.host + (u.pathname === "/" ? "" : u.pathname); } catch {}
+        const desc = after ? after.charAt(0).toUpperCase() + after.slice(1) : host;
+        return { sep: m[2], card: el("communitycard", { name: m[1].trim(), desc, href, icon: m[2] === "|" ? "code" : "globe" }) };
+      };
+      for (let i = 0; i < rows.length; i++) {
+        const first = parseLine(rows[i]);
+        if (!first) continue;
+        let j = i;
+        const cards: any[] = [];
+        for (;;) {
+          const pl = j < rows.length ? parseLine(rows[j]) : null;
+          if (!pl || pl.sep !== first.sep) break;
+          cards.push(pl.card);
+          j += 1;
+        }
+        rows.splice(i, j - i, ...(first.sep === "|" ? [el("h3", { dataRule: "true" }, [txt("Repositories")])] : []), el("addressgrid", {}, cards));
+        if (first.sep === "|") i += 1;
+      }
+      // Tips become small headings.
+      const tipTitles = ["Tip: stop the crawler automatically", "Tip: save the metrics straight into testdata", "Tip: reseed the crawler with known IPs"];
+      let tn = 0;
+      for (let i = 0; i < rows.length; i++) {
+        if (isEl(rows[i], "p") && /^tips?!?$/i.test(textOf(rows[i]).trim()) && tipTitles[tn]) {
+          rows[i] = el("h3", { dataRule: "true" }, [txt(tipTitles[tn])]);
+          tn += 1;
+        }
+      }
+      // Command output and commands written without a language still render as code blocks.
+      const fixCode = (list: any[]) => {
+        for (const x of list) {
+          if (!x || x.type !== "element") continue;
+          if (x.tagName === "pre") {
+            for (const c of x.children || []) {
+              if (isEl(c, "code")) {
+                const cls = Array.isArray(c.properties?.className) ? c.properties.className : [];
+                if (!cls.some((k: any) => String(k).startsWith("language-"))) c.properties = { ...(c.properties || {}), className: [...cls, "language-text"] };
+              }
+            }
+          } else if (Array.isArray(x.children)) fixCode(x.children);
+        }
+      };
+      fixCode(rows);
+      const firstH2 = rows.findIndex((x) => isEl(x, "h2"));
+      if (firstH2 > -1) {
+        const items = [
+          { label: "Requirements", hint: "Rust and optional tools", href: "#install-requirements" },
+          { label: "Crawler", hint: "Collect network data", href: "#zcash-network-crawler" },
+          { label: "Crunchy", hint: "Aggregate the output", href: "#crunchy" },
+          { label: "P2P-Viz", hint: "Map the nodes", href: "#p2p-viz" },
+        ];
+        rows.splice(firstH2, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
     if (opts.vaddr && Array.isArray(tree.children)) {
       // Visualizing Zcash addresses: no Edit badge, lead, jump list, Ironwood section, sources as link cards.
       const rows: any[] = tree.children;
@@ -3785,7 +3882,7 @@ export default async function Page(props: {
           rehypeWikiPatterns,
           {
             boldLinkButtons: slug[0] === "using-zcash",
-            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "nym-vpn") || (slug[0] === "guides" && slug[1] === "using-zec-in-defi") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
+            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "nym-vpn") || (slug[0] === "guides" && slug[1] === "using-zec-in-defi") || (slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
             hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
             akash: slug[0] === "guides" && (slug[1] === "akash-network-zcashd" || slug[1] === "akash-network-zebra"),
@@ -3795,6 +3892,7 @@ export default async function Page(props: {
             vrel: slug[0] === "guides" && slug[1] === "verifying-zcash-releases",
             vkx: slug[0] === "guides" && slug[1] === "viewing-key-transaction-export",
             vaddr: slug[0] === "guides" && slug[1] === "visualizing-zcash-addresses",
+            vnet: slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
