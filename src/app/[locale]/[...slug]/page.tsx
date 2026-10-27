@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2180,6 +2180,61 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       tree.children = rows;
     }
+    if (opts.dtool && Array.isArray(tree.children)) {
+      // Zcash devtool: lead, README link as a button, numbered quick-start steps, security warning as a callout, jump list.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      // "[What is the zcash-devtool?](readme)" sits above the intro: the intro becomes the lead and the link a button below it.
+      const findA = (n: any): any => (n && n.type === "element" && n.tagName === "a" ? n : (n?.children || []).map(findA).find(Boolean));
+      const lk = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && /^what is the zcash-devtool\??$/i.test(textOf(x).trim()) && findA(x));
+      let nx = lk + 1;
+      while (lk > -1 && rows[nx] && rows[nx].type === "text" && !String(rows[nx].value).trim()) nx++;
+      if (lk > -1 && isEl(rows[nx], "p")) {
+        const a = findA(rows[lk]);
+        const intro = rows[nx];
+        intro.properties = { ...(intro.properties || {}), dataLead: "true" };
+        rows.splice(lk, nx - lk + 1, intro, el("linkbutton", { href: String(a.properties?.href || ""), label: "Read the zcash-devtool README" }));
+      }
+      // Heading polish and numbered quick-start steps.
+      let n = 0;
+      let inQuick = false;
+      for (const r of rows) {
+        if (isEl(r, "h2")) inQuick = /^quick start/i.test(textOf(r).replace(/#$/, "").trim());
+        else if (isEl(r, "h3")) {
+          const t = textOf(r).replace(/#$/, "").trim();
+          if (/^video tutorial/i.test(t)) r.children = [{ type: "text", value: t.replace(/:$/, "") }];
+          else if (/^advanced \(/i.test(t)) r.children = [{ type: "text", value: t.replace(/\s+\)$/, ")") }];
+          else if (inQuick && !/^advanced/i.test(t)) {
+            n += 1;
+            r.properties = { ...(r.properties || {}), dataStep: String(n) };
+          }
+        }
+      }
+      // "Security Warnings: DO NOT USE THIS IN PRODUCTION" becomes a callout.
+      const sw = rows.findIndex((x) => isEl(x, "p") && /^security warnings?:/i.test(textOf(x).trim()));
+      if (sw > -1) {
+        const kids = (rows[sw].children || []).slice();
+        if (isEl(kids[0], "strong")) kids.shift();
+        while (kids.length && ((kids[0].type === "text" && !String(kids[0].value).trim()) || isEl(kids[0], "br"))) kids.shift();
+        rows[sw] = el("guidecallout", { title: "Security warning" }, [el("p", { className: ["m-0"] }, kids)]);
+      }
+      const video = rows.findIndex((x) => isEl(x, "h3") && /^video tutorial/i.test(textOf(x)));
+      if (video > -1) {
+        const items = [
+          { label: "Install", hint: "Build from source", href: "#install" },
+          { label: "Wallet", hint: "Create a testnet wallet", href: "#create-a-testnet-wallet" },
+          { label: "PCZTs", hint: "Build transactions in steps", href: "#build-transactions-in-steps-with-pczts" },
+          { label: "Ironwood", hint: "Move funds from Orchard", href: "#move-funds-from-orchard-to-ironwood" },
+        ];
+        rows.splice(video, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
     if (opts.yfrost && Array.isArray(tree.children)) {
       // Ywallet FROST demo: numbered steps, commands as code blocks, link to the maintained Zkool guide, jump list.
       const rows: any[] = tree.children;
@@ -3931,6 +3986,7 @@ export default async function Page(props: {
             vaddr: slug[0] === "guides" && slug[1] === "visualizing-zcash-addresses",
             vnet: slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network",
             yfrost: slug[0] === "guides" && slug[1] === "ywallet-frost-demo",
+            dtool: slug[0] === "guides" && slug[1] === "zcash-devtool",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
