@@ -2,8 +2,8 @@
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
-import { useEffect, useState, useRef } from "react";
-import { navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
+import { useEffect, useId, useState, useRef } from "react";
+import { DESKTOP_NAV_QUERY, navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
@@ -411,9 +411,15 @@ const FlyoutLinkItem = ({
       className="relative"
       onMouseEnter={openFlyout}
       onMouseLeave={closeFlyout}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFlyoutOpen(false);
+      }}
     >
-      <div
-        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+      <button
+        type="button"
+        aria-expanded={flyoutOpen}
+        onClick={() => setFlyoutOpen((open) => !open)}
+        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-start text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
       >
         <span className="flex items-center gap-2">
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
@@ -424,11 +430,11 @@ const FlyoutLinkItem = ({
           )}
           {label}
         </span>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180" />
-      </div>
+        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180 rtl:rotate-0" />
+      </button>
       {flyoutOpen && (
         <div
-          className="absolute right-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
+          className="absolute end-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
           onMouseEnter={openFlyout}
           onMouseLeave={closeFlyout}
         >
@@ -458,7 +464,7 @@ const FlyoutLinkItem = ({
     </div>
   );
 };
-// ─── Primary dropdown (hover) ────────────────────────────────────────────────
+// ─── Primary dropdown (hover, or click / keyboard) ──────────────────────────
 const Dropdown = ({
   label,
   children,
@@ -467,21 +473,50 @@ const Dropdown = ({
   children: React.ReactNode;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelId = useId();
   return (
     <div
       className="relative"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && isOpen) {
+          e.stopPropagation();
+          setIsOpen(false);
+          buttonRef.current?.focus();
+        }
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsOpen(false);
+      }}
     >
       {/* nowrap: longer translations ("Χρήση του Zcash") wrapped onto 3 lines. */}
-      <div className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
+        onClick={() => setIsOpen((open) => !open)}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setIsOpen(true);
+          }
+        }}
+        className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+      >
         {label}
         <ChevronDown
+          aria-hidden="true"
           className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
-      </div>
+      </button>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 gap-2 p-2 transition-all duration-150">
+        <div
+          id={panelId}
+          className="absolute top-full start-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 gap-2 p-2 transition-all duration-150"
+        >
           {children}
         </div>
       )}
@@ -558,7 +593,7 @@ const MoreRow = ({
   return (
     <div
       id="nav-more-row"
-      className="hidden min-[1280px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
+      className="hidden lg:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
       {/* Primary menus that no longer fit in the bar, still as menus. */}
       {moved.map((item) => (
@@ -1045,7 +1080,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     setMounted(true);
   }, []);
   useEffect(() => {
-    const desktopNavigation = window.matchMedia("(min-width: 1280px)");
+    const desktopNavigation = window.matchMedia(DESKTOP_NAV_QUERY);
     const closeMobileMenuOnDesktop = () => {
       if (desktopNavigation.matches && !navTooWide) setIsOpen(false);
     };
@@ -1091,7 +1126,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <nav
             ref={navRef}
             data-nav-level={navLevel}
-            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center mx-4`}
+            className={`hidden ${navTooWide ? "" : "lg:flex"} flex-1 min-w-0 justify-center mx-4`}
           >
             <NavLinks
               classes="w-full justify-start"
@@ -1154,7 +1189,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             </div>
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className={navTooWide ? "" : "min-[1280px]:hidden"} asChild>
+                <SheetTrigger className={navTooWide ? "" : "lg:hidden"} asChild>
                   <Button
                     data-nav-menu-button=""
                     variant="ghost"
@@ -1172,7 +1207,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <div className={navTooWide ? "" : "min-[1280px]:hidden"}>
+              <div className={navTooWide ? "" : "lg:hidden"}>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -1185,7 +1220,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             )}
           </div>
         </div>
-        {moreOpen && (
+        {moreOpen && !navTooWide && (
           <MoreRow
             items={overflowNavigations}
             moved={navLayout(navLevel).moved}

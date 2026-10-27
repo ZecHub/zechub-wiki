@@ -116,13 +116,42 @@ describe("useNavFit", () => {
     act(() => resize());
     expect(level()).toBe(MAX + 1);
 
-    // The menu button (56px + gap) is room the bar gets back:
-    // 1180 - 100 - 376 + 68 - 32 = 740 >= 700 + 16.
-    layout(1180);
+    // The nav margins are read from the page; the menu button (56px) is room
+    // the bar gets back: 1160 - 100 - 376 + 56 - 32 = 708 < 700 + 16.
+    screen.getByTestId("nav").style.margin = "0 16px";
+    layout(1160);
+    setWidth(screen.getByTestId("right"), "offsetWidth", 376);
+    setWidth(screen.getByTestId("menu"), "offsetWidth", 56);
+    act(() => resize());
+    expect(level()).toBe(MAX + 1);
+
+    // 1170: 718 >= 716.
+    layout(1170);
     setWidth(screen.getByTestId("right"), "offsetWidth", 376);
     setWidth(screen.getByTestId("menu"), "offsetWidth", 56);
     act(() => resize());
     expect(level()).toBe(MAX);
+  });
+
+  it("ignores a callback from an older run (fonts still loading)", async () => {
+    let fontsReady: () => void = () => {};
+    Object.defineProperty(document, "fonts", {
+      configurable: true,
+      value: { ready: new Promise<void>((r) => { fontsReady = r; }) },
+    });
+    const { rerender } = render(<Header labels="long" />);
+    layout(1300);
+    act(() => resize());
+    expect(level()).toBe(4);
+
+    // New language with short labels: back to the full bar...
+    rerender(<Header labels="short" widths={[700, 650, 600, 500, 400, 300]} />);
+    act(() => resize());
+    expect(level()).toBe(0);
+    // ...and the old runs' font callbacks must not push it up again.
+    await act(async () => { fontsReady(); await Promise.resolve(); });
+    expect(level()).toBe(0);
+    delete (document as unknown as { fonts?: unknown }).fonts;
   });
 
   it("measures again from the full bar when the labels change", () => {

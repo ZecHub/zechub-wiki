@@ -17,11 +17,12 @@ import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 // lowered again when the width the previous level needed (measured when it
 // overflowed) fits with a margin. Measured again on every resize and whenever
 // the labels change (language switch).
-const NAV_MARGINS = 32; // mx-4
-const MENU_BUTTON_GAP = 12; // md:space-x-3 between the header buttons
 // Extra room required before going back a level, so a width right at the
 // limit cannot flip the bar back and forth.
 export const HYSTERESIS = 16;
+// The desktop bar (and this hook) works from the Tailwind lg breakpoint
+// (976px); below it the header uses the menu button, as on phones.
+export const DESKTOP_NAV_QUERY = "(min-width: 976px)";
 
 export function navMaxBarLevel(primaryCount: number) {
   // The first primary menu always stays in the bar.
@@ -52,8 +53,12 @@ export function useNavFit(
     const row = rowRef.current;
     const nav = navRef.current;
     if (!row || !nav) return;
+    let cancelled = false;
     const check = () => {
-      if (!window.matchMedia("(min-width: 1280px)").matches) return;
+      // A callback from an older run (fonts loading) must not measure the DOM
+      // of a different level.
+      if (cancelled) return;
+      if (!window.matchMedia(DESKTOP_NAV_QUERY).matches) return;
       const needed = neededRef.current;
       let available: number;
       if (level <= maxBarLevel) {
@@ -73,9 +78,21 @@ export function useNavFit(
         // The menu button disappears with the bar, so its width (and its gap)
         // is room the bar gets back.
         const menuButton = right?.querySelector<HTMLElement>("[data-nav-menu-button]");
-        const menuButtonRoom = menuButton?.offsetWidth ? menuButton.offsetWidth + MENU_BUTTON_GAP : 0;
+        // Margins and gaps are read from the page (they are rem-based, so
+        // they grow with the browser's font size).
+        const navStyle = getComputedStyle(nav);
+        const margins = (parseFloat(navStyle.marginLeft) || 0) + (parseFloat(navStyle.marginRight) || 0);
+        // The button plus the gap before it: the distance from the previous
+        // header button's edge to its own (either direction, for RTL).
+        let menuButtonRoom = menuButton?.offsetWidth ?? 0;
+        const prev = menuButton?.previousElementSibling;
+        if (menuButton && prev && menuButtonRoom) {
+          const b = menuButton.getBoundingClientRect();
+          const p = prev.getBoundingClientRect();
+          menuButtonRoom = Math.max(menuButtonRoom, b.right - p.right, p.left - b.left);
+        }
         available =
-          row.clientWidth - (logo?.offsetWidth ?? 0) - (right?.offsetWidth ?? 0) + menuButtonRoom - NAV_MARGINS;
+          row.clientWidth - (logo?.offsetWidth ?? 0) - (right?.offsetWidth ?? 0) + menuButtonRoom - margins;
       }
       let target = level;
       while (target > 0 && needed[target - 1] !== undefined && needed[target - 1] + HYSTERESIS <= available) {
@@ -88,7 +105,10 @@ export function useNavFit(
     observer.observe(row);
     if (nav.firstElementChild) observer.observe(nav.firstElementChild);
     document.fonts?.ready.then(check).catch(() => {});
-    return () => observer.disconnect();
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, [rowRef, navRef, labels, level, maxBarLevel]);
 
   return level;

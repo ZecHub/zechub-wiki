@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 
-for (const desktopWidth of [1280, 1281, 1530]) {
+for (const desktopWidth of [976, 977, 1530]) {
   test(`mobile drawer releases the page at ${desktopWidth}px`, async ({ page }) => {
-    await page.setViewportSize({ width: 1278, height: 900 });
+    await page.setViewportSize({ width: 974, height: 900 });
     await page.goto("/");
     const trigger = page.locator("header button[data-nav-menu-button]");
     const dialog = page.getByRole("dialog");
@@ -13,7 +13,7 @@ for (const desktopWidth of [1280, 1281, 1530]) {
 
     await trigger.click();
     await expect(dialog).toBeVisible();
-    await page.setViewportSize({ width: 1279, height: 900 });
+    await page.setViewportSize({ width: 975, height: 900 });
     await expect(dialog).toBeVisible();
 
     await page.setViewportSize({ width: desktopWidth, height: 900 });
