@@ -3,7 +3,7 @@ import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useState, useRef } from "react";
-import { useNavTooWide } from "@/hooks/useNavTooWide";
+import { navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
@@ -33,6 +33,17 @@ import type { Searcher } from "@/types";
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 const PRIMARY_NAV_COUNT = 4;
 const overflowNavigations = navigations.slice(PRIMARY_NAV_COUNT);
+const NAV_MAX_BAR_LEVEL = navMaxBarLevel(PRIMARY_NAV_COUNT);
+// What the desktop bar looks like at a given fit level (see useNavFit).
+function navLayout(level: number) {
+  const moved = Math.min(Math.max(0, level - 2), PRIMARY_NAV_COUNT - 1);
+  return {
+    compact: level >= 1,
+    iconButtons: level >= 2,
+    visible: navigations.slice(0, PRIMARY_NAV_COUNT - moved),
+    moved: navigations.slice(PRIMARY_NAV_COUNT - moved, PRIMARY_NAV_COUNT),
+  };
+}
 const MORE_ROW_ORDER = [
   "Tutorials",
   "Developers",
@@ -506,9 +517,11 @@ const MoreToggle = ({
 
 const MoreRow = ({
   items,
+  moved,
   onLinkClick,
 }: {
   items: typeof navigations;
+  moved: typeof navigations;
   onLinkClick: () => void;
 }) => {
   const { t } = useLanguage();
@@ -547,6 +560,25 @@ const MoreRow = ({
       id="nav-more-row"
       className="hidden min-[1280px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
+      {/* Primary menus that no longer fit in the bar, still as menus. */}
+      {moved.map((item) => (
+        <div key={item.name} data-nav-moved="" className="px-2 text-sm">
+          <Dropdown label={getTranslatedLabel(item.name, item.label, t, item.label)}>
+            {item.links?.map((link, j) => (
+              <FlyoutLinkItem
+                key={`${link.name}-${j}`}
+                link={link}
+                parentItem={item}
+                t={t}
+                onLinkClick={onLinkClick}
+              />
+            ))}
+          </Dropdown>
+        </div>
+      ))}
+      {moved.length > 0 && (
+        <span aria-hidden="true" className="h-5 border-l border-slate-300 dark:border-slate-600" />
+      )}
       {entries.map((entry) => (
         <Link
           prefetch
@@ -576,14 +608,17 @@ const NavLinks = ({
   moreOpen,
   onMoreToggle,
   onMoreClose,
+  level = 0,
 }: {
   classes: string;
   closeMenu: () => void;
   moreOpen: boolean;
   onMoreToggle: () => void;
   onMoreClose: () => void;
+  level?: number;
 }) => {
   const { t } = useLanguage();
+  const { compact, iconButtons, visible } = navLayout(level);
   const handleLinkClick = () => {
     closeMenu();
     onMoreClose();
@@ -592,8 +627,10 @@ const NavLinks = ({
   return (
     <div className={`flex items-center ${classes}`}>
       {/* Large screens */}
-      <div className="hidden lg:flex items-center space-x-4 xl:space-x-5">
-        {navigations.slice(0, 4).map((item, i) =>
+      <div
+        className={`hidden lg:flex items-center ${compact ? "space-x-3" : "space-x-4 xl:space-x-5"}`}
+      >
+        {visible.map((item, i) =>
           item.links ? (
             <Dropdown
               label={getTranslatedLabel(item.name, item.label, t, item.label)}
@@ -736,7 +773,9 @@ const NavLinks = ({
         )}
       </div>
       {/* CTA buttons */}
-      <div className="hidden md:flex items-center gap-3 ml-5 pl-5 border-l border-slate-400 dark:border-slate-600">
+      <div
+        className={`hidden md:flex items-center border-l border-slate-400 dark:border-slate-600 ${compact ? "gap-2 ml-3 pl-3" : "gap-3 ml-5 pl-5"}`}
+      >
         <Button
           asChild
           variant="default"
@@ -759,8 +798,17 @@ const NavLinks = ({
             href="https://bounties.zechub.wiki/"
             target="_blank"
             onClick={handleLinkClick}
+            data-nav-cta=""
+            {...(iconButtons && {
+              "aria-label": t.navigation?.bounties || "Bounties",
+              title: t.navigation?.bounties || "Bounties",
+            })}
           >
-            {t.navigation?.bounties || "Bounties"}
+            {iconButtons ? (
+              <Trophy aria-hidden="true" className="h-4 w-4" />
+            ) : (
+              t.navigation?.bounties || "Bounties"
+            )}
           </Link>
         </Button>
         <Button
@@ -780,8 +828,21 @@ const NavLinks = ({
             e.currentTarget.style.setProperty("--mouse-y", "50%");
           }}
         >
-          <Link prefetch href="/dashboard" onClick={handleLinkClick}>
-            {t.navigation?.dashboard || "Dashboard"}
+          <Link
+            prefetch
+            href="/dashboard"
+            onClick={handleLinkClick}
+            data-nav-cta=""
+            {...(iconButtons && {
+              "aria-label": t.navigation?.dashboard || "Dashboard",
+              title: t.navigation?.dashboard || "Dashboard",
+            })}
+          >
+            {iconButtons ? (
+              <LayoutDashboard aria-hidden="true" className="h-4 w-4" />
+            ) : (
+              t.navigation?.dashboard || "Dashboard"
+            )}
           </Link>
         </Button>
       </div>
@@ -971,7 +1032,8 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { t } = useLanguage();
   const rowRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const navTooWide = useNavTooWide(rowRef, navRef, t);
+  const navLevel = useNavFit(rowRef, navRef, t, NAV_MAX_BAR_LEVEL);
+  const navTooWide = navLevel > NAV_MAX_BAR_LEVEL;
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -1024,10 +1086,12 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          {/* max-w-5xl and mx-4 are mirrored in useNavTooWide (NAV_MAX_WIDTH, NAV_MARGINS). */}
+          {/* mx-4 is mirrored in useNavFit (NAV_MARGINS). No max width: the bar
+              uses all the room between the logo and the header buttons. */}
           <nav
             ref={navRef}
-            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center max-w-5xl mx-4`}
+            data-nav-level={navLevel}
+            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center mx-4`}
           >
             <NavLinks
               classes="w-full justify-start"
@@ -1035,6 +1099,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               moreOpen={moreOpen}
               onMoreToggle={() => setMoreOpen((open) => !open)}
               onMoreClose={closeMore}
+              level={navLevel}
             />
           </nav>
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
@@ -1123,6 +1188,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
         {moreOpen && (
           <MoreRow
             items={overflowNavigations}
+            moved={navLayout(navLevel).moved}
             onLinkClick={() => {
               setMoreOpen(false);
               setIsOpen(false);
