@@ -166,7 +166,11 @@
     "searchTryDifferent": "Prova query più brevi, sinonimi o parole diverse.",
     "searchSuggested": "Pagine suggerite",
     "searchResultsLabel": "Risultati",
-    "skipToContent": "Vai al contenuto"
+    "skipToContent": "Vai al contenuto",
+    "languageSearch": "Cerca lingue",
+    "languageSuggested": "Suggerite",
+    "languageAll": "Tutte le lingue",
+    "languageNone": "Nessuna lingua trovata"
   },
   "navigation": {
     "wallets": "Portafogli",

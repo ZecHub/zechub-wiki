@@ -166,7 +166,11 @@
     "searchTryDifferent": "Sɔ nsɛmmisa ntiantiaa, nsɛmfua a ɛne ne ho di nsɛ, anaa nsɛmfua ahorow hwɛ.",
     "searchSuggested": "Nkratafa a wɔahyɛ ho nyansa",
     "searchResultsLabel": "Nsunsuansoɔ",
-    "skipToContent": "Twa kɔ emu nsɛm no so"
+    "skipToContent": "Twa kɔ emu nsɛm no so",
+    "languageSearch": "Hwehwɛ kasa horow mu",
+    "languageSuggested": "Wɔde nyansahyɛ mae",
+    "languageAll": "Kasa ahorow nyinaa",
+    "languageNone": "Kasa biara nni hɔ a wɔanhu"
   },
   "navigation": {
     "wallets": "Sika kotoku",
