@@ -64,3 +64,51 @@ for (const desktopWidth of [1280, 1281, 1530]) {
     await expect(dialog).toHaveCount(0);
   });
 }
+
+test("the drawer stays open while a long language still needs the menu button", async ({ page }) => {
+  await page.setViewportSize({ width: 400, height: 900 });
+  await page.goto("/ru");
+  const trigger = page.locator("header button[data-nav-menu-button]");
+  const dialog = page.getByRole("dialog");
+  await trigger.click();
+  await expect(dialog).toBeVisible();
+
+  // 520px: the bar is allowed, but the Russian labels do not fit even at the
+  // smallest level, so the menu button (and its open drawer) must stay.
+  await page.setViewportSize({ width: 520, height: 900 });
+  // Longer than the drawer's closing animation.
+  await page.waitForTimeout(1500);
+  await expect(trigger).toBeVisible();
+  await expect(dialog).toBeVisible();
+
+  // Wide enough for the bar: the drawer closes.
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await expect(page.locator("header nav")).toBeVisible();
+  await expect(dialog).toHaveCount(0);
+});
+
+test("on a narrow window the bar shrinks and moved menus stay usable", async ({ page }) => {
+  await page.setViewportSize({ width: 600, height: 900 });
+  await page.goto("/it");
+  const nav = page.locator("header nav");
+  await expect(nav).toBeVisible();
+  await expect(page.locator("header button[data-nav-menu-button]")).toBeHidden();
+  await expect
+    .poll(async () => Number(await nav.getAttribute("data-nav-level")))
+    .toBeGreaterThanOrEqual(3);
+  // Menus moved into "More" open with the keyboard and stay on screen.
+  await page.locator("header nav button[aria-expanded]").filter({ hasText: "Altro" }).click();
+  // Below md the Bounties / Dashboard buttons are offered in the More row.
+  await expect(page.locator("#nav-more-row").getByRole("link", { name: "Bounties" })).toBeVisible();
+  const moved = page.locator("#nav-more-row [data-nav-moved] button").first();
+  await moved.focus();
+  await page.keyboard.press("Enter");
+  const panel = page.locator("#nav-more-row [data-nav-moved] [id]").first();
+  await expect(panel).toBeVisible();
+  const box = await panel.boundingBox();
+  expect(box!.x).toBeGreaterThanOrEqual(0);
+  expect(box!.x + box!.width).toBeLessThanOrEqual(600);
+  await page.keyboard.press("Escape");
+  await expect(panel).toBeHidden();
+  await expect(moved).toBeFocused();
+});

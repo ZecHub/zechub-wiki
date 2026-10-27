@@ -2,8 +2,8 @@
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
-import { useEffect, useId, useState, useRef } from "react";
-import { DESKTOP_NAV_QUERY, navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
+import { useEffect, useId, useLayoutEffect, useState, useRef } from "react";
+import { navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
@@ -360,6 +360,35 @@ const getTranslatedLabel = (
   );
 };
 // ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
+// Keeps an open panel inside the viewport: on narrow windows a dropdown that
+// starts at its trigger can run past the screen edge. Shifts it back in, and
+// flips a nested flyout to the other side when there is no room on its side.
+const VIEWPORT_MARGIN = 8;
+function useKeepInViewport(ref: React.RefObject<HTMLElement | null>, open: boolean, flip = false) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!open || !el) return;
+    el.style.translate = "";
+    el.style.insetInlineStart = "";
+    el.style.insetInlineEnd = "";
+    const r = el.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    if (flip && (r.left < VIEWPORT_MARGIN || r.right > vw - VIEWPORT_MARGIN)) {
+      // Open on the other side of the parent item instead.
+      el.style.insetInlineEnd = "auto";
+      el.style.insetInlineStart = "100%";
+      return;
+    }
+    let dx = 0;
+    if (r.right > vw - VIEWPORT_MARGIN) dx = vw - VIEWPORT_MARGIN - r.right;
+    if (r.left + dx < VIEWPORT_MARGIN) dx = VIEWPORT_MARGIN - r.left;
+    if (dx) el.style.translate = `${dx}px 0`;
+  }, [ref, open, flip]);
+}
+// Hover opens menus for a mouse only: on touch, the emulated mouseenter
+// followed by the click would open and close the menu in one tap.
+const isMouse = (e: React.PointerEvent) => e.pointerType === "mouse";
+
 const FlyoutLinkItem = ({
   link,
   parentItem,
@@ -373,6 +402,7 @@ const FlyoutLinkItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flyoutRef = useRef<HTMLDivElement>(null);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -380,6 +410,7 @@ const FlyoutLinkItem = ({
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
   };
+  useKeepInViewport(flyoutRef, flyoutOpen, true);
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
   if (!link.links || link.links.length === 0) {
     return (
@@ -409,16 +440,23 @@ const FlyoutLinkItem = ({
   return (
     <div
       className="relative"
-      onMouseEnter={openFlyout}
-      onMouseLeave={closeFlyout}
+      onPointerEnter={(e) => isMouse(e) && openFlyout()}
+      onPointerLeave={(e) => isMouse(e) && closeFlyout()}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFlyoutOpen(false);
       }}
     >
       <button
         type="button"
+        aria-haspopup="true"
         aria-expanded={flyoutOpen}
         onClick={() => setFlyoutOpen((open) => !open)}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setFlyoutOpen(true);
+          }
+        }}
         className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-start text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
       >
         <span className="flex items-center gap-2">
@@ -434,9 +472,10 @@ const FlyoutLinkItem = ({
       </button>
       {flyoutOpen && (
         <div
+          ref={flyoutRef}
           className="absolute end-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
-          onMouseEnter={openFlyout}
-          onMouseLeave={closeFlyout}
+          onPointerEnter={(e) => isMouse(e) && openFlyout()}
+          onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
           {link.links.map((child, idx) => (
             <Link
@@ -474,14 +513,19 @@ const Dropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
+  useKeepInViewport(panelRef, isOpen);
   return (
     <div
       className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onPointerEnter={(e) => isMouse(e) && setIsOpen(true)}
+      onPointerLeave={(e) => isMouse(e) && setIsOpen(false)}
       onKeyDown={(e) => {
         if (e.key === "Escape" && isOpen) {
+          // React's root is the document, so stopPropagation does not stop the
+          // header's own Escape listener there: it checks defaultPrevented.
+          e.preventDefault();
           e.stopPropagation();
           setIsOpen(false);
           buttonRef.current?.focus();
@@ -495,8 +539,9 @@ const Dropdown = ({
       <button
         ref={buttonRef}
         type="button"
+        aria-haspopup="true"
         aria-expanded={isOpen}
-        aria-controls={panelId}
+        aria-controls={isOpen ? panelId : undefined}
         onClick={() => setIsOpen((open) => !open)}
         onKeyDown={(e) => {
           if (e.key === "ArrowDown") {
@@ -515,7 +560,8 @@ const Dropdown = ({
       {isOpen && (
         <div
           id={panelId}
-          className="absolute top-full start-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 gap-2 p-2 transition-all duration-150"
+          ref={panelRef}
+          className="absolute top-full start-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg w-max min-w-[min(600px,calc(100vw-16px))] max-w-[calc(100vw-16px)] mt-0 grid grid-cols-1 md:grid-cols-2 gap-2 p-2 transition-opacity duration-150"
         >
           {children}
         </div>
@@ -536,7 +582,7 @@ const MoreToggle = ({
     <button
       type="button"
       aria-expanded={moreOpen}
-      aria-controls="nav-more-row"
+      aria-controls={moreOpen ? "nav-more-row" : undefined}
       onClick={onToggle}
       className={`flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2 ${
         moreOpen ? "text-nav-hover" : ""
@@ -544,6 +590,7 @@ const MoreToggle = ({
     >
       {t.navigation?.more || "More"}
       <ChevronDown
+        aria-hidden="true"
         className={`h-4 w-4 transition-transform duration-200 ${moreOpen ? "rotate-180" : ""}`}
       />
     </button>
@@ -595,6 +642,26 @@ const MoreRow = ({
       id="nav-more-row"
       className="hidden min-[480px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
+      {/* Below md the Bounties / Dashboard buttons are hidden: offer them here. */}
+      <Link
+        prefetch
+        href="https://bounties.zechub.wiki/"
+        target="_blank"
+        onClick={onLinkClick}
+        className={`md:hidden flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover ${liStyle}`}
+      >
+        <Trophy aria-hidden="true" className="w-4 h-4 shrink-0" />
+        {t.navigation?.bounties || "Bounties"}
+      </Link>
+      <Link
+        prefetch
+        href="/dashboard"
+        onClick={onLinkClick}
+        className={`md:hidden flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover ${liStyle}`}
+      >
+        <LayoutDashboard aria-hidden="true" className="w-4 h-4 shrink-0" />
+        {t.navigation?.dashboard || "Dashboard"}
+      </Link>
       {/* Primary menus that no longer fit in the bar, still as menus. */}
       {moved.map((item) => (
         <div key={item.name} data-nav-moved="" className="px-2 text-sm">
@@ -960,7 +1027,10 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { t } = useLanguage();
   const rowRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const navLevel = useNavFit(rowRef, navRef, t, NAV_MAX_BAR_LEVEL);
+  // The drawer closes only once the bar has been measured and fits: the media
+  // query alone would close it while the bar is still being fitted (and may
+  // end up on the menu button after all).
+  const navLevel = useNavFit(rowRef, navRef, t, NAV_MAX_BAR_LEVEL, () => setIsOpen(false));
   const navTooWide = navLevel > NAV_MAX_BAR_LEVEL;
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -973,23 +1043,12 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     setMounted(true);
   }, []);
   useEffect(() => {
-    const desktopNavigation = window.matchMedia(DESKTOP_NAV_QUERY);
-    const closeMobileMenuOnDesktop = () => {
-      if (desktopNavigation.matches && !navTooWide) setIsOpen(false);
-    };
-    closeMobileMenuOnDesktop();
-    desktopNavigation.addEventListener("change", closeMobileMenuOnDesktop);
-    return () => {
-      desktopNavigation.removeEventListener("change", closeMobileMenuOnDesktop);
-    };
-  }, [navTooWide]);
-  useEffect(() => {
     if (navTooWide) setMoreOpen(false);
   }, [navTooWide]);
   useEffect(() => {
     if (!moreOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMoreOpen(false);
+      if (e.key === "Escape" && !e.defaultPrevented) setMoreOpen(false);
     };
     const onPointer = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {

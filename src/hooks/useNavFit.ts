@@ -34,7 +34,11 @@ export function useNavFit(
   navRef: RefObject<HTMLElement | null>,
   labels: unknown,
   maxBarLevel: number,
+  // Called when the bar is showing and fits at the current level.
+  onBarFits?: () => void,
 ) {
+  const onBarFitsRef = useRef(onBarFits);
+  onBarFitsRef.current = onBarFits;
   const [level, setLevel] = useState(0);
   // needed[l] = content width of level l, recorded when it overflowed.
   const neededRef = useRef<number[]>([]);
@@ -91,7 +95,10 @@ export function useNavFit(
         // The button plus the gap before it: the distance from the previous
         // header button's edge to its own (either direction, for RTL).
         let menuButtonRoom = menuButton?.offsetWidth ?? 0;
-        const prev = menuButton?.previousElementSibling;
+        // The nearest header button that is actually laid out (the Donate
+        // button is hidden on narrower windows and has no box).
+        let prev = menuButton?.previousElementSibling ?? null;
+        while (prev && prev.getClientRects().length === 0) prev = prev.previousElementSibling;
         if (menuButton && prev && menuButtonRoom) {
           const b = menuButton.getBoundingClientRect();
           const p = prev.getBoundingClientRect();
@@ -104,8 +111,12 @@ export function useNavFit(
       let target = level;
       while (target > 0 && needed[target - 1] !== undefined && needed[target - 1] + HYSTERESIS <= available) {
         target--;
+        // From the menu button, come back to the smallest bar only: the next
+        // check measures the real bar before giving any more room back.
+        if (level > maxBarLevel) break;
       }
       if (target !== level) setLevel(target);
+      else if (level <= maxBarLevel) onBarFitsRef.current?.();
     };
     check();
     const observer = new ResizeObserver(check);
