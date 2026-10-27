@@ -191,4 +191,57 @@ describe("useNavFit", () => {
     expect(level()).toBe(0);
     expect(lastLevel).toBe(0);
   });
+
+  it("measures the menu button's room from the nearest header button that is laid out", () => {
+    // Header buttons: [search] [donate, hidden: no box] [menu]. The room the
+    // menu button frees is menu.right - search.right = 68, not measured from
+    // the hidden Donate button (whose empty box would give 1068).
+    function WithDonate() {
+      const rowRef = useRef<HTMLDivElement>(null);
+      const navRef = useRef<HTMLElement>(null);
+      const lvl = useNavFit(rowRef, navRef, "long", MAX);
+      return (
+        <>
+          <div ref={rowRef} data-testid="row">
+            <a data-testid="logo">logo</a>
+            <nav ref={navRef} data-testid="nav">
+              <div data-content={lvl <= MAX ? [1100, 1040, 960, 860, 760, 700][lvl] : 0}>labels</div>
+            </nav>
+            <div data-testid="right">
+              <button data-testid="search">s</button>
+              <div data-testid="donate">d</div>
+              {lvl > MAX && <button data-nav-menu-button="" data-testid="menu">m</button>}
+            </div>
+          </div>
+          <output>{lvl}</output>
+        </>
+      );
+    }
+    const box = (el: Element, left: number, right: number) => {
+      el.getBoundingClientRect = () => ({ left, right, width: right - left } as DOMRect);
+      el.getClientRects = () => (right > left ? [{}] : []) as unknown as DOMRectList;
+    };
+    render(<WithDonate />);
+    layout(1100); // nav 648 < 700: menu button
+    act(() => resize());
+    expect(level()).toBe(MAX + 1);
+
+    box(screen.getByTestId("search"), 900, 1000);
+    box(screen.getByTestId("donate"), 0, 0);
+    box(screen.getByTestId("menu"), 1012, 1068);
+    setWidth(screen.getByTestId("menu"), "offsetWidth", 56);
+    // Header buttons now 400 wide. Room needed: 700 + 16 = 716.
+    // Row 1130: 1130 - 100 - 400 + 68 = 698: stays on the menu button
+    // (measuring from the hidden button would give 1698 and bring the bar back).
+    layout(1130);
+    setWidth(screen.getByTestId("right"), "offsetWidth", 400);
+    act(() => resize());
+    expect(level()).toBe(MAX + 1);
+
+    // Row 1170: 738 >= 716, and the bar really fits (nav 718 >= 700).
+    layout(1170);
+    setWidth(screen.getByTestId("right"), "offsetWidth", 400);
+    act(() => resize());
+    expect(level()).toBe(MAX);
+  });
 });

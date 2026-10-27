@@ -112,3 +112,48 @@ test("on a narrow window the bar shrinks and moved menus stay usable", async ({ 
   await expect(panel).toBeHidden();
   await expect(moved).toBeFocused();
 });
+
+for (const width of [520, 700, 1280]) {
+  test(`nested flyouts stay on screen and Escape closes only them at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    // Let the bar settle on its level (hydration, fonts) before using it.
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(500);
+    const first = page.locator("header nav button[aria-expanded]").first();
+    await first.focus();
+    await page.keyboard.press("Enter");
+    // "Use Zcash" has nested groups (Use Cases, Spend Zcash...).
+    const nested = page.locator("header nav [aria-expanded]").nth(1);
+    await nested.focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(nested).toHaveAttribute("aria-expanded", "true");
+    const flyout = nested.locator("xpath=following-sibling::div[1]");
+    await expect(flyout).toBeVisible();
+    // ArrowDown moved focus into the flyout.
+    await expect(flyout.locator("a").first()).toBeFocused();
+    const box = await flyout.boundingBox();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(width);
+
+    await page.keyboard.press("Escape");
+    await expect(nested).toHaveAttribute("aria-expanded", "false");
+    await expect(nested).toBeFocused();
+    await expect(first).toHaveAttribute("aria-expanded", "true");
+  });
+}
+
+test("a mouse click after hovering keeps the menu open", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+  await page.waitForTimeout(500);
+  const first = page.locator("header nav button[aria-expanded]").first();
+  await first.hover();
+  await expect(first).toHaveAttribute("aria-expanded", "true");
+  await first.click();
+  await expect(first).toHaveAttribute("aria-expanded", "true");
+  // A click outside closes it.
+  await page.mouse.click(5, 600);
+  await expect(first).toHaveAttribute("aria-expanded", "false");
+});

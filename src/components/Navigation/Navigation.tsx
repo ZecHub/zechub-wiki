@@ -368,27 +368,54 @@ function useKeepInViewport(ref: React.RefObject<HTMLElement | null>, open: boole
   useLayoutEffect(() => {
     const el = ref.current;
     if (!open || !el) return;
-    el.style.translate = "";
-    el.style.insetInlineStart = "";
-    el.style.insetInlineEnd = "";
-    const r = el.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    if (flip && (r.left < VIEWPORT_MARGIN || r.right > vw - VIEWPORT_MARGIN)) {
-      // Open on the other side of the parent item instead.
-      el.style.insetInlineEnd = "auto";
-      el.style.insetInlineStart = "100%";
-      return;
-    }
-    let dx = 0;
-    if (r.right > vw - VIEWPORT_MARGIN) dx = vw - VIEWPORT_MARGIN - r.right;
-    if (r.left + dx < VIEWPORT_MARGIN) dx = VIEWPORT_MARGIN - r.left;
-    if (dx) el.style.translate = `${dx}px 0`;
+    const place = () => {
+      Object.assign(el.style, { translate: "", insetInlineStart: "", insetInlineEnd: "", top: "" });
+      const vw = document.documentElement.clientWidth;
+      const outside = (r: DOMRect) => r.left < VIEWPORT_MARGIN || r.right > vw - VIEWPORT_MARGIN;
+      if (flip && outside(el.getBoundingClientRect())) {
+        // Open on the other side of the parent item instead...
+        Object.assign(el.style, { insetInlineEnd: "auto", insetInlineStart: "100%" });
+        if (outside(el.getBoundingClientRect())) {
+          // ...or, when neither side has room (narrow windows), below it.
+          Object.assign(el.style, { insetInlineStart: "0", top: "100%" });
+        }
+      }
+      const r = el.getBoundingClientRect();
+      let dx = 0;
+      if (r.right > vw - VIEWPORT_MARGIN) dx = vw - VIEWPORT_MARGIN - r.right;
+      if (r.left + dx < VIEWPORT_MARGIN) dx = VIEWPORT_MARGIN - r.left;
+      if (dx) el.style.translate = `${dx}px 0`;
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
   }, [ref, open, flip]);
+}
+// Closes an open menu when the pointer goes down outside it (a tap does not
+// focus the trigger on every browser, so blur alone is not enough).
+function useCloseOnOutsidePointer(
+  ref: React.RefObject<HTMLElement | null>,
+  open: boolean,
+  close: () => void,
+) {
+  const closeRef = useRef(close);
+  closeRef.current = close;
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) closeRef.current();
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [ref, open]);
 }
 // Hover opens menus for a mouse only: on touch, the emulated mouseenter
 // followed by the click would open and close the menu in one tap.
 const isMouse = (e: React.PointerEvent) => e.pointerType === "mouse";
-
+// Moves focus to the first link of a panel opened with ArrowDown.
+function focusFirstIn(el: HTMLElement | null) {
+  el?.querySelector<HTMLElement>("a[href], button")?.focus();
+}
 const FlyoutLinkItem = ({
   link,
   parentItem,
@@ -403,6 +430,12 @@ const FlyoutLinkItem = ({
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const flyoutRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const focusFirstRef = useRef(false);
+  useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }, []);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -411,6 +444,11 @@ const FlyoutLinkItem = ({
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
   };
   useKeepInViewport(flyoutRef, flyoutOpen, true);
+  useCloseOnOutsidePointer(itemRef, flyoutOpen, () => setFlyoutOpen(false));
+  useEffect(() => {
+    if (flyoutOpen && focusFirstRef.current) focusFirstIn(flyoutRef.current);
+    focusFirstRef.current = false;
+  }, [flyoutOpen]);
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
   if (!link.links || link.links.length === 0) {
     return (
@@ -439,22 +477,34 @@ const FlyoutLinkItem = ({
   // Has nested children — render with flyout opening to the left
   return (
     <div
+      ref={itemRef}
       className="relative"
       onPointerEnter={(e) => isMouse(e) && openFlyout()}
       onPointerLeave={(e) => isMouse(e) && closeFlyout()}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFlyoutOpen(false);
       }}
+      onKeyDown={(e) => {
+        // Escape closes this flyout only, not the menu around it.
+        if (e.key === "Escape" && flyoutOpen) {
+          e.preventDefault();
+          e.stopPropagation();
+          setFlyoutOpen(false);
+          triggerRef.current?.focus();
+        }
+      }}
     >
       <button
+        ref={triggerRef}
         type="button"
-        aria-haspopup="true"
         aria-expanded={flyoutOpen}
-        onClick={() => setFlyoutOpen((open) => !open)}
+        onClick={() => openFlyout()}
         onKeyDown={(e) => {
           if (e.key === "ArrowDown") {
             e.preventDefault();
-            setFlyoutOpen(true);
+            focusFirstRef.current = true;
+            if (flyoutOpen) focusFirstIn(flyoutRef.current);
+            else openFlyout();
           }
         }}
         className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-start text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
@@ -514,12 +564,28 @@ const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const focusFirstRef = useRef(false);
+  // A mouse that hovered the trigger already opened the menu: the click that
+  // usually follows must not close it again.
+  const openedByHoverRef = useRef(false);
   const panelId = useId();
   useKeepInViewport(panelRef, isOpen);
+  useCloseOnOutsidePointer(rootRef, isOpen, () => setIsOpen(false));
+  useEffect(() => {
+    if (isOpen && focusFirstRef.current) focusFirstIn(panelRef.current);
+    focusFirstRef.current = false;
+    if (!isOpen) openedByHoverRef.current = false;
+  }, [isOpen]);
   return (
     <div
+      ref={rootRef}
       className="relative"
-      onPointerEnter={(e) => isMouse(e) && setIsOpen(true)}
+      onPointerEnter={(e) => {
+        if (!isMouse(e)) return;
+        if (!isOpen) openedByHoverRef.current = true;
+        setIsOpen(true);
+      }}
       onPointerLeave={(e) => isMouse(e) && setIsOpen(false)}
       onKeyDown={(e) => {
         if (e.key === "Escape" && isOpen) {
@@ -539,14 +605,21 @@ const Dropdown = ({
       <button
         ref={buttonRef}
         type="button"
-        aria-haspopup="true"
         aria-expanded={isOpen}
         aria-controls={isOpen ? panelId : undefined}
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => {
+          if (openedByHoverRef.current) {
+            openedByHoverRef.current = false;
+            return;
+          }
+          setIsOpen((open) => !open);
+        }}
         onKeyDown={(e) => {
           if (e.key === "ArrowDown") {
             e.preventDefault();
-            setIsOpen(true);
+            focusFirstRef.current = true;
+            if (isOpen) focusFirstIn(panelRef.current);
+            else setIsOpen(true);
           }
         }}
         className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
@@ -769,7 +842,7 @@ const NavLinks = ({
       </div>
       {/* CTA buttons */}
       <div
-        className={`hidden md:flex items-center border-l border-slate-400 dark:border-slate-600 ${compact ? "gap-2 ml-3 pl-3" : "gap-3 ml-5 pl-5"}`}
+        className={`hidden md:flex items-center border-s border-slate-400 dark:border-slate-600 ${compact ? "gap-2 ms-3 ps-3" : "gap-3 ms-5 ps-5"}`}
       >
         <Button
           asChild
