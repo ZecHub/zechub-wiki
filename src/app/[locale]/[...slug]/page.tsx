@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2180,6 +2180,43 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       tree.children = rows;
     }
+    if (opts.yfrost && Array.isArray(tree.children)) {
+      // Ywallet FROST demo: numbered steps, commands as code blocks, link to the maintained Zkool guide, jump list.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // A paragraph that is a single shell command ("./script.sh args") becomes a code block.
+      for (let i = 0; i < rows.length; i++) {
+        const x = rows[i];
+        const kids = isEl(x, "p") ? (x.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim())) : [];
+        if (kids.length === 1 && (kids[0].type === "text" || isEl(kids[0], "code")) && /^\.\/[\w.-]+(\s+\S+)*\s*$/.test(textOf(kids[0]).trim())) {
+          rows[i] = el("pre", {}, [el("code", { className: ["language-bash"] }, [{ type: "text", value: textOf(kids[0]).trim() + "\n" }])]);
+        }
+      }
+      let n = 0;
+      for (const r of rows) {
+        if (isEl(r, "h2")) {
+          n += 1;
+          r.properties = { ...(r.properties || {}), dataStep: String(n) };
+        }
+      }
+      const bq = rows.findIndex((x) => isEl(x, "blockquote"));
+      if (bq > -1) rows.splice(bq + 1, 0, el("linkbutton", { href: "/guides/zkool-multisig", label: "Open the Zkool multisig guide" }));
+      const firstH2 = rows.findIndex((x) => isEl(x, "h2"));
+      if (firstH2 > -1) {
+        const items = [
+          { label: "Build", hint: "Compile the FROST binaries", href: "#compile-frost-bins" },
+          { label: "Create UA", hint: "Generate the FROST address", href: "#create-frost-ua" },
+          { label: "Sign", hint: "Coordinator and participants", href: "#start-coordinator" },
+          { label: "Broadcast", hint: "Send the signed transaction", href: "#broadcast-your-transaction-with-ywallet" },
+        ];
+        rows.splice(firstH2, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
     if (opts.vnet && Array.isArray(tree.children)) {
       // Visualizing the Zcash network: no Edit badge, lead, numbered steps, tool and repo link cards, jump list, tips as headings.
       const rows: any[] = tree.children;
@@ -3882,7 +3919,7 @@ export default async function Page(props: {
           rehypeWikiPatterns,
           {
             boldLinkButtons: slug[0] === "using-zcash",
-            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "nym-vpn") || (slug[0] === "guides" && slug[1] === "using-zec-in-defi") || (slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
+            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "akash-network-zcashd") || (slug[0] === "guides" && slug[1] === "nym-vpn") || (slug[0] === "guides" && slug[1] === "using-zec-in-defi") || (slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network") || (slug[0] === "guides" && slug[1] === "ywallet-frost-demo") || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
             hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
             akash: slug[0] === "guides" && (slug[1] === "akash-network-zcashd" || slug[1] === "akash-network-zebra"),
@@ -3893,6 +3930,7 @@ export default async function Page(props: {
             vkx: slug[0] === "guides" && slug[1] === "viewing-key-transaction-export",
             vaddr: slug[0] === "guides" && slug[1] === "visualizing-zcash-addresses",
             vnet: slug[0] === "guides" && slug[1] === "visualizing-the-zcash-network",
+            yfrost: slug[0] === "guides" && slug[1] === "ywallet-frost-demo",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
