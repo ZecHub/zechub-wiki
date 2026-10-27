@@ -593,7 +593,7 @@ const MoreRow = ({
   return (
     <div
       id="nav-more-row"
-      className="hidden lg:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
+      className="hidden min-[480px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
       {/* Primary menus that no longer fit in the bar, still as menus. */}
       {moved.map((item) => (
@@ -658,12 +658,11 @@ const NavLinks = ({
     closeMenu();
     onMoreClose();
   };
-  const [openIndex, setOpenIndex] = useState<null | number>(null);
   return (
     <div className={`flex items-center ${classes}`}>
-      {/* Large screens */}
+      {/* Desktop bar (480px and up); useNavFit shrinks it step by step */}
       <div
-        className={`hidden lg:flex items-center ${compact ? "space-x-3" : "space-x-4 xl:space-x-5"}`}
+        className={`hidden min-[480px]:flex items-center ${compact ? "space-x-3" : "space-x-4 xl:space-x-5"}`}
       >
         {visible.map((item, i) =>
           item.links ? (
@@ -699,112 +698,6 @@ const NavLinks = ({
         )}
         {overflowNavigations.length > 0 && (
           <MoreToggle moreOpen={moreOpen} onToggle={onMoreToggle} />
-        )}
-      </div>
-      {/* Medium screens (md–lg) */}
-      <div className="hidden md:flex lg:hidden items-center space-x-12">
-        {navigations.slice(0, 3).map((item, i) => (
-          <Dropdown
-            label={getTranslatedLabel(item.name, item.label, t, item.label)}
-            key={`${item.name}-${i}`}
-          >
-            {item.links?.map((link, j) => (
-              <FlyoutLinkItem
-                key={`${link.name}-${j}`}
-                link={link}
-                parentItem={item}
-                t={t}
-                onLinkClick={handleLinkClick}
-              />
-            ))}
-          </Dropdown>
-        ))}
-        {navigations.length > 2 && (
-          <Dropdown label={t.navigation?.more || "More"}>
-            <div onMouseLeave={() => setOpenIndex(null)}>
-              {navigations.slice(3).map((item, i) => {
-                const isOpen = openIndex === i;
-                return (
-                  <div
-                    key={`${item.name}-${i}`}
-                    className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200"
-                  >
-                    {item.links ? (
-                      <>
-                        <div
-                          className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
-                          onClick={() => setOpenIndex(isOpen ? null : i)}
-                        >
-                          {getTranslatedLabel(
-                            item.name,
-                            item.label,
-                            t,
-                            item.label,
-                          )}
-                          <ChevronDown
-                            className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                          />
-                        </div>
-                        {isOpen &&
-                          item.links.map((link, j) => (
-                            <div
-                              key={`${link.name}-${j}`}
-                              className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
-                            >
-                              <Link
-                                prefetch
-                                href={link.path ?? "#"}
-                                onClick={handleLinkClick}
-                                className="flex items-center gap-2 text-sm w-full"
-                                {...(link.newTab && {
-                                  target: "_blank",
-                                  rel: "noopener noreferrer",
-                                })}
-                              >
-                                {(link.icon ||
-                                  matchIcons(item.name, link.name)) && (
-                                  <Icon
-                                    icon={
-                                      link.icon ??
-                                      matchIcons(item.name, link.name)
-                                    }
-                                    className="xl:w-6 w-4 h-4 xl:h-6"
-                                  />
-                                )}
-                                {getTranslatedLabel(
-                                  item.name,
-                                  link.name,
-                                  t,
-                                  link.label,
-                                )}
-                              </Link>
-                            </div>
-                          ))}
-                      </>
-                    ) : (
-                      <Link
-                        prefetch
-                        href={item.path ?? "#"}
-                        onClick={handleLinkClick}
-                        className="w-full text-white hover:text-nav-hover"
-                        {...(item.newTab && {
-                          target: "_blank",
-                          rel: "noopener noreferrer",
-                        })}
-                      >
-                        {getTranslatedLabel(
-                          item.name,
-                          item.label,
-                          t,
-                          item.label,
-                        )}
-                      </Link>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </Dropdown>
         )}
       </div>
       {/* CTA buttons */}
@@ -1126,7 +1019,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <nav
             ref={navRef}
             data-nav-level={navLevel}
-            className={`hidden ${navTooWide ? "" : "lg:flex"} flex-1 min-w-0 justify-center mx-4`}
+            className={`hidden ${navTooWide ? "" : "min-[480px]:flex"} flex-1 min-w-0 justify-center mx-4`}
           >
             <NavLinks
               classes="w-full justify-start"
@@ -1189,7 +1082,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             </div>
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className={navTooWide ? "" : "lg:hidden"} asChild>
+                <SheetTrigger className={navTooWide ? "" : "min-[480px]:hidden"} asChild>
                   <Button
                     data-nav-menu-button=""
                     variant="ghost"
@@ -1207,7 +1100,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <div className={navTooWide ? "" : "lg:hidden"}>
+              <div className={navTooWide ? "" : "min-[480px]:hidden"}>
                 <Button
                   variant="ghost"
                   size="sm"

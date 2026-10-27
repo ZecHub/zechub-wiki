@@ -20,9 +20,9 @@ import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 // Extra room required before going back a level, so a width right at the
 // limit cannot flip the bar back and forth.
 export const HYSTERESIS = 16;
-// The desktop bar (and this hook) works from the Tailwind lg breakpoint
-// (976px); below it the header uses the menu button, as on phones.
-export const DESKTOP_NAV_QUERY = "(min-width: 976px)";
+// The bar (and this hook) works from 480px. Narrower than that, or when even
+// the smallest bar does not fit, the header uses the menu button.
+export const DESKTOP_NAV_QUERY = "(min-width: 480px)";
 
 export function navMaxBarLevel(primaryCount: number) {
   // The first primary menu always stays in the bar.
@@ -39,12 +39,17 @@ export function useNavFit(
   // needed[l] = content width of level l, recorded when it overflowed.
   const neededRef = useRef<number[]>([]);
   const labelsRef = useRef(labels);
+  // Row width at which even the smallest bar overflowed. The room estimate in
+  // the fallback is approximate, so the bar comes back only once the row is
+  // wider than that (otherwise it could flip between bar and button forever).
+  const fallbackRowRef = useRef(0);
 
   useLayoutEffect(() => {
     // New labels: start again from the full bar so every level is re-measured.
     if (labelsRef.current !== labels) {
       labelsRef.current = labels;
       neededRef.current = [];
+      fallbackRowRef.current = 0;
       if (level !== 0) {
         setLevel(0);
         return;
@@ -67,6 +72,7 @@ export function useNavFit(
         available = nav.clientWidth;
         if (inner.scrollWidth > available + 1) {
           needed[level] = inner.scrollWidth;
+          if (level === maxBarLevel) fallbackRowRef.current = row.clientWidth;
           setLevel(level + 1);
           return;
         }
@@ -94,6 +100,7 @@ export function useNavFit(
         available =
           row.clientWidth - (logo?.offsetWidth ?? 0) - (right?.offsetWidth ?? 0) + menuButtonRoom - margins;
       }
+      if (level > maxBarLevel && row.clientWidth < fallbackRowRef.current + HYSTERESIS) return;
       let target = level;
       while (target > 0 && needed[target - 1] !== undefined && needed[target - 1] + HYSTERESIS <= available) {
         target--;

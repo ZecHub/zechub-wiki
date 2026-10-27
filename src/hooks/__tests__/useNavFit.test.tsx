@@ -133,6 +133,24 @@ describe("useNavFit", () => {
     expect(level()).toBe(MAX);
   });
 
+  it("does not flip between the smallest bar and the menu button when the estimate is off", () => {
+    // The real smallest bar needs 900 and the nav gets 848 (row 1300), but a
+    // wide menu button makes the fallback estimate say it fits:
+    // 1300 - 100 - 320 + 100 - 32 = 948 >= 916. It must stay on the button.
+    render(<Header labels="long" widths={[1100, 1040, 960, 900, 900, 900]} />);
+    layout(1300);
+    act(() => resize());
+    expect(level()).toBe(MAX + 1);
+    setWidth(screen.getByTestId("menu"), "offsetWidth", 100);
+    act(() => resize());
+    expect(level()).toBe(MAX + 1);
+
+    // Only a wider row brings the bar back.
+    layout(1400); // nav 948
+    act(() => resize());
+    expect(level()).toBe(3); // levels 3-5 all need 900: back to the first one that fits
+  });
+
   it("ignores a callback from an older run (fonts still loading)", async () => {
     let fontsReady: () => void = () => {};
     Object.defineProperty(document, "fonts", {
