@@ -5,8 +5,11 @@ import { Link } from "@/i18n/navigation";
 export default function LinkButton(props: Record<string, unknown>) {
   const href = String(props.href ?? "");
   const label = String(props.label ?? "");
-  const cls =
-    "not-prose my-4 mr-3 inline-flex items-center gap-2.5 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white";
+  // `emphasis="strong"` is for the one main call to action on a page: solid border and a tinted fill.
+  const strong = String(props.emphasis ?? "") === "strong";
+  const cls = strong
+    ? "not-prose my-4 mr-3 inline-flex items-center gap-2.5 rounded-lg border border-brand bg-brand/10 px-5 py-2.5 text-sm font-semibold text-brand no-underline transition-colors hover:bg-brand/20 dark:text-white dark:hover:bg-brand/30"
+    : "not-prose my-4 mr-3 inline-flex items-center gap-2.5 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white";
   return /^https?:/.test(href) ? (
     <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
       {label}

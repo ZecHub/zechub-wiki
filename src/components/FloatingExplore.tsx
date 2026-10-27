@@ -7,6 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/UI/button";
 import { exploreMenu } from "@/constants/explore-menu";
 import Image from "next/image";
+import { Menu } from "lucide-react";
 
 export default function FloatingExplore() {
   const [open, setOpen] = useState(false);
@@ -106,7 +107,7 @@ export default function FloatingExplore() {
       )}
 
       <div
-        className="fixed bottom-8 right-8 z-50 imd:hidden"
+        className="fixed bottom-6 right-6 z-50 imd:bottom-8 imd:right-8"
         onMouseLeave={() => {
           if (!isMobile) {
             timeoutRef.current = setTimeout(() => setOpen(false), 150);
@@ -115,7 +116,7 @@ export default function FloatingExplore() {
       >
         <Button
           onClick={() => setOpen((prev) => !prev)}
-          className="h-[50px] w-[50px] rounded-full shadow-2xl bg-amber-500 hover:bg-amber-600 ring-4 ring-amber-400/30 dark:ring-amber-900/50 transition-all active:scale-95 flex items-center justify-center p-0 overflow-hidden cursor-pointer"
+          className="imd:hidden h-[50px] w-[50px] rounded-full shadow-2xl bg-amber-500 hover:bg-amber-600 ring-4 ring-amber-400/30 dark:ring-amber-900/50 transition-all active:scale-95 flex items-center justify-center p-0 overflow-hidden cursor-pointer"
           size="icon"
         >
           <svg
@@ -138,6 +139,18 @@ export default function FloatingExplore() {
             </text>
           </svg>
         </Button>
+
+        {/* Desktop: outlined site-style button with a hamburger icon, same menu as the round button. */}
+        <button
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-haspopup="true"
+          aria-expanded={open}
+          className="hidden cursor-pointer items-center gap-2.5 rounded-lg border border-brand/60 bg-background/90 px-4 py-2.5 text-sm font-semibold text-brand shadow-lg backdrop-blur transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white imd:inline-flex"
+        >
+          <Menu aria-hidden="true" className="h-4 w-4" />
+          {tx("Explore")}
+        </button>
 
         {open && (
           <div
@@ -175,7 +188,7 @@ export default function FloatingExplore() {
                       key={item.href}
                       href={href}
                       onClick={handleLinkClick}
-                      className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 active:bg-yellow-300 active:scale-[0.98] font-medium text-foreground touch-manipulation"
+                      className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-brand/10 hover:text-brand dark:hover:bg-brand/20 dark:hover:text-white active:bg-brand/20 active:scale-[0.98] font-medium text-foreground touch-manipulation"
                     >
                       <Image
                         src={iconSrc}
@@ -204,7 +217,7 @@ export default function FloatingExplore() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 active:bg-yellow-300 active:scale-[0.98] font-medium text-foreground touch-manipulation"
+                    className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-brand/10 hover:text-brand dark:hover:bg-brand/20 dark:hover:text-white active:bg-brand/20 active:scale-[0.98] font-medium text-foreground touch-manipulation"
                   >
                     <div className="h-6 w-6 flex-shrink-0 text-foreground">
                       <svg

@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2412,6 +2412,111 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(sec, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
       }
     }
+    if (opts.zkool && Array.isArray(tree.children)) {
+      // Zkool multisig: video slide, steps merged into one numbered list per section with the screenshot under its step, blue-framed screenshots.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const imgOf = (n: any): any => (isEl(n, "img") ? n : (n?.children || []).map(imgOf).find(Boolean));
+      const onlyImg = (x: any) => isEl(x, "p") && !textOf(x).trim() && !!imgOf(x);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit"))) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // The embedded video becomes a thumbnail slide.
+      const frameIn = (n: any): any => (isEl(n, "iframe") || (n && n.type === "mdxJsxFlowElement" && String(n.name) === "iframe") ? n : (n?.children || []).map(frameIn).find(Boolean));
+      for (let q = 0; q < rows.length; q++) {
+        const f = isEl(rows[q], "div") || (rows[q] && rows[q].type === "mdxJsxFlowElement") ? frameIn(rows[q]) : null;
+        if (!f) continue;
+        const src = String(f.properties?.src ?? (f.attributes || []).find((a: any) => a.name === "src")?.value ?? "");
+        const title = String(f.properties?.title ?? (f.attributes || []).find((a: any) => a.name === "title")?.value ?? "Video");
+        const m = /embed\/([\w-]{6,})/.exec(src);
+        if (m) rows[q] = el("videoslider", { videos: JSON.stringify([{ id: m[1], title }]) }, []);
+      }
+      // Steps: image-only paragraphs after a list attach to its last step, and split lists merge so numbering is continuous.
+      const out: any[] = [];
+      for (const x of rows) {
+        const prev = out[out.length - 1];
+        if (onlyImg(x) && isEl(prev, "ol")) {
+          const lis = (prev.children || []).filter((c: any) => isEl(c, "li"));
+          const last = lis[lis.length - 1];
+          const im = imgOf(x);
+          if (last && im) {
+            const label = textOf(last).replace(/\s+/g, " ").trim();
+            im.properties = { ...(im.properties || {}), alt: "Zkool screenshot: " + label };
+            last.children = [...(last.children || []), el("div", { className: ["[&_img]:!mx-0"] }, [im])];
+            continue;
+          }
+        }
+        if (isEl(x, "ol") && isEl(prev, "ol")) {
+          prev.children = [...(prev.children || []), ...(x.children || [])];
+          continue;
+        }
+        if (isEl(x, "ol")) x.properties = { ...(x.properties || {}), start: undefined };
+        out.push(x);
+      }
+      rows.splice(0, rows.length, ...out);
+      // Every screenshot gets the blue frame.
+      const frame = (n: any) => {
+        if (isEl(n, "img")) {
+          n.properties = { ...(n.properties || {}), dataFrame: "true" };
+          if (!n.properties.alt) n.properties.alt = "Zkool screenshot";
+        }
+        (n?.children || []).forEach(frame);
+      };
+      rows.forEach(frame);
+      for (const r of rows) if (onlyImg(r)) r.properties = { ...(r.properties || {}), className: ["[&_img]:!mx-0"] };
+      // Receiving funds: address types as a bullet list, plus what Ironwood (NU6.3) means for them.
+      const rf = rows.findIndex((x) => isEl(x, "h2") && /receiving funds/i.test(textOf(x)));
+      if (rf > -1) {
+        let end = rf + 1;
+        while (end < rows.length && !isEl(rows[end], "h2")) end += 1;
+        const gloss: Record<string, string> = {
+          "unified address": "bundles receivers for several pools (for example Orchard, Sapling and transparent) in one address.",
+          "orchard only address": "a single Orchard receiver.",
+          "sapling address": "a shielded Sapling address.",
+          "transparent address": "a public address; transactions on it are visible on-chain.",
+        };
+        let first = -1;
+        let last = -1;
+        for (let q = rf + 1; q < end; q++) {
+          if (isEl(rows[q], "p") && gloss[textOf(rows[q]).trim().toLowerCase()]) {
+            if (first < 0) first = q;
+            last = q;
+          }
+        }
+        let addedAfter = end;
+        if (first > -1 && last - first + 1 === 4) {
+          const lis = [];
+          for (let q = first; q <= last; q++) {
+            const label = textOf(rows[q]).trim();
+            lis.push(el("li", {}, [el("strong", {}, [{ type: "text", value: label }]), { type: "text", value: " \u2014 " + gloss[label.toLowerCase()] }]));
+          }
+          rows.splice(first, 4, el("ul", {}, lis));
+          addedAfter = end - 3;
+        }
+        const para = (t: string, cls: string[] = ["m-0"]) => el("p", { className: cls }, [{ type: "text", value: t }]);
+        const ironwood = el("guidecallout", { title: "Ironwood (NU6.3)" }, [
+          para("Ironwood is a shielded pool introduced by the NU6.3 upgrade, not a fifth address type. It uses the Orchard shielded protocol but keeps its own value pool."),
+          para("Existing Orchard-protocol receivers remain compatible with Ironwood, allowing previously shared Unified Addresses to continue receiving payments through NU6.3-compatible wallet software. This covers the Orchard receiver inside a Unified Address and an Orchard only address.", ["mt-2", "mb-0", "mx-0"]),
+          para("New value can no longer enter the original Orchard pool, and funds already there may need to be migrated to Ironwood. Moving value between pools reveals the transferred amount on-chain. Migration depends on the wallet, and this guide has not verified Ironwood support in Zkool, so check the Zkool release notes before relying on it.", ["mt-2", "mb-0", "mx-0"]),
+        ]);
+        rows.splice(addedAfter, 0, ironwood);
+      }
+      // "1. Creating an Account" style headings become numbered step badges.
+      for (const r of rows) {
+        if (!isEl(r, "h2")) continue;
+        const t = textOf(r).replace(/#$/, "").trim();
+        const mm = /^(\d+)\.\s+(.*)$/.exec(t);
+        if (!mm) continue;
+        r.children = [{ type: "text", value: mm[2] }];
+        r.properties = { ...(r.properties || {}), dataStep: mm[1] };
+      }
+    }
     if (opts.z3zaino && Array.isArray(tree.children)) {
       // Zebra + Zaino + zingo-cli: component cards, lead, outdated-guide notice, numbered install steps, monospace commands.
       const rows: any[] = tree.children;
@@ -2784,7 +2889,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           intro.children = [{ type: "text", value: mm[1] + "." }];
           dtoolNote = "This tool should not be considered production-ready. " + mm[2].replace(/DO NOT commit/, "Do not commit");
         }
-        rows.splice(lk, nx - lk + 1, intro, el("linkbutton", { href: String(a.properties?.href || "").replace(/\?tab=readme-ov-file$/, ""), label: "Read the zcash-devtool README" }));
+        rows.splice(lk, nx - lk + 1, intro, el("linkbutton", { href: String(a.properties?.href || "").replace(/\?tab=readme-ov-file$/, ""), label: "Read the zcash-devtool README", emphasis: "strong" }));
       }
       // Heading polish and numbered quick-start steps.
       let n = 0;
@@ -4595,6 +4700,7 @@ export default async function Page(props: {
             zkdecoy: slug[0] === "guides" && slug[1] === "zero-knowledge-vs-decoys",
             zgo: slug[0] === "guides" && slug[1] === "zgo-payment-processor",
             z3zaino: slug[0] === "guides" && slug[1] === "zingolib-and-zaino-tutorial",
+            zkool: slug[0] === "guides" && slug[1] === "zkool-multisig",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
