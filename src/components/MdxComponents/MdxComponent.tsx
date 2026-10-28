@@ -5,6 +5,7 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import LiteYouTube from "@/components/LiteYouTube";
 import { youTubeId } from "@/lib/youtube";
 import type { MDXComponents } from "mdx/types";
+import Gallery from "@/components/Gallery/Gallery";
 
 // Strong slugify for TOC links (handles parentheses, +, etc.)
 const slugify = (text: string): string => {
@@ -189,6 +190,8 @@ const MdxComponents = {
   ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal ps-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
   p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
+
+  Gallery,
 } as MDXComponents;
 
 export default MdxComponents;
