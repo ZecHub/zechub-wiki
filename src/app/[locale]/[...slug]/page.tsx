@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2630,6 +2630,27 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         (n?.children || []).forEach(fixCount);
       };
       rows.forEach(fixCount);
+      // Resources: the bare list becomes link cards, with WooCommerce and WordPress as separate entries.
+      const ri = rows.findIndex((x) => isEl(x, "h2") && /^resources$/i.test(h2Text(x)));
+      if (ri > -1) {
+        let ui = ri + 1;
+        while (ui < rows.length && isWs(rows[ui])) ui++;
+        if (isEl(rows[ui], "ul")) {
+          const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+          const cards = [
+            card("ZGo", "Official site: create an account, manage invoices and integrations.", "https://zgo.cash/"),
+            card("Xero integration walkthrough", "Step-by-step setup for sending ZGo payments to Xero.", "https://hedgedoc.vergara.tech/s/4iXC67fmb"),
+            card("WooCommerce", "The e-commerce plugin ZGo connects to for online stores.", "https://woocommerce.com/"),
+            card("WordPress", "The platform WooCommerce runs on. Check version compatibility first.", "https://wordpress.org/"),
+            card("Xero", "Accounting software ZGo can record Zcash payments in.", "https://www.xero.com/"),
+            card("Zcash", "Project homepage and background on shielded payments.", "https://z.cash/"),
+            card("ZecHub Wallets", "Compatible Zcash wallets for paying and receiving.", "https://zechub.wiki/wallets"),
+            card("Payment Processors", "ZGo compared with other Zcash payment options.", "https://zechub.wiki/payment-processors"),
+            card("BTCPayServer Zcash Plugin", "Self-hosted alternative to ZGo for online stores.", "https://zechub.wiki/guides/btcpayserver-zcash-plugin"),
+          ];
+          rows.splice(ui, 1, el("communitygrid", {}, cards));
+        }
+      }
       // Features: "Label. Explanation." paragraphs become numbered points.
       const fi = rows.findIndex((x) => isEl(x, "h2") && /^features$/i.test(h2Text(x)));
       if (fi > -1) {
@@ -2669,6 +2690,102 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const nx = isEl(rows[op + 1], "ol") ? 2 : 1;
         rows.splice(op, nx, notice, jump);
       } else if (lead > -1) rows.splice(lead + 1, 0, notice, jump);
+    }
+    if (opts.btcpay && Array.isArray(tree.children)) {
+      // BTCPay Server + Zcash: lead, jump list instead of the manual index, numbered steps, callouts, link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x) : "";
+        if (isWs(x) || isEl(x, "hr") || j.toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // Literal "[url](url)" text becomes a real link.
+      const linkify = (n: any) => {
+        const kids: any[] = n?.children;
+        if (!Array.isArray(kids)) return;
+        for (let k = kids.length - 1; k >= 0; k--) {
+          const c = kids[k];
+          const m = c?.type === "text" ? /\[(https?:\/\/[^\]\s]+)\]\((https?:\/\/[^)\s]+)\)/.exec(String(c.value)) : null;
+          if (m && m.index !== undefined) {
+            const v = String(c.value);
+            const link = el("a", { href: m[2], target: "_blank", rel: "noreferrer" }, [{ type: "text", value: m[1] }]);
+            kids.splice(k, 1, { type: "text", value: v.slice(0, m.index) }, link, { type: "text", value: v.slice(m.index + m[0].length) });
+          } else linkify(c);
+        }
+      };
+      rows.forEach(linkify);
+      // The "(hidden part)" label is an authoring note, not a title.
+      const stripHidden = (n: any) => {
+        if (n?.type === "text" && /\s*\(hidden part\)/i.test(String(n.value))) n.value = String(n.value).replace(/\s*\(hidden part\)/i, "");
+        (n?.children || []).forEach(stripHidden);
+      };
+      rows.filter((x) => isEl(x, "h2")).forEach(stripHidden);
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // Manual table of contents becomes the jump list.
+      const toc = rows.findIndex((x) => isEl(x, "h2") && /^table of contents$/i.test(h2Text(x)));
+      if (toc > -1) {
+        const items = [
+          { label: "Why Zcash", hint: "Privacy for online payments", href: "#why-use-btcpay-server-with-zcash" },
+          { label: "Deploy", hint: "VPS, own node or home server", href: "#deploying-btcpay-server-with-zcash-support" },
+          { label: "Configure", hint: "Plugin and viewing key", href: "#configuring-the-zcash-plugin-in-the-btcpay-server-web-interface" },
+          { label: "Integrate", hint: "API, WooCommerce or button", href: "#integrating-btcpay-server-with-your-website" },
+        ];
+        const nx = isEl(rows[toc + 1], "ul") ? 2 : 1;
+        rows.splice(toc, nx, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+      }
+      // "Step N: Title" becomes a numbered step; other subheadings get a hairline.
+      for (let k = 0; k < rows.length; k++) {
+        if (!isEl(rows[k], "h3")) continue;
+        const t = textOf(rows[k]).trim();
+        const mm = /^step\s+(\d+)\s*[:.\-]\s*(.+)$/i.exec(t);
+        rows[k] = mm
+          ? el("h3", { dataStep: mm[1] }, [{ type: "text", value: mm[2] }])
+          : el("h3", { dataRule: "true" }, [{ type: "text", value: t }]);
+      }
+      // Tips and warnings (blockquotes) as callouts.
+      for (let k = 0; k < rows.length; k++) {
+        if (!isEl(rows[k], "blockquote")) continue;
+        const t = textOf(rows[k]).trim();
+        const title = /warning|important|this key grants|several days|unavailable or overloaded/i.test(t) ? "Heads up" : /^(tip|ideally|want to self-host)/i.test(t) ? "Tip" : "Note";
+        rows[k] = el("guidecallout", { title }, (rows[k].children || []).filter((c: any) => !isWs(c)));
+      }
+      // The server prerequisites are essential, so they start expanded.
+      rows.forEach((x) => {
+        if (isEl(x, "details")) x.properties = { ...(x.properties || {}), open: true };
+        else if (x?.type === "mdxJsxFlowElement" && x.name === "details") x.attributes = [...(x.attributes || []), { type: "mdxJsxAttribute", name: "open", value: null }];
+      });
+      // Resources as link cards.
+      const ri = rows.findIndex((x) => isEl(x, "h2") && /^resources$/i.test(h2Text(x)));
+      if (ri > -1 && isEl(rows[ri + 1], "ul")) {
+        const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+        rows.splice(ri + 1, 1, el("communitygrid", {}, [
+          card("BTCPay Server", "Official website of the open-source payment server.", "https://btcpayserver.org/"),
+          card("BTCPay FAQ", "Answers to common setup and operation questions.", "https://docs.btcpayserver.org/FAQ/"),
+          card("BTCPay Server on GitHub", "Source code and issue tracker.", "https://github.com/btcpayserver/btcpayserver"),
+          card("Mainnet demo", "Try the BTCPay interface before installing.", "https://mainnet.demo.btcpayserver.org/login?ReturnUrl=%2F"),
+          card("Zcash plugin", "The plugin repository, maintained on GitHub.", "https://github.com/btcpay-zcash/btcpayserver-zcash-plugin"),
+          card("Plugin installation guide", "Official installation steps from the plugin authors.", "https://github.com/btcpay-zcash/btcpayserver-zcash-plugin/blob/master/docs/installation.md"),
+          card("Custom lightwalletd fragment", "Example zcash-lightwalletd.custom.yml for an external node.", "https://github.com/btcpay-zcash/btcpayserver-zcash-plugin/blob/master/docs/zcash-lightwalletd.custom.yml"),
+          card("lightwalletd with Zebra", "Docker Compose file to self-host lightwalletd.", "https://github.com/ZcashFoundation/zebra/blob/main/docker/docker-compose.lwd.yml"),
+          card("Greenfield API keys", "How to create and scope a BTCPay API key.", "https://docs.btcpayserver.org/API/Greenfield/v1/#tag/API-Keys"),
+          card("Cloudflare Tunnel", "Create a tunnel to host BTCPay at home.", "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/"),
+          card("ZecHub Wallets", "Wallets that support viewing key export.", "https://zechub.wiki/wallets"),
+          card("Zebra and lightwalletd on Raspberry Pi 5", "ZecHub sync journal for a home node.", "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5"),
+        ]));
+      }
+      // Hairline between sections.
+      for (let k = 1; k < rows.length; k++) {
+        if (isEl(rows[k], "h2") && !isEl(rows[k - 1], "hr")) {
+          rows.splice(k, 0, el("hr", {}, []));
+          k++;
+        }
+      }
     }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
@@ -4701,6 +4818,7 @@ export default async function Page(props: {
             zgo: slug[0] === "guides" && slug[1] === "zgo-payment-processor",
             z3zaino: slug[0] === "guides" && slug[1] === "zingolib-and-zaino-tutorial",
             zkool: slug[0] === "guides" && slug[1] === "zkool-multisig",
+            btcpay: slug[0] === "guides" && slug[1] === "btcpayserver-zcash-plugin",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
