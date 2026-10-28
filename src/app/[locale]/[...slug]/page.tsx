@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -3181,6 +3181,96 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       ];
       if (lead > -1) rows.splice(lead + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
     }
+    if (opts.usezec && Array.isArray(tree.children)) {
+      // Using ZEC, privately: lead, jump list, section headings, video cards, callout, resources card.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const hasBadge = (x: any): boolean => isEl(x, "img") && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x?.children || []).some(hasBadge);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
+      }
+      const fixText = (n: any) => {
+        if (n?.type === "text") n.value = String(n.value).replace(/leakeage/g, "leakage").replace(/\(ie\./g, "(i.e.").replace(/\bsuper easy\b/g, "straightforward");
+        (n?.children || []).forEach(fixText);
+      };
+      rows.forEach(fixText);
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      // Section headings.
+      const rename: [RegExp, string][] = [
+        [/^shielded \(private\) vs\. transparent$/i, "Shielded vs. transparent"],
+        [/^making sure your zec is shielded$/i, "Make sure your ZEC is shielded"],
+        [/^transactions$/i, "Transacting privately"],
+        [/^resources$/i, "Resources"],
+      ];
+      for (let k = 0; k < rows.length; k++) {
+        if (!isEl(rows[k], "h4")) continue;
+        const t = textOf(rows[k]).trim();
+        const hit = rename.find(([re]) => re.test(t));
+        rows[k] = el("h2", {}, [txt(hit ? hit[1] : t)]);
+      }
+      // The first paragraph is the lead.
+      const first = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      // Withdrawal paths: bold labels become subheadings.
+      for (let k = 0; k < rows.length; k++) {
+        const x = rows[k];
+        if (!isEl(x, "p")) continue;
+        const t = textOf(x).trim();
+        if (/^from an exchange that supports (shielded|transparent) withdrawals:?$/i.test(t)) rows[k] = el("h3", { dataRule: "true" }, [txt(t.replace(/:$/, ""))]);
+      }
+      // Videos: each intro sentence becomes a subheading above a compact video card.
+      const vids: [RegExp, string][] = [
+        [/^here's a tutorial for how to withdraw zec/i, "Withdraw ZEC from an exchange (shielded)"],
+        [/^here's a tutorial for how to shield your zec/i, "Shield ZEC from a transparent address"],
+        [/^here's a tutorial for how to buy zec on coinbase/i, "Buy ZEC on Coinbase and send it to Zodl"],
+      ];
+      let firstVideo = -1;
+      for (let k = 0; k < rows.length; k++) {
+        const x = rows[k];
+        if (!isEl(x, "p")) continue;
+        const hit = vids.find(([re]) => re.test(textOf(x).trim()));
+        if (!hit) continue;
+        const nx = rows[k + 1];
+        const findFrame = (n: any): any => {
+          if (!n || !(n.type === "element" || n.type === "mdxJsxFlowElement")) return null;
+          if ((n.tagName || n.name) === "iframe") return n;
+          return (n.children || []).map(findFrame).find(Boolean) || null;
+        };
+        const attrOf = (n: any, key: string): string => {
+          if (n.properties && n.properties[key] != null) return String(n.properties[key]);
+          const hit = (n.attributes || []).find((at: any) => at.name === key);
+          return hit && typeof hit.value === "string" ? hit.value : "";
+        };
+        const fr = findFrame(nx);
+        const m = fr ? attrOf(fr, "src").match(/youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,})/) : null;
+        if (!fr || !m) continue;
+        const note = /shielded withdrawal/i.test(textOf(x)) ? [el("p", {}, [txt("This tutorial shows a shielded withdrawal.")])] : [];
+        rows.splice(k, 2, el("h3", { dataRule: "true" }, [txt(hit[1])]), ...note, el("videoblock", { exvideo: m[1], extitle: attrOf(fr, "title") }, []));
+        if (firstVideo < 0) firstVideo = k;
+      }
+      if (firstVideo > -1) rows.splice(firstVideo, 0, el("h2", {}, [txt("Video tutorials")]));
+      // Habits that weaken privacy: the list becomes a callout.
+      const tr = rows.findIndex((x) => isEl(x, "h2") && /^transacting privately$/i.test(textOf(x).trim()));
+      if (tr > -1) {
+        const ui = rows.findIndex((x, i) => i > tr && isEl(x, "ul"));
+        if (ui > -1) rows.splice(ui, 1, el("guidecallout", { title: "Habits that weaken your privacy" }, [rows[ui]]));
+      }
+      // Resources as a link card.
+      const ri = rows.findIndex((x) => isEl(x, "h2") && /^resources$/i.test(textOf(x).trim()));
+      if (ri > -1) rows.splice(ri + 1, rows.length - ri - 1, el("communitygrid", {}, [el("communitycard", { name: "Zcash transactions", desc: "How shielded and transparent transactions work.", href: "https://zechub.wiki/using-zcash/transactions" }, [])]));
+      // Jump list right after the title.
+      const items = [
+        { label: "Shielded vs. transparent", hint: "The two address types", href: "#shielded-vs-transparent" },
+        { label: "Shield your ZEC", hint: "Two paths from an exchange", href: "#make-sure-your-zec-is-shielded" },
+        { label: "Video tutorials", hint: "Withdraw, shield, buy", href: "#video-tutorials" },
+        { label: "Transacting", hint: "Habits to avoid", href: "#transacting-privately" },
+      ];
+      void first;
+      if (h1 > -1) rows.splice(h1 + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -5217,6 +5307,7 @@ export default async function Page(props: {
             redbridge: slug[0] === "guides" && slug[1] === "avalanche-redbridge",
             shapeshift: slug[0] === "guides" && slug[1] === "shapeshift-zcash",
             free2z: slug[0] === "guides" && slug[1] === "free2z-live",
+            usezec: slug[0] === "guides" && slug[1] === "using-zec-privately",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
