@@ -156,7 +156,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
         href: "/guides/zgo-payment-processor",
       },
       { label: "Free2z Live", href: "/guides/free2z-live" },
-      { label: "Keystone Zashi", href: "/guides/keystone-zashi" },
+      { label: "Keystone Zodl (Zashi)", href: "/guides/keystone-zashi" },
       { label: "Maya Protocol", href: "/guides/maya-protocol" },
       { label: "Nym VPN", href: "/guides/nym-vpn" },
       { label: "Using ZEC in DeFi", href: "/guides/using-zec-in-defi" },

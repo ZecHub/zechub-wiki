@@ -232,7 +232,7 @@ const iconsForMenu: IconsFor = {
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
-    "Keystone Zashi": SiKeystone,
+    "Keystone Zodl (Zashi)": SiKeystone,
     "Visualizing Zcash Addresses": QrCode,
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,

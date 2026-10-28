@@ -283,7 +283,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/free2z-livestreaming",
       },
       {
-        name: "Keystone Zashi",
+        name: "Keystone Zodl (Zashi)",
         path: "/guides/keystone-zashi",
       },
       {
@@ -678,7 +678,7 @@ export const menuSections: Record<string, MenuSection[]> = {
       items: [
         "Using ZEC Privately",
         "My First Zcash Workbook",
-        "Keystone Zashi",
+        "Keystone Zodl (Zashi)",
         "Brave Wallet Guide",
         "Zkool Multisig",
         "Ywallet FROST Demo",

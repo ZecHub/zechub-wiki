@@ -154,8 +154,8 @@ export const searcher: Searcher[] = [
     url: "/guides/free2z-live",
   },
   {
-    name: "Keystone Zashi",
-    desc: "How to use the Keystone hardware wallet with the Zashi app.",
+    name: "Keystone Zodl (Zashi)",
+    desc: "How to use the Keystone hardware wallet with the Zodl app (formerly Zashi).",
     url: "/guides/keystone-zashi",
   },
   {

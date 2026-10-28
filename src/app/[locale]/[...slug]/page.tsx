@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -3271,6 +3271,127 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       void first;
       if (h1 > -1) rows.splice(h1 + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
     }
+    if (opts.keystone && Array.isArray(tree.children)) {
+      // Keystone + Zodl (formerly Zashi): rebuilt around the current Zodl instructions, with numbered steps, notices, video cards and link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const li = (...kids: any[]) => el("li", {}, kids);
+      const ul = (items: any[][]) => el("ul", {}, items.map((k) => el("li", {}, k)));
+      const ol = (items: any[][]) => el("ol", {}, items.map((k) => el("li", {}, k)));
+      const a = (href: string, label: string) => el("a", { href, target: "_blank", rel: "noreferrer" }, [txt(label)]);
+      const b = (t: string) => el("strong", {}, [txt(t)]);
+      const p = (...kids: any[]) => el("p", {}, kids);
+      const attrOf = (n: any, key: string): string => {
+        if (n.properties && n.properties[key] != null) return String(n.properties[key]);
+        const hit = (n.attributes || []).find((at: any) => at.name === key);
+        return hit && typeof hit.value === "string" ? hit.value : "";
+      };
+      const frames: { id: string; title: string }[] = [];
+      const collect = (n: any) => {
+        if (n && (n.type === "element" || n.type === "mdxJsxFlowElement") && (n.tagName || n.name) === "iframe") {
+          const m = attrOf(n, "src").match(/youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,})/);
+          if (m) frames.push({ id: m[1], title: attrOf(n, "title") });
+        }
+        (n?.children || []).forEach(collect);
+      };
+      rows.forEach(collect);
+      const video = (i: number, title: string) => (frames[i] ? el("videoblock", { exvideo: frames[i].id, extitle: title }, []) : null);
+      const h1i = rows.findIndex((x) => isEl(x, "h1"));
+      const nav = rows.slice(0, h1i);
+      const out: any[] = [
+        ...nav,
+        el("h1", {}, [txt("Keystone Zodl (Zashi) User Guide")]),
+        el("p", { dataLead: "true" }, [txt("Keystone lets you keep shielded ZEC in cold storage and spend it from the Zodl app on your phone. The Zcash community has faced setbacks with other hardware wallet platforms in the past, but Keystone became a collaborative partner willing to push boundaries alongside the Electric Coin Company, and the Keystone team received a ZCG grant for its side of the work.")]),
+        el("guidecallout", { title: "Zashi is now Zodl" }, [
+          p(txt("The Zashi app was renamed "), b("Zodl"), txt(" in 2026. This guide uses the new name and keeps \"(Zashi)\" in the title because older screenshots, videos and posts still show the former Zashi app. Existing wallets, seed phrases and funds are unchanged.")),
+        ]),
+        el("jumpnav", {
+          title: "Jump to",
+          items: JSON.stringify([
+            { label: "Tutorial", hint: "Video walkthrough", href: "#video-tutorial" },
+            { label: "Preparation", hint: "What you need", href: "#preparation" },
+            { label: "Set up Keystone", hint: "Verify, update, create", href: "#set-up-your-keystone" },
+            { label: "Connect to Zodl", hint: "Pair and fund", href: "#connect-keystone-to-zodl" },
+          ]),
+        }, []),
+        el("h2", {}, [txt("Video tutorial")]),
+        ...(video(0, "Keystone X Zodl (Zashi) tutorial") ? [video(0, "Keystone X Zodl (Zashi) tutorial")] : []),
+        el("h2", {}, [txt("Preparation")]),
+        el("guidecallout", { title: "Supported device" }, [
+          p(txt("Zodl supports the "), b("Keystone 3 Pro"), txt(" running Keystone's "), b("Cypherpunk firmware"), txt(", the only release that supports shielded Zcash. Use a recovery phrase that is different from your Zodl wallet's.")),
+        ]),
+        ul([
+          [a("https://keyst.one", "Order and receive your Keystone 3 Pro"), txt(".")],
+          [b("Battery: "), txt("charge above 20% before updating.")],
+          [b("USB cable or microSD card: "), txt("the USB cable is included; a microSD card (under 1 TB) is bought separately.")],
+          [b("Keystone website: "), txt("used for device verification and the firmware update.")],
+          [b("Zodl app "), txt("installed on your phone.")],
+        ]),
+        el("h2", {}, [txt("Set up your Keystone")]),
+        el("h3", { dataStep: "1" }, [txt("Verify the device")]),
+        p(txt("Device verification detects tampering during transport, prevents supply chain attacks and confirms the installed firmware is genuine. Choose your language, then:")),
+        ol([
+          [txt("Open the Device Verification page on the "), a("https://keyst.one/get-started", "Keystone website"), txt(".")],
+          [txt("Click Scan QR Code on the website.")],
+          [txt("Scan the QR code on the website with the Keystone camera.")],
+          [txt("A verification code appears on the Keystone screen.")],
+          [txt("Enter that code on the website to complete verification.")],
+        ]),
+        el("h3", { dataStep: "2" }, [txt("Update the firmware")]),
+        p(txt("Install the latest "), b("Cypherpunk"), txt(" firmware from the "), a("https://keyst.one/firmware", "Keystone firmware page"), txt(". Keep the battery above 20% and choose one method.")),
+        el("h4", {}, [txt("Update with a microSD card")]),
+        ol([
+          [txt("Format the card as FAT32 on your computer.")],
+          [txt("Download the firmware and save "), el("code", {}, [txt("keystone3.bin")]), txt(" in the root of the card.")],
+          [txt("Insert the card into the Keystone.")],
+          [txt("Open Upgrade on the device and follow the on-screen instructions.")],
+        ]),
+        el("h4", {}, [txt("Update with a USB cable")]),
+        el("guidecallout", { title: "Before you start" }, [p(txt("If your firmware is below 1.0.4, do the first update with a microSD card. USB updates work after that."))]),
+        ol([
+          [txt("Connect the Keystone to your computer and tap Approve to allow USB access; otherwise it may only charge.")],
+          [txt("Open the "), a("https://keyst.one/firmware", "Keystone firmware page"), txt(" in your computer's browser.")],
+          [txt("Click Install Update and follow the instructions.")],
+        ]),
+        el("h3", { dataStep: "3" }, [txt("Create the wallet")]),
+        ol([
+          [b("Set a PIN or password "), txt("that is strong.")],
+          [b("Name the wallet "), txt("(optional).")],
+          [txt("Select Create New Wallet for a first-time setup. The device generates a 24-word recovery phrase.")],
+          [txt("Write the phrase down, store it securely and confirm the words in order.")],
+        ]),
+        el("guidecallout", { title: "Never reuse a recovery phrase" }, [p(txt("Do not import the recovery phrase of your Zodl wallet into the Keystone. A phrase that has touched a phone removes the security benefit of a hardware wallet."))]),
+        el("h2", {}, [txt("Connect Keystone to Zodl")]),
+        el("h3", { dataStep: "4" }, [txt("Pair the two devices")]),
+        ol([
+          [b("On the Keystone: "), txt("enter your PIN, tap "), b("..."), txt(" in the upper-right corner, tap Connect Software Wallet and choose Zodl. A QR code appears.")],
+          [b("In Zodl: "), txt("tap the logo in the upper-left corner, then Connect Hardware Wallet.")],
+          [txt("Tap Ready to Scan and scan the QR code on the Keystone. The code changes, so scan the full sequence.")],
+          [txt("Select the wallet name you gave on the Keystone and tap Unlock.")],
+        ]),
+        p(txt("To switch between your Zodl wallet and the Keystone wallet, use the selector in the upper-left corner of Zodl.")),
+        el("h3", { dataStep: "5" }, [txt("Add or resync funds")]),
+        ul([
+          [b("New Keystone wallet: "), txt("tap Receive to add funds, or from your Zodl wallet tap Send and choose the Keystone entry in your address book.")],
+          [b("Existing Keystone wallet: "), txt("the balance first shows 0.000 ZEC. Open "), b("..."), txt(" > More > Advanced Settings > Resync, tap Change, choose a month before you first used the wallet, then Confirm.")],
+        ]),
+        el("h2", {}, [txt("Video guides")]),
+        el("p", {}, [txt("These videos were recorded with the former Zashi app. The steps are the same in Zodl; only the app name and logo differ.")]),
+        ...(frames[1] ? [el("h3", { dataRule: "true" }, [txt("Connect Keystone to Zodl (Zashi)")]), video(1, "Connect Keystone Hardware Wallet to Zodl (Zashi)")] : []),
+        ...(frames[2] ? [el("h3", { dataRule: "true" }, [txt("Sign an outgoing transaction")]), video(2, "Sign an Outgoing Transaction with Keystone")] : []),
+        el("h2", {}, [txt("Resources")]),
+        el("communitygrid", {}, [
+          el("communitycard", { name: "Keystone", desc: "Order a Keystone 3 Pro and read the getting-started guide.", href: "https://keyst.one/get-started" }, []),
+          el("communitycard", { name: "Firmware update", desc: "Download the Cypherpunk firmware.", href: "https://keyst.one/firmware" }, []),
+          el("communitycard", { name: "Connecting a Keystone wallet", desc: "The official Zodl support article.", href: "https://support.zodl.com/article/33-connecting-a-keystone-wallet" }, []),
+          el("communitycard", { name: "Zashi is becoming Zodl", desc: "Announcement of the app rename.", href: "https://zodl.com/zashi-is-becoming-zodl/" }, []),
+          el("communitycard", { name: "Original announcement (Zashi)", desc: "The Zashi and Keystone integration thread on X.", href: "https://x.com/zashi_app/status/1869793574880973144" }, []),
+        ]),
+      ];
+      rows.splice(0, rows.length, ...out);
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -5308,6 +5429,7 @@ export default async function Page(props: {
             shapeshift: slug[0] === "guides" && slug[1] === "shapeshift-zcash",
             free2z: slug[0] === "guides" && slug[1] === "free2z-live",
             usezec: slug[0] === "guides" && slug[1] === "using-zec-privately",
+            keystone: slug[0] === "guides" && slug[1] === "keystone-zashi",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",

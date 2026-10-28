@@ -208,8 +208,8 @@ const getTranslatedLabel = (
       t.navigation?.guidesSubmenu?.zgoPaymentProcessor ||
       "Zgo Payment Processor",
     "Free2z Live": t.navigation?.guidesSubmenu?.free2zLive || "Free2z Live",
-    "Keystone Zashi":
-      t.navigation?.guidesSubmenu?.keystoneZashi || "Keystone Zashi",
+    "Keystone Zodl (Zashi)":
+      t.navigation?.guidesSubmenu?.keystoneZashi || "Keystone Zodl (Zashi)",
     "Maya Protocol":
       t.navigation?.guidesSubmenu?.mayaProtocol || "Maya Protocol",
     "Nym VPN": t.navigation?.guidesSubmenu?.nymVpn || "Nym VPN",

@@ -111,7 +111,7 @@ export const PROTECTED_TRANSLATION_TERMS: ProtectedTranslationTerm[] = [
   { term: "ZODL", category: "wallet" },
   { term: "Nighthawk", category: "wallet" },
   { term: "Brave Wallet", category: "wallet" },
-  { term: "Keystone Zashi", category: "wallet" },
+  { term: "Keystone Zodl (Zashi)", category: "wallet" },
   { term: "MetaMask Snap", category: "wallet" },
   { term: "Metamask Snap", category: "wallet" },
 
