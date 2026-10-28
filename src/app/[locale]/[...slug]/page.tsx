@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; brave?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; brave?: boolean; explorers?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -3512,6 +3512,166 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }, []);
       if (lead > -1) rows.splice(lead + 1, 0, note, jump);
     }
+    if (opts.explorers && Array.isArray(tree.children)) {
+      // Blockchain explorers: lead, jump list, example cards, numbered concepts, TL;DR callout, explorer cards, visual guide.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const hTxt = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const hasBadge = (x: any): boolean => isEl(x, "img") && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x?.children || []).some(hasBadge);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
+      }
+      const firstA = (x: any): any => {
+        if (isEl(x, "a")) return x;
+        for (const c of x?.children || []) { const r = firstA(c); if (r) return r; }
+        return null;
+      };
+      const findAll = (n: any, tag: string, acc: any[] = []) => {
+        if (isEl(n, tag)) acc.push(n);
+        (n?.children || []).forEach((c: any) => findAll(c, tag, acc));
+        return acc;
+      };
+      const fixText = (n: any) => {
+        if (n?.type === "text") {
+          n.value = String(n.value)
+            .replace(/\bEthscan\b/g, "Etherscan")
+            .replace(/transaction id's/g, "transaction IDs")
+            .replace(/CEX's/g, "CEXs")
+            .replace(/Sapling or Orchard/g, "Sapling, Orchard or Ironwood")
+            .replace(/DOGE, VTC, etc \.\.\. \./g, "DOGE and many others.");
+        }
+        (n?.children || []).forEach(fixText);
+      };
+      rows.forEach(fixText);
+      const frame = (x: any) => {
+        if (isEl(x, "img")) x.properties = { ...(x.properties || {}), dataFrame: "true" };
+        (x?.children || []).forEach(frame);
+      };
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      // Introduction heading goes away; its paragraph is the lead.
+      const ih = rows.findIndex((x) => isEl(x, "h2") && /^introduction$/i.test(hTxt(x)));
+      if (ih > -1) {
+        rows.splice(ih, 1);
+        if (isEl(rows[ih], "p")) rows[ih].properties = { ...(rows[ih].properties || {}), dataLead: "true" };
+      }
+      // Examples: one card per transaction, then the Zcash comparison as a callout.
+      const ex = rows.findIndex((x) => isEl(x, "h2") && /^examples$/i.test(hTxt(x)));
+      if (ex > -1) {
+        const lis = findAll(rows[ex + 1], "li");
+        const cards = lis.map((l) => {
+          const a = firstA(l);
+          const t = textOf(l).trim();
+          const name = t.split(":")[0].trim();
+          const hash = textOf(a || l).trim();
+          return el("communitycard", { name, desc: "Transaction " + hash.slice(0, 10) + "\u2026" + hash.slice(-6), href: String(a?.properties?.href || "") }, []);
+        }).filter((c) => c.properties.href);
+        if (cards.length) {
+          rows.splice(ex + 1, 1, el("communitygrid", {}, cards));
+          const nt = rows[ex + 2];
+          if (isEl(nt, "h4")) rows[ex + 2] = el("guidecallout", { title: "Compare the two Zcash transactions" }, [el("p", {}, [txt(textOf(nt).trim())])]);
+        }
+      }
+      // Blockchain maps -> How explorers work, with Blocks / Addresses / Amounts as numbered points.
+      const bm = rows.findIndex((x) => isEl(x, "h2") && /^blockchain maps$/i.test(hTxt(x)));
+      if (bm > -1) {
+        rows[bm] = el("h2", {}, [txt("How explorers work")]);
+        let end = bm + 1;
+        while (end < rows.length && !isEl(rows[end], "h2") && !(isEl(rows[end], "h3") && /^what an explorer/i.test(textOf(rows[end]).trim()))) end++;
+        const pts: any[] = [];
+        const after: any[] = [];
+        const intro: any[] = [];
+        let k = bm + 1;
+        while (k < end && !isEl(rows[k], "h3")) { intro.push(rows[k]); k++; }
+        while (k < end) {
+          if (!isEl(rows[k], "h3")) { after.push(rows[k]); k++; continue; }
+          const title = textOf(rows[k]).trim();
+          const body: any[] = [];
+          k++;
+          while (k < end && !isEl(rows[k], "h3")) {
+            if (isEl(rows[k], "p") && findAll(rows[k], "img").length) after.push(rows[k]);
+            else body.push(rows[k]);
+            k++;
+          }
+          pts.push(el("pointitem", { n: String(pts.length + 1), title }, body));
+        }
+        after.forEach(frame);
+        if (pts.length) rows.splice(bm + 1, end - bm - 1, ...intro, el("pointlist", {}, pts), ...after);
+      }
+      // Zcash section: heading, TL;DR callout.
+      const zi = rows.findIndex((x) => isEl(x, "h3") && /^what an explorer can and cannot see/i.test(textOf(x).trim()));
+      if (zi > -1) {
+        rows[zi] = el("h2", {}, [txt(textOf(rows[zi]).trim())]);
+        const tl = rows.findIndex((x, i) => i > zi && isEl(x, "h4") && /^tl;?dr$/i.test(textOf(x).trim()));
+        if (tl > -1 && isEl(rows[tl + 1], "ul")) {
+          rows[tl + 1].children.push(el("li", {}, [txt("Value moving between shielded pools is visible, such as Orchard to Ironwood migrations")]));
+          rows.splice(tl, 2, el("guidecallout", { title: "TL;DR" }, [rows[tl + 1]]));
+        }
+        // Ironwood: new paragraph after the shielded pools paragraph.
+        const sp = rows.findIndex((x, i) => i > zi && isEl(x, "p") && /^shielded addresses are the private side/i.test(textOf(x).trim()));
+        if (sp > -1) {
+          const iron = el("p", {}, [
+            el("strong", {}, [txt("Ironwood. ")]),
+            txt("The Ironwood network upgrade (NU6.3) added a new shielded pool, active on mainnet since block 3,428,143. Funds move into it with ZIP 318 migration transactions: fully shielded, with no transparent inputs or outputs, but the amount crossing from Orchard into Ironwood shows up as a change in each pool's value balance. Explorers such as "),
+            el("a", { href: "https://cipherscan.app/ironwood", target: "_blank", rel: "noreferrer" }, [txt("CipherScan")]),
+            txt(" track Ironwood activation, migration and supply."),
+          ]);
+          rows.splice(sp + 1, 0, iron);
+        }
+      }
+      // Explorer list as cards.
+      const li = rows.findIndex((x) => isEl(x, "h3") && /^list of zcash block explorers$/i.test(textOf(x).trim()));
+      if (li > -1) {
+        rows[li] = el("h2", {}, [txt("Zcash block explorers")]);
+        if (isEl(rows[li + 1], "ul")) {
+          const cards: any[] = [];
+          for (const l of findAll(rows[li + 1], "li")) {
+            for (const a of findAll(l, "a")) {
+              const href = String(a.properties?.href || "");
+              const host = href.replace(/^https?:\/\//, "").replace(/\/$/, "");
+              const isTest = /testnet|zectest/i.test(textOf(a) + href);
+              const nm = isTest ? "SoChain (testnet)" : textOf(a).trim();
+              const desc = /3xpl/i.test(href) ? "Multi-chain explorer with Zcash analytics and downloadable datasets" : host;
+              cards.push(el("communitycard", { name: nm, desc, href }, []));
+            }
+          }
+          cards.push(el("communitycard", { name: "CipherScan", desc: "Shielded analytics, client-side memo decryption and an Ironwood migration tracker", href: "https://cipherscan.app" }, []));
+          if (cards.length) rows.splice(li + 1, 1, el("communitygrid", {}, cards));
+        }
+      }
+      // Visual guide: one subsection per explorer with its framed screenshot.
+      const vg = rows.findIndex((x) => isEl(x, "h3") && /^visual guide$/i.test(textOf(x).trim()));
+      if (vg > -1) {
+        rows[vg] = el("h2", {}, [txt("Visual guide")]);
+        const imgs = rows.slice(vg + 1).filter((x) => isEl(x, "p") && findAll(x, "img").length);
+        const ul = rows.slice(vg + 1).find((x) => isEl(x, "ul"));
+        const links = ul ? findAll(ul, "a") : [];
+        const labels: [string, number][] = [["Bitcoin: Mempool.space", 0], ["Ethereum: Etherscan", 1], ["Zcash: Zcash Block Explorer", 2], ["Cosmos: Mintscan", 3]];
+        const built: any[] = [];
+        labels.forEach(([label, i]) => {
+          const href = String(links[i]?.properties?.href || "");
+          built.push(el("h3", { dataRule: "true" }, [txt(label)]));
+          if (href) built.push(el("p", {}, [el("a", { href, target: "_blank", rel: "noreferrer" }, [txt(href.replace(/^https?:\/\//, "").replace(/\/$/, ""))])]));
+          if (imgs[i]) { frame(imgs[i]); built.push(imgs[i]); }
+        });
+        let end = vg + 1;
+        while (end < rows.length) end++;
+        rows.splice(vg + 1, end - vg - 1, el("p", {}, [txt("Four explorers side by side, one per chain. Each shows the same kind of information in its own layout. The screenshots date from 2022, so current interfaces look different.")]), ...built);
+      }
+      // Jump list after the lead.
+      const lead = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
+      const items = [
+        { label: "Examples", hint: "Five real transactions", href: "#examples" },
+        { label: "How they work", hint: "Blocks, addresses, amounts", href: "#how-explorers-work" },
+        { label: "On Zcash", hint: "What an explorer can see", href: "#what-an-explorer-can-and-cannot-see-on-zcash" },
+        { label: "Explorers", hint: "Zcash block explorers", href: "#zcash-block-explorers" },
+      ];
+      void h1;
+      if (lead > -1) rows.splice(lead + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -5551,6 +5711,7 @@ export default async function Page(props: {
             usezec: slug[0] === "guides" && slug[1] === "using-zec-privately",
             keystone: slug[0] === "guides" && slug[1] === "keystone-zashi",
             brave: slug[0] === "guides" && slug[1] === "brave-wallet-guide",
+            explorers: slug[0] === "guides" && slug[1] === "blockchain-explorers",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
