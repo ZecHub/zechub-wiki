@@ -162,7 +162,11 @@
     "searchTryDifferent": "Δοκίμασε συντομότερα ερωτήματα, συνώνυμα ή διαφορετικές λέξεις.",
     "searchSuggested": "Προτεινόμενες σελίδες",
     "searchResultsLabel": "Αποτελέσματα",
-    "skipToContent": "Μετάβαση στο περιεχόμενο"
+    "skipToContent": "Μετάβαση στο περιεχόμενο",
+    "languageSearch": "Αναζήτηση γλωσσών",
+    "languageSuggested": "Προτεινόμενες",
+    "languageAll": "Όλες οι γλώσσες",
+    "languageNone": "Δεν βρέθηκε γλώσσα"
   },
   "navigation": {
     "wallets": "Πορτοφόλια",

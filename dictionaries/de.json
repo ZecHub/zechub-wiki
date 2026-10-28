@@ -166,7 +166,11 @@
     "searchTryDifferent": "Versuche kürzere Suchanfragen, Synonyme oder andere Wörter.",
     "searchSuggested": "Vorgeschlagene Seiten",
     "searchResultsLabel": "Ergebnisse",
-    "skipToContent": "Zum Inhalt springen"
+    "skipToContent": "Zum Inhalt springen",
+    "languageSearch": "Sprachen suchen",
+    "languageSuggested": "Vorgeschlagen",
+    "languageAll": "Alle Sprachen",
+    "languageNone": "Keine Sprache gefunden"
   },
   "navigation": {
     "wallets": "Wallets",

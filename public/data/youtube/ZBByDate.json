@@ -3,9 +3,14 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "O vazamento de privacidade que voc\u00ea n\u00e3o sabia que tinha",
+            "video_id": "jADaC3QIrRs",
+            "views": 14
+        },
+        {
             "title": "O que o ouro tinha e o Bitcoin n\u00e3o",
             "video_id": "SzWIeEZQIlY",
-            "views": 25
+            "views": 26
         },
         {
             "title": "\"\u00c9 Zcash ou comunismo\": Balaji explica",
@@ -20,12 +25,12 @@
         {
             "title": "Seu KYC vai vazar. E a\u00ed os bandidos sabem onde voc\u00ea mora",
             "video_id": "-bXDJp26Dkk",
-            "views": 22
+            "views": 23
         },
         {
             "title": "Protocol Study 9 | Hashes Curves and PRFs Pt.2",
             "video_id": "Mujr-zvg6cw",
-            "views": 36
+            "views": 37
         },
         {
             "title": "ZEC como garantia, USDT emprestado #zcash #defi #zec",
@@ -35,7 +40,7 @@
         {
             "title": "Como usar ZEC como garantia na RHEA Finance",
             "video_id": "p6rLMOPPyBk",
-            "views": 155
+            "views": 158
         },
         {
             "title": "Data centers na \u00f3rbita e a Zcash | Michael",
@@ -50,7 +55,7 @@
         {
             "title": "NU7, Tachyon e PIR na Vizor | Zec Insider",
             "video_id": "tY--OxflKsM",
-            "views": 18
+            "views": 19
         },
         {
             "title": "Balaji: Bitcoin \u00e9 reserva, Zcash \u00e9 dinheiro cifrado",
@@ -90,7 +95,7 @@
         {
             "title": "ZODL Vault: Como Proteger ZEC Shielded Sem Banco",
             "video_id": "xtTWNESY-I8",
-            "views": 86
+            "views": 90
         },
         {
             "title": "Um papo sobre autonomia, privacidade e o que significa ter a tecnologia realmente nas suas m\u00e3os.",
@@ -140,7 +145,7 @@
         {
             "title": "Como Fazer Bridge de ZEC Para Solana",
             "video_id": "78NKlajioL8",
-            "views": 137
+            "views": 138
         },
         {
             "title": "Como trocar ZEC por USDC no 0xramp (passo a passo)",
@@ -760,7 +765,7 @@
         {
             "title": "Zcash Protocol Walkthroug \u00a71.1\u20131.2 | Engineering #8",
             "video_id": "gLqT_0B4tSU",
-            "views": 61
+            "views": 62
         },
         {
             "title": "Edward Snowden, o sexto criador da Zcash | Zebra Talk",
@@ -880,7 +885,7 @@
         {
             "title": "Zcash Society e Network State: Como Comunidades Cripto se Organizam | Engineering #6",
             "video_id": "1AV3oAjXSRs",
-            "views": 38
+            "views": 39
         },
         {
             "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
@@ -1220,7 +1225,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 387
+            "views": 389
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -1905,7 +1910,7 @@
         {
             "title": "Zebra Talk, uma mudan\u00e7a profunda de mentalidade.",
             "video_id": "UqcoMQpiglY",
-            "views": 65
+            "views": 66
         },
         {
             "title": "Bryan Gillespie, pesquisador de criptografia, fala sobre a documena\u00e7\u00e3o do protocolo #Zcash",

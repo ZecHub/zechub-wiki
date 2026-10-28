@@ -166,7 +166,11 @@
     "searchTryDifferent": "より短いクエリ、同義語、または別の単語を試してください。",
     "searchSuggested": "おすすめのページ",
     "searchResultsLabel": "結果",
-    "skipToContent": "コンテンツにスキップ"
+    "skipToContent": "コンテンツにスキップ",
+    "languageSearch": "言語を検索",
+    "languageSuggested": "おすすめ",
+    "languageAll": "すべての言語",
+    "languageNone": "該当する言語が見つかりません"
   },
   "navigation": {
     "wallets": "ウォレット",

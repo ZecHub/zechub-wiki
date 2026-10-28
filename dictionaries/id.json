@@ -162,7 +162,11 @@
     "searchTryDifferent": "Coba kueri yang lebih pendek, sinonim, atau kata yang berbeda.",
     "searchSuggested": "Halaman yang disarankan",
     "searchResultsLabel": "Hasil",
-    "skipToContent": "Lewati ke konten"
+    "skipToContent": "Lewati ke konten",
+    "languageSearch": "Cari bahasa",
+    "languageSuggested": "Disarankan",
+    "languageAll": "Semua bahasa",
+    "languageNone": "Bahasa tidak ditemukan"
   },
   "navigation": {
     "wallets": "Dompet",

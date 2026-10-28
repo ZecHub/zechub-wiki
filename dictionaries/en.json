@@ -140,7 +140,11 @@
     "searchTryDifferent": "Try shorter queries, synonyms, or different words.",
     "searchSuggested": "Suggested pages",
     "searchResultsLabel": "Results",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "languageSearch": "Search languages",
+    "languageSuggested": "Suggested",
+    "languageAll": "All languages",
+    "languageNone": "No language found"
   },
   "navigation": {
     "wallets": "Wallets",
