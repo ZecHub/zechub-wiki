@@ -1600,6 +1600,8 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           if (!place && /vozes 2/i.test(desc + " ")) place = "S\u00e3o Paulo";
           return [year, place].filter(Boolean).join(" \u00b7 ");
         };
+        // Each edition shows its year and place under the title.
+        for (const e of editions) (e.node.properties as Record<string, string>).meta = sub(e.desc + (e.label === "Vozes 2" ? " vozes 2" : ""));
         const nav = {
           type: "element",
           tagName: "chipnav",

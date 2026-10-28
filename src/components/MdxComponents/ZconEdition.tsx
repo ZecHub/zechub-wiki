@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CalendarDays } from "lucide-react";
 import VideoCarousel from "./VideoCarousel";
 
 // One Zcon: edition chip, title, description, link to the playlist and a rail with its sessions.
@@ -9,6 +9,7 @@ export function ZconEdition(props: Record<string, unknown>) {
   const title = String(props.title ?? "");
   const desc = String(props.desc ?? "");
   const list = String(props.list ?? "");
+  const meta = String(props.meta ?? "");
   return (
     <section id={String(props.anchor ?? "")} className="not-prose my-10 scroll-mt-24">
       <div className="flex flex-wrap items-center gap-3">
@@ -28,7 +29,13 @@ export function ZconEdition(props: Record<string, unknown>) {
           </a>
         )}
       </div>
-      {desc && <p className="mb-0 mt-3 max-w-3xl text-[0.95rem] leading-6 text-slate-700 dark:text-slate-300">{desc}</p>}
+      {meta && (
+        <p className="mb-0 mt-3 flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
+          <CalendarDays aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+          {meta}
+        </p>
+      )}
+      {desc && <p className="mb-0 mt-2 max-w-3xl text-[0.95rem] leading-6 text-slate-700 dark:text-slate-300">{desc}</p>}
       {list && <VideoCarousel list={list} label="Sessions" compact="true" max="30" />}
     </section>
   );
