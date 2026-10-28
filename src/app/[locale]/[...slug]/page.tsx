@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -3099,6 +3099,88 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(at, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
       }
     }
+    if (opts.free2z && Array.isArray(tree.children)) {
+      // Free2Z: lead, jump list, framed screenshots, requirements callout, control labels as numbered points, resources as link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const hasBadge = (x: any): boolean => isEl(x, "img") && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x?.children || []).some(hasBadge);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
+      }
+      // Introduction heading goes away: its paragraph is the lead.
+      const ih = rows.findIndex((x) => isEl(x, "h2") && /^introduction$/i.test(h2Text(x)));
+      if (ih > -1) {
+        rows.splice(ih, 1);
+        if (isEl(rows[ih], "p")) rows[ih].properties = { ...(rows[ih].properties || {}), dataLead: "true" };
+      }
+      // Screenshots get the blue frame.
+      const frame = (x: any) => {
+        if (isEl(x, "img")) x.properties = { ...(x.properties || {}), dataFrame: "true" };
+        (x?.children || []).forEach(frame);
+      };
+      rows.forEach(frame);
+      // Requirements to go live: the list and its follow-up sentence become one callout.
+      const gl = rows.findIndex((x) => isEl(x, "h3") && /^how to go live$/i.test(textOf(x).trim()));
+      if (gl > -1) {
+        const oi = rows.findIndex((x, i) => i > gl && isEl(x, "ol"));
+        if (oi > -1) {
+          const follow = isEl(rows[oi + 1], "p") && /^if the creator meets/i.test(textOf(rows[oi + 1]).trim()) ? 1 : 0;
+          rows.splice(oi, 1 + follow, el("guidecallout", { title: "Requirements" }, [rows[oi], ...(follow ? [rows[oi + 1]] : [])]));
+        }
+      }
+      // Bold-label bullets (live stream controls) become numbered points.
+      for (let k = 0; k < rows.length; k++) {
+        const ul = rows[k];
+        if (!isEl(ul, "ul")) continue;
+        const lis = (ul.children || []).filter((c: any) => isEl(c, "li"));
+        const pts: any[] = [];
+        for (const li of lis) {
+          const kids: any[] = (li.children || []).filter((c: any) => !isWs(c));
+          if (!isEl(kids[0], "strong")) break;
+          const rest = kids.slice(1);
+          const first = rest.findIndex((c: any) => c.type === "text");
+          if (first > -1) rest[first] = txt(String(rest[first].value).replace(/^\s*:\s*/, ""));
+          pts.push(el("pointitem", { n: String(pts.length + 1), title: textOf(kids[0]).trim() }, [el("p", {}, rest)]));
+        }
+        if (pts.length && pts.length === lis.length) rows[k] = el("pointlist", {}, pts);
+      }
+      // The "Written by" credit stays last; subheadings get a hairline.
+      for (let k = 0; k < rows.length; k++) {
+        if (isEl(rows[k], "h3") && !/^resources$/i.test(textOf(rows[k]).trim())) rows[k] = el("h3", { dataRule: "true" }, [txt(textOf(rows[k]).trim())]);
+      }
+      // Resources as link cards.
+      const ri = rows.findIndex((x) => isEl(x, "h3") && /^resources$/i.test(textOf(x).trim()));
+      if (ri > -1) {
+        const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+        const credit = rows.slice(ri + 1).find((x: any) => isEl(x, "p") && /^written by/i.test(textOf(x).trim()));
+        rows.splice(ri, rows.length - ri,
+          el("h2", {}, [txt("Resources")]),
+          el("communitygrid", {}, [
+            card("Free2Z", "The platform: create an account and explore creators.", "https://free2z.cash/"),
+            card("Documentation", "Official Free2Z docs.", "https://free2z.cash/docs/"),
+            card("2Z overview", "How 2Zs (Tuzies) work.", "https://free2z.cash/docs/getting-started/tuzis"),
+            card("Creating a profile", "Set up a creator page.", "https://free2z.cash/docs/for-creators/creating-a-profile"),
+            card("What is Free2Z Live?", "Livestreaming for creators.", "https://free2z.cash/docs/for-creators/free2z-live"),
+            card("Free2Z for supporters", "Guides for subscribing and donating (archived copy).", "https://web.archive.org/web/20260118172223/https://free2z.cash/docs/category/for-supporters/"),
+          ]),
+          ...(credit ? [credit] : []),
+        );
+      }
+      // Jump list after the lead.
+      const lead = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
+      const items = [
+        { label: "Create an account", hint: "Username or Twitter", href: "#create-your-account" },
+        { label: "Profile", hint: "Avatar, banner, member price", href: "#personalize-your-profile" },
+        { label: "2Zs and donations", hint: "Credits, subscribing, funding", href: "#subscriptions-and-2zs" },
+        { label: "Live streaming", hint: "Go live and tools", href: "#live-streaming" },
+      ];
+      if (lead > -1) rows.splice(lead + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -5134,6 +5216,7 @@ export default async function Page(props: {
             maya: slug[0] === "guides" && slug[1] === "maya-protocol",
             redbridge: slug[0] === "guides" && slug[1] === "avalanche-redbridge",
             shapeshift: slug[0] === "guides" && slug[1] === "shapeshift-zcash",
+            free2z: slug[0] === "guides" && slug[1] === "free2z-live",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
