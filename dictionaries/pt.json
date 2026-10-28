@@ -672,7 +672,7 @@
       "tracks": {
         "infrastructure": {
           "name": "Infraestrutura",
-          "description": "GUI ZSA, Node Launcher, painel web do Zallet etc."
+          "description": "GUI ZSA, Node Launcher, painel web da Zallet etc."
         },
         "games": {
           "name": "Jogos",
@@ -822,8 +822,8 @@
         "introToZebraDesc": "Entenda como o Zebra impulsiona a rede Zcash com uma implementação modular e segura baseada em Rust",
         "introToLightwalletd": "Introdução ao Lightwalletd",
         "introToLightwalletdDesc": "Entenda o projeto lightwalletd — um servidor escalável escrito em Go que fornece com eficiência dados compactos da blockchain para light clients do Zcash via gRPC.",
-        "zalletBook": "O livro do Zallet",
-        "zalletBookDesc": "Introdução ao Zallet, uma carteira Zcash de nó integral escrita em Rust e projetada como substituta da carteira zcashd.",
+        "zalletBook": "O livro da Zallet",
+        "zalletBookDesc": "Introdução à Zallet, uma carteira Zcash de nó integral escrita em Rust e projetada como substituta da carteira zcashd.",
         "developerResources": "Recursos para desenvolvedores",
         "developerResourcesDesc": "Links para mais documentação técnica do Zcash."
       },
