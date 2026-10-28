@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2880,6 +2880,225 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       ];
       if (h1 > -1) rows.splice(h1 + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
     }
+    if (opts.redbridge && Array.isArray(tree.children)) {
+      // red·bridge: notice, jump list, features and components as numbered points, milestones as numbered points, updates section.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const hasImg = (x: any): boolean => isEl(x, "img") || (x?.children || []).some(hasImg);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x) : "";
+        if (isWs(x) || isEl(x, "hr") || j.toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+        else if (isEl(x, "p") && hasImg(x) && !textOf(x).trim()) rows.splice(i, 1);
+      }
+      const trimFirst = (kids: any[], re: RegExp) => {
+        const k = kids.findIndex((c: any) => c.type === "text" && String(c.value).trim());
+        if (k > -1) kids[k] = txt(String(kids[k].value).replace(re, ""));
+        return kids;
+      };
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // Key features: "Label: text" lines become numbered points.
+      const kf = rows.findIndex((x) => isEl(x, "h3") && /^key features$/i.test(textOf(x).trim()));
+      if (kf > -1 && isEl(rows[kf + 1], "p")) {
+        const pts: any[] = [];
+        for (const line of textOf(rows[kf + 1]).split("\n")) {
+          const m = /^\s*([^:]{3,60}):\s*(.+)$/.exec(line);
+          if (m) pts.push(el("pointitem", { n: String(pts.length + 1), title: m[1].trim() }, [el("p", {}, [txt(m[2].trim())])]));
+        }
+        if (pts.length) rows.splice(kf, 2, el("h2", {}, [txt("Key features")]), el("pointlist", {}, pts));
+      }
+      // Technical components: bold label plus "Description:" text become numbered points.
+      const tc = rows.findIndex((x) => isEl(x, "h3") && /^technical components$/i.test(textOf(x).trim()));
+      if (tc > -1) {
+        let end = tc + 1;
+        const pts: any[] = [];
+        while (end < rows.length && isEl(rows[end], "p")) {
+          const kids: any[] = rows[end].children || [];
+          const si = kids.findIndex((c) => !isWs(c));
+          if (si < 0 || !isEl(kids[si], "strong")) break;
+          const rest = trimFirst(kids.filter((_: any, k: number) => k !== si), /^\s*Description:\s*/);
+          pts.push(el("pointitem", { n: String(pts.length + 1), title: textOf(kids[si]).trim() }, [el("p", {}, rest)]));
+          end++;
+        }
+        if (pts.length) rows.splice(tc, end - tc, el("h2", {}, [txt("Technical components")]), el("pointlist", {}, pts));
+      }
+      // Deliverables: one numbered point per milestone.
+      const dh = rows.findIndex((x) => isEl(x, "h2") && /^deliverables and documentation$/i.test(h2Text(x)));
+      const tail = rows.findIndex((x, i) => i > dh && isEl(x, "p") && /^take a look at the github repo/i.test(textOf(x).trim()));
+      if (dh > -1 && tail > dh) {
+        const seg = rows.slice(dh + 1, tail);
+        const firstA = (x: any): any => {
+          if (isEl(x, "a")) return x;
+          for (const c of x?.children || []) { const r = firstA(c); if (r) return r; }
+          return null;
+        };
+        const grant = firstA(seg[0]);
+        const intro = el("p", {}, [txt("The deliverables below come from the project's "), grant ? el("a", { ...grant.properties }, [txt("grant proposal")]) : txt("grant proposal"), txt(", with links to the code and documents produced.")]);
+        const pts: any[] = [];
+        const add = (n: string, title: string, body: any[]) => pts.push(el("pointitem", { n, title }, body));
+        const p0 = seg.find((x: any) => isEl(x, "p") && /^deliverable 1\.1/i.test(textOf(x).trim()));
+        const p1 = seg.find((x: any) => isEl(x, "p") && /^deliverable 2\.1/i.test(textOf(x).trim()));
+        if (p0) add("1", "Milestone 1: Proof of concept", [el("p", {}, trimFirst([...(p0.children || [])], /^\s*Deliverable 1\.1:\s*/))]);
+        if (p1) add("2", "Milestone 2: Architecture", [el("p", {}, [txt("Architecture documents for the bridge: "), ...(p1.children || []).filter((c: any) => isEl(c, "a"))])]);
+        for (let k = 0; k < seg.length; k++) {
+          const h = seg[k];
+          const mm = isEl(h, "h3") ? /^milestone\s+(\d+)\s+(.+)$/i.exec(textOf(h).trim()) : null;
+          if (!mm) continue;
+          const body: any[] = [];
+          for (let q = k + 1; q < seg.length && !isEl(seg[q], "h3"); q++) {
+            if (!isEl(seg[q], "p") || /^milestone\s+\d+/i.test(textOf(seg[q]).trim())) continue;
+            body.push(seg[q]);
+          }
+          add(mm[1], "Milestone " + mm[1] + ": " + mm[2].trim(), body);
+        }
+        const m6 = seg.find((x: any) => isEl(x, "p") && /^milestone\s+6/i.test(textOf(x).trim()));
+        if (m6) {
+          const lines = textOf(m6).split("\n").map((l) => l.trim()).filter(Boolean);
+          const mh = /^milestone\s+6\s+(.+)$/i.exec(lines[0] || "");
+          const items = lines.slice(1).map((l) => el("li", {}, [txt(l)]));
+          add("6", "Milestone 6: " + (mh ? mh[1] : "Audit and release"), [el("ul", {}, items)]);
+        }
+        pts.sort((a, b) => Number(a.properties.n) - Number(b.properties.n));
+        const t1 = rows[tail];
+        const repoA = firstA(t1);
+        const t2 = rows[tail + 1];
+        const btn = repoA ? el("linkbutton", { href: String(repoA.properties?.href || ""), label: "View the repository" }, []) : null;
+        const newBlock = [intro, el("pointlist", {}, pts), ...(btn ? [btn] : []), ...(t2 && isEl(t2, "p") ? [t2] : [])];
+        const removeTo = t2 && isEl(t2, "p") ? tail + 2 : tail + 1;
+        rows.splice(dh + 1, removeTo - dh - 1, ...newBlock);
+      }
+      // Updates list gets its own heading and a status notice.
+      const ui = rows.findIndex((x) => isEl(x, "ul"));
+      if (ui > -1) {
+        const li0 = (rows[ui].children || []).find((c: any) => isEl(c, "li"));
+        const p0 = li0 && (li0.children || []).find((c: any) => isEl(c, "p"));
+        if (p0) trimFirst(p0.children, /^\s*Deliverables:\s*/);
+        const notice = el("guidecallout", { title: "Check the current status" }, [
+          el("p", { className: ["m-0"] }, [txt("These updates describe plans the project stated at the time of writing, including a mainnet launch in December 2025 and a token airdrop in 2026. Confirm their current status with the red·bridge team before relying on them.")]),
+        ]);
+        rows.splice(ui, 0, el("h2", {}, [txt("Project updates")]), notice);
+      }
+      // Notice and jump list after the lead.
+      const items = [
+        { label: "Key features", hint: "What the bridge offers", href: "#key-features" },
+        { label: "Components", hint: "Oracle, contract, privacy layer", href: "#technical-components" },
+        { label: "Deliverables", hint: "Grant milestones", href: "#deliverables-and-documentation" },
+        { label: "Updates", hint: "Demo site, Zebra, mainnet plans", href: "#project-updates" },
+      ];
+      const leads = rows.map((x, i) => (i > h1 && isEl(x, "p") ? i : -1)).filter((i) => i > -1);
+      const after = (leads[1] ?? lead) + 1;
+      if (lead > -1) rows.splice(after, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+    }
+    if (opts.shapeshift && Array.isArray(tree.children)) {
+      // ShapeShift: lead, jump list, key features as numbered points, numbered steps, v4.0 callout, resources as link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const hasBadge = (x: any): boolean => isEl(x, "img") && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x?.children || []).some(hasBadge);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
+      }
+      // The Introduction heading goes away: its first paragraph is the lead.
+      const ih = rows.findIndex((x) => isEl(x, "h2") && /^introduction$/i.test(h2Text(x)));
+      if (ih > -1) {
+        rows.splice(ih, 1);
+        if (isEl(rows[ih], "p")) rows[ih].properties = { ...(rows[ih].properties || {}), dataLead: "true" };
+      }
+      // Bold-label bullets become numbered points.
+      const toPoints = (ul: any) => {
+        const pts: any[] = [];
+        for (const li of ul.children || []) {
+          if (!isEl(li, "li")) continue;
+          const kids: any[] = (li.children || []).filter((c: any) => !isWs(c));
+          if (!isEl(kids[0], "strong")) return null;
+          const rest = kids.slice(1);
+          const first = rest.findIndex((c: any) => c.type === "text");
+          if (first > -1) rest[first] = txt(String(rest[first].value).replace(/^\s*:\s*/, ""));
+          pts.push(el("pointitem", { n: String(pts.length + 1), title: textOf(kids[0]).trim() }, [el("p", {}, rest)]));
+        }
+        return pts.length ? el("pointlist", {}, pts) : null;
+      };
+      const kf = rows.findIndex((x) => isEl(x, "h3") && /^key features$/i.test(textOf(x).trim()));
+      if (kf > -1 && isEl(rows[kf + 1], "ul")) {
+        const pl = toPoints(rows[kf + 1]);
+        if (pl) rows.splice(kf + 1, 1, pl);
+      }
+      // Hardware wallets added with v4.0.
+      const w = rows.findIndex((x) => isEl(x, "ul") && /keepkey/i.test(textOf(x)));
+      if (w > -1) {
+        const li = (children: any[]) => el("li", {}, children);
+        rows[w].children.push(li([el("strong", {}, [txt("Trezor")]), txt(" and "), el("strong", {}, [txt("GridPlus")]), txt(" (hardware wallets, supported natively since v4.0)")]));
+      }
+      // Routing now also uses NEAR Intents.
+      const addNear = (n: any) => {
+        if (n?.type === "text" && String(n.value).includes("THORChain, 0x, and others")) n.value = String(n.value).replace("THORChain, 0x, and others", "THORChain, 0x, NEAR Intents, and others");
+        (n?.children || []).forEach(addNear);
+      };
+      rows.forEach(addNear);
+      // "Step N: Title" becomes a numbered step; other subheadings get a hairline.
+      for (let k = 0; k < rows.length; k++) {
+        if (!isEl(rows[k], "h3") || /^resources$/i.test(textOf(rows[k]).trim())) continue;
+        const t = textOf(rows[k]).trim();
+        const mm = /^step\s+(\d+)\s*[:.\-]\s*(.+)$/i.exec(t);
+        rows[k] = mm ? el("h3", { dataStep: mm[1] }, [txt(mm[2])]) : el("h3", { dataRule: "true" }, [txt(t)]);
+      }
+      // ShapeShift v4.0 callout after the delisting history.
+      const dl = rows.findIndex((x) => isEl(x, "h3") && /from delisting to default/i.test(textOf(x)));
+      if (dl > -1) {
+        let end = dl + 1;
+        while (end < rows.length && !isEl(rows[end], "h2") && !isEl(rows[end], "h3")) end++;
+        const items = [
+          { n: "1", title: "Zcash as the default privacy rail", body: "ZEC is built into the wallet and routing stack, so private routing is the default across Bitcoin, Ethereum and Cosmos assets." },
+          { n: "2", title: "NEAR Intents routing", body: "A cross-chain framework where you state the outcome you want and the system handles execution across networks." },
+          { n: "3", title: "Hardware wallet support", body: "Trezor and GridPlus work natively, so you can swap straight from cold storage." },
+          { n: "4", title: "Clearer signing", body: "Transaction details are shown for review before you sign, to reduce blind signing." },
+        ].map((it) => el("pointitem", { n: it.n, title: it.title }, [el("p", {}, [txt(it.body)])]));
+        rows.splice(end, 0, el("h3", { dataRule: "true" }, [txt("What v4.0 added")]), el("pointlist", {}, items));
+      }
+      // Summary and resources.
+      const sm = rows.findIndex((x) => isEl(x, "h2") && /^summary$/i.test(h2Text(x)));
+      const ri = rows.findIndex((x) => isEl(x, "h3") && /^resources$/i.test(textOf(x).trim()));
+      if (ri > -1) {
+        const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+        rows.splice(ri, rows.length - ri,
+          el("h2", {}, [txt("Resources")]),
+          el("communitygrid", {}, [
+            card("ShapeShift", "The decentralized, non-custodial trading platform.", "https://shapeshift.com/"),
+            card("Zcash", "Official project website.", "https://z.cash/"),
+            card("Zodl wallet", "A Zcash wallet with Unified Address and shielding support.", "https://zodl.com"),
+            card("FOX token governance", "How ShapeShift DAO governance works (archived page).", "https://web.archive.org/web/20210126180411/https://shapeshift.com/fox-token"),
+            card("Zcash Community Grants", "The program that funded the integration.", "https://zcashcommunitygrants.org/"),
+            card("crypto.news", "ShapeShift integrates Zcash to bolster onchain privacy.", "https://crypto.news/shapeshift-integrates-zcash-to-enable-true-onchain-privacy/"),
+            card("Invezz", "ShapeShift unveils v4.0, re-centering privacy and self-custody.", "https://invezz.com/news/2025/12/18/shapeshift-unveils-version-4-0-re-centering-privacy-and-self-custody-in-defi/"),
+            card("Cointelegraph", "ShapeShift rolls out support for shielded Zcash transactions.", "https://cointelegraph.com/news/shapeshift-rolls-out-support-for-shielded-zcash-transactions-for-true-privacy"),
+            card("CFOtech", "ShapeShift makes Zcash the default rail in its V4 privacy push.", "https://cfotech.co.uk/story/shapeshift-makes-zcash-default-rail-in-v4-privacy-push"),
+          ]),
+        );
+      }
+      void sm;
+      // Jump list after the lead paragraphs.
+      const lead = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
+      const items = [
+        { label: "What is ShapeShift", hint: "History and key features", href: "#what-is-shapeshift" },
+        { label: "How Zcash works", hint: "Shielded transactions", href: "#how-zcash-works" },
+        { label: "Swap ZEC", hint: "Six steps", href: "#how-to-swap-zec-on-shapeshift" },
+        { label: "Why it matters", hint: "Privacy in DeFi, v4.0", href: "#why-this-integration-matters" },
+      ];
+      if (lead > -1) {
+        const at = isEl(rows[lead + 1], "p") ? lead + 2 : lead + 1;
+        rows.splice(at, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+      }
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -4913,6 +5132,8 @@ export default async function Page(props: {
             zkool: slug[0] === "guides" && slug[1] === "zkool-multisig",
             btcpay: slug[0] === "guides" && slug[1] === "btcpayserver-zcash-plugin",
             maya: slug[0] === "guides" && slug[1] === "maya-protocol",
+            redbridge: slug[0] === "guides" && slug[1] === "avalanche-redbridge",
+            shapeshift: slug[0] === "guides" && slug[1] === "shapeshift-zcash",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
