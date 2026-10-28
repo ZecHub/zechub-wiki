@@ -107,7 +107,7 @@ export default function FloatingExplore() {
       )}
 
       <div
-        className="fixed bottom-6 right-6 z-50 imd:bottom-8 imd:right-8"
+        className="fixed bottom-6 right-6 z-50 imd:bottom-24 imd:right-8"
         onMouseLeave={() => {
           if (!isMobile) {
             timeoutRef.current = setTimeout(() => setOpen(false), 150);
@@ -140,16 +140,17 @@ export default function FloatingExplore() {
           </svg>
         </Button>
 
-        {/* Desktop: outlined site-style button with a hamburger icon, same menu as the round button. */}
+        {/* Desktop: round outlined hamburger button (raised so it clears the footer's Shop button), same menu as the round Z button. */}
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           aria-haspopup="true"
           aria-expanded={open}
-          className="hidden cursor-pointer items-center gap-2.5 rounded-lg border border-brand/60 bg-background/90 px-4 py-2.5 text-sm font-semibold text-brand shadow-lg backdrop-blur transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white imd:inline-flex"
+          aria-label={tx("Explore")}
+          title={tx("Explore")}
+          className="hidden h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-brand/60 bg-background/90 p-0 text-brand shadow-lg backdrop-blur transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white imd:inline-flex"
         >
-          <Menu aria-hidden="true" className="h-4 w-4" />
-          {tx("Explore")}
+          <Menu aria-hidden="true" className="h-5 w-5" />
         </button>
 
         {open && (
