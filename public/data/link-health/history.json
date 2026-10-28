@@ -32,5 +32,22 @@
       "error": 8,
       "invalid": 0
     }
+  },
+  {
+    "date": "2026-10-28",
+    "generatedAt": "2026-10-28T14:02:12.395Z",
+    "filesScanned": 746,
+    "serious": 16,
+    "totals": {
+      "broken": 13,
+      "dns": 0,
+      "blocked": 63,
+      "redirect": 615,
+      "route": 2,
+      "asset": 1,
+      "timeout": 1,
+      "error": 7,
+      "invalid": 0
+    }
   }
 ]
