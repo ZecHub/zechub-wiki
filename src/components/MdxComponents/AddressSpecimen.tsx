@@ -12,7 +12,7 @@ export function AddressGrid(props: Record<string, unknown> & { children?: React.
 // One example address: generated QR code, type label, prefix and length badges, copyable address.
 export function AddressSpecimen(props: Record<string, unknown>) {
   const address = String(props.address ?? "");
-  const label = String(props.label ?? "");
+  const label = String(props.label ?? "").replace(/(^|[\s+])([a-z])/g, (_m, a, b) => a + b.toUpperCase());
   const length = String(props.length ?? address.length);
   const prefix = String(props.prefix ?? address.slice(0, address.startsWith("u1") || address.startsWith("zs") ? 2 : 2));
   const [copied, setCopied] = useState(false);
