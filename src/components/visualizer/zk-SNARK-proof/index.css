@@ -113,3 +113,25 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Scoped palette for the zk-SNARK visualizer: follows the site's brand color instead of the gold visualizer theme. */
+.zk-viz {
+  --color-primary: var(--color-brand);
+  --color-primary-foreground: var(--color-on-brand);
+  --color-secondary: var(--color-brand-hover);
+  --color-accent: var(--color-brand);
+  --color-ring: var(--color-brand);
+  --color-foreground: #0f172a;
+  --color-card: rgb(248 250 252 / 0.7);
+  --color-border: rgb(15 23 42 / 0.12);
+  --color-muted-foreground: #475569;
+  --color-background: transparent;
+}
+.dark .zk-viz {
+  --color-secondary: var(--color-brand-soft);
+  --color-accent: var(--color-brand-soft);
+  --color-foreground: #e2e8f0;
+  --color-card: rgb(255 255 255 / 0.03);
+  --color-border: rgb(255 255 255 / 0.1);
+  --color-muted-foreground: #94a3b8;
+}

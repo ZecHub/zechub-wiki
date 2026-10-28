@@ -148,12 +148,12 @@ const ZKSNARKProofVisualizer = ({
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className="min-h-screen py-12 px-6 rounded-sm bg-background text-foreground">
+    <div className="zk-viz py-8 imd:py-12 px-0 imd:px-6 text-foreground">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header */}
         <div className="block">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-2">zk-SNARK Visualizer</h1>
+            <h1 className="text-3xl imd:text-4xl font-bold mb-2 tracking-tight">zk-SNARK Visualizer</h1>
             <p className="text-muted-foreground">
               Interactive demonstration of shielded transactions
             </p>
@@ -162,7 +162,7 @@ const ZKSNARKProofVisualizer = ({
         </div>
 
         {/* Progress Bar */}
-        <Card className="bg-card p-6 space-y-4">
+        <Card className="bg-card shadow-none p-6 space-y-4">
           <div className="flex items-center justify-between text-sm">
             <span className="font-medium">
               Step {currentStep + 1} of {steps.length}
@@ -171,13 +171,13 @@ const ZKSNARKProofVisualizer = ({
               {Math.round(progress)}% Complete
             </span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <Progress value={progress} className="h-2 bg-slate-200 dark:bg-white/10" />
         </Card>
 
         {/* Main Visualization Area */}
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Visual Diagram */}
-          <Card className="bg-card p-8 min-h-[500px] flex items-center justify-center border-primary/20">
+          <Card className="bg-card shadow-none p-8 min-h-[500px] flex items-center justify-center border-primary/20">
             <AnimatePresence mode="wait">
               <ProofStep
                 key={currentStep}
@@ -188,7 +188,7 @@ const ZKSNARKProofVisualizer = ({
           </Card>
 
           {/* Explanation Panel */}
-          <Card className="bg-card p-8 space-y-6 border-secondary/20">
+          <Card className="bg-card shadow-none p-8 space-y-6 border-secondary/20">
             <motion.div
               key={currentStep}
               initial={{ opacity: 0, x: 20 }}
@@ -204,7 +204,7 @@ const ZKSNARKProofVisualizer = ({
                 <h2 className="text-3xl font-bold">
                   {steps[currentStep].title}
                 </h2>
-                <p className="text-xl text-secondary">
+                <p className="text-lg imd:text-xl text-brand dark:text-brand-soft">
                   {steps[currentStep].description}
                 </p>
               </div>
@@ -220,7 +220,7 @@ const ZKSNARKProofVisualizer = ({
 
               {currentStep === 3 && (
                 <Card className="p-4 bg-accent/5 border-accent/20">
-                  <h4 className="font-semibold mb-2 text-accent">
+                  <h4 className="font-semibold mb-2 text-brand dark:text-brand-soft">
                     Key Insight:
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -235,13 +235,13 @@ const ZKSNARKProofVisualizer = ({
         </div>
 
         {/* Controls */}
-        <Card className="bg-card p-6">
+        <Card className="bg-card shadow-none p-6">
           <div className="grid grid-cols-2 imd:grid-cols-4 justify-center gap-4">
             <Button
               variant="outline"
               size="lg"
               onClick={handleReset}
-              className="border-destructive/30 hover:border-destructive/50"
+              className="hover:bg-brand/10 hover:text-foreground"
             >
               <RotateCcw className="w-4 h-4 mr-2" />
               Reset
@@ -252,6 +252,7 @@ const ZKSNARKProofVisualizer = ({
               size="lg"
               onClick={handlePrevious}
               disabled={currentStep === 0}
+              className="hover:bg-brand/10 hover:text-foreground"
             >
               <ChevronLeft className="w-4 h-4 mr-2" />
               Previous
@@ -275,7 +276,7 @@ const ZKSNARKProofVisualizer = ({
               )}
             </Button>
 
-            <Button variant="outline" size="lg" onClick={handleNext}>
+            <Button variant="outline" size="lg" onClick={handleNext} className="hover:bg-brand/10 hover:text-foreground">
               Next
               <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
@@ -287,6 +288,7 @@ const ZKSNARKProofVisualizer = ({
               <button
                 key={index}
                 onClick={() => setCurrentStep(index)}
+                aria-label={`Go to step ${index + 1}`}
                 className={`w-2 h-2 rounded-full transition-all ${
                   index === currentStep
                     ? "bg-primary w-8"
