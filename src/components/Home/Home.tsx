@@ -494,7 +494,7 @@ const Home = (_props: HomeProps) => {
               {feature.art ? (
                 <CardArt
                   art={feature.art}
-                  place="right-0 top-0 h-[44%] w-[55%]"
+                  place="right-0 top-0 h-24 w-32 imd:h-[44%] imd:w-[55%]"
                 />
               ) : null}
               <IconBadge icon={feature.icon} />

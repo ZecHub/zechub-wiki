@@ -69,7 +69,7 @@ export default function ColorThemePicker() {
         aria-expanded={open}
         title="Color theme"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-9 w-8 items-center justify-center rounded-md text-nav-foreground transition-colors hover:bg-nav-hover-bg hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-nav-foreground transition-colors hover:bg-nav-hover-bg hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
         <Palette aria-hidden="true" className="h-4 w-4" />
       </button>

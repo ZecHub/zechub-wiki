@@ -15,18 +15,18 @@ const Footer = () => {
             <Link
               href="https://zechub.social/@Zechub"
               rel="me"
-              className="font-medium text-slate-800 hover:underline dark:text-slate-200"
+              className="inline-block py-2 font-medium text-slate-800 hover:underline dark:text-slate-200"
             >
               Zechub™
             </Link>
             . {t.footer?.allRightsReserved || "All Rights Reserved"}.
           </span>
           <span className="text-slate-500 dark:text-slate-400">
-            <Link href={"/sitemap"} className="hover:underline">
+            <Link href={"/sitemap"} className="inline-block px-1 py-2 hover:underline">
               Sitemap
             </Link>
             {" · "}
-            <Link href={"/privacy"} className="hover:underline">
+            <Link href={"/privacy"} className="inline-block px-1 py-2 hover:underline">
               {t.footer?.privacy || "Privacy"}
             </Link>
           </span>
