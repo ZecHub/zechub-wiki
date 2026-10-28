@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; brave?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -3392,6 +3392,126 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       ];
       rows.splice(0, rows.length, ...out);
     }
+    if (opts.brave && Array.isArray(tree.children)) {
+      // Brave Wallet + shielded ZEC: lead, requirements callout, jump list, numbered parts, framed screenshots, address types as points, resources.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const hasBadge = (x: any): boolean => isEl(x, "img") && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x?.children || []).some(hasBadge);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
+      }
+      const attrOf = (n: any, key: string): string => {
+        if (n.properties && n.properties[key] != null) return String(n.properties[key]);
+        const hit = (n.attributes || []).find((at: any) => at.name === key);
+        return hit && typeof hit.value === "string" ? hit.value : "";
+      };
+      const findFrame = (n: any): any => {
+        if (!n || !(n.type === "element" || n.type === "mdxJsxFlowElement")) return null;
+        if ((n.tagName || n.name) === "iframe") return n;
+        return (n.children || []).map(findFrame).find(Boolean) || null;
+      };
+      // Videos become compact cards.
+      for (let k = 0; k < rows.length; k++) {
+        if (!isEl(rows[k], "div")) continue;
+        const fr = findFrame(rows[k]);
+        const m = fr ? attrOf(fr, "src").match(/youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,})/) : null;
+        if (fr && m) rows[k] = el("videoblock", { exvideo: m[1], extitle: attrOf(fr, "title") }, []);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // "Why shielded ZEC support matters": the three sentences become bullets.
+      const wi = rows.findIndex((x) => isEl(x, "h2") && /^why shielded zec support matters$/i.test(h2Text(x)));
+      if (wi > -1) {
+        let end = wi + 1;
+        const lis: any[] = [];
+        while (end < rows.length && isEl(rows[end], "p")) { lis.push(el("li", {}, rows[end].children || [])); end++; }
+        if (lis.length) rows.splice(wi + 1, end - wi - 1, el("ul", {}, lis));
+      }
+      // Tutorial heading, parts as numbered sections, "Steps covered" labels dropped, screenshots framed with real alt text.
+      const alts = ["Brave Wallet dashboard after setup", "Manage Assets with ZEC enabled", "Receive screen showing a Zcash Unified Address", "Send screen for shielded ZEC"];
+      let imgN = 0;
+      const frame = (x: any) => {
+        if (isEl(x, "img")) {
+          x.properties = { ...(x.properties || {}), dataFrame: "true", alt: alts[imgN] || x.properties?.alt || "" };
+          imgN++;
+        }
+        (x?.children || []).forEach(frame);
+      };
+      for (let k = rows.length - 1; k >= 0; k--) {
+        const x = rows[k];
+        if (isEl(x, "p") && /^steps covered:?$/i.test(textOf(x).trim())) rows.splice(k, 1);
+      }
+      for (let k = 0; k < rows.length; k++) {
+        const x = rows[k];
+        if (isEl(x, "h2")) {
+          const t = h2Text(x);
+          const mm = /^part\s+(\d+)\s*[:.\-]\s*(.+)$/i.exec(t);
+          if (mm) rows[k] = el("h2", { dataStep: mm[1] }, [txt(mm[2])]);
+          else if (/^tutorial$/i.test(t)) rows[k] = el("h2", {}, [txt("Video tutorial")]);
+          else if (/^advanced$/i.test(t)) rows[k] = el("h2", {}, [txt("Advanced: DeFi with NEAR Intents")]);
+        }
+        if (isEl(x, "p") && findImg(x)) frame(x);
+      }
+      function findImg(n: any): boolean { return isEl(n, "img") || (n?.children || []).some(findImg); }
+      // Address types as numbered points.
+      const ai = rows.findIndex((x) => isEl(x, "h2") && /^address types$/i.test(h2Text(x)));
+      if (ai > -1) {
+        let end = ai + 1;
+        while (end < rows.length && !isEl(rows[end], "h2")) end++;
+        const body = (x: any) => {
+          const kids: any[] = (x.children || []).filter((c: any) => !isWs(c));
+          const rest = kids.slice(1);
+          const f = rest.findIndex((c: any) => c.type === "text");
+          if (f > -1) rest[f] = txt(String(rest[f].value).replace(/^\s*[-\u2013\u2014]\s*/, ""));
+          return rest;
+        };
+        const pts: any[] = [];
+        for (const x of rows.slice(ai + 1, end)) {
+          if (!isEl(x, "p")) continue;
+          const kids: any[] = (x.children || []).filter((c: any) => !isWs(c));
+          if (!isEl(kids[0], "strong")) continue;
+          pts.push(el("pointitem", { n: String(pts.length + 1), title: textOf(kids[0]).trim() }, [el("p", {}, body(x))]));
+        }
+        if (pts.length) rows.splice(ai + 1, end - ai - 1, el("pointlist", {}, pts));
+      }
+      // Conclusion without the slogan, then resources.
+      for (let k = rows.length - 1; k >= 0; k--) {
+        if (isEl(rows[k], "p") && /^stay private\. stay free/i.test(textOf(rows[k]).trim())) rows.splice(k, 1);
+      }
+      const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+      rows.push(
+        el("h2", {}, [txt("Resources")]),
+        el("communitygrid", {}, [
+          card("Zcash and address types", "Brave's support article on Zcash in Brave Wallet.", "https://support.brave.app/hc/en-us/articles/26390040705165-Zcash-and-Address-Types"),
+          card("Brave Wallet announcement", "Shielded Zcash arrives in Brave desktop v1.77.", "https://x.com/brave/status/1907467306034409554"),
+          card("Community walkthrough", "Step-by-step guide with real transactions and screenshots.", "https://forum.zcashcommunity.com/t/getting-started-with-brave-wallet-for-zcash-a-step-by-step-walkthrough-with-real-transactions-and-screenshots/51921"),
+          card("Ironwood support in Brave", "Tracking issue for NU6.3 support in Brave Wallet.", "https://github.com/brave/brave-browser/issues/56872"),
+        ]),
+      );
+      // Requirements callout and jump list after the lead.
+      const note = el("guidecallout", { title: "Before you start" }, [
+        el("ul", { className: ["m-0"] }, [
+          el("li", {}, [el("strong", {}, [txt("Desktop only: ")]), txt("shielded ZEC works in Brave on desktop. Brave's support page says Android and iOS are not available yet.")]),
+          el("li", {}, [el("strong", {}, [txt("Version: ")]), txt("Brave 1.77 or newer. Keep Brave updated, since support for the Ironwood (NU6.3) upgrade is being rolled out in newer releases.")]),
+        ]),
+      ]);
+      const jump = el("jumpnav", {
+        title: "Jump to",
+        items: JSON.stringify([
+          { label: "Set up", hint: "Install and add ZEC", href: "#setting-up-brave-wallet" },
+          { label: "Receive", hint: "Unified Address", href: "#receiving-shielded-zec-unified-address" },
+          { label: "Send", hint: "Private transfer", href: "#sending-shielded-zec-privately" },
+          { label: "Address types", hint: "t, z and unified", href: "#address-types" },
+        ]),
+      }, []);
+      if (lead > -1) rows.splice(lead + 1, 0, note, jump);
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -5430,6 +5550,7 @@ export default async function Page(props: {
             free2z: slug[0] === "guides" && slug[1] === "free2z-live",
             usezec: slug[0] === "guides" && slug[1] === "using-zec-privately",
             keystone: slug[0] === "guides" && slug[1] === "keystone-zashi",
+            brave: slug[0] === "guides" && slug[1] === "brave-wallet-guide",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
