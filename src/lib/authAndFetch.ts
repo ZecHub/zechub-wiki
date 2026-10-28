@@ -263,23 +263,37 @@ async function fetchRawFile(
     .map(encodeURIComponent)
     .join("/")}`;
 
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      method,
-      headers:
-        contentRepoIsPrivate && authUser
-          ? { Authorization: `token ${authUser}` }
-          : undefined,
-      // Next must not layer its own fetch cache under unstable_cache: the
-      // wrapper already owns the TTL and the revalidate tag.
-      cache: "no-store",
-    });
-  } catch (err: any) {
+  let res: Response | undefined;
+  let lastErr: any;
+  // A cold dev server fires dozens of reads at once, and a socket that is
+  // reset or times out is transient. Retry network-level failures (never HTTP
+  // statuses) a couple of times before reporting them.
+  for (let attempt = 0; attempt < 3 && !res; attempt++) {
+    if (attempt > 0) {
+      await new Promise((r) => setTimeout(r, 300 * attempt));
+    }
+    try {
+      res = await fetch(url, {
+        method,
+        headers:
+          contentRepoIsPrivate && authUser
+            ? { Authorization: `token ${authUser}` }
+            : undefined,
+        // Next must not layer its own fetch cache under unstable_cache: the
+        // wrapper already owns the TTL and the revalidate tag.
+        cache: "no-store",
+      });
+    } catch (err: any) {
+      lastErr = err;
+    }
+  }
+  if (!res) {
     // DNS/socket failure — transient by definition, never "missing". Thrown,
     // never returned as null, so it is never cached as an absent page.
-    if (err?.status) throw err;
-    throw Object.assign(new Error(err?.message ?? "fetch failed"), { status: 0 });
+    if (lastErr?.status) throw lastErr;
+    throw Object.assign(new Error(lastErr?.message ?? "fetch failed"), {
+      status: 0,
+    });
   }
 
   if (res.status === 404) return null;
