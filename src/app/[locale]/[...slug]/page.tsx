@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; brave?: boolean; explorers?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; brave?: boolean; explorers?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1967,6 +1967,106 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         (x.children || []).forEach(swapBtn);
       };
       rows.forEach(swapBtn);
+    }
+    if (opts.akashz && Array.isArray(tree.children)) {
+      // Zebra on Akash: lead, update notice, jump list, port-mapping and warning callouts, real comparison table, resource cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const hTxt = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const hasBadge = (x: any): boolean => isEl(x, "img") && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x?.children || []).some(hasBadge);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
+      }
+      const rep = (n: any, from: string, to: string) => {
+        if (n?.type === "text" && typeof n.value === "string" && n.value.includes(from)) n.value = n.value.split(from).join(to);
+        (n?.children || []).forEach((c: any) => rep(c, from, to));
+      };
+      // Storage figures follow the Zebra requirements page (about 300 GB mainnet, 10 GB testnet).
+      for (const r of rows) {
+        rep(r, "(100GB+ for mainnet, ~40GB for testnet)", "(about 300 GB for mainnet and 10 GB for testnet, per the Zebra requirements page)");
+        rep(r, "100GB+ for mainnet, ~40GB for testnet", "about 300 GB for mainnet and 10 GB for testnet");
+        rep(r, "Storage: size: 120Gi (minimum for mainnet)", "Storage: keep at least 300Gi on mainnet (Zebra's requirements page lists about 300 GB)");
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      // "Important: Port Mapping" block becomes a callout.
+      const pm = rows.findIndex((x) => isEl(x, "h3") && /^important:\s*port mapping/i.test(textOf(x).trim()));
+      if (pm > -1) {
+        let end = pm + 1;
+        while (end < rows.length && !isEl(rows[end], "h2") && !isEl(rows[end], "h3")) end++;
+        const body = rows.slice(pm + 1, end);
+        rows.splice(pm, end - pm, el("guidecallout", { title: "Port mapping on Akash" }, body));
+      }
+      // "Warning:", "Note:" paragraphs become callouts.
+      const kinds: Record<string, string> = { "warning": "Warning", "note": "Note", "port mapping reminder": "Port mapping reminder", "note the port mapping": "Port mapping" };
+      for (let k = 0; k < rows.length; k++) {
+        const x = rows[k];
+        if (!isEl(x, "p")) continue;
+        const kids: any[] = x.children || [];
+        const f = kids.findIndex((c: any) => !isWs(c));
+        if (f < 0 || !isEl(kids[f], "strong")) continue;
+        const label = textOf(kids[f]).trim().replace(/:$/, "").toLowerCase();
+        if (!kinds[label]) continue;
+        kids.splice(f, 1);
+        if (kids[f]?.type === "text") kids[f] = txt(String(kids[f].value).replace(/^\s*:?\s*/, ""));
+        rows[k] = el("guidecallout", { title: kinds[label] }, [x]);
+      }
+      // Mainnet vs Testnet: the ASCII table becomes a real table.
+      const mi = rows.findIndex((x) => isEl(x, "h2") && /^mainnet vs testnet/i.test(hTxt(x)));
+      if (mi > -1) {
+        const pi = rows.findIndex((x, i) => i > mi && isEl(x, "pre"));
+        if (pi > -1) {
+          const lines = textOf(rows[pi]).split("\n").map((l) => l.trim()).filter((l) => l.startsWith("|"));
+          const cells = lines.map((l) => l.replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim()));
+          if (cells.length > 2) {
+            const [head, ...body] = cells;
+            const cell = (tag: string, t: string) => el(tag, {}, [txt(t)]);
+            rows[pi] = el("table", {}, [
+              el("thead", {}, [el("tr", {}, head.map((c, i) => cell("th", i === 0 ? "" : c)))]),
+              el("tbody", {}, body.map((r) => el("tr", {}, r.map((c) => cell("td", c))))),
+            ]);
+          }
+        }
+      }
+      // Resources as cards.
+      const ri = rows.findIndex((x) => isEl(x, "h2") && /^additional resources/i.test(hTxt(x)));
+      if (ri > -1) {
+        const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+        rows.splice(ri, rows.length - ri,
+          el("h2", {}, [txt("Additional resources")]),
+          el("communitygrid", {}, [
+            card("Akash Console", "Managed console for creating and monitoring deployments.", "https://console.akash.network"),
+            card("Console Air", "Self-hosted console that works with your own wallet.", "https://github.com/akash-network/console-air"),
+            card("Akash documentation", "Deployment guides, SDL reference and billing.", "https://akash.network/docs/"),
+            card("Zebra documentation", "Requirements, configuration and release notes.", "https://zebra.zfnd.org/user/requirements.html"),
+            card("Zcash explorers", "Check your node's view of the chain against public explorers.", "/guides/blockchain-explorers"),
+            card("Akash Discord", "Help with providers and deployments.", "https://discord.akash.network"),
+          ]),
+        );
+      }
+      const note = el("guidecallout", { title: "Check before you deploy" }, [
+        el("ul", { className: ["m-0"] }, [
+          el("li", {}, [el("strong", {}, [txt("Akash tooling has changed. ")]), txt("Akash's docs now describe two consoles: console.akash.network (managed, email sign-in and card billing) and Console Air (self-hosted, with your own Keplr wallet). Deposits there are held in ACT, and AKT pays transaction fees. Steps 1 to 3 below, including the 5 AKT deposit, follow the older wallet flow and may differ on screen.")]),
+          el("li", {}, [el("strong", {}, [txt("Storage: ")]), txt("Zebra's requirements page lists about 300 GB for mainnet (and growing) and 10 GB for testnet. Size your SDL accordingly.")]),
+          el("li", {}, [el("strong", {}, [txt("Costs: ")]), txt("the monthly figures are estimates. Provider bids and token prices change, so rely on the bids you see in the console.")]),
+        ]),
+      ]);
+      const jump = el("jumpnav", {
+        title: "Jump to",
+        items: JSON.stringify([
+          { label: "Prerequisites", hint: "Wallet and funds", href: "#prerequisites" },
+          { label: "Deploy", hint: "Seven steps", href: "#connect-your-wallet" },
+          { label: "Configuration", hint: "Testnet, RPC, metrics", href: "#configuration-options" },
+          { label: "Troubleshooting", hint: "Common problems", href: "#troubleshooting" },
+          { label: "Costs", hint: "Keep spending in check", href: "#cost-management" },
+        ]),
+      }, []);
+      if (lead > -1) rows.splice(lead + 1, 0, note, jump);
     }
     if (opts.mig && Array.isArray(tree.children)) {
       // zcashd -> Zebra/Zallet migration: bold-only paragraphs become numbered steps and sub-headings.
@@ -5716,6 +5816,7 @@ export default async function Page(props: {
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
             akashBtn: slug[0] === "guides" && slug[1] === "akash-network-zebra",
+            akashz: slug[0] === "guides" && slug[1] === "akash-network-zebra",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
