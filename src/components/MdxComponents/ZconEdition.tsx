@@ -10,12 +10,17 @@ export function ZconEdition(props: Record<string, unknown>) {
   const desc = String(props.desc ?? "");
   const list = String(props.list ?? "");
   const meta = String(props.meta ?? "");
+  // The chip only helps when the title does not already carry the edition name ("Vozes 1" next to "Zcon Vozes 1" says it twice).
+  const norm = (v: string) => v.replace(/[^a-z0-9]/gi, "").toLowerCase();
+  const sameName = !!label && (norm(title).includes(norm(label)) || norm(title).includes(norm(label).replace(/\d+$/, "")));
   return (
     <section id={String(props.anchor ?? "")} className="not-prose my-10 scroll-mt-24">
       <div className="flex flex-wrap items-center gap-3">
-        <span className="rounded-lg border border-brand/30 bg-brand/10 px-3 py-1 text-sm font-semibold tracking-wide text-brand dark:text-brand-soft">
-          {label}
-        </span>
+        {!sameName && (
+          <span className="rounded-lg border border-brand/30 bg-brand/10 px-3 py-1 text-sm font-semibold tracking-wide text-brand dark:text-brand-soft">
+            {label}
+          </span>
+        )}
         <h2 className="m-0 min-w-0 flex-1 border-0 p-0 text-xl font-semibold leading-tight text-slate-900 dark:text-white">{title}</h2>
         {list && (
           <a
