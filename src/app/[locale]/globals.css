@@ -1039,3 +1039,11 @@ table[data-stack] td {
   white-space: normal;
   overflow-wrap: anywhere;
 }
+
+/* Wiki tables: some pages ship rows with a light-only hover (hover:bg-slate-50), which turns the row white with white text in dark mode. */
+main table tbody tr:hover {
+  background-color: color-mix(in srgb, var(--color-brand) 6%, transparent) !important;
+}
+.dark main table tbody tr:hover {
+  background-color: rgb(255 255 255 / 0.04) !important;
+}

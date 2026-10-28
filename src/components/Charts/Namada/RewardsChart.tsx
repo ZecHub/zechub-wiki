@@ -342,8 +342,8 @@ const RewardChart = (props: RewardChartProps) => {
             %
           </p>
         </div>
-        <div className="bg-purple-50 dark:bg-slate-800 p-4 rounded-lg">
-          <h3 className="font-semibold text-purple-800">Current Inflation</h3>
+        <div className="bg-brand/5 dark:bg-slate-800 p-4 rounded-lg">
+          <h3 className="font-semibold text-brand-hover">Current Inflation</h3>
           <p className="text-2xl font-bold">
             {(
               parseFloat(

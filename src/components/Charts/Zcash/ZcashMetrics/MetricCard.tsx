@@ -26,9 +26,9 @@ export const MetricCard = ({
       group relative flex flex-col bg-slate-100 dark:bg-slate-800/50 
       border border-gray-200 dark:border-slate-700 
       rounded-xl p-5 md:p-6 shadow transition-all duration-200 
-      hover:border-violet-500/50 
-      hover:ring-1 hover:ring-violet-500/30 
-      hover:shadow-xl hover:shadow-violet-500/10
+      hover:border-brand/50 
+      hover:ring-1 hover:ring-brand/30 
+      hover:shadow-xl hover:shadow-brand/10
       
       ${width}
       ${height}
@@ -38,7 +38,7 @@ export const MetricCard = ({
     {/* Purple accent bar */}
     <div
       className="
-        absolute top-0 left-4 h-[3px] w-0 bg-violet-500 rounded-full 
+        absolute top-0 left-4 h-[3px] w-0 bg-brand rounded-full 
         opacity-0 transition-all duration-300 ease-out
         group-hover:w-1/2 group-hover:opacity-100
       "
@@ -46,7 +46,7 @@ export const MetricCard = ({
 
     {/* Icon */}
     {icon && (
-      <div className="absolute top-4 right-4 text-slate-400 dark:text-slate-500 group-hover:text-violet-500 transition-colors">
+      <div className="absolute top-4 right-4 text-slate-400 dark:text-slate-500 group-hover:text-brand transition-colors">
         {icon}
       </div>
     )}

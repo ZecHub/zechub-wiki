@@ -345,8 +345,8 @@ const Dashboard = ({
               key={tab.key}
               className={`cursor-pointer px-3 py-2 md:px-5 md:py-2.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm flex-1 md:flex-none justify-center ${
                 currentView === tab.key
-                  ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800 hover:bg-purple-700 dark:hover:bg-purple-800"
-                  : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
+                  ? "bg-brand-hover text-white shadow-lg dark:bg-brand-hover hover:bg-brand-hover dark:hover:bg-brand-hover"
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand-hover dark:hover:bg-brand-hover hover:text-white"
               }`}
               onClick={() => changeView(tab.key)}
             >
@@ -364,7 +364,7 @@ const Dashboard = ({
               className="flex items-center gap-3 w-full px-4 py-3 cursor-pointer"
               aria-expanded={mobileTabOpen}
             >
-              <div className="w-8 h-8 rounded-xl bg-purple-800 flex items-center justify-center text-white flex-shrink-0 [&>svg]:w-4 [&>svg]:h-4">
+              <div className="w-8 h-8 rounded-xl bg-brand-hover flex items-center justify-center text-white flex-shrink-0 [&>svg]:w-4 [&>svg]:h-4">
                 {tabs.find((t) => t.key === currentView)?.icon}
               </div>
               <div className="flex-1 text-left">
@@ -395,7 +395,7 @@ const Dashboard = ({
                   <div
                     className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 [&>svg]:w-4 [&>svg]:h-4 ${
                       currentView === tab.key
-                        ? "bg-purple-800 text-white"
+                        ? "bg-brand-hover text-white"
                         : "bg-slate-100 dark:bg-slate-800 text-slate-500"
                     }`}
                   >
@@ -404,14 +404,14 @@ const Dashboard = ({
                   <span
                     className={`text-sm ${
                       currentView === tab.key
-                        ? "font-medium text-purple-700 dark:text-purple-400"
+                        ? "font-medium text-brand-hover dark:text-brand-soft"
                         : "text-foreground"
                     }`}
                   >
                     {tab.label}
                   </span>
                   {currentView === tab.key && (
-                    <Check className="w-4 h-4 ml-auto text-purple-700 dark:text-purple-400" />
+                    <Check className="w-4 h-4 ml-auto text-brand-hover dark:text-brand-soft" />
                   )}
                 </button>
               ))}
@@ -426,7 +426,7 @@ const Dashboard = ({
         >
           <Button
             size="icon"
-            className="cursor-pointer bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
+            className="cursor-pointer bg-brand hover:bg-brand-hover text-white h-11 w-11 rounded-2xl shadow-lg"
             onClick={() => setOpen(!open)}
             title={t?.shieldedNetworks || "Shielded Networks"}
           >
@@ -435,7 +435,7 @@ const Dashboard = ({
           {open && (
             <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700">
               <ul className="w-[160px]">
-                <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
+                <li className="px-4 py-2 hover:bg-brand/20 dark:hover:bg-brand/30 rounded-md cursor-pointer w-[160px]">
                   <Link
                     href="https://namada.zechub.wiki"
                     className="block w-full h-full"
@@ -473,7 +473,7 @@ const Dashboard = ({
                     }}
                   />
                 ) : (
-                  <div className="w-8 h-8 bg-purple-600 rounded-2xl flex items-center justify-center text-white text-xl font-medium shadow-inner">
+                  <div className="w-8 h-8 bg-brand rounded-2xl flex items-center justify-center text-white text-xl font-medium shadow-inner">
                     {channelConfigs.find((c) => c.value === currentChannel)
                       ?.name[0] || "Y"}
                   </div>
@@ -527,7 +527,7 @@ const Dashboard = ({
                       placeholder="Search channels..."
                       value={channelSearchTerm}
                       onChange={(e) => setChannelSearchTerm(e.target.value)}
-                      className="w-full bg-background border border-border focus:border-purple-500 rounded-2xl px-5 py-4 text-base placeholder:text-muted-foreground focus:outline-none"
+                      className="w-full bg-background border border-border focus:border-brand rounded-2xl px-5 py-4 text-base placeholder:text-muted-foreground focus:outline-none"
                     />
                   </div>
                   <div className="flex-1 overflow-auto p-3">
@@ -562,7 +562,7 @@ const Dashboard = ({
                                   className="w-8 h-8 rounded-2xl object-cover"
                                 />
                               ) : (
-                                <div className="w-8 h-8 bg-purple-600 rounded-2xl flex items-center justify-center text-white text-lg font-medium">
+                                <div className="w-8 h-8 bg-brand rounded-2xl flex items-center justify-center text-white text-lg font-medium">
                                   {ch.name[0]}
                                 </div>
                               )}
@@ -584,20 +584,20 @@ const Dashboard = ({
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-64 md:h-72">
-                <Play className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-purple-200 dark:text-purple-950/30" />
+                <Play className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-brand/30 dark:text-brand/10" />
                 <p className="text-sm text-muted-foreground relative z-10">
                   {t?.totalVideos || "Total Videos"}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold text-purple-600 mt-3 relative z-10">
+                <p className="text-4xl md:text-5xl font-bold text-brand mt-3 relative z-10">
                   {totalVideos}
                 </p>
               </div>
               <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-64 md:h-72">
-                <Eye className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-purple-200 dark:text-purple-950/30" />
+                <Eye className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-brand/30 dark:text-brand/10" />
                 <p className="text-sm text-muted-foreground relative z-10">
                   {t?.totalViews || "Total Views"}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold text-purple-600 mt-3 relative z-10">
+                <p className="text-4xl md:text-5xl font-bold text-brand mt-3 relative z-10">
                   {formatViews(totalViews)}
                 </p>
               </div>
@@ -617,7 +617,7 @@ const Dashboard = ({
                 <p className="text-base font-medium truncate">
                   {mostViewed.title || "—"}
                 </p>
-                <p className="text-purple-600 font-bold">
+                <p className="text-brand font-bold">
                   {formatViews(mostViewed.views || 0)}{" "}
                   {t?.viewsSuffix || "views"}
                 </p>
@@ -629,7 +629,7 @@ const Dashboard = ({
               <input
                 type="text"
                 placeholder={t?.searchPlaceholder || "Search videos..."}
-                className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-500 dark:bg-slate-700"
+                className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-brand dark:bg-slate-700"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -640,7 +640,7 @@ const Dashboard = ({
               <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner flex-wrap">
                 <Button
                   variant="ghost"
-                  className={`cursor-pointer px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "top" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                  className={`cursor-pointer px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "top" ? "bg-brand-hover text-white shadow-sm" : "hover:bg-brand/10 dark:hover:bg-brand/20"}`}
                   onClick={() => {
                     setSubView("top");
                     setLatestSortByViews(false);
@@ -650,7 +650,7 @@ const Dashboard = ({
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`cursor-pointer px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "latest" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                  className={`cursor-pointer px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "latest" ? "bg-brand-hover text-white shadow-sm" : "hover:bg-brand/10 dark:hover:bg-brand/20"}`}
                   onClick={() => setSubView("latest")}
                 >
                   {t?.latest15Videos || "Latest 15 Videos"}
@@ -707,13 +707,13 @@ const Dashboard = ({
                         <span className="font-medium truncate pr-4 text-sm md:text-base">
                           {video.title}
                         </span>
-                        <span className="font-mono text-purple-600 font-semibold text-xs md:text-sm">
+                        <span className="font-mono text-brand font-semibold text-xs md:text-sm">
                           {formatViews(video.views || 0)}
                         </span>
                       </div>
                       <div className="h-4 md:h-5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all group-hover:brightness-110"
+                          className="h-full bg-gradient-to-r from-brand to-brand-hover transition-all group-hover:brightness-110"
                           style={{
                             width: `${Math.max(((video.views || 0) / (displayedVideos[0]?.views || 1)) * 100, 8)}%`,
                           }}
