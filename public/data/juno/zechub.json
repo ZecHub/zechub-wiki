@@ -4,7 +4,7 @@
     "name": "Unknown",
     "description": "",
     "member_count": 0,
-    "proposal_count": 188,
+    "proposal_count": 189,
     "config": {},
     "proposals": [
       {
@@ -7514,10 +7514,10 @@
           },
           "total_power": "23",
           "msgs": [],
-          "status": "open",
+          "status": "rejected",
           "votes": {
             "yes": "0",
-            "no": "9",
+            "no": "10",
             "abstain": "0"
           },
           "allow_revoting": true
@@ -7550,9 +7550,55 @@
           },
           "total_power": "23",
           "msgs": [],
+          "status": "passed",
+          "votes": {
+            "yes": "10",
+            "no": "0",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 189,
+        "proposal": {
+          "title": "Add Terp Network's FIAB DAO to ZecHub DAO",
+          "description": "## Background\nTerp Network is a public, community-run Cosmos SDK blockchain. Its FIAB DAO is a community subDAO on Terp Network, and it now holds a cross-chain account on Juno so it can take part in DAOs here directly.\n\nreturniflost is a member of Terp Network who has been building experience across the full stack of Cosmos SDK projects, and is now looking to contribute that experience to ZecHub.\n\n## Why?\n- returniflost intends to contribute to and participate in ZecHub DAO.\n- Specifically, returniflost wants to operate a Penumbra validator on behalf of the ZecHub community.\n- Joining through the FIAB DAO's cross-chain account keeps this participation accountable to a DAO, rather than to a single wallet.\n\n## Proposal\nAdd the following account as a ZecHub DAO member with a voting weight of 1:\n\n`juno1hafmtgxpruf5kzrrwftnxccuer46534e7z5t0jl4g4le66x8kkysrcgj9y`\n\nThis account is the cross-chain account of the FIAB DAO on Terp Network.\n\n## Action\nIf this vote passes, the account above is added to ZecHub DAO as a member with weight 1. From there, returniflost (through the FIAB DAO) will take part in ZecHub governance and work with the community on running a Penumbra validator on its behalf.",
+          "proposer": "juno1hafmtgxpruf5kzrrwftnxccuer46534e7z5t0jl4g4le66x8kkysrcgj9y",
+          "start_height": 43164575,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1793622786168677042"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "23",
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "contract_addr": "juno1re0pu5hdafdcexmvuvdngn0d5sttkp6wz4wfjdd3p9cwfhmg8h9s8ek80w",
+                  "msg": "eyJ1cGRhdGVfbWVtYmVycyI6eyJhZGQiOlt7ImFkZHIiOiJqdW5vMWhhZm10Z3hwcnVmNWt6cnJ3ZnRueGNjdWVyNDY1MzRlN3o1dDBqbDRnNGxlNjZ4OGtreXNyY2dqOXkiLCJ3ZWlnaHQiOjF9XSwicmVtb3ZlIjpbXX19",
+                  "funds": []
+                }
+              }
+            }
+          ],
           "status": "open",
           "votes": {
-            "yes": "8",
+            "yes": "1",
             "no": "0",
             "abstain": "0"
           },
