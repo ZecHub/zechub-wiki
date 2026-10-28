@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -2787,6 +2787,99 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         }
       }
     }
+    if (opts.maya && Array.isArray(tree.children)) {
+      // Maya Protocol: jump list, compact video card, differences as numbered points, wallets as link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const isWs = (x: any) => x && x.type === "text" && !String(x.value).trim();
+      const h2Text = (x: any) => textOf(x).replace(/#$/, "").trim();
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        const j = x && (x.type === "mdxJsxFlowElement" || x.type === "element") ? JSON.stringify(x) : "";
+        if (isWs(x) || isEl(x, "hr") || j.toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // The embedded video becomes the compact video card.
+      const findFrame = (x: any): any => {
+        if (!x || !(x.type === "element" || x.type === "mdxJsxFlowElement")) return null;
+        if ((x.tagName || x.name) === "iframe") return x;
+        return (x.children || []).map(findFrame).find(Boolean) || null;
+      };
+      const attrOf = (x: any, key: string): string => {
+        if (x.properties && x.properties[key] != null) return String(x.properties[key]);
+        const hit = (x.attributes || []).find((at: any) => at.name === key);
+        return hit && typeof hit.value === "string" ? hit.value : "";
+      };
+      for (let i = 0; i < rows.length; i++) {
+        const fr = isEl(rows[i], "div") ? findFrame(rows[i]) : null;
+        const m = fr ? attrOf(fr, "src").match(/youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]{6,})/) : null;
+        if (fr && m) rows[i] = el("videoblock", { exvideo: m[1], extitle: attrOf(fr, "title") }, []);
+      }
+      const tut = rows.findIndex((x) => isEl(x, "h2") && /^tutorial$/i.test(h2Text(x)));
+      if (tut > -1) rows[tut] = el("h2", {}, [{ type: "text", value: "Video tutorial" }]);
+      // Differences from THORChain: each subheading with its text becomes a numbered point.
+      const di = rows.findIndex((x) => isEl(x, "h2") && /^differences between/i.test(h2Text(x)));
+      if (di > -1) {
+        let end = di + 2;
+        while (end < rows.length && !isEl(rows[end], "h2")) end++;
+        const items: any[] = [];
+        let k = di + 1;
+        while (k < end) {
+          if (!isEl(rows[k], "h3")) { k++; continue; }
+          const title = textOf(rows[k]).trim();
+          let q = k + 1;
+          const body: any[] = [];
+          while (q < end && !isEl(rows[q], "h3")) { body.push(rows[q]); q++; }
+          items.push({ title, body, at: k, to: q });
+          k = q;
+        }
+        if (items.length) {
+          // Text after the last point (closing remarks) is not part of that point.
+          const last = items[items.length - 1];
+          const tail = last.body.splice(1);
+          const pts = items.map((it, n) => el("pointitem", { n: String(n + 1), title: it.title }, it.body));
+          rows.splice(items[0].at, last.to - items[0].at, el("pointlist", {}, pts), ...tail);
+        }
+      }
+      // Wallet and service entries become link cards; defunct services are dropped.
+      const wi = rows.findIndex((x) => isEl(x, "h2") && /wallet integration$/i.test(h2Text(x)));
+      if (wi > -1) {
+        let end = wi + 1;
+        while (end < rows.length && !isEl(rows[end], "h2")) end++;
+        const firstA = (x: any): any => {
+          if (isEl(x, "a")) return x;
+          for (const c of x?.children || []) { const r = firstA(c); if (r) return r; }
+          return null;
+        };
+        const cards: any[] = [];
+        const keep: any[] = [];
+        for (const r of rows.slice(wi + 1, end)) {
+          const a = isEl(r, "p") ? firstA(r) : null;
+          const full = textOf(r).trim();
+          if (a && a.properties?.href && full.includes(":")) {
+            const name = textOf(a).trim();
+            const desc = full.slice(full.indexOf(":") + 1).trim().replace(/^(a|an)\s+/i, (m0: string) => m0).replace(/^./, (c: string) => c.toUpperCase());
+            cards.push(el("communitycard", { name, desc: /^(ledger|keystore|xdefi|metamask|keplr|leap)/i.test(desc) ? "Connect with " + desc : desc, href: String(a.properties.href) }, []));
+          } else if (!/no longer online/i.test(full)) keep.push(r);
+        }
+        if (cards.length) rows.splice(wi + 1, end - wi - 1, ...keep, el("communitygrid", {}, cards));
+      }
+      // Hairline between sections, and a jump list after the title.
+      for (let k = 1; k < rows.length; k++) {
+        if (isEl(rows[k], "h2") && !isEl(rows[k - 1], "hr")) {
+          rows.splice(k, 0, el("hr", {}, []));
+          k++;
+        }
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const items = [
+        { label: "Video tutorial", hint: "Swap ETH for ZEC", href: "#video-tutorial" },
+        { label: "What is Maya", hint: "Protocol and Proof of Bond", href: "#what-is-maya-protocol" },
+        { label: "Maya vs THORChain", hint: "Key differences", href: "#differences-between-maya-and-thorchain" },
+        { label: "Wallets", hint: "Services that support Maya", href: "#maya-protocol-wallet-integration" },
+      ];
+      if (h1 > -1) rows.splice(h1 + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+    }
     if (opts.zkdecoy && Array.isArray(tree.children)) {
       // ZK vs decoy systems: drop decorative images, lead, quote, comparison table, numbered advantages, update notes, link cards.
       const rows: any[] = tree.children;
@@ -4819,6 +4912,7 @@ export default async function Page(props: {
             z3zaino: slug[0] === "guides" && slug[1] === "zingolib-and-zaino-tutorial",
             zkool: slug[0] === "guides" && slug[1] === "zkool-multisig",
             btcpay: slug[0] === "guides" && slug[1] === "btcpayserver-zcash-plugin",
+            maya: slug[0] === "guides" && slug[1] === "maya-protocol",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
             mstake: slug[0] === "guides" && slug[1] === "mining-and-staking-privacy",
             mig: slug[0] === "guides" && slug[1] === "migration-guide-zcashd-to-zebrad-zallet",
