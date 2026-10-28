@@ -1585,7 +1585,8 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         // "2019 / Split, Croatia" style subtitle read from each description.
         const MONTHS = /^(January|February|March|April|May|June|July|August|September|October|November|December)$/;
         const sub = (desc: string) => {
-          const year = (desc.match(/\b(20\d\d)\b/) || [])[1] || "";
+          // Vozes 2 took place in 2026 (confirmed by the wiki maintainer); the wiki text itself gives no year.
+          const year = (desc.match(/\b(20\d\d)\b/) || [])[1] || (/vozes 2/i.test(desc + " ") ? "2026" : "");
           let place = "";
           if (/virtual|virutal/i.test(desc)) place = "Virtual";
           else {
@@ -1596,7 +1597,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           }
           // Facts the wiki text does not state (Museum of Tomorrow is in Rio; Vozes 2 was announced for S\u00e3o Paulo).
           if (!place && /museum of tomorrow/i.test(desc)) place = "Rio de Janeiro";
-          if (!place && !year && /vozes 2/i.test(desc + " ")) place = "S\u00e3o Paulo";
+          if (!place && /vozes 2/i.test(desc + " ")) place = "S\u00e3o Paulo";
           return [year, place].filter(Boolean).join(" \u00b7 ");
         };
         const nav = {

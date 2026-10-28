@@ -32,11 +32,11 @@ export default function GovernanceSection() {
 
   return (
     <section className="space-y-6 border-t border-slate-200 pt-10 dark:border-white/10">
-      <div>
+      <div className="text-center">
         <h2 className="m-0 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white">
           {heading}
         </h2>
-        <p className="m-0 mt-3 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300">{description}</p>
+        <p className="m-0 mx-auto mt-3 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300">{description}</p>
       </div>
 
       <div className="!mt-6 mx-auto grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
@@ -45,13 +45,15 @@ export default function GovernanceSection() {
             key={p.name}
             href={p.href}
             target="_blank"
-            className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3 no-underline transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
+            rel="noopener noreferrer"
+            aria-label={`Vote on ${p.name}`}
+            className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3 no-underline transition-colors hover:border-brand/50 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/50"
           >
             <span className="flex min-w-0 items-center gap-3">
               <Image
-                className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-brand/40"
+                className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-slate-200 dark:ring-white/15"
                 src={p.img}
-                alt={p.alt}
+                alt=""
                 width={40}
                 height={40}
               />
@@ -60,8 +62,7 @@ export default function GovernanceSection() {
                 <span className="block truncate text-xs text-slate-500 dark:text-slate-400">{p.host}</span>
               </span>
             </span>
-            <span className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-brand/70 bg-brand/15 px-3 py-1.5 text-sm font-semibold text-brand shadow-sm shadow-brand/10 transition-colors group-hover:border-brand group-hover:bg-brand/25 dark:text-white">
-              Vote
+            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors group-hover:border-brand group-hover:text-brand dark:border-white/15 dark:text-slate-400">
               <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </span>
           </Link>
