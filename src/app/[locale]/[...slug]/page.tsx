@@ -4702,7 +4702,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
 
       // Governance and Resources: one card per link.
-      const cardsFrom = (idx: number, desc: (name: string, full: string) => string) => {
+      const cardsFrom = (idx: number, desc: (name: string, full: string) => string, iconFor?: (name: string) => string | undefined) => {
         if (idx < 0) return;
         const end = takeParas(idx);
         const cards: any[] = [];
@@ -4712,13 +4712,18 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           const full = textOf(r).trim();
           if (!href || !full) continue;
           const name = full.split(/\s[\u2014\u2013-]\s/)[0].trim();
-          cards.push({ type: "element", tagName: "communitycard", properties: { name, desc: desc(name, full), href }, children: [] });
+          cards.push({ type: "element", tagName: "communitycard", properties: { name, desc: desc(name, full), href, ...(iconFor?.(name) ? { icon: iconFor(name) } : {}) }, children: [] });
         }
         if (cards.length) rows.splice(idx + 1, end - idx - 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
       };
-      cardsFrom(h2At(/^governance$/i), (name, full) =>
-        /^snapshot/i.test(name) ? full.replace(/^snapshot\s[\u2014\u2013-]\s/i, "").replace(/;\s*this is the surviving Snapshot space\.?$/i, ". Surviving Snapshot voting space.") : "",
-      );
+      // Governance: one icon per platform; the Snapshot remark becomes a sentence under the cards instead of a card subtitle.
+      const gi = h2At(/^governance$/i);
+      const snapNote = gi > -1 && /custom portal[\s\S]*retired/i.test(textOf({ children: rows.slice(gi + 1, takeParas(gi)) }));
+      cardsFrom(gi, () => "", (name) => (/^snapshot/i.test(name) ? "vote" : /^guild/i.test(name) ? "users" : /^commonwealth/i.test(name) ? "forum" : undefined));
+      if (gi > -1 && snapNote) {
+        const gridAt = rows.findIndex((x: any, i: number) => i > gi && isEl(x, "communitygrid"));
+        if (gridAt > -1) rows.splice(gridAt + 1, 0, { type: "element", tagName: "p", properties: { className: ["text-sm", "text-slate-600", "dark:text-slate-400"] }, children: [{ type: "text", value: "The DAO's custom voting portal at vote.cypherpunkzero.com was retired and its domain no longer resolves. Voting continues in the surviving Snapshot space." }] });
+      }
       cardsFrom(h2At(/^resources$/i), () => "");
 
       // Supply split: three stat cards.
@@ -4940,6 +4945,11 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
                         k > 0 && a[k - 1].type === "element" && a[k - 1].tagName === "a" && c.type === "text",
                     );
                     if (nxt) nxt.value = nxt.value.replace(/^\s*[—–-]\s*/, "");
+                    // A bare link to this wiki gets the one-line description the other entries have.
+                    const kidsLi = (li.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
+                    if (kidsLi.length === 1 && kidsLi[0].type === "element" && kidsLi[0].tagName === "a" && /^https?:\/\/(www\.)?zechub\.wiki\/?$/i.test(String(kidsLi[0].properties?.href || "")) && /^zechub wiki$/i.test(textOf(kidsLi[0]).trim())) {
+                      li.children.push({ type: "text", value: "Guides, tutorials and documentation for Zcash." });
+                    }
                   }
                 }
               }

@@ -1,31 +1,29 @@
-import { ArrowDown } from "lucide-react";
-
-// "Jump to" shortcuts for long pages. Items arrive as a JSON string: [{label, hint, href}].
+// "Jump to" index for long pages. Items arrive as a JSON string: [{label, hint, href}].
 export default function JumpNav(props: Record<string, unknown>) {
   let items: { label: string; hint?: string; href: string }[] = [];
   try {
     items = JSON.parse(String(props.items ?? "[]"));
   } catch {}
   return (
-    <nav aria-label="On this page" className="not-prose my-8">
+    <nav aria-label="On this page" className="not-prose my-8 border-y border-slate-200 py-4 dark:border-white/10">
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
-        {String(props.title || "Quick answers")}
+        {String(props.title || "On this page")}
       </p>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="m-0 grid list-none gap-x-8 gap-y-2 p-0 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((r) => (
-          <a
-            key={r.href}
-            href={r.href}
-            className="flex items-center justify-between gap-3 rounded-xl border border-brand/40 px-4 py-3 text-left no-underline transition-colors hover:border-brand hover:bg-brand/10"
-          >
-            <span className="min-w-0">
-              <span className="block text-sm font-semibold text-brand dark:text-brand-soft">{r.label}</span>
-              {r.hint && <span className="block text-xs text-slate-600 dark:text-slate-400">{r.hint}</span>}
-            </span>
-            <ArrowDown aria-hidden="true" className="h-4 w-4 shrink-0 text-brand dark:text-brand-soft" />
-          </a>
+          <li key={r.href} className="m-0 min-w-0 p-0">
+            <a
+              href={r.href}
+              className="group flex min-w-0 flex-col gap-0.5 py-1 no-underline"
+            >
+              <span className="self-start text-sm font-semibold text-slate-900 underline decoration-slate-300 decoration-1 underline-offset-4 transition-colors group-hover:text-brand group-hover:decoration-brand dark:text-white dark:decoration-white/25 dark:group-hover:text-brand-soft">
+                {r.label}
+              </span>
+              {r.hint && <span className="min-w-0 text-xs leading-snug text-slate-500 dark:text-slate-400">{r.hint}</span>}
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </nav>
   );
 }
