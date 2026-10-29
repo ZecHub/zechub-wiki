@@ -5,16 +5,19 @@ import { routing } from "./i18n/routing";
 const intlMiddleware = createMiddleware({ ...routing, alternateLinks: false });
 
 function buildCsp(nonce: string, isEmbed: boolean): string {
-  const isDev = process.env.NODE_ENV === "development";
   // script-src: nonce + strict-dynamic, no 'unsafe-inline'.
   // 'wasm-unsafe-eval' kept for zaddr_wasm_parser + Penumbra WASM.
-  // 'unsafe-eval' only in dev (React refresh).
+  // 'unsafe-eval' is required in production too: article bodies are rendered
+  // client-side by next-mdx-remote's <MDXRemote>, which evaluates the compiled
+  // MDX with the Function constructor. Without it every article page hits the
+  // error boundary. Drop it once MDX is rendered on the server
+  // (next-mdx-remote/rsc), which needs no eval in the browser.
   const scriptSrc = [
     "'self'",
     `'nonce-${nonce}'`,
     "'strict-dynamic'",
     "'wasm-unsafe-eval'",
-    isDev ? "'unsafe-eval'" : "",
+    "'unsafe-eval'",
   ]
     .filter(Boolean)
     .join(" ");
