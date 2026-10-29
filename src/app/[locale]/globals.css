@@ -1047,3 +1047,34 @@ main table tbody tr:hover {
 .dark main table tbody tr:hover {
   background-color: rgb(255 255 255 / 0.04) !important;
 }
+
+/* Light mode: --muted-foreground is a hex value there, so the hsl(var(--muted-foreground)) token is invalid and text-muted-foreground fell back to white (breadcrumbs). */
+:root:not(.dark) {
+  --color-muted-foreground: #64748b;
+  /* Same issue for the other neutral tokens: valid colors instead of hsl(#hex). */
+  --color-border: #e1e7ef;
+  --color-input: #e1e7ef;
+  --color-background: #fff;
+  --color-foreground: #0f172a;
+  --color-card: #fff;
+  --color-card-foreground: #0f172a;
+  --color-popover: #fff;
+  --color-popover-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-secondary: #f1f5f9;
+  --color-destructive: #ef4343;
+}
+
+/* Header icon colors: nav-foreground / nav-hover-bg were never defined, so icons inherited the page color and looked pale in light mode. */
+@theme inline {
+  --color-nav-foreground: var(--nav-fg);
+  --color-nav-hover-bg: var(--nav-hover);
+}
+:root {
+  --nav-fg: #334155;
+  --nav-hover: rgb(20 125 246 / 0.1);
+}
+.dark {
+  --nav-fg: #cbd5e1;
+  --nav-hover: rgb(255 255 255 / 0.08);
+}

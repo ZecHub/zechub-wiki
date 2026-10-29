@@ -81,7 +81,16 @@ export default function MemberCard({ member }: MemberCardProps) {
                       key={index}
                       href={url}
                       target="_blank"
-                      className="text-slate-500 transition-colors hover:text-brand dark:text-slate-300 dark:hover:text-brand-soft"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name ?? "Member"} on ${(() => {
+                        try {
+                          const h = new URL(String(url)).hostname.replace(/^www\./, "");
+                          return h === "x.com" || h === "twitter.com" ? "X" : h;
+                        } catch {
+                          return "social profile";
+                        }
+                      })()}`}
+                      className="inline-flex p-1.5 text-slate-500 transition-colors hover:text-brand dark:text-slate-300 dark:hover:text-brand-soft"
                     >
                       {icon}
                     </Link>

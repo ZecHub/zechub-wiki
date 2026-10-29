@@ -1992,6 +1992,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       for (const r of rows) {
         rep(r, "(100GB+ for mainnet, ~40GB for testnet)", "(about 300 GB for mainnet and 10 GB for testnet, per the Zebra requirements page)");
         rep(r, "100GB+ for mainnet, ~40GB for testnet", "about 300 GB for mainnet and 10 GB for testnet");
+        rep(r, "350GB storage (mainnet) or 2 vCPUs, 8GB RAM, 50GB (testnet)", "about 300 GB storage (mainnet) or 2 vCPUs, 8GB RAM, 10 GB (testnet)");
         rep(r, "Storage: size: 120Gi (minimum for mainnet)", "Storage: keep at least 300Gi on mainnet (Zebra's requirements page lists about 300 GB)");
       }
       const h1 = rows.findIndex((x) => isEl(x, "h1"));
@@ -2527,9 +2528,20 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const x = rows[i];
         if (isWs(x) || (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit"))) rows.splice(i, 1);
       }
+      // Example account name: "(eg Anabelle)" becomes "(e.g. TEST)".
+      const fixEg = (n: any) => {
+        if (n?.type === "text" && typeof n.value === "string") n.value = n.value.replace(/\(eg\.? Anabelle\)/gi, "(e.g. TEST)");
+        (n?.children || []).forEach(fixEg);
+      };
+      rows.forEach(fixEg);
+      // The upstream screenshot under "Finalize Shared Address" is an unreadable thumbnail, so that step stays text-only.
+      for (let i = rows.length - 1; i > 0; i--) {
+        if (onlyImg(rows[i]) && /^Once complete, a shared address/i.test(textOf(rows[i - 1]).trim())) rows.splice(i, 1);
+      }
       const h1 = rows.findIndex((x) => isEl(x, "h1"));
       const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
       if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      if (lead > -1) rows.splice(lead + 1, 0, el("linkbutton", { href: "https://github.com/hhanh00/zkool2/releases/latest", label: "Download Zkool", emphasis: "strong" }, []));
       // The embedded video becomes a thumbnail slide.
       const frameIn = (n: any): any => (isEl(n, "iframe") || (n && n.type === "mdxJsxFlowElement" && String(n.name) === "iframe") ? n : (n?.children || []).map(frameIn).find(Boolean));
       for (let q = 0; q < rows.length; q++) {
@@ -2550,6 +2562,8 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           const im = imgOf(x);
           if (last && im) {
             const label = textOf(last).replace(/\s+/g, " ").trim();
+            // The upstream screenshot for this step is an unreadable thumbnail, so the step stays text-only.
+            if (/^Enter an Account Name/i.test(label)) continue;
             im.properties = { ...(im.properties || {}), alt: "Zkool screenshot: " + label };
             last.children = [...(last.children || []), el("div", { className: ["[&_img]:!mx-0"] }, [im])];
             continue;
@@ -3215,6 +3229,162 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const x = rows[i];
         if (isWs(x) || isEl(x, "hr") || hasBadge(x)) rows.splice(i, 1);
       }
+      // The site now labels the entry button "Sign In" and the form "Sign up".
+      const fixSignup = (n: any) => {
+        if (n?.type === "text" && typeof n.value === "string") n.value = n.value.replace(/click the 'CREATE' button/i, "click 'Sign In' and then 'Sign up'");
+        (n?.children || []).forEach(fixSignup);
+      };
+      rows.forEach(fixSignup);
+      // The old username/password form screenshot no longer matches the site; the animated sign-up flow replaces it.
+      const hasSrc = (n: any, frag: string): boolean => (isEl(n, "img") && String(n.properties?.src || "").includes(frag)) || (n?.children || []).some((c: any) => hasSrc(c, frag));
+      for (let i = rows.length - 1; i >= 0; i--) if (isEl(rows[i], "p") && hasSrc(rows[i], "133141052")) rows.splice(i, 1);
+      // "Personalize your profile": one paragraph replaces the step-by-step text and screenshots; the animated flow stays.
+      {
+        const a = rows.findIndex((x) => isEl(x, "h2") && /^Personalize your profile/i.test(h2Text(x)));
+        const b = rows.findIndex((x, i) => i > a && isEl(x, "h2"));
+        if (a > -1 && b > a) {
+          const gif = rows.slice(a + 1, b).find((x) => isEl(x, "p") && hasSrc(x, "default-header-a11eb8328f"));
+          const intro = el("p", {}, [
+            txt("After your account is created, you land on your Free2Z profile page. Click "),
+            el("strong", {}, [txt("Edit Profile")]),
+            txt(" and fill in your details: a display name (a pseudonym is fine), an avatar and a banner, and a description (markdown is supported)."),
+          ]);
+          const intro2 = el("p", {}, [
+            txt("Add your Zcash shielded address so supporters can donate to you directly, and set a "),
+            el("strong", {}, [txt("Member Price")]),
+            txt(", the amount in 2Zs (Tuzies) that others pay to subscribe to your page (more on 2Zs below). Save your changes to finish."),
+          ]);
+          rows.splice(a + 1, b - a - 1, intro, intro2, ...(gif ? [gif] : []));
+        }
+      }
+      // "Donating and subscribing": the three subscribe screenshots are replaced by one animated subscribe flow.
+      for (let i = rows.length - 1; i >= 0; i--) {
+        if (!isEl(rows[i], "p")) continue;
+        if (hasSrc(rows[i], "free2z-page-94c5fd5f4f") || hasSrc(rows[i], "subscribe-to-creator-76c306d924")) rows.splice(i, 1);
+        else if (hasSrc(rows[i], "confirm-subscribe-7381923e36")) rows[i] = el("p", {}, [el("img", { src: "/content-images/free2z-subscribe.webp", alt: "Subscribing to a creator on Free2Z: click Subscribe, then confirm the monthly subscription paid in 2Zs.", width: 1200, height: 621 }, [])]);
+      }
+      // The floating-plus-button paragraph and its screenshot are removed.
+      for (let i = rows.length - 1; i >= 0; i--) {
+        if (!isEl(rows[i], "p")) continue;
+        if (hasSrc(rows[i], "post-floating-buttons") || /^Or, from inside a post, look for the floating plus button/i.test(textOf(rows[i]).trim())) rows.splice(i, 1);
+      }
+      // "How to go live": the animated flow replaces the three old screenshots (the Go Live one is swapped at file level).
+      for (let i = rows.length - 1; i >= 0; i--) if (isEl(rows[i], "p") && (hasSrc(rows[i], "select-nickname-414444b992") || hasSrc(rows[i], "join-livestream-679334ba53"))) rows.splice(i, 1);
+      // "How to go live": minimal steps matching the current Free2Z interface, then the join screen.
+      {
+        const a = rows.findIndex((x) => isEl(x, "p") && /^To start a live stream, just click the Go Live/i.test(textOf(x).trim()));
+        const b = rows.findIndex((x, i) => i > a && isEl(x, "p") && /^\(Example of Free2Z Live session\)/i.test(textOf(x).trim()));
+        if (a > -1 && b > a) {
+          const li = (parts: any[]) => el("li", {}, parts);
+          const st = (t: string) => el("strong", {}, [txt(t)]);
+          const steps = el("ol", {}, [
+            li([txt("On your profile, click "), st("Start Live Stream"), txt(" in Quick Actions.")]),
+            li([txt("Choose your audience: "), st("Broadcast"), txt(" (public), "), st("Subscribers"), txt(", "), st("Pay Per View"), txt(" or "), st("Private"), txt(".")]),
+            li([txt("Click "), st("Start Broadcast"), txt(".")]),
+            li([txt("On the join screen, check your microphone, camera and speaker, confirm your name and click "), st("Join"), txt(".")]),
+          ]);
+          const costs = el("p", {}, [txt("Broadcast is free for viewers, and you pay about 1 2Z per 2 minutes for each viewer session. Subscribers and Private sessions charge no 2Z. In Pay Per View, viewers pay a per-minute price that you set.")]);
+          const shot = el("p", {}, [el("img", { src: "/content-images/free2z-join.webp", alt: "Free2Z Live join screen with microphone, camera and speaker selectors, a name field and the Join button.", width: 1600, height: 856 }, [])]);
+          const after = el("p", {}, [txt("Use "), st("Copy viewer link"), txt(" to invite people and "), st("Record livestream"), txt(" to save the session. Viewers can chat, ask to join the stage and vote in polls. To finish, click "), st("Leave"), txt(" and then "), st("End meeting for all"), txt(".")]);
+          rows.splice(a, b - a + 1, steps, costs, shot, after);
+        }
+      }
+      // The "Exploring Free2Z Live" tool tour is removed; the end-of-stream step now lives in "How to go live".
+      {
+        const a = rows.findIndex((x) => isEl(x, "h3") && /^Exploring Free2Z Live/i.test(h2Text(x)));
+        if (a > -1) {
+          let b = rows.findIndex((x, i) => i > a && (isEl(x, "h2") || isEl(x, "h3")));
+          if (b < 0) b = rows.length;
+          rows.splice(a, b - a);
+        }
+      }
+      // Author credit line is removed.
+      for (let i = rows.length - 1; i >= 0; i--) if (isEl(rows[i], "p") && /^Written by James Katz for ZecHub\.?$/i.test(textOf(rows[i]).trim())) rows.splice(i, 1);
+      // "Subscriptions and 2Zs": concise text that matches the current Top Up Balance screen.
+      {
+        const a = rows.findIndex((x) => isEl(x, "h2") && /^Subscriptions and 2Zs/i.test(h2Text(x)));
+        const b = a > -1 ? rows.findIndex((x, i) => i > a && isEl(x, "h2")) : -1;
+        if (a > -1 && b > a) {
+          const shot = rows.slice(a + 1, b).find((x) => isEl(x, "p") && hasSrc(x, "buy-tuzies-e82c626047"));
+          const st = (t: string) => el("strong", {}, [txt(t)]);
+          const li = (t: string) => el("li", {}, [txt(t)]);
+          const intro = el("p", {}, [txt("Free2Z memberships are paid in 2Zs. Each creator sets a membership price (in 2Z per 30 days), and subscribers get access to members-only content and features.")]);
+          const what = el("p", {}, [txt("2Zs, also called Tuzies, are Free2Z's in-app usage credits. You can use them to:")]);
+          const uses = el("ol", {}, [li("Subscribe to creators."), li("Share credits with creators as donations."), li("Boost the visibility of a page or post.")]);
+          const topup = el("p", {}, [txt("Your balance appears in the header of your profile page. To add credits, click the balance and choose "), st("Zcash"), txt(", enter the amount of 2Zs you want, and pay with the QR code or "), st("Open in Wallet"), txt(".")]);
+          const memo = el("guidecallout", { title: "Memo required" }, [
+            el("p", {}, [txt("Payments are credited automatically only when they include the exact memo shown on screen. Send from a shielded wallet that preserves memos, never from an exchange or a transparent address. Credits are applied after at least three confirmations, and the amount shown is a conservative estimate. Free2Z currently charges no purchase fee or spread.")]),
+          ]);
+          rows.splice(a + 1, b - a - 1, intro, what, uses, topup, ...(shot ? [shot] : []), memo);
+        }
+      }
+      // Small header-icons screenshot under "You can see your 2Zs credits…" is dropped.
+      for (let i = rows.length - 1; i >= 0; i--) if (isEl(rows[i], "p") && hasSrc(rows[i], "tuzis-balance")) rows.splice(i, 1);
+      // The Twitter connection flow (intro paragraph, Authorize app screenshot and its caption) is outdated and removed.
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const t = isEl(rows[i], "p") ? textOf(rows[i]).trim() : "";
+        if (isEl(rows[i], "p") && (hasSrc(rows[i], "133210103") || /^Alternatively, you can create a Free2Z account by connecting your Twitter/i.test(t) || /^Click Authorize app to connect your Twitter/i.test(t))) rows.splice(i, 1);
+      }
+      // Copy edit for the current Free2Z interface (sign-up, subscribe, support, Free2Z Live).
+      {
+        const b = (t: string) => el("strong", {}, [txt(t)]);
+        const rewrite = (re: RegExp, kids: any[]) => {
+          const x = rows.find((r: any) => isEl(r, "p") && re.test(textOf(r).trim()));
+          if (x) x.children = kids;
+        };
+        const dropP = (re: RegExp) => {
+          const i = rows.findIndex((r: any) => isEl(r, "p") && re.test(textOf(r).trim()));
+          if (i > -1) rows.splice(i, 1);
+        };
+        rewrite(/^Free2Z is a platform for creators and supporters/i, [txt("Free2Z is an independent publishing platform where creators publish, build a paid membership and go live, and supporters subscribe or donate directly. This guide covers account setup, profile, 2Z credits, subscriptions, donations and Free2Z Live.")]);
+        // Create your account
+        {
+          const a = rows.findIndex((x) => isEl(x, "h2") && /^Create your account/i.test(h2Text(x)));
+          const e = a > -1 ? rows.findIndex((x, i) => i > a && isEl(x, "h2")) : -1;
+          if (a > -1 && e > a) {
+            const gif = rows.slice(a + 1, e).find((x) => isEl(x, "p") && hasSrc(x, "133101013"));
+            const steps = el("ol", {}, [
+              el("li", {}, [txt("Go to "), el("a", { href: "https://free2z.cash/" }, [txt("free2z.cash")]), txt(" and click "), b("Sign In"), txt(", then "), b("Sign up"), txt(".")]),
+              el("li", {}, [txt("Choose a username and a password, and confirm the password. Add an email address if you want to be able to reset your password later.")]),
+              el("li", {}, [txt("Click "), b("Sign up"), txt(" to finish, or use "), b("Sign up with X"), txt(" instead.")]),
+            ]);
+            rows.splice(a + 1, e - a - 1, steps, ...(gif ? [gif] : []));
+          }
+        }
+        // Donating and subscribing
+        rewrite(/^Once you find a creator you like/i, [txt("Open a creator's page to subscribe or to send support.")]);
+        rewrite(/^To subscribe to a page, all you need/i, [txt("Click "), b("Subscribe"), txt(", review the monthly price in 2Z and the benefits, then click "), b("Confirm Subscription"), txt(". Your 2Z balance must cover the price, and you can cancel anytime.")]);
+        dropP(/^You will see the minimum amount for subscribing/i);
+        rewrite(/^You can donate directly on their page/i, [txt("Click "), b("Support"), txt(", choose "), b("2Z"), txt(" or "), b("Zcash"), txt(", set the amount and confirm. When paying with 2Z, you can choose to hide your username from the creator.")]);
+        // Live Streaming
+        {
+          const a = rows.findIndex((x) => isEl(x, "p") && /^The Free2Z platform offers an awesome feature/i.test(textOf(x).trim()));
+          const g = a > -1 ? rows.findIndex((x, i) => i > a && isEl(x, "h3") && /^how to go live$/i.test(textOf(x).trim())) : -1;
+          if (a > -1 && g > a) {
+            rows[a].children = [txt("Free2Z Live is the platform's built-in live streaming tool. Creators can broadcast to the public, to subscribers, to a pay-per-view audience or to a single private guest, with audio and video, screen sharing, recording, chat and polls. Typical uses include tutorials, demonstrations, events and collaborative sessions.")];
+            rows.splice(a + 1, g - a - 1);
+          }
+        }
+        rewrite(/^It is very easy to start a live stream/i, [txt("Before you can go live, your account must meet these requirements:")]);
+        {
+          const walk = (n: any) => {
+            if (isEl(n, "li")) {
+              const t = textOf(n).trim();
+              if (/^The creator must have a minimum member price of 10 2Zs/i.test(t)) n.children = [txt("Your "), b("member price"), txt(" is at least 10 2Zs.")];
+              else if (/^The creator must have a balance of at least 150 2Zs/i.test(t)) n.children = [txt("Your "), b("account balance"), txt(" is at least 150 2Zs.")];
+            }
+            (n?.children || []).forEach(walk);
+          };
+          rows.forEach(walk);
+        }
+        rewrite(/^If the creator meets both/i, [txt("If the creator meets both conditions, "), b("Start Live Stream"), txt(" appears in the Quick Actions on your profile.")]);
+        dropP(/^Free2Z Live is versatile and powerful/i);
+        // Conclusion
+        {
+          const c = rows.findIndex((x) => isEl(x, "h2") && /^Conclusion/i.test(h2Text(x)));
+          if (c > -1 && isEl(rows[c + 1], "p")) rows[c + 1].children = [txt("Free2Z gives creators a way to publish, build a paid membership and stream live, and gives supporters a direct way to subscribe or donate with 2Zs or Zcash.")];
+        }
+      }
       // Introduction heading goes away: its paragraph is the lead.
       const ih = rows.findIndex((x) => isEl(x, "h2") && /^introduction$/i.test(h2Text(x)));
       if (ih > -1) {
@@ -3277,10 +3447,10 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       // Jump list after the lead.
       const lead = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
       const items = [
-        { label: "Create an account", hint: "Username or Twitter", href: "#create-your-account" },
-        { label: "Profile", hint: "Avatar, banner, member price", href: "#personalize-your-profile" },
+        { label: "Create an account", hint: "Sign up and sign in", href: "#create-your-account" },
+        { label: "Profile", hint: "Details and member price", href: "#personalize-your-profile" },
         { label: "2Zs and donations", hint: "Credits, subscribing, funding", href: "#subscriptions-and-2zs" },
-        { label: "Live streaming", hint: "Go live and tools", href: "#live-streaming" },
+        { label: "Live streaming", hint: "Requirements and steps", href: "#live-streaming" },
       ];
       if (lead > -1) rows.splice(lead + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
     }
