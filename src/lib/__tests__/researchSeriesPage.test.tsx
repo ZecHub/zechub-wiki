@@ -24,6 +24,9 @@ jest.mock("@/lib/helpers", () => ({
 }));
 jest.mock("@/lib/localeCoverage", () => ({}));
 jest.mock("next-mdx-remote/serialize", () => ({}));
+jest.mock("next-mdx-remote/rsc", () => ({ MDXRemote: () => null }));
+jest.mock("@/components/MdxReady", () => ({ __esModule: true, default: () => null }));
+jest.mock("@/components/MdxComponents/MdxComponent", () => ({ __esModule: true, default: {} }));
 jest.mock("remark-gfm", () => ({}));
 jest.mock("rehype-raw", () => ({}));
 jest.mock("unist-util-visit", () => ({}));
