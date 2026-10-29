@@ -70,8 +70,17 @@ const MdxComponents = {
         </Link>
       );
     }
+    // Defense-in-depth: reject non-allow-listed schemes even if upstream sanitizer is bypassed.
+    const normalized = resolved.replace(/[\t\n\r\f\v\u0000-\u001F\u007F]/g, "").trim();
+    const allowed =
+      normalized.startsWith("#") ||
+      normalized.startsWith("/") ||
+      /^(https?|mailto):/i.test(normalized);
+    if (!allowed) {
+      return <span className={className}>{props.children}</span>;
+    }
     return (
-      <a href={resolved} target="_blank" rel="noreferrer" className={className}>
+      <a href={normalized} target="_blank" rel="noreferrer" className={className}>
         {props.children}
       </a>
     );
