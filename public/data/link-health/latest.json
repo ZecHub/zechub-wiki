@@ -1,155 +1,26 @@
 {
-  "generatedAt": "2026-10-20T15:59:03.282Z",
-  "filesScanned": 744,
-  "linksFound": 12087,
-  "uniqueExternalChecked": 2403,
-  "retriedAfterNetworkFailure": 53,
+  "generatedAt": "2026-10-28T14:02:12.395Z",
+  "filesScanned": 746,
+  "linksFound": 12195,
+  "uniqueExternalChecked": 2385,
+  "retriedAfterNetworkFailure": 48,
   "allowlistEntries": 5,
   "totals": {
-    "dns": 15,
-    "broken": 89,
-    "route": 39,
+    "dns": 0,
+    "broken": 13,
+    "route": 2,
     "asset": 1,
-    "tls": 15,
-    "timeout": 5,
-    "error": 8,
+    "tls": 6,
+    "timeout": 1,
+    "error": 7,
     "invalid": 0,
-    "blocked": 47,
-    "redirect": 602,
-    "duplicate": 369,
-    "revived": 0
+    "blocked": 63,
+    "redirect": 615,
+    "duplicate": 387,
+    "revived": 4
   },
-  "serious": 144,
+  "serious": 16,
   "findings": [
-    {
-      "kind": "dns",
-      "url": "https://btcpay.example.com/",
-      "file": "site/guides/BTCPayServer_Zcash_Plugin.md",
-      "line": 633,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://btcpay.example.com/i/abc123",
-      "file": "site/guides/BTCPayServer_Zcash_Plugin.md",
-      "line": 863,
-      "alsoIn": 1,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://app.firn.cash/",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 14,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://firn.cash/whitepaper.pdf",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 15,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://boltz.exchange/",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 27,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://docs.boltz.exchange/en/latest/",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 27,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://fairyswap.finance/",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 51,
-      "alsoIn": 0,
-      "detail": "EAI_AGAIN"
-    },
-    {
-      "kind": "dns",
-      "url": "https://testnet.exblo.app/",
-      "file": "site/Zcash_Community/Community_Projects.md",
-      "line": 151,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://zlink.click/",
-      "file": "site/Zcash_Community/Community_Projects.md",
-      "line": 187,
-      "alsoIn": 4,
-      "detail": "EAI_AGAIN"
-    },
-    {
-      "kind": "dns",
-      "url": "https://zcashambassadors.com/",
-      "file": "site/Zcash_Community/Zcash_Global_Ambassadors.md",
-      "line": 19,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://zlink.click/#network",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly69.md",
-      "line": 45,
-      "alsoIn": 0,
-      "detail": "EAI_AGAIN"
-    },
-    {
-      "kind": "dns",
-      "url": "http://guff.zechub.xyz/proutate",
-      "file": "site/zechubglobal/zcashkorea/newsletters/zecweekly47.md",
-      "line": 13,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://zlink.klik/",
-      "file": "site/zechubglobal/zcashnetherlands/zcashsocialmedia/communityprojectsDu.md",
-      "line": 55,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://labs.openai.com/",
-      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
-      "line": 51,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "dns",
-      "url": "https://play.ht/",
-      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
-      "line": 85,
-      "alsoIn": 0,
-      "detail": "ENOTFOUND"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/docs/category/for-supporters",
-      "file": "site/guides/Free2z_Live.md",
-      "line": 191,
-      "alsoIn": 7,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
     {
       "kind": "broken",
       "url": "https://www.xdefi.io/",
@@ -158,33 +29,6 @@
       "alsoIn": 0,
       "status": 521,
       "detail": "HTTP 521"
-    },
-    {
-      "kind": "broken",
-      "url": "https://shapeshift.com/fox-token",
-      "file": "site/guides/ShapeShift_Zcash.md",
-      "line": 170,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://www.wired.com/story/unciphered-crypto-wallet-recovery/",
-      "file": "site/Using_Zcash/Recovering_Funds.md",
-      "line": 194,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://trezor.io/learn/supported-assets/other-cryptocurrencies/zcash-what-it-is-and-how-it-works-with-trezor",
-      "file": "site/Using_Zcash/Wallets.md",
-      "line": 256,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
     },
     {
       "kind": "broken",
@@ -200,15 +44,6 @@
       "url": "https://crates.io/crates/ztreamer-indexer",
       "file": "site/Zcash_Community/Community_Projects.md",
       "line": 245,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/zingolabs/zcash-local-net",
-      "file": "site/Zcash_Organizations/Zingo_Labs.md",
-      "line": 26,
       "alsoIn": 0,
       "status": 404,
       "detail": "HTTP 404"
@@ -233,63 +68,18 @@
     },
     {
       "kind": "broken",
-      "url": "https://electriccoin.co/team/",
-      "file": "site/zechubglobal/zcashArabic/zcashbasics/electriccoincompany.md",
-      "line": 9,
-      "alsoIn": 8,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://www.amazon.com/Mastering-Bitcoin-Programming-Open-Blockchain-ebook/dp/B071K7FCD4",
-      "file": "site/zechubglobal/zcashbrasil/comeceaqui/developerResources.TRAD.PT.md",
-      "line": 9,
+      "url": "https://zfnd.org/about/",
+      "file": "site/zechubglobal/zcashArabic/zcashbasics/zcashfoundation.md",
+      "line": 12,
       "alsoIn": 6,
       "status": 404,
       "detail": "HTTP 404"
     },
     {
       "kind": "broken",
-      "url": "https://zechub.wiki/zechub-global",
-      "file": "site/zechubglobal/zcashbrasil/contribuir/ajudeAConstruirOZechub.md",
-      "line": 19,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://us06web.zoom.us/webinar/register/WN_Vk7WMz9sRkiIr_hqH_x3LA",
+      "url": "https://zfnd.org/protocol-governance/",
       "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
-      "line": 16,
-      "alsoIn": 7,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://us06web.zoom.us/webinar/register/WN_z0k1ipsnRkS4-DGqDhULdA",
-      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
-      "line": 16,
-      "alsoIn": 6,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://electriccoin.co/events/",
-      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
-      "line": 84,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://electriccoin.co/zcash-metrics/",
-      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
-      "line": 185,
+      "line": 120,
       "alsoIn": 1,
       "status": 404,
       "detail": "HTTP 404"
@@ -305,396 +95,9 @@
     },
     {
       "kind": "broken",
-      "url": "https://electriccoin.co/zcash-developer-alliance/",
-      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
-      "line": 350,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/docs/2Zs/",
-      "file": "site/zechubglobal/zcashbrasil/guides/free2zLive.md",
-      "line": 184,
-      "alsoIn": 6,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/docs/creators/creating-a-profile",
-      "file": "site/zechubglobal/zcashbrasil/guides/free2zLive.md",
-      "line": 186,
-      "alsoIn": 6,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/docs/creators/free2z-live",
-      "file": "site/zechubglobal/zcashbrasil/guides/free2zLive.md",
-      "line": 188,
-      "alsoIn": 6,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://electriccoin.co/zashi/",
-      "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/projetosDaComunidadeZcash.md",
-      "line": 15,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/mobile-shielded-wallets",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 15,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/mobile-shielded-wallets-w-autoshielding",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 23,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/transparent-wallets",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 31,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/hardware-wallets",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 39,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/desktop-wallets",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 47,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/web-wallets",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 55,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/using-zec/intro-to-zcash-wallets/full-node-wallets",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
-      "line": 65,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://electriccoin.co/wp-content/uploads/2021/01/Halo-on-Z-1440x720.png",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/Halo.md",
-      "line": 8,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070395089559494716/NPlanguage.jpg",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
-      "line": 15,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070395089194594345/IPmodel.jpg",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
-      "line": 29,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070395090259947520/simulation.jpg",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
-      "line": 69,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070405388048011305/circuit.jpg",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
-      "line": 101,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070395089899229245/setup.jpg",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
-      "line": 125,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070395090612265000/zkvm.jpg",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
-      "line": 174,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZecHub/zechub/blob/main/usingzec/wallets/mobileshieldedwallets.md",
-      "file": "site/zechubglobal/zcashesp/guides/zcashnewuserguide.md",
-      "line": 19,
-      "alsoIn": 5,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://electriccoin.co/zcashd/",
-      "file": "site/zechubglobal/zcashesp/starthere/zcashresources.md",
-      "line": 27,
-      "alsoIn": 9,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://play.google.com/store/apps/details?id=com.zecwalletmobile",
-      "file": "site/zechubglobal/zcashesp/usandozec/wallets/mobilewallets.md",
-      "line": 51,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://apps.apple.com/us/app/id1516128405",
-      "file": "site/zechubglobal/zcashesp/usandozec/wallets/mobilewallets.md",
-      "line": 51,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://atomicdex.io/en/",
-      "file": "site/zechubglobal/zcashesp/zcashsocialmedia/communityprojects/communityprojects.md",
-      "line": 63,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZecHub/zechub/blob/main/site/Zcash_Social_Media/Podcasts/Podcasts.md",
-      "file": "site/zechubglobal/zcashesp/zcashsocialmedia/podcast.md",
-      "line": 5,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZecHub/zechub/blob/main/site/Zcash_Social_Media/Podcasts/The_z2z_Podcast.md",
-      "file": "site/zechubglobal/zcashesp/zcashsocialmedia/podcast.md",
-      "line": 7,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZecHub/zechub/blob/main/site/Zcash_Social_Media/Podcasts/The_Zcash_Podcast.md",
-      "file": "site/zechubglobal/zcashesp/zcashsocialmedia/podcast.md",
-      "line": 9,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZecHub/zechub/blob/main/site/Zcash_Social_Media/Podcasts/The_ZK_Podcast.md",
-      "file": "site/zechubglobal/zcashesp/zcashsocialmedia/podcast.md",
-      "line": 11,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZecHub/zechub/blob/main/site/Zcash_Social_Media/Podcasts/pgp_for_crypto_podcast.md",
-      "file": "site/zechubglobal/zcashesp/zcashsocialmedia/podcast.md",
-      "line": 13,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/PapelesaColor/zpage/y-si-hacemos-un-diseno-hermoso-y-sutil-sin-afan-de-competir-solo-para-divetir",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly38.md",
-      "line": 66,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zfav/guides/publish-a-site-on-ipfs",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly44.md",
-      "line": 22,
-      "alsoIn": 2,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/net-Bitcoin-ATMs-record-an-increase-after-4-months-of-global-downtrend",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly45.md",
-      "line": 65,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/a-missing-link-in-social-giving-a-socialfi-platform-based-on-the-gold-standard",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly46.md",
-      "line": 80,
-      "alsoIn": 2,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/world-mobile-eyes-african-rollout-after-decentralized-wireless-field-tests",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly46.md",
-      "line": 82,
-      "alsoIn": 2,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zfav/calendar",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly50.md",
-      "line": 59,
-      "alsoIn": 9,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/uk-courts-grants-appeal-craig-wright-bitcoin-rights-lawsuit",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
-      "line": 71,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://www.crypto-news-flash.com/canadians-unfazed-by-cbdc-millions-opt-for-privacy-coins-monero-dash-and-zcash-over-central-bank-digital-currency/",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly55.md",
-      "line": 67,
-      "alsoIn": 1,
-      "status": 410,
-      "detail": "HTTP 410"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/innovation-circle/5-things-crypto-must-get-right-for-mainstream-adoption-to-happen",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly55.md",
-      "line": 69,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zk-shielded-pools-vs-decoy-based-privacy",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly57.md",
-      "line": 18,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zfav/guides",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly57.md",
-      "line": 28,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://www.coindesk.com/consensus-magazine/2023/08/25/when-did-privacy-become-a-bad-word",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly57.md",
-      "line": 54,
-      "alsoIn": 3,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/balancer-protocol-exploited-for-900-000-as-defi-hacks-escalate",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly58.md",
-      "line": 73,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/site/Using_Zcash/Wallets#content",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly71.md",
-      "line": 55,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/explained/how-blockchain-transforms-christmas-giving",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly72.md",
-      "line": 56,
+      "url": "https://z.cash/payer-avec-zcash/",
+      "file": "site/zechubglobal/zcashfrance/ZcashBasics/zecusecasesFR.md",
+      "line": 21,
       "alsoIn": 0,
       "status": 404,
       "detail": "HTTP 404"
@@ -710,123 +113,6 @@
     },
     {
       "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/nozioni-di-base-su-zcash",
-      "file": "site/zechubglobal/zcashitaly/#blogs/Article01.md",
-      "line": 36,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/utilizzare-zec-in-modo-privato",
-      "file": "site/zechubglobal/zcashitaly/#blogs/Article01.md",
-      "line": 38,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/transazioni",
-      "file": "site/zechubglobal/zcashitaly/#blogs/Article02.md",
-      "line": 41,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph-com.cdn.ampproject.org/v/s/cointelegraph.com/news/btc-price-targets-see-33k-next-as-bitcoin-eyes-key-resistance-flip/amp?amp_gsa=1&amp_js_v=a9&usqp=mq331AQIUAKwASCAAgM%3D#amp_tf=From%20%251%24s&aoh=16815049145617&csi=1&referrer=https%3A%2F%2Fwww.google.com&ampshare=https%3A%2F%2Fcointelegraph.com%2Fnews%2Fbtc-price-targets-see-33k-next-as-bitcoin-eyes-key-resistance-flip",
-      "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly38.md",
-      "line": 65,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/ZEC@MEDEDUCAZIONE/pagina/vitamine",
-      "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly41.md",
-      "line": 29,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://www.crypto-news-flash.com/canadians-unfazed-by-cbdc-millions-opt-for-privacy-coins-monero-dash-and-zcash-over-central-bank-digital-currency",
-      "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly55.md",
-      "line": 69,
-      "alsoIn": 1,
-      "status": 410,
-      "detail": "HTTP 410"
-    },
-    {
-      "kind": "broken",
-      "url": "https://onthebrink-podcast.com/roundup-08-25-23/",
-      "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly57.md",
-      "line": 70,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://drive.google.com/file/d/12ODTLrjgSzYFeAOTrv-P9LvfBVOvrSXK/view?usp=sharing",
-      "file": "site/zechubglobal/zcashitaly/guides/privacytools/WikiDocTor&I2P.md",
-      "line": 37,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/nozioni-di-base-su-zcash/le-basi-di-zcash",
-      "file": "site/zechubglobal/zcashitaly/Start_Here/zcashbasics.md",
-      "line": 6,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/nozioni-di-base-su-zcash/fondamenti-di-zcash",
-      "file": "site/zechubglobal/zcashitaly/Start_Here/zcashbasics.md",
-      "line": 8,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/nozioni-di-base-su-zcash/casi-duso-di-zec",
-      "file": "site/zechubglobal/zcashitaly/Start_Here/zcashbasics.md",
-      "line": 10,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zcash-value-pools",
-      "file": "site/zechubglobal/zcashitaly/Using_Zcash/wallets/browserextensionwallets.md",
-      "line": 6,
-      "alsoIn": 7,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global/italiano/zcash-pool-di-valori",
-      "file": "site/zechubglobal/zcashitaly/Using_Zcash/wallets/desktopwallets.md",
-      "line": 7,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
       "url": "https://wiki.trezor.io/Zcash_(ZEC",
       "file": "site/zechubglobal/zcashitaly/Using_Zcash/wallets/hardwarewallets.md",
       "line": 21,
@@ -836,99 +122,9 @@
     },
     {
       "kind": "broken",
-      "url": "https://zechubit.substack.com/p/archive",
-      "file": "site/zechubglobal/zcashitaly/Zcash_Social_Media/ZecWeekly_Newsletter.md",
-      "line": 19,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://free2z.cash/zingolabs/zpage/zingo-wallet-1-2-122",
-      "file": "site/zechubglobal/zcashkorea/newsletters/zecweekly42.md",
-      "line": 59,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zfav/guides/pub-a-site-on-ipfs",
-      "file": "site/zechubglobal/zcashkorea/newsletters/zecweekly44.md",
-      "line": 23,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
       "url": "https://free2z.cash/James_Katz/zpage/compiling-zecwallet-lite-with",
       "file": "site/zechubglobal/zcashkorea/newsletters/zecweekly55.md",
       "line": 22,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zcash-basics/what-is-zcash-and-what-is-zec",
-      "file": "site/zechubglobal/zcashkorea/starthere/zcashbasics.md",
-      "line": 6,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zcash-basics/what-are-the-economics-of-zcash",
-      "file": "site/zechubglobal/zcashkorea/starthere/zcashbasics.md",
-      "line": 8,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/zcash-basics/what-are-zecs-use-cases",
-      "file": "site/zechubglobal/zcashkorea/starthere/zcashbasics.md",
-      "line": 10,
-      "alsoIn": 1,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/A16z-releases-anonymous-voting-system-for-Ethereum",
-      "file": "site/zechubglobal/zcashnigeria/Zecweekly-44.md",
-      "line": 66,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://github.com/ZcashFoundation/zebra/releases/tag/1.0.0-rc.9",
-      "file": "site/zechubglobal/zcashnigeria/zecweekly46.md",
-      "line": 37,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://cointelegraph.com/news/World-Mobile-eyes-African-rollout-after-decentralized-wireless-field-tests",
-      "file": "site/zechubglobal/zcashnigeria/zecweekly46.md",
-      "line": 72,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://zechub.wiki/global",
-      "file": "site/zechubglobal/zcashrussia/contribute/helpbuildzechub.md",
-      "line": 12,
       "alsoIn": 0,
       "status": 404,
       "detail": "HTTP 404"
@@ -944,276 +140,17 @@
     },
     {
       "kind": "route",
-      "url": "/nearintents.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 23,
-      "detail": "no file at site/Nearintents.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/stealth_ex.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 41,
-      "detail": "no file at site/Stealth_ex.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/changelly.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 50,
-      "detail": "no file at site/Changelly.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/flyp.me.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 59,
-      "detail": "no file at site/Flyp.Me.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/exolix.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 68,
-      "detail": "no file at site/Exolix.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/Trocodor.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 77,
-      "detail": "no file at site/Trocodor.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/DCRDEX.jpg",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 86,
-      "detail": "no file at site/DCRDEX.Jpg.md"
-    },
-    {
-      "kind": "route",
-      "url": "/Changenow.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 104,
-      "detail": "no file at site/Changenow.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/FixedFloat.jpg",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 113,
-      "detail": "no file at site/FixedFloat.Jpg.md"
-    },
-    {
-      "kind": "route",
-      "url": "/xchange.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 122,
-      "detail": "no file at site/Xchange.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/Bitcoinvn.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 131,
-      "detail": "no file at site/Bitcoinvn.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/leodex-logo.png",
-      "file": "site/Using_Zcash/Centralized_Swaps.md",
-      "line": 140,
-      "detail": "no file at site/Leodex_Logo.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/nearintents.png",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 14,
-      "detail": "no file at site/Nearintents.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/nativeswap.png",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 23,
-      "detail": "no file at site/Nativeswap.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/leodex-logo.png",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 41,
-      "detail": "no file at site/Leodex_Logo.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/bisonwallet-logo.png",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 50,
-      "detail": "no file at site/Bisonwallet_Logo.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/thorswapLogo.png",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 59,
-      "detail": "no file at site/ThorswapLogo.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/routerProtocolLogo.png",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 68,
-      "detail": "no file at site/RouterProtocolLogo.Png.md"
-    },
-    {
-      "kind": "route",
-      "url": "/peer-logo.jpg",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 77,
-      "detail": "no file at site/Peer_Logo.Jpg.md"
-    },
-    {
-      "kind": "route",
-      "url": "/rocketx-logo.jpg",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 86,
-      "detail": "no file at site/Rocketx_Logo.Jpg.md"
-    },
-    {
-      "kind": "route",
-      "url": "/thorchain-logo.jpg",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 95,
-      "detail": "no file at site/Thorchain_Logo.Jpg.md"
-    },
-    {
-      "kind": "route",
-      "url": "/loofta-logo.svg",
-      "file": "site/Using_Zcash/DEX.md",
-      "line": 104,
-      "detail": "no file at site/Loofta_Logo.Svg.md"
-    },
-    {
-      "kind": "route",
-      "url": "/tutorials/shieldednewsletter/readme",
-      "file": "site/Using_Zcash/Shielded_Newsletter.md",
-      "line": 82,
-      "detail": "no file at site/tutorials/Shieldednewsletter/Readme.md"
-    },
-    {
-      "kind": "route",
-      "url": "/using-zcash/spend-zcash",
-      "file": "site/Using_Zcash/Zecmap.md",
-      "line": 140,
-      "detail": "no file at site/Using_Zcash/Spend_Zcash.md"
-    },
-    {
-      "kind": "route",
-      "url": "/privacy/privacy-as-a-core-principle",
-      "file": "site/Zcash_Tech/Post_Quantum_Security.md",
-      "line": 257,
-      "detail": "no file at site/Privacy/Privacy_As_A_Core_Principle.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zechubglobal/zcashbrasil/zcashtech/zakura",
+      "url": "/pt/zcash-tech/zakura-node",
       "file": "site/Zcash_Tech/Zakura_Node.md",
       "line": 7,
-      "detail": "no file at site/ZecHubglobal/Zcashbrasil/Zcashtech/Zakura.md"
+      "detail": "no file at site/Pt/Zcash_Tech/Zakura_Node.md"
     },
     {
       "kind": "route",
-      "url": "/zechubglobal/zcashbrasil/zcashtech/zecd",
+      "url": "/pt/zcash-tech/zecd",
       "file": "site/Zcash_Tech/ZECD.md",
       "line": 7,
-      "detail": "no file at site/ZecHubglobal/Zcashbrasil/Zcashtech/Zecd.md"
-    },
-    {
-      "kind": "route",
-      "url": "/privacy/best-practices",
-      "file": "site/Zcash_Use_Cases/Accept_Payments_As_A_Merchant.md",
-      "line": 124,
-      "detail": "no file at site/Privacy/Best_Practices.md"
-    },
-    {
-      "kind": "route",
-      "url": "/privacy/best-practices",
-      "file": "site/Zcash_Use_Cases/Journalist_Privacy_Setup.md",
-      "line": 116,
-      "detail": "no file at site/Privacy/Best_Practices.md"
-    },
-    {
-      "kind": "route",
-      "url": "/privacy/best-practices",
-      "file": "site/Zcash_Use_Cases/Private_Community_Treasury.md",
-      "line": 124,
-      "detail": "no file at site/Privacy/Best_Practices.md"
-    },
-    {
-      "kind": "route",
-      "url": "/privacy/shielded-vs-transparent",
-      "file": "site/Zcash_Use_Cases/Receive_Donations_Privately.md",
-      "line": 109,
-      "detail": "no file at site/Privacy/Shielded_vs_Transparent.md"
-    },
-    {
-      "kind": "route",
-      "url": "/privacy/shielded-vs-transparent",
-      "file": "site/Zcash_Use_Cases/Send_Money_Without_Linking_Identity.md",
-      "line": 99,
-      "detail": "no file at site/Privacy/Shielded_vs_Transparent.md"
-    },
-    {
-      "kind": "route",
-      "url": "/using-zcash/spend-zcash",
-      "file": "site/zechubglobal/zcashbrasil/usandozec/zecmap.md",
-      "line": 129,
-      "detail": "no file at site/Using_Zcash/Spend_Zcash.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zero-to-zero-knowledge/hash-functions",
-      "file": "site/Zero_to_Zero_Knowledge/Zero_to_Zero-knowledge.md",
-      "line": 7,
-      "detail": "no file at site/Zero_To_Zero-Knowledge/Hash_Functions.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zero-to-zero-knowledge/mnemonic-seed-phrases",
-      "file": "site/Zero_to_Zero_Knowledge/Zero_to_Zero-knowledge.md",
-      "line": 8,
-      "detail": "no file at site/Zero_To_Zero-Knowledge/Mnemonic_Seed_Phrases.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zero-to-zero-knowledge/zcash-addresses",
-      "file": "site/Zero_to_Zero_Knowledge/Zero_to_Zero-knowledge.md",
-      "line": 9,
-      "detail": "no file at site/Zero_To_Zero-Knowledge/Zcash_Addresses.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zero-to-zero-knowledge/tees",
-      "file": "site/Zero_to_Zero_Knowledge/Zero_to_Zero-knowledge.md",
-      "line": 10,
-      "detail": "no file at site/Zero_To_Zero-Knowledge/Tees.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zero-to-zero-knowledge/cryptonote",
-      "file": "site/Zero_to_Zero_Knowledge/Zero_to_Zero-knowledge.md",
-      "line": 11,
-      "detail": "no file at site/Zero_To_Zero-Knowledge/Cryptonote.md"
-    },
-    {
-      "kind": "route",
-      "url": "/zero-to-zero-knowledge/lelantus",
-      "file": "site/Zero_to_Zero_Knowledge/Zero_to_Zero-knowledge.md",
-      "line": 12,
-      "detail": "no file at site/Zero_To_Zero-Knowledge/Lelantus.md"
+      "detail": "no file at site/Pt/Zcash_Tech/Zecd.md"
     },
     {
       "kind": "asset",
@@ -1221,38 +158,6 @@
       "file": "site/Using_Zcash/Solswap.md",
       "line": 42,
       "detail": "not found in zechub-wiki/public"
-    },
-    {
-      "kind": "tls",
-      "url": "https://zcashblockexplorer.com/",
-      "file": "site/Glossary_and_FAQs/FAQ.md",
-      "line": 71,
-      "alsoIn": 25,
-      "detail": "ERR_TLS_CERT_ALTNAME_INVALID"
-    },
-    {
-      "kind": "tls",
-      "url": "https://zcashblockexplorer.com/nodes",
-      "file": "site/guides/Visualizing_the_Zcash_Network.md",
-      "line": 125,
-      "alsoIn": 0,
-      "detail": "ERR_TLS_CERT_ALTNAME_INVALID"
-    },
-    {
-      "kind": "tls",
-      "url": "https://sienna.network/",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 35,
-      "alsoIn": 0,
-      "detail": "ERR_SSL_TLSV1_UNRECOGNIZED_NAME"
-    },
-    {
-      "kind": "tls",
-      "url": "https://sienna.network/whitepaper/",
-      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
-      "line": 35,
-      "alsoIn": 0,
-      "detail": "ERR_SSL_TLSV1_UNRECOGNIZED_NAME"
     },
     {
       "kind": "tls",
@@ -1268,7 +173,7 @@
       "file": "site/Zcash_Community/Community_Projects.md",
       "line": 220,
       "alsoIn": 0,
-      "detail": "ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR"
+      "detail": "DEPTH_ZERO_SELF_SIGNED_CERT"
     },
     {
       "kind": "tls",
@@ -1288,51 +193,11 @@
     },
     {
       "kind": "tls",
-      "url": "https://blog.zeal.center/registration.html",
-      "file": "site/zechubglobal/zcashArabic/zcashsocialmedia/socialmedialinks.md",
-      "line": 64,
-      "alsoIn": 1,
-      "detail": "ERR_SSL_TLSV1_UNRECOGNIZED_NAME"
-    },
-    {
-      "kind": "tls",
-      "url": "https://blog.zeal.center/",
-      "file": "site/zechubglobal/zcashbrasil/contribuir/zecHubDaoPt.md",
-      "line": 26,
-      "alsoIn": 0,
-      "detail": "ERR_SSL_TLSV1_UNRECOGNIZED_NAME"
-    },
-    {
-      "kind": "tls",
-      "url": "https://zcashblockexplorer.com/transactions/8dd212847a97c5eb9cee5e7e58c4d9e739f4156273ae3b2da1a4ff79ad95ff82",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/Zcashblockexplorer.md",
-      "line": 20,
+      "url": "https://ethdos.xyz/",
+      "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/projetosDaComunidadeZcash.md",
+      "line": 103,
       "alsoIn": 4,
-      "detail": "ERR_TLS_CERT_ALTNAME_INVALID"
-    },
-    {
-      "kind": "tls",
-      "url": "https://zcashblockexplorer.com/transactions/19a4be270089490ece2e5fe7a6c9b9804af3c7ed43e1fb1b744b0fb29070fa5d",
-      "file": "site/zechubglobal/zcashbrasil/zcashtech/Zcashblockexplorer.md",
-      "line": 23,
-      "alsoIn": 4,
-      "detail": "ERR_TLS_CERT_ALTNAME_INVALID"
-    },
-    {
-      "kind": "tls",
-      "url": "https://zcashblockexplorer.com/vk",
-      "file": "site/zechubglobal/zcashesp/zcashtech/viewingkeys.md",
-      "line": 48,
-      "alsoIn": 3,
-      "detail": "ERR_TLS_CERT_ALTNAME_INVALID"
-    },
-    {
-      "kind": "tls",
-      "url": "https://zcashblockexplorer.com/ua/u17sawf3pdh7z6tsy83vhjd2z7sztpy9y87wyyqz4vqshn3yhch28q3ud3lr0etadl3flz4c9zdrtn9lwlf23vzmjnll97efxzg9h0rjzn9qvhvqr8p3394ysnfhg560xxxc66yxzh8r548myxn3l2qrc9pfrt8nrzhxvlpuuykv7czjsm",
-      "file": "site/zechubglobal/zcashitaly/Start_Here/What_is_Zechub.md",
-      "line": 33,
-      "alsoIn": 0,
-      "detail": "ERR_TLS_CERT_ALTNAME_INVALID"
+      "detail": "UNABLE_TO_GET_ISSUER_CERT_LOCALLY"
     },
     {
       "kind": "tls",
@@ -1341,38 +206,6 @@
       "line": 25,
       "alsoIn": 3,
       "detail": "ERR_SSL_TLSV1_UNRECOGNIZED_NAME"
-    },
-    {
-      "kind": "timeout",
-      "url": "https://explorer.zec.rocks/transactions/8dd212847a97c5eb9cee5e7e58c4d9e739f4156273ae3b2da1a4ff79ad95ff82",
-      "file": "site/guides/Blockchain_Explorers.md",
-      "line": 20,
-      "alsoIn": 0,
-      "detail": "no response in 15s"
-    },
-    {
-      "kind": "timeout",
-      "url": "https://explorer.zec.rocks/transactions/19a4be270089490ece2e5fe7a6c9b9804af3c7ed43e1fb1b744b0fb29070fa5d",
-      "file": "site/guides/Blockchain_Explorers.md",
-      "line": 22,
-      "alsoIn": 0,
-      "detail": "no response in 15s"
-    },
-    {
-      "kind": "timeout",
-      "url": "https://www.eldorado.market/",
-      "file": "site/guides/Maya_Protocol.md",
-      "line": 70,
-      "alsoIn": 0,
-      "detail": "no response in 15s"
-    },
-    {
-      "kind": "timeout",
-      "url": "https://explorer.zec.rocks/ua/u17sawf3pdh7z6tsy83vhjd2z7sztpy9y87wyyqz4vqshn3yhch28q3ud3lr0etadl3flz4c9zdrtn9lwlf23vzmjnll97efxzg9h0rjzn9qvhvqr8p3394ysnfhg560xxxc66yxzh8r548myxn3l2qrc9pfrt8nrzhxvlpuuykv7czjsm",
-      "file": "site/Start_Here/What_is_ZecHub.md",
-      "line": 54,
-      "alsoIn": 1,
-      "detail": "no response in 15s"
     },
     {
       "kind": "timeout",
@@ -1392,14 +225,6 @@
     },
     {
       "kind": "error",
-      "url": "https://blockchair.com/",
-      "file": "site/guides/Blockchain_Explorers.md",
-      "line": 75,
-      "alsoIn": 0,
-      "detail": "UND_ERR_CONNECT_TIMEOUT"
-    },
-    {
-      "kind": "error",
       "url": "https://tomochain.com/ecosystem/",
       "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
       "line": 98,
@@ -1416,26 +241,26 @@
     },
     {
       "kind": "error",
-      "url": "https://blockchair.com/zcash",
-      "file": "site/Zcash_Tech/Full_Nodes.md",
-      "line": 107,
-      "alsoIn": 8,
-      "detail": "UND_ERR_CONNECT_TIMEOUT"
-    },
-    {
-      "kind": "error",
-      "url": "https://blockchair.com/zcash/block/3428143",
-      "file": "site/Zcash_Tech/Is_Zcash_Post_Quantum.md",
-      "line": 165,
+      "url": "https://www.zallet.io/",
+      "file": "site/Zcash_Tech/Zallet.md",
+      "line": 195,
       "alsoIn": 0,
+      "detail": "ECONNRESET"
+    },
+    {
+      "kind": "error",
+      "url": "https://blog.zeal.center/registration.html",
+      "file": "site/zechubglobal/zcashArabic/zcashsocialmedia/socialmedialinks.md",
+      "line": 64,
+      "alsoIn": 1,
       "detail": "UND_ERR_CONNECT_TIMEOUT"
     },
     {
       "kind": "error",
-      "url": "https://ethdos.xyz/",
-      "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/projetosDaComunidadeZcash.md",
-      "line": 103,
-      "alsoIn": 4,
+      "url": "https://blog.zeal.center/",
+      "file": "site/zechubglobal/zcashbrasil/contribuir/zecHubDaoPt.md",
+      "line": 26,
+      "alsoIn": 0,
       "detail": "UND_ERR_CONNECT_TIMEOUT"
     },
     {
@@ -1459,19 +284,10 @@
       "kind": "blocked",
       "url": "https://3xpl.com/zcash",
       "file": "site/guides/Blockchain_Explorers.md",
-      "line": 77,
+      "line": 75,
       "alsoIn": 0,
       "status": 429,
       "detail": "HTTP 429"
-    },
-    {
-      "kind": "blocked",
-      "url": "https://explorer.bitquery.io/zcash",
-      "file": "site/guides/Blockchain_Explorers.md",
-      "line": 79,
-      "alsoIn": 0,
-      "status": 403,
-      "detail": "HTTP 403"
     },
     {
       "kind": "blocked",
@@ -1490,6 +306,15 @@
       "alsoIn": 0,
       "status": 402,
       "detail": "HTTP 402"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://markets.morpho.org/fixed",
+      "file": "site/guides/Using_ZEC_in_DeFi.md",
+      "line": 261,
+      "alsoIn": 0,
+      "status": 429,
+      "detail": "HTTP 429"
     },
     {
       "kind": "blocked",
@@ -1601,6 +426,24 @@
     },
     {
       "kind": "blocked",
+      "url": "https://foundrydigital.com/foundry-zcash-pool/",
+      "file": "site/Using_Zcash/Zcash_Mining_Pools.md",
+      "line": 117,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://zecblock.com/",
+      "file": "site/Zcash_Community/Community_Blogs.md",
+      "line": 22,
+      "alsoIn": 4,
+      "status": 429,
+      "detail": "HTTP 429"
+    },
+    {
+      "kind": "blocked",
       "url": "https://eprint.iacr.org/2020/852.pdf#page=16",
       "file": "site/Zcash_Tech/FROST.md",
       "line": 44,
@@ -1639,10 +482,19 @@
       "kind": "blocked",
       "url": "https://eprint.iacr.org/2019/1021.pdf",
       "file": "site/Zcash_Tech/Halo.md",
-      "line": 42,
-      "alsoIn": 5,
+      "line": 65,
+      "alsoIn": 7,
       "status": 403,
       "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://zecblock.com/block/3428143",
+      "file": "site/Zcash_Tech/Is_Zcash_Post_Quantum.md",
+      "line": 165,
+      "alsoIn": 0,
+      "status": 429,
+      "detail": "HTTP 429"
     },
     {
       "kind": "blocked",
@@ -1682,10 +534,64 @@
     },
     {
       "kind": "blocked",
+      "url": "https://www.theblock.co/post/226502/mysten-ftx?utm_source=rss&utm_medium=rss",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly38.md",
+      "line": 77,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
       "url": "https://www.forbes.com/sites/digital-assets/2023/04/25/european-union-outpaces-unfocused-united-states-in-crypto-regulation-but-mica-article-68-raises-concerns/",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly40.md",
       "line": 43,
       "alsoIn": 1,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/230673/paradigm-coinbase-shares",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
+      "line": 74,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/230718/bitcoin-ether-price-correlation",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
+      "line": 78,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.zonebourse.com/actualite-bourse/L-Italie-alloue-des-fonds-pour-proteger-les-travailleurs-de-la-menace-du-remplacement-par-l-IA--43855976/",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
+      "line": 82,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://fr.investing.com/news/cryptocurrency-news/ripple-achete-une-startup-suisse-pour-fuir-la-repression-de-la-sec-2178604",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
+      "line": 86,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/232340/nym-ethereum-validators-privacy",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly44.md",
+      "line": 85,
+      "alsoIn": 3,
       "status": 403,
       "detail": "HTTP 403"
     },
@@ -1724,6 +630,24 @@
       "alsoIn": 2,
       "status": 401,
       "detail": "HTTP 401"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/240967/doj-looks-to-increase-crypto-investigations-with-move-to-merge-teams",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
+      "line": 73,
+      "alsoIn": 3,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/241028/celsius-network-reaches-settlements-wsj",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
+      "line": 79,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
     },
     {
       "kind": "blocked",
@@ -1772,12 +696,39 @@
     },
     {
       "kind": "blocked",
+      "url": "https://www.theblock.co/post/263611/worldcoin-price-drops-6-after-sam-altman-unseated-as-openai-ceo",
+      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly69.md",
+      "line": 53,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
       "url": "https://www.wsj.com/finance/currencies/binance-ceo-changpeng-zhao-step-down-plead-guilty-01f72a40",
       "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly70.md",
       "line": 59,
       "alsoIn": 0,
       "status": 401,
       "detail": "HTTP 401"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/265703/coinbase-bybit-main-winners-following-binance-settlement",
+      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly71.md",
+      "line": 67,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/267973/tether-weve-onboarded-fbi-secret-service-to-our-platform",
+      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly73.md",
+      "line": 64,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
     },
     {
       "kind": "blocked",
@@ -1838,6 +789,24 @@
       "url": "https://www.midjourney.com/app/rank-pairs/",
       "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
       "line": 49,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://openai.com/dall-e-2",
+      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
+      "line": 51,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://openai.com/dall-e-3/",
+      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
+      "line": 52,
       "alsoIn": 0,
       "status": 403,
       "detail": "HTTP 403"
@@ -1970,6 +939,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/exchanges/",
+      "file": "site/Glossary_and_FAQs/Zcash_Library.md",
+      "line": 59,
+      "alsoIn": 9,
+      "status": 301,
+      "detail": "→ /ecosystem/?exchanges=#tag-exchanges"
+    },
+    {
+      "kind": "redirect",
       "url": "https://free2z.com/",
       "file": "site/Glossary_and_FAQs/Zcash_Library.md",
       "line": 68,
@@ -1985,6 +963,42 @@
       "alsoIn": 2,
       "status": 308,
       "detail": "→ /indices/zcx"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/zcash-for-business/",
+      "file": "site/Glossary_and_FAQs/Zcash_Library.md",
+      "line": 90,
+      "alsoIn": 2,
+      "status": 301,
+      "detail": "→ /ecosystem"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/investors/",
+      "file": "site/Glossary_and_FAQs/Zcash_Library.md",
+      "line": 92,
+      "alsoIn": 1,
+      "status": 301,
+      "detail": "→ /learn"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/mining-zcash/",
+      "file": "site/Glossary_and_FAQs/Zcash_Library.md",
+      "line": 122,
+      "alsoIn": 9,
+      "status": 301,
+      "detail": "→ /learn/"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/pay-with-zcash/",
+      "file": "site/Glossary_and_FAQs/Zcash_Library.md",
+      "line": 148,
+      "alsoIn": 8,
+      "status": 301,
+      "detail": "→ /ecosystem/"
     },
     {
       "kind": "redirect",
@@ -2186,6 +1200,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/support/zcashd-deprecation",
+      "file": "site/guides/Raspberry_Pi_4_Full_Node.md",
+      "line": 154,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://z.cash/support/zcashd-deprecation/"
+    },
+    {
+      "kind": "redirect",
       "url": "https://github.com/henryquincy/zechub/edit/main/site/guides/Raspberry_pi_4_Zebra_Node.md",
       "file": "site/guides/Raspberry_pi_4_Zebra_Node.md",
       "line": 1,
@@ -2228,6 +1251,24 @@
       "alsoIn": 6,
       "status": 307,
       "detail": "→ https://near-intents.org/"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://bankr.bot/terminal",
+      "file": "site/guides/Using_ZEC_in_DeFi.md",
+      "line": 279,
+      "alsoIn": 0,
+      "status": 302,
+      "detail": "→ /"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://bankr.bot/terminal/trade?in=0x833589fcd6edb6e08f4c7c32d4f71b54bda02913&out=0xb2000000000000000000008501b13360000cb2ec&chain=base",
+      "file": "site/guides/Using_ZEC_in_DeFi.md",
+      "line": 291,
+      "alsoIn": 0,
+      "status": 302,
+      "detail": "→ /trade?in=0x833589fcd6edb6e08f4c7c32d4f71b54bda02913&out=0xb2000000000000000000008501b13360000cb2ec&chain=base"
     },
     {
       "kind": "redirect",
@@ -2494,7 +1535,7 @@
       "kind": "redirect",
       "url": "https://geti2p.net/en/about/intro",
       "file": "site/Privacy_Tools/Tor_and_I2P.md",
-      "line": 18,
+      "line": 26,
       "alsoIn": 1,
       "status": 301,
       "detail": "→ https://i2p.net/en/docs/overview/intro"
@@ -2503,7 +1544,7 @@
       "kind": "redirect",
       "url": "https://geti2p.net/en/download",
       "file": "site/Privacy_Tools/Tor_and_I2P.md",
-      "line": 22,
+      "line": 30,
       "alsoIn": 0,
       "status": 301,
       "detail": "→ https://i2p.net/en/downloads"
@@ -2512,7 +1553,7 @@
       "kind": "redirect",
       "url": "https://geti2p.net/en/comparison/tor",
       "file": "site/Privacy_Tools/Tor_and_I2P.md",
-      "line": 36,
+      "line": 44,
       "alsoIn": 1,
       "status": 301,
       "detail": "→ https://i2p.net/en/docs/overview/comparison"
@@ -2789,6 +1830,33 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/support/security/privacy-security-recommendations/",
+      "file": "site/Start_Here/What_is_ZEC_and_Zcash.md",
+      "line": 35,
+      "alsoIn": 7,
+      "status": 301,
+      "detail": "→ /learn"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/the-basics/",
+      "file": "site/Start_Here/What_is_ZEC_and_Zcash.md",
+      "line": 51,
+      "alsoIn": 6,
+      "status": 301,
+      "detail": "→ /learn"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/technology/",
+      "file": "site/Start_Here/What_is_ZEC_and_Zcash.md",
+      "line": 53,
+      "alsoIn": 8,
+      "status": 301,
+      "detail": "→ /learn"
+    },
+    {
+      "kind": "redirect",
       "url": "https://github.com/zechub/zechub/edit/main/site/Start_Here/What_is_ZecHub.md",
       "file": "site/Start_Here/What_is_ZecHub.md",
       "line": 1,
@@ -2849,6 +1917,15 @@
       "alsoIn": 0,
       "status": 302,
       "detail": "→ https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fzechub%2Fzechub%2Fedit%2Fmain%2Fsite%2FStart_Here%2FZcash_Monetary_Policy.md"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/support/faq/#:~:text=Zcash's%20monetary%20base%20is%20the,3.125%20ZEC%20comes%20into%20circulation.",
+      "file": "site/Start_Here/Zcash_Monetary_Policy.md",
+      "line": 15,
+      "alsoIn": 4,
+      "status": 301,
+      "detail": "→ /learn"
     },
     {
       "kind": "redirect",
@@ -3104,6 +2181,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/upgrade/sapling",
+      "file": "site/Using_Zcash/Shielded_Pools.md",
+      "line": 85,
+      "alsoIn": 6,
+      "status": 301,
+      "detail": "→ https://z.cash/upgrade/sapling/"
+    },
+    {
+      "kind": "redirect",
       "url": "https://electriccoin.co/blog/slow-start-and-mining-ecosystem/",
       "file": "site/Using_Zcash/Shielded_Pools.md",
       "line": 107,
@@ -3343,16 +2429,7 @@
       "line": 14,
       "alsoIn": 0,
       "status": 308,
-      "detail": "→ /James_Katz"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://cipherscan.app/",
-      "file": "site/Zcash_Community/Community_Blogs.md",
-      "line": 22,
-      "alsoIn": 0,
-      "status": 301,
-      "detail": "→ https://zecblock.com/"
+      "detail": "→ ../James_Katz"
     },
     {
       "kind": "redirect",
@@ -3425,6 +2502,24 @@
       "alsoIn": 3,
       "status": 301,
       "detail": "→ https://github.com/cypherpunktech/ztreamer"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://forum.zcashcommunity.com/t/rhea-finance-zcash-gateway-browser-wallet-cross-chain-defi/55073",
+      "file": "site/Zcash_Community/Community_Projects.md",
+      "line": 285,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://forum.zcashcommunity.com/t/zcash-gateway-browser-wallet-cross-chain-defi/55073"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://nano-gpt.com/conversation/new",
+      "file": "site/Zcash_Community/Community_Projects.md",
+      "line": 301,
+      "alsoIn": 0,
+      "status": 307,
+      "detail": "→ /chat"
     },
     {
       "kind": "redirect",
@@ -3698,6 +2793,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/zcash-development-and-governance/",
+      "file": "site/Zcash_Organizations/Zcash_Community_Grants.md",
+      "line": 37,
+      "alsoIn": 35,
+      "status": 301,
+      "detail": "→ /network/"
+    },
+    {
+      "kind": "redirect",
       "url": "https://github.com/zechub/zechub/edit/main/site/Zcash_Organizations/Zcash_Foundation.md",
       "file": "site/Zcash_Organizations/Zcash_Foundation.md",
       "line": 1,
@@ -3889,7 +2993,7 @@
       "kind": "redirect",
       "url": "https://appliedzkp.org/",
       "file": "site/Zcash_Tech/Halo.md",
-      "line": 101,
+      "line": 93,
       "alsoIn": 5,
       "status": 308,
       "detail": "→ https://www.appliedzkp.org/"
@@ -3898,7 +3002,7 @@
       "kind": "redirect",
       "url": "https://scroll.mirror.xyz/nDAbJbSIJdQIWqp9kn8J0MVS4s6pYBwHmK7keidQs-k",
       "file": "site/Zcash_Tech/Halo.md",
-      "line": 111,
+      "line": 100,
       "alsoIn": 5,
       "status": 301,
       "detail": "→ https://paragraph.com/@scroll-2/1FrXrqZ2ZxxxYoATH3So"
@@ -3907,7 +3011,7 @@
       "kind": "redirect",
       "url": "https://electriccoin.co/blog/technical-explainer-halo-on-zcash/",
       "file": "site/Zcash_Tech/Halo.md",
-      "line": 120,
+      "line": 141,
       "alsoIn": 7,
       "status": 301,
       "detail": "→ https://zodl.com/technical-explainer-halo-on-zcash/"
@@ -4306,7 +3410,7 @@
       "line": 205,
       "alsoIn": 6,
       "status": 301,
-      "detail": "→ /posts/article/zero-knowledge-canon/"
+      "detail": "→ https://a16zfrontier.com/zero-knowledge-canon/"
     },
     {
       "kind": "redirect",
@@ -4544,6 +3648,33 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/technology/paramgen",
+      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
+      "line": 278,
+      "alsoIn": 1,
+      "status": 301,
+      "detail": "→ /learn"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/wallets/",
+      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/BibliotecaZCash.md",
+      "line": 322,
+      "alsoIn": 9,
+      "status": 301,
+      "detail": "→ /ecosystem/?wallets=#tag-wallets"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/exchanges",
+      "file": "site/zechubglobal/zcashbrasil/Glossary&Faq/FAQ-PerguntasFrequentes.md",
+      "line": 13,
+      "alsoIn": 6,
+      "status": 301,
+      "detail": "→ /ecosystem/?exchanges=#tag-exchanges"
+    },
+    {
+      "kind": "redirect",
       "url": "https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb",
       "file": "site/zechubglobal/zcashbrasil/guides/RaspberryPi4TutorialFullNode.md",
       "line": 76,
@@ -4580,6 +3711,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://web.archive.org/web/20260217121832/https://electriccoin.co/zashi/",
+      "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/projetosDaComunidadeZcash.md",
+      "line": 15,
+      "alsoIn": 0,
+      "status": 302,
+      "detail": "→ https://web.archive.org/web/20260211055157/https://electriccoin.co/zashi/"
+    },
+    {
+      "kind": "redirect",
       "url": "https://zfnd.org/zebra/",
       "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/projetosDaComunidadeZcash.md",
       "line": 31,
@@ -4589,12 +3729,30 @@
     },
     {
       "kind": "redirect",
+      "url": "https://zeme.team/",
+      "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/projetosDaComunidadeZcash.md",
+      "line": 43,
+      "alsoIn": 4,
+      "status": 302,
+      "detail": "→ https://zeme.team/cgi-sys/suspendedpage.cgi"
+    },
+    {
+      "kind": "redirect",
       "url": "https://anchor.fm/zec-hub/episodes/Zcash-narratives-with-David-from-Zcash-Media-e1o2b36",
       "file": "site/zechubglobal/zcashbrasil/mídiasocialzcash/thez2zpodcast.md",
       "line": 15,
       "alsoIn": 3,
       "status": 302,
       "detail": "→ https://podcasters.spotify.com/pod/show/zec-hub/episodes/Zcash-narratives-with-David-from-Zcash-Media-e1o2b36"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://z.cash/wallets",
+      "file": "site/zechubglobal/zcashbrasil/usandozec/Transactions.md",
+      "line": 13,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ /ecosystem/?wallets=#tag-wallets"
     },
     {
       "kind": "redirect",
@@ -4670,6 +3828,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/wallets.",
+      "file": "site/zechubglobal/zcashbrasil/zec/Transações.md",
+      "line": 15,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://z.cash/wallets"
+    },
+    {
+      "kind": "redirect",
       "url": "https://discordapp.com/channels/978714252934258779/1120388268819755068",
       "file": "site/zechubglobal/zcashbrasil/zechubBrasil.md",
       "line": 23,
@@ -4679,12 +3846,30 @@
     },
     {
       "kind": "redirect",
+      "url": "https://z.cash/technology/zksnarks/#:~:text=The%20acronym%20zk%2DSNARK%20stands,between%20the%20prover%20and%20verifier.",
+      "file": "site/zechubglobal/zcashesp/blogs/privadovstransparente.md",
+      "line": 13,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ /learn/what-are-zk-snarks/"
+    },
+    {
+      "kind": "redirect",
       "url": "https://electriccoin.co/blog/maintaining-privacy/",
       "file": "site/zechubglobal/zcashesp/blogs/privadovstransparente.md",
       "line": 25,
       "alsoIn": 0,
       "status": 301,
       "detail": "→ https://zodl.com/maintaining-privacy/"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://www.cockneyrhymingslang.co.uk/slang/scooby_doo#:~:text=Scooby%20Doo%20is%20Cockney%20slang,heard%20all%20over%20the%20UK.",
+      "file": "site/zechubglobal/zcashesp/blogs/privadovstransparente.md",
+      "line": 63,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://cockneyrhymingslang.co.uk/slang/scooby_doo/"
     },
     {
       "kind": "redirect",
@@ -5192,15 +4377,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://www.theblock.co/post/226502/mysten-ftx?utm_source=rss&utm_medium=rss",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly38.md",
-      "line": 77,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/ecosystems/2023-04-14-mysten-ftx-226502"
-    },
-    {
-      "kind": "redirect",
       "url": "https://www.theblock.co/post/227722/gemini-foundation",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly39.md",
       "line": 81,
@@ -5264,24 +4440,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://www.theblock.co/post/230673/paradigm-coinbase-shares",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
-      "line": 74,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/business/2023-05-12-paradigm-coinbase-shares-230673"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/230718/bitcoin-ether-price-correlation",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
-      "line": 78,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/ecosystems/2023-05-13-bitcoin-ether-price-correlation-230718"
-    },
-    {
-      "kind": "redirect",
       "url": "https://free2z.com/Sqribbles/zpage/sqribbles-issue-4",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
       "line": 29,
@@ -5300,15 +4458,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://www.zonebourse.com/actualite-bourse/L-Italie-alloue-des-fonds-pour-proteger-les-travailleurs-de-la-menace-du-remplacement-par-l-IA--43855976/",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
-      "line": 82,
-      "alsoIn": 0,
-      "status": 301,
-      "detail": "→ /actualite-bourse/L-Italie-alloue-des-fonds-pour-proteger-les-travailleurs-de-la-menace-du-remplacement-par-l-IA-43855976/"
-    },
-    {
-      "kind": "redirect",
       "url": "https://cryptonaute.fr/e-zimbabwe-vend-des-millions-de-tokens-adosses-a-lor/",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
       "line": 90,
@@ -5324,15 +4473,6 @@
       "alsoIn": 3,
       "status": 303,
       "detail": "→ https://www.youtube.com/watch?v=8eYDTyV39a4&feature=youtu.be"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/232340/nym-ethereum-validators-privacy",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly44.md",
-      "line": 85,
-      "alsoIn": 3,
-      "status": 301,
-      "detail": "→ /news/ecosystems/2023-05-26-nym-ethereum-validators-privacy-232340"
     },
     {
       "kind": "redirect",
@@ -5495,24 +4635,6 @@
       "alsoIn": 2,
       "status": 301,
       "detail": "→ /news/business/2023-07-15-ark-invest-coinbase-sells-cathie-wood-239769"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/240967/doj-looks-to-increase-crypto-investigations-with-move-to-merge-teams",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
-      "line": 73,
-      "alsoIn": 3,
-      "status": 301,
-      "detail": "→ /news/regulation/2023-07-21-doj-looks-to-increase-crypto-investigations-with-move-to-merge-teams-240967"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/241028/celsius-network-reaches-settlements-wsj",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
-      "line": 79,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/business/2023-07-21-celsius-network-reaches-settlements-wsj-241028"
     },
     {
       "kind": "redirect",
@@ -5858,15 +4980,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://www.theblock.co/post/263611/worldcoin-price-drops-6-after-sam-altman-unseated-as-openai-ceo",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly69.md",
-      "line": 53,
-      "alsoIn": 0,
-      "status": 301,
-      "detail": "→ /news/business/2023-11-17-worldcoin-price-drops-6-after-sam-altman-unseated-as-openai-ceo-263611"
-    },
-    {
-      "kind": "redirect",
       "url": "https://www.thetimes.co.uk/radio/show/20231125-21371/2023-11-25",
       "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly70.md",
       "line": 36,
@@ -5894,15 +5007,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://www.theblock.co/post/265703/coinbase-bybit-main-winners-following-binance-settlement",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly71.md",
-      "line": 67,
-      "alsoIn": 0,
-      "status": 301,
-      "detail": "→ /news/markets/2023-12-01-coinbase-bybit-main-winners-following-binance-settlement-265703"
-    },
-    {
-      "kind": "redirect",
       "url": "https://electriccoin.co/blog/a-look-back-nu5-and-network-sandblasting/",
       "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly72.md",
       "line": 25,
@@ -5927,15 +5031,6 @@
       "alsoIn": 0,
       "status": 302,
       "detail": "→ /markets/bitcoin-fees-20-month-high-miner-revenues-match-69k-btc-price"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/267973/tether-weve-onboarded-fbi-secret-service-to-our-platform",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly73.md",
-      "line": 64,
-      "alsoIn": 0,
-      "status": 301,
-      "detail": "→ /news/markets/2023-12-16-tether-weve-onboarded-fbi-secret-service-to-our-platform-267973"
     },
     {
       "kind": "redirect",
@@ -6368,6 +5463,15 @@
       "alsoIn": 0,
       "status": 308,
       "detail": "→ https://www.coindesk.com/policy/2023/06/23/binance-ordered-to-immediately-halt-offering-crypto-services-in-belgium-by-markets-regulator"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://zcashesp.com/daos-descentralizacion-en-accion",
+      "file": "site/zechubglobal/zcashnigeria/zecweekly49.md",
+      "line": 19,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://zcashesp.com/daos-descentralizacion-en-accion/"
     },
     {
       "kind": "redirect",
@@ -7145,24 +6249,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://openai.com/dall-e-2",
-      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
-      "line": 51,
-      "alsoIn": 0,
-      "status": 308,
-      "detail": "→ /dall-e-2/"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://openai.com/dall-e-3/",
-      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
-      "line": 52,
-      "alsoIn": 0,
-      "status": 307,
-      "detail": "→ /index/dall-e-3/"
-    },
-    {
-      "kind": "redirect",
       "url": "https://runwayml.com/",
       "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
       "line": 59,
@@ -7319,8 +6405,8 @@
       "kind": "duplicate",
       "url": "https://zips.z.cash/zip-0259",
       "file": "site/Glossary_and_FAQs/Zcash_Library.md",
-      "count": 2,
-      "detail": "appears 2 times in this file"
+      "count": 3,
+      "detail": "appears 3 times in this file"
     },
     {
       "kind": "duplicate",
@@ -7842,6 +6928,13 @@
     },
     {
       "kind": "duplicate",
+      "url": "https://zips.z.cash/zip-0259",
+      "file": "site/Start_Here/Network_Upgrades.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
       "url": "https://github.com/ZecHub/zechub",
       "file": "site/Start_Here/What_is_ZecHub.md",
       "count": 2,
@@ -7849,7 +6942,7 @@
     },
     {
       "kind": "duplicate",
-      "url": "https://explorer.zec.rocks/ua/u17sawf3pdh7z6tsy83vhjd2z7sztpy9y87wyyqz4vqshn3yhch28q3ud3lr0etadl3flz4c9zdrtn9lwlf23vzmjnll97efxzg9h0rjzn9qvhvqr8p3394ysnfhg560xxxc66yxzh8r548myxn3l2qrc9pfrt8nrzhxvlpuuykv7czjsm",
+      "url": "https://mainnet.zcashexplorer.app/ua/u17sawf3pdh7z6tsy83vhjd2z7sztpy9y87wyyqz4vqshn3yhch28q3ud3lr0etadl3flz4c9zdrtn9lwlf23vzmjnll97efxzg9h0rjzn9qvhvqr8p3394ysnfhg560xxxc66yxzh8r548myxn3l2qrc9pfrt8nrzhxvlpuuykv7czjsm",
       "file": "site/Start_Here/What_is_ZecHub.md",
       "count": 2,
       "detail": "appears 2 times in this file"
@@ -8081,6 +7174,20 @@
     {
       "kind": "duplicate",
       "url": "https://zips.z.cash/zip-0320",
+      "file": "site/Using_Zcash/Transparent_Exchange_Addresses.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zips.z.cash/zip-0320#background",
+      "file": "site/Using_Zcash/Transparent_Exchange_Addresses.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zips.z.cash/zip-0320#reference-implementation",
       "file": "site/Using_Zcash/Transparent_Exchange_Addresses.md",
       "count": 2,
       "detail": "appears 2 times in this file"
@@ -8325,6 +7432,13 @@
     },
     {
       "kind": "duplicate",
+      "url": "https://shieldedlabs.net/epoch-future-proof-cryptography-for-zcash/",
+      "file": "site/Zcash_Organizations/Shielded_Labs.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
       "url": "https://valargroup.dev/",
       "file": "site/Zcash_Organizations/Valar_Group.md",
       "count": 2,
@@ -8500,6 +7614,20 @@
     },
     {
       "kind": "duplicate",
+      "url": "https://github.com/zcash/halo2#readme",
+      "file": "site/Zcash_Tech/Halo.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://eprint.iacr.org/2019/1021.pdf",
+      "file": "site/Zcash_Tech/Halo.md",
+      "count": 3,
+      "detail": "appears 3 times in this file"
+    },
+    {
+      "kind": "duplicate",
       "url": "https://zips.z.cash/zip-0250",
       "file": "site/Zcash_Tech/Heartwood.md",
       "count": 2,
@@ -8535,10 +7663,17 @@
     },
     {
       "kind": "duplicate",
-      "url": "https://zips.z.cash/zip-0259",
-      "file": "site/Zcash_Tech/Is_Zcash_Post_Quantum.md",
+      "url": "https://zips.z.cash/zip-0318",
+      "file": "site/Zcash_Tech/Ironwood.md",
       "count": 2,
       "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zips.z.cash/zip-0259",
+      "file": "site/Zcash_Tech/Is_Zcash_Post_Quantum.md",
+      "count": 3,
+      "detail": "appears 3 times in this file"
     },
     {
       "kind": "duplicate",
@@ -8773,14 +7908,42 @@
     },
     {
       "kind": "duplicate",
-      "url": "https://zips.z.cash/zip-0326",
+      "url": "https://zips.z.cash/zip-0310",
+      "file": "site/Zcash_Tech/Viewing_Keys.md",
+      "count": 3,
+      "detail": "appears 3 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://github.com/zcash/zallet",
       "file": "site/Zcash_Tech/Viewing_Keys.md",
       "count": 2,
       "detail": "appears 2 times in this file"
     },
     {
       "kind": "duplicate",
-      "url": "https://blockchair.com/zcash",
+      "url": "https://zips.z.cash/zip-0326",
+      "file": "site/Zcash_Tech/Viewing_Keys.md",
+      "count": 3,
+      "detail": "appears 3 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zips.z.cash/zip-0318",
+      "file": "site/Zcash_Tech/Viewing_Keys.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zips.z.cash/zip-2005",
+      "file": "site/Zcash_Tech/Viewing_Keys.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zecblock.com/",
       "file": "site/Zcash_Tech/What_a_Block_Explorer_Can_See.md",
       "count": 2,
       "detail": "appears 2 times in this file"
@@ -8899,6 +8062,55 @@
     },
     {
       "kind": "duplicate",
+      "url": "https://www.irs.gov/pub/irs-drop/n-14-21.pdf",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://www.irs.gov/pub/irs-pdf/p1771.pdf",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://www.irs.gov/pub/irs-pdf/p526.pdf",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 3,
+      "detail": "appears 3 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://www.irs.gov/pub/irs-wd/202302012.pdf",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://www.irs.gov/pub/irs-pdf/f8283.pdf",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-virtual-currency-transactions",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 4,
+      "detail": "appears 4 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://www.irs.gov/pub/irs-pdf/f8282.pdf",
+      "file": "site/Zcash_Use_Cases/Accept_Private_Donations_As_A_US_Nonprofit.md",
+      "count": 2,
+      "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "duplicate",
       "url": "https://www.notion.so/zechub/Social-Media-Links-05b9df645af54de7a1989d9c4ccc4d05",
       "file": "site/zechubglobal/zcashArabic/zcashecosystem/zcashcommunity.md",
       "count": 2,
@@ -8943,6 +8155,13 @@
       "kind": "duplicate",
       "url": "https://github.com/ZecHub/zechub/blob/main/site/guides/Raspberry_Pi_4_Full_Node.md",
       "file": "site/zechubglobal/zcashbrasil/guides/RaspberryPi4TutorialFullNode.md",
+      "count": 7,
+      "detail": "appears 7 times in this file"
+    },
+    {
+      "kind": "duplicate",
+      "url": "https://zechub.wiki/wallets",
+      "file": "site/zechubglobal/zcashbrasil/usandozec/carteiras.md",
       "count": 7,
       "detail": "appears 7 times in this file"
     },
@@ -9193,13 +8412,6 @@
     },
     {
       "kind": "duplicate",
-      "url": "https://zechub.wiki/zfav/calendar",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
-      "count": 2,
-      "detail": "appears 2 times in this file"
-    },
-    {
-      "kind": "duplicate",
       "url": "https://free2z.cash/zingolabs/zpage/open-another-wallet-and-restore-backup",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly54.md",
       "count": 2,
@@ -9263,6 +8475,13 @@
     },
     {
       "kind": "duplicate",
+      "url": "https://zechub.wiki/wallets",
+      "file": "site/zechubglobal/zcashfrance/Zec/IntroductionAuxPortefeuillesZcash.md",
+      "count": 7,
+      "detail": "appears 7 times in this file"
+    },
+    {
+      "kind": "duplicate",
       "url": "https://twitter.com/luckytokidoki/status/1646839233636896769?t=LMgy0gNB1-6TNin7DmdK3Q&s=19",
       "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly38.md",
       "count": 2,
@@ -9293,13 +8512,6 @@
       "kind": "duplicate",
       "url": "https://twitter.com/zcash/status/1651295980065521671",
       "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly40.md",
-      "count": 2,
-      "detail": "appears 2 times in this file"
-    },
-    {
-      "kind": "duplicate",
-      "url": "https://zechub.wiki/zfav/calendar",
-      "file": "site/zechubglobal/zcashitaly/#newsletter/zecweekly52.md",
       "count": 2,
       "detail": "appears 2 times in this file"
     },
@@ -9869,6 +9081,42 @@
       "file": "site/ZFAV_Club/Guides_for_Creators/Video_Subtitle_Generation_with_Translation.md",
       "count": 2,
       "detail": "appears 2 times in this file"
+    },
+    {
+      "kind": "revived",
+      "url": "https://web.archive.org/web/20260708111341/https://www.imf.org/en/about",
+      "file": "site/Research/Navigating_the_Central_Bank_Digital_Currency.md",
+      "line": 104,
+      "alsoIn": 0,
+      "status": 200,
+      "detail": "https://www.imf.org/en/about answers 200 again (snapshot taken 2026-07-08)"
+    },
+    {
+      "kind": "revived",
+      "url": "https://web.archive.org/web/20260725175130/https://sienna.network/",
+      "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
+      "line": 35,
+      "alsoIn": 0,
+      "status": 200,
+      "detail": "https://sienna.network/ answers 200 again (snapshot taken 2026-07-25)"
+    },
+    {
+      "kind": "revived",
+      "url": "https://web.archive.org/web/20260418195753/https://cointelegraph.com/news/net-bitcoin-atms-record-an-increase-after-4-months-of-global-downtrend",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly45.md",
+      "line": 65,
+      "alsoIn": 3,
+      "status": 200,
+      "detail": "https://cointelegraph.com/news/net-bitcoin-atms-record-an-increase-after-4-months-of-global-downtrend answers 200 again (snapshot taken 2026-04-18)"
+    },
+    {
+      "kind": "revived",
+      "url": "https://web.archive.org/web/20260711141039/https://cointelegraph.com/news/a16z-releases-anonymous-voting-system-for-ethereum",
+      "file": "site/zechubglobal/zcashnigeria/Zecweekly-44.md",
+      "line": 66,
+      "alsoIn": 0,
+      "status": 200,
+      "detail": "https://cointelegraph.com/news/a16z-releases-anonymous-voting-system-for-ethereum answers 200 again (snapshot taken 2026-07-11)"
     }
   ]
 }

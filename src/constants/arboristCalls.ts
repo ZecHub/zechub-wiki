@@ -1,5 +1,32 @@
 export const arboristCalls = [
   {
+    id: 134,
+    date: "15 Oct 2026",
+    agenda: "",
+    notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20134%20-%20notes.md",
+    twitter: "",
+    video: "https://www.youtube.com/watch?v=3FKbc3N41Zw",
+    status: "Completed",
+  },
+  {
+    id: 133,
+    date: "1 Oct 2026",
+    agenda: "",
+    notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20133%20-%20notes.md",
+    twitter: "",
+    video: "https://www.youtube.com/watch?v=gJA1brRxnf4",
+    status: "Completed",
+  },
+  {
+    id: 132,
+    date: "17 Sep 2026",
+    agenda: "",
+    notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20132%20-%20notes.md",
+    twitter: "",
+    video: "https://www.youtube.com/watch?v=5Vgq0sXJ_Co",
+    status: "Completed",
+  },
+  {
     id: 131,
     date: "3 Sep 2026",
     agenda: "",
