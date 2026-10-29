@@ -39,15 +39,15 @@ import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
-import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import MdxComponents from "@/components/MdxComponents/MdxComponent";
+import MdxReady from "@/components/MdxReady";
 import { stripFrontmatter } from "@/lib/stripFrontmatter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
 
 import { rehypeStripDangerous } from "@/lib/rehypeStripDangerous";
-
-const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
 export async function generateMetadata({
   params,
@@ -526,28 +526,7 @@ export default async function Page(props: {
     );
   }
 
-  const serializedSource = await serialize(normalizeMdx(stripFrontmatter(processedMarkdown)), {
-    blockJS: true, // next-mdx-remote v6 default; explicit for defense-in-depth
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        [
-          rehypeRaw,
-          {
-            passThrough: [
-              "mdxJsxFlowElement",
-              "mdxFlowExpression",
-              "mdxJsxTextElement",
-              "mdxTextExpression",
-            ],
-          },
-        ],
-        // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
-        rehypeStripDangerous,
-        rehypeJsxYouTubeFacade,
-      ],
-    },
-  });
+  const mdxSource = normalizeMdx(stripFrontmatter(processedMarkdown));
 
   const heroImage = getHeroImage(slug[0]);
 
@@ -632,7 +611,32 @@ export default async function Page(props: {
         <Suspense
           fallback={<span className="text-center text-3xl">Loading...</span>}
         >
-          <LazyMdxComponent source={serializedSource} />
+          <MDXRemote
+            source={mdxSource}
+            components={MdxComponents}
+            options={{
+              blockJS: true,
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
+                  [
+                    rehypeRaw,
+                    {
+                      passThrough: [
+                        "mdxJsxFlowElement",
+                        "mdxFlowExpression",
+                        "mdxJsxTextElement",
+                        "mdxTextExpression",
+                      ],
+                    },
+                  ],
+                  rehypeStripDangerous,
+                  rehypeJsxYouTubeFacade,
+                ],
+              },
+            }}
+          />
+          <MdxReady />
         </Suspense>
       </MdxContainer>
     </>

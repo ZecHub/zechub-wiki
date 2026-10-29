@@ -6,7 +6,7 @@ const intlMiddleware = createMiddleware({ ...routing, alternateLinks: false });
 
 function buildCsp(nonce: string, isEmbed: boolean): string {
   const isDev = process.env.NODE_ENV === "development";
-  // script-src: nonce + strict-dynamic, no 'unsafe-inline'.
+  // No 'unsafe-eval': MDX is rendered on the server via next-mdx-remote/rsc.
   // 'wasm-unsafe-eval' kept for zaddr_wasm_parser + Penumbra WASM.
   // 'unsafe-eval' only in dev (React refresh).
   const scriptSrc = [
@@ -24,11 +24,8 @@ function buildCsp(nonce: string, isEmbed: boolean): string {
     "base-uri 'self'",
     "object-src 'none'",
     "form-action 'self'",
-    // /embed is designed to be framed by third parties.
     isEmbed ? "" : "frame-ancestors 'self'",
     `script-src ${scriptSrc}`,
-    // style-src stays 'unsafe-inline' for styled-components and inline styles.
-    // Script execution is the XSS concern; style nonce can be a later pass.
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://i.ytimg.com https://i.postimg.cc https://*.basemaps.cartocdn.com https://img.shields.io https://upload.wikimedia.org https://ipfs.daodao.zone",
     "font-src 'self' data:",
@@ -50,29 +47,25 @@ export default function proxy(request: NextRequest) {
   const isEmbed = /\/(?:[a-z]{2}\/)?embed(?:\/|$)/.test(path);
   const csp = buildCsp(nonce, isEmbed);
 
-  // Next.js reads the nonce from the request Content-Security-Policy header
-  // and auto-applies it to framework/bootstrap scripts. x-nonce is for our
-  // own <script> tags (JSON-LD etc.).
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", csp);
 
   const intlResponse = intlMiddleware(request);
 
-  // Redirects / rewrites from next-intl: just attach the CSP and return.
-  if (intlResponse.headers.get("location") || intlResponse.headers.get("x-middleware-rewrite")) {
+  if (intlResponse.headers.get("location")) {
     intlResponse.headers.set("Content-Security-Policy", csp);
     return intlResponse;
   }
 
-  // Continue with the modified request so the renderer sees the nonce.
-  const response = NextResponse.next({
-    request: { headers: requestHeaders },
-  });
+  const rewrite = intlResponse.headers.get("x-middleware-rewrite");
+  const response = rewrite
+    ? NextResponse.rewrite(new URL(rewrite), { request: { headers: requestHeaders } })
+    : NextResponse.next({ request: { headers: requestHeaders } });
 
-  // Preserve any headers next-intl set (set-cookie, vary, etc.).
   intlResponse.headers.forEach((value, key) => {
-    if (key.toLowerCase() === "content-security-policy") return;
+    const k = key.toLowerCase();
+    if (k === "content-security-policy" || k === "x-middleware-rewrite") return;
     response.headers.set(key, value);
   });
 
