@@ -1,11 +1,10 @@
-import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
-import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import LiteYouTube from "@/components/LiteYouTube";
 import { youTubeId } from "@/lib/youtube";
 import type { MDXComponents } from "mdx/types";
 import Gallery from "@/components/Gallery/Gallery";
+import MdxLink from "@/components/MdxComponents/MdxLink";
 
 // Strong slugify for TOC links (handles parentheses, +, etc.)
 const slugify = (text: string): string => {
@@ -30,61 +29,7 @@ const getHeadingText = (children: React.ReactNode): string => {
 };
 
 const MdxComponents = {
-  // TOC LINKS — underline on hover only (no dashed line)
-  a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
-    let href = props.href || "";
-    if (href.startsWith("#")) {
-      const normalized = "#" + slugify(href.slice(1));
-      const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        const targetId = normalized.slice(1);
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      };
-      return (
-        <a
-          href={normalized}
-          className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 hover:underline scroll-mt-20 [overflow-wrap:anywhere]"
-          onClick={handleClick}
-          {...props}
-        />
-      );
-    }
-    const resolved = href.startsWith("/site")
-      ? transformGithubFilePathToWikiLink(href)
-      : href;
-    // Protocol-relative URLs ("//host/...") start with "/" but are external;
-    // only single-leading-slash app paths are internal.
-    const isInternal = resolved.startsWith("/") && !resolved.startsWith("//");
-    // A bare URL as link text has no break opportunity, so on a phone it
-    // pushed the page wider than the screen; let it wrap when it must.
-    const className =
-      "font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed [overflow-wrap:anywhere]";
-    // Internal links use the locale-aware next-intl Link so navigation stays
-    // within the active locale (e.g. /it/...). External links open in a new tab.
-    if (isInternal) {
-      return (
-        <Link href={resolved} className={className}>
-          {props.children}
-        </Link>
-      );
-    }
-    // Defense-in-depth: reject non-allow-listed schemes even if upstream sanitizer is bypassed.
-    const normalized = resolved.replace(/[\t\n\r\f\v\u0000-\u001F\u007F]/g, "").trim();
-    const allowed =
-      normalized.startsWith("#") ||
-      normalized.startsWith("/") ||
-      /^(https?|mailto):/i.test(normalized);
-    if (!allowed) {
-      return <span className={className}>{props.children}</span>;
-    }
-    return (
-      <a href={normalized} target="_blank" rel="noreferrer" className={className}>
-        {props.children}
-      </a>
-    );
-  },
+  a: MdxLink,
 
   // Headings with IDs
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
@@ -124,7 +69,6 @@ const MdxComponents = {
       />
     );
   },
-
   pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => (
     <div className="relative group my-6">
       <div className="absolute -top-3 left-4 z-10 px-3 py-1 
@@ -165,8 +109,8 @@ const MdxComponents = {
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <td className="px-6 py-4" {...props} />
   ),
-  // =====================================================================
 
+  // =====================================================================
   // Everything else
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
     // Images are self-hosted under /content-images/ (same-origin) — serve as-is.
@@ -199,7 +143,6 @@ const MdxComponents = {
   ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal ps-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
   p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
-
   Gallery,
 } as MDXComponents;
 
