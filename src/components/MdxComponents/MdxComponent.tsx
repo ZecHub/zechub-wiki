@@ -2,6 +2,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import { isScriptUrl } from "@/lib/rehypeStripDangerous";
 import LiteYouTube from "@/components/LiteYouTube";
 import { youTubeId } from "@/lib/youtube";
 import type { MDXComponents } from "mdx/types";
@@ -32,7 +33,12 @@ const getHeadingText = (children: React.ReactNode): string => {
 const MdxComponents = {
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
-    let href = props.href || "";
+    const rawHref = props.href || "";
+    // Defense-in-depth: never emit a script-scheme href even if an upstream
+    // sanitizer missed it (e.g. a control-character-obfuscated javascript:).
+    const isUnsafe = isScriptUrl(rawHref);
+    const href = isUnsafe ? "" : rawHref;
+    const spreadProps = isUnsafe ? { ...props, href: undefined } : props;
     if (href.startsWith("#")) {
       const normalized = "#" + slugify(href.slice(1));
       const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -47,7 +53,7 @@ const MdxComponents = {
           href={normalized}
           className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 hover:underline scroll-mt-20 [overflow-wrap:anywhere]"
           onClick={handleClick}
-          {...props}
+          {...spreadProps}
         />
       );
     }

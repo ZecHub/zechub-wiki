@@ -44,77 +44,7 @@ import { stripFrontmatter } from "@/lib/stripFrontmatter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
-import { visit, SKIP } from "unist-util-visit";
-
-// Defense-in-depth: content markdown is rendered via rehypeRaw (raw HTML
-// passthrough) with no allow-list sanitizer, so a malicious content-repo change
-// could otherwise inject executable markup. Strip the direct XSS vectors —
-// <script>/<style> elements, on* event-handler attributes, and javascript: URLs.
-// MDX parses literal HTML such as <iframe srcDoc> as mdxJsx* nodes, which
-// rehypeRaw passes through, so the same rules have to run on those too.
-// (A full allow-list sanitizer or nonce-based CSP is the complete fix; this
-// closes the obvious holes without risking removal of legitimate content HTML.)
-function isScriptUrl(value: unknown) {
-  return typeof value === "string" && /^\s*(javascript|vbscript):/i.test(value);
-}
-
-function rehypeStripDangerous() {
-  return (tree: any) => {
-    (visit as any)(
-      tree,
-      ["element", "mdxJsxFlowElement", "mdxJsxTextElement"],
-      (node: any, index: number | undefined, parent: any) => {
-        const tag = String(node.tagName || node.name || "").toLowerCase();
-        if (
-          (tag === "script" || tag === "style") &&
-          parent &&
-          typeof index === "number"
-        ) {
-          parent.children.splice(index, 1);
-          return [SKIP, index];
-        }
-
-        const props = node.properties || {};
-        for (const key of Object.keys(props)) {
-          const k = key.toLowerCase();
-          // Event handlers, and attributes that can carry an executable document
-          // (srcdoc) or override a form's action to a script URL (formaction).
-          if (k.startsWith("on") || k === "srcdoc" || k === "formaction") {
-            delete props[key];
-            continue;
-          }
-          // Script-executing URL schemes on any URL-bearing attribute.
-          if (
-            ["href", "src", "xlinkhref", "action", "poster"].includes(k) &&
-            isScriptUrl(props[key])
-          ) {
-            delete props[key];
-          }
-        }
-
-        // JSX attributes are { name, value }, not a properties map.
-        if (Array.isArray(node.attributes)) {
-          node.attributes = node.attributes.filter((attr: any) => {
-            const name = String(attr?.name || "").toLowerCase();
-            if (!name) return true;
-            if (name.startsWith("on") || name === "srcdoc" || name === "formaction") {
-              return false;
-            }
-            const value =
-              typeof attr.value === "string" ? attr.value : attr.value?.value;
-            if (
-              ["href", "src", "xlinkhref", "action", "poster"].includes(name) &&
-              isScriptUrl(value)
-            ) {
-              return false;
-            }
-            return true;
-          });
-        }
-      },
-    );
-  };
-}
+import { rehypeStripDangerous } from "@/lib/rehypeStripDangerous";
 
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
