@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; brave?: boolean; explorers?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; ledger?: boolean; brave?: boolean; explorers?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -3646,15 +3646,6 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         el("guidecallout", { title: "Zashi is now Zodl" }, [
           p(txt("The Zashi app was renamed "), b("Zodl"), txt(" in 2026. This guide uses the new name and keeps \"(Zashi)\" in the title because older screenshots, videos and posts still show the former Zashi app. Existing wallets, seed phrases and funds are unchanged.")),
         ]),
-        el("jumpnav", {
-          title: "Jump to",
-          items: JSON.stringify([
-            { label: "Tutorial", hint: "Video walkthrough", href: "#video-tutorial" },
-            { label: "Preparation", hint: "What you need", href: "#preparation" },
-            { label: "Set up Keystone", hint: "Verify, update, create", href: "#set-up-your-keystone" },
-            { label: "Connect to Zodl", hint: "Pair and fund", href: "#connect-keystone-to-zodl" },
-          ]),
-        }, []),
         el("h2", {}, [txt("Video tutorial")]),
         ...(video(0, "Keystone X Zodl (Zashi) tutorial") ? [video(0, "Keystone X Zodl (Zashi) tutorial")] : []),
         el("h2", {}, [txt("Preparation")]),
@@ -4745,6 +4736,39 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           { label: "Base (cbZEC)", hint: "Aerodrome, Uniswap, Morpho", href: "#using-cbzec-on-defi-base" },
         ];
         rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.ledger && Array.isArray(tree.children)) {
+      // Ledger shielded ZEC guide: refreshed dates, device list and a migration notice for the legacy app.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
+      const txt = (value: string) => ({ type: "text", value });
+      const fix = (n: any) => {
+        if (!n) return;
+        if (n.type === "text") {
+          n.value = String(n.value)
+            .replace(/15 October 2026/g, "30 October 2026")
+            .replace(/Nano S Plus, Nano X, Stax or Flex\./, "Nano S Plus, Stax or Flex. Ledger's materials do not clearly confirm the Nano X, so check that the Zcash app appears in My Ledger before you rely on it.");
+        }
+        (n.children || []).forEach(fix);
+      };
+      rows.forEach(fix);
+      const desktop = rows.findIndex((x) => isEl(x, "p") && /^desktop only/i.test(textOf(x).trim()));
+      if (desktop > -1) {
+        rows.splice(
+          desktop + 1,
+          0,
+          el("guidecallout", { title: "Moving funds from the legacy Zondax app" }, [
+            el("p", {}, [
+              txt("The separate Zondax-built "),
+              el("strong", {}, [txt("Zcash Shielded")]),
+              txt(" app is being withdrawn from Ledger Wallet's app catalog on 5 November 2026, according to several independent reports (Ledger's own announcement does not mention it). It uses a different account derivation path from the new Zcash app, so the new app cannot see old accounts. If you hold ZEC under the old app, create an account with the new Zcash app and move your funds before that date, while the old app still works. Your recovery phrase is not deleted, but reaching those funds later would require restoring it in a wallet that supports the old derivation path. "),
+              el("a", { href: "https://zeczcash.com/blog/zcash-ledger-wallet", target: "_blank", rel: "noreferrer" }, [txt("Source")]),
+              txt("."),
+            ]),
+          ]),
+        );
       }
     }
     if (opts.nymvpn && Array.isArray(tree.children)) {
@@ -6063,6 +6087,7 @@ export default async function Page(props: {
             free2z: slug[0] === "guides" && slug[1] === "free2z-live",
             usezec: slug[0] === "guides" && slug[1] === "using-zec-privately",
             keystone: slug[0] === "guides" && slug[1] === "keystone-zashi",
+            ledger: slug[0] === "guides" && slug[1] === "ledger-shielded-zec",
             brave: slug[0] === "guides" && slug[1] === "brave-wallet-guide",
             explorers: slug[0] === "guides" && slug[1] === "blockchain-explorers",
             wb: slug[0] === "guides" && slug[1] === "my-first-zcash-workbook",
