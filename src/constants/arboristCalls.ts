@@ -82,7 +82,7 @@ export const arboristCalls = [
   },
   {
     id: 125,
-    date: "May 28th, 2026.",
+    date: "May 28th, 2026",
     agenda: "",
     notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20125%20-%20notes.md",
     twitter: "",
@@ -91,7 +91,7 @@ export const arboristCalls = [
   },
   {
     id: 124,
-    date: "April 30th, 2026.",
+    date: "April 30th, 2026",
     agenda: "",
     notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20124%20-%20notes.md",
     twitter: "",
