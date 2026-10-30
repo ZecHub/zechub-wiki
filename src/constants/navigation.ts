@@ -465,7 +465,7 @@ export const navigations: Array<NavigationItem> = [
   },
   {
     name: "Data",
-    label: "Data",
+    label: "Network",
     icon: LayoutDashboard,
     links: [
       { name: "Ecosystem Dashboard", path: "/dashboard", icon: LayoutDashboard },
@@ -639,16 +639,16 @@ export const menuSections: Record<string, MenuSection[]> = {
   ],
   Data: [
     {
-      title: "Dashboards",
+      title: "Live data",
       items: ["Ecosystem Dashboard", "Protocol Parameters"],
     },
     {
-      title: "Visualizers",
+      title: "Explore the network",
       items: ["All Visualizers", "Network & Infrastructure", "Value Pools"],
     },
     {
       title: "Protocol",
-      items: ["zk-SNARK Proofs", "Consensus"],
+      items: ["Consensus", "zk-SNARK Proofs"],
     },
     {
       title: "Cryptography",

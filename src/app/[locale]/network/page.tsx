@@ -5,6 +5,7 @@ import { genMetadata, getBanner } from "@/lib/helpers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { menuSections, navigations } from "@/constants/navigation";
+import NetworkStats from "./NetworkStats";
 
 export async function generateMetadata({
   params,
@@ -15,17 +16,17 @@ export async function generateMetadata({
   const localePrefix =
     locale && locale !== routing.defaultLocale ? `/${locale}` : "";
   return genMetadata({
-    title: "Zcash Data, Dashboards & Visualizers | ZecHub",
+    title: "Zcash Network: Dashboards & Visualizers | ZecHub",
     description:
-      "Live Zcash metrics, protocol parameters and interactive visualizers: everything the Data menu offers in one place.",
-    url: `https://zechub.wiki${localePrefix}/data`,
+      "Live Zcash metrics, protocol parameters and interactive visualizers: everything the Network menu offers in one place.",
+    url: `https://zechub.wiki${localePrefix}/network`,
     image: getBanner("tools") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternatesAllLocales("/data", locale),
+    alternates: buildAlternatesAllLocales("/network", locale),
   });
 }
 
-// Short descriptions for each page in the Data menu. The groups and their
+// Short descriptions for each page in the Network menu. The groups and their
 // order come from `menuSections.Data`, so the menu and this page stay in sync.
 const DESCRIPTIONS: Record<string, string> = {
   "Ecosystem Dashboard":
@@ -45,13 +46,14 @@ const DESCRIPTIONS: Record<string, string> = {
 };
 
 const SECTION_DESCRIPTIONS: Record<string, string> = {
-  Dashboards: "Live numbers and reference data for the network.",
-  Visualizers: "Explore how Zcash works, step by step.",
+  "Live data": "Real-time numbers and reference values for the network.",
+  "Explore the network":
+    "Interactive lessons on nodes, wallets and value pools.",
   Protocol: "How the network reaches agreement and proves transactions.",
   Cryptography: "The building blocks behind Zcash privacy.",
 };
 
-export default function DataPage() {
+export default function NetworkPage() {
   const data = navigations.find((n) => n.name === "Data");
   const links = data?.links ?? [];
   const sections = (menuSections["Data"] ?? [])
@@ -68,21 +70,22 @@ export default function DataPage() {
       <header className="border-b border-slate-200 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-5 py-12 md:px-6 md:py-16">
           <p className="mb-4 font-mono text-sm font-semibold text-brand dark:text-brand-soft">
-            &gt; Data
+            &gt; Network
           </p>
           <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
-            Zcash Data
+            Zcash Network
           </h1>
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Dashboards, protocol parameters and interactive visualizers to
             follow the network and understand how it works.
           </p>
+          <NetworkStats />
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl space-y-14 px-5 py-12 md:px-6 md:py-16">
         {sections.map((section, n) => (
-          <section key={section.title} id={section.title.toLowerCase()}>
+          <section key={section.title} id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}>
             <div className="mb-6 flex items-baseline gap-4 border-b border-slate-200 pb-4 dark:border-white/10">
               <span className="font-mono text-sm font-semibold text-brand dark:text-brand-soft">
                 {String(n + 1).padStart(2, "0")}
