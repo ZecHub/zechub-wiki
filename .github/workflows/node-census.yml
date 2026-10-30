@@ -1,0 +1,53 @@
+name: Zcash node census
+
+on:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/node-crawler/**'
+      - '.github/workflows/node-census.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: node-census-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - run: python -m unittest discover -s scripts/node-crawler -v
+
+  census:
+    needs: test
+    if: github.event_name != 'pull_request' && github.repository == 'ZecHub/zechub-wiki' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Discover reachable mainnet peers
+        run: python scripts/node-crawler/crawler.py
+      - name: Commit daily observation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/zcash/nodecount.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'data: refresh reachable Zcash node counts'
+          git pull --rebase origin main
+          git push origin HEAD:main
