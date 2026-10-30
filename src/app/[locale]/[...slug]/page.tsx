@@ -3169,6 +3169,37 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const mm = /^step\s+(\d+)\s*[:.\-]\s*(.+)$/i.exec(t);
         rows[k] = mm ? el("h3", { dataStep: mm[1] }, [txt(mm[2])]) : el("h3", { dataRule: "true" }, [txt(t)]);
       }
+      // Step 2 shows the Connect Wallet screen right after its intro line.
+      const cw = rows.findIndex((x) => isEl(x, "h3") && x.properties?.dataStep === "2");
+      if (cw > -1 && isEl(rows[cw + 1], "p")) {
+        rows.splice(cw + 2, 0, el("p", {}, [el("img", { src: "/content-images/shapeshift-connect.webp", alt: "ShapeShift swap screen with the Connect Wallet button highlighted.", width: 1200, height: 621 }, [])]));
+      }
+      // Steps 3 and 4 become one step (pair, amount and quote); later steps move up by one.
+      const s3 = rows.findIndex((x) => isEl(x, "h3") && x.properties?.dataStep === "3");
+      const s4 = rows.findIndex((x) => isEl(x, "h3") && x.properties?.dataStep === "4");
+      if (s3 > -1 && s4 === s3 + 2 && isEl(rows[s3 + 1], "p")) {
+        rows[s3] = el("h3", { dataStep: "3" }, [txt("Select Your Pair and Review the Quote")]);
+        rows.splice(s4, 2,
+          el("p", {}, [txt("Enter the amount you wish to swap. ShapeShift routes the trade through the best available decentralized protocol (such as THORChain or NEAR Intents for cross-chain swaps) and lists the available quotes with the estimated ZEC output, network fee and time. Sort the list by Best Rate, or pick the Fastest or Lowest Gas option.")]),
+          el("p", {}, [el("img", { src: "/content-images/shapeshift-quotes.webp", alt: "ShapeShift swap screen with 0.001 ETH to ZEC, a custom Zcash receive address and the list of available quotes.", width: 1600, height: 772 }, [])]),
+        );
+        for (const x of rows) {
+          const n = x?.properties?.dataStep;
+          if (isEl(x, "h3") && (n === "5" || n === "6")) x.properties = { ...x.properties, dataStep: String(Number(n) - 1) };
+        }
+      }
+      // Step 4 shows the Preview Trade screen right after its text.
+      const ce = rows.findIndex((x) => isEl(x, "h3") && x.properties?.dataStep === "4" && /confirm/i.test(textOf(x)));
+      if (ce > -1 && isEl(rows[ce + 1], "p")) {
+        rows.splice(ce + 2, 0,
+          el("p", {}, [el("img", { src: "/content-images/shapeshift-preview.webp", alt: "ShapeShift swap screen with the best quote selected and the Preview Trade button ready.", width: 1600, height: 780 }, [])]),
+          el("p", {}, [el("img", { src: "/content-images/shapeshift-confirm-details.webp", alt: "ShapeShift Confirm Details screen showing the swap route, expected ZEC amount, fees and the Confirm and Trade button.", width: 1600, height: 779 }, [])]));
+      }
+      // Step 5 (shielding) shows the Zkool shield screen right after its text.
+      const sh = rows.findIndex((x) => isEl(x, "h3") && x.properties?.dataStep === "5");
+      if (sh > -1 && isEl(rows[sh + 1], "p")) {
+        rows.splice(sh + 2, 0, el("p", {}, [el("img", { src: "/content-images/shapeshift-shield.webp", alt: "Zkool Recipient screen with the shielding options at the top, used to move ZEC into the shielded pool.", width: 1200, height: 648 }, [])]));
+      }
       // ShapeShift v4.0 callout after the delisting history.
       const dl = rows.findIndex((x) => isEl(x, "h3") && /from delisting to default/i.test(textOf(x)));
       if (dl > -1) {
@@ -3186,34 +3217,69 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       const sm = rows.findIndex((x) => isEl(x, "h2") && /^summary$/i.test(h2Text(x)));
       const ri = rows.findIndex((x) => isEl(x, "h3") && /^resources$/i.test(textOf(x).trim()));
       if (ri > -1) {
-        const card = (name: string, desc: string, href: string) => el("communitycard", { name, desc, href }, []);
+        const link = (name: string, href: string, desc: string) => el("li", {}, [el("a", { href }, [txt(name)]), txt(" — " + desc)]);
         rows.splice(ri, rows.length - ri,
           el("h2", {}, [txt("Resources")]),
-          el("communitygrid", {}, [
-            card("ShapeShift", "The decentralized, non-custodial trading platform.", "https://shapeshift.com/"),
-            card("Zcash", "Official project website.", "https://z.cash/"),
-            card("Zodl wallet", "A Zcash wallet with Unified Address and shielding support.", "https://zodl.com"),
-            card("FOX token governance", "How ShapeShift DAO governance works (archived page).", "https://web.archive.org/web/20210126180411/https://shapeshift.com/fox-token"),
-            card("Zcash Community Grants", "The program that funded the integration.", "https://zcashcommunitygrants.org/"),
-            card("crypto.news", "ShapeShift integrates Zcash to bolster onchain privacy.", "https://crypto.news/shapeshift-integrates-zcash-to-enable-true-onchain-privacy/"),
-            card("Invezz", "ShapeShift unveils v4.0, re-centering privacy and self-custody.", "https://invezz.com/news/2025/12/18/shapeshift-unveils-version-4-0-re-centering-privacy-and-self-custody-in-defi/"),
-            card("Cointelegraph", "ShapeShift rolls out support for shielded Zcash transactions.", "https://cointelegraph.com/news/shapeshift-rolls-out-support-for-shielded-zcash-transactions-for-true-privacy"),
-            card("CFOtech", "ShapeShift makes Zcash the default rail in its V4 privacy push.", "https://cfotech.co.uk/story/shapeshift-makes-zcash-default-rail-in-v4-privacy-push"),
+          el("ul", {}, [
+            link("ShapeShift", "https://shapeshift.com/", "decentralized, non-custodial trading platform"),
+            link("Zcash", "https://z.cash/", "official project website"),
+            link("Zkool", "https://github.com/hhanh00/zkool2/releases/latest", "Zcash wallet used in this guide"),
+            link("Zodl", "https://zodl.com", "Zcash wallet with shielding support"),
+            link("Zcash Community Grants", "https://zcashcommunitygrants.org/", "the program that funded the integration"),
+            link("Cointelegraph", "https://cointelegraph.com/news/shapeshift-rolls-out-support-for-shielded-zcash-transactions-for-true-privacy", "ShapeShift rolls out shielded Zcash support"),
           ]),
         );
       }
       void sm;
-      // Jump list after the lead paragraphs.
-      const lead = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
-      const items = [
-        { label: "What is ShapeShift", hint: "History and key features", href: "#what-is-shapeshift" },
-        { label: "How Zcash works", hint: "Shielded transactions", href: "#how-zcash-works" },
-        { label: "Swap ZEC", hint: "Six steps", href: "#how-to-swap-zec-on-shapeshift" },
-        { label: "Why it matters", hint: "Privacy in DeFi, v4.0", href: "#why-this-integration-matters" },
-      ];
-      if (lead > -1) {
-        const at = isEl(rows[lead + 1], "p") ? lead + 2 : lead + 1;
-        rows.splice(at, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
+      // Copy edit: direct and professional. The swap guide comes first, Zcash background goes away.
+      {
+        const hIdx = (tag: string, re: RegExp) => rows.findIndex((x) => isEl(x, tag) && re.test(h2Text(x)));
+        const endOf = (i: number, tags: string[]) => { let e = i + 1; while (e < rows.length && !(isEl(rows[e]) && tags.includes(rows[e].tagName))) e++; return e; };
+        const dropSec = (tag: string, re: RegExp, tags: string[]) => { const i = hIdx(tag, re); if (i > -1) rows.splice(i, endOf(i, tags) - i); };
+        const setP = (tag: string, re: RegExp, text: string, startsWith?: RegExp) => {
+          const i = hIdx(tag, re);
+          if (i < 0) return;
+          const e = endOf(i, ["h2", "h3"]);
+          for (let k = i + 1; k < e; k++) {
+            if (isEl(rows[k], "p") && (!startsWith || startsWith.test(textOf(rows[k]).trim()))) { rows[k].children = [txt(text)]; return; }
+          }
+        };
+        const ld = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
+        if (ld > -1) {
+          rows[ld].children = [txt("ShapeShift is a decentralized, non-custodial exchange that supports Zcash. This guide shows how to swap an asset for ZEC with your own wallet and then shield the funds. No account or identity verification is required.")];
+          if (isEl(rows[ld + 1], "p")) rows.splice(ld + 1, 1);
+        }
+        dropSec("h2", /^how zcash works/i, ["h2"]);
+        dropSec("h2", /^summary$/i, ["h2"]);
+        dropSec("h3", /^a brief history/i, ["h2", "h3"]);
+        dropSec("h3", /^reclaiming privacy in defi/i, ["h2", "h3"]);
+        dropSec("h3", /^zcash community grants support/i, ["h2", "h3"]);
+        dropSec("h3", /^advancing decentralized finance/i, ["h2", "h3"]);
+        setP("h2", /^what is shapeshift/i, "ShapeShift is a decentralized, open-source platform for trading, tracking and managing digital assets across blockchains. It never takes custody of your funds. Founded in 2014 as a centralized exchange, it became a DAO governed by FOX token holders in 2021.");
+        // v4.0 section: drop the delisting heading and its first paragraph, keep the v4.0 summary.
+        const dl2 = hIdx("h3", /^from delisting to default/i);
+        if (dl2 > -1) {
+          const e = endOf(dl2, ["h2", "h3"]);
+          const ps = rows.slice(dl2 + 1, e).filter((x: any) => isEl(x, "p"));
+          rows.splice(dl2, e - dl2, ...(ps.length > 1 ? [ps[ps.length - 1]] : ps));
+        }
+        const wm = hIdx("h2", /^why this integration matters/i);
+        if (wm > -1) rows[wm] = el("h2", {}, [txt("ShapeShift v4.0")]);
+        // Swap guide first.
+        const sw = hIdx("h2", /^how to swap zec/i);
+        const wi = hIdx("h2", /^what is shapeshift/i);
+        if (sw > -1 && wi > -1 && sw > wi) {
+          const sec = rows.splice(sw, endOf(sw, ["h2"]) - sw);
+          rows.splice(wi, 0, ...sec);
+        }
+        const sw2 = hIdx("h2", /^how to swap zec/i);
+        if (sw2 > -1 && isEl(rows[sw2 + 1], "p")) {
+          rows[sw2 + 1] = el("guidecallout", { title: "Wallet used in this guide" }, [el("p", {}, [txt("The screenshots use Zkool as the Zcash wallet. Other Zcash wallets with shielding support, such as Zodl, work the same way.")])]);
+        }
+        setP("h3", /^connect your wallet/i, "You also need a Zcash wallet to receive your ZEC. This guide uses Zkool; Zodl and other Zcash wallets work as well.", /^since you are swapping/i);
+        setP("h3", /^select your pair/i, "Select the asset you want to pay with (for example BTC, ETH or an ERC-20 token) and set ZEC as the asset you get.", /^use the swap interface/i);
+        setP("h3", /^confirm and execute/i, "Click Preview Trade and review the route, amounts and fees on the Confirm Details screen, then click Confirm and Trade. Your ZEC is sent to the receive address you set. Depending on the route, the swap can take a few minutes.");
+        setP("h3", /^shield your zec/i, "When the ZEC arrives, open your Zcash wallet (Zkool in the screenshot) and use its shield function to move the funds into the shielded pool. Zodl and other wallets offer the same option. Shielded funds keep your balance and future transactions private.");
       }
     }
     if (opts.free2z && Array.isArray(tree.children)) {
@@ -4695,11 +4761,13 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
       if (lead > -1) {
         rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
-        let btnRow = lead + 1;
+        rows[lead].children = [{ type: "text", value: "Nym is a decentralized mixnet that protects network metadata. It separates your source and destination IP addresses, so messaging, file transfers, payments and web browsing cannot easily be linked back to you. The software is free and open source, and the network is run by independent nodes around the world." }];
+        rows.splice(lead + 1, 0, el("p", {}, [{ type: "text", value: "NymVPN, built on the mixnet, accepts payment in shielded ZEC." }]));
+        let btnRow = lead + 2;
         while (rows[btnRow] && rows[btnRow].type === "text" && !String(rows[btnRow].value).trim()) btnRow++;
         if (isEl(rows[btnRow], "p")) {
           const links = linksOf(rows[btnRow]);
-          if (links.length) rows.splice(btnRow, 1, ...links.map((a) => el("linkbutton", { href: String(a.properties.href), label: textOf(a).trim() })));
+          if (links.length) rows.splice(btnRow, 1, ...links.map((a) => el("linkbutton", { href: String(a.properties.href), label: /blog/i.test(textOf(a)) ? "Read the Nym blog post" : /download/i.test(textOf(a)) ? "Download NymVPN" : textOf(a).trim() })));
         }
       }
       // Use cases: consecutive h3 + p pairs under "Tutorial" -> card grid.
@@ -4708,20 +4776,22 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       const firstH3 = rows.findIndex((x) => isEl(x, "h3"));
       const instH2 = rows.findIndex((x) => isEl(x, "h2") && /installation guides/i.test(textOf(x)));
       if (firstH3 > -1 && instH2 > firstH3) {
-        const cards: any[] = [];
-        for (let i = firstH3; i < instH2; i++) {
-          if (!isEl(rows[i], "h3")) continue;
-          const body: any[] = [];
-          let j = i + 1;
-          while (j < instH2 && !isEl(rows[j], "h3")) { if (isEl(rows[j])) body.push(rows[j]); j++; }
-          cards.push(el("communitygroup", { title: textOf(rows[i]).replace(/#$/, "").trim(), icon: iconFor(textOf(rows[i]) + " " + (body[0] ? textOf(body[0]) : "")), wide: "false" }, body));
-        }
-        const intro = el("p", { className: ["mt-8", "mb-4", "text-xs", "font-semibold", "uppercase", "tracking-[0.14em]", "text-slate-500", "dark:text-slate-400"] }, [{ type: "text", value: "What you can use it for" }]);
+        const uc: [string, string, string][] = [
+          ["Private browsing", "shield", "Encrypt your connection and mask your IP address so ISPs, advertisers and trackers cannot profile you."],
+          ["Public Wi-Fi security", "wifi", "Protect your data on shared networks in cafes, airports and hotels."],
+          ["Censorship resistance", "alert", "Reach blocked websites and services in restrictive regions."],
+          ["Geo-restricted content", "globe", "Access services and content that are unavailable in your region."],
+          ["Secure banking", "coins", "Protect sensitive financial sessions when banking or paying online."],
+          ["Crypto privacy", "coins", "Add unlinkable payments and metadata protection to your cryptocurrency activity."],
+        ];
+        const cards: any[] = uc.map(([title, icon, body]) => el("communitygroup", { title, icon, wide: "false" }, [el("p", {}, [{ type: "text", value: body }])]));
+        const intro = el("p", { className: ["mt-8", "mb-4", "text-xs", "font-semibold", "uppercase", "tracking-[0.14em]", "text-slate-500", "dark:text-slate-400"] }, [{ type: "text", value: "Use cases" }]);
         rows.splice(firstH3, instH2 - firstH3, intro, el("communitygrid", {}, cards));
       }
       // Installation guides: p>a (video) pairs -> link cards, keep trailing paragraph.
       const inst = rows.findIndex((x) => isEl(x, "h2") && /installation guides/i.test(textOf(x)));
       if (inst > -1) {
+        rows[inst] = el("h2", {}, [{ type: "text", value: "Installation guides" }]);
         const cards: any[] = [];
         let j = inst + 1;
         while (j < rows.length && (isEl(rows[j], "p") || (rows[j].type === "text" && !String(rows[j].value).trim()))) {

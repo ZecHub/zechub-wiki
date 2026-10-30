@@ -807,7 +807,7 @@
         "introToStack": "Intro to the Stack",
         "introToStackDesc": "Understand the architecture and components of the Zcash stack.",
         "zecDev": "ZecDev",
-        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant. See also the",
+        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant.",
         "zcashCommunityWishlist": "Zcash Community Wishlist",
         "introToZingolib": "Intro to Zingolib",
         "introToZingolibDesc": "Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd.",

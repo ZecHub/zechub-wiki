@@ -4,6 +4,7 @@ import { Button } from "@/components/UI/shadcn/button";
 import { Progress } from "@/components/UI/shadcn/progress";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  ArrowRight,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
@@ -56,35 +57,33 @@ export function QuizCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.4, delay: 0.1 }}
       tabIndex={-1}
       className={`h-full ${className}`}
     >
-      <div className="relative group h-full">
-        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full group-hover:bg-card/80 group-hover:border-border/50 transition-all duration-300">
-          <div className="flex-1 text-center">
-            <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
-              {title}
-            </h3>
-            <p id={descriptionId} className="text-muted-foreground text-sm sm:text-base group-hover:text-muted-foreground transition-colors">
-              {description}
-            </p>
-          </div>
-
-          <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium">{t?.visualizer?.clickToOpenQuiz ?? "Click to open quiz →"}</span>
-          </div>
+      <div className="group relative h-full">
+        <div className="flex h-full min-h-[150px] flex-col rounded-xl border border-brand/40 bg-brand/10 p-5 transition-colors group-hover:border-brand group-hover:bg-brand/15 dark:border-brand/40 dark:bg-brand/10">
+          <span className="mb-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-brand/40 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-brand dark:text-brand-soft">
+            <HelpCircle aria-hidden="true" className="h-3.5 w-3.5" />
+            Quiz
+          </span>
+          <h3 className="mb-2 text-lg font-semibold text-foreground">{title}</h3>
+          <p id={descriptionId} className="flex-1 text-sm leading-relaxed text-muted-foreground">
+            {desc}
+          </p>
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand dark:text-brand-soft">
+            {(t?.visualizer?.clickToOpenQuiz ?? "Open quiz").replace(/\s*→\s*$/, "")}
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </span>
         </div>
         <button
           type="button"
           onClick={onOpen}
           aria-label={title}
           aria-describedby={descriptionId}
-          className="absolute inset-0 h-full w-full cursor-pointer rounded-xl border-0 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="absolute inset-0 h-full w-full cursor-pointer rounded-xl border-0 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         />
       </div>
     </motion.div>

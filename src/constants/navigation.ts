@@ -279,10 +279,6 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/free2z-live",
       },
       {
-        name: "Free2Z Livestreaming",
-        path: "/guides/free2z-livestreaming",
-      },
-      {
         name: "Keystone Zodl (Zashi)",
         path: "/guides/keystone-zashi",
       },

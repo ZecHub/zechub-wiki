@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { ArrowRight, ArrowUpRight, ThumbsDown, ThumbsUp } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
@@ -16,32 +17,58 @@ type Resource = {
   url: string;
 };
 
-type ResourceColumnProps = {
-  title: string;
-  resources: Resource[];
-};
+type ResourceGroup = { label: string; indexes: number[] };
 
-function ResourceColumn({ title, resources }: ResourceColumnProps) {
+function ResourceCard({ resource }: { resource: Resource }) {
   return (
-    <div className="flex-1 min-w-0">
-      <h3 className="text-3xl font-semibold mb-6">{title}</h3>
-      <ul className="space-y-5">
-        {resources.map((resource) => (
-          <li key={`${resource.title}-${resource.url}`}>
-            <a
-              href={resource.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline font-medium"
-            >
-              {resource.title}
-            </a>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
-              {resource.description}
+    <a
+      href={resource.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={resource.description}
+      className="group flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-4 no-underline transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
+    >
+      <span className="flex items-start justify-between gap-2 font-semibold text-foreground">
+        {resource.title}
+        <ArrowUpRight
+          aria-hidden="true"
+          className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand dark:group-hover:text-brand-soft"
+        />
+      </span>
+      <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+        {resource.description}
+      </p>
+    </a>
+  );
+}
+
+function ResourcePanel({
+  resources,
+  groups,
+}: {
+  resources: Resource[];
+  groups: ResourceGroup[];
+}) {
+  return (
+    <div className="space-y-10">
+      {groups.map((g) => {
+        const items = g.indexes
+          .map((i) => resources[i])
+          .filter((r): r is Resource => Boolean(r));
+        if (!items.length) return null;
+        return (
+          <div key={g.label}>
+            <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-brand dark:text-brand-soft">
+              {g.label}
             </p>
-          </li>
-        ))}
-      </ul>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((r) => (
+                <ResourceCard key={`${r.title}-${r.url}`} resource={r} />
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -49,6 +76,7 @@ function ResourceColumn({ title, resources }: ResourceColumnProps) {
 export default function DeveloperPage() {
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
+  const [tab, setTab] = useState(0);
   const { t } = useLanguage();
 
   const handleFeedback = (helpful: boolean) => {
@@ -67,7 +95,7 @@ export default function DeveloperPage() {
       blank: true,
       svg: (
         <svg
-          className="w-12 h-12 text-blue-500"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -94,7 +122,7 @@ export default function DeveloperPage() {
       blank: true,
       svg: (
         <svg
-          className="w-12 h-12 text-green-500"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -121,7 +149,7 @@ export default function DeveloperPage() {
       blank: false,
       svg: (
         <svg
-          className="w-12 h-12 text-orange-500"
+          className="h-6 w-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -414,150 +442,198 @@ export default function DeveloperPage() {
     },
   ];
 
-  return (
-    <>
-      {/* Hero Section */}
-      <div className="flex 2xl:h-[60vh] flex-col md:flex-row relative overflow-hidden">
-        <img
-          src="/developer_resources_white.jpg"
-          alt={t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
-          className="inset-0 w-full h-full object-contain 2xl:object-cover dark:hidden"
-        />
-        <img
-          src="/developer_resources_dark.jpg"
-          alt={t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
-          className="inset-0 w-full h-full object-contain 2xl:object-cover hidden dark:block"
-        />
-      </div>
+  const docTabs: { label: string; resources: Resource[]; groups: ResourceGroup[] }[] = [
+    {
+      label: t?.pages?.developers?.introductionsTitle ?? "Introductions",
+      resources: introductions,
+      groups: [
+        { label: "Fundamentals", indexes: [0, 1, 2, 8, 9, 10, 15] },
+        { label: "Nodes and servers", indexes: [3, 11, 12, 6, 13, 14] },
+        { label: "Wallet software", indexes: [4, 5, 7] },
+      ],
+    },
+    {
+      label: "SDKs",
+      resources: sdks,
+      groups: [
+        { label: "Core libraries", indexes: [5, 0, 10] },
+        { label: "Mobile", indexes: [3, 4, 8, 9] },
+        { label: "Web and JavaScript", indexes: [1, 2, 6, 7] },
+      ],
+    },
+    {
+      label: t?.pages?.developers?.advancedTitle ?? "Advanced",
+      resources: advanced,
+      groups: [
+        { label: "Community and protocol", indexes: [0, 3, 4] },
+        { label: "Agents and custody", indexes: [1, 2] },
+        { label: "Reference applications", indexes: [5, 6, 7] },
+      ],
+    },
+  ];
 
-      {/* Cards Section */}
-      <section id="cardLinks" className="bg-gray-100 dark:bg-gray-800 py-12">
-        <div className="container mx-auto px-8">
-          <h2 className="text-4xl font-bold mb-12">
+  const card = "rounded-xl border border-slate-200 bg-slate-50/60 dark:border-white/10 dark:bg-white/[0.03]";
+  const feedbackBtn = (active: boolean) =>
+    `inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
+      active
+        ? "border-brand bg-brand/10 text-brand dark:text-white"
+        : "border-slate-300 text-foreground hover:border-brand/50 dark:border-white/15"
+    }`;
+  const discord = (
+    <a
+      href="https://discord.gg/zcash"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-medium text-brand underline-offset-2 hover:underline dark:text-brand-soft"
+    >
+      Discord
+    </a>
+  );
+
+  return (
+    <div className="text-foreground">
+      {/* Hero */}
+      <header className="border-b border-slate-200 dark:border-white/10">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-6 md:py-16">
+          <p className="mb-4 font-mono text-sm font-semibold text-brand dark:text-brand-soft">
+            &gt; Developers
+          </p>
+          <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">
+            {t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
+          </h1>
+          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            A builders manual for Zcash. By builders, for builders.
+          </p>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-6xl px-5 md:px-6">
+        {/* Get started */}
+        <section id="cardLinks" className="py-12 md:py-16">
+          <h2 className="mb-8 text-2xl font-bold sm:text-3xl">
             {t?.pages?.developers?.cardSectionTitle ??
               "How would you like to get started?"}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {cardsConfig.map((card) => (
-              <div
-                key={card.title}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
-              >
-                <div className="flex items-center justify-center p-6">
-                  {card.svg}
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                  <p className="dark:text-gray-300 text-gray-700 mb-4 h-[100px]">
-                    {card.content}
-                  </p>
-                  <a
-                    href={card.url}
-                    target={card.blank ? "_blank" : "_self"}
-                    rel={card.blank ? "noopener noreferrer" : undefined}
-                    className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-                  >
-                    {card.buttonText}
-                  </a>
-                </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {cardsConfig.map((c) => (
+              <div key={c.title} className={`${card} flex flex-col p-6`}>
+                <span className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand dark:text-brand-soft">
+                  {c.svg}
+                </span>
+                <h3 className="mb-2 text-lg font-semibold">{c.title}</h3>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {c.content}
+                </p>
+                <a
+                  href={c.url}
+                  target={c.blank ? "_blank" : "_self"}
+                  rel={c.blank ? "noopener noreferrer" : undefined}
+                  className="inline-flex w-fit items-center gap-2 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
+                >
+                  {c.buttonText}
+                  {c.blank ? (
+                    <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                  ) : (
+                    <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  )}
+                </a>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Documentation Section */}
-      <section
-        id="exploreDocumentation"
-        className="bg-white dark:bg-gray-800 py-12"
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12">
+        {/* Documentation */}
+        <section
+          id="exploreDocumentation"
+          className="border-t border-slate-200 py-12 dark:border-white/10 md:py-16"
+        >
+          <h2 className="mb-8 text-2xl font-bold sm:text-3xl">
             {t?.pages?.developers?.exploreDocsTitle ??
               "Explore the Documentation"}
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
-            <ResourceColumn
-              title={
-                t?.pages?.developers?.introductionsTitle ?? "Introductions"
-              }
-              resources={introductions}
-            />
-            <ResourceColumn title="SDKs" resources={sdks} />
-            <ResourceColumn
-              title={t?.pages?.developers?.advancedTitle ?? "Advanced"}
-              resources={advanced}
-            />
+          <div
+            role="tablist"
+            aria-label="Documentation categories"
+            className="mb-8 flex flex-wrap gap-2 border-b border-slate-200 pb-4 dark:border-white/10"
+          >
+            {docTabs.map((d, i) => (
+              <button
+                key={d.label}
+                type="button"
+                role="tab"
+                id={`doc-tab-${i}`}
+                aria-selected={tab === i}
+                aria-controls={`doc-panel-${i}`}
+                onClick={() => setTab(i)}
+                className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors ${
+                  tab === i
+                    ? "border-brand bg-brand/10 text-brand dark:text-white"
+                    : "border-slate-300 text-muted-foreground hover:border-brand/50 hover:text-foreground dark:border-white/15"
+                }`}
+              >
+                {d.label}
+                <span className="font-mono text-xs opacity-70">{d.resources.length}</span>
+              </button>
+            ))}
           </div>
-        </div>
-      </section>
 
-      {/* Feedback Section */}
-      <section
-        id="feedback"
-        className="bg-gray-100 dark:bg-gray-800 py-12 mt-6"
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-4">
+          {docTabs.map((d, i) => (
+            <div
+              key={d.label}
+              role="tabpanel"
+              id={`doc-panel-${i}`}
+              aria-labelledby={`doc-tab-${i}`}
+              hidden={tab !== i}
+            >
+              <ResourcePanel resources={d.resources} groups={d.groups} />
+            </div>
+          ))}
+        </section>
+
+        {/* Feedback */}
+        <section
+          id="feedback"
+          className="border-t border-slate-200 py-10 dark:border-white/10"
+        >
+          <h2 className="mb-4 text-lg font-semibold">
             {t?.pages?.developers?.feedbackTitle ?? "Was this page helpful?"}
           </h2>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center gap-3">
             <button
+              type="button"
               onClick={() => handleFeedback(true)}
-              className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer"
+              aria-pressed={feedbackSubmitted && isHelpful}
+              className={feedbackBtn(feedbackSubmitted && isHelpful)}
             >
-              <span>👍</span>
-              <span>{t?.pages?.developers?.feedbackYes ?? "Yes"}</span>
+              <ThumbsUp aria-hidden="true" className="h-4 w-4" />
+              {t?.pages?.developers?.feedbackYes ?? "Yes"}
             </button>
-
             <button
+              type="button"
               onClick={() => handleFeedback(false)}
-              className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 cursor-pointer"
+              aria-pressed={feedbackSubmitted && !isHelpful}
+              className={feedbackBtn(feedbackSubmitted && !isHelpful)}
             >
-              <span>👎</span>
-              <span>{t?.pages?.developers?.feedbackNo ?? "No"}</span>
+              <ThumbsDown aria-hidden="true" className="h-4 w-4" />
+              {t?.pages?.developers?.feedbackNo ?? "No"}
             </button>
           </div>
 
           {feedbackSubmitted && (
-            <div className="mt-4">
-              {isHelpful ? (
-                <p className="text-green-600">
-                  {t?.pages?.developers?.feedbackHelpful ??
-                    "Thank you for your feedback! Make this page even better by answering a few questions. If you need help, you can reach out to the community on our"}{" "}
-                  <a
-                    href="https://discord.gg/zcash"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Discord
-                  </a>
-                  .
-                </p>
-              ) : (
-                <p className="text-red-600">
-                  {t?.pages?.developers?.feedbackNotHelpful ??
-                    "Sorry to hear that. Please let us know how we can improve this page. You can reach out to the community on our"}{" "}
-                  <a
-                    href="https://discord.gg/zcash"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Discord
-                  </a>
-                  .
-                </p>
-              )}
-            </div>
+            <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
+              {isHelpful
+                ? t?.pages?.developers?.feedbackHelpful ??
+                  "Thank you for your feedback! Make this page even better by answering a few questions. If you need help, you can reach out to the community on our"
+                : t?.pages?.developers?.feedbackNotHelpful ??
+                  "Sorry to hear that. Please let us know how we can improve this page. You can reach out to the community on our"}{" "}
+              {discord}.
+            </p>
           )}
-        </div>
-      </section>
-    </>
+        </section>
+      </div>
+    </div>
   );
 }

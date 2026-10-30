@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
-import { Home, Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Home, Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { CoinholderGrantsVisualizer } from "./coinholder-grants";
@@ -600,207 +600,97 @@ export const VisualizerHub: React.FC = () => {
     );
   }
 
+  const sections: {
+    key: Exclude<OpenQuizSection, null>;
+    id: string;
+    title: string;
+    description: string;
+    data: VisualizerInfo[];
+    quizTitle: string;
+    questions: QuizQuestion[];
+  }[] = [
+    {
+      key: "basic",
+      id: "basic",
+      title: t.visualizer?.basic || "Basic",
+      description: t.visualizer?.basicDescription || "Foundational concepts and essential features of Zcash",
+      data: BASIC_VISUALIZERS,
+      quizTitle: t.visualizer?.beginnerQuiz || "Beginner Quiz",
+      questions: QUIZ_BEGINNER,
+    },
+    {
+      key: "advanced",
+      id: "advance",
+      title: t.visualizer?.advanced || "Advanced",
+      description: t.visualizer?.advancedDescription || "Deep technical dives into cryptography, consensus, and infrastructure",
+      data: ADVANCED_VISUALIZERS,
+      quizTitle: t.visualizer?.intermediateQuiz || "Intermediate Quiz",
+      questions: QUIZ_INTERMEDIATE,
+    },
+    {
+      key: "contributors",
+      id: "contribution",
+      title: t.visualizer?.contributors || "Contributors",
+      description: t.visualizer?.contributorsDescription || "Ways to contribute to the Zcash ecosystem and earn rewards",
+      data: CONTRIBUTOR_VISUALIZERS,
+      quizTitle: t.visualizer?.contributorsQuiz || "Contributors Quiz",
+      questions: QUIZ_CONTRIBUTORS,
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-background text-foreground dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-yellow-400/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-400/10 rounded-full blur-3xl"
-        />
-      </div>
-
-      <div className="relative z-10 w-full max-w-[100vw] overflow-x-hidden container mx-auto px-5 imd:px-4 md:px-6 flex flex-col py-6 sm:py-8 md:py-12">
-        <section>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r dark:from-yellow-400 dark:via-emerald-400 dark:to-cyan-400 bg-clip-text text-foreground dark:text-transparent">
-              {t.visualizer?.title || "Zcash Visualizers"}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-0">
-              {t.visualizer?.description || "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center mb-6 sm:mb-8 px-2"
-          >
-            <Button
-              onClick={startPlayAll}
-              size="lg"
-              className="bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 text-slate-900 shadow-[0_0_40px_rgba(251,191,36,0.5)] hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] transition-all px-5 sm:px-8 py-3 text-base sm:text-lg font-semibold"
-            >
-              <Play className="w-5 h-5 mr-2" />
-              {t.visualizer?.playAll || "Play All Visualizers"}
-            </Button>
-          </motion.div>
-        </section>
-
-        {/* BASIC SECTION */}
-        <section id="basic" className="mt-12 sm:mt-16 md:mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-6 sm:mb-8"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              {t.visualizer?.basic || "Basic"}
-            </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              {t.visualizer?.basicDescription || "Foundational concepts and essential features of Zcash"}
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
-            <VisualizerCard
-              data={BASIC_VISUALIZERS}
-              goToVisualizer={goToVisualizer}
-              startDelay={0.4}
-            />
-            {openQuiz !== "basic" && (
-              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
-                <QuizCard
-                  title={t.visualizer?.beginnerQuiz || "Beginner Quiz"}
-                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
-                  onOpen={() => setOpenQuiz("basic")}
-                />
-              </div>
-            )}
-          </div>
-          {openQuiz === "basic" && (
-            <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
-              <QuizModule
-                title={t.visualizer?.beginnerQuiz || "Beginner Quiz"}
-                questions={QUIZ_BEGINNER}
-                onClose={() => setOpenQuiz(null)}
-              />
-            </div>
-          )}
-        </section>
-
-        {/* ADVANCED SECTION */}
-        <section id="advance" className="mt-12 sm:mt-16 md:mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mb-6 sm:mb-8"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
-              {t.visualizer?.advanced || "Advanced"}
-            </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              {t.visualizer?.advancedDescription || "Deep technical dives into cryptography, consensus, and infrastructure"}
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
-            <VisualizerCard
-              data={ADVANCED_VISUALIZERS}
-              goToVisualizer={goToVisualizer}
-              startDelay={0.6}
-            />
-            {openQuiz !== "advanced" && (
-              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
-                <QuizCard
-                  title={t.visualizer?.intermediateQuiz || "Intermediate Quiz"}
-                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
-                  onOpen={() => setOpenQuiz("advanced")}
-                />
-              </div>
-            )}
-          </div>
-          {openQuiz === "advanced" && (
-            <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
-              <QuizModule
-                title={t.visualizer?.intermediateQuiz || "Intermediate Quiz"}
-                questions={QUIZ_INTERMEDIATE}
-                onClose={() => setOpenQuiz(null)}
-              />
-            </div>
-          )}
-        </section>
-
-        {/* CONTRIBUTORS SECTION */}
-        <section id="contribution" className="mt-12 sm:mt-16 md:mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mb-6 sm:mb-8"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {t.visualizer?.contributors || "Contributors"}
-            </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              {t.visualizer?.contributorsDescription || "Ways to contribute to the Zcash ecosystem and earn rewards"}
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
-            <VisualizerCard
-              data={CONTRIBUTOR_VISUALIZERS}
-              goToVisualizer={goToVisualizer}
-              startDelay={0.8}
-            />
-            {openQuiz !== "contributors" && (
-              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
-                <QuizCard
-                  title={t.visualizer?.contributorsQuiz || "Contributors Quiz"}
-                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
-                  onOpen={() => setOpenQuiz("contributors")}
-                />
-              </div>
-            )}
-          </div>
-          {openQuiz === "contributors" && (
-            <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
-              <QuizModule
-                title={t.visualizer?.contributorsQuiz || "Contributors Quiz"}
-                questions={QUIZ_CONTRIBUTORS}
-                onClose={() => setOpenQuiz(null)}
-              />
-            </div>
-          )}
-        </section>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-center mt-10 sm:mt-16"
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto flex w-full max-w-6xl flex-col px-5 py-10 imd:px-4 md:px-6 md:py-14">
+        <motion.header
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="max-w-3xl"
         >
-          <p className="text-muted-foreground text-xs sm:text-sm px-2">
-            {t.visualizer?.autoPlayNote || "Each visualizer runs automatically. Use controls to navigate or pause."}
+          <h1 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
+            {t.visualizer?.title || "Zcash Visualizers"}
+          </h1>
+          <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {t.visualizer?.description || "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"}
           </p>
-        </motion.div>
+          <button
+            type="button"
+            onClick={startPlayAll}
+            className="mt-7 inline-flex items-center gap-2.5 rounded-lg border border-brand bg-brand/10 px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-brand/20 dark:text-white dark:hover:bg-brand/30"
+          >
+            <Play aria-hidden="true" className="h-4 w-4" />
+            {t.visualizer?.playAll || "Play All Visualizers"}
+          </button>
+        </motion.header>
+
+        {sections.map((sec, n) => (
+          <section key={sec.key} id={sec.id} className="mt-14 md:mt-20">
+            <div className="mb-6 flex items-baseline gap-4 border-b border-slate-200 pb-4 dark:border-white/10">
+              <span className="font-mono text-sm font-semibold text-brand dark:text-brand-soft">
+                {String(n + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h2 className="text-2xl font-bold text-foreground sm:text-3xl">{sec.title}</h2>
+                <p className="mt-1 max-w-2xl text-sm text-muted-foreground sm:text-base">{sec.description}</p>
+              </div>
+            </div>
+            <div className="grid w-full grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
+              <VisualizerCard data={sec.data} goToVisualizer={goToVisualizer} startDelay={0.1} />
+              {openQuiz !== sec.key && (
+                <QuizCard title={sec.quizTitle} className="w-full" onOpen={() => setOpenQuiz(sec.key)} />
+              )}
+            </div>
+            {openQuiz === sec.key && (
+              <div className="mt-6 w-full">
+                <QuizModule title={sec.quizTitle} questions={sec.questions} onClose={() => setOpenQuiz(null)} />
+              </div>
+            )}
+          </section>
+        ))}
+
+        <p className="mt-14 text-xs text-muted-foreground sm:text-sm">
+          {t.visualizer?.autoPlayNote || "Each visualizer runs automatically. Use controls to navigate or pause."}
+        </p>
       </div>
     </div>
   );
@@ -813,37 +703,33 @@ type CardProps = {
 };
 
 function VisualizerCard(props: CardProps) {
-  const { data, goToVisualizer, startDelay = 0.3 } = props;
+  const { data, goToVisualizer, startDelay = 0.1 } = props;
   const { t } = useLanguage();
 
   return data.map((v, index) => (
     <motion.div
       key={v.id}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: startDelay + index * 0.1 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.4, delay: startDelay + index * 0.04 }}
+      className="h-full"
     >
-      <div
+      <button
+        type="button"
         onClick={() => goToVisualizer(v.id)}
-        className="cursor-pointer group"
+        className="group flex h-full min-h-[150px] w-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-5 text-left transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
-        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
-          <div className="flex-1 text-center">
-            <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
-              {t?.components?.visualizer?.[v.id]?.title ?? v.title}
-            </h3>
-            <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
-              {t?.components?.visualizer?.[v.id]?.description ?? v.description}
-            </p>
-          </div>
-
-          <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium">{t.common?.clickToExplore || "Click to explore →"}</span>
-          </div>
-        </div>
-      </div>
+        <h3 className="mb-2 text-lg font-semibold text-foreground">
+          {t?.components?.visualizer?.[v.id]?.title ?? v.title}
+        </h3>
+        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+          {t?.components?.visualizer?.[v.id]?.description ?? v.description}
+        </p>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand transition-all group-hover:gap-2.5 dark:text-brand-soft">
+          {(t.common?.clickToExplore || "Explore").replace(/\s*→\s*$/, "")}
+          <ArrowRight aria-hidden="true" className="h-4 w-4" />
+        </span>
+      </button>
     </motion.div>
   ));
 }

@@ -39,6 +39,17 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        // Merged into the Free2Z Live guide.
+        source: "/guides/free2z-livestreaming",
+        destination: "/guides/free2z-live",
+        permanent: true,
+      },
+      {
+        source: "/:locale/guides/free2z-livestreaming",
+        destination: "/:locale/guides/free2z-live",
+        permanent: true,
+      },
+      {
         // The card page used to live at the collapsed slug `centralizedswaps`,
         // which differed from the slug the [...slug] catch-all derives from
         // site/Using_Zcash/Centralized_Swaps.md. Both URLs therefore existed:
