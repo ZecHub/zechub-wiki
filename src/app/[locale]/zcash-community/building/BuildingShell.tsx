@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft } from "lucide-react";
 import BuildingBackdrop from "./BuildingBackdrop";
+import styles from "./BuildingShell.module.css";
 
 export default function BuildingShell({
   title,
@@ -18,7 +19,7 @@ export default function BuildingShell({
   showBack?: boolean;
 }) {
   return (
-    <div className="relative min-h-screen">
+    <div className={`${styles.shell} relative min-h-screen`}>
       <BuildingBackdrop />
       <div className="relative mx-auto w-full max-w-5xl px-4 pb-16 pt-10 sm:px-6 sm:pt-14 lg:px-8">
         {showBack && (
@@ -34,7 +35,7 @@ export default function BuildingShell({
           {title}
         </h1>
         {description && (
-          <p className="mt-2 max-w-2xl text-sm text-zinc-600 dark:text-[#5a6a7e] sm:text-base">
+          <p className={`${styles.description} mt-2 max-w-2xl text-sm text-zinc-600 sm:text-base`}>
             {description}
           </p>
         )}
