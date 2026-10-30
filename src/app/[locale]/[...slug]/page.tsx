@@ -2988,14 +2988,6 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           k++;
         }
       }
-      const h1 = rows.findIndex((x) => isEl(x, "h1"));
-      const items = [
-        { label: "Video tutorial", hint: "Swap ETH for ZEC", href: "#video-tutorial" },
-        { label: "What is Maya", hint: "Protocol and Proof of Bond", href: "#what-is-maya-protocol" },
-        { label: "Maya vs THORChain", hint: "Key differences", href: "#differences-between-maya-and-thorchain" },
-        { label: "Wallets", hint: "Services that support Maya", href: "#maya-protocol-wallet-integration" },
-      ];
-      if (h1 > -1) rows.splice(h1 + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
     }
     if (opts.redbridge && Array.isArray(tree.children)) {
       // red·bridge: notice, jump list, features and components as numbered points, milestones as numbered points, updates section.
