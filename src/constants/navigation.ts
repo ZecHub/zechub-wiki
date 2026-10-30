@@ -693,7 +693,6 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Avalanche RedBridge",
         "ShapeShift Zcash",
         "Free2z Live",
-        "Free2Z Livestreaming",
       ],
     },
     {
