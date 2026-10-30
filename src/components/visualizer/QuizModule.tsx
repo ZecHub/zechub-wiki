@@ -152,13 +152,13 @@ export function QuizModule({
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div className="flex items-center gap-2 min-w-0">
           <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 flex-shrink-0" />
-          <h3 className="text-lg sm:text-xl font-bold text-emerald-100 truncate">
+          <h3 className="text-lg sm:text-xl font-bold text-foreground dark:text-emerald-100 truncate">
             {title}
           </h3>
         </div>
         <div className="flex items-center justify-between sm:justify-end gap-2 flex-shrink-0">
           {!isOnResults && (
-            <span className="text-xs sm:text-sm text-emerald-200/90 whitespace-nowrap">
+            <span className="text-xs sm:text-sm text-foreground dark:text-emerald-200/90 whitespace-nowrap">
               Question {currentIndex + 1} of {total}
             </span>
           )}
@@ -167,7 +167,7 @@ export function QuizModule({
               variant="ghost"
               size="icon"
               onClick={onClose}
-              className="text-emerald-200 hover:text-emerald-100 hover:bg-emerald-500/20 shrink-0 h-8 w-8"
+              className="text-foreground dark:text-emerald-200 dark:hover:text-emerald-100 hover:bg-emerald-500/20 shrink-0 h-8 w-8"
               aria-label="Close quiz"
             >
               <X className="w-4 h-4 shrink-0" />
@@ -199,24 +199,24 @@ export function QuizModule({
             >
               <div className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-100 font-semibold text-sm sm:text-base">
+                  <span className="text-foreground dark:text-emerald-100 font-semibold text-sm sm:text-base">
                     Score:
                   </span>
-                  <span className="text-emerald-300 font-bold text-sm sm:text-base">
+                  <span className="text-foreground dark:text-emerald-300 font-bold text-sm sm:text-base">
                     {score} / {total}
                   </span>
                 </div>
                 <Button
                   onClick={handleReset}
                   variant="outline"
-                  className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/20 w-full sm:w-auto"
+                  className="border-emerald-500/50 text-foreground dark:text-emerald-200 hover:bg-emerald-500/20 w-full sm:w-auto"
                 >
                   Retry Quiz
                 </Button>
               </div>
 
               <div className="space-y-4">
-                <p className="text-sm font-medium text-emerald-200/90">
+                <p className="text-sm font-medium text-foreground dark:text-emerald-200/90">
                   Correct answers
                 </p>
                 {questions.map((q, qIndex) => {
@@ -237,11 +237,11 @@ export function QuizModule({
                         ) : (
                           <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
                         )}
-                        <span className="text-sm text-emerald-100">
+                        <span className="text-sm text-foreground dark:text-emerald-100">
                           Correct: {correctOpt}
                         </span>
                         {!isCorrect && selected[qIndex] !== undefined && (
-                          <span className="text-sm text-red-300/90">
+                          <span className="text-sm text-foreground dark:text-red-300/90">
                             (You chose: {q.options[selected[qIndex]]})
                           </span>
                         )}
@@ -271,7 +271,7 @@ export function QuizModule({
                       const optionStyle =
                         "flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-colors text-left text-sm sm:text-base " +
                         (isSelected
-                          ? "border-emerald-400 bg-emerald-500/20 text-emerald-100"
+                          ? "border-emerald-400 bg-emerald-500/20 text-foreground dark:text-emerald-100"
                           : "border-emerald-500/30 hover:border-emerald-400/50 hover:bg-emerald-500/10");
 
                       return (
@@ -305,7 +305,7 @@ export function QuizModule({
           onClick={handlePrev}
           disabled={currentIndex === 0 && !showResults}
           variant="outline"
-          className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/20 disabled:opacity-50 w-full md:w-auto min-w-0 max-w-full md:min-w-0 order-2 md:order-1 shrink-0"
+          className="border-emerald-500/50 text-foreground dark:text-emerald-200 hover:bg-emerald-500/20 disabled:opacity-50 w-full md:w-auto min-w-0 max-w-full md:min-w-0 order-2 md:order-1 shrink-0"
         >
           <ChevronLeft className="w-4 h-4 mr-2 shrink-0" />
           Previous
