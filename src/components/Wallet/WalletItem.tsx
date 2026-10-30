@@ -68,6 +68,7 @@ const walletLogoOverrides: { [key: string]: { src: string; keepColors?: boolean 
 
 const walletNotes: { [key: string]: string } = {
   dizzy: "Discord wallet",
+  mayaprotocol: "Cross-chain DEX, not a wallet",
 };
 
 const featureLinkMap: { [key: string]: string } = {

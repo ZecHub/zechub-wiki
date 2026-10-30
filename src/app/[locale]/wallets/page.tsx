@@ -59,9 +59,27 @@ export default async function Page(props: {
     : (dict.pages?.wallets?.noData ?? "No Data or Wrong file");
   // Wallets hidden from the directory (still present in the content repo).
   const hiddenWallets = new Set(["ezcash", "zcashd"]);
-  const walletsParsed = parseMarkdown(String(content)).filter(
+  const parsed = parseMarkdown(String(content)).filter(
     (w: { title: string }) => !hiddenWallets.has(w.title.toLowerCase().replace(/[^a-z0-9]/g, "")),
   );
+  // Entries kept on the wiki only (not in the content repo's wallet list).
+  // Maya Protocol: cross-chain DEX that sends ZEC to transparent (t1/t3) and unified Orchard (u1)
+  // addresses; Sapling (zs) addresses are not supported.
+  const extraEntries = [
+    {
+      title: "Maya Protocol",
+      url: "https://www.mayaprotocol.com",
+      imageUrl: "/Logo/maya-protocol.png",
+      devices: ["Web"],
+      pools: ["Orchard", "Transparent"],
+      features: ["Shielded", "Transparent", "Swaps"],
+      operatingSystem: [] as string[],
+      walletSupport: [] as string[],
+      syncSpeed: "",
+      ironwood: "",
+    },
+  ].filter((e) => !parsed.some((w: { title: string }) => w.title.toLowerCase().replace(/[^a-z0-9]/g, "") === e.title.toLowerCase().replace(/[^a-z0-9]/g, "")));
+  const walletsParsed = [...parsed, ...extraEntries];
 
   return (
     <main>

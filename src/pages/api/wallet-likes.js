@@ -35,11 +35,27 @@ export default async function handler(req, res) {
     const ipTitleKey = salt ? `${salt}:${ip}_${title}` : `${ip}_${title}`;
     const hashedIpTitleKey = hashSHA1(ipTitleKey);
 
+    // Without a database (e.g. local development) ratings are simply unavailable:
+    // reads return an empty list and votes get a clear message, instead of a 500.
+    const unavailable = () =>
+      delta === 0
+        ? res.status(200).json({})
+        : res.status(503).json({ message: "Ratings are temporarily unavailable." });
+
+    if (!process.env.POSTGRES_URL) {
+      return unavailable();
+    }
+
     const client = new Client({
       connectionString: process.env.POSTGRES_URL,
     });
 
-    await client.connect();
+    try {
+      await client.connect();
+    } catch (error) {
+      console.error('Error connecting to the ratings database:', error);
+      return unavailable();
+    }
 
     try {
       if (delta === 0) {

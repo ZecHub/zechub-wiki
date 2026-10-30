@@ -1,5 +1,17 @@
 import MdxContainer from "@/components/MdxContainer";
 import { rewriteMetamaskSnap } from "@/lib/pageOverrides/metamaskSnap";
+import { rewriteMerchantGuide } from "@/lib/pageOverrides/merchantGuide";
+import { rewriteNonprofitGuide } from "@/lib/pageOverrides/nonprofitGuide";
+import { rewriteFreelancerGuide } from "@/lib/pageOverrides/freelancerGuide";
+import { rewriteJournalistGuide } from "@/lib/pageOverrides/journalistGuide";
+import { rewriteRecordsGuide } from "@/lib/pageOverrides/recordsGuide";
+import { rewritePayForAiGuide } from "@/lib/pageOverrides/payForAiGuide";
+import { rewriteTreasuryGuide } from "@/lib/pageOverrides/treasuryGuide";
+import { rewriteDonationsGuide } from "@/lib/pageOverrides/donationsGuide";
+import { rewriteSendMoneyGuide } from "@/lib/pageOverrides/sendMoneyGuide";
+import { rewriteSignInGuide } from "@/lib/pageOverrides/signInGuide";
+import { rewriteWhereToDonateGuide } from "@/lib/pageOverrides/whereToDonateGuide";
+import { rewritePlacesToSpendGuide } from "@/lib/pageOverrides/placesToSpendGuide";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
@@ -129,7 +141,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; ledger?: boolean; brave?: boolean; explorers?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; ucNoJump?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; ledger?: boolean; brave?: boolean; explorers?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -865,7 +877,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       items.splice(4);
       items.sort((x, y) => x.k - y.k);
-      if (items.length >= 2) {
+      if (items.length >= 2 && !opts.ucNoJump) {
         const sum = rows.findIndex((x) => nm(x) === "guidecallout");
         const firstH2 = rows.findIndex((x) => isH(x, "h2"));
         const at = sum > -1 && (firstH2 < 0 || sum < firstH2) ? sum + 1 : firstH2;
@@ -883,6 +895,8 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         [/^accept payments/i, "accept-payments-as-a-merchant"],
         [/private community treasury/i, "private-community-treasury"],
         [/^journalist privacy/i, "journalist-privacy-setup"],
+        [/^accept private donations/i, "accept-private-donations-as-a-us-nonprofit"],
+        [/^where to donate/i, "where-to-donate-zec"],
       ];
       // Sharper, more professional copy for the introduction and usage notes.
       const setText = (x: any, t: string) => {
@@ -898,24 +912,31 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       const p1 = pAt(/^zcash is not just about privacy/i);
       if (p1) setText(p1, "Zcash is built for everyday use, not only for privacy in theory. These guides show how to apply it in real situations: receiving payments, paying for services and protecting your financial data.");
       const p2 = pAt(/^this section shows you exactly how/i);
-      if (p2) setText(p2, "Each guide is a short, step-by-step playbook with practical recommendations you can follow right away.");
-      const learnUl = rows.find((x) => nm(x) === "ul" && /how to protect your financial privacy/i.test(textOf(x)));
-      if (learnUl) setList(learnUl, ["Protect your financial privacy in everyday transactions", "Avoid the common mistakes that expose your data", "Apply Zcash in real-world situations, from donations to payments"]);
+      if (p2) setText(p2, "Each one is a short, step-by-step playbook that helps you protect your financial privacy and avoid the common mistakes that expose your data.");
+      // The "What you'll learn" list repeated the introduction, so it is folded into it
+      // and removed; the usage notes become a single short section.
       const pEach = pAt(/^each playbook is:?$/i);
-      if (pEach) setText(pEach, "Every guide follows the same format:");
+      if (pEach) rows.splice(rows.indexOf(pEach), 1);
       const fmtUl = rows.find((x) => nm(x) === "ul" && /^\s*short \(5-7 minutes\)/i.test(textOf(x)));
-      if (fmtUl) setList(fmtUl, ["Short: most take 5 to 10 minutes", "Step-by-step, with clear instructions", "Focused on real-world use, not theory"]);
+      if (fmtUl) setList(fmtUl, ["Short: most take 5 to 10 minutes", "Step-by-step, with clear instructions", "Built around real situations rather than theory"]);
+      const renameText = (x: any, from: RegExp, to: string): boolean => {
+        if (!x || typeof x !== "object") return false;
+        if (x.type === "text" && from.test(x.value)) {
+          x.value = to;
+          return true;
+        }
+        return (x.children || []).some((c: any) => renameText(c, from, to));
+      };
+      const hUse = rows.find((x) => nm(x) === "h2" && /^how to use these guides/i.test(clean(x)));
+      if (hUse) renameText(hUse, /how to use these guides/i, "How these guides work");
       const pPath = pAt(/^follow this step-by-step journey/i);
       if (pPath) setText(pPath, "Follow this recommended order to build real-world Zcash skills one step at a time.");
-      // "What You'll Learn" as a highlighted box (its heading becomes the title).
+      // Drop the "What You'll Learn" section (heading, list and blank rows after it).
       const wl = rows.findIndex((x) => nm(x) === "h2" && /^what you.ll learn/i.test(clean(x)));
       if (wl > -1) {
         let b = wl + 1;
         while (b < rows.length && isBlank(rows[b])) b++;
-        if (nm(rows[b]) === "ul") {
-          rows[b] = { type: "element", tagName: "guidecallout", properties: { title: "What you'll learn" }, children: [rows[b]] };
-          rows.splice(wl, 1);
-        }
+        if (nm(rows[b]) === "ul") rows.splice(wl, b - wl + 1);
       }
       // "If you're new, start here" as a note.
       const nw = rows.findIndex((x) => nm(x) === "p" && /^if you.re new, start here/i.test(textOf(x).trim()));
@@ -2905,7 +2926,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
     }
     if (opts.maya && Array.isArray(tree.children)) {
-      // Maya Protocol: jump list, compact video card, differences as numbered points, wallets as link cards.
+      // Maya Protocol: compact video card (placed last), differences as numbered points, wallets as link cards.
       const rows: any[] = tree.children;
       const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
       const el = (tagName: string, properties: any = {}, children: any[] = []) => ({ type: "element", tagName, properties, children });
@@ -2933,7 +2954,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         if (fr && m) rows[i] = el("videoblock", { exvideo: m[1], extitle: attrOf(fr, "title") }, []);
       }
       const tut = rows.findIndex((x) => isEl(x, "h2") && /^tutorial$/i.test(h2Text(x)));
-      if (tut > -1) rows[tut] = el("h2", {}, [{ type: "text", value: "Video tutorial" }]);
+      if (tut > -1) rows[tut] = el("h2", {}, [{ type: "text", value: "Video tutorial: swap ETH for ZEC" }]);
       // Differences from THORChain: each subheading with its text becomes a numbered point.
       const di = rows.findIndex((x) => isEl(x, "h2") && /^differences between/i.test(h2Text(x)));
       if (di > -1) {
@@ -2981,7 +3002,14 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         }
         if (cards.length) rows.splice(wi + 1, end - wi - 1, ...keep, el("communitygrid", {}, cards));
       }
-      // Hairline between sections, and a jump list after the title.
+      // The video is a hands-on walkthrough, so it goes last, after the concepts and the wallet list.
+      const tv = rows.findIndex((x) => isEl(x, "h2") && /^video tutorial/i.test(h2Text(x)));
+      if (tv > -1) {
+        let tvEnd = tv + 1;
+        while (tvEnd < rows.length && !isEl(rows[tvEnd], "h2")) tvEnd++;
+        rows.push(...rows.splice(tv, tvEnd - tv));
+      }
+      // Hairline between sections.
       for (let k = 1; k < rows.length; k++) {
         if (isEl(rows[k], "h2") && !isEl(rows[k - 1], "hr")) {
           rows.splice(k, 0, el("hr", {}, []));
@@ -3502,15 +3530,6 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           ...(credit ? [credit] : []),
         );
       }
-      // Jump list after the lead.
-      const lead = rows.findIndex((x) => isEl(x, "p") && x.properties?.dataLead);
-      const items = [
-        { label: "Create an account", hint: "Sign up and sign in", href: "#create-your-account" },
-        { label: "Profile", hint: "Details and member price", href: "#personalize-your-profile" },
-        { label: "2Zs and donations", hint: "Credits, subscribing, funding", href: "#subscriptions-and-2zs" },
-        { label: "Live streaming", hint: "Requirements and steps", href: "#live-streaming" },
-      ];
-      if (lead > -1) rows.splice(lead + 1, 0, el("jumpnav", { title: "Jump to", items: JSON.stringify(items) }, []));
     }
     if (opts.usezec && Array.isArray(tree.children)) {
       // Using ZEC, privately: lead, jump list, section headings, video cards, callout, resources card.
@@ -4746,6 +4765,33 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         (n.children || []).forEach(fix);
       };
       rows.forEach(fix);
+      // Every screenshot gets the blue frame.
+      const frame = (n: any) => {
+        if (isEl(n, "img")) {
+          n.properties = { ...(n.properties || {}), dataFrame: "true" };
+          // The device screens use clean dark-background captures instead of the upstream light-backdrop ones.
+          const alt = String(n.properties.alt || "");
+          const local = /^ledger device screens: verify zcash addr/i.test(alt)
+            ? "/content-images/ledger-device-verify-addresses.webp"
+            : /^ledger device review screens for moving/i.test(alt)
+              ? "/content-images/ledger-device-review-shielding.webp"
+              : "";
+          if (local) {
+            n.properties.src = local;
+            delete n.properties.srcSet;
+            delete n.properties.srcset;
+          }
+        }
+        (n?.children || []).forEach(frame);
+      };
+      rows.forEach(frame);
+      // Step titles ("1. Install or update the Zcash app") become real subheadings.
+      for (let k = 0; k < rows.length; k++) {
+        const t = isEl(rows[k], "p") ? textOf(rows[k]).trim() : "";
+        if (/^\d+\.\s+\S/.test(t) && t.length < 80 && (rows[k].children || []).some((c: any) => isEl(c, "strong"))) {
+          rows[k] = el("h3", {}, [txt(t)]);
+        }
+      }
       const desktop = rows.findIndex((x) => isEl(x, "p") && /^desktop only/i.test(textOf(x).trim()));
       if (desktop > -1) {
         rows.splice(
@@ -5965,6 +6011,46 @@ export default async function Page(props: {
   if (slug.join("/") === "using-zcash/metamask-snap" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteMetamaskSnap(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-use-cases/accept-payments-as-a-merchant" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteMerchantGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/accept-private-donations-as-a-us-nonprofit" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNonprofitGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/freelance-privacy-setup" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteFreelancerGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/journalist-privacy-setup" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteJournalistGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/keeping-records-with-shielded-zec" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteRecordsGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/pay-for-ai-with-shielded-zec" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewritePayForAiGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/private-community-treasury" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteTreasuryGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/receive-donations-privately" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteDonationsGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/send-money-without-linking-identity" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteSendMoneyGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/sign-in-with-zcash" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteSignInGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-use-cases/where-to-donate-zec" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteWhereToDonateGuide(processedMarkdown);
+  }
+  if (
+    slug.join("/") === "using-zcash/spend-zcash/top-10-places-to-spend-zec" &&
+    locale === routing.defaultLocale &&
+    processedMarkdown
+  ) {
+    processedMarkdown = rewritePlacesToSpendGuide(processedMarkdown);
+  }
 
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
@@ -6106,6 +6192,7 @@ export default async function Page(props: {
             zal: slug[0] === "using-zcash" && slug[1] === "zallet-quick-reference-guide",
             uc: slug[0] === "zcash-use-cases" && slug.length > 1,
             ucHub: slug[0] === "zcash-use-cases" && slug[1] === "about",
+            ucNoJump: slug[0] === "zcash-use-cases" && ["accept-payments-as-a-merchant", "accept-private-donations-as-a-us-nonprofit", "freelance-privacy-setup", "journalist-privacy-setup", "keeping-records-with-shielded-zec", "pay-for-ai-with-shielded-zec", "private-community-treasury", "receive-donations-privately", "send-money-without-linking-identity", "sign-in-with-zcash", "where-to-donate-zec"].includes(slug[1]),
             compact: slug[0] === "using-zcash" && slug[1] === "mobile-top-ups",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
             comm: slug[0] === "zcash-community" && slug[1] === "community-links",
