@@ -66,14 +66,17 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           getSupplyData(getPoolUrl("ironwood"), controller.signal),
         ]);
 
+        // The helpers return empty arrays on abort; an older network must not
+        // clear or replace the selected network's data.
+        if (controller.signal.aborted) return;
         if (sprout) setSproutSupplyData(sprout);
         if (sapling) setSaplingSupplyData(sapling);
         if (orchard) setOrchardSupplyData(orchard);
         if (ironwood) setIronwoodSupplyData(ironwood);
       } catch (err) {
-        console.error("Error fetching dashboard data:", err);
+        if (!controller.signal.aborted) console.error("Error fetching dashboard data:", err);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     };
 
@@ -317,7 +320,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           </div>
 
           <div className="text-sm font-medium whitespace-nowrap text-center w-full md:w-auto">
-            {display.label}: {display.value.toLocaleString()} ZEC
+            {loading ? "Loading supply…" : `${display.label}: ${display.value.toLocaleString()} ZEC`}
           </div>
         </div>
       </div>
