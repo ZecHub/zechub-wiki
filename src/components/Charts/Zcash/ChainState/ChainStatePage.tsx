@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   LineChart,
   Line,
@@ -211,6 +211,8 @@ export default function ChainStatePage() {
   const [zoomEnd, setZoomEnd] = useState<number>(0);
   const [dragging, setDragging] = useState<"start" | "end" | "mid" | null>(null);
   const [dragOrigin, setDragOrigin] = useState<{ x: number; start: number; end: number } | null>(null);
+  const lookupInputRef = useRef<HTMLInputElement>(null);
+  const [lookupQuery, setLookupQuery] = useState<string | null>(null);
   useEffect(() => {
     fetch(DATA_URL)
       .then((r) => r.json())
@@ -223,6 +225,9 @@ export default function ChainStatePage() {
       setZoomEnd(data.per_day[data.per_day.length - 1].end);
     }
   }, [data]);
+  useEffect(() => {
+    if (chartId === "shielded_cb") setLogScale(false);
+  }, [chartId]);
   if (!data) return <div className="p-4 text-slate-300">Loading chain stats…</div>;
   const days = data.per_day || [];
   const rangeStart = days.length ? days[0].start : 0;
@@ -343,6 +348,30 @@ export default function ChainStatePage() {
     },
     { sapling: 0, orchard: 0, ironwood: 0, mixed: 0 }
   );
+  const cbShare = data.types.coinbase > 0
+    ? ((n(data.types.shielded_coinbase) / data.types.coinbase) * 100).toFixed(1)
+    : "0.0";
+
+  const doLookup = () => {
+    const v = lookupInputRef.current?.value?.trim() ?? "";
+    setLookupQuery(v || null);
+  };
+
+  const lookupResult = (() => {
+    if (lookupQuery === null) return null;
+    const h = Number(lookupQuery.trim());
+    if (!lookupQuery.trim() || !Number.isFinite(h) || h < 0) return null;
+    const rec = shieldedCb.find((r) => r.height === h);
+    if (rec) {
+      const pools: string[] = [];
+      if (rec.sapling_outputs > 0) pools.push(`Sapling (${rec.sapling_outputs} out, ${(rec.sapling_value_balance / 1e8).toLocaleString(undefined, { maximumFractionDigits: 4 })} ZEC)`);
+      if (rec.orchard_actions > 0) pools.push(`Orchard (${rec.orchard_actions} actions, ${(rec.orchard_value_balance / 1e8).toLocaleString(undefined, { maximumFractionDigits: 4 })} ZEC)`);
+      if (rec.ironwood_actions > 0) pools.push(`Ironwood (${rec.ironwood_actions} actions, ${(rec.ironwood_value_balance / 1e8).toLocaleString(undefined, { maximumFractionDigits: 4 })} ZEC)`);
+      return { type: "shielded", pools, height: h };
+    }
+    return { type: "transparent", pools: [], height: h };
+  })();
+
   return (
     <div className="p-4 w-full text-slate-900 dark:text-slate-100">
       <div className="flex items-start justify-between mb-4">
@@ -440,6 +469,9 @@ export default function ChainStatePage() {
           )}
         </ResponsiveContainer>
       </div>
+      {chartId === "shielded_cb" && (
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 -mt-1">Blocks with a shielded coinbase per day window</p>
+      )}
       {chartId !== "expiry_delta" && rangeEnd > rangeStart && (
         <div className="mb-4 px-2">
           <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 mb-1">
@@ -599,7 +631,7 @@ export default function ChainStatePage() {
             <Stat label="Ironwood value balance" value={(-n(data.shielded.ironwood_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fb923c" />
           </>
         )}
-        {active.group === "types" && (
+        {active.group === "types" && active.id !== "shielded_cb" && (
           <>
             <Stat label="v1" value={data.types.v1.toLocaleString()} accent="#94a3b8" />
             <Stat label="v2" value={data.types.v2.toLocaleString()} accent="#64748b" />
@@ -609,20 +641,22 @@ export default function ChainStatePage() {
             <Stat label="v6" value={data.types.v6.toLocaleString()} accent="#fb923c" />
             <Stat label="Other versions" value={data.types.other.toLocaleString()} accent="#fb923c" />
             <Stat label="Coinbase" value={data.types.coinbase.toLocaleString()} accent="#fbbf24" />
-            <Stat label="Shielded coinbases" value={n(data.types.shielded_coinbase).toLocaleString()} accent="#06b6d4" />
-            <Stat label="Transparent coinbases" value={n(data.types.transparent_coinbase).toLocaleString()} accent="#94a3b8" />
             <Stat label="User txs" value={data.types.user.toLocaleString()} accent="#60a5fa" />
             <Stat label="Fully shielded" value={data.types.fully_shielded.toLocaleString()} accent="#4ade80" />
             <Stat label="Mixed" value={data.types.mixed.toLocaleString()} accent="#facc15" />
             <Stat label="Transparent-only" value={data.types.transparent_only.toLocaleString()} accent="#94a3b8" />
-            {active.id === "shielded_cb" && (
-              <>
-                <Stat label="Sapling-only CB" value={poolCounts.sapling.toLocaleString()} accent="#a78bfa" />
-                <Stat label="Orchard-only CB" value={poolCounts.orchard.toLocaleString()} accent="#10b981" />
-                <Stat label="Ironwood-only CB" value={poolCounts.ironwood.toLocaleString()} accent="#f97316" />
-                <Stat label="Mixed-pool CB" value={poolCounts.mixed.toLocaleString()} accent="#facc15" />
-              </>
-            )}
+          </>
+        )}
+        {active.id === "shielded_cb" && (
+          <>
+            <Stat label="Shielded coinbases" value={n(data.types.shielded_coinbase).toLocaleString()} accent="#06b6d4" />
+            <Stat label="Transparent coinbases" value={n(data.types.transparent_coinbase).toLocaleString()} accent="#94a3b8" />
+            <Stat label="Share of coinbases" value={`${cbShare}%`} accent="#06b6d4" />
+            <Stat label="Total coinbases" value={data.types.coinbase.toLocaleString()} accent="#fbbf24" />
+            <Stat label="Sapling-only CB" value={poolCounts.sapling.toLocaleString()} accent="#a78bfa" />
+            <Stat label="Orchard-only CB" value={poolCounts.orchard.toLocaleString()} accent="#10b981" />
+            <Stat label="Ironwood-only CB" value={poolCounts.ironwood.toLocaleString()} accent="#f97316" />
+            <Stat label="Mixed-pool CB" value={poolCounts.mixed.toLocaleString()} accent="#facc15" />
           </>
         )}
         {active.group === "addresses" && (
@@ -650,32 +684,47 @@ export default function ChainStatePage() {
           </>
         )}
       </div>
-      {active.id === "shielded_cb" && shieldedCb.length > 0 && (
+      {active.id === "shielded_cb" && (
         <div className="mt-8">
-          <h2 className="text-lg font-semibold mb-3">Shielded coinbase blocks ({shieldedCb.length.toLocaleString()})</h2>
-          <div className="overflow-x-auto max-h-96 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-xl">
-            <table className="w-full text-sm">
-              <thead className="sticky top-0 bg-slate-50 dark:bg-slate-800">
-                <tr>
-                  <th className="p-2 text-left">Height</th>
-                  <th className="p-2 text-right">Sapling</th>
-                  <th className="p-2 text-right">Orchard</th>
-                  <th className="p-2 text-right">Ironwood</th>
-                </tr>
-              </thead>
-              <tbody>
-                {shieldedCb.slice(-200).reverse().map((r) => (
-                  <tr key={r.height} className="border-t border-slate-100 dark:border-slate-800">
-                    <td className="p-2">{r.height.toLocaleString()}</td>
-                    <td className="p-2 text-right">{r.sapling_outputs}</td>
-                    <td className="p-2 text-right">{r.orchard_actions}</td>
-                    <td className="p-2 text-right">{r.ironwood_actions}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <h2 className="text-lg font-semibold mb-3">Check a block</h2>
+          <div className="flex items-center gap-3 mb-3">
+            <input
+              ref={lookupInputRef}
+              type="text"
+              inputMode="numeric"
+              placeholder="Block height"
+              defaultValue=""
+              onKeyDown={(e) => { if (e.key === "Enter") doLookup(); }}
+              className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded px-3 py-1.5 text-sm w-40 text-slate-900 dark:text-slate-100"
+            />
+            <button
+              onClick={doLookup}
+              className="px-3 py-1.5 rounded bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-sm text-slate-800 dark:text-slate-200"
+            >
+              Check
+            </button>
+            <span className="text-xs text-slate-500">Enter a height and click Check</span>
           </div>
-          <p className="text-xs text-slate-500 mt-2">Showing the most recent 200. Full list is in the JSON.</p>
+          {lookupResult && (
+            <div className="rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 p-4 text-sm">
+              <div className="font-medium mb-1">Block {lookupResult.height.toLocaleString()}</div>
+              {lookupResult.type === "shielded" ? (
+                <>
+                  <div className="text-cyan-600 dark:text-cyan-400">Shielded coinbase</div>
+                  <ul className="mt-1 list-disc list-inside text-slate-700 dark:text-slate-300">
+                    {lookupResult.pools.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <div className="text-slate-500">Transparent coinbase (no shielded outputs)</div>
+              )}
+            </div>
+          )}
+          {lookupQuery !== null && !lookupResult && (
+            <p className="text-sm text-slate-500">Enter a valid height.</p>
+          )}
         </div>
       )}
     </div>
