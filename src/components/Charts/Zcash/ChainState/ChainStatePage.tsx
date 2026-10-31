@@ -1,6 +1,5 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   LineChart,
   Line,
@@ -13,9 +12,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
 const DATA_URL = "/data/zcash/chain-state/results.json";
-
 type Day = {
   day: number;
   start: number;
@@ -23,7 +20,7 @@ type Day = {
   expiry: { total: number; zero: number; nonzero: number; pre_overwinter: number; zero_fraction: number };
   counts: { blocks: number; txs: number };
   shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number };
-  types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number };
+  types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number; shielded_coinbase?: number; transparent_coinbase?: number };
   addresses: { unique_receivers: number; total_receiving_outputs: number };
   anchors?: { sapling: number; orchard: number; ironwood: number };
   trees?: { sapling: number; orchard: number; ironwood: number; sprout: number };
@@ -31,7 +28,15 @@ type Day = {
   locktime: { nonzero: number; zero: number; high_sequence: number };
   spends: { indexer_populated: boolean; probed: number; outpoint_hits: number; sapling_nullifier_hits: number; orchard_nullifier_hits: number; ironwood_nullifier_hits: number; sprout_nullifier_hits: number };
 };
-
+type ShieldedCoinbaseRecord = {
+  height: number;
+  sapling_outputs: number;
+  orchard_actions: number;
+  ironwood_actions: number;
+  sapling_value_balance: number;
+  orchard_value_balance: number;
+  ironwood_value_balance: number;
+};
 type Results = {
   expiry: Day["expiry"] & { delta_histogram: Record<string, number> };
   counts: Day["counts"];
@@ -41,9 +46,9 @@ type Results = {
   blocks: Day["blocks"];
   locktime: Day["locktime"];
   spends: Day["spends"];
+  shielded_coinbases?: ShieldedCoinbaseRecord[];
   per_day: Day[];
 };
-
 const CHARTS = [
   { id: "txs", label: "Transactions", keys: ["txs"], group: "counts" },
   { id: "shielded", label: "Shielded actions", keys: ["sapling_spends", "sapling_outputs", "orchard", "ironwood", "sprout"], group: "shielded" },
@@ -55,6 +60,7 @@ const CHARTS = [
   { id: "unspent", label: "Unspent notes", keys: ["sapling_unspent", "orchard_unspent", "ironwood_unspent"], group: "shielded" },
   { id: "types", label: "Tx type mix", keys: ["fully_shielded", "mixed", "transparent_only"], group: "types" },
   { id: "coinbase", label: "Coinbase vs user", keys: ["coinbase", "user"], group: "types" },
+  { id: "shielded_cb", label: "Shielded coinbases", keys: ["shielded_coinbase", "transparent_coinbase"], group: "types" },
   { id: "versions", label: "Version mix", keys: ["v1", "v2", "v3", "v4", "v5", "v6", "other"], group: "types" },
   { id: "addresses", label: "Addresses", keys: ["unique_receivers", "receiving_outputs"], group: "addresses" },
   { id: "blocks", label: "Block fullness", keys: ["avg_txs", "max_txs"], group: "counts" },
@@ -63,7 +69,6 @@ const CHARTS = [
   { id: "locktime", label: "Locktime / sequence", keys: ["nonzero_lock", "zero_lock", "high_seq"], group: "locktime" },
   { id: "spends", label: "Spends (indexer)", keys: ["transparent_spends", "sapling_spends_idx", "orchard_spends", "ironwood_spends", "sprout_spends"], group: "spends" },
 ];
-
 const INFO: Record<string, { title: string; body: string }> = {
   txs: {
     title: "Transactions",
@@ -113,8 +118,11 @@ const INFO: Record<string, { title: string; body: string }> = {
     title: "Anchors cited",
     body: "How many times each pool's note commitment tree root was referenced as an anchor in a transaction. A higher count means more transactions are spending from that pool's past state.",
   },
+  shielded_cb: {
+    title: "Shielded coinbases",
+    body: "Blocks whose coinbase transaction contains shielded outputs (ZIP 213+). Shielded coinbases can be spent after normal confirmation instead of waiting 100 blocks. Transparent coinbases remain the default for most miners.",
+  },
 };
-
 const COLORS: Record<string, string> = {
   txs: "#3b82f6",
   sapling_spends: "#8b5cf6",
@@ -153,6 +161,8 @@ const COLORS: Record<string, string> = {
   v6: "#f97316",
   coinbase: "#fbbf24",
   user: "#60a5fa",
+  shielded_coinbase: "#06b6d4",
+  transparent_coinbase: "#94a3b8",
   unique_receivers: "#06b6d4",
   receiving_outputs: "#8b5cf6",
   avg_txs: "#10b981",
@@ -169,7 +179,6 @@ const COLORS: Record<string, string> = {
   ironwood_spends: "#f97316",
   sprout_spends: "#ef4444",
 };
-
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
@@ -183,9 +192,7 @@ function CustomTooltip({ active, payload, label }: any) {
     </div>
   );
 }
-
 function n(v: number | undefined | null): number { return v ?? 0; }
-
 function Stat({ label, value, accent }: { label: string; value: string | number; accent: string }) {
   return (
     <div className="rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 p-3">
@@ -194,7 +201,6 @@ function Stat({ label, value, accent }: { label: string; value: string | number;
     </div>
   );
 }
-
 export default function ChainStatePage() {
   const [data, setData] = useState<Results | null>(null);
   const [chartId, setChartId] = useState(CHARTS[0].id);
@@ -205,27 +211,27 @@ export default function ChainStatePage() {
   const [zoomEnd, setZoomEnd] = useState<number>(0);
   const [dragging, setDragging] = useState<"start" | "end" | "mid" | null>(null);
   const [dragOrigin, setDragOrigin] = useState<{ x: number; start: number; end: number } | null>(null);
-
+  const lookupInputRef = useRef<HTMLInputElement>(null);
+  const [lookupQuery, setLookupQuery] = useState<string | null>(null);
   useEffect(() => {
     fetch(DATA_URL)
       .then((r) => r.json())
       .then(setData)
       .catch(console.error);
   }, []);
-
   useEffect(() => {
     if (data?.per_day?.length) {
       setZoomStart(data.per_day[0].start);
       setZoomEnd(data.per_day[data.per_day.length - 1].end);
     }
   }, [data]);
-
+  useEffect(() => {
+    if (chartId === "shielded_cb") setLogScale(false);
+  }, [chartId]);
   if (!data) return <div className="p-4 text-slate-300">Loading chain stats…</div>;
-
   const days = data.per_day || [];
   const rangeStart = days.length ? days[0].start : 0;
   const rangeEnd = days.length ? days[days.length - 1].end : 0;
-
   const fullSeries = (data.per_day || []).map((d) => ({
     start: d.start,
     sapling_spends: n(d.shielded?.sapling_spends),
@@ -248,7 +254,6 @@ export default function ChainStatePage() {
     cumul.set(d.start, { sap: sapC, orch: orchC, iron: ironC, sprout: sproutC });
   }
   const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
-
   const rawSeries = filtered.map((d) => ({
     day: d.start,
     txs: n(d.counts?.txs),
@@ -282,6 +287,8 @@ export default function ChainStatePage() {
     other: n(d.types?.other),
     coinbase: n(d.types?.coinbase),
     user: n(d.types?.user),
+    shielded_coinbase: n(d.types?.shielded_coinbase),
+    transparent_coinbase: n(d.types?.transparent_coinbase),
     unique_receivers: n(d.addresses?.unique_receivers),
     receiving_outputs: n(d.addresses?.total_receiving_outputs),
     avg_txs: n(d.blocks?.avg_txs_per_block),
@@ -322,15 +329,48 @@ export default function ChainStatePage() {
         return out;
       })
     : withSets;
-
   const expiryEntries = Object.entries(data.expiry.delta_histogram || {})
     .map(([delta, count]) => ({ delta: Number(delta), count }))
     .sort((a, b) => b.count - a.count);
   const expiryTop = expiryEntries.slice(0, 30);
   const expiryRest = expiryEntries.slice(30).reduce((sum, e) => sum + e.count, 0);
   const expiryChart = expiryRest > 0 ? [...expiryTop, { delta: "other", count: expiryRest }] : expiryTop;
-
   const active = CHARTS.find((c) => c.id === chartId) || CHARTS[0];
+  const shieldedCb = data.shielded_coinbases ?? [];
+  const poolCounts = shieldedCb.reduce(
+    (acc, r) => {
+      const pools = [r.sapling_outputs > 0, r.orchard_actions > 0, r.ironwood_actions > 0].filter(Boolean).length;
+      if (pools > 1) acc.mixed++;
+      else if (r.sapling_outputs > 0) acc.sapling++;
+      else if (r.orchard_actions > 0) acc.orchard++;
+      else if (r.ironwood_actions > 0) acc.ironwood++;
+      return acc;
+    },
+    { sapling: 0, orchard: 0, ironwood: 0, mixed: 0 }
+  );
+  const cbShare = data.types.coinbase > 0
+    ? ((n(data.types.shielded_coinbase) / data.types.coinbase) * 100).toFixed(1)
+    : "0.0";
+
+  const doLookup = () => {
+    const v = lookupInputRef.current?.value?.trim() ?? "";
+    setLookupQuery(v || null);
+  };
+
+  const lookupResult = (() => {
+    if (lookupQuery === null) return null;
+    const h = Number(lookupQuery.trim());
+    if (!lookupQuery.trim() || !Number.isFinite(h) || h < 0) return null;
+    const rec = shieldedCb.find((r) => r.height === h);
+    if (rec) {
+      const pools: string[] = [];
+      if (rec.sapling_outputs > 0) pools.push(`Sapling (${rec.sapling_outputs} out, ${(rec.sapling_value_balance / 1e8).toLocaleString(undefined, { maximumFractionDigits: 4 })} ZEC)`);
+      if (rec.orchard_actions > 0) pools.push(`Orchard (${rec.orchard_actions} actions, ${(rec.orchard_value_balance / 1e8).toLocaleString(undefined, { maximumFractionDigits: 4 })} ZEC)`);
+      if (rec.ironwood_actions > 0) pools.push(`Ironwood (${rec.ironwood_actions} actions, ${(rec.ironwood_value_balance / 1e8).toLocaleString(undefined, { maximumFractionDigits: 4 })} ZEC)`);
+      return { type: "shielded", pools, height: h };
+    }
+    return { type: "transparent", pools: [], height: h };
+  })();
 
   return (
     <div className="p-4 w-full text-slate-900 dark:text-slate-100">
@@ -355,7 +395,6 @@ export default function ChainStatePage() {
           </svg>
         </a>
       </div>
-
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-semibold">{active.label}</h2>
@@ -397,7 +436,6 @@ export default function ChainStatePage() {
           </select>
         </div>
       </div>
-
       <div className="h-[340px] md:h-[450px] w-full mb-2">
         <ResponsiveContainer width="100%" height="100%">
           {chartId === "expiry_delta" ? (
@@ -431,7 +469,9 @@ export default function ChainStatePage() {
           )}
         </ResponsiveContainer>
       </div>
-
+      {chartId === "shielded_cb" && (
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 -mt-1">Blocks with a shielded coinbase per day window</p>
+      )}
       {chartId !== "expiry_delta" && rangeEnd > rangeStart && (
         <div className="mb-4 px-2">
           <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 mb-1">
@@ -558,7 +598,6 @@ export default function ChainStatePage() {
           </div>
         </div>
       )}
-
       <h2 className="text-lg font-semibold mb-3 text-slate-900 dark:text-slate-100">Summary</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {active.group === "counts" && (
@@ -592,7 +631,7 @@ export default function ChainStatePage() {
             <Stat label="Ironwood value balance" value={(-n(data.shielded.ironwood_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fb923c" />
           </>
         )}
-        {active.group === "types" && (
+        {active.group === "types" && active.id !== "shielded_cb" && (
           <>
             <Stat label="v1" value={data.types.v1.toLocaleString()} accent="#94a3b8" />
             <Stat label="v2" value={data.types.v2.toLocaleString()} accent="#64748b" />
@@ -606,6 +645,18 @@ export default function ChainStatePage() {
             <Stat label="Fully shielded" value={data.types.fully_shielded.toLocaleString()} accent="#4ade80" />
             <Stat label="Mixed" value={data.types.mixed.toLocaleString()} accent="#facc15" />
             <Stat label="Transparent-only" value={data.types.transparent_only.toLocaleString()} accent="#94a3b8" />
+          </>
+        )}
+        {active.id === "shielded_cb" && (
+          <>
+            <Stat label="Shielded coinbases" value={n(data.types.shielded_coinbase).toLocaleString()} accent="#06b6d4" />
+            <Stat label="Transparent coinbases" value={n(data.types.transparent_coinbase).toLocaleString()} accent="#94a3b8" />
+            <Stat label="Share of coinbases" value={`${cbShare}%`} accent="#06b6d4" />
+            <Stat label="Total coinbases" value={data.types.coinbase.toLocaleString()} accent="#fbbf24" />
+            <Stat label="Sapling-only CB" value={poolCounts.sapling.toLocaleString()} accent="#a78bfa" />
+            <Stat label="Orchard-only CB" value={poolCounts.orchard.toLocaleString()} accent="#10b981" />
+            <Stat label="Ironwood-only CB" value={poolCounts.ironwood.toLocaleString()} accent="#f97316" />
+            <Stat label="Mixed-pool CB" value={poolCounts.mixed.toLocaleString()} accent="#facc15" />
           </>
         )}
         {active.group === "addresses" && (
@@ -633,6 +684,49 @@ export default function ChainStatePage() {
           </>
         )}
       </div>
+      {active.id === "shielded_cb" && (
+        <div className="mt-8">
+          <h2 className="text-lg font-semibold mb-3">Check a block</h2>
+          <div className="flex items-center gap-3 mb-3">
+            <input
+              ref={lookupInputRef}
+              type="text"
+              inputMode="numeric"
+              placeholder="Block height"
+              defaultValue=""
+              onKeyDown={(e) => { if (e.key === "Enter") doLookup(); }}
+              className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded px-3 py-1.5 text-sm w-40 text-slate-900 dark:text-slate-100"
+            />
+            <button
+              onClick={doLookup}
+              className="px-3 py-1.5 rounded bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-sm text-slate-800 dark:text-slate-200"
+            >
+              Check
+            </button>
+            <span className="text-xs text-slate-500">Enter a height and click Check</span>
+          </div>
+          {lookupResult && (
+            <div className="rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 p-4 text-sm">
+              <div className="font-medium mb-1">Block {lookupResult.height.toLocaleString()}</div>
+              {lookupResult.type === "shielded" ? (
+                <>
+                  <div className="text-cyan-600 dark:text-cyan-400">Shielded coinbase</div>
+                  <ul className="mt-1 list-disc list-inside text-slate-700 dark:text-slate-300">
+                    {lookupResult.pools.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <div className="text-slate-500">Transparent coinbase (no shielded outputs)</div>
+              )}
+            </div>
+          )}
+          {lookupQuery !== null && !lookupResult && (
+            <p className="text-sm text-slate-500">Enter a valid height.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
