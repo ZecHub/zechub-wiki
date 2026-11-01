@@ -308,6 +308,12 @@ export default function DeveloperPage() {
       url: "https://github.com/zcash/zcash-android-wallet-sdk",
     },
     {
+      title: "Zcash JS",
+      description:
+        "Experimental TypeScript SDK from Zcash Labs for building Zcash applications on web, server, and mobile. Provides public and light clients, local wallets, scanning, signing, and payment recovery.",
+      url: "https://zcashlabs.github.io/zcashjs/",
+    },
+    {
       title: "Zcash Swift Wallet SDK",
       description:
         "iOS light-client framework for integrating Zcash wallet functionality into Swift applications.",
