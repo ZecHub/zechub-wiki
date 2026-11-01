@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import {
   MdThumbDown as Dislike,
   MdThumbUp as Like,
@@ -25,8 +25,8 @@ interface WalletItemProps {
   // Set (possibly to "") only for a deprecated wallet: the reason it is listed
   // as no longer supporting Zcash. Replaces the Ironwood badge.
   deprecated?: string;
-  onLike: () => void;
-  onDislike: () => void;
+  onLike: () => Promise<boolean>;
+  onDislike: () => Promise<boolean>;
   error: string;
   success: string;
 }
@@ -93,17 +93,24 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
+  const [votePending, setVotePending] = useState(false);
+  const votePendingRef = useRef(false);
 
-  const handleLike = () => {
-    onLike();
-    setLiked(true);
-    setDisliked(false);
-  };
-
-  const handleDislike = () => {
-    onDislike();
-    setDisliked(true);
-    setLiked(false);
+  const handleVote = async (direction: 1 | -1) => {
+    // Guard synchronously, including clicks before the disabled state renders.
+    if (votePendingRef.current) return;
+    votePendingRef.current = true;
+    setVotePending(true);
+    try {
+      const accepted = await (direction === 1 ? onLike() : onDislike());
+      if (accepted) {
+        setLiked(direction === 1);
+        setDisliked(direction === -1);
+      }
+    } finally {
+      votePendingRef.current = false;
+      setVotePending(false);
+    }
   };
 
   const featureValues = useMemo(() => {
@@ -322,10 +329,24 @@ const WalletItem: React.FC<WalletItemProps> = ({
         <div className="text-pink-700 dark:text-red-300 text-xs pr-2">{error}</div>
         <div className="text-green-700 dark:text-green-300 text-xs pr-2">{success}</div>
         <div className="flex gap-4">
-          <button onClick={handleLike} className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
+          <button
+            type="button"
+            aria-label={`Like ${title}`}
+            aria-pressed={liked}
+            disabled={votePending}
+            onClick={() => handleVote(1)}
+            className={`cursor-pointer disabled:cursor-wait hover:text-blue-500 ${liked ? "text-blue-500" : "text-gray-600"}`}
+          >
             <Icon icon={Like} size="small" />
           </button>
-          <button onClick={handleDislike} className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
+          <button
+            type="button"
+            aria-label={`Dislike ${title}`}
+            aria-pressed={disliked}
+            disabled={votePending}
+            onClick={() => handleVote(-1)}
+            className={`cursor-pointer disabled:cursor-wait hover:text-red-500 ${disliked ? "text-red-500" : "text-gray-600"}`}
+          >
             <Icon icon={Dislike} size="small" />
           </button>
         </div>
