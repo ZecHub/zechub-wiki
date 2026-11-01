@@ -4015,10 +4015,10 @@
   resolved "https://registry.yarnpkg.com/@unrs/resolver-binding-win32-x64-msvc/-/resolver-binding-win32-x64-msvc-1.12.2.tgz#72da0da48d72b1e87831b9c0308931d3f4669027"
   integrity sha512-nAB74NfSNKknqQ1RrYj6uz8FcXEomu/MATJZxh/x+BArzN2U3JbOYC0APYzUIGhVY3m5hRxA8VPNdPBoG8txlA==
 
-"@upstash/redis@^1.39.0":
-  version "1.39.0"
-  resolved "https://registry.yarnpkg.com/@upstash/redis/-/redis-1.39.0.tgz#9fe8b02e6ccbe4f30115ea9da3f8a2ea4efe1ce8"
-  integrity sha512-VwkpYTdxSfjSulQS5h16NHtg/1UEheBfvez2AeGKinAujOoGXhXCcohQRzsQ/d2g/XzbjzTVGhG8Ds8uOI0Mxg==
+"@upstash/redis@^1.40.0":
+  version "1.40.0"
+  resolved "https://registry.yarnpkg.com/@upstash/redis/-/redis-1.40.0.tgz#4090d95ecb1bb21687f2a2fba914140378447f17"
+  integrity sha512-F6+V7Kof2McJtGWclusZLt7hBRmIMZg+albS32/5TuNRg/92FM2nkyKPY9wWEieMj9hjyUi4iURsN1djsHNbwA==
   dependencies:
     uncrypto "^0.1.3"
 
