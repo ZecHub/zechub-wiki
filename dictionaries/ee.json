@@ -49,7 +49,7 @@
     "Recovering Funds": "Gawo Xɔxɔ",
     "Research": "Numekuku",
     "Send Money Privately": "Ðo Ga Ðe Ame Ðokui Si",
-    "Shielded Labs": "Labs Siwo Wotsɔ Akpoxɔnu Wɔe",
+    "Shielded Labs": "Shielded Labs",
     "Shielded Pools": "Ta Siwo Wotsɔ Akpoxɔnu Wɔe",
     "Sitemap": "Nyatakakadzraɖoƒe ƒe Nɔnɔmetata",
     "Start Here": "Dze Egɔme Le Afi Sia",
@@ -166,7 +166,11 @@
     "searchTryDifferent": "Te nyabiase kpuiwo, nya siwo sɔ kple wo nɔewo, alo nya vovovowo kpɔ.",
     "searchSuggested": "Axa siwo wodo ɖa",
     "searchResultsLabel": "Metsonu",
-    "skipToContent": "Ti kpo yi emenyawo gbɔ"
+    "skipToContent": "Ti kpo yi emenyawo gbɔ",
+    "languageSearch": "Di gbegbɔgblɔwo",
+    "languageSuggested": "Wodo susua ɖa",
+    "languageAll": "Gbegbɔgblɔwo katã",
+    "languageNone": "Womekpɔ gbegbɔgblɔ aɖeke o"
   },
   "navigation": {
     "wallets": "Gakotokuwo",

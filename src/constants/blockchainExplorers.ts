@@ -86,6 +86,26 @@ export const blockchainExplorers = [
     thumbnailImageDark: '/explorer/shieldedscan-logo-dark.png',
   },
   {
+    title: 'SoChain',
+    badge: 'Multi-chain',
+    description:
+      'An explorer for Zcash beside Bitcoin, Litecoin and Dogecoin, mainnet and testnet. Blocks with the pool that found them, transactions, transparent addresses, the mempool and ZIP 317 fees, plus charts and a rich list. Its REST API works without a key up to a daily limit, and it has a remote MCP server for AI agents.',
+    features: [
+      'Mainnet',
+      'Testnet',
+      'Blocks & transactions',
+      'Address lookup',
+      'Mempool',
+      'Fee estimates',
+      'Public API',
+      'MCP server',
+    ],
+    url: 'https://sochain.com/zec',
+    thumbnailImage: '/explorer/sochain.png',
+    thumbnailImageLight: '/explorer/sochain-light.png',
+    thumbnailImageDark: '/explorer/sochain-dark.png',
+  },
+  {
     title: 'BlockExplorer.one',
     badge: 'Multi-chain',
     description:

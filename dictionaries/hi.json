@@ -166,7 +166,11 @@
     "searchTryDifferent": "छोटे प्रश्न, समानार्थी शब्द, या अलग शब्द आज़माएँ।",
     "searchSuggested": "सुझाए गए पृष्ठ",
     "searchResultsLabel": "परिणाम",
-    "skipToContent": "सामग्री पर जाएँ"
+    "skipToContent": "सामग्री पर जाएँ",
+    "languageSearch": "भाषाएँ खोजें",
+    "languageSuggested": "सुझाई गई",
+    "languageAll": "सभी भाषाएँ",
+    "languageNone": "कोई भाषा नहीं मिली"
   },
   "navigation": {
     "wallets": "Wallets",

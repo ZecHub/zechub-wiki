@@ -49,7 +49,7 @@
     "Recovering Funds": "Sika a Wɔbɛsan Agye",
     "Research": "Hwehwɛ mu",
     "Send Money Privately": "Send Sika wɔ Kokoam",
-    "Shielded Labs": "Labs a Wɔabɔ ho Ban",
+    "Shielded Labs": "Shielded Labs",
     "Shielded Pools": "Atare a Wɔabɔ ho Ban",
     "Sitemap": "Sitemap a Wɔde Di Dwuma",
     "Start Here": "Fi ase wɔ Ha",
@@ -166,7 +166,11 @@
     "searchTryDifferent": "Sɔ nsɛmmisa ntiantiaa, nsɛmfua a ɛne ne ho di nsɛ, anaa nsɛmfua ahorow hwɛ.",
     "searchSuggested": "Nkratafa a wɔahyɛ ho nyansa",
     "searchResultsLabel": "Nsunsuansoɔ",
-    "skipToContent": "Twa kɔ emu nsɛm no so"
+    "skipToContent": "Twa kɔ emu nsɛm no so",
+    "languageSearch": "Hwehwɛ kasa horow mu",
+    "languageSuggested": "Wɔde nyansahyɛ mae",
+    "languageAll": "Kasa ahorow nyinaa",
+    "languageNone": "Kasa biara nni hɔ a wɔanhu"
   },
   "navigation": {
     "wallets": "Sika kotoku",

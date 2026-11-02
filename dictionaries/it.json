@@ -80,7 +80,7 @@
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Sicurezza dell'ecosistema di Zcash",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Ambasciatori Globali di Zcash",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Governance di Zcash",
     "Zcash Improvement Proposals": "Zcash Improvement Proposals",
     "Zcash Login": "Zcash Login",
@@ -166,7 +166,11 @@
     "searchTryDifferent": "Prova query più brevi, sinonimi o parole diverse.",
     "searchSuggested": "Pagine suggerite",
     "searchResultsLabel": "Risultati",
-    "skipToContent": "Vai al contenuto"
+    "skipToContent": "Vai al contenuto",
+    "languageSearch": "Cerca lingue",
+    "languageSuggested": "Suggerite",
+    "languageAll": "Tutte le lingue",
+    "languageNone": "Nessuna lingua trovata"
   },
   "navigation": {
     "wallets": "Portafogli",

@@ -11,6 +11,7 @@ import { ThemeProvider } from "next-themes";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { routing } from "@/i18n/routing";
 import { socialNav } from "@/constants/navigation";
 import { ORG_ID, jsonLdScript } from "@/lib/helpers";
@@ -79,9 +80,12 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-
   // Enable static rendering for this locale.
   setRequestLocale(locale);
+
+  // Nonce set by src/proxy.ts for the enforcing CSP. Required on any
+  // hand-written <script> once script-src drops 'unsafe-inline'.
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   // Preload the locale dictionary on the server so the UI chrome renders in the
   // correct language during SSR (no English flash before client hydration).
@@ -92,6 +96,7 @@ export default async function RootLayout({
       ? Promise.resolve({})
       : getMenuTitlesCached(locale),
   ]);
+
   const searchItems = buildSearchIndex({
     englishTitles,
     localizedTitles,
@@ -112,6 +117,7 @@ export default async function RootLayout({
             and AI answer engines. Referenced by @id from per-page article JSON-LD. */}
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
