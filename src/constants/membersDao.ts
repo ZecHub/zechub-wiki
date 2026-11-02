@@ -1,6 +1,16 @@
 import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
+    {
+    imgUrl: "/https://pbs.twimg.com/profile_images/2072696887770071040/6DRJndpp_400x400.jpg",
+    name: "returniflost",
+    description: "co-founder @terpnetofficial",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/loaf0bred",
+        icon: socialIcons.x,
+      },
   {
     imgUrl: "/speedfox.png",
     name: "Speedfox",
