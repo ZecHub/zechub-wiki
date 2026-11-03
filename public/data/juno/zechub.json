@@ -7478,7 +7478,7 @@
           },
           "total_power": "23",
           "msgs": [],
-          "status": "rejected",
+          "status": "closed",
           "votes": {
             "yes": "0",
             "no": "10",
@@ -7514,7 +7514,7 @@
           },
           "total_power": "23",
           "msgs": [],
-          "status": "rejected",
+          "status": "closed",
           "votes": {
             "yes": "0",
             "no": "10",
@@ -7596,9 +7596,9 @@
               }
             }
           ],
-          "status": "open",
+          "status": "executed",
           "votes": {
-            "yes": "9",
+            "yes": "14",
             "no": "0",
             "abstain": "0"
           },
