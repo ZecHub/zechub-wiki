@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2470
+      "views": 2471
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -25,7 +25,7 @@
     {
       "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
       "video_id": "gaXiYRBnBPE",
-      "views": 1896
+      "views": 1897
     },
     {
       "title": "Boosting Zcash Security w/ Zebra",
@@ -35,7 +35,7 @@
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 1573
+      "views": 1576
     },
     {
       "title": "Envisioning Zcash at Global Scale - Nathan Wilcox",
@@ -50,7 +50,7 @@
     {
       "title": "Zcash Sustainability and Resilience by Zooko Wilcox: Zcon4",
       "video_id": "Cy0rwBhlv10",
-      "views": 1533
+      "views": 1535
     },
     {
       "title": "Privacy is Crucial",
@@ -65,12 +65,12 @@
     {
       "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
       "video_id": "IB9Vh1kEeWs",
-      "views": 1447
+      "views": 1448
     },
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1445
+      "views": 1448
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -90,7 +90,7 @@
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1339
+      "views": 1340
     },
     {
       "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
@@ -125,7 +125,7 @@
     {
       "title": "A History of Zcash at Zcon0 (2018) by Nathan Wilcox",
       "video_id": "Mi4IUEzTyVw",
-      "views": 1119
+      "views": 1121
     },
     {
       "title": "User Defined Assets (UDAs): #Zcon2Lite",
@@ -185,7 +185,7 @@
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
       "video_id": "eero6i2WTxo",
-      "views": 828
+      "views": 829
     },
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
@@ -300,7 +300,7 @@
     {
       "title": "The Future of Zcash Panel - Daniel Benarroch, Nate Wilcox, Zaki Manian, Matthew Green at Zcon3",
       "video_id": "bytv6_dmlpI",
-      "views": 575
+      "views": 577
     },
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
@@ -438,14 +438,14 @@
       "views": 416
     },
     {
-      "title": "Zcash Arborist Call 04-30-2026",
-      "video_id": "qfIS6wORZIA",
+      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
+      "video_id": "_g94z10ECWw",
       "views": 412
     },
     {
-      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
-      "video_id": "_g94z10ECWw",
-      "views": 411
+      "title": "Zcash Arborist Call 04-30-2026",
+      "video_id": "qfIS6wORZIA",
+      "views": 412
     },
     {
       "title": "Recent Advances in Zero-Knowledge: #Zcon2Lite",
@@ -628,13 +628,13 @@
       "views": 327
     },
     {
-      "title": "Governance Across Ecosystems: #Zcon2Lite",
-      "video_id": "kHMjRon5nWk",
-      "views": 323
-    },
-    {
       "title": "Zcash Arborist Call 05-28-2026",
       "video_id": "h76Ngomx8kk",
+      "views": 324
+    },
+    {
+      "title": "Governance Across Ecosystems: #Zcon2Lite",
+      "video_id": "kHMjRon5nWk",
       "views": 323
     },
     {
@@ -683,13 +683,13 @@
       "views": 297
     },
     {
-      "title": "HSMs and Hardware Wallets: #Zcon2Lite",
-      "video_id": "PescZy3QZTI",
-      "views": 293
-    },
-    {
       "title": "Pool Retirement - Nate Wilcox at Zcon3",
       "video_id": "bRuly9lyRO8",
+      "views": 294
+    },
+    {
+      "title": "HSMs and Hardware Wallets: #Zcon2Lite",
+      "video_id": "PescZy3QZTI",
       "views": 293
     },
     {
@@ -840,7 +840,7 @@
     {
       "title": "Zebra",
       "video_id": "142IudaOXUU",
-      "views": 246
+      "views": 247
     },
     {
       "title": "Zcash Arborist Call 06-11-2026",
@@ -920,7 +920,7 @@
     {
       "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
       "video_id": "fgkFrxiB14g",
-      "views": 226
+      "views": 227
     },
     {
       "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
@@ -1070,7 +1070,7 @@
     {
       "title": "Zebra Walkthrough for Zcash Developers",
       "video_id": "aV93Ux3j4Gw",
-      "views": 202
+      "views": 203
     },
     {
       "title": "Community Call: Introducing ZOMG Candidates",
@@ -1288,13 +1288,13 @@
       "views": 156
     },
     {
-      "title": "Zcash Arborist Call 09/19/2024",
-      "video_id": "I8jHbDYb-_Q",
-      "views": 155
-    },
-    {
       "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
       "video_id": "2zmtTwrHUXA",
+      "views": 156
+    },
+    {
+      "title": "Zcash Arborist Call 09/19/2024",
+      "video_id": "I8jHbDYb-_Q",
       "views": 155
     },
     {
@@ -1490,7 +1490,7 @@
     {
       "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
       "video_id": "Axedp0cjcl0",
-      "views": 130
+      "views": 131
     },
     {
       "title": "Zcash Arborist Call 11-28-2024",
@@ -1560,7 +1560,7 @@
     {
       "title": "ZF Community Call: FROST Server Demo",
       "video_id": "Z4N2TDFxdFA",
-      "views": 119
+      "views": 120
     },
     {
       "title": "Zcash Arborist Call 07-24-2025",
@@ -1798,13 +1798,13 @@
       "views": 69
     },
     {
-      "title": "Cryptocurrency and Privacy in Turkiye with Batuhan yıldırım dubbed in English- ZconVI #zcash",
-      "video_id": "BZi8_edAuBw",
-      "views": 66
-    },
-    {
       "title": "Arborist Call 10-15-2026",
       "video_id": "3FKbc3N41Zw",
+      "views": 67
+    },
+    {
+      "title": "Cryptocurrency and Privacy in Turkiye with Batuhan yıldırım dubbed in English- ZconVI #zcash",
+      "video_id": "BZi8_edAuBw",
       "views": 66
     },
     {
