@@ -5,7 +5,7 @@
     {
       "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
       "video_id": "XpTrCA3tEKM",
-      "views": 7715
+      "views": 7716
     },
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -35,7 +35,7 @@
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 1570
+      "views": 1573
     },
     {
       "title": "Envisioning Zcash at Global Scale - Nathan Wilcox",
@@ -45,7 +45,7 @@
     {
       "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
       "video_id": "-m3JCgi3kiU",
-      "views": 1541
+      "views": 1543
     },
     {
       "title": "Zcash Sustainability and Resilience by Zooko Wilcox: Zcon4",
@@ -70,7 +70,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1444
+      "views": 1445
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -205,7 +205,7 @@
     {
       "title": "Opening Remarks at Zcon0 (2018) by Josh Cincinnati",
       "video_id": "ywAcyQ4Qtuo",
-      "views": 774
+      "views": 775
     },
     {
       "title": "Overview of Tendermint/IBC/Cosmos Stack w/ Christopher Goes",
@@ -215,7 +215,7 @@
     {
       "title": "Proof of Stake Panel with Shielded Labs, Ethereum Foundation, ECC, Penumbra & Namada - ZconVI #zcash",
       "video_id": "jAcvrKa5hiw",
-      "views": 748
+      "views": 749
     },
     {
       "title": "Ethereum's Governance Model",
@@ -420,7 +420,7 @@
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
       "video_id": "bRdNvepJVXM",
-      "views": 430
+      "views": 431
     },
     {
       "title": "A Forest of Levers: The Performance of Orchard - Jack Grigg (Str4d) at Zcon3",
@@ -538,6 +538,11 @@
       "views": 357
     },
     {
+      "title": "Scaleable Privacy And Threats",
+      "video_id": "hHWjVLMnUDc",
+      "views": 354
+    },
+    {
       "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
       "video_id": "hdd5X2z7O3o",
       "views": 353
@@ -551,11 +556,6 @@
       "title": "Zcash Arborist Call 01-08-2026",
       "video_id": "8eye-YoqtDk",
       "views": 350
-    },
-    {
-      "title": "Scaleable Privacy And Threats",
-      "video_id": "hHWjVLMnUDc",
-      "views": 345
     },
     {
       "title": "Being strong privacy activist hardliners is the number one bedrock principle of Zcash",
@@ -625,7 +625,7 @@
     {
       "title": "The Path to Shielded Programmability with Ying Tong Lai and Bryan Gillespie - ZconV: Zcash Unified",
       "video_id": "lCiw_3qMjcw",
-      "views": 326
+      "views": 327
     },
     {
       "title": "Governance Across Ecosystems: #Zcon2Lite",
@@ -790,7 +790,7 @@
     {
       "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
       "video_id": "vEI3-9Y4tco",
-      "views": 262
+      "views": 264
     },
     {
       "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
@@ -1118,13 +1118,13 @@
       "views": 188
     },
     {
-      "title": "ZF Community Call:  ZOMG and Conflicts of Interest",
-      "video_id": "S6SJsZEi7os",
-      "views": 187
-    },
-    {
       "title": "Emergence of Chasqui with Za from ZingoLabs- ZconVI #zcash",
       "video_id": "sKoE2aG1QsM",
+      "views": 188
+    },
+    {
+      "title": "ZF Community Call:  ZOMG and Conflicts of Interest",
+      "video_id": "S6SJsZEi7os",
       "views": 187
     },
     {
@@ -1150,7 +1150,7 @@
     {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #2",
       "video_id": "SbA_AN05nUU",
-      "views": 178
+      "views": 179
     },
     {
       "title": "Sanctions Implications for Zcash with Peter Van Valkenburgh- ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1803,6 +1803,11 @@
       "views": 66
     },
     {
+      "title": "Arborist Call 10-15-2026",
+      "video_id": "3FKbc3N41Zw",
+      "views": 66
+    },
+    {
       "title": "Zcash Arborist Call 3/7/2024",
       "video_id": "C8qZjUcT7NE",
       "views": 65
@@ -1820,11 +1825,6 @@
     {
       "title": "ZGo: Year One by Rene Vergara: Zcon4",
       "video_id": "jOxQOsPXMBU",
-      "views": 63
-    },
-    {
-      "title": "Arborist Call 10-15-2026",
-      "video_id": "3FKbc3N41Zw",
       "views": 63
     },
     {
