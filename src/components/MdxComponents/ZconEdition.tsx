@@ -55,7 +55,7 @@ export function ChipNav(props: Record<string, unknown>) {
     items = [];
   }
   return (
-    <nav aria-label="Editions" className="not-prose my-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <nav aria-label="Editions" className="not-prose my-8 grid grid-cols-2 gap-3 imd:grid-cols-4">
       {items.map((i) => (
         <a
           key={i.href}

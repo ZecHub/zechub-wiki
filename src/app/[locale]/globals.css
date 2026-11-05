@@ -814,28 +814,14 @@ input[type="search"]::-ms-clear {
 /* Payment processors page. Images are display:block from the Tailwind
    preflight, which would drop each logo onto its own row, so the logos beside
    the headings are made inline here. */
-.processor-logo {
-  display: inline-block;
-  height: 1.9rem;
-  width: auto;
-  margin-left: 0.6rem;
-  vertical-align: -0.35em;
-}
-
-.processor-logo-wide {
-  height: 1.25rem;
-  vertical-align: -0.05em;
-}
-
-/* The processor name has to stay a link so the card view can read it, but it
-   should read as a heading rather than as body-copy link. Scoped by :has so
-   only headings carrying a processor logo are affected. */
-h2:has(img.processor-logo) > a {
+/* Provider headings: the logo tile comes first (added by the page), and the name, which stays a
+   link, reads as a heading rather than as a body-copy link. */
+h2[data-processor-heading] > a {
   color: inherit;
   text-decoration: none;
 }
 
-h2:has(img.processor-logo) > a:hover {
+h2[data-processor-heading] > a:hover {
   text-decoration: underline;
 }
 

@@ -116,6 +116,8 @@ export default function FloatingExplore() {
       >
         <Button
           onClick={() => setOpen((prev) => !prev)}
+          aria-label={tx("Explore")}
+          aria-expanded={open}
           className="imd:hidden h-11 w-11 rounded-full shadow-lg bg-amber-500/90 hover:bg-amber-600 ring-2 ring-amber-400/30 dark:ring-amber-900/50 transition-all active:scale-95 flex items-center justify-center p-0 overflow-hidden cursor-pointer"
           size="icon"
         >

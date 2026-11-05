@@ -9,7 +9,7 @@ export default function JumpNav(props: Record<string, unknown>) {
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
         {String(props.title || "On this page")}
       </p>
-      <ul className="m-0 grid list-none gap-x-8 gap-y-2 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="m-0 grid list-none gap-x-8 gap-y-2 p-0 imd:grid-cols-2 lg:grid-cols-3">
         {items.map((r) => (
           <li key={r.href} className="m-0 min-w-0 p-0">
             <a

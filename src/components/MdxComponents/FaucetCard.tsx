@@ -7,7 +7,7 @@ const NOTES: Record<string, string> = {
 
 // Grid wrapper for a group of faucet cards.
 export function FaucetList({ children }: { children?: React.ReactNode }) {
-  return <div className="not-prose my-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{children}</div>;
+  return <div className="not-prose my-6 grid gap-4 imd:grid-cols-2 lg:grid-cols-3">{children}</div>;
 }
 
 // One faucet entry: network label, site, short note and an outlined button.

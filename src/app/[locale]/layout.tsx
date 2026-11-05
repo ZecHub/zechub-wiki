@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getDictionary } from "@/lib/getDictionary";
@@ -106,22 +107,19 @@ export default async function RootLayout({
   });
 
   return (
-    <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
+    <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        {/* Applies the saved colour theme before first paint (no flash).
-            Only emitted on the server: React 19 logs "Encountered a script tag
-            while rendering React component" whenever a <script> is created by
-            a client render (HMR / client fallback), and the script has already
-            run by then. */}
-        {typeof window === "undefined" ? (
-          <script
-            suppressHydrationWarning
-            dangerouslySetInnerHTML={{
-              __html:
-                "try{var t=localStorage.getItem('zechub-color-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-color-theme',t)}catch(e){}",
-            }}
-          />
-        ) : null}
+        {/* Applies the saved colour theme before first paint (no flash). Uses
+            next/script because a raw <script> in the layout makes React 19 log
+            "Encountered a script tag while rendering React component". */}
+        <Script
+          id="zechub-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('zechub-color-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-color-theme',t)}catch(e){}",
+          }}
+        />
         {/* Manual RSS link as backup for better feed detection (Brave, Feedly, etc.) */}
         <link
           rel="alternate"

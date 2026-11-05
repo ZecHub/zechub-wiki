@@ -76,7 +76,7 @@ const BUTTON =
 export default function RecommendedExchanges() {
   return (
     <span className="my-6 block max-w-3xl">
-      <span className="grid gap-4 sm:grid-cols-2">
+      <span className="grid gap-4 imd:grid-cols-2">
         {EXCHANGES.map((x) => (
           <span
             key={x.name}

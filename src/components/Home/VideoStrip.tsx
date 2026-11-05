@@ -4,22 +4,19 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 type Video = { id: string; title: string; published?: string };
 
-// Tutorials picked from the ZecHub Learning Library (zechub.wiki/zechub-tutorial).
+// A beginner path, in order, picked from the ZecHub Learning Library
+// (zechub.wiki/zechub-tutorial): what Zcash is, a wallet, getting ZEC, using it.
 // Add or remove entries to change the carousel. If this list is empty the
 // component falls back to the newest uploads from the ZecHub channel.
 const PINNED: Video[] = [
   { id: "J1Nr1VL5dGU", title: "What is Zcash?" },
-  { id: "Lb5Bvl1GkRQ", title: "ZEC Bounties Explained - Earn ZEC by Contributing" },
-  { id: "qM0JWciwnNE", title: "How to Install Zebrad on Windows" },
   { id: "6IIRRZ17Q74", title: "Reviewing All Zcash Shielded Wallets" },
-  { id: "gSeECj4ddYA", title: "How to Buy NymVPN with Zcash (ZEC)" },
-  { id: "EMPiXi2zxok", title: "Shielding Your Zcash" },
+  { id: "Lb5Bvl1GkRQ", title: "ZecBounties Explained - Earn ZEC by Contributing" },
   { id: "3xyKKer1Qvk", title: "How to Buy and Use Zcash Orchard" },
+  { id: "mKVvXY4yjjA", title: "Crosschain Swaps with Zcash x NEAR Intents" },
   { id: "tEfQaYPV0UE", title: "Useful Tips When Using Zcash" },
   { id: "pMNk2A3NcKw", title: "How to Spend Your Zcash on Everyday Items" },
-  { id: "xeiaRc_QLKk", title: "Visualizing Zcash Addresses" },
-  { id: "Avweu5V9QRc", title: "Coinbase + Zashi: Buy Zcash and Shield Instantly" },
-  { id: "zu8nvr4FlXE", title: "Zenith Full Node Wallet Installation and Demo" },
+  { id: "gSeECj4ddYA", title: "How to Buy NymVPN with Zcash (ZEC)" },
 ];
 
 const CHANNEL = "https://youtube.com/@zechub";
@@ -37,10 +34,18 @@ const fmtDate = (iso?: string) =>
       })
     : "";
 
-function VideoCard({ video, className = "" }: { video: Video; className?: string }) {
+function VideoCard({
+  video,
+  index,
+  className = "",
+}: {
+  video: Video;
+  index: number;
+  className?: string;
+}) {
   const [playing, setPlaying] = useState(false);
   return (
-    <div className={`overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700/60 dark:bg-slate-800/50 ${className}`}>
+    <div className={`overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800/60 ${className}`}>
       <div className="relative aspect-video bg-slate-900">
         {playing ? (
           <iframe
@@ -59,30 +64,33 @@ function VideoCard({ video, className = "" }: { video: Video; className?: string
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`}
+              src={`/video-thumbs/${video.id}.webp`}
               alt=""
               loading="lazy"
-              // maxresdefault is a true 16:9 frame, so every thumbnail crops the
-              // same way. Fall back to hqdefault when a video has no max-res image.
+              // Thumbnails are stored locally (no request to YouTube until play).
+              // Fall back to YouTube only if a file is missing.
               onError={(e) => {
                 const img = e.currentTarget;
                 const fallback = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
-                if (img.src !== fallback) img.src = fallback;
+                if (!img.src.endsWith(fallback)) img.src = fallback;
               }}
               className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
             />
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-on-brand shadow-lg transition-transform group-hover:scale-110">
-                <Play className="h-5 w-5 translate-x-0.5" aria-hidden="true" />
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-slate-900 shadow-md transition-all group-hover:scale-105 group-hover:bg-brand group-hover:text-on-brand">
+                <Play className="h-4 w-4 translate-x-0.5 fill-current" aria-hidden="true" />
               </span>
             </span>
           </button>
         )}
       </div>
       <div className="p-4">
-        <h3 className="line-clamp-2 text-base font-semibold text-slate-900 dark:text-slate-100">
+        <p className="mb-1 text-xs font-medium uppercase tracking-wide text-brand">
+          Step {index + 1}
+        </p>
+        <h4 className="line-clamp-2 text-base font-semibold text-slate-900 dark:text-slate-100">
           {video.title}
-        </h3>
+        </h4>
         {video.published ? (
           <p className="mt-1 text-sm text-slate-700 dark:text-slate-200">
             {fmtDate(video.published)}
@@ -147,7 +155,7 @@ export default function VideoStrip() {
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-200">
             {PINNED.length > 0
-              ? "Step-by-step video tutorials."
+              ? "A short path for newcomers, in order."
               : "The latest from the ZecHub channel."}
           </p>
         </div>
@@ -183,12 +191,13 @@ export default function VideoStrip() {
       <div
         ref={trackRef}
         onScroll={update}
-        className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {videos.map((v) => (
+        {videos.map((v, i) => (
           <VideoCard
             key={v.id}
             video={v}
+            index={i}
             className="w-[85%] shrink-0 snap-start imd:w-[calc(50%-0.5rem)] lg:w-[calc((100%-2rem)/3)]"
           />
         ))}

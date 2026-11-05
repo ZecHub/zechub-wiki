@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const w = dict.pages?.wallets;
 
   return genMetadata({
-    title: w?.title ? `${w.title} | ZecHub` : "Zcash Wallets Directory (Mobile, Desktop, Hardware) | ZecHub",
+    title: w?.title ? (/\|\s*ZecHub\s*$/.test(w.title) ? w.title : `${w.title} | ZecHub`) : "Zcash Wallets Directory (Mobile, Desktop, Hardware) | ZecHub",
     description:
       w?.description ??
       "Find and compare secure Zcash wallets supporting shielded addresses, unified addresses, and privacy features on mobile, desktop, and hardware devices.",

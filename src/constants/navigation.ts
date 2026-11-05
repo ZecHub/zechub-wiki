@@ -551,12 +551,12 @@ export const navigations: Array<NavigationItem> = [
 export const socialNav = [
   { name: "Discord", url: "https://discord.gg/zcash", icon: Discord },
   {
-    name: "Youtube",
+    name: "YouTube",
     url: "https://www.youtube.com/channel/UC3-KM00kjCUheRzO5cq3PAA",
     icon: Youtube,
   },
-  { name: "Twitter", url: "https://x.com/zechub", icon: Twitter },
-  { name: "Github", url: "https://github.com/ZecHub/zechub", icon: Github },
+  { name: "X", url: "https://x.com/zechub", icon: Twitter },
+  { name: "GitHub", url: "https://github.com/ZecHub/zechub", icon: Github },
 ];
 
 export const socialMedia = [

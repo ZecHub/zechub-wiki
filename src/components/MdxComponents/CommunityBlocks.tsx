@@ -34,7 +34,7 @@ const TILE =
 
 // Two-column grid that holds the community cards.
 export function CommunityGrid(props: Record<string, unknown> & { children?: React.ReactNode }) {
-  const cols = String(props.cols ?? "2") === "3" ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2";
+  const cols = String(props.cols ?? "2") === "3" ? "imd:grid-cols-2 lg:grid-cols-3" : "imd:grid-cols-2";
   return <div className={`not-prose clear-both my-6 grid gap-4 ${cols}`}>{props.children}</div>;
 }
 
@@ -91,8 +91,20 @@ export function CommunityCard(props: Record<string, unknown>) {
 }
 
 // Row of key figures (e.g. NFT supply split).
-export function StatGrid({ children }: { children?: React.ReactNode }) {
-  return <div className="not-prose my-6 grid gap-4 sm:grid-cols-3">{children}</div>;
+// `compact` keeps the cards side by side on phones; use it only when each card is just a number and a label.
+export function StatGrid({ children, ...props }: Record<string, unknown> & { children?: React.ReactNode }) {
+  const compact = String(props.compact ?? "") === "true";
+  return (
+    <div
+      className={
+        compact
+          ? "not-prose my-6 grid grid-cols-3 gap-2 imd:gap-4 [&>div]:gap-1 [&>div]:p-3 imd:[&>div]:p-5 [&>div>span:first-child]:text-2xl imd:[&>div>span:first-child]:text-3xl [&>div>p:empty]:hidden"
+          : "not-prose my-6 grid gap-4 imd:grid-cols-3"
+      }
+    >
+      {children}
+    </div>
+  );
 }
 
 export function StatCard(props: Record<string, unknown>) {

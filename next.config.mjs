@@ -32,6 +32,8 @@ const nextConfig = {
   // they're allow-listed in the CSP img-src instead.) Everything else is
   // same-origin, so a stray external <Image> still fails loudly in review.
   images: {
+    // 75 is the default; 80 is used by the home gallery.
+    qualities: [75, 80],
     remotePatterns: [
       { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
     ],

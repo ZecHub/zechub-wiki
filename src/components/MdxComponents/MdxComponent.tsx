@@ -19,11 +19,19 @@ import JumpNav from "./JumpNav";
 import SecurityFeed from "./SecurityFeed";
 import VideoCarousel from "./VideoCarousel";
 import VideoSlider from "./VideoSlider";
+import VideoShowcase from "./VideoShowcase";
+import ScrollableTable from "./ScrollableTable";
+import { ProcessorCard, ProcessorGrid, ProcessorLogo } from "./ProcessorCard";
 import PodcastShow from "./PodcastShow";
 import { ZconEdition, ChipNav } from "./ZconEdition";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 import CodeBlock from "./CodeBlock";
+import Gallery from "@/components/Gallery/Gallery";
+import LibraryTools from "./LibraryTools";
+import FaqItem from "./FaqItem";
+import FaqGlance from "./FaqGlance";
+import DvpnDiagram from "./DvpnDiagram";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -71,7 +79,7 @@ const MdxComponents = {
   exchangevideo: ExchangeVideoCard,
   exchangelink: ExchangeLinkCard,
   exchangegrid: ({ children }: { children?: React.ReactNode }) => (
-    <div className="my-6 grid max-w-3xl gap-4 sm:grid-cols-2">{children}</div>
+    <div className="my-6 grid max-w-3xl gap-4 imd:grid-cols-2">{children}</div>
   ),
   guideactions: GuideActions,
   faucetcard: FaucetCard,
@@ -88,6 +96,10 @@ const MdxComponents = {
   securityfeed: SecurityFeed,
   videocarousel: VideoCarousel,
   videoslider: VideoSlider,
+  videoshowcase: VideoShowcase,
+  processorgrid: ProcessorGrid,
+  processorcard: ProcessorCard,
+  processorlogo: ProcessorLogo,
   podcastshow: PodcastShow,
   zconedition: ZconEdition,
   chipnav: ChipNav,
@@ -283,9 +295,9 @@ const MdxComponents = {
 
   // Tables: quiet header, hairline rows, brand-tinted hover.
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
-    <div className="my-6 overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10">
+    <ScrollableTable>
       <table className="min-w-full border-collapse text-sm" {...props} />
-    </div>
+    </ScrollableTable>
   ),
   thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
     <thead
@@ -359,7 +371,19 @@ const MdxComponents = {
     }
     // Non-YouTube iframes: sandbox without allow-scripts so an injected
     // <iframe> can't execute script (srcdoc is already stripped upstream).
-    return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
+    // Raw HTML attributes arrive lowercase (frameborder, allowfullscreen); React wants camelCase.
+    const { frameborder, allowfullscreen, ...rest } = props as HTMLProps<HTMLIFrameElement> & {
+      frameborder?: string;
+      allowfullscreen?: string | boolean;
+    };
+    return (
+      <iframe
+        {...rest}
+        frameBorder={frameborder ?? rest.frameBorder}
+        allowFullScreen={allowfullscreen !== undefined ? allowfullscreen !== "false" : rest.allowFullScreen}
+        sandbox="allow-same-origin allow-popups allow-forms"
+      />
+    );
   },
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => {
     const variant = (props as Record<string, unknown>)["data-variant"];
@@ -379,7 +403,7 @@ const MdxComponents = {
     // Related pages: plain two-column list of links with a muted description.
     if (variant === "related") {
       return (
-        <ul className="my-6 grid list-none gap-x-8 gap-y-4 pl-0 sm:grid-cols-2 [&>li]:border-t [&>li]:border-slate-200 [&>li]:pt-3 [&>li]:text-sm [&>li]:text-slate-600 dark:[&>li]:border-white/10 dark:[&>li]:text-slate-400 [&>li>a]:block [&>li>a]:font-semibold [&>li>a]:no-underline hover:[&>li>a]:underline">
+        <ul className="my-6 grid list-none gap-x-8 gap-y-4 pl-0 imd:grid-cols-2 [&>li]:border-t [&>li]:border-slate-200 [&>li]:pt-3 [&>li]:text-sm [&>li]:text-slate-600 dark:[&>li]:border-white/10 dark:[&>li]:text-slate-400 [&>li>a]:block [&>li>a]:font-semibold [&>li>a]:no-underline hover:[&>li>a]:underline">
           {children}
         </ul>
       );
@@ -418,6 +442,14 @@ const MdxComponents = {
     }
     return <p className="my-5" {...props} />;
   },
+
+  Gallery,
+  LibraryTools,
+  FaqItem,
+  PointList,
+  PointItem,
+  FaqGlance,
+  DvpnDiagram,
 } as MDXComponents;
 
 export default MdxComponents;

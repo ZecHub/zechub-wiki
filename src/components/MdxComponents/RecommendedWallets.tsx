@@ -58,7 +58,7 @@ const BUTTON =
 // inside a paragraph (a <div> there would be a hydration error).
 export default function RecommendedWallets() {
   return (
-    <span className="my-6 grid max-w-3xl gap-4 sm:grid-cols-2">
+    <span className="my-6 grid max-w-3xl gap-4 imd:grid-cols-2">
       {WALLETS.map((w) => (
         <span
           key={w.name}

@@ -46,7 +46,6 @@ type Item = {
   href: string;
   icon: LucideIcon;
   external?: boolean;
-  tag?: string;
   // optional artwork under /public/explore/{dark,light}/, shown faintly
   art?: Art;
 };
@@ -185,7 +184,6 @@ const groups: Group[] = [
         href: "/visualizer",
         icon: Eye,
         art: "research.png",
-        tag: "Tool",
       },
       {
         title: "ZecMap",
@@ -195,7 +193,6 @@ const groups: Group[] = [
         icon: MapIcon,
         art: "start-here.png",
         external: true,
-        tag: "Map",
       },
       {
         title: "Pay with Zcash",
@@ -204,7 +201,6 @@ const groups: Group[] = [
         icon: CreditCard,
         art: "pay-with-zcash.png",
         external: true,
-        tag: "Directory",
       },
     ],
   },
@@ -214,7 +210,7 @@ const groups: Group[] = [
     items: [
       {
         title: "Organizations",
-        description: "ECC, Zcash Foundation, ZCG and others",
+        description: "ZODL, Zcash Foundation, ZCG and others",
         href: "/zcash-organizations/electric-coin-company",
         icon: Building2,
         art: "zcash-organizations.png",
@@ -243,7 +239,6 @@ const groups: Group[] = [
           dark: "/explore/light/Hackathon_w.png",
           light: "/explore/dark/Hackathon_b.png",
         },
-        tag: "Archive",
       },
     ],
   },
@@ -280,8 +275,7 @@ const focusRing =
 // Buttons in the closing "Get Involved" band: solid brand blue in light mode,
 // a tinted blue that sits quietly on the navy background in dark mode.
 const ctaButton = `inline-flex items-center justify-center rounded-lg border border-brand bg-brand px-4 py-2 text-center text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white ${focusRing}`;
-const ctaRow =
-  "mt-5 grid grid-cols-[repeat(auto-fit,minmax(8.5rem,1fr))] gap-3";
+const quietLink = `rounded text-sm font-medium text-brand hover:underline ${focusRing}`;
 
 function SmartLink({
   href,
@@ -351,7 +345,7 @@ function SectionHeader({
 // the text. `place` controls where it sits inside the card.
 function CardArt({
   art,
-  place = "inset-y-0 right-0 h-full w-[55%]",
+  place = "inset-y-0 right-0 h-full w-[36%]",
 }: {
   art: Art;
   place?: string;
@@ -394,13 +388,8 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
       {item.art ? <CardArt art={item.art} /> : null}
       <div className="flex items-start justify-between gap-3">
         <IconBadge icon={item.icon} />
-        {item.tag ? (
-          <span className="rounded-full border border-slate-200 px-2.5 py-0.5 text-[13px] text-slate-500 dark:border-slate-700 dark:text-slate-200">
-            {item.tag}
-          </span>
-        ) : null}
       </div>
-      <div>
+      <div className={item.art ? "max-w-[66%]" : undefined}>
         <h4 className="flex items-center gap-1.5 font-semibold text-slate-900 dark:text-slate-100">
           {item.title}
           <Arrow
@@ -494,11 +483,11 @@ const Home = (_props: HomeProps) => {
               {feature.art ? (
                 <CardArt
                   art={feature.art}
-                  place="right-0 top-0 h-24 w-32 imd:h-[44%] imd:w-[55%]"
+                  place="right-4 top-3 h-[4.5rem] w-28"
                 />
               ) : null}
               <IconBadge icon={feature.icon} />
-              <h3 className="mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100">
+              <h3 className="mt-7 text-xl font-semibold text-slate-900 dark:text-slate-100">
                 {feature.title}
               </h3>
               <p className="mb-6 mt-2 text-slate-700 dark:text-slate-200">
@@ -525,6 +514,15 @@ const Home = (_props: HomeProps) => {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* 1b. Video path for newcomers */}
+      <div className={wrap}>
+        <hr className="border-slate-200 dark:border-slate-800" />
+      </div>
+
+      <section id="videos" className={`${wrap} py-16 md:py-20`}>
+        <VideoStrip />
       </section>
 
       {/* 2. Everything else, grouped */}
@@ -575,15 +573,6 @@ const Home = (_props: HomeProps) => {
         </div>
       </section>
 
-      {/* Video tutorials (carousel) */}
-      <div className={wrap}>
-        <hr className="border-slate-200 dark:border-slate-800" />
-      </div>
-
-      <section id="videos" className={`${wrap} py-16 md:py-20`}>
-        <VideoStrip />
-      </section>
-
       {/* DAO, community and contribution in one band */}
       <div className={wrap}>
         <hr className="border-slate-200 dark:border-slate-800" />
@@ -603,21 +592,14 @@ const Home = (_props: HomeProps) => {
               ZecHub DAO
             </h2>
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-              The community that governs ZecHub: its members, how decisions are
-              made and open proposals.
+              How ZecHub makes decisions, and the proposals open for a vote.
             </p>
-            <div className={ctaRow}>
-              <Link
-                href="/dao"
-                className={ctaButton}
-              >
+            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <Link href="/dao" className={`${ctaButton} px-5`}>
                 Meet the DAO
               </Link>
-              <Link
-                href="/proposals"
-                className={ctaButton}
-              >
-                Proposals
+              <Link href="/proposals" className={quietLink}>
+                See proposals
               </Link>
             </div>
           </div>
@@ -628,24 +610,37 @@ const Home = (_props: HomeProps) => {
               Join the community
             </h2>
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-              Follow ZecHub and talk with other Zcash users.
+              Talk with other Zcash users and follow what ZecHub is doing.
             </p>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              {socialNav.map((social) => {
-                const SocialIcon = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${ctaButton} gap-2 !px-3`}
-                  >
-                    <SocialIcon className="h-4 w-4" aria-hidden="true" />
-                    {social.name}
-                  </a>
-                );
-              })}
+            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <a
+                href={socialNav.find((s) => s.name === "Discord")?.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${ctaButton} px-5`}
+              >
+                Join Discord
+              </a>
+              <div className="flex items-center gap-1">
+                {socialNav
+                  .filter((s) => s.name !== "Discord")
+                  .map((social) => {
+                    const SocialIcon = social.icon;
+                    return (
+                      <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                        title={social.name}
+                        className={`flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-black/5 hover:text-brand dark:text-slate-300 dark:hover:bg-white/10 ${focusRing}`}
+                      >
+                        <SocialIcon className="h-5 w-5" aria-hidden="true" />
+                      </a>
+                    );
+                  })}
+              </div>
             </div>
           </div>
 
@@ -655,21 +650,14 @@ const Home = (_props: HomeProps) => {
               Help build ZecHub
             </h2>
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-              ZecHub is community-driven. Add content, pick up a bounty or
-              support the project.
+              ZecHub is community-driven. Add content or pick up a bounty.
             </p>
-            <div className={ctaRow}>
-              <Link
-                href="/contribute/help-build-zechub"
-                className={ctaButton}
-              >
+            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <Link href="/contribute/help-build-zechub" className={`${ctaButton} px-5`}>
                 Contribute
               </Link>
-              <Link
-                href="/donation"
-                className={ctaButton}
-              >
-                Donate
+              <Link href="/donation" className={quietLink}>
+                Support the project
               </Link>
             </div>
           </div>
