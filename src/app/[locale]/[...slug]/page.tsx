@@ -29,6 +29,23 @@ import { rewriteHardwareKeysGuide } from "@/lib/pageOverrides/hardwareKeysGuide"
 import { rewriteFaqPage } from "@/lib/pageOverrides/faqPage";
 import { stripUnavailableImages } from "@/lib/stripUnavailableImages";
 import { rewriteZap1Guide } from "@/lib/pageOverrides/zap1Guide";
+import { rewriteBlossomGuide } from "@/lib/pageOverrides/blossomGuide";
+import { rewriteCanopyGuide } from "@/lib/pageOverrides/canopyGuide";
+import { rewriteCrosslinkGuide } from "@/lib/pageOverrides/crosslinkGuide";
+import { rewriteFrostGuide } from "@/lib/pageOverrides/frostGuide";
+import { rewriteFrostCustodyGuide } from "@/lib/pageOverrides/frostCustodyGuide";
+import { rewriteFullNodesGuide } from "@/lib/pageOverrides/fullNodesGuide";
+import { rewriteZebraNode, rewriteZakuraNode } from "@/lib/pageOverrides/nodeReleaseNotes";
+import { rewriteHaloGuide } from "@/lib/pageOverrides/haloGuide";
+import { rewriteNu62Guide } from "@/lib/pageOverrides/nu62Guide";
+import { rewriteNu61Guide } from "@/lib/pageOverrides/nu61Guide";
+import { rewriteNu6Guide } from "@/lib/pageOverrides/nu6Guide";
+import { rewriteNu5Guide } from "@/lib/pageOverrides/nu5Guide";
+import { rewriteLightwalletNodes } from "@/lib/pageOverrides/lightwalletNodesGuide";
+import { rewritePostQuantumAnswer } from "@/lib/pageOverrides/postQuantumAnswer";
+import { rewriteIronwoodGuide } from "@/lib/pageOverrides/ironwoodGuide";
+import { rewriteIndexerBenchmark } from "@/lib/pageOverrides/indexerBenchmarkGuide";
+import { rewriteHeartwoodGuide } from "@/lib/pageOverrides/heartwoodGuide";
 import { rewriteCreatorsTipsGuide } from "@/lib/pageOverrides/creatorsTipsGuide";
 import { rewriteHackathonBuildersGuide } from "@/lib/pageOverrides/hackathonBuildersGuide";
 import { rewriteGalleryPage, rewriteInfographicsPage } from "@/lib/pageOverrides/galleryPages";
@@ -6182,6 +6199,60 @@ export default async function Page(props: {
   if (slug.join("/") === "zcash-tech/zap1-attestation-protocol" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZap1Guide(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-tech/blossom" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteBlossomGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/canopy" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteCanopyGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/crosslink-protocol" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteCrosslinkGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/heartwood" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteHeartwoodGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/indexer-benchmark-zaino-vs-ztreamer" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteIndexerBenchmark(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/ironwood" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteIronwoodGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/is-zcash-post-quantum" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewritePostQuantumAnswer(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/lightwallet-nodes" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteLightwalletNodes(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/nu5" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu5Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/nu6" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu6Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/nu6-1" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu61Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/nu6-2" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu62Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/halo" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteHaloGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/frost" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteFrostGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/frost-threshold-custody" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteFrostCustodyGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/full-nodes" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteFullNodesGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zebra-full-node" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZebraNode(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zakura-node" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZakuraNode(processedMarkdown);
+  }
   if (slug.join("/") === "using-zcash/creators-and-tips" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteCreatorsTipsGuide(processedMarkdown);
   }
@@ -6504,7 +6575,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech"].includes(slug[0])}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
