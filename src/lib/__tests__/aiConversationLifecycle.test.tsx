@@ -126,9 +126,7 @@ describe("Clear conversation during an ordinary pending answer", () => {
 
     const newQuestion = "What is ZecHub?";
     submitQuestion(newQuestion, 2);
-    expect(JSON.parse((global.fetch as jest.Mock).mock.calls[1][1].body).history).toEqual([
-      { role: "user", content: newQuestion },
-    ]);
+    expect(JSON.parse((global.fetch as jest.Mock).mock.calls[1][1].body).history).toEqual([]);
     await act(async () => oldResponse.resolve(outcome === "success"
       ? { ok: true, json: async () => ({ answer: ANSWER }) }
       : { ok: false, status: 503, json: async () => ({ error: "Old request failed" }) }));
@@ -233,6 +231,27 @@ describe("Clear conversation during an ordinary pending answer", () => {
     expect(screen.queryByText("Try again later")).not.toBeInTheDocument();
     expect(screen.getByText(ANSWER)).toBeInTheDocument();
     expect(JSON.parse(sessionStorage.getItem(HISTORY_KEY)!)).toEqual([
+      { role: "user", content: QUESTION },
+      { role: "assistant", content: ANSWER },
+    ]);
+  });
+});
+
+describe("Request body", () => {
+  it("sends the new question once: in `message`, not also in `history`", async () => {
+    const first = deferred<unknown>();
+    const second = deferred<unknown>();
+    global.fetch = jest.fn()
+      .mockReturnValueOnce(first.promise)
+      .mockReturnValueOnce(second.promise);
+    render(<AIAssistantPanel />);
+    submitQuestion();
+    await act(async () => first.resolve({ ok: true, json: async () => ({ answer: ANSWER }) }));
+    submitQuestion("Is it private?", 2);
+
+    const bodies = (global.fetch as jest.Mock).mock.calls.map((call) => JSON.parse(call[1].body));
+    expect(bodies[0].history).toEqual([]);
+    expect(bodies[1].history).toEqual([
       { role: "user", content: QUESTION },
       { role: "assistant", content: ANSWER },
     ]);

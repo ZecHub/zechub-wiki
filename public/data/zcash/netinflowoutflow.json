@@ -610,5 +610,11 @@
     "Net Sapling Flow": "54237.91099328",
     "Net Orchard Flow": "4386.44200844",
     "Net Ironwood Flow": "-61456.68019256"
+  },
+  {
+    "Date": "2026-11-01",
+    "Net Sapling Flow": "-8695.23210438",
+    "Net Orchard Flow": "3003.04106483",
+    "Net Ironwood Flow": "-7521.75542713"
   }
 ]
