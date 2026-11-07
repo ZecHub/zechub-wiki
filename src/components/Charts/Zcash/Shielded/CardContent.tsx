@@ -2,6 +2,7 @@
 
 import React, { RefObject } from "react";
 import ChartFooter from "../../ChartFooter";
+import NodeCountChart from "../NodeCountChart";
 import DifficultyChart from "../DifficultyChart";
 import IssuanceChart from "../IssuanceChart";
 import LockboxChart from "../LockboxChart";
@@ -34,6 +35,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
     <CardContent>
       <div className="mt-8">
         {activeTab === "supply" && <ShieldedSupplyChart chartRef={props.divChartRef} />}
+        {activeTab === "nodecount" && <NodeCountChart chartRef={props.divChartRef} />}
         {activeTab === "difficulty" && <DifficultyChart chartRef={props.divChartRef} />}
         {activeTab === "issuance" && <IssuanceChart chartRef={props.divChartRef} />}
         {activeTab === "lockbox" && <LockboxChart chartRef={props.divChartRef} />}

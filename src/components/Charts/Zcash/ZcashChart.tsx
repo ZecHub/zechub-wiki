@@ -28,6 +28,7 @@ function ZcashChart(props: ZcashChartProps) {
 
   const tabs = [
     { value: "supply", label: chartT?.supply || "Supply" },
+    { value: "nodecount", label: "Node Count" },
     { value: "difficulty", label: chartT?.difficulty || "Difficulty" },
     { value: "issuance", label: chartT?.issuance || "Issuance" },
     { value: "lockbox", label: chartT?.lockbox || "Lockbox" },
