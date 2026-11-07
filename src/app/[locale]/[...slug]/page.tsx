@@ -37,6 +37,20 @@ import { rewriteFrostCustodyGuide } from "@/lib/pageOverrides/frostCustodyGuide"
 import { rewriteFullNodesGuide } from "@/lib/pageOverrides/fullNodesGuide";
 import { rewriteZebraNode, rewriteZakuraNode } from "@/lib/pageOverrides/nodeReleaseNotes";
 import { rewriteHaloGuide } from "@/lib/pageOverrides/haloGuide";
+import { rewritePostQuantumSecurity } from "@/lib/pageOverrides/postQuantumSecurityGuide";
+import { rewritePirGuide } from "@/lib/pageOverrides/pirGuide";
+import { rewriteTachyonGuide } from "@/lib/pageOverrides/tachyonGuide";
+import { rewriteSaplingGuide } from "@/lib/pageOverrides/saplingGuide";
+import { rewriteShieldedVotingGuide } from "@/lib/pageOverrides/shieldedVotingGuide";
+import { rewriteShieldedColdSigning } from "@/lib/pageOverrides/shieldedColdSigningGuide";
+import { rewriteSproutGuide } from "@/lib/pageOverrides/sproutGuide";
+import { rewriteViewingKeysGuide } from "@/lib/pageOverrides/viewingKeysGuide";
+import { rewriteWalletSyncing } from "@/lib/pageOverrides/walletSyncingGuide";
+import { rewriteBlockExplorerGuide } from "@/lib/pageOverrides/blockExplorerGuide";
+import { rewriteTurnstileGuide } from "@/lib/pageOverrides/turnstileGuide";
+import { rewriteUnifiedAddressesGuide } from "@/lib/pageOverrides/unifiedAddressesGuide";
+import { rewriteZainoGuide } from "@/lib/pageOverrides/zainoGuide";
+import { rewritePepperSyncGuide } from "@/lib/pageOverrides/pepperSyncGuide";
 import { rewriteNu62Guide } from "@/lib/pageOverrides/nu62Guide";
 import { rewriteNu61Guide } from "@/lib/pageOverrides/nu61Guide";
 import { rewriteNu6Guide } from "@/lib/pageOverrides/nu6Guide";
@@ -6234,6 +6248,48 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zcash-tech/nu6-2" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu62Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/pepper-sync" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewritePepperSyncGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/post-quantum-security" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewritePostQuantumSecurity(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/private-information-retrieval" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewritePirGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/project-tachyon" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteTachyonGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/sapling" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteSaplingGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/shielded-coinholder-voting" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteShieldedVotingGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/shielded-cold-signing" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteShieldedColdSigning(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/sprout" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteSproutGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/viewing-keys" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteViewingKeysGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zcash-wallet-syncing" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteWalletSyncing(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/what-a-block-explorer-can-see" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteBlockExplorerGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/the-turnstile" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteTurnstileGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/unified-addresses" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteUnifiedAddressesGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zaino" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZainoGuide(processedMarkdown);
   }
   if (slug.join("/") === "zcash-tech/halo" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHaloGuide(processedMarkdown);

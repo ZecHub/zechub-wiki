@@ -37,7 +37,7 @@ const EDITS: [string, string][] = [
   ["2. Coin holders collectively decide whether to distribute the money for ecosystem work or keep it locked.",
    "2. Under ZIP 1016, grant applications go to community review and then a quarterly coin-holder vote. A grant needs at least 420,000 ZEC voting (2% of the eventual supply) and a simple majority. Coin holders are never required to fund a grant, so the money can also stay unspent."],
   ["they stay in place until the third Zcash halving, which gives the community time to see how it works before making it permanent or changing it.",
-   "they stay in place until the third Zcash halving, which gives the community time to see how it works before making it permanent or changing it. That halving is at block 4,406,400 on current block spacing; the shorter blocks planned for NU7 (ZIP 218) move that height, as ZIP 214 Revision 3 specifies."],
+   "they stay in place until the third Zcash halving, which gives the community time to see how it works before making it permanent or changing it. That halving is at block 4,406,400 on current block spacing; the shorter 25-second blocks introduced by NU7 (ZIP 218, active since November 6, 2026) move that height, as ZIP 214 Revision 3 specifies."],
   ["## The smaller fixes\n", DISBURSEMENT],
   ["## Glossary\n", TODAY],
   ["3. This gives the people who hold ZEC a direct voice in how Zcash funds its future.",

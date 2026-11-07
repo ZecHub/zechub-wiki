@@ -7,7 +7,7 @@
 //   for Filecoin and Ethereum, the list of other projects), and the unsupported statement that the
 //   reference string "becomes upgradeable, enabling smart contracts".
 // - Kept only statements found in the source page, the NU6.2/Ironwood pages or the CVE advisory; no inferences.
-// - Empty "_unavailable" image and empty links around the two diagrams were dropped; TL;DR became "At a glance".
+// - Empty "_unavailable" image and empty links around the two diagrams were dropped; TL;DR was kept and shortened to four bullets.
 // If the page no longer has this shape, the original markdown is returned untouched.
 export function rewriteHaloGuide(original: string): string {
   if (!/^# Halo\s*$/im.test(original)) return original;
@@ -28,17 +28,12 @@ ${edit}
 
 Halo is a way to prove that a computation was done correctly without revealing the data behind it, and without a secret ceremony to set the system up. Sean Bowe discovered it at Electric Coin Company, and its production implementation, Halo 2, is the proof system of Zcash's Orchard shielded pool.
 
-## At a glance
+## TL;DR
 
-| | |
-|---|---|
-| **What it is** | A zero-knowledge proof system (zk-SNARK) that supports recursion and needs no trusted setup |
-| **Discovered by** | Sean Bowe ([Halo paper](https://eprint.iacr.org/2019/1021.pdf)) |
-| **Implementation** | Halo 2, written in Rust |
-| **In Zcash** | The Orchard pool, activated with NU5 on May 31, 2022 (spend-only since Ironwood, NU6.3) |
-| **Trusted setup** | None |
-| **License** | [MIT and Apache 2.0](https://github.com/zcash/halo2#readme) |
-| **Last verified** | November 2026 |
+- Halo is a zero-knowledge proof system (zk-SNARK) that needs no trusted setup and supports recursion.
+- Sean Bowe discovered it ([Halo paper](https://eprint.iacr.org/2019/1021.pdf)); Halo 2 is the Rust implementation.
+- Zcash uses Halo 2 in the Orchard pool, activated with NU5 on May 31, 2022 (spend-only since Ironwood, NU6.3).
+- Open source under [MIT and Apache 2.0](https://github.com/zcash/halo2#readme). Last verified November 2026.
 
 ## What happened in 2026
 

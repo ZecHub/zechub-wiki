@@ -58,7 +58,7 @@ A full node keeps a complete copy of the Zcash blockchain and checks every new b
 
 Sync speeds and snapshot times for Zakura are the project's own figures, not independent tests.
 
-> **NU7 upgrade:** Zebra 7.0.0 activates NU7 on mainnet at block height 3,543,405, and mainnet nodes must upgrade before that height to stay on the consensus chain. Zebra 7 also moves its database from format v28 to v29 on first start, without a resync, but Zebra 6.x cannot read v29, so downgrading means a full resync. Back up the \`state/v28\` directory before upgrading. Check the [Zebra releases](https://github.com/ZcashFoundation/zebra/releases) for the current version.
+> **NU7 upgrade:** NU7 activated on mainnet on November 6, 2026 at block height 3,543,405, and Zebra 7.0.0 supports it. Mainnet nodes must run a version that supports NU7 to follow the consensus chain. Zebra 7 also moves its database from format v28 to v29 on first start, without a resync, but Zebra 6.x cannot read v29, so downgrading means a full resync. Back up the \`state/v28\` directory before upgrading. Check the [Zebra releases](https://github.com/ZcashFoundation/zebra/releases) for the current version.
 
 ## What a full node does
 

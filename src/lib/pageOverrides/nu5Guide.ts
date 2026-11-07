@@ -38,7 +38,7 @@ const EDITS: [string, string][] = [
   ["Moving funds into Orchard gives you a pool that needs no trusted setup.",
    "At the time, moving funds into Orchard gave you a pool that needs no trusted setup. Orchard no longer accepts new value since Ironwood (NU6.3), so new shielded funds go to the Ironwood pool."],
   ["No. NU5 added the version 5 format, and the older version 4 format stayed valid after activation.",
-   "Not at the time. NU5 added the version 5 format, and the older version 4 format stayed valid after activation. NU7 is scheduled to make version 4 transactions invalid ([ZIP 259](https://zips.z.cash/zip-0259), which deploys ZIP 2003)."],
+   "Not at the time. NU5 added the version 5 format, and the older version 4 format stayed valid after activation. NU7 made version 4 transactions invalid when it activated on November 6, 2026 ([ZIP 259](https://zips.z.cash/zip-0259), which deploys ZIP 2003)."],
 ];
 
 export function rewriteNu5Guide(original: string): string {

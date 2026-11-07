@@ -14,7 +14,7 @@ const EZCASH = "![eZcash server settings](/content-images/655c0172-61a0-4322-b8c
 const small = (alt: string, md: string) => md.replace(/\(([^)]+)\)/, (_m, src) => `(${src})`) && `<img src="${md.match(/\(([^)]+)\)/)![1]}" alt="${alt}" width="260" />`;
 
 const EDITS: [string, string][] = [
-  ["## TL;DR", "## At a glance"],
+  ["## TL;DR", "## TL;DR"],
   ["## Core Explanation", "## How light wallet servers work"],
   ["Most people use Zcash through a light wallet, which does not download the whole blockchain. Instead, it talks to a server that has already done that work. This page explains what those servers are,",
    "This page explains what those servers are,"],

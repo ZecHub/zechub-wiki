@@ -1,20 +1,20 @@
 // Light edit of "Is Zcash Post-Quantum?" (checked 5 Nov 2026). The page is carefully sourced, so only this changes:
 // - The 11 <br/> spacers are removed (the headings already separate sections) and the "Who is this for"
 //   list, which repeated the intro, is folded into one sentence that keeps the link.
-// - NU7 timing: the page said activation was "targeted for 5 November 2026". Block 3,543,405 at the 75-second
-//   target falls in the night of November 5 to 6 (UTC), so the page now says that and points to an explorer.
-//   The Sprout row of the table changes from "Not activated" to "Scheduled" and its check date is updated.
-// - "ZIP 318 has wallets split balances" is softened: the ZIP could not be confirmed here, and Cake Wallet
-//   documents the splitting without citing a ZIP.
+// - NU7 is now active (Nov 6, 2026, block 3,543,405; CoinDesk). The page said activation was "targeted for 5 November 2026"
+//   and the Sprout row said "Not activated"; both now state that NU7 activated and that ZEC left in Sprout is unspendable.
+// - "ZIP 318 has wallets split balances" is kept as the source has it: ZIP 318 (draft, "Orchard to Ironwood Migration")
+//   specifies that wallets split a migration into canonical denominations (zips.z.cash, checked Nov 6, 2026).
 // - "same Orchard circuit" now says "plus one new constraint", as the Ironwood documentation does.
 // Every replacement must match exactly, otherwise the original markdown is returned untouched.
 const EDITS: [string, string][] = [
+  ["so version 4 transactions become invalid once NU7 activates and any ZEC left in the Sprout pool becomes unspendable.",
+   "so version 4 transactions became invalid when NU7 activated, and any ZEC left in the Sprout pool is now unspendable."],
   ["Mainnet activation is set for block 3,543,405, targeted for 5 November 2026 ([ZIP 259](https://zips.z.cash/zip-0259), [forum announcement](https://forum.zcashcommunity.com/t/nu7-timeline/57655)).",
-   "Mainnet activation is set for block 3,543,405. At the 75-second block time that falls in the night of November 5 to 6, 2026 (UTC), so check a block explorer for the current state ([ZIP 259](https://zips.z.cash/zip-0259), [forum announcement](https://forum.zcashcommunity.com/t/nu7-timeline/57655))."],
+   "NU7 activated on mainnet at block 3,543,405 on November 6, 2026 ([CoinDesk](https://www.coindesk.com/tech/2026/11/06/zcash-s-landmark-nu7-upgrade-goes-live-speeding-up-private-payments), [ZIP 259](https://zips.z.cash/zip-0259))."],
   ["| **Not activated** | Mainnet height 3,543,405, targeted 5 Nov 2026 |",
-   "| **Scheduled** | Mainnet height 3,543,405, expected night of 5 to 6 Nov 2026 (UTC) |"],
-  ["except the Sprout row, which was updated on 9 October 2026.", "except the Sprout row, which was updated on 5 November 2026."],
-  ["so ZIP 318 has wallets split balances into fixed amounts and send them across over time.", "so some wallets split balances into fixed amounts and send them across over time."],
+   "| **Active** | Mainnet height 3,543,405, activated 6 Nov 2026 (UTC) |"],
+  ["except the Sprout row, which was updated on 9 October 2026.", "except the Sprout row, which was updated on 6 November 2026."],
   ["because Ironwood uses the same Orchard circuit, Halo 2 proofs and RedPallas signatures as Orchard.",
    "because Ironwood reuses the Orchard Action circuit (plus one new constraint), Halo 2 proofs and RedPallas signatures."],
   ["This page separates what Zcash protects today,", "For background on quantum computing itself, see [Post-Quantum Security in Zcash](/zcash-tech/post-quantum-security). This page separates what Zcash protects today,"],
