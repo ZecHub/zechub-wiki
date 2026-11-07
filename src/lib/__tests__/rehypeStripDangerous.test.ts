@@ -28,11 +28,10 @@ describe("rehypeStripDangerous", () => {
   });
 
   it("drops embedded-content elements that bypass the URL allow-list", () => {
-    // <base> rewrites every relative URL on the page; iframe/object/embed pull
-    // in a third-party browsing context even with an http(s) URL.
+    // <base> rewrites every relative URL on the page; object/embed pull in a
+    // third-party browsing context even with an http(s) URL.
     const out = run([
       el("base", { href: "https://evil.example/" }),
-      el("iframe", { src: "https://evil.example/x.html" }),
       el("object", { data: "https://evil.example/x.html" }),
       el("object", { data: "data:text/html,payload" }),
       el("embed", { src: "https://evil.example/x.swf" }),
@@ -41,9 +40,19 @@ describe("rehypeStripDangerous", () => {
     expect(tags(out)).toEqual(["p"]);
   });
 
+  it("keeps YouTube iframes but strips their srcdoc and script URLs", () => {
+    const out = run([
+      el("iframe", { src: "https://www.youtube.com/embed/abc123" }),
+      el("iframe", { src: "javascript:alert(1)", srcdoc: "<script>x</script>" }),
+    ]);
+    expect(tags(out)).toEqual(["iframe", "iframe"]);
+    expect(out[0].properties).toEqual({ src: "https://www.youtube.com/embed/abc123" });
+    expect(out[1].properties).toEqual({});
+  });
+
   it("removes dangerous elements nested inside allowed ones", () => {
     const wrapper = el("div");
-    wrapper.children = [el("iframe", { src: "https://evil.example/" }), el("span")];
+    wrapper.children = [el("embed", { src: "https://evil.example/" }), el("span")];
     const out = run([wrapper]);
     expect(tags(out)).toEqual(["div"]);
     expect(tags(out[0].children)).toEqual(["span"]);

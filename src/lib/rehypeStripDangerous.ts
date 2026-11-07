@@ -8,15 +8,18 @@ export { isAllowedUrl, isScriptUrl } from "@/lib/urlAllowlist";
  * whole, with their subtree. `script`/`style` run or inject code; `base`
  * rewrites the document's base URI so every relative URL on the page
  * (links, images, form targets) resolves against an attacker origin;
- * `iframe`/`object`/`embed` pull in a third-party browsing context, which is
- * active content even when its URL is on the http(s) allow-list. These match
- * the elements DOMPurify and rehype-sanitize forbid by default.
+ * `object`/`embed` pull in a third-party browsing context, which is active
+ * content even when its URL is on the http(s) allow-list.
+ *
+ * `iframe` is kept: content pages embed YouTube videos with it, and this pass
+ * runs before rehypeJsxYouTubeFacade. Its `srcdoc` and non-allow-listed `src`
+ * are still stripped below, and the `frame-src` CSP in src/proxy.ts limits
+ * frames to YouTube.
  */
 const DANGEROUS_TAGS = new Set([
   "script",
   "style",
   "base",
-  "iframe",
   "object",
   "embed",
 ]);
