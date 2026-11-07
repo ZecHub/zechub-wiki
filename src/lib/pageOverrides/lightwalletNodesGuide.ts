@@ -30,7 +30,7 @@ const EDITS: [string, string][] = [
    "#### Zkool (successor to Ywallet)\n\n> **Ywallet no longer receives updates.** Its successor is Zkool, a complete rewrite from the same developer, so it is a separate app to install, not an update. Zkool connects to lightwalletd-compatible servers (lightwalletd or Zaino) and can send its traffic over Tor, the Nym mixnet or an external proxy. Its server and network settings are explained in the [Zkool documentation](https://hhanh00.github.io/zkool2)."],
   [ZINGO, small("Zingo server settings", ZINGO)],
   [EZCASH, small("eZcash server settings", EZCASH)],
-  ["**Last updated:** August 2026", "**Last updated:** November 2026 (wallet notes and Zaino version). Server list: August 2026."],
+  ["**Last updated:** August 2026", ""],
 ];
 
 export function rewriteLightwalletNodes(original: string): string {

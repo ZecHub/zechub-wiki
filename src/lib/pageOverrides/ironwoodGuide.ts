@@ -21,7 +21,7 @@ const GLANCE = `| | |
 | **Exploitation** | No evidence it was ever exploited, and no change to the total supply |
 | **Moving value** | Gradual. The amount that crosses from Orchard to Ironwood is public |`;
 
-const NOTE = "> **Current upgrade.** Last verified November 5, 2026. Wallet migration tools are still changing, so follow your wallet's own guidance.";
+const NOTE = "> **Current upgrade.** Wallet migration tools are still changing, so follow your wallet's own guidance.";
 
 const EDITS: [string, string][] = [
   ["1. In early June 2026, a temporary measure disabled the Orchard pool while a full fix was prepared.",

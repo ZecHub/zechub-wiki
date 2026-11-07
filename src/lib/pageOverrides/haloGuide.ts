@@ -33,7 +33,7 @@ Halo is a way to prove that a computation was done correctly without revealing t
 - Halo is a zero-knowledge proof system (zk-SNARK) that needs no trusted setup and supports recursion.
 - Sean Bowe discovered it ([Halo paper](https://eprint.iacr.org/2019/1021.pdf)); Halo 2 is the Rust implementation.
 - Zcash uses Halo 2 in the Orchard pool, activated with NU5 on May 31, 2022 (spend-only since Ironwood, NU6.3).
-- Open source under [MIT and Apache 2.0](https://github.com/zcash/halo2#readme). Last verified November 2026.
+- Open source under [MIT and Apache 2.0](https://github.com/zcash/halo2#readme).
 
 ## What happened in 2026
 

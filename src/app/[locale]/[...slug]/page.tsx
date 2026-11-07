@@ -37,6 +37,8 @@ import { rewriteFrostCustodyGuide } from "@/lib/pageOverrides/frostCustodyGuide"
 import { rewriteFullNodesGuide } from "@/lib/pageOverrides/fullNodesGuide";
 import { rewriteZebraNode, rewriteZakuraNode } from "@/lib/pageOverrides/nodeReleaseNotes";
 import { rewriteHaloGuide } from "@/lib/pageOverrides/haloGuide";
+import { rewriteZcashBasicsGuide } from "@/lib/pageOverrides/zcashBasicsGuide";
+import { rewriteMonetaryPolicyGuide } from "@/lib/pageOverrides/monetaryPolicyGuide";
 import { rewritePostQuantumSecurity } from "@/lib/pageOverrides/postQuantumSecurityGuide";
 import { rewritePirGuide } from "@/lib/pageOverrides/pirGuide";
 import { rewriteTachyonGuide } from "@/lib/pageOverrides/tachyonGuide";
@@ -50,6 +52,9 @@ import { rewriteBlockExplorerGuide } from "@/lib/pageOverrides/blockExplorerGuid
 import { rewriteTurnstileGuide } from "@/lib/pageOverrides/turnstileGuide";
 import { rewriteUnifiedAddressesGuide } from "@/lib/pageOverrides/unifiedAddressesGuide";
 import { rewriteZainoGuide } from "@/lib/pageOverrides/zainoGuide";
+import { rewriteZalletGuide } from "@/lib/pageOverrides/zalletGuide";
+import { rewriteZakuraNodeGuide } from "@/lib/pageOverrides/zakuraNodeGuide";
+import { rewriteShieldedAssetsGuide } from "@/lib/pageOverrides/shieldedAssetsGuide";
 import { rewritePepperSyncGuide } from "@/lib/pageOverrides/pepperSyncGuide";
 import { rewriteNu62Guide } from "@/lib/pageOverrides/nu62Guide";
 import { rewriteNu61Guide } from "@/lib/pageOverrides/nu61Guide";
@@ -6290,6 +6295,21 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zcash-tech/zaino" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZainoGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zcash-shielded-assets" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteShieldedAssetsGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zakura-node" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZakuraNodeGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zallet" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZalletGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/zcash-monetary-policy" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteMonetaryPolicyGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/what-is-zec-and-zcash" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZcashBasicsGuide(processedMarkdown);
   }
   if (slug.join("/") === "zcash-tech/halo" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHaloGuide(processedMarkdown);

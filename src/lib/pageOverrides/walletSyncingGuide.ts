@@ -14,8 +14,11 @@ export function rewriteWalletSyncing(original: string): string {
   const tree = original.match(/\/content-images\/363d08df[^"')\s]*/)?.[0];
   const dag = original.match(/\/content-images\/eee7e08d[^"')\s]*/)?.[0];
   if (!tree || !dag) return original;
+  // Redrawn as clean SVGs (the originals were low-resolution drawings on a white background).
+  const TREE_SVG = "/content-images/wallet-sync-merkle-tree.svg";
+  const DAG_SVG = "/content-images/wallet-sync-dag.svg";
   const fig = (url: string, alt: string, w: number) =>
-    `<div className="my-5 mx-auto" style={{ maxWidth: ${w} }}><img src="${url}" alt="${alt}" className="h-auto w-full rounded-lg border border-slate-200 bg-white dark:border-slate-700" /></div>`;
+    `<div className="my-5 mx-auto" style={{ maxWidth: ${w} }}><img src="${url}" alt="${alt}" className="h-auto w-full rounded-lg border border-slate-200 bg-white p-3 dark:border-slate-700" /></div>`;
 
   return `${edit}
 
@@ -40,7 +43,7 @@ A light wallet does not store the full blockchain. It relies on a server, but th
 2. **Local decryption.** The wallet downloads the compact blocks and tries to decrypt each shielded output with its own keys. The ones that decrypt are its payments. This is trial decryption.
 3. **Local bookkeeping.** To spend a note, the wallet also keeps a witness, a proof that the note is in the commitment tree. Keeping witnesses up to date is part of the sync work.
 
-${fig(tree, "A Merkle tree: eight transactions are hashed individually, then in pairs, up to a single root hash", 380)}
+${fig(TREE_SVG, "A Merkle tree: eight transactions are hashed individually, then in pairs, up to a single root hash", 640)}
 
 Even compact blocks take time to process, especially when blocks carry many transactions. Every method below is a different way to cut that wait. See [Lightwallet Nodes](/zcash-tech/lightwallet-nodes) for the server side.
 
@@ -87,7 +90,7 @@ Developed by the Zecwallet team, Blaze Sync scanned the blockchain backward, sta
 
 DAGSync is a wallet sync algorithm proposed by Jack Grigg (str4d) on July 20, 2022. A wallet's transactions form a directed acyclic graph (DAG): funds flow from source transactions through spends to unspent notes. Instead of scanning the chain linearly, DAGSync follows that chain of spends from known notes toward the wallet's current unspent notes, using targeted decryption. The goal is to give a spendable lower bound on the balance sooner and settle the full balance later. When it was published, the post said the ECC core team was working on implementing it in the Zcash Rust crates. The post does not say whether it has shipped, and this page could not confirm it. See the [original post](https://words.str4d.xyz/dagsync-graph-aware-zcash-wallets/).
 
-${fig(dag, "A directed acyclic graph with five nodes, a to e, where arrows only point forward and never return to a node", 240)}
+${fig(DAG_SVG, "A directed acyclic graph with five nodes, a to e, where arrows only point forward and never return to a node", 380)}
 
 ## Do 25-second blocks slow syncing?
 

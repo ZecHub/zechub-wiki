@@ -21,7 +21,7 @@ export function rewritePlacesToSpendGuide(original: string): string {
 
 Where you can pay with ZEC today: online services open to anyone with a wallet, and a directory of small businesses and freelancers in Venezuela.
 
-> **Last checked 5 November 2026.** Each link was tested and entries with a dead site or no activity were removed. A working link does not prove a seller still takes ZEC, so check the seller's own channels, use a shielded address, and send a small test amount first if you have not paid that address before.
+> **About this list.** Entries with a dead site or no activity were removed. A working link does not prove a seller still takes ZEC, so check the seller's own channels, use a shielded address, and send a small test amount first if you have not paid that address before.
 
 ## Online, worldwide
 

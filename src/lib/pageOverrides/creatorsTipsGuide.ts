@@ -71,7 +71,5 @@ Fan (ETH / USDC / USDT / SOL)  ->  TIPZ routing and conversion  ->  Your shielde
 \`\`\`
 
 ${related}
-
-**Last verified:** November 2026
 `;
 }

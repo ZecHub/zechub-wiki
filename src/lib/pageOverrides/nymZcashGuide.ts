@@ -7,7 +7,6 @@ export function rewriteNymZcashGuide(original: string): string {
   if (!/^# Nym Mixnet Anonymity for Zcash\s*$/im.test(original)) return original;
   const fm = original.match(/^---\n[\s\S]*?\n---\n/)?.[0] ?? "";
   const edit = original.match(/^<a href="https:\/\/github\.com\/[^"]*\/edit\/[^"]*"[^>]*>\s*<img[^>]*Edit[^>]*>\s*<\/a>\s*\n/m)?.[0] ?? "";
-  const verified = original.match(/^> Last verified: ([^\n]+)$/m)?.[1];
   const intro = original.match(/^Zcash shielded pools hide amounts[^\n]+$/m)?.[0];
   const sourceLine = original.match(/^Source: (\[How Nym adds anonymity to Zcash wallets\]\([^)]+\) \([^)]+\))\.?$/m)?.[1];
   const protectedSec = original.match(/^## What is protected\s*\n([\s\S]*?)(?=^## )/m)?.[1]?.trim();
@@ -18,14 +17,14 @@ export function rewriteNymZcashGuide(original: string): string {
   const hygieneIntro = original.match(/^## Application-layer hygiene[^\n]*\n\s*\n([\s\S]*?)(?=^\*\*Quantised)/m)?.[1]?.trim();
   const crate = original.match(/^The crate exposes[^\n]+$/m)?.[0];
   const sources = original.match(/^## Sources\s*\n([\s\S]*)$/m)?.[1]?.trim();
-  if (!verified || !intro || !sourceLine || !protectedSec || !notProtected || !wallets || !quantised || !decoupled || !hygieneIntro || !crate || !sources) return original;
+  if (!intro || !sourceLine || !protectedSec || !notProtected || !wallets || !quantised || !decoupled || !hygieneIntro || !crate || !sources) return original;
 
   return `${fm}${edit}
 # Nym Mixnet Anonymity for Zcash
 
-${intro}
+${intro.replace("As of October 2026 the integration is live", "Per Nym's announcement, the integration is live")}
 
-> **Status.** Last verified ${verified}. Source: ${sourceLine}.
+> **Source:** ${sourceLine}.
 
 ## What is protected
 
