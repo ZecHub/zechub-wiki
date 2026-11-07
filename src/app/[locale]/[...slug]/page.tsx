@@ -37,7 +37,14 @@ import { rewriteFrostCustodyGuide } from "@/lib/pageOverrides/frostCustodyGuide"
 import { rewriteFullNodesGuide } from "@/lib/pageOverrides/fullNodesGuide";
 import { rewriteZebraNode, rewriteZakuraNode } from "@/lib/pageOverrides/nodeReleaseNotes";
 import { rewriteHaloGuide } from "@/lib/pageOverrides/haloGuide";
+import { rewriteGovernanceGuide } from "@/lib/pageOverrides/governanceGuide";
+import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
+import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
+import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
+import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
+import { rewriteZkSnarksGuide } from "@/lib/pageOverrides/zkSnarksGuide";
 import { rewriteZcashBasicsGuide } from "@/lib/pageOverrides/zcashBasicsGuide";
+import { rewriteNetworkUpgradesGuide } from "@/lib/pageOverrides/networkUpgradesGuide";
 import { rewriteMonetaryPolicyGuide } from "@/lib/pageOverrides/monetaryPolicyGuide";
 import { rewritePostQuantumSecurity } from "@/lib/pageOverrides/postQuantumSecurityGuide";
 import { rewritePirGuide } from "@/lib/pageOverrides/pirGuide";
@@ -6308,8 +6315,35 @@ export default async function Page(props: {
   if (slug.join("/") === "start-here/zcash-monetary-policy" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteMonetaryPolicyGuide(processedMarkdown);
   }
+  if (slug.join("/") === "start-here/network-upgrades" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNetworkUpgradesGuide(processedMarkdown);
+  }
   if (slug.join("/") === "start-here/what-is-zec-and-zcash" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZcashBasicsGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/zk-snarks" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZkSnarksGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-community/zcash-governance" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteGovernanceGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "guides/zcash-improvement-proposals" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZipListGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-organizations/zcash-community-grants" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZcgPage(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-organizations/financial-privacy-foundation" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteFpfPage(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-organizations/sovright" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteSovrightPage(processedMarkdown);
+  }
+  if (slug.join("/") === "guides/raspberry-pi-4-zebra-node" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewritePiZebraGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/development-fund" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteDevelopmentFundGuide(processedMarkdown);
   }
   if (slug.join("/") === "zcash-tech/halo" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHaloGuide(processedMarkdown);
