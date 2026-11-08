@@ -43,7 +43,7 @@ Halo 2 had its first serious security event in 2026. On May 29, researchers foun
 - **June 3:** [NU6.2](/zcash-tech/nu6-2) fixed the circuit (\`halo2_gadgets\` 0.5.0 and \`orchard\` 0.14.0) and re-enabled Orchard.
 - **July 28:** [Ironwood (NU6.3)](/zcash-tech/ironwood) added a new pool, and Orchard became spend-only.
 
-The published advisory describes a missing constraint in one circuit gadget. It also notes that the damage was bounded by the turnstile, which caps how much value can leave a pool.
+The published advisory describes a missing constraint in one circuit gadget. It also notes that the damage was bounded by the turnstile, which caps how much value can leave a pool. In July 2026 zkSecurity published an [audit of the fixed code](https://reports.zksecurity.xyz/reports/zcash-orchard/) (orchard 0.14.0 and halo2_gadgets 0.5.0), commissioned by the Tachyon Foundation, and its report states that its findings do not affect the security of the deployed Orchard protocol.
 
 ## Why Halo matters
 
@@ -109,5 +109,6 @@ Halo 2 turns the Halo idea into a practical Rust library, built from three parts
 - [Halo 2 on GitHub](https://github.com/zcash/halo2)
 - [Halo 2 resources](https://github.com/mhchia/awesome-halo2)
 - [Security advisory GHSA-2x4w-pxqw-58v9](https://github.com/zcash/orchard/releases/tag/0.14.0), in the orchard 0.14.0 release notes
+- [Audit of Zcash: Orchard](https://reports.zksecurity.xyz/reports/zcash-orchard/), zkSecurity, July 2026
 `;
 }

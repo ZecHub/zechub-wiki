@@ -37,6 +37,13 @@ import { rewriteFrostCustodyGuide } from "@/lib/pageOverrides/frostCustodyGuide"
 import { rewriteFullNodesGuide } from "@/lib/pageOverrides/fullNodesGuide";
 import { rewriteZebraNode, rewriteZakuraNode } from "@/lib/pageOverrides/nodeReleaseNotes";
 import { rewriteHaloGuide } from "@/lib/pageOverrides/haloGuide";
+import { rewriteWalletsGuide } from "@/lib/pageOverrides/walletsGuide";
+import { rewriteShieldedPoolsGuide } from "@/lib/pageOverrides/shieldedPoolsGuide";
+import { rewriteTestnetGuide } from "@/lib/pageOverrides/testnetGuide";
+import { rewriteMiningGuide } from "@/lib/pageOverrides/miningGuide";
+import { rewriteNewUserGuide } from "@/lib/pageOverrides/newUserGuide";
+import { rewriteStyleGuide } from "@/lib/pageOverrides/styleGuideGuide";
+import { rewriteContributingGuide } from "@/lib/pageOverrides/contributingGuide";
 import { rewriteGovernanceGuide } from "@/lib/pageOverrides/governanceGuide";
 import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
@@ -6345,6 +6352,27 @@ export default async function Page(props: {
   if (slug.join("/") === "start-here/development-fund" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteDevelopmentFundGuide(processedMarkdown);
   }
+  if (slug.join("/") === "using-zcash/shielded-pools" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteShieldedPoolsGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "using-zcash/testnet" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteTestnetGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "using-zcash/zcash-mining-guide" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteMiningGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/new-user-guide" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNewUserGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "contribute/contributing-guide" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteContributingGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "contribute/style-guide" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteStyleGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "using-zcash/wallets" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteWalletsGuide(processedMarkdown);
+  }
   if (slug.join("/") === "zcash-tech/halo" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHaloGuide(processedMarkdown);
   }
@@ -6685,7 +6713,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute"].includes(slug[0])}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-label="An arithmetic circuit: inputs a and b feed an addition gate, whose output and input c feed a multiplication gate that outputs c times a plus b">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#475569"/></marker></defs>
+<line x1="98" y1="90" x2="236" y2="138" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="98" y1="230" x2="236" y2="182" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="70" cy="80" r="30" fill="#a5f3fc" stroke="#0e7490" stroke-width="2"/>
+<text x="70" y="87" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">a</text>
+<circle cx="70" cy="240" r="30" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+<text x="70" y="247" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">b</text>
+<rect x="240" y="120" width="90" height="80" rx="12" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+<text x="285.0" y="171.9" text-anchor="middle" font-size="34" font-weight="700" fill="#0f172a" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">+</text>
+<text x="285" y="226" text-anchor="middle" font-size="16" font-weight="400" fill="#475569" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">addition gate</text>
+<line x1="330" y1="160" x2="500" y2="190" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="500" y="150" width="90" height="90" rx="12" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+<text x="545.0" y="208.3" text-anchor="middle" font-size="38" font-weight="700" fill="#0f172a" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">×</text>
+<text x="545" y="138" text-anchor="middle" font-size="16" font-weight="400" fill="#475569" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">multiplication gate</text>
+<circle cx="545" cy="300" r="30" fill="#fecdd3" stroke="#be123c" stroke-width="2"/>
+<text x="545" y="307" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">c</text>
+<line x1="545" y1="270" x2="545" y2="244" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="590" y1="195" x2="780" y2="195" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<text x="700" y="176" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif">c × (a + b)</text>
+</svg>

@@ -156,7 +156,7 @@ export default function GovernanceHowtoClient() {
                       <p className="text-blue-800 dark:text-blue-300 mb-2">
                         {g?.getFeedbackDesc ?? "Share your draft in the ZecHub #proposals channel on Discord for early feedback"}
                       </p>
-                      <Link href="https://discord.gg/zechub" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                      <Link href="https://discord.gg/zcash" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
                         {g?.joinDiscord ?? "Join Discord"} <FaDiscord className="ml-1" />
                       </Link>
                     </div>
@@ -202,7 +202,7 @@ export default function GovernanceHowtoClient() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">{g?.postInDiscord ?? "Post in Discord"}</h3>
                   <p className="text-slate-600 dark:text-slate-300 mb-3">{g?.postInDiscordDesc ?? "Share your final proposal in #proposals and tag @core-team"}</p>
-                  <Link href="https://discord.gg/zechub" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                  <Link href="https://discord.gg/zcash" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
                     <FaDiscord className="mr-2" /> {g?.openDiscord ?? "Open Discord"}
                   </Link>
                 </div>

@@ -24,13 +24,15 @@ const EDITS: [string, string][] = [
   ["## Common Mistakes", "## Common mistakes"],
   ["## Related Pages", "## Related pages"],
   ["It is under active development, with version 0.8.0 released in August 2026.",
-   "It is under active development. Version 0.10.1, released on September 29, 2026, was the latest release as of November 5, 2026. For measured performance against another indexer, see [Indexer Benchmark: Zaino vs Ztreamer](/zcash-tech/indexer-benchmark-zaino-vs-ztreamer)."],
-  ["Servers listed on that dashboard at the time of writing:", "Servers listed on that dashboard in August 2026 (not re-checked since):"],
+   "It is under active development; see its releases page for versions. For measured performance against another indexer, see [Indexer Benchmark: Zaino vs Ztreamer](/zcash-tech/indexer-benchmark-zaino-vs-ztreamer)."],
+  ["Servers listed on that dashboard at the time of writing:", "Servers that have been listed on that dashboard:"],
   ["#### Ywallet\n\nThe cog in the top right corner, then the Zcash tab.\n\n![Ywallet server settings](/content-images/b0a2910b-dbdf-4292-8e69-af5a386aa183-f51f098d19.webp)",
    "#### Zkool (successor to Ywallet)\n\n> **Ywallet no longer receives updates.** Its successor is Zkool, a complete rewrite from the same developer, so it is a separate app to install, not an update. Zkool connects to lightwalletd-compatible servers (lightwalletd or Zaino) and can send its traffic over Tor, the Nym mixnet or an external proxy. Its server and network settings are explained in the [Zkool documentation](https://hhanh00.github.io/zkool2)."],
   [ZINGO, small("Zingo server settings", ZINGO)],
   [EZCASH, small("eZcash server settings", EZCASH)],
   ["**Last updated:** August 2026", ""],
+  ["The menu paths below were correct when this page was updated, but wallet interfaces move, so treat them as a hint rather than an exact route.", "Wallet interfaces move, so treat the menu paths below as a hint rather than an exact route."],
+  ["Those screenshots were taken in March 2025, and the apps have shipped releases since, so buttons may have moved.", "Wallet interfaces change between releases, so buttons may have moved."],
 ];
 
 export function rewriteLightwalletNodes(original: string): string {

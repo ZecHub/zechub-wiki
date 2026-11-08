@@ -28,7 +28,6 @@ Two community tools let creators get paid in ZEC without exposing their income. 
 | **Your link** | \`zcash.me/[username]\` | \`tipz.cash/@[username]\` |
 | **Who pays** | Sender uses their own wallet and sends ZEC | Fan pays in ETH, USDC, USDT or SOL, converted to ZEC |
 | **Platform fee** | None listed | 0% platform fee |
-| **Status** | Live | Live, marked beta |
 
 ## Zcash.me
 
