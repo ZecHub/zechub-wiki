@@ -319,6 +319,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     title: "NU7 — Shorter block intervals and network sustainability",
     subtitle: "Faster Blocks & Network Sustainability",
     date: "November 5 2026",
+    // Official rollout sources rechecked November 5, 2026; Mainnet height is set.
     networkRollout: [
       { network: "Testnet", state: "activated", date: "October 4, 2026", activationHeight: 4465026 },
       { network: "Mainnet", state: "activated", date: "November 5, 2026", activationHeight: 3543405 },
