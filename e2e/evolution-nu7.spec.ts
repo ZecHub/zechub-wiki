@@ -1,22 +1,22 @@
 import { expect, test } from "@playwright/test";
 
-test("collapsed NU7 distinguishes activated Testnet from upcoming Mainnet", async ({ page }) => {
+test("collapsed NU7 distinguishes activated Testnet from activated Mainnet", async ({ page }) => {
   await page.goto("/en/zcash-evolution");
   const nu7 = page.locator("#nu7");
   await expect(nu7.getByRole("heading", { name: "NU7 — Shorter block intervals and network sustainability" })).toBeVisible();
-  await expect(nu7.getByText("Mainnet upcoming", { exact: true })).toBeVisible();
+  await expect(nu7.getByText("● You Are Here", { exact: true })).toBeVisible();
   await expect(nu7.getByText("Testnet — Activated October 4, 2026 · Height 4,465,026", { exact: true })).toBeVisible();
-  await expect(nu7.getByText("Mainnet — Tentative target November 5, 2026 · Height pending", { exact: true })).toBeVisible();
+  await expect(nu7.getByText("Mainnet — Activated November 5, 2026 · Height 3,543,405", { exact: true })).toBeVisible();
   await expect(nu7.getByRole("button")).toHaveAttribute("aria-expanded", "false");
-  await expect(page.getByText("We are in the")).toContainText("NU6.3 / Ironwood");
+  await expect(page.getByText("We are in the")).toContainText("NU7");
   await expect(page.locator("#nu7")).toHaveCount(1);
   await expect(page.locator('[title^="NU7 —"]')).toHaveCount(1);
 });
 
-test("NU7 exposes its proposal and linked deployment scope without nesting links in the toggle", async ({ page }) => {
+test("NU7 exposes its scope and linked deployment without nesting links in the toggle", async ({ page }) => {
   await page.goto("/en/zcash-evolution");
   const nu7 = page.locator("#nu7");
-  await expect(nu7.getByText("The current NU7 proposal reduces target block spacing to 25 seconds, adds shielded action limits and the Network Sustainability Mechanism, removes 60% of transaction fees from circulation, and disables v4 transactions.", { exact: true })).toBeVisible();
+  await expect(nu7.getByText("The current NU7 reduces target block spacing to 25 seconds, adds shielded action limits and the Network Sustainability Mechanism, removes 60% of transaction fees from circulation, and disables v4 transactions.", { exact: true })).toBeVisible();
   const toggle = nu7.getByRole("button");
   await toggle.click();
   await expect(nu7.getByRole("heading", { name: "Key Features" })).toBeVisible();
@@ -37,7 +37,7 @@ test(`Sprout guidance stays visible and its links navigate independently while $
   await page.goto("/en/zcash-evolution");
   const nu7 = page.locator("#nu7");
   const toggle = nu7.getByRole("button");
-  const notice = nu7.getByText("Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Review migration options before Mainnet activation.", { exact: true });
+  const notice = nu7.getByText("Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Remaining Sprout funds are unspendable. Review any recovery options promptly.", { exact: true });
   const guide = nu7.getByRole("link", { name: "ZecHub wallet recovery guide", exact: true });
   const source = nu7.getByRole("link", { name: "ZIP 2003 v4 transaction retirement", exact: true });
   await expect(notice).toBeVisible();
@@ -111,7 +111,7 @@ test("NU7 deep link opens and keyboard users can toggle then reach each source",
   expect(await toggle.evaluate((element) => getComputedStyle(element).boxShadow)).not.toBe("none");
   await page.keyboard.press("Enter");
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
-  await expect(nu7.getByText("Mainnet — Tentative target November 5, 2026 · Height pending", { exact: true })).toBeVisible();
+  await expect(nu7.getByText("Mainnet — Activated November 5, 2026 · Height 3,543,405", { exact: true })).toBeVisible();
   await page.keyboard.press("Space");
   await expect(toggle).toHaveAttribute("aria-expanded", "true");
   const links = nu7.getByRole("link");
@@ -133,7 +133,7 @@ for (const width of [1440, 390, 320]) {
     const comparison = nu7.getByText("75 seconds → 25 seconds", { exact: true });
     await expect(comparison).toBeVisible();
     await expect(nu7.getByText("Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.", { exact: true })).toBeVisible();
-    const notice = nu7.getByText("Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Review migration options before Mainnet activation.", { exact: true });
+    const notice = nu7.getByText("Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Remaining Sprout funds are unspendable. Review any recovery options promptly.", { exact: true });
     await expect(notice).toBeVisible();
     const guide = nu7.getByRole("link", { name: "ZecHub wallet recovery guide", exact: true });
     await expect(guide).toBeVisible();
@@ -175,7 +175,6 @@ for (const width of [1440, 390, 320]) {
   });
 }
 
-
 for (const width of [1440, 390, 320]) {
   test(`privacy meter tooltips appear on hover and fit ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
@@ -196,7 +195,6 @@ for (const width of [1440, 390, 320]) {
     }
   });
 }
-
 
 test("Italian navigation retains the shared NU7 content", async ({ page }) => {
   await page.goto("/it/zcash-evolution#nu7");
