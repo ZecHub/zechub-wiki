@@ -1,11 +1,18 @@
 {
   "dao_data": {
     "dao_address": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
-    "name": "Unknown",
-    "description": "",
-    "member_count": 0,
+    "name": "ZecHub",
+    "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+    "member_count": 24,
     "proposal_count": 192,
-    "config": {},
+    "config": {
+      "name": "ZecHub",
+      "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+      "image_url": "ipfs://QmQbhdCn53Q6bn7BuJRY5WGWMpjWf4otAQA4GDoZqbafY8",
+      "automatically_add_cw20s": true,
+      "automatically_add_cw721s": true,
+      "dao_uri": null
+    },
     "proposals": [
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7716,6 +7723,11 @@
       }
     ]
   },
-  "subdao_count": 0,
-  "subdao_data": []
+  "subdao_count": 1,
+  "subdao_data": [
+    {
+      "addr": "juno1wx47ntncas0mrpw0wu64r0frz8m5mg0fvrgmef95fffzv4zxcfjseudvc4",
+      "charter": null
+    }
+  ]
 }
