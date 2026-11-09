@@ -308,7 +308,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
   {
     id: "nu7",
     notice: {
-      message: "Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Remaining Sprout funds are unspendable. Review any recovery options promptly.",
+      message: "Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Remaining Sprout funds are unspendable. Review migration options before Mainnet activation.",
       guidance: "Community-maintained guidance for supported wallets and recovery material; recovery is not guaranteed.",
       links: [
         { title: "ZecHub wallet recovery guide", href: "https://zechub.wiki/using-zcash/recovering-funds" },
