@@ -58,13 +58,9 @@ test("a refresh stays on the same module", async ({ page }) => {
 
 test("back and forward walk through the visualizers", async ({ page }) => {
   await page.goto(`${BASE}/visualizer?module=frost-multisig`);
-  // The hub's next-visualizer button, whose label ends in "Next". Not the
-  // visualizer's own "Next stage" control, which steps within a module.
-  await page
-    .locator("button")
-    .filter({ hasText: /Next$/ })
-    .first()
-    .click({ force: true });
+  // aria-label is stable across breakpoints; the visible label is the next
+  // module title on md+ and "Next" only below md.
+  await page.getByRole("button", { name: "Next visualizer" }).click();
   await expect(page).toHaveURL(/\?module=zechub-bounties$/);
 
   await page.goBack();
