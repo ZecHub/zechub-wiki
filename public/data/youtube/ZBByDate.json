@@ -3,24 +3,44 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Ningu\u00e9m precisa ficar sabendo o que voc\u00ea faz com o seu dinheiro",
+            "video_id": "dwX31w_4A1w",
+            "views": 12
+        },
+        {
+            "title": "Zcon7: o que a Zcash Brasil viu em Canc\u00fan",
+            "video_id": "ksrYJfseM-E",
+            "views": 18
+        },
+        {
+            "title": "A IA \u00e9 o Apocalipse?",
+            "video_id": "H9UofLSfRrU",
+            "views": 0
+        },
+        {
+            "title": "Don't trust, verify: confira a IA no modo avi\u00e3o",
+            "video_id": "fTe_ThzR970",
+            "views": 14
+        },
+        {
             "title": "NEAR Intents publicava seu shielded address sem voc\u00ea ver",
             "video_id": "GxfYySITctQ",
-            "views": 18
+            "views": 24
         },
         {
             "title": "Privado, voc\u00ea n\u00e3o tem em outras redes.",
             "video_id": "mgdIbJx429I",
-            "views": 13
+            "views": 18
         },
         {
             "title": "Bitcoin para institui\u00e7\u00f5es, Zcash para indiv\u00edduos",
             "video_id": "mxY-uD5aj6Q",
-            "views": 19
+            "views": 20
         },
         {
             "title": "Vitalik pediu uma IA offline no Android. Algu\u00e9m fez.",
             "video_id": "yefgJ3m3GjY",
-            "views": 38
+            "views": 40
         },
         {
             "title": "Por que o computador qu\u00e2ntico precisa do seu endere\u00e7o",
@@ -45,7 +65,7 @@
         {
             "title": "Dez anos de Zcash: de um post de 2010 \u00e0 Ironwood",
             "video_id": "CvZRLWJgdJU",
-            "views": 60
+            "views": 62
         },
         {
             "title": "IA 100% no celular: liga o modo avi\u00e3o e nada sai dali",
@@ -80,17 +100,17 @@
         {
             "title": "Protocol Study 9 | Hashes Curves and PRFs Pt.2",
             "video_id": "Mujr-zvg6cw",
-            "views": 44
+            "views": 47
         },
         {
             "title": "ZEC como garantia, USDT emprestado #zcash #defi #zec",
             "video_id": "KmJUqmyj7oQ",
-            "views": 76
+            "views": 88
         },
         {
             "title": "Como usar ZEC como garantia na RHEA Finance",
             "video_id": "p6rLMOPPyBk",
-            "views": 187
+            "views": 188
         },
         {
             "title": "Data centers na \u00f3rbita e a Zcash | Michael",
@@ -105,7 +125,7 @@
         {
             "title": "NU7, Tachyon e PIR na Vizor | Zec Insider",
             "video_id": "tY--OxflKsM",
-            "views": 32
+            "views": 31
         },
         {
             "title": "Balaji: Bitcoin \u00e9 reserva, Zcash \u00e9 dinheiro cifrado",
@@ -120,7 +140,7 @@
         {
             "title": "Facilitando cripto na real Victor CEO da Vellora",
             "video_id": "xOeiHqVk3dA",
-            "views": 280
+            "views": 283
         },
         {
             "title": "Como Buscar Seu Saldo Sem Revelar Quem Voc\u00ea \u00e9",
@@ -140,22 +160,22 @@
         {
             "title": "Como receber doa\u00e7\u00f5es em Zcash na sua live (tutorial LiveZEC)",
             "video_id": "Puw-a5Ml2Aw",
-            "views": 36
+            "views": 37
         },
         {
             "title": "ZODL Vault: Como Proteger ZEC Shielded Sem Banco",
             "video_id": "xtTWNESY-I8",
-            "views": 102
+            "views": 104
         },
         {
             "title": "Um papo sobre autonomia, privacidade e o que significa ter a tecnologia realmente nas suas m\u00e3os.",
             "video_id": "lNgRjS1FO-Y",
-            "views": 294
+            "views": 295
         },
         {
             "title": "Zcash, 0xramp e o Futuro dos Pagamentos Privados",
             "video_id": "zrUCFQJ20FY",
-            "views": 112
+            "views": 113
         },
         {
             "title": "Guiriba: Cripto Vai Virar Parte do Dia a Dia",
@@ -200,7 +220,7 @@
         {
             "title": "Como trocar ZEC por USDC no 0xramp (passo a passo)",
             "video_id": "26jGJP5M3Ks",
-            "views": 87
+            "views": 92
         },
         {
             "title": "De 60 GB Para 4 GB: As Otimiza\u00e7\u00f5es no Prover da Zcash",
@@ -240,7 +260,7 @@
         {
             "title": "LiveZEC: doa\u00e7\u00f5es em Zcash na sua live (OBS) | Tutorial completo",
             "video_id": "NmfEKZtjQjY",
-            "views": 137
+            "views": 138
         },
         {
             "title": "Nas Trincheiras Web3",
@@ -255,7 +275,7 @@
         {
             "title": "Noir Wallet do zero: instalar, blindar e enviar ZEC",
             "video_id": "csSW8_3pBUw",
-            "views": 438
+            "views": 441
         },
         {
             "title": "IA, vigil\u00e2ncia e o case para Zcash",
@@ -265,7 +285,7 @@
         {
             "title": "Laura Viana: N\u00e3o Coloque Seus Dados na IA",
             "video_id": "3th6Mgbzt5E",
-            "views": 22
+            "views": 23
         },
         {
             "title": "Privacidade N\u00e3o \u00c9 Sumir do Mundo. \u00c9 Saber o Que Voc\u00ea Compartilha",
@@ -305,7 +325,7 @@
         {
             "title": "Como Usar a Vizor Wallet Para Zcash",
             "video_id": "SqPIYvzsg5M",
-            "views": 366
+            "views": 376
         },
         {
             "title": "Aamandita: Sua Privacidade Financeira Deve Vir Primeiro",
@@ -325,12 +345,12 @@
         {
             "title": "Direito Tecnol\u00f3gico: Muito Al\u00e9m da LGPD.",
             "video_id": "CMdbBjmLsrA",
-            "views": 43
+            "views": 49
         },
         {
             "title": "Zcash Brasil no Blockchain Rio 2026 | Zebr\u00e3o, Comunidade e Privacidade",
             "video_id": "nONTAzPAIbs",
-            "views": 125
+            "views": 126
         },
         {
             "title": "Como votar usando ZEC em menos de 1 minuto | Coinholder Voting NU7",
@@ -350,7 +370,7 @@
         {
             "title": "Zero-Index e 0xramp pra BRL | Zec Insider",
             "video_id": "XL9nanDnLZQ",
-            "views": 99
+            "views": 100
         },
         {
             "title": "Se Atacam Sua Privacidade, Querem Atacar Sua Liberdade",
@@ -395,7 +415,7 @@
         {
             "title": "Laura Viana: Na Blockchain, Um Deslize Pode Entregar Tudo",
             "video_id": "aiE7hyzkKi4",
-            "views": 31
+            "views": 32
         },
         {
             "title": "Privacidade N\u00e3o \u00e9 Passiva, Voc\u00ea Precisa Buscar",
@@ -430,7 +450,7 @@
         {
             "title": "Ironwood ativado na Zcash | Zebra Talks",
             "video_id": "aB--WqXJiPQ",
-            "views": 108
+            "views": 110
         },
         {
             "title": "Tachyon: Statelessness, Poda de Estado e Privacidade Forte",
@@ -455,7 +475,7 @@
         {
             "title": "Os novos caminhos do direito",
             "video_id": "tQUjXpv_Ims",
-            "views": 168
+            "views": 171
         },
         {
             "title": "Por que reduzir o block time muda toda a experi\u00eancia da Zcash",
@@ -550,7 +570,7 @@
         {
             "title": "Quando o compliance vira vigil\u00e2ncia?",
             "video_id": "JGoLizC1x84",
-            "views": 31
+            "views": 32
         },
         {
             "title": "Blockchain e IA no Mundo Real",
@@ -635,7 +655,7 @@
         {
             "title": "Mundo em Mudan\u00e7a: Por Que Estamos em Caos? | Rafael Castaneda | Zcon Vozes 2",
             "video_id": "Six9DE25QWM",
-            "views": 84
+            "views": 85
         },
         {
             "title": "As Ra\u00edzes, Os Riscos e Revolu\u00e7\u00f5es da Privacidade",
@@ -725,7 +745,7 @@
         {
             "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
             "video_id": "jrWNz29nHKk",
-            "views": 99
+            "views": 100
         },
         {
             "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endere\u00e7o Shielded",
@@ -870,7 +890,7 @@
         {
             "title": "Como Comprar ZEC com Fiat e Fazer Doa\u00e7\u00f5es Privadas com Cipherpay | Zec Insider",
             "video_id": "cQ5FvbijzMI",
-            "views": 29
+            "views": 31
         },
         {
             "title": "Conectando a nova gera\u00e7\u00e3o \u00e0 economia digital e ao universo Web3 com a Educar+",
@@ -940,7 +960,7 @@
         {
             "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
             "video_id": "RjKV4Rj9psw",
-            "views": 35
+            "views": 37
         },
         {
             "title": "ETFs em Cripto: Ado\u00e7\u00e3o ou Captura?",
@@ -1010,7 +1030,7 @@
         {
             "title": "Zcash Inside: Minera\u00e7\u00e3o, Dev Fund e Governan\u00e7a H\u00edbrida.",
             "video_id": "HY2-Eoo1DhM",
-            "views": 61
+            "views": 63
         },
         {
             "title": "Segredo de Escalabilidade do Tachyon: Nullifiers e Agrega\u00e7\u00e3o de Provas.",
@@ -1275,7 +1295,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 412
+            "views": 430
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -1580,7 +1600,7 @@
         {
             "title": "Conhe\u00e7a a P2P.me: Plataforma para comprar e vender USDC de forma an\u00f4nima",
             "video_id": "9C9Tnc8dEGI",
-            "views": 678
+            "views": 681
         },
         {
             "title": "Incertezas financeiras e o salto do DeFi.",
@@ -1885,7 +1905,7 @@
         {
             "title": "Trocar SOL por ZEC na Solswap: Tutorial Completo",
             "video_id": "YEccCDMsOa0",
-            "views": 137
+            "views": 139
         },
         {
             "title": "Web 3 a evolu\u00e7\u00e3o da internet.",
@@ -2070,7 +2090,7 @@
         {
             "title": "Tutorial Shielded Zcash na Metamask",
             "video_id": "Et8d-rM7YXQ",
-            "views": 221
+            "views": 222
         },
         {
             "title": "Impactos das guerras globais na economia brasileira",
@@ -2460,7 +2480,7 @@
         {
             "title": "A maneira mais privada de negociar criptomoedas",
             "video_id": "je8xloY6Jo8",
-            "views": 680
+            "views": 681
         },
         {
             "title": "A transi\u00e7\u00e3o do lastro para a moeda fiduciaria",
@@ -2470,7 +2490,7 @@
         {
             "title": "O Maior Hack da Hist\u00f3ria: O Que Isso Tem a Ver com Voc\u00ea?",
             "video_id": "WPX1iiide2w",
-            "views": 240
+            "views": 241
         },
         {
             "title": "Apresentando o Protocolo Crosslink",
@@ -2735,7 +2755,7 @@
         {
             "title": "Seja Seu Proprio Banco",
             "video_id": "vQ1UIcnmS3Q",
-            "views": 69
+            "views": 70
         },
         {
             "title": "D\u00f3lar e stablecoins: o risco invis\u00edvel",
@@ -2965,7 +2985,7 @@
         {
             "title": "Qual o valor da sua privacidade? #Privacidade #Cripto #Zcash",
             "video_id": "SRJXi3B5f3w",
-            "views": 1056
+            "views": 1057
         },
         {
             "title": "Duas propriedades necess\u00e1rias para a civiliza\u00e7\u00e3o... #Privacidade #Cripto #Zcash #direitohumano #IA",
@@ -3075,7 +3095,7 @@
         {
             "title": "Tutorial #ZEC Faucet: A #liberdade come\u00e7a conhecimento com  e um pouco de #Zcash.",
             "video_id": "aWK956D8M1w",
-            "views": 126
+            "views": 127
         },
         {
             "title": "A nova moeda global #dadospessoais #podcast #privacidade",
@@ -3355,7 +3375,7 @@
         {
             "title": "As amarras invis\u00edveis da liberdade moderna.",
             "video_id": "5kQEfyNMrZc",
-            "views": 65
+            "views": 66
         },
         {
             "title": "A verdade sobre a privacidade no mundo digital!",
@@ -3445,7 +3465,7 @@
         {
             "title": "Como a integra\u00e7\u00e3o da Flexa e Zashi protege a privacidade do consumidor",
             "video_id": "lHeTVBu3Tik",
-            "views": 73
+            "views": 75
         },
         {
             "title": "Lei de Prote\u00e7\u00e3o de Dados - Especial CBDC BLKC",
@@ -3840,7 +3860,7 @@
         {
             "title": "Isabela Fernandes - A import\u00e2ncia da comunidade no projeto Tor.",
             "video_id": "eCDNR1x7PM4",
-            "views": 45
+            "views": 46
         },
         {
             "title": "WEEKLYCALL  #7 - Competi\u00e7\u00e3o de Zemes",
@@ -3855,7 +3875,7 @@
         {
             "title": "Tutorial Zingo! Carteira para Zcash",
             "video_id": "gg6YKmdrxAs",
-            "views": 256
+            "views": 259
         },
         {
             "title": "ZPACE Zcash e Brave - PARCERIA",
@@ -4150,7 +4170,7 @@
         {
             "title": "O que \u00e9 a Implementa\u00e7\u00e3o Zebra? - Com Conrado Gouvea",
             "video_id": "hHi2TxHY2Ww",
-            "views": 122
+            "views": 123
         },
         {
             "title": "Zcash & ShapeShift DAO - Twitter Spaces",
