@@ -4,7 +4,7 @@
     "name": "Unknown",
     "description": "",
     "member_count": 0,
-    "proposal_count": 191,
+    "proposal_count": 192,
     "config": {},
     "proposals": [
       {
@@ -7634,8 +7634,8 @@
           "msgs": [],
           "status": "open",
           "votes": {
-            "yes": "3",
-            "no": "2",
+            "yes": "8",
+            "no": "6",
             "abstain": "0"
           },
           "allow_revoting": true
@@ -7670,9 +7670,45 @@
           "msgs": [],
           "status": "open",
           "votes": {
-            "yes": "2",
+            "yes": "9",
             "no": "0",
-            "abstain": "2"
+            "abstain": "3"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 192,
+        "proposal": {
+          "title": "PayWithZcash Hosting Renewal & Managed Application Maintenance",
+          "description": "# WEBSITE HOSTING RENEWAL & MANAGED APPLICATION MAINTENANCE PROPOSAL\n\n## 1. INTRODUCTION\n\nFollowing the development and deployment of PayWithZcash (https://paywithz.cash) in March 2025, I have continued to oversee its hosting and technical operations to maintain its online presence.\n\nOn the 3rd of March 2026, I communicated the impending expiration of the hosting subscription, due on March 29, 2026. But I didn't officially submit a request for it, while I independently sustained the application's hosting to prevent service interruption.\n\nBeyond maintaining its availability, I have recently undertaken further improvements, including a revamped user interface and the integration of map functionality for new listings while behind the scene I have geo-located 69 of existing listings.\n\nThe last audit that was carried out on the first week of November 2026 is as follows:\n- 320 businesses in total are listed\n- 13 newly signup from June 9, 2025 to date\n- 40 businesses have no obvious evidence of accepting Zcash (and have been tagged under `Review`)\n- 71 businesses currently are offline  (and have been tagged under `Review`)\n\nNOTE: The number of published listing is 209 ~ (320 - (40 + 71))\n \nWith the previous hosting and technical support arrangement having ended in March 2026, this proposal outlines the arrangements for continued hosting and ongoing technical support.\n\n## 2. APPLICATION IMPROVEMENTS & ACTIVITY\n\nRecent improvements include:\n\n- **UI Revamp:** Improved visual presentation, layout, and user experience.\n- **Map Integration:** Added location-related functionality to improve usability and accessibility.\n\n**Website Activity**\n\nOver the past 12 months, the application recorded **13 signup**, demonstrating its continued use as an online business profile and communication channel for prospective customers and other interested visitors.\n\n## 3. OUTSTANDING COMMUNICATION CHANNEL TO HELP DRIVE ADOPTION: X (TWITTER) ACCOUNT\n\nDuring the transition from the previous developer, administrative ownership/access of PayWithZcash's existing X (formerly Twitter) account was not transferred/enabled alongside the domain. On two separate occasions, I recommended contacting the former developer to facilitate such transfer or we be provided appropriate administrative access.\n\nI considered creating a replacement account but decided against introducing a different handle that could create inconsistency with the PayWithZcash's existing digital identity.\n\n**Recommended action:** Revisit the account recovery or transfer process so we can have it to enhance the communication of its existing social media identity.\n\n## 4. PROPOSED SERVICE OPTIONS\n\nTwo service arrangements are available:\n\n### OPTION A: WEBSITE HOSTING ONLY\n\nCovers the infrastructure required to keep the application deployed and accessible online.\n\n- Website hosting and environment management.\n- Basic hosting availability checks.\n\nApplication maintenance, bug fixes, security updates, technical support, and enhancements are excluded and will be quoted separately if/when required.\n\n**Cost: $20/month | $240/year**\n\n### OPTION B: MANAGED APPLICATION MAINTENANCE & TECHNICAL SUPPORT\n\n<badge color=\"success\">Recommended</badge>\n\nA comprehensive arrangement combining hosting with ongoing technical management and support to keep the application functional, secure, and relevant to the PayWitZcash's needs.\n\nIncludes:\n\n- Routine application monitoring and performance checks.\n- Bug investigation and resolution.\n- Security and dependency updates.\n- Database and backup management, where applicable.\n- Technical support and troubleshooting.\n- Monitoring of existing integrations, including map functionality.\n- Minor UI/UX adjustments and content updates.\n- Reasonable minor enhancements to existing application features.\n\nMajor new modules, substantial feature development, significant architectural changes, and complex third-party integrations will be assessed and quoted separately.\n\n| Service | Monthly | Annual |\n|---|---:|---:|\n| Website hosting | $20 | $240 |\n| Managed maintenance & support | $200 | $2,400 |\n| **Total** | **$220** | **$2,640** |\n\n## 5. OUTSTANDING HOSTING EXPENDITURE\n\nFollowing the expiration of the previous hosting subscription in March 2026, I continued funding the application's hosting independently to maintain its availability.\n\nThe hosting expenditure for the period March 2026 – February 2027 is presented for reconciliation and settlement.\n\n**$20 × 12 months = $240.**\n\nThis is a hosting expense and is separate from the proposed maintenance agreement.\n\n## 6. PAYMENT & SERVICE ARRANGEMENT\n\nUpon approval:\n\n- The preferred service option will cover an agreed 12-month period.\n- Hosting will be renewed subject to the applicable payment arrangement.\n- Under Option B, maintenance and technical support will commence upon approval and cover 12 months.\n- The annual maintenance fee may be paid upfront or in monthly instalments of $200, subject to mutual agreement.\n- Additional development outside the agreed maintenance scope will be quoted separately.\n\n## 7. CONCLUSION & ACCEPTANCE\n\nThe improvements made to the application, together with its continued availability and map functionality, reinforce its role as an important part of the PayWithZcash's digital presence.\n\nI recommend **Option B – Managed Application Maintenance & Technical Support** for consistent technical oversight, ongoing maintenance, and reasonable improvements as the business's needs evolve.\n\nThank you for the continued opportunity to support PayWithZcash's digital presence.\n\nSpeedFox",
+          "proposer": "juno154xpy7ge2nmqft7n8dfhgmquyqhsfgm3w78qzg",
+          "start_height": 43530547,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1794567503188788641"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "open",
+          "votes": {
+            "yes": "7",
+            "no": "0",
+            "abstain": "0"
           },
           "allow_revoting": true
         },
