@@ -78,6 +78,7 @@ const STATUS_FILTERS = ["All", "Executed", "Passed", "Rejected"] as const;
 const TOP_TABS = ["Proposals", "Charts", "Treasury"] as const;
 
 function flattenDao(dao: DaoData): FlatProposal[] {
+  if (!dao.proposals || !Array.isArray(dao.proposals)) return [];
   return dao.proposals
     .map((raw: any) => {
       if (raw.proposal && raw.proposal.votes !== undefined) {
