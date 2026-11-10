@@ -7828,10 +7828,10 @@
           },
           "total_power": "24",
           "msgs": [],
-          "status": "open",
+          "status": "closed",
           "votes": {
             "yes": "8",
-            "no": "6",
+            "no": "7",
             "abstain": "0"
           },
           "allow_revoting": true
@@ -7865,9 +7865,9 @@
           },
           "total_power": "24",
           "msgs": [],
-          "status": "open",
+          "status": "passed",
           "votes": {
-            "yes": "9",
+            "yes": "10",
             "no": "0",
             "abstain": "3"
           },
@@ -7904,7 +7904,7 @@
           "msgs": [],
           "status": "open",
           "votes": {
-            "yes": "7",
+            "yes": "9",
             "no": "0",
             "abstain": "0"
           },
