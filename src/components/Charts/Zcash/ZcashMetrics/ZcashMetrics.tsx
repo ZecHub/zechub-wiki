@@ -33,6 +33,15 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const metricT = t?.pages?.dashboard?.charts?.zcashMetrics;
   const notAvailable = metricT?.notAvailable || "N/A";
 
+  // Full figures such as $18,496,835,615 do not fit a half-width card on phones.
+  const formatUsd = (value: number) =>
+    isMobile
+      ? `$${new Intl.NumberFormat("en-US", {
+          notation: "compact",
+          maximumFractionDigits: 2,
+        }).format(value)}`
+      : `$${Math.round(value).toLocaleString()}`;
+
   const [loading, setLoading] = useState(true);
   const [price, setPrice] = useState<ZecPrice | null>(null);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>();
@@ -83,7 +92,7 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
     {
       label: metricT?.marketCap || "Market Cap",
       value: price?.usd_market_cap
-        ? `$${Math.round(price.usd_market_cap).toLocaleString()}`
+        ? formatUsd(price.usd_market_cap)
         : notAvailable,
       icon: <DollarSign size={18} />,
     },
@@ -98,7 +107,7 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       label: metricT?.shieldedValue || "Shielded Value",
       value:
         blockchainInfo?.shielded_value_zec && price?.usd
-          ? `$${Math.round(blockchainInfo.shielded_value_zec * price.usd).toLocaleString()}`
+          ? formatUsd(blockchainInfo.shielded_value_zec * price.usd)
           : notAvailable,
       icon: <Lock size={18} />,
     },

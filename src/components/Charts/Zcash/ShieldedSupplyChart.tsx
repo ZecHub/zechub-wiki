@@ -349,7 +349,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           <XAxis dataKey="close" tick={{ fontSize: fontSize * 0.75, fill: "#94a3b8" }} interval={Math.max(1, Math.floor(poolData.length / 10))} angle={-45} textAnchor="end" height={70} />
           <YAxis tick={{ fontSize, fill: "#94a3b8" }} tickFormatter={formatNumberShort} />
           <Tooltip content={CustomTooltip} />
-          <Legend content={legendContent} />
+          {/* A function, not an element: Recharts clones elements and spreads its legend props onto the <div>, which React flags as unknown DOM props. */}
+          <Legend content={() => legendContent} />
 
           {selectedPool === "all" ? (
             totalVisible ? (
