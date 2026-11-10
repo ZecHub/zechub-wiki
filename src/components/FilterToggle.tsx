@@ -1,4 +1,4 @@
-// components/FilterToggle.tsx
+
 import React from "react";
 
 interface FilterToggleProps {
@@ -8,10 +8,13 @@ interface FilterToggleProps {
     Pools: Set<string>;
     "Wallet Support": Set<string>;
     Features: Set<string>;
-    Ironwood?: Set<string>;
+    NU7: Set<string>;
   };
   activeFilters: string[];
-  toggleFilter: (filterCategory: string, filterValue: string) => void;
+  toggleFilter: (
+    filterCategory: string,
+    filterValue: string
+  ) => void;
   handleToggleFilter: () => void;
 }
 
@@ -26,34 +29,42 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
       {Object.entries(filters)
         .filter(([, values]) => values && values.size > 0)
         .map(([category, values]) => (
-        <div key={category}>
-          <h4 className="text-xl font-bold mt-6 mb-3">{category}</h4>
-          <div className="imd:block flex flex-wrap gap-2">
-            {[...values].map((value) => (
-              <label
-                key={value}
-                className="flex items-center cursor-pointer mb-1"
-              >
-                <div className="relative">
-                  <input
-                    type="checkbox"
-                    className="sr-only peer"
-                    checked={activeFilters.includes(`${category}:${value}`)}
-                    onChange={() => {
-                      toggleFilter(category, value);
-                    }}
-                  />
+          <div key={category}>
+            <h4 className="text-xl font-bold mt-6 mb-3">
+              {category}
+            </h4>
 
-                  <div className="w-8 h-4 bg-gray-200 dark:bg-gray-400 rounded-full peer-checked:bg-blue-500 peer-focus-visible:ring-2 peer-focus-visible:ring-blue-600 peer-focus-visible:ring-offset-2 transition-colors"></div>
+            <div className="imd:block flex flex-wrap gap-2">
+              {[...values].map((value) => (
+                <label
+                  key={value}
+                  className="flex items-center cursor-pointer mb-1"
+                >
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      className="sr-only peer"
+                      checked={activeFilters.includes(
+                        `${category}:${value}`
+                      )}
+                      onChange={() => {
+                        toggleFilter(category, value);
+                      }}
+                    />
 
-                  <div className="dot absolute left-[2px] top-[2px] w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-4"></div>
-                </div>
-                <span className="ml-2 text-sm">{value}</span>
-              </label>
-            ))}
+                    <div className="w-8 h-4 bg-gray-200 dark:bg-gray-400 rounded-full peer-checked:bg-blue-500 peer-focus-visible:ring-2 peer-focus-visible:ring-blue-600 peer-focus-visible:ring-offset-2 transition-colors"></div>
+
+                    <div className="dot absolute left-[2px] top-[2px] w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-4"></div>
+                  </div>
+
+                  <span className="ml-2 text-sm">
+                    {value}
+                  </span>
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
