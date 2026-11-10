@@ -1,3 +1,4 @@
+import { BookOpen, ShieldCheck } from "lucide-react";
 import MdxContainer from "@/components/MdxContainer";
 import { rewriteMetamaskSnap } from "@/lib/pageOverrides/metamaskSnap";
 import { rewriteMerchantGuide } from "@/lib/pageOverrides/merchantGuide";
@@ -47,6 +48,8 @@ import { rewriteContributingGuide } from "@/lib/pageOverrides/contributingGuide"
 import { rewriteBuyingZecGuide } from "@/lib/pageOverrides/buyingZecGuide";
 import { rewriteGovernanceGuide } from "@/lib/pageOverrides/governanceGuide";
 import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
+import { rewriteTransactionsGuide } from "@/lib/pageOverrides/transactionsGuide";
+import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
 import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
@@ -5964,15 +5967,26 @@ export default async function Page(props: {
 
       roots = [...topLevel, ...seriesArticles];
 
-      const heroImage = getHeroImage(slug[0]);
-
       return (
         <MdxContainer
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
-          {...(heroImage ? { heroImage } : {})}
+          hideBanner
         >
+          {/* The baked-in banner image shrinks its text to ~5px on phones, so the index uses a real heading. */}
+          <header className="px-3 pb-8 pt-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand dark:text-brand-soft">
+              ZecHub Research
+            </p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Research
+            </h1>
+            <p className="mt-2 max-w-2xl text-[15px] text-muted-foreground sm:text-base">
+              Exploring zero-knowledge, privacy and cryptography through series and articles from the Zcash community.
+            </p>
+          </header>
+
           {/* === Series Section (On Top) === */}
           <div className="px-2 pb-10">
             <div className="mb-5 px-1">
@@ -5989,26 +6003,24 @@ export default async function Page(props: {
                 <Link
                   key={series.id}
                   href={series.href}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-brand/50 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-brand/50"
                 >
-                  <div
-                    className="relative flex aspect-[16/9] w-full shrink-0 items-center justify-center overflow-hidden
-                                  border-b border-zinc-700 bg-gradient-to-br from-zinc-700 to-zinc-500
-                                  sm:aspect-[2.2/1]"
-                  >
-                    <div className="px-6 text-center">
-                      <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-                        <span className="text-5xl">{series.emoji}</span>
-                      </div>
-                      <p className="text-2xl font-semibold tracking-tight text-white">
-                        {r[series.i18nKeys.title] ?? series.title}
-                      </p>
-                    </div>
+                  <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden border-b border-slate-200 bg-slate-900 sm:aspect-[2.2/1] dark:border-slate-700">
+                    {series.cover ? (
+                      // Plain <img>: static covers in /public, same as article cards.
+                      <img
+                        src={series.cover.src}
+                        alt={series.cover.alt}
+                        className="h-full w-full object-cover transition-transform duration-500 sm:group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    ) : null}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06192F]/70 via-transparent to-transparent" />
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">
                     <div className="mb-2">
-                      <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                      <span className="inline-flex items-center rounded-full border border-brand/30 bg-brand/10 px-2.5 py-0.5 text-xs font-medium text-brand dark:text-brand-soft">
                         {r[series.i18nKeys.badge] ?? series.badge}
                       </span>
                     </div>
@@ -6021,7 +6033,7 @@ export default async function Page(props: {
                       {r[series.i18nKeys.cardDescription] ?? series.cardDescription}
                     </p>
 
-                    <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
+                    <div className="mt-auto pt-5 text-sm font-medium text-brand transition-colors group-hover:text-brand-hover dark:text-brand-soft dark:group-hover:text-white">
                       {r.exploreSeries ?? "Explore the series →"}
                     </div>
                   </div>
@@ -6106,7 +6118,13 @@ export default async function Page(props: {
           <div className="px-2 pb-8">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">{series?.emoji ?? "📚"}</span>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/15 text-brand ring-1 ring-brand/25 dark:text-brand-soft">
+                  {series?.id === "zcash-formal-verification-series" ? (
+                    <ShieldCheck className="h-6 w-6" aria-hidden />
+                  ) : (
+                    <BookOpen className="h-6 w-6" aria-hidden />
+                  )}
+                </span>
                 <h1 className="text-2xl imd:text-4xl font-bold">
                   {(series && r[series.i18nKeys.title]) ??
                     series?.title ??
@@ -6365,6 +6383,9 @@ export default async function Page(props: {
   if (slug.join("/") === "start-here/new-user-guide" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNewUserGuide(processedMarkdown);
   }
+  if (slug.join("/") === "contribute/help-build-zechub" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteHelpBuildGuide(processedMarkdown);
+  }
   if (slug.join("/") === "contribute/contributing-guide" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteContributingGuide(processedMarkdown);
   }
@@ -6373,6 +6394,9 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "using-zcash/buying-zec" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteBuyingZecGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "using-zcash/transactions" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteTransactionsGuide(processedMarkdown);
   }
   if (slug.join("/") === "using-zcash/wallets" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteWalletsGuide(processedMarkdown);

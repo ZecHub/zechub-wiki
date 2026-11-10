@@ -24,6 +24,15 @@ interface Props {
 
 const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  // /hardware-wallets, /mobile-wallets, /desktop-wallets and /web-wallets open this list with ?device=<type>
+  // so the matching Devices filter is already on.
+  useEffect(() => {
+    const device = new URLSearchParams(window.location.search).get("device");
+    if (!device) return;
+    const key = `Devices:${device.charAt(0).toUpperCase()}${device.slice(1).toLowerCase()}`;
+    setActiveFilters((prev) => (prev.includes(key) ? prev : [...prev, key]));
+  }, []);
   const [filters, setFilters] = useState({
     Devices: new Set<string>(),
     "Operating System": new Set<string>(),

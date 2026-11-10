@@ -3,7 +3,8 @@
 // transparent withdrawals (the page now tells readers to check the exchange before they buy and links to the exchange
 // pages), the "flyp.me was one of the safest" claim, and the Coinbase/Kraken/Binance "transparent only" claim.
 // Kept: the two videos, the wallet and exchange page links, and the two image markers that the MDX image component
-// swaps for the native RecommendedExchanges and RecommendedWallets cards. Skipped if the H1 is missing.
+// swaps for the native RecommendedExchanges and RecommendedWallets cards. The "ways to get ZEC" table is kept for
+// wide screens and phones get one card per way. Skipped if the H1 is missing.
 
 const frame = (id: string, title: string) => `<div className="my-8 w-full aspect-video max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-black">
   <iframe
@@ -26,12 +27,60 @@ const BODY = `## TL;DR
 
 ## Ways to get ZEC
 
+<div className="hidden md:block">
+
 | Way | What it is | Where to look |
 | --- | --- | --- |
 | Custodial exchange | You make an account, buy ZEC and withdraw it. The exchange holds your coins until you do | [Custodial Exchanges](/using-zcash/custodial-exchanges) |
 | Non-custodial swap | You swap another coin for ZEC without making an account, and the ZEC goes to your own wallet | [Non-Custodial Exchanges](/using-zcash/non-custodial-exchanges) |
 | Centralized swap service | A service that converts one coin to another for a fee | [Centralized Swaps](/using-zcash/centralized-swaps) |
 | Mining | Earn ZEC by running mining hardware. This is usually out of reach for most people | [Zcash Mining Guide](/using-zcash/zcash-mining-guide) |
+
+</div>
+
+<div className="md:hidden my-4 space-y-3">
+
+<div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2">
+
+**Custodial exchange**
+
+You make an account, buy ZEC and withdraw it. The exchange holds your coins until you do.
+
+[Custodial Exchanges](/using-zcash/custodial-exchanges)
+
+</div>
+
+<div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2">
+
+**Non-custodial swap**
+
+You swap another coin for ZEC without making an account, and the ZEC goes to your own wallet.
+
+[Non-Custodial Exchanges](/using-zcash/non-custodial-exchanges)
+
+</div>
+
+<div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2">
+
+**Centralized swap service**
+
+A service that converts one coin to another for a fee.
+
+[Centralized Swaps](/using-zcash/centralized-swaps)
+
+</div>
+
+<div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2">
+
+**Mining**
+
+Earn ZEC by running mining hardware. This is usually out of reach for most people.
+
+[Zcash Mining Guide](/using-zcash/zcash-mining-guide)
+
+</div>
+
+</div>
 
 Supported coins, countries, fees and withdrawal options differ by service and change over time. Check the service's own site before you buy.
 

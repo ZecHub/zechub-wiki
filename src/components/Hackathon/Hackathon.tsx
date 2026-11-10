@@ -564,7 +564,7 @@ function SubmissionLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+      className="inline-flex items-center gap-2 rounded-lg border border-brand/50 bg-transparent px-4 py-2.5 text-sm font-semibold text-brand transition hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:text-brand-soft dark:hover:text-white"
     >
       {icon === "demo" ? <PlayCircle className="h-4 w-4" aria-hidden /> : null}
       {icon === "github" ? <Github className="h-4 w-4" aria-hidden /> : null}
@@ -584,11 +584,11 @@ function SectionTitle({
   return (
     <div className="mb-6">
       {eyebrow ? (
-        <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400">
+        <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand dark:text-brand-soft">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="border-l-4 border-sky-500 pl-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white md:text-3xl">
+      <h2 className="border-l-4 border-brand pl-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white md:text-3xl">
         {children}
       </h2>
     </div>
@@ -691,9 +691,9 @@ const Hackathon = ({
         aria-hidden
       />
       <main className="relative z-10 mx-auto w-full max-w-6xl px-4 py-10 text-slate-900 dark:text-slate-100">
-        <section className="relative mb-12 overflow-hidden rounded-3xl border border-sky-500/25 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-8 text-white shadow-xl shadow-slate-900/20 ring-1 ring-white/10 md:p-12">
+        <section className="relative mb-12 overflow-hidden rounded-3xl border border-brand/25 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-8 text-white shadow-xl shadow-slate-900/20 ring-1 ring-white/10 md:p-12">
           <div
-            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl"
+            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand/20 blur-3xl"
             aria-hidden
           />
           <div
@@ -709,7 +709,7 @@ const Hackathon = ({
               </p>
               <h1 className="mb-4 text-4xl font-black tracking-tight md:text-5xl lg:text-6xl">
                 ZecHub{" "}
-                <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-emerald-300 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-brand-soft via-brand-soft to-emerald-300 bg-clip-text text-transparent">
                   Hackathon
                 </span>
               </h1>
@@ -730,12 +730,12 @@ const Hackathon = ({
               <div className="mt-6 flex flex-wrap gap-3">
                 {phase === "post" ? <a
                   href="#submissions"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+                  className="inline-flex items-center gap-2 rounded-lg border border-brand bg-brand text-on-brand hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white px-4 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 >
                   View projects <ArrowUpRight className="h-4 w-4 opacity-80" />
                 </a> : <Link
                   href="/dao"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/25"
+                  className="inline-flex items-center gap-2 rounded-lg border border-brand/50 bg-transparent px-4 py-2.5 text-sm font-semibold text-brand-soft transition hover:border-brand hover:bg-brand/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                 >
                   ZecHub DAO <ArrowUpRight className="h-4 w-4 opacity-80" />
                 </Link>}
@@ -743,7 +743,7 @@ const Hackathon = ({
                   href="https://discord.gg/zcash"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-transparent px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-lg border border-brand/50 bg-transparent px-4 py-2.5 text-sm font-semibold text-brand-soft transition hover:border-brand hover:bg-brand/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
                 >
                   Discord <ExternalLink className="h-3.5 w-3.5 opacity-70" />
                 </a>
@@ -872,13 +872,13 @@ const Hackathon = ({
               return (
                 <Card
                   key={tool.title}
-                  className="group h-full overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
+                  className="group h-full overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
                 >
                   <CardHeader className="pb-2">
-                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-500/15 text-sky-600 ring-1 ring-sky-500/25 dark:text-sky-400">
+                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-brand/15 text-brand ring-1 ring-brand/25 dark:text-brand-soft">
                       <Icon className="h-5 w-5" aria-hidden />
                     </div>
-                    <CardTitle className="text-xl transition group-hover:text-sky-600 dark:group-hover:text-sky-400">
+                    <CardTitle className="text-xl transition group-hover:text-brand dark:group-hover:text-brand-soft">
                       {tool.title}
                     </CardTitle>
                     <CardDescription className="text-base leading-relaxed">
@@ -889,7 +889,7 @@ const Hackathon = ({
                     {isInternal ? (
                       <Link
                         href={tool.href}
-                        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition hover:bg-brand-hover"
+                        className="inline-flex items-center gap-2 rounded-lg border border-brand bg-brand text-on-brand hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white px-4 py-2.5 text-sm font-semibold transition-colors"
                       >
                         Open guide <ArrowUpRight className="h-4 w-4" />
                       </Link>
@@ -898,7 +898,7 @@ const Hackathon = ({
                         href={tool.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition hover:bg-brand-hover"
+                        className="inline-flex items-center gap-2 rounded-lg border border-brand bg-brand text-on-brand hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white px-4 py-2.5 text-sm font-semibold transition-colors"
                       >
                         Open docs <ExternalLink className="h-4 w-4" />
                       </a>
@@ -927,7 +927,7 @@ const Hackathon = ({
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 {rules.map((rule, i) => (
                   <li key={rule} className="flex gap-3 text-sm leading-relaxed">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-sky-700 dark:bg-slate-800 dark:text-sky-400">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-brand dark:bg-slate-800 dark:text-brand-soft">
                       {i + 1}
                     </span>
                     <span>{rule}</span>
@@ -940,7 +940,7 @@ const Hackathon = ({
           <Card className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-2xl">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-700 dark:text-violet-400">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand/15 text-brand dark:text-brand-soft">
                   <HelpCircle className="h-5 w-5" aria-hidden />
                 </span>
                 FAQ
@@ -953,7 +953,7 @@ const Hackathon = ({
               {faqItems.map((faq) => (
                 <details
                   key={faq.question}
-                  className="group rounded-xl border border-slate-200 bg-slate-50/80 p-4 transition hover:border-sky-500/35 dark:border-slate-700 dark:bg-slate-900/40"
+                  className="group rounded-xl border border-slate-200 bg-slate-50/80 p-4 transition hover:border-brand/35 dark:border-slate-700 dark:bg-slate-900/40"
                 >
                   <summary className="cursor-pointer list-none font-medium text-slate-900 outline-none marker:content-none dark:text-white [&::-webkit-details-marker]:hidden">
                     <span className="flex items-start justify-between gap-2">
@@ -979,14 +979,14 @@ const Hackathon = ({
             ZecHub Hackathon. Select any project to reveal its description,
             video, demo site, and source code.
           </p>
-          <p className="mb-6 text-sm font-medium text-sky-700 dark:text-sky-400">
+          <p className="mb-6 text-sm font-medium text-brand dark:text-brand-soft">
             One project can be opened at a time. 
           </p>
 
           {selectedSubmission ? (
             <div
               id="submission-details"
-              className="mb-6 scroll-mt-24 overflow-hidden rounded-3xl border border-sky-500/35 bg-white shadow-xl shadow-slate-900/10 dark:border-sky-400/25 dark:bg-slate-900"
+              className="mb-6 scroll-mt-24 overflow-hidden rounded-3xl border border-brand/35 bg-white shadow-xl shadow-slate-900/10 dark:border-brand-soft/25 dark:bg-slate-900"
             >
               <div className="flex items-start justify-between gap-4 border-b border-slate-200 bg-slate-50 px-5 py-4 dark:border-slate-700 dark:bg-slate-950/50 md:px-6">
                 <div>
@@ -1006,7 +1006,7 @@ const Hackathon = ({
                 <button
                   type="button"
                   onClick={() => setSelectedSubmissionTitle(null)}
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:border-sky-500 hover:text-sky-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-sky-400 dark:hover:text-sky-400"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:border-brand hover:text-brand dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-brand-soft dark:hover:text-brand-soft"
                   aria-label={`Close ${selectedSubmission.title} details`}
                 >
                   <X className="h-5 w-5" aria-hidden />
@@ -1041,7 +1041,7 @@ const Hackathon = ({
                       href={selectedSubmission.videoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-700 hover:underline dark:text-sky-400"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline dark:text-brand-soft"
                     >
                       Open video directly
                       <ExternalLink className="h-3.5 w-3.5" aria-hidden />
@@ -1122,10 +1122,10 @@ const Hackathon = ({
                   onClick={() => handleSubmissionClick(submission.title)}
                   aria-expanded={isSelected}
                   aria-controls={isSelected ? "submission-details" : undefined}
-                  className={`group flex h-full min-h-[12.5rem] w-full flex-col rounded-2xl border p-5 text-left shadow-sm backdrop-blur-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950 ${
+                  className={`group flex h-full min-h-[12.5rem] w-full flex-col rounded-2xl border p-5 text-left shadow-sm backdrop-blur-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950 ${
                     isSelected
-                      ? "border-sky-500 bg-sky-50 shadow-lg shadow-sky-900/10 dark:border-sky-400 dark:bg-sky-950/35"
-                      : "border-slate-200/90 bg-white/95 hover:-translate-y-0.5 hover:border-sky-500/45 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:hover:border-sky-400/50"
+                      ? "border-brand bg-brand/10 shadow-lg shadow-brand/10 dark:border-brand-soft dark:bg-brand/10"
+                      : "border-slate-200/90 bg-white/95 hover:-translate-y-0.5 hover:border-brand/45 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:hover:border-brand-soft/50"
                   }`}
                 >
                   <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -1134,7 +1134,7 @@ const Hackathon = ({
                     </span>
                   </div>
 
-                  <h3 className="line-clamp-2 text-xl font-bold leading-snug text-slate-950 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-400">
+                  <h3 className="line-clamp-2 text-xl font-bold leading-snug text-slate-950 transition group-hover:text-brand dark:text-white dark:group-hover:text-brand-soft">
                     {submission.title}
                   </h3>
 
@@ -1145,7 +1145,7 @@ const Hackathon = ({
                     </span>
                   </span>
 
-                  <span className="mt-auto flex items-center justify-between gap-3 border-t border-slate-200/80 pt-4 text-sm font-semibold text-sky-700 dark:border-slate-700/80 dark:text-sky-400">
+                  <span className="mt-auto flex items-center justify-between gap-3 border-t border-slate-200/80 pt-4 text-sm font-semibold text-brand dark:border-slate-700/80 dark:text-brand-soft">
                     {isSelected ? "Hide submission" : "View submission"}
                     <ArrowUpRight
                       className={`h-4 w-4 shrink-0 transition ${
@@ -1189,7 +1189,7 @@ const Hackathon = ({
             <Card className="mb-8 border-slate-200/80 bg-white/85 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/80">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
-                  <FolderOpen className="h-5 w-5 text-sky-400" aria-hidden />
+                  <FolderOpen className="h-5 w-5 text-brand-soft" aria-hidden />
                   Browse previous hackathons
                 </CardTitle>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -1202,7 +1202,7 @@ const Hackathon = ({
                   href={PREVIOUS_PROJECTS_REPO}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition hover:bg-brand-hover"
+                  className="inline-flex items-center gap-2 rounded-lg border border-brand bg-brand text-on-brand hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white px-4 py-2.5 text-sm font-semibold transition-colors"
                 >
                   Browse previous projects
                   <ExternalLink className="h-4 w-4" aria-hidden />
@@ -1217,7 +1217,7 @@ const Hackathon = ({
                 <div key={group.key}>
                   <h3 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">
                     <FolderOpen
-                      className="h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400"
+                      className="h-4 w-4 shrink-0 text-brand dark:text-brand-soft"
                       aria-hidden
                     />
                     {group.label}
@@ -1229,11 +1229,11 @@ const Hackathon = ({
                     {group.projects.map((p) => (
                       <Card
                         key={p.slugPath}
-                        className="group flex h-full flex-col overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/35 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
+                        className="group flex h-full flex-col overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-brand/35 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
                       >
                         <CardHeader className="pb-2">
                           <div className="mb-2 flex items-start justify-between gap-2">
-                            <CardTitle className="text-lg leading-snug transition group-hover:text-sky-700 dark:group-hover:text-sky-400">
+                            <CardTitle className="text-lg leading-snug transition group-hover:text-brand dark:group-hover:text-brand-soft">
                               {p.name}
                             </CardTitle>
                             {p.cohort ? (
@@ -1267,9 +1267,9 @@ const Hackathon = ({
           ) : null}
         </section>
 
-        <section className="relative overflow-hidden rounded-3xl border border-sky-500/20 bg-gradient-to-br from-slate-50 to-sky-50/80 p-8 dark:from-slate-900 dark:to-sky-950/40 md:p-10">
+        <section className="relative overflow-hidden rounded-3xl border border-brand/20 bg-gradient-to-br from-slate-50 to-brand/10 p-8 dark:from-slate-900 dark:to-brand/15 md:p-10">
           <div
-            className="pointer-events-none absolute right-0 top-0 h-40 w-40 translate-x-1/4 -translate-y-1/4 rounded-full bg-sky-400/15 blur-2xl dark:bg-sky-500/10"
+            className="pointer-events-none absolute right-0 top-0 h-40 w-40 translate-x-1/4 -translate-y-1/4 rounded-full bg-brand-soft/15 blur-2xl dark:bg-brand/10"
             aria-hidden
           />
           <div className="relative">
@@ -1283,13 +1283,13 @@ const Hackathon = ({
                 href="https://discord.gg/zcash"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand shadow-md shadow-sky-900/20 transition hover:bg-brand-hover"
+                className="inline-flex items-center gap-2 rounded-lg border border-brand bg-brand text-on-brand hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white px-5 py-2.5 text-sm font-semibold text-on-brand shadow-md shadow-brand/20 transition hover:bg-brand"
               >
                 Join Discord <ExternalLink className="h-4 w-4" />
               </a>
               <Link
                 href="/donation"
-                className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-800"
+                className="inline-flex items-center gap-2 rounded-lg border border-brand/50 bg-transparent px-5 py-2.5 text-sm font-semibold text-brand transition hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
               >
                 Support with a donation <ArrowUpRight className="h-4 w-4" />
               </Link>

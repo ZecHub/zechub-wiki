@@ -1,20 +1,10 @@
-// Zcash Basics (start-here/what-is-zec-and-zcash). Rewrites the body into the wiki's TL;DR pattern, removes the
+// Zcash Basics (start-here/what-is-zec-and-zcash). Rewrites the body (no TL;DR block), removes the
 // promotional "solves Bitcoin's biggest flaw" wording, and adds what the protocol actually offers (shielded pools,
 // optional privacy, selective disclosure) plus the limits readers should know. Only protocol facts that do not
 // change with releases are stated. If the page structure does not match, the original markdown is returned untouched.
 const IFRAME = '<iframe width="640" height="360" src="https://www.youtube.com/embed/J1Nr1VL5dGU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>';
 
 const BODY = [
-  "## TL;DR",
-  "",
-  "- **ZEC** is the currency of Zcash, a public blockchain that adds optional, cryptographic privacy.",
-  "- A **shielded** transaction hides the sender, the receiver and the amount, and proves with a zero-knowledge proof that it is valid.",
-  "- Privacy is a choice. Zcash also has **transparent** addresses that work like Bitcoin's, and a transaction that touches one reveals more.",
-  "- You can still prove a payment when you need to, by sharing a viewing key or a payment disclosure with the person who has to see it.",
-  "- Zcash is open source and permissionless. The supply is capped at 21 million ZEC.",
-  "",
-  "---",
-  "",
   "## What is ZEC?",
   "",
   IFRAME,

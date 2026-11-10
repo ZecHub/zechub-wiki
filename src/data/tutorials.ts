@@ -536,14 +536,32 @@ const tutorialData: Tutorial[] = [
   }
 ];
 
-const categoryRules: Array<[string, RegExp]> = [
-  ["Wallets", /wallet|zashi|zingo|keystone|ywalle?t|metamask|keplr|cake wallet|solflare/i],
-  ["Nodes & development", /zebra|zebrad|zaino|zingolib|full node|lightwalletd|rpc|compile|raspberry|nym mixnet node|metrics|dizzy bot|zchat/i],
-  ["Swaps & DeFi", /swap|dex|defi|exchange|near intents|osmosis|ubiq|agoric|stablecoin|shapeshift/i],
-  ["Privacy & security", /shield|privacy|frost|encrypted|secure|file transfer|dark irc|threshold custody|orchard/i],
-  ["Payments & commerce", /buy|purchase|spend|payment|donation|top-up|vpn subscription|payment processor/i],
-  ["Community & governance", /grant|voting|proposal|daodao|zechub bount|hackathon|newsletter/i],
+// Topics in the order they appear on the page.
+export const topics: Array<{ name: string; description: string }> = [
+  { name: "Zcash basics", description: "Start here: what shielded transactions are and how to try them." },
+  { name: "Wallets", description: "Set up, back up and use Zcash wallets on phones, desktops and hardware devices." },
+  { name: "Swaps & DeFi", description: "Swap into and out of ZEC, and use Zcash with decentralized exchanges and cross-chain tools." },
+  { name: "Privacy & security", description: "Shielding, encrypted messaging and file transfer, multisig, FROST and other privacy tools." },
+  { name: "Payments & commerce", description: "Buy ZEC, spend it, accept it, and pay for services with it." },
+  { name: "Nodes & development", description: "Run Zcash nodes and build with Zebra, Zaino, Zingolib, Zenith and other developer tools." },
+  { name: "Community & governance", description: "Grants, bounties, voting, proposals and newsletters." },
 ];
+
+// Each tutorial is assigned to one topic by id, so a title that happens to contain another topic's keyword does not
+// end up in the wrong place. A tutorial without an entry here falls back to Zcash basics.
+const topicById: Record<number, string> = {};
+const assign = (topic: string, ids: number[]) => ids.forEach((id) => (topicById[id] = topic));
+assign("Zcash basics", [59, 65, 71, 81]);
+assign("Wallets", [7, 8, 10, 16, 18, 21, 22, 33, 46, 48, 50, 53, 55, 64, 74, 76, 86, 89]);
+assign("Swaps & DeFi", [2, 9, 11, 12, 19, 23, 28, 29, 40, 47, 52, 54, 56, 57, 63, 75, 85, 87]);
+assign("Privacy & security", [4, 20, 26, 27, 31, 39, 41, 42, 43, 68, 70, 79, 84]);
+assign("Payments & commerce", [1, 6, 14, 15, 51, 67, 69, 72, 73, 77]);
+assign("Nodes & development", [5, 13, 17, 30, 34, 35, 36, 37, 38, 49, 58, 60, 61, 62, 66, 78, 80, 82, 83, 88]);
+assign("Community & governance", [24, 25, 32, 44, 45]);
+
+function categoryFor(id: number) {
+  return topicById[id] ?? "Zcash basics";
+}
 
 function correctedTitle(title: string) {
   return title
@@ -558,12 +576,8 @@ function correctedTitle(title: string) {
     .trim();
 }
 
-function categoryFor(title: string) {
-  return categoryRules.find(([, rule]) => rule.test(title))?.[0] ?? "Zcash basics";
-}
-
 export const tutorials: Tutorial[] = tutorialData.map((tutorial) => ({
   ...tutorial,
   title: correctedTitle(tutorial.title),
-  category: categoryFor(tutorial.title),
+  category: categoryFor(tutorial.id),
 }));

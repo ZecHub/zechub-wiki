@@ -67,11 +67,25 @@ function entry(block: string): string {
   return out.join("\n");
 }
 
+// Each wallet is shown in its own rounded card. The heading inside the card drops the section rule and top spacing
+// that headings normally get, so the card reads as one block.
+const CARD =
+  "my-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-5 shadow-sm dark:border-slate-700 dark:bg-white/5 sm:p-6 [&_h2]:!mt-0 [&_h2]:!mb-4 [&_h2]:!border-0 [&_h2]:!pt-0 [&_ul]:!my-0 [&_p]:!mb-0 [&_p+ul]:!mt-3";
+
+const isWallet = (b: string) => /^\s*## /m.test(b) && /^- (Devices|Pools|Status|Stage|Operating System):/m.test(b);
+
 function entries(text: string): string {
-  return text
-    .split(/\n---[ \t]*\n/)
-    .map((b) => (/^\s*## /m.test(b) ? "\n" + entry(b.replace(/^\s+/, "")) + "\n" : b))
-    .join("\n---\n");
+  const blocks = text.split(/\n---[ \t]*\n/);
+  let out = "";
+  blocks.forEach((b, i) => {
+    if (isWallet(b)) {
+      out += `\n<div className="${CARD}">\n\n${entry(b.replace(/^\s+/, ""))}\n\n</div>\n`;
+    } else {
+      const piece = /^\s*## /m.test(b) ? "\n" + entry(b.replace(/^\s+/, "")) + "\n" : b;
+      out += (i > 0 ? "\n---\n" : "") + piece;
+    }
+  });
+  return out;
 }
 
 export function rewriteWalletsGuide(original: string): string {

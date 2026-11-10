@@ -397,9 +397,13 @@ export const getDynamicRoute = (slug: string[]): string => {
     if (file) return `/site/Zero_to_Zero_Knowledge/${file}.md`;
   }
 
-  return uri === "/contribute/community-infrastructure"
-    ? `/site/contribute/Community_Infrastructure.md`
-    : `/site${transformUri(uri)}.md`;
+  // Slugs whose file name differs from the slug. Naming the file here means the page does not depend on a
+  // rate-limited folder listing to be found.
+  if (uri === "/contribute/community-infrastructure") return `/site/contribute/Community_Infrastructure.md`;
+  if (uri === "/using-zcash/spend-zcash/top-10-places-to-spend-zec") {
+    return `/site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md`;
+  }
+  return `/site${transformUri(uri)}.md`;
 };
 
 const normSlugSegment = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");

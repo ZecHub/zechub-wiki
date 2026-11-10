@@ -1,6 +1,6 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
-import { navigations, menuSections } from "@/constants/navigation";
+import { navigations, menuSections, socialNav } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useState, useRef } from "react";
 import type { ComponentProps } from "react";
@@ -10,7 +10,7 @@ import SearchBar from "../SearchBar";
 import { usePathname } from "next/navigation";
 import ColorThemePicker from "../ColorThemePicker";
 import Logo from "../UI/Logo";
-import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
@@ -26,13 +26,30 @@ import {
   Share2,
   Sun,
   ShoppingBag,
+  X,
 } from "lucide-react";
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { DarkModeContext } from "@/context/DarkModeContext";
 import Image from "next/image";
-import { Trophy, LayoutDashboard } from "lucide-react";
+import {
+  Trophy,
+  LayoutDashboard,
+  Wallet,
+  Users,
+  BookOpen,
+  Building2,
+  BarChart3,
+  Landmark,
+  Vote,
+  GraduationCap,
+  HeartHandshake,
+  Map,
+  Palette,
+  FlaskConical,
+  Circle,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import type { Searcher } from "@/types";
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
@@ -1063,6 +1080,23 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
 // ─── Mobile drawer ────────────────────────────────────────────────────────────
 // Two levels: the first screen lists the sections, quick shortcuts and preferences; tapping a section
 // opens its pages on a second screen with a Back button.
+const DRAWER_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  "Using Zcash": Wallet,
+  "Zcash Community": Users,
+  Guides: BookOpen,
+  "Zcash Organizations": Building2,
+  Data: BarChart3,
+  Governance: Landmark,
+  DAO: Vote,
+  Tutorials: GraduationCap,
+  Developers: Code,
+  Contribute: HeartHandshake,
+  Visualizer: Share2,
+  Sitemap: Map,
+  "Visual Identity": Palette,
+  Research: FlaskConical,
+};
+
 const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
   const { t } = useLanguage();
   const { theme, setTheme } = useTheme();
@@ -1070,21 +1104,29 @@ const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
   const [activeName, setActiveName] = useState<string | null>(null);
   const active = navigations.find((n) => n.name === activeName);
   const rowCls =
-    "flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-base font-medium text-slate-800 transition-colors hover:bg-brand/10 dark:text-slate-100";
+    "flex w-full items-center justify-between rounded-xl border border-transparent px-3 py-2.5 text-left text-[15px] font-medium text-slate-800 transition-colors hover:border-brand/30 hover:bg-brand/10 dark:text-slate-100";
   const shortcutCls =
-    "flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-brand hover:text-brand dark:border-white/10 dark:text-slate-100";
+    "flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-brand/50 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-100 dark:hover:border-brand/50 dark:hover:bg-brand/10";
 
   if (active) {
     return (
-      <div className="flex flex-col gap-4 pt-2">
-        <button
-          type="button"
-          onClick={() => setActiveName(null)}
-          className="flex w-fit items-center gap-1 rounded-lg px-2 py-2 text-sm font-medium text-brand"
-        >
-          <ChevronLeft aria-hidden="true" className="h-4 w-4" />
-          {t.navigation?.back || "Back"}
-        </button>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <button
+            type="button"
+            onClick={() => setActiveName(null)}
+            className="flex w-fit items-center gap-1 rounded-lg px-2 py-2 text-sm font-medium text-brand dark:text-brand-soft"
+          >
+            <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+            {t.navigation?.back || "Back"}
+          </button>
+          <SheetClose
+            aria-label="Close menu"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-brand/10 hover:text-brand dark:text-slate-300"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </SheetClose>
+        </div>
         <p className="px-2 font-[family-name:var(--font-heading)] text-xl font-semibold text-slate-900 dark:text-slate-50">
           {getTranslatedLabel(active.name, active.label, t, active.label)}
         </p>
@@ -1095,45 +1137,79 @@ const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
     );
   }
 
+  const sections = navigations.filter((n) => n.links);
+  const pages = navigations.filter((n) => !n.links);
+  const chip =
+    "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20 dark:bg-brand/15 dark:text-brand-soft";
+  const renderRow = (item: (typeof navigations)[number], i: number) => {
+    const label = getTranslatedLabel(item.name, item.label, t, item.label);
+    const RowIcon = DRAWER_ICONS[item.name] ?? Circle;
+    const inner = (
+      <>
+        <span className="flex items-center gap-3">
+          <span className={chip}>
+            <RowIcon className="h-[18px] w-[18px]" aria-hidden="true" />
+          </span>
+          {label}
+        </span>
+        {item.links ? (
+          <ChevronRight aria-hidden="true" className="h-4 w-4 text-slate-400" />
+        ) : null}
+      </>
+    );
+    return item.links ? (
+      <button
+        key={`${item.name}-${i}`}
+        type="button"
+        onClick={() => setActiveName(item.name)}
+        className={rowCls}
+      >
+        {inner}
+      </button>
+    ) : (
+      <Link
+        prefetch
+        key={`${item.name}-${i}`}
+        href={item.path ?? "#"}
+        onClick={closeMenu}
+        className={rowCls}
+      >
+        {inner}
+      </Link>
+    );
+  };
+  const groupLabel =
+    "px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400";
+
   return (
-    <div className="flex flex-col gap-6 pt-2">
-      <nav aria-label="Sections" className="flex flex-col">
-        {navigations.map((item, i) => {
-          const label = getTranslatedLabel(item.name, item.label, t, item.label);
-          return item.links ? (
-            <button
-              key={`${item.name}-${i}`}
-              type="button"
-              onClick={() => setActiveName(item.name)}
-              className={rowCls}
-            >
-              {label}
-              <ChevronRight aria-hidden="true" className="h-4 w-4 text-slate-400" />
-            </button>
-          ) : (
-            <Link
-              prefetch
-              key={`${item.name}-${i}`}
-              href={item.path ?? "#"}
-              onClick={closeMenu}
-              className={rowCls}
-            >
-              {label}
-            </Link>
-          );
-        })}
-      </nav>
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <Link href="/" onClick={closeMenu} aria-label="ZecHub home" className="flex items-center gap-3">
+          {/* The blue logo disappears on the navy drawer, so dark mode gets the white one. */}
+          <span className="dark:hidden"><Logo /></span>
+          <span className="hidden dark:block"><Logo theme /></span>
+          <span className="font-[family-name:var(--font-heading)] text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+            ZecHub
+          </span>
+        </Link>
+        <SheetClose
+          aria-label="Close menu"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-brand/10 hover:text-brand dark:text-slate-300"
+        >
+          <X className="h-5 w-5" aria-hidden="true" />
+        </SheetClose>
+      </div>
       <div className="grid grid-cols-2 gap-2">
         <Link prefetch href="/dashboard" onClick={closeMenu} className={shortcutCls}>
-          <LayoutDashboard aria-hidden="true" className="h-4 w-4" />
+          <LayoutDashboard aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
           Dashboard
         </Link>
         <Link prefetch href="/visualizer" onClick={closeMenu} className={shortcutCls}>
-          <Share2 aria-hidden="true" className="h-4 w-4" />
+          <Share2 aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
           Visualizer
         </Link>
         <Link prefetch href="/developers" onClick={closeMenu} className={shortcutCls}>
-          <Code aria-hidden="true" className="h-4 w-4" />
+          <Code aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
           Builders
         </Link>
         <Link
@@ -1144,31 +1220,54 @@ const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
           onClick={closeMenu}
           className={shortcutCls}
         >
-          <Trophy aria-hidden="true" className="h-4 w-4" />
+          <Trophy aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
           Bounties
         </Link>
       </div>
-      <div className="flex items-center justify-between border-t border-slate-200 pt-4 dark:border-white/10">
-        <span className="px-2 text-sm font-medium text-slate-500 dark:text-slate-400">
-          {t.navigation?.preferences || "Preferences"}
-        </span>
-        <div className="flex items-center gap-1">
-          <LanguageSwitcher />
-          <Button
-            variant="ghost"
-            size="sm"
-            aria-label="Toggle theme"
-            onClick={() => setTheme(!isDark ? "dark" : "light")}
-            className="p-2 cursor-pointer"
-          >
-            {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
-          <ColorThemePicker />
+      <nav aria-label="Sections">
+        <p className={groupLabel}>Explore</p>
+        <div className="flex flex-col gap-1">{sections.map(renderRow)}</div>
+      </nav>
+      <nav aria-label="Pages">
+        <p className={groupLabel}>Pages</p>
+        <div className="flex flex-col gap-1">{pages.map(renderRow)}</div>
+      </nav>
+      <div className="flex flex-col gap-3 border-t border-slate-200 pt-5 pb-8 dark:border-white/10">
+        <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">
+          <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            {t.navigation?.preferences || "Preferences"}
+          </span>
+          <div className="flex items-center gap-1">
+            <LanguageSwitcher />
+            <Button
+              variant="ghost"
+              size="sm"
+              aria-label="Toggle theme"
+              onClick={() => setTheme(!isDark ? "dark" : "light")}
+              className="cursor-pointer p-2"
+            >
+              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+            <ColorThemePicker />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-4 pb-8">
-        <DonationBtn />
-        <SocialIcons newTab={true} />
+        <div className="[&_.nav-donate-btn]:w-full [&_a]:w-full [&_a]:py-3">
+          <DonationBtn />
+        </div>
+        <div className="grid grid-cols-4 gap-2">
+          {socialNav.map(({ name, url, icon }) => (
+            <Link
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              className="flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-colors hover:border-brand/50 hover:bg-brand/10 hover:text-brand dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-200 dark:hover:text-brand-soft"
+            >
+              <Icon icon={icon} className="h-5 w-5" />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -1380,6 +1479,14 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             >
               <Search aria-hidden="true" className="h-4 w-4" />
             </button>
+            <button
+              type="button"
+              onClick={() => setTheme(!isDark ? "dark" : "light")}
+              aria-label={mounted && isDark ? "Switch to light theme" : "Switch to dark theme"}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-nav-foreground transition-colors hover:bg-brand/10 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand min-[1180px]:hidden"
+            >
+              {mounted && isDark ? <Sun aria-hidden="true" className="h-4 w-4" /> : <Moon aria-hidden="true" className="h-4 w-4" />}
+            </button>
             <div className="hidden min-[1180px]:flex items-center gap-1">
             <Button
               variant="ghost"
@@ -1412,7 +1519,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                   </SheetTrigger>
                   <SheetContent
                     side="left"
-                    className="bg-nav-background border-nav-border min-h-screen w-[340px] max-w-[92vw] bg-slate-50 dark:bg-slate-900 z-201 overflow-y-auto"
+                    className="bg-nav-background border-nav-border min-h-screen w-[340px] max-w-[92vw] bg-slate-50 dark:bg-[#06192F] z-201 [&>div:first-child]:hidden overflow-y-auto"
                   >
                     <MobileDrawer closeMenu={() => setIsOpen(false)} />
                   </SheetContent>

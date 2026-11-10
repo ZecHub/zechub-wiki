@@ -2,6 +2,12 @@
 import { useEffect, useState } from "react";
 import styles from "./TutorialCard.module.css";
 import { Tutorial } from "@/data/tutorials";
+import { ArrowUpRight, Play } from "lucide-react";
+
+const BTN =
+  "inline-flex items-center justify-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-semibold no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
+
+const BTN_OUTLINE = `${BTN} border-brand/50 text-brand hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white`;
 
 interface Props {
   tutorial: Tutorial;
@@ -38,8 +44,14 @@ export default function TutorialCard({ tutorial }: Props) {
         <h3>{tutorial.title}</h3>
 
         <div className={styles.actions}>
-          <button className={styles.playLink} type="button" onClick={() => setPlaying(true)}>Play here <span aria-hidden="true">▶</span></button>
-          <a href={`https://youtube.com/watch?v=${tutorial.videoId}`} target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+          <button className={`${BTN} ${styles.playButton}`} type="button" onClick={() => setPlaying(true)}>
+            <Play aria-hidden="true" className="h-4 w-4 fill-current" />
+            Play here
+          </button>
+          <a className={BTN_OUTLINE} href={`https://youtube.com/watch?v=${tutorial.videoId}`} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${tutorial.title} on YouTube (opens in a new tab)`}>
+            YouTube
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+          </a>
         </div>
       </div>
       {playing && <div className={styles.modalBackdrop} role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setPlaying(false)}>
