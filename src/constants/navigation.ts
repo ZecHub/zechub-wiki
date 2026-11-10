@@ -2,7 +2,6 @@ import { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 
-import { FcAbout as Info } from "react-icons/fc";
 import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
 import { LuFileKey as FileKey } from "react-icons/lu";
 import { GrGroup as Group } from "react-icons/gr";
@@ -29,8 +28,9 @@ import {
   ShieldCheck,
   Blocks,
   Hash,
+  Info,
+  Presentation,
 } from "lucide-react";
-import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
 
 import {
@@ -258,7 +258,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zcon Vozes Archive",
         path: "/zcash-community/zcon-vozes",
-        icon: FcVoicePresentation,
+        icon: Presentation,
       },
       {
 	name: "Zcash Engineering Office Hours",
