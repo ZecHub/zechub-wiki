@@ -17,10 +17,13 @@ import { useLanguage } from "@/context/LanguageContext";
 import { matchIcons } from "@/constants/Icons";
 import {
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
+  Code,
   Menu,
   Moon,
   Search,
+  Share2,
   Sun,
   ShoppingBag,
 } from "lucide-react";
@@ -1057,6 +1060,120 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
     <SocialIcons newTab={true} />
   </div>
 );
+// ─── Mobile drawer ────────────────────────────────────────────────────────────
+// Two levels: the first screen lists the sections, quick shortcuts and preferences; tapping a section
+// opens its pages on a second screen with a Back button.
+const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
+  const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
+  const [activeName, setActiveName] = useState<string | null>(null);
+  const active = navigations.find((n) => n.name === activeName);
+  const rowCls =
+    "flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-base font-medium text-slate-800 transition-colors hover:bg-brand/10 dark:text-slate-100";
+  const shortcutCls =
+    "flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-brand hover:text-brand dark:border-white/10 dark:text-slate-100";
+
+  if (active) {
+    return (
+      <div className="flex flex-col gap-4 pt-2">
+        <button
+          type="button"
+          onClick={() => setActiveName(null)}
+          className="flex w-fit items-center gap-1 rounded-lg px-2 py-2 text-sm font-medium text-brand"
+        >
+          <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+          {t.navigation?.back || "Back"}
+        </button>
+        <p className="px-2 font-[family-name:var(--font-heading)] text-xl font-semibold text-slate-900 dark:text-slate-50">
+          {getTranslatedLabel(active.name, active.label, t, active.label)}
+        </p>
+        <div className="flex flex-col gap-4 pb-8">
+          <GroupedLinks item={active} t={t} onLinkClick={closeMenu} />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-6 pt-2">
+      <nav aria-label="Sections" className="flex flex-col">
+        {navigations.map((item, i) => {
+          const label = getTranslatedLabel(item.name, item.label, t, item.label);
+          return item.links ? (
+            <button
+              key={`${item.name}-${i}`}
+              type="button"
+              onClick={() => setActiveName(item.name)}
+              className={rowCls}
+            >
+              {label}
+              <ChevronRight aria-hidden="true" className="h-4 w-4 text-slate-400" />
+            </button>
+          ) : (
+            <Link
+              prefetch
+              key={`${item.name}-${i}`}
+              href={item.path ?? "#"}
+              onClick={closeMenu}
+              className={rowCls}
+            >
+              {label}
+            </Link>
+          );
+        })}
+      </nav>
+      <div className="grid grid-cols-2 gap-2">
+        <Link prefetch href="/dashboard" onClick={closeMenu} className={shortcutCls}>
+          <LayoutDashboard aria-hidden="true" className="h-4 w-4" />
+          Dashboard
+        </Link>
+        <Link prefetch href="/visualizer" onClick={closeMenu} className={shortcutCls}>
+          <Share2 aria-hidden="true" className="h-4 w-4" />
+          Visualizer
+        </Link>
+        <Link prefetch href="/developers" onClick={closeMenu} className={shortcutCls}>
+          <Code aria-hidden="true" className="h-4 w-4" />
+          Builders
+        </Link>
+        <Link
+          prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu}
+          className={shortcutCls}
+        >
+          <Trophy aria-hidden="true" className="h-4 w-4" />
+          Bounties
+        </Link>
+      </div>
+      <div className="flex items-center justify-between border-t border-slate-200 pt-4 dark:border-white/10">
+        <span className="px-2 text-sm font-medium text-slate-500 dark:text-slate-400">
+          {t.navigation?.preferences || "Preferences"}
+        </span>
+        <div className="flex items-center gap-1">
+          <LanguageSwitcher />
+          <Button
+            variant="ghost"
+            size="sm"
+            aria-label="Toggle theme"
+            onClick={() => setTheme(!isDark ? "dark" : "light")}
+            className="p-2 cursor-pointer"
+          >
+            {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
+          <ColorThemePicker />
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 pb-8">
+        <DonationBtn />
+        <SocialIcons newTab={true} />
+      </div>
+    </div>
+  );
+};
+
 // ─── Top tabs ─────────────────────────────────────────────────────────────────
 // A short row of menus for the long tail of pages. The home page already
 // highlights the main sections, so only the menus with many pages live here.
@@ -1114,6 +1231,40 @@ const IconTab = ({
   );
 };
 
+// The four icon shortcuts (Dashboard, Visualizer, Builders, Bounties). Shown in the top tabs on wide
+// screens and in a row under the header on small screens.
+const NavShortcuts = () => (
+  <div className="flex items-center gap-1">
+    <IconTab href="/dashboard" label="Dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <rect x="3.5" y="3.5" width="7" height="9" rx="1.6" />
+        <rect x="13.5" y="3.5" width="7" height="5" rx="1.6" />
+        <rect x="13.5" y="11.5" width="7" height="9" rx="1.6" />
+        <rect x="3.5" y="15.5" width="7" height="5" rx="1.6" />
+      </svg>
+    </IconTab>
+    <IconTab href="/visualizer" label="Visualizer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <circle cx="6" cy="17" r="2.3" />
+        <circle cx="12" cy="6.5" r="2.3" />
+        <circle cx="18.5" cy="15" r="2.3" />
+        <path d="m7.2 15 3.6-6.6M14 8.2l3.4 4.9M8.3 17.3l7.9-1.9" />
+      </svg>
+    </IconTab>
+    <IconTab href="/developers" label="Builders">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14" />
+      </svg>
+    </IconTab>
+    <IconTab href="https://bounties.zechub.wiki/" label="Bounties" external>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <path d="M12 3.5 5 6.2v5.6c0 4.4 2.9 7.6 7 9.2 4.1-1.6 7-4.8 7-9.2V6.2L12 3.5Z" />
+        <circle cx="12" cy="11.5" r="2.6" />
+      </svg>
+    </IconTab>
+  </div>
+);
+
 const TopTabs = () => {
   const { t } = useLanguage();
   const menus = TAB_MENUS.map((name) =>
@@ -1144,35 +1295,7 @@ const TopTabs = () => {
           {getTranslatedLabel(dao.name, dao.label, t, dao.label)}
         </Link>
       ) : null}
-      <div className="flex items-center gap-1">
-        <IconTab href="/dashboard" label="Dashboard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
-            <rect x="3.5" y="3.5" width="7" height="9" rx="1.6" />
-            <rect x="13.5" y="3.5" width="7" height="5" rx="1.6" />
-            <rect x="13.5" y="11.5" width="7" height="9" rx="1.6" />
-            <rect x="3.5" y="15.5" width="7" height="5" rx="1.6" />
-          </svg>
-        </IconTab>
-        <IconTab href="/visualizer" label="Visualizer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
-            <circle cx="6" cy="17" r="2.3" />
-            <circle cx="12" cy="6.5" r="2.3" />
-            <circle cx="18.5" cy="15" r="2.3" />
-            <path d="m7.2 15 3.6-6.6M14 8.2l3.4 4.9M8.3 17.3l7.9-1.9" />
-          </svg>
-        </IconTab>
-        <IconTab href="/developers" label="Builders">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
-            <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14" />
-          </svg>
-        </IconTab>
-        <IconTab href="https://bounties.zechub.wiki/" label="Bounties" external>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
-            <path d="M12 3.5 5 6.2v5.6c0 4.4 2.9 7.6 7 9.2 4.1-1.6 7-4.8 7-9.2V6.2L12 3.5Z" />
-            <circle cx="12" cy="11.5" r="2.6" />
-          </svg>
-        </IconTab>
-      </div>
+      <NavShortcuts />
     </nav>
   );
 };
@@ -1238,8 +1361,10 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           </Link>
           <TopTabs />
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
-            <ZecPrice />
-            <LanguageSwitcher />
+            <div className="hidden min-[1180px]:flex items-center space-x-2 md:space-x-3">
+              <ZecPrice />
+              <LanguageSwitcher />
+            </div>
             <SearchBar
               openSearch={openSearch}
               setOpenSearch={setOpenSearch}
@@ -1255,6 +1380,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             >
               <Search aria-hidden="true" className="h-4 w-4" />
             </button>
+            <div className="hidden min-[1180px]:flex items-center gap-1">
             <Button
               variant="ghost"
               size="sm"
@@ -1268,6 +1394,39 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               )}
             </Button>
             <ColorThemePicker />
+            </div>
+            </div>
+            {/* Below 1180px the top tabs are hidden, so the menu opens from here. */}
+            <div className="min-[1180px]:hidden">
+              {mounted ? (
+                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                  <SheetTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      aria-label="Open menu"
+                      className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+                    >
+                      <Menu className="h-6 w-6" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent
+                    side="left"
+                    className="bg-nav-background border-nav-border min-h-screen w-[340px] max-w-[92vw] bg-slate-50 dark:bg-slate-900 z-201 overflow-y-auto"
+                  >
+                    <MobileDrawer closeMenu={() => setIsOpen(false)} />
+                  </SheetContent>
+                </Sheet>
+              ) : (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="p-2"
+                  aria-label="Open menu"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              )}
             </div>
           </div>
         </div>

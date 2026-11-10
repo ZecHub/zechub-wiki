@@ -44,6 +44,7 @@ import { rewriteMiningGuide } from "@/lib/pageOverrides/miningGuide";
 import { rewriteNewUserGuide } from "@/lib/pageOverrides/newUserGuide";
 import { rewriteStyleGuide } from "@/lib/pageOverrides/styleGuideGuide";
 import { rewriteContributingGuide } from "@/lib/pageOverrides/contributingGuide";
+import { rewriteBuyingZecGuide } from "@/lib/pageOverrides/buyingZecGuide";
 import { rewriteGovernanceGuide } from "@/lib/pageOverrides/governanceGuide";
 import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
@@ -6369,6 +6370,9 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "contribute/style-guide" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteStyleGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "using-zcash/buying-zec" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteBuyingZecGuide(processedMarkdown);
   }
   if (slug.join("/") === "using-zcash/wallets" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteWalletsGuide(processedMarkdown);

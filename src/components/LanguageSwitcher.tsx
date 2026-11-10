@@ -23,7 +23,7 @@ export function LanguageSwitcher() {
       desktopLabelRef.current.textContent = text;
     }
     if (mobileFlagRef.current) {
-      mobileFlagRef.current.textContent = lang.flag;
+      mobileFlagRef.current.textContent = lang.code.toUpperCase();
     }
   }, [locale]);
 
@@ -61,7 +61,7 @@ export function LanguageSwitcher() {
         type="button"
         key={locale}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 font-[family-name:var(--font-heading)] rounded-lg border border-slate-300 px-3 py-1.5 text-slate-700 transition-colors hover:border-brand hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-slate-700 dark:text-slate-200 cursor-pointer"
+        className="flex items-center gap-1.5 font-[family-name:var(--font-heading)] rounded-lg border border-slate-300 px-2 py-1.5 min-[1180px]:gap-2 min-[1180px]:px-3 text-slate-700 transition-colors hover:border-brand hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-slate-700 dark:text-slate-200 cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
@@ -69,12 +69,12 @@ export function LanguageSwitcher() {
         <Globe className="h-4 w-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
         <span
           ref={desktopLabelRef}
-          className="hidden sm:inline text-sm font-medium"
+          className="hidden min-[1180px]:inline text-sm font-medium"
           suppressHydrationWarning
         />
         <span
           ref={mobileFlagRef}
-          className="sm:hidden text-sm"
+          className="min-[1180px]:hidden text-xs font-semibold"
           suppressHydrationWarning
         />
         <ChevronDown
