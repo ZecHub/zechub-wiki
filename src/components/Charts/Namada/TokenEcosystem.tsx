@@ -16,7 +16,7 @@ import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
 import { FlattenedTokenData } from "@/lib/chart/types";
-import { Spinner } from "flowbite-react";
+import { Spinner } from "@/components/UI/Spinner";
 import {
   Area,
   AreaChart,
