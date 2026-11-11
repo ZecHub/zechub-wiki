@@ -33,11 +33,11 @@ export function buildArboristArchive(): ArchiveEntry[] {
     title: null,
     duration: null,
     dedicated: false,
-    video: c.video,
-    videoId: youtubeId(c.video),
-    notes: c.notes,
-    agenda: c.agenda,
-    twitter: c.twitter,
+    video: c.video ?? "",
+    videoId: youtubeId(c.video ?? ""),
+    notes: c.notes ?? "",
+    agenda: c.agenda ?? "",
+    twitter: c.twitter ?? "",
   }));
 
   const byVideo = new Map<string, ArchiveEntry>();

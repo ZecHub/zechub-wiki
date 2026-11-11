@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "Memos",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "Mobile Top Ups",
     "Newsletter": "Newsletter",
     "Nym VPN": "Nym VPN",
@@ -99,9 +99,11 @@
     "Zcash Use Cases": "Zcash Use Cases",
     "Zcash Tech": "Zcash Tech",
     "Privacy Tools": "Privacy Tools",
-    "Zcash Social Media": "Zcash Social Media",
     "Glossary & FAQ's": "Glossary & FAQ's",
-    "Pay for AI": "Pay for AI"
+    "Pay for AI": "Pay for AI",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Full Explore",
@@ -138,7 +140,11 @@
     "searchTryDifferent": "Try shorter queries, synonyms, or different words.",
     "searchSuggested": "Suggested pages",
     "searchResultsLabel": "Results",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "languageSearch": "Search languages",
+    "languageSuggested": "Suggested",
+    "languageAll": "All languages",
+    "languageNone": "No language found"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -160,7 +166,7 @@
       "buyingZec": "Buying ZEC",
       "faucets": "Faucets",
       "wallets": "Wallets",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "Exchanges",
       "blockExplorers": "Block Explorers",
       "shieldedPools": "Shielded Pools",
@@ -307,6 +313,11 @@
         "description": "This website is an answer to the question: Where can I pay with Zcash? The directory is free to use. The items listed are for informational purposes only, and not endorsements of any kind. Enjoy!",
         "mainLink": "paywithz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "ZecHub Hackathon Archive",
+        "description": "The 2026 ZecHub Hackathon has ended. Explore the projects submitted across Infrastructure, Games, FROST, Zcash Login, and Accounting.",
+        "mainLink": "View projects"
       }
     },
     "explore": {
@@ -432,8 +443,13 @@
     "download": "Download",
     "visitWebsite": "Visit Website",
     "filters": "Filters",
-    "showNavigation": "Show Navigation",
     "close": "Close",
+    "clearAll": "Clear all",
+    "showWallets": "Show {count} wallets",
+    "showWallet": "Show 1 wallet",
+    "walletCount": "{count} wallets",
+    "walletCountOne": "1 wallet",
+    "activeCount": "{count} active",
     "savedReview": "We saved your review!",
     "errorGettingLikes": "Error getting likes:",
     "errorUpdatingRating": "Error updating rating:"
@@ -947,12 +963,12 @@
       "configure": "Configure",
       "runZainod": "Run zainod",
       "installingZingoCli": "Installing Zingo CLI",
-      "zingoCliInfo": "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source.",
-      "buildZingoCli": "Build Zingo CLI",
+      "zingoCliInfo": "is a command-line light wallet for Zcash. v7 builds the Nym mixnet transport by default and bundles nym-proxy beside the binary. This guide covers compiling from source.",
+      "buildZingoCli": "Build Zingo CLI (v7)",
       "running": "Running",
-      "startZingoCliDefault": "Start Zingo CLI (Default)",
-      "startZingoCliCustom": "Start Zingo CLI (Custom)",
-      "zingoSyncWarning": "⚠ This will perform a full sync on first run, similar to lightwalletd.",
+      "startZingoCliDefault": "Start Zingo CLI (Default, offline)",
+      "startZingoCliCustom": "Start Zingo CLI (online via local indexer)",
+      "zingoSyncWarning": "⚠ A fresh session is offline until you grant consent (--online, --remember-online, or --server). The Nym proxy is resolved from --nym-proxy, $ZINGO_NYM_PROXY, the binary next to zingo-cli, or PATH. Sync continues after the chain tip by default. First online run performs a full sync. To build without the mixnet (offline-only): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Next Steps & Resources",
       "readyToBuild": "Ready to Build?",
       "officialDocumentation": "Official Documentation",
@@ -1064,7 +1080,7 @@
         "Payment Request URIs": "Payment Request URIs",
         "Payment Processors": "Payment Processors",
         "Recovering Funds": "Recovering Funds",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "Community Forum",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
@@ -1213,5 +1229,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "An open source education hub for Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Start Here",
+      "sub": "Begin your Zcash learning journey"
+    },
+    "guides": {
+      "title": "Guides",
+      "sub": "Structured documentation for understanding Zcash protocols"
+    },
+    "zcash-tech": {
+      "title": "Zcash Tech",
+      "sub": "Inside the Technology Powering Zcash"
+    },
+    "organizations": {
+      "title": "Organizations",
+      "sub": "Structure · Governance · Contributors"
+    },
+    "privacy-tools": {
+      "title": "Privacy Tools",
+      "sub": "Practical privacy solutions"
+    },
+    "research": {
+      "title": "Research",
+      "sub": "Exploring Zero-Knowledge · Privacy · Cryptography"
+    },
+    "glossary": {
+      "title": "Glossary & FAQs",
+      "sub": "Definitions, answers, clarity."
+    },
+    "contribute": {
+      "title": "Contribute",
+      "sub": "Write · Translate · Design · Develop"
+    },
+    "tutorials": {
+      "title": "Tutorials",
+      "sub": "Watch and follow along"
+    }
   }
 }

@@ -69,7 +69,7 @@ export const arboristRecordings: ArboristRecording[] = [
   { id: "9p4uwNEKeJw", date: "2024-05-16", title: "Zcash Arborist Call 5/16/24", duration: "51:01" },
   { id: "2K_hmx3obf4", date: "2024-05-02", title: "Zcash Arborist Call 5/2/24", duration: "1:20:35" },
   { id: "c9LY1Rptt5c", date: "2024-04-18", title: "Zcash Arborist Call 4/18/24", duration: "1:46:03" },
-  { id: "C_S5e2WNIe8", date: null, title: "Dedicated Zcash Arborist Call (ZSAs, NU6, & NU7)", duration: "1:25:19", dedicated: true },
+  { id: "C_S5e2WNIe8", date: "2024-04-18", title: "Dedicated Zcash Arborist Call (ZSAs, NU6, & NU7)", duration: "1:25:19", dedicated: true },
   { id: "fkqcekg2BWs", date: "2024-04-04", title: "Zcash Arborist Call 4/4/24", duration: "13:08" },
   { id: "C8qZjUcT7NE", date: "2024-03-07", title: "Zcash Arborist Call 3/7/2024", duration: "37:13" },
   { id: "ftTmSqlyixk", date: "2024-03-21", title: "Zcash Arborist Call 3/21/2024", duration: "8:59" },

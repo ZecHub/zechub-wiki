@@ -1,11 +1,11 @@
 import React from "react";
 import { Metadata } from "next";
-import Image from "next/image";
 import { getRootCached } from "@/lib/authAndFetch";
 import { getBanner, genMetadata } from "@/lib/helpers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import ListTutorial from "./ListTutorial";
+import WikiSectionBanner from "@/components/WikiSectionBanner/WikiSectionBanner";
 
 export async function generateMetadata({
   params,
@@ -31,19 +31,10 @@ const ZechubTutorial = async () => {
   const slug = "tutorials";
   const urlRoot = `/site/tutorials`;
   const roots = await getRootCached(urlRoot);
-  const imgUrl = getBanner(slug);
 
   return (
     <main>
-      <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
-        <Image
-          className="w-full mb-5 object-cover"
-          alt="wiki-banner"
-          width={800}
-          height={50}
-          src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
-        />
-      </div>
+      <WikiSectionBanner id="tutorials" />
 
       <div
         id="content"

@@ -15,6 +15,10 @@ import {
   Library as LibraryC,
   Store as Pay,
   Info,
+  Users,
+  Link2 as FcLink,
+  ShieldCheck as FcPrivacy,
+  Images as FcGallery,
 } from "lucide-react";
 import {
   BiCheckShield as CheckShield,
@@ -46,7 +50,6 @@ import {
   FaMagnifyingGlassChart as MagnifyingGlassChart,
   FaJarWheat as Jar
 } from "react-icons/fa6";
-
 import {
   GiEgyptianSphinx as EgyptianSphinx,
   GiBorderedShield as BordererShield,
@@ -155,7 +158,7 @@ import { SlGraph as Graph } from "react-icons/sl";
 import {
   TbBinaryTree2 as BinaryTree,
   TbCurrencyDollarZimbabwean as DollarZimbabwean,
-  Tb2Fa as Fa2,
+  TbAuth2Fa as Fa2,
   TbHexagonLetterN as HexagonLetterN,
   TbHexagonLetterZ as HexagonLetterZ,
   TbCircleLetterZ,
@@ -203,7 +206,7 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: "pick-a-wallet.png",
     "Buying ZEC": CurrencyExchange,
-    "Metamask Snap": RiFunctionLine,
+    "MetaMask Snap": RiFunctionLine,
     Transactions: ArrowUp,
     "Transparent Exchange Addresses": RiSecurePaymentLine,
     "Mobile Top Ups": TbDeviceMobileShare,
@@ -219,6 +222,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Wallet Syncing": FaSyncAlt,
     "Zcash Mining Guide": Mining,
     "Solswap": Swap,
+    "Solana ZEC to Shielded": "/icons/solana.svg",
     "Encifher Swaps": Swap,
     "Creators and Tips": Jar,
     "Testnet": Testnet,
@@ -230,6 +234,10 @@ const iconsForMenu: IconsFor = {
     "Centralized Swaps": Swap,
     "Spend Zcash": PointOfSale,
     "Top 10 Places to spend ZEC": PointOfSale,
+    "Metamask Snap": RiFunctionLine,
+    "Non Custodial Exchanges": ExchangeFunds,
+    "Shielded Newsletter": Newspaper,
+    "Unified Addresses": CircleKey,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
@@ -243,6 +251,8 @@ const iconsForMenu: IconsFor = {
     "BTCPayServer Zcash Plugin": Pay,
     "Full Nodes": ServerSolid,
     "Nym VPN": MdVpnLock,
+    "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
+    "Ledger Shielded ZEC": FileKey,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
     "Hardened Zebrad": CheckedShield,
@@ -266,6 +276,10 @@ const iconsForMenu: IconsFor = {
     "ShapeShift Zcash": ShapeShift,
     "Verifying Zcash Releases": CheckShield,
     "Viewing Key Transaction Export": FileKey,
+    "Crosslink Feature Net": FcLink,
+    "Mining and Staking Privacy": FcPrivacy,
+    "Zcash Node RPC and Indexing": Network,
+    "Zero Knowledge vs Decoys": TopologyRing,
   },
         "Zcash Tech": {
 
@@ -279,16 +293,18 @@ const iconsForMenu: IconsFor = {
     "Viewing Keys": FileKey,
     "Zaino Indexer": Tfi,
     "Zaino": Tfi,
-    "Zcash Shielded Assets": DollarZimbabwean,
+    "Zcash Shielded Assets": ZkAssets,
     "Zcash Wallet Syncing": Go,
     "ZKP & ZK-SNARKS": Circuitry,
     "zk SNARKS": Circuitry,
     "Zk SNARKS": Circuitry,
     "Lightwallet Nodes": ComputerTower,
-    "Post Quantum Security": OutlineEnchanceEncryption,
+    "Post Quantum Security": MdVpnLock,
+    "Is Zcash Post Quantum": MdVpnLock,
+    "Payment Disclosures": MdOutlinePayments,
     "Private Information Retrieval": Magnify,
     "Project Tachyon": ShootingStar,
-    "The Turnstile": TopologyRing,
+    "The Turnstile": ExchangeFunds,
     "Z3 Stack": Infra,
     "Zallet": Wallet,
     "What a Block Explorer Can See": MagnifyingGlassChart,
@@ -308,7 +324,10 @@ const iconsForMenu: IconsFor = {
 	    "NU6 1": Network,
 	    "NU6 2": Circuitry,
 	    "Ironwood": Tree,
-
+    "Shielded Cold Signing": Lock,
+    "Shielded Coinholder Voting": Governance,
+    "Unified Addresses": CircleKey,
+    "Indexer Benchmark Zaino vs Ztreamer": Tfi,
   },
   "Zcash Organizations": {
     "Electric Coin Company": Radar,
@@ -337,9 +356,11 @@ const iconsForMenu: IconsFor = {
     "Receive Donations Privately": Jar,
     "Send Money Without Linking Identity": ArrowUp,
     "Sign in With Zcash": KeyRound,
+    "Pay For Ai With Shielded ZEC": Circuitry,
   },
   
   "Zcash Community": {
+    "Community Building": Users,
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
@@ -360,7 +381,7 @@ const iconsForMenu: IconsFor = {
     "Guides for Creators": Resources,
     "Youtube Channel": Youtube,
   },
-  "Zcash Social Media": {
+  "Zero to Zero Knowledge": {
     "Cryptonote": Info,
     "Hash Functions": Info,
     "Lelantus": Info,
@@ -374,6 +395,8 @@ const iconsForMenu: IconsFor = {
     "Arti Tor": Arti,
     GrapheneOS: Settings,
     "Namada Protocol": "/Logo/namada.png",
+    "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
+    "Nym Zcash Anonymity": "/Logo/nym.svg",
     "PGP Encryption": OutlineEnchanceEncryption,
     "Penumbra": "/Logo/um.png",
     "Secure Messengers": MessengerLine,
@@ -394,6 +417,12 @@ const iconsForMenu: IconsFor = {
     "Zcash Library": LibraryC,
     FAQ: Faq,
     Gallery: Gallery,
+    "ZecHub Hackathon Builders Guide": Guide,
+  },
+  "Glossary and FAQs": {
+    "Zcash Library": LibraryC,
+    FAQ: Faq,
+    Gallery: FcGallery,
     "ZecHub Hackathon Builders Guide": Guide,
   },
   Contribute: {

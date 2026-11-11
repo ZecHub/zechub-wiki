@@ -100,7 +100,8 @@ export async function localesForPath(path: string): Promise<string[]> {
  * English URL). Mirrors the sitemap's reciprocal-hreflang treatment.
  *
  * `path`            — the bare wiki path (no locale prefix), e.g. "/using-zcash".
- * `currentLocale`   — the locale being rendered; drives the canonical URL.
+ * `currentLocale`   — the locale being rendered; drives the canonical URL when
+ *                     it carries the page, otherwise the English URL is used.
  * `availableLocales`— which locales carry this page (from localesForPath, or an
  *                     explicit list for non-manifest routes like the homepage).
  *
@@ -114,11 +115,19 @@ export function buildAlternates(
   availableLocales: string[],
 ): Metadata["alternates"] {
   const normalized = normalizeWikiPath(path);
-  const canonical = toWikiUrl(currentLocale, normalized);
 
   // Keep only locales the app actually ships, preserving input order.
   const shipped = routing.locales as readonly string[];
   const locales = availableLocales.filter((l) => shipped.includes(l));
+
+  // A locale with no translation of this page renders the English fallback.
+  // Declaring that URL its own canonical told crawlers it was a separate
+  // page, so an English-only article showed up as up to 18 self-canonical
+  // duplicates; point them at the English page instead.
+  const canonical = toWikiUrl(
+    locales.includes(currentLocale) ? currentLocale : routing.defaultLocale,
+    normalized,
+  );
 
   if (locales.length <= 1) {
     return { canonical, types: RSS_ALTERNATE_TYPES };

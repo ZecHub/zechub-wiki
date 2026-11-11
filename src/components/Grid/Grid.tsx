@@ -24,7 +24,7 @@ const projects = [
     description: "Zaino is an Indexer, developed in Rust by the Zingo team, that aims to replace lightwalletd and to push forward the zcashd deprecation project",
     link: "https://zechub.wiki/zcash-tech/zaino#content",
     imageUrl:
-      "https://zechub.wiki/_next/image?url=%2Fcontent-banners%2Fbannertech.png&w=1920&q=75",
+      "/content-banners/bannertech.png",
   },
   {
     title: "FROST for Zcash",
@@ -48,9 +48,9 @@ const projects = [
     imageUrl: "/content-images/image-2025-01-01-141008115-eec6ada37f.webp",
   },
   {
-    title: "Metamask Shielded Snap",
+    title: "MetaMask Shielded Snap",
     description:
-      "The ongoing maintenance and support of the WebZJS library, Metamask Snap and associated browser wallet (soon in production)",
+      "The ongoing maintenance and support of the WebZJS library, MetaMask Snap and associated browser wallet (soon in production)",
     link: "https://forum.zcashcommunity.com/t/webzjs-browser-library-and-browser-wallet-maintenance/49717",
     imageUrl: "/content-images/metamask-234363-555-e98aefe070.webp",
   },

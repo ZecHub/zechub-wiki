@@ -45,6 +45,8 @@ const OG_LOCALE_MAP: Record<string, string> = {
   ig: "ig_NG",
   ak: "ak_GH",
   ee: "ee_GH",
+  id: "id_ID",
+  el: "el_GR",
 };
 
 export const toOgLocale = (locale: string): string => {
@@ -506,6 +508,7 @@ const lowercaseWords = [
 const specialWordsMap = {
   Non_Custodial: "Non-Custodial",
   Zero_Knowledge: "Zero-Knowledge",
+  "Zero_To_Zero-Knowledge": "Zero_to_Zero_Knowledge",
   Defi: "DeFi",
   "Glossary And FAQs": `Glossary & FAQ's`,
   Z2z: "z2z",

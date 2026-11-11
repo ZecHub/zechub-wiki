@@ -24,7 +24,7 @@ export type CommunityProject = {
  *   - Optionally add an image in public/community-projects/
  *   - Optionally register the image in communityProjectImages.ts
  *
- * The old hardcoded files (communityProjects.ts / .it.ts) are deprecated
+ * The old hardcoded file (communityProjects.ts) is deprecated
  * and can be removed once this flow is stable.
  */
 

@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "Mémos",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "Recharges mobiles",
     "Newsletter": "Newsletter",
     "Nym VPN": "Nym VPN",
@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Cas d’usage de Zcash",
     "Zcash Tech": "Technologie Zcash",
     "Privacy Tools": "Outils de confidentialité",
-    "Zcash Social Media": "Réseaux sociaux Zcash",
     "Glossary & FAQ's": "Glossaire et FAQ",
     "Use Zcash": "Utiliser Zcash",
     "Block Explorers": "Explorateurs de blocs",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Réseau Akash Zcashd",
-    "CoinHolder Directed Retroactive Grants": "Subventions rétroactives dirigées par CoinHolder"
+    "CoinHolder Directed Retroactive Grants": "Subventions rétroactives dirigées par CoinHolder",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Explorer entièrement",
@@ -164,7 +166,11 @@
     "searchTryDifferent": "Essayez des requêtes plus courtes, des synonymes ou d'autres mots.",
     "searchSuggested": "Pages suggérées",
     "searchResultsLabel": "Résultats",
-    "skipToContent": "Aller au contenu"
+    "skipToContent": "Aller au contenu",
+    "languageSearch": "Rechercher des langues",
+    "languageSuggested": "Suggérées",
+    "languageAll": "Toutes les langues",
+    "languageNone": "Aucune langue trouvée"
   },
   "navigation": {
     "wallets": "Portefeuilles",
@@ -186,7 +192,7 @@
       "buyingZec": "Acheter du ZEC",
       "faucets": "Faucets",
       "wallets": "Portefeuilles",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "Exchanges",
       "blockExplorers": "Explorateurs de blocs",
       "shieldedPools": "Pools blindés",
@@ -235,7 +241,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Marque",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "Subventions rétroactives dirigées par CoinHolder",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Processeur de paiement Zgo",
@@ -270,7 +282,7 @@
     "heroTitle": "Bienvenue sur ZecHub",
     "heroSubtitle": "Un hub éducatif open source pour Zcash",
     "heroDescription": "Découvrez la technologie de confidentialité de Zcash, explorez des visualiseurs interactifs et contribuez à l'écosystème",
-    "description": "ZecHub est le hub éducatif piloté par la communauté pour la cryptomonnaie Zcash (ZEC). Zcash est une monnaie numérique offrant des paiements résistants à la censure, sécurisés et privés. La blockchain Zcash utilise des zk-snarks « vérifiables » très avancés qui ne nécessitent pas de Trusted Setup après la mise à niveau réseau NU5 en 2022.",
+    "description": "ZecHub est le pôle éducatif communautaire de Zcash (ZEC), une monnaie numérique décentralisée conçue pour des paiements sécurisés, privés et résistants à la censure. Zcash utilise une cryptographie avancée à divulgation nulle de connaissance afin de permettre des transactions dont la validité peut être vérifiée sans révéler d’informations financières sensibles. En 2026, le pool protégé Ironwood a été introduit ; formellement vérifié au moyen de preuves mathématiques vérifiées par machine, il garantit l’intégrité des soldes. Project Tachyon développe un protocole protégé de nouvelle génération proposé, conçu pour améliorer considérablement la scalabilité des paiements privés, réduire la croissance de l’état des validateurs et faire progresser Zcash vers une confidentialité entièrement sécurisée face au quantique.",
     "featuredSection": "Ressources mises en avant",
     "latestUpdates": "Dernières mises à jour",
     "getInvolved": "Impliquez-vous",
@@ -307,11 +319,6 @@
         "description": "Les ambassadeurs mondiaux Zcash sont des leaders communautaires dédiés à la promotion de l'adoption et de l'éducation autour des cryptomonnaies axées sur la confidentialité dans le monde entier. Chaque projet d'ambassadeur se concentre sur le développement de la sensibilisation et de l'engagement dans sa région.",
         "link": "Rencontrer les ambassadeurs"
       },
-      "newsletter": {
-        "title": "Newsletter Shielded",
-        "description": "Abonnez-vous avec votre Unified Address pour recevoir des mises à jour de l'écosystème Zcash et des statistiques réseau blindées directement dans votre portefeuille !",
-        "link": "S'abonner"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z est une plateforme sociale propulsée par Zcash. Avec des dons pair à pair, un programme de partage des revenus, des outils créatifs avancés et une immense communauté mondiale en ligne.",
@@ -324,9 +331,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Rejoignez le hackathon",
-        "description": "Construisez, collaborez et lancez des idées à fort impact avec la communauté Zcash. Concourez dans cinq catégories innovantes : Infrastructure pour les nœuds et les indexeurs, Games pour des expériences interactives, FROST pour la signature à seuil, Zcash Login pour des solutions d’authentification, et Accounting pour les flux financiers. 25 mai - 15 juillet 2026. Une cagnotte de 25 ZEC vous attend.",
-        "mainLink": "Rejoignez le hackathon"
+        "title": "Archives du hackathon ZecHub",
+        "description": "Le hackathon ZecHub 2026 est terminé. Découvrez les projets soumis dans les catégories Infrastructure, Jeux, FROST, Zcash Login et Comptabilité.",
+        "mainLink": "Voir les projets"
+      },
+      "visualizer": {
+        "description": "Outils éducatifs interactifs pour comprendre la technologie de confidentialité de Zcash, son infrastructure et les preuves à divulgation nulle de connaissance",
+        "link": "Ouvrir le visualiseur",
+        "title": "Visualiseur ZecHub"
+      },
+      "zecMap": {
+        "description": "ZecMap est une carte du monde maintenue par la communauté répertoriant les commerçants, services et distributeurs automatiques qui acceptent Zcash. Trouvez où dépenser des ZEC près de chez vous, ou ajoutez un commerce que vous connaissez pour contribuer à l'adoption dans le monde réel.",
+        "link": "Visiter ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -452,8 +469,13 @@
     "download": "Télécharger",
     "visitWebsite": "Visiter le site",
     "filters": "Filtres",
-    "showNavigation": "Afficher la navigation",
     "close": "Fermer",
+    "clearAll": "Tout effacer",
+    "showWallets": "Afficher {count} portefeuilles",
+    "showWallet": "Afficher 1 portefeuille",
+    "walletCount": "{count} portefeuilles",
+    "walletCountOne": "1 portefeuille",
+    "activeCount": "{count} actifs",
     "savedReview": "Nous avons enregistré votre avis !",
     "errorGettingLikes": "Erreur lors de la récupération des likes :",
     "errorUpdatingRating": "Erreur lors de la mise à jour de la note :"
@@ -580,7 +602,8 @@
           "transactions24h": "Transactions sur 24 h",
           "shieldedTx24h": "TX blindées (24 h)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Valeur blindée"
         },
         "zcashChart": {
           "title": "Graphiques analytiques",
@@ -966,12 +989,12 @@
       "configure": "Configurer",
       "runZainod": "Exécuter zainod",
       "installingZingoCli": "Installation de Zingo CLI",
-      "zingoCliInfo": "est un client en ligne de commande proxy lightwalletd construit en Rust. Les versions sont actuellement provisoires — ce guide couvre la compilation depuis le code source.",
-      "buildZingoCli": "Compiler Zingo CLI",
+      "zingoCliInfo": "est un wallet léger en ligne de commande pour Zcash. La v7 intègre par défaut le transport du mixnet Nym et fournit nym-proxy à côté du binaire. Ce guide explique comment compiler depuis les sources.",
+      "buildZingoCli": "Compiler Zingo CLI (v7)",
       "running": "Exécution",
-      "startZingoCliDefault": "Démarrer Zingo CLI (par défaut)",
-      "startZingoCliCustom": "Démarrer Zingo CLI (personnalisé)",
-      "zingoSyncWarning": "⚠ Cela effectuera une synchronisation complète au premier lancement, comme avec lightwalletd.",
+      "startZingoCliDefault": "Démarrer Zingo CLI (par défaut, hors ligne)",
+      "startZingoCliCustom": "Démarrer Zingo CLI (en ligne via un indexeur local)",
+      "zingoSyncWarning": "⚠ Une nouvelle session est hors ligne jusqu’à ce que vous accordiez votre consentement (--online, --remember-online ou --server). Le proxy Nym est résolu à partir de --nym-proxy, $ZINGO_NYM_PROXY, du binaire situé à côté de zingo-cli, ou de PATH. La synchronisation continue après le sommet de la chaîne par défaut. La première exécution en ligne effectue une synchronisation complète. Pour compiler sans le mixnet (hors ligne uniquement) : makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Étapes suivantes et ressources",
       "readyToBuild": "Prêt à construire ?",
       "officialDocumentation": "Documentation officielle",
@@ -982,7 +1005,17 @@
       "zcashCommunityForum": "Forum communautaire Zcash",
       "githubIssues": "Issues GitHub",
       "troubleshootingGuide": "Guide de dépannage",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Matériel",
+      "compareColLanguage": "Langue",
+      "compareColPlatforms": "Plateformes",
+      "compareColRole": "Rôle",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Logiciel",
+      "compareColStatus": "Statut",
+      "compareFootnote": "zcashd a atteint sa fin de vie au bloc 3417100 le 18 juillet 2026 — les nouveaux projets doivent s'appuyer sur les logiciels ci-dessus.",
+      "compareLead": "La stack Zcash se compose de quelques outils distincts. Utilisez ce tableau pour déterminer de quel outil votre projet a besoin, puis suivez le guide correspondant ci-dessous.",
+      "compareTitle": "Comparaison des nœuds et des clients"
     },
     "governanceHowto": {
       "pageTitle": "Gouvernance ZecHub DAO",
@@ -1037,7 +1070,17 @@
         "Organizations": "Organisations",
         "Guides": "Guides",
         "Use Zcash": "Utiliser Zcash",
-        "Ecosystem": "Écosystème"
+        "Ecosystem": "Écosystème",
+        "Contribute": "Contribuer",
+        "Glossary & FAQs": "Glossaire et FAQ",
+        "Privacy Tools": "Outils de confidentialité",
+        "Research": "Recherche",
+        "Start Here": "Commencez ici",
+        "Tutorials": "Tutoriels",
+        "Use Cases": "Cas d'usage",
+        "Zcash Tech": "Technologie Zcash",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Réseaux sociaux"
       },
       "links": {
         "Homepage": "Accueil",
@@ -1063,7 +1106,7 @@
         "Payment Request URIs": "URI de demande de paiement",
         "Payment Processors": "Processeurs de paiement",
         "Recovering Funds": "Récupération de fonds",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "Forum communautaire",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
@@ -1092,7 +1135,7 @@
       "formalVerificationSeriesDescription": "Une série en trois parties qui explique la vérification formelle à partir des principes fondamentaux, revient sur le bug de solidité d'Orchard de 2026 et montre comment Ironwood y a répondu avec une preuve mathématique vérifiée par machine.",
       "newSeriesBadge": "Nouvelle série"
     },
-    "browseSidebar": "Parcourez les articles avec la barre latérale à gauche 👈",
+    "browseSidebar": "Ouvrez la navigation pour parcourir les articles de cette section.",
     "zcashGlobalAmbassadors": {
       "title": "Ambassadeurs mondiaux de Zcash",
       "description": "Les ambassadeurs mondiaux de Zcash sont des leaders de la communauté qui se consacrent à la promotion de l’adoption et de l’éducation autour des cryptomonnaies axées sur la confidentialité à travers le monde. Chaque projet d’ambassadeur met l’accent sur le développement de la notoriété et de l’engagement dans sa région respective.",
@@ -1212,5 +1255,43 @@
   "meta": {
     "title": "Wiki ZecHub",
     "description": "Un hub éducatif open source pour Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Commencez ici",
+      "sub": "Commencez votre parcours d'apprentissage de Zcash"
+    },
+    "guides": {
+      "title": "Guides",
+      "sub": "Documentation structurée pour comprendre les protocoles Zcash"
+    },
+    "zcash-tech": {
+      "title": "Technologie Zcash",
+      "sub": "Au cœur de la technologie qui propulse Zcash"
+    },
+    "organizations": {
+      "title": "Organisations",
+      "sub": "Structure · Gouvernance · Contributeurs"
+    },
+    "privacy-tools": {
+      "title": "Outils de confidentialité",
+      "sub": "Des solutions pratiques pour la confidentialité"
+    },
+    "research": {
+      "title": "Recherche",
+      "sub": "Explorer la preuve à divulgation nulle de connaissance · La confidentialité · La cryptographie"
+    },
+    "glossary": {
+      "title": "Glossaire et FAQ",
+      "sub": "Définitions, réponses, clarté."
+    },
+    "contribute": {
+      "title": "Contribuer",
+      "sub": "Écrire · Traduire · Concevoir · Développer"
+    },
+    "tutorials": {
+      "title": "Tutoriels",
+      "sub": "Regardez et suivez"
+    }
   }
 }

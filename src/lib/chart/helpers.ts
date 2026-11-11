@@ -1,4 +1,4 @@
-import { DATE_URL } from "./data-url";
+import { DATA_URL, DATE_URL } from "./data-url";
 import {
   BlockchainInfo,
   Difficulty,
@@ -127,6 +127,117 @@ export function getCommitUrlForTab(tabLabel: string): string {
     ironwood: DATE_URL.ironwoodUrl, // ← added
   };
   return urlMap[tabLabel] || DATE_URL.defaultUrl;
+}
+
+
+const DATE_FIELDS = ["close", "Date", "Dates", "date", "timestamp"] as const;
+
+function parseFlexibleDate(s: string): Date | null {
+  if (!s) return null;
+  const str = String(s).trim();
+
+  // MM/DD/YYYY
+  const mdy = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (mdy) {
+    const d = new Date(`${mdy[3]}-${mdy[1].padStart(2, "0")}-${mdy[2].padStart(2, "0")}T00:00:00Z`);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  // YYYY/MM/DD
+  const ymdSlash = str.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})/);
+  if (ymdSlash) {
+    const d = new Date(`${ymdSlash[1]}-${ymdSlash[2].padStart(2, "0")}-${ymdSlash[3].padStart(2, "0")}T00:00:00Z`);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  // YYYY-MM-DD (and optional time) or other ISO-like
+  const d = new Date(str);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function extractLatestDateFromArray(arr: unknown[]): Date | null {
+  if (!Array.isArray(arr) || arr.length === 0) return null;
+  let best: Date | null = null;
+  // Prefer the tail of the series (files are chronological)
+  const start = Math.max(0, arr.length - 40);
+  for (let i = arr.length - 1; i >= start; i--) {
+    const item = arr[i] as Record<string, unknown> | null;
+    if (!item || typeof item !== "object") continue;
+    for (const f of DATE_FIELDS) {
+      const raw = item[f];
+      if (raw == null) continue;
+      const d = parseFlexibleDate(String(raw));
+      if (d && (!best || d > best)) best = d;
+    }
+  }
+  return best;
+}
+
+/** Data file URLs that back each dashboard tab. Supply checks every pool file the chart actually loads. */
+export function getDataUrlsForTab(tabLabel: string): string[] {
+  const map: Record<string, string | string[]> = {
+    supply: [
+      DATA_URL.sproutUrl,
+      DATA_URL.saplingUrl,
+      DATA_URL.orchardUrl,
+      DATA_URL.ironwoodUrl,
+      DATA_URL.defaultUrl, // shielded_supply.json aggregate
+    ],
+    difficulty: DATA_URL.difficultyUrl,
+    issuance: DATA_URL.issuanceUrl,
+    lockbox: DATA_URL.lockboxUrl,
+    flows: DATA_URL.netInflowsOutflowsUrl,
+    "tx summary": DATA_URL.txsummaryUrl,
+    "privacy set": DATA_URL.shieldedTxCountUrl,
+    rewards: DATA_URL.namadaRewardUrl,
+    transparent: DATA_URL.transparentSupplyUrl,
+    "shielded stats": DATA_URL.zcashShieldedStatsUrl,
+    "total supply": DATA_URL.totalSupplyUrl,
+    "network solps": DATA_URL.networkSolpsUrl,
+    "block fees": DATA_URL.blockFeesUrl,
+    ironwood: DATA_URL.ironwoodUrl,
+  };
+  const v = map[tabLabel];
+  if (!v) return [];
+  return (Array.isArray(v) ? v : [v]).filter(Boolean);
+}
+
+/**
+ * Latest date present in the data files for a given dashboard tab.
+ * Returns an ISO string, or null if no date could be extracted.
+ */
+export async function getLatestDataDateForTab(
+  tabLabel: string,
+  signal?: AbortSignal,
+): Promise<string | null> {
+  const urls = getDataUrlsForTab(tabLabel);
+  if (!urls.length) return null;
+
+  const dates: Date[] = [];
+  await Promise.all(
+    urls.map(async (url) => {
+      try {
+        const res = await fetch(url, { signal });
+        if (!res.ok) return;
+        const data = await res.json();
+        const arr = Array.isArray(data)
+          ? data
+          : Array.isArray(data?.data)
+            ? data.data
+            : Array.isArray(data?.series)
+              ? data.series
+              : null;
+        if (arr) {
+          const d = extractLatestDateFromArray(arr);
+          if (d) dates.push(d);
+        }
+      } catch {
+        /* ignore individual file failures */
+      }
+    }),
+  );
+
+  if (!dates.length) return null;
+  const max = dates.reduce((a, b) => (a > b ? a : b));
+  return max.toISOString();
 }
 
 export async function getShieldedTxCount(
@@ -349,6 +460,39 @@ export function formatDate(s: string | null): string {
   if (!s) return "N/A";
   const d = new Date(s);
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
+}
+
+// Height of the first mainnet block mined in each calendar year (UTC).
+const YEAR_START_HEIGHTS: ReadonlyArray<readonly [year: number, height: number]> = [
+  [2017, 37_422],
+  [2018, 246_629],
+  [2019, 455_853],
+  [2020, 676_616],
+  [2021, 1_096_214],
+  [2022, 1_514_349],
+  [2023, 1_932_712],
+  [2024, 2_351_032],
+  [2025, 2_770_557],
+  [2026, 3_189_008],
+];
+
+// 75-second target spacing (post-Blossom) = 1,152 blocks/day.
+const BLOCKS_PER_YEAR = 1_152 * 365;
+
+/**
+ * Calendar year (UTC) in which the block at `height` was mined. Heights past
+ * the last table entry are estimated from the 75-second target, so the result
+ * keeps advancing instead of lumping every newer block into the last year.
+ */
+export function blockHeightToYear(height: number): number {
+  const [lastYear, lastStart] = YEAR_START_HEIGHTS[YEAR_START_HEIGHTS.length - 1];
+  if (height >= lastStart) {
+    return lastYear + Math.floor((height - lastStart) / BLOCKS_PER_YEAR);
+  }
+  for (let i = YEAR_START_HEIGHTS.length - 2; i >= 0; i--) {
+    if (height >= YEAR_START_HEIGHTS[i][1]) return YEAR_START_HEIGHTS[i][0];
+  }
+  return 2016;
 }
 
 export function transformSupplyData(

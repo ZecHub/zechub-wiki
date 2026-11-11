@@ -243,7 +243,10 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {payload.map((entry: any, index: number) => {
           const formattedValue = entry.name.includes("%")
             ? formatPercentage(entry.value)
-            : formatValue(entry.value);
+            : entry.dataKey === "closingPrice" ||
+                entry.dataKey === "shieldedMarketCap"
+              ? formatCurrency(entry.value)
+              : formatValue(entry.value);
           return (
             <p key={index} className="text-sm" style={{ color: entry.color }}>
               {`${entry.name}: ${formattedValue}`}

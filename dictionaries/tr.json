@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "Notlar",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "Mobil Kontör Yüklemeleri",
     "Newsletter": "Bülten",
     "Nym VPN": "Nym VPN",
@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash Kullanım Alanları",
     "Zcash Tech": "Zcash Teknolojisi",
     "Privacy Tools": "Gizlilik Araçları",
-    "Zcash Social Media": "Zcash Sosyal Medyası",
     "Glossary & FAQ's": "Sözlük ve SSS'ler",
     "Use Zcash": "Zcash kullanın",
     "Block Explorers": "Blok Gezginleri",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
-    "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler"
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -164,7 +166,11 @@
     "searchTryDifferent": "Daha kısa sorgular, eş anlamlılar veya farklı kelimeler deneyin.",
     "searchSuggested": "Önerilen sayfalar",
     "searchResultsLabel": "Sonuçlar",
-    "skipToContent": "İçeriğe atla"
+    "skipToContent": "İçeriğe atla",
+    "languageSearch": "Dil ara",
+    "languageSuggested": "Önerilen",
+    "languageAll": "Tüm diller",
+    "languageNone": "Dil bulunamadı"
   },
   "navigation": {
     "wallets": "Cüzdanlar",
@@ -186,7 +192,7 @@
       "buyingZec": "ZEC Satın Alma",
       "faucets": "Faucet'ler",
       "wallets": "Cüzdanlar",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "Borsalar",
       "blockExplorers": "Blok Gezginleri",
       "shieldedPools": "Korumalı Havuzlar",
@@ -235,7 +241,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Marka",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Ödeme İşlemcisi",
@@ -270,7 +282,7 @@
     "heroTitle": "ZecHub'a hoş geldiniz",
     "heroSubtitle": "Zcash için açık kaynaklı bir eğitim merkezi",
     "heroDescription": "Zcash gizlilik teknolojisi hakkında bilgi edinin, etkileşimli görselleştiricileri keşfedin ve ekosisteme katkıda bulunun",
-    "description": "ZecHub, Zcash kripto para birimi (ZEC) için topluluk tarafından yönlendirilen eğitim merkezidir. Zcash, sansüre dayanıklı, güvenli ve özel ödemeler sağlayan bir dijital para birimidir. Zcash Blockchain, 2022'deki NU5 ağ yükseltmesinin ardından Trusted Setup gerektirmeyen son derece gelişmiş 'verifiable' zk-snarks kullanır.",
+    "description": "ZecHub; sansüre dayanıklı, güvenli ve özel ödemeler için tasarlanmış merkeziyetsiz dijital para birimi Zcash (ZEC) hakkında topluluk odaklı bir eğitim merkezidir. Zcash, hassas finansal bilgileri açığa çıkarmadan geçerliliği doğrulanabilen işlemleri mümkün kılmak için gelişmiş sıfır bilgi kriptografisini kullanır. 2026'da tanıtılan Ironwood korumalı havuzu, makine tarafından denetlenen matematiksel kanıtlarla resmî olarak doğrulanmıştır ve bakiye bütünlüğünü garanti eder. Project Tachyon; özel ödemelerin ölçeklenebilirliğini önemli ölçüde iyileştirmek, doğrulayıcı durumundaki büyümeyi azaltmak ve Zcash'i tamamen kuantum sonrası güvenli gizliliğe yaklaştırmak üzere tasarlanan, önerilen yeni nesil korumalı bir protokol geliştiriyor.",
     "featuredSection": "Öne Çıkan Kaynaklar",
     "latestUpdates": "En Son Güncellemeler",
     "getInvolved": "Katılın",
@@ -307,11 +319,6 @@
         "description": "Zcash Küresel Elçileri, dünya çapında gizlilik odaklı kripto para benimsenmesini ve eğitimini teşvik etmeye adanmış topluluk liderleridir. Her elçi projesi, kendi bölgesinde farkındalık ve etkileşim oluşturmaya odaklanır.",
         "link": "Elçilerle Tanışın"
       },
-      "newsletter": {
-        "title": "Shielded Bülteni",
-        "description": "Cüzdanınıza doğrudan Zcash Ekosistem Güncellemeleri ve Ağ İstatistiklerine shielded erişim almak için Unified Address kullanarak abone olun!",
-        "link": "Abone olun"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z, Zcash tarafından desteklenen bir sosyal platformdur. Eşler arası bağışlar, gelir paylaşım programı, gelişmiş yaratıcı araçlar ve devasa küresel çevrimiçi topluluğuyla.",
@@ -324,9 +331,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Hackathon'a Katılın",
-        "description": "Zcash topluluğuyla birlikte etkili fikirler geliştirin, iş birliği yapın ve hayata geçirin. Beş yenilikçi kategoride yarışın: düğümler ve indeksleyiciler için Altyapı, etkileşimli deneyimler için Oyunlar, eşik imzalama için FROST, kimlik doğrulama çözümleri için Zcash Login ve finansal iş akışları için Muhasebe. 25 Mayıs - 15 Temmuz 2026. 25 ZEC ödül havuzu sizi bekliyor.",
-        "mainLink": "Hackathon'a Katılın"
+        "title": "ZecHub Hackathon Arşivi",
+        "description": "2026 ZecHub Hackathon sona erdi. Altyapı, Oyunlar, FROST, Zcash Login ve Muhasebe kategorilerine sunulan projeleri keşfedin.",
+        "mainLink": "Projeleri görüntüle"
+      },
+      "visualizer": {
+        "description": "Zcash gizlilik teknolojisini, altyapısını ve sıfır bilgi ispatlarını anlamak için etkileşimli eğitim araçları",
+        "link": "Görselleştiriciyi Aç",
+        "title": "ZecHub Görselleştirici"
+      },
+      "zecMap": {
+        "description": "ZecMap, Zcash kabul eden satıcıların, hizmetlerin ve ATM'lerin topluluk tarafından sürdürülen dünya haritasıdır. Yakınınızda ZEC harcayacak bir yer bulun ya da gerçek dünya benimsemesinin büyümesine yardımcı olmak için bildiğiniz bir işletmeyi ekleyin.",
+        "link": "ZecMap'i Ziyaret Et",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -452,8 +469,13 @@
     "download": "İndir",
     "visitWebsite": "Web Sitesini Ziyaret Et",
     "filters": "Filtreler",
-    "showNavigation": "Menüyü Göster",
     "close": "Kapat",
+    "clearAll": "Tümünü temizle",
+    "showWallets": "{count} cüzdanı göster",
+    "showWallet": "1 cüzdanı göster",
+    "walletCount": "{count} cüzdan",
+    "walletCountOne": "1 cüzdan",
+    "activeCount": "{count} etkin",
     "savedReview": "İncelemenizi kaydettik!",
     "errorGettingLikes": "Hata beğeniler alınırken:",
     "errorUpdatingRating": "Hata puan güncellenirken:"
@@ -580,7 +602,8 @@
           "transactions24h": "24 sa İşlem",
           "shieldedTx24h": "Korumalı TX (24 sa)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Ork"
+          "orchardAbbrev": "Ork",
+          "shieldedValue": "Korumalı Değer"
         },
         "zcashChart": {
           "title": "Analitik Grafikler",
@@ -966,12 +989,12 @@
       "configure": "Yapılandır",
       "runZainod": "zainod çalıştır",
       "installingZingoCli": "Zingo CLI kurulumu",
-      "zingoCliInfo": "Rust ile geliştirilmiş, komut satırı tabanlı bir lightwalletd-proxy istemcisidir. Sürümler şu anda geçicidir — bu kılavuz kaynaktan derlemeyi kapsar.",
-      "buildZingoCli": "Zingo CLI derleme",
+      "zingoCliInfo": "Zcash için komut satırı hafif cüzdanıdır. v7 varsayılan olarak Nym mixnet aktarımını oluşturur ve ikili dosyanın yanında nym-proxy'yi paketler. Bu rehber, kaynaktan derlemeyi kapsar.",
+      "buildZingoCli": "Zingo CLI'yi Derle (v7)",
       "running": "Çalıştırma",
-      "startZingoCliDefault": "Zingo CLI başlat (Varsayılan)",
-      "startZingoCliCustom": "Zingo CLI başlat (Özel)",
-      "zingoSyncWarning": "⚠ Bu, ilk çalıştırmada lightwalletd benzeri tam bir senkronizasyon gerçekleştirecektir.",
+      "startZingoCliDefault": "Zingo CLI'yi Başlat (Varsayılan, çevrimdışı)",
+      "startZingoCliCustom": "Zingo CLI'yi Başlat (yerel indeksleyici üzerinden çevrimiçi)",
+      "zingoSyncWarning": "⚠ Yeni bir oturum, onay verene kadar çevrimdışıdır (--online, --remember-online veya --server). Nym proxy'si --nym-proxy, $ZINGO_NYM_PROXY, zingo-cli'nin yanındaki ikili dosya ya da PATH üzerinden çözülür. Senkronizasyon varsayılan olarak zincir ucundan sonra devam eder. İlk çevrimiçi çalıştırma tam senkronizasyon gerçekleştirir. Mixnet olmadan derlemek için (yalnızca çevrimdışı): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Sonraki Adımlar ve Kaynaklar",
       "readyToBuild": "İnşa Etmeye Hazır mısınız?",
       "officialDocumentation": "Resmî Belgeler",
@@ -982,7 +1005,17 @@
       "zcashCommunityForum": "Zcash Topluluk Forumu",
       "githubIssues": "GitHub Sorunları",
       "troubleshootingGuide": "Sorun Giderme Kılavuzu",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Donanım",
+      "compareColLanguage": "Dil",
+      "compareColPlatforms": "Platformlar",
+      "compareColRole": "Rol",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Yazılım",
+      "compareColStatus": "Durum",
+      "compareFootnote": "zcashd, 18 Temmuz 2026'da 3417100 numaralı blokta kullanım ömrünü tamamladı — yeni projeler yukarıdaki yazılıma dayanmalıdır.",
+      "compareLead": "Zcash yığınını birkaç ayrı araç oluşturur. Projenizin hangisine ihtiyaç duyduğunu bu tablodan belirleyin, ardından aşağıdaki ilgili kılavuzu izleyin.",
+      "compareTitle": "Düğüm ve İstemci Karşılaştırması"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Yönetişimi",
@@ -1037,7 +1070,17 @@
         "Organizations": "Organizasyonlar",
         "Guides": "Rehberler",
         "Use Zcash": "Zcash kullan",
-        "Ecosystem": "Ekosistem"
+        "Ecosystem": "Ekosistem",
+        "Contribute": "Katkıda Bulun",
+        "Glossary & FAQs": "Sözlük ve SSS",
+        "Privacy Tools": "Gizlilik Araçları",
+        "Research": "Araştırma",
+        "Start Here": "Buradan Başlayın",
+        "Tutorials": "Öğreticiler",
+        "Use Cases": "Kullanım Alanları",
+        "Zcash Tech": "Zcash Teknolojisi",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Sosyal Medya"
       },
       "links": {
         "Homepage": "Ana sayfa",
@@ -1063,7 +1106,7 @@
         "Payment Request URIs": "Ödeme Talebi URI'leri",
         "Payment Processors": "Ödeme İşleyicileri",
         "Recovering Funds": "Fonların Kurtarılması",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "Topluluk Forumu",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
@@ -1092,7 +1135,7 @@
       "formalVerificationSeriesDescription": "Biçimsel doğrulamayı ilk ilkelerden açıklayan, 2026 Orchard sağlamlık hatasını ele alan ve Ironwood’un makine tarafından denetlenmiş matematiksel bir kanıtla buna nasıl yanıt verdiğini gösteren üç bölümlük bir seri.",
       "newSeriesBadge": "Yeni Seri"
     },
-    "browseSidebar": "Makalelere soldaki kenar çubuğunu kullanarak göz atın 👈",
+    "browseSidebar": "Bu bölümdeki makalelere göz atmak için Gezinme'yi açın.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Küresel Elçileri",
       "description": "Zcash Küresel Elçileri, dünya çapında gizlilik odaklı kripto para benimsenmesini ve eğitimini teşvik etmeye adanmış topluluk liderleridir. Her elçi projesi, kendi bölgesinde farkındalık ve etkileşim oluşturmaya odaklanır.",
@@ -1212,5 +1255,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Zcash için açık kaynaklı bir eğitim merkezi"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Buradan Başlayın",
+      "sub": "Zcash öğrenme yolculuğunuza başlayın"
+    },
+    "guides": {
+      "title": "Rehberler",
+      "sub": "Zcash protokollerini anlamak için yapılandırılmış belgeler"
+    },
+    "zcash-tech": {
+      "title": "Zcash Teknolojisi",
+      "sub": "Zcash'e güç veren teknolojinin içi"
+    },
+    "organizations": {
+      "title": "Organizasyonlar",
+      "sub": "Yapı · Yönetişim · Katkıda bulunanlar"
+    },
+    "privacy-tools": {
+      "title": "Gizlilik Araçları",
+      "sub": "Pratik gizlilik çözümleri"
+    },
+    "research": {
+      "title": "Araştırma",
+      "sub": "Sıfır Bilgi · Gizlilik · Kriptografiyi keşfedin"
+    },
+    "glossary": {
+      "title": "Sözlük ve SSS",
+      "sub": "Tanımlar, yanıtlar, netlik."
+    },
+    "contribute": {
+      "title": "Katkıda Bulun",
+      "sub": "Yaz · Çevir · Tasarla · Geliştir"
+    },
+    "tutorials": {
+      "title": "Öğreticiler",
+      "sub": "İzleyin ve takip edin"
+    }
   }
 }

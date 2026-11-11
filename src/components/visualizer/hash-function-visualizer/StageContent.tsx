@@ -25,7 +25,7 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.4 }}
-        className="w-full min-h-[640]"
+        className="w-full p-8"
       >
         {/* Stage Header */}
         {stage.type === "welcome" ? (

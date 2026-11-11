@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { GitCompareArrows } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { OpenSourceReposContent, slides } from "./OpenSourceReposContent";
 
 const SLIDES = slides.map((s) => ({ id: s.id, title: s.title }));
@@ -11,9 +12,9 @@ interface OpenSourceReposVisualizerProps {
   autoStart?: boolean;
 }
 
-export const OpenSourceReposVisualizer = ({ 
-  onComplete, 
-  autoStart = false 
+export const OpenSourceReposVisualizer = ({
+  onComplete,
+  autoStart = false,
 }: OpenSourceReposVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
@@ -46,47 +47,46 @@ export const OpenSourceReposVisualizer = ({
       setCurrentStage(index);
     }
   }, []);
-  
+
   // Auto-start when autoStart prop is true
   useEffect(() => {
     if (autoStart) {
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   // Completion logic - triggers when on last slide and playing stops
   useEffect(() => {
     if (currentStage === SLIDES.length - 1 && !isPlaying && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, 5000); // 5 seconds on last slide
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, isPlaying, onComplete]);
-  
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-12">
-        <OpenSourceReposContent 
+    <VisualizerCanvas
+      title="Open Source Repositories"
+      description="Find Zcash open source related project to contribute"
+      currentStep={currentStage}
+      totalSteps={SLIDES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<GitCompareArrows className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 ">
+        <OpenSourceReposContent
           currentSlide={currentStage}
           onSlideChange={handleSlideChange}
           isPlaying={isPlaying}
         />
-      </main>
-
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onNext={goToNext}
-          onPrevious={goToPrevious}
-          onRestart={restart}
-          stages={SLIDES}
-        />
-      </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };

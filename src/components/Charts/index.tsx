@@ -6,7 +6,6 @@ import {
   FileText,
   Shield,
   Award,
-  Youtube,
   Play,
   Eye,
   Rss,
@@ -14,6 +13,7 @@ import {
   ChevronDown,
   Check,
 } from "lucide-react";
+import { FaYoutube } from "react-icons/fa";
 import { useEffect, useState, useRef, startTransition } from "react";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
@@ -250,7 +250,7 @@ const Dashboard = ({
     {
       key: "youtube" as const,
       label: t?.tabs?.youtubeDashboard || "YouTube Dashboard",
-      icon: <Youtube className="w-5 h-5" />,
+      icon: <FaYoutube className="w-5 h-5" />,
     },
     {
       key: "codepulse" as const,
@@ -304,6 +304,13 @@ const Dashboard = ({
             .slice(0, 15)
             .sort((a: any, b: any) => (b.views || 0) - (a.views || 0))
         : filteredDate.slice(0, 15);
+
+  // Bars are relative to the most viewed video in the list; the "Latest"
+  // list is in date order, so that is not necessarily the first one.
+  const maxDisplayedViews = Math.max(
+    1,
+    ...displayedVideos.map((v: any) => v.views || 0),
+  );
 
   const totalVideos = currentSorted.length;
   const totalViews = currentSorted.reduce(
@@ -715,7 +722,7 @@ const Dashboard = ({
                         <div
                           className="h-full bg-gradient-to-r from-brand to-brand-hover transition-all group-hover:brightness-110"
                           style={{
-                            width: `${Math.max(((video.views || 0) / (displayedVideos[0]?.views || 1)) * 100, 8)}%`,
+                            width: `${Math.max(((video.views || 0) / maxDisplayedViews) * 100, 8)}%`,
                           }}
                         />
                       </div>

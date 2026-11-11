@@ -10,7 +10,7 @@ export function ZcashUpgradEvolution() {
   const currentEra = networkUpgrades.find((u) => u.status === "current");
 
   return (
-    <div className="mx-auto max-w-7xl min-h-screen bg-background">
+    <div className="mx-auto w-full max-w-7xl min-h-screen bg-background">
       <main className="container px-4 py-8 max-w-3xl">
         <UpgradEvolutionHero
           currentEra={currentEra}

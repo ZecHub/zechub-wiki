@@ -1,14 +1,17 @@
 import Image from "next/image";
-import WalletLogo from "./WalletLogo";
 import { Link } from "@/i18n/navigation";
 import React, { useMemo, useState } from "react";
 import {
   MdThumbDown as Dislike,
   MdThumbUp as Like,
+  MdChecklist,
+  MdDevices,
+  MdPool,
   MdOpenInNew as OpenNew,
   MdKeyboardArrowDown,
 } from "react-icons/md";
 import { Icon } from "../UI/Icon";
+import { getFeatureLink } from "@/lib/walletFeatureLinks";
 
 interface WalletItemProps {
   title: string;
@@ -18,6 +21,10 @@ interface WalletItemProps {
   likes: number;
   syncSpeed: string;
   ironwood?: string;
+  stage?: string;
+  // Set (possibly to "") only for a deprecated wallet: the reason it is listed
+  // as no longer supporting Zcash. Replaces the Ironwood badge.
+  deprecated?: string;
   onLike: () => void;
   onDislike: () => void;
   error: string;
@@ -34,6 +41,14 @@ interface FeatureLink {
   url: string;
 }
 
+type CategoryKey = "Devices" | "Pools" | "Features";
+
+const categoryIcons = {
+  Devices: MdDevices,
+  Pools: MdPool,
+  Features: MdChecklist,
+};
+
 // NU6.3 "Ironwood" upgrade status → badge colors (status text comes from Wallets.md)
 const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
   "ready": {
@@ -48,37 +63,16 @@ const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
     pill: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
     dot: "bg-rose-500",
   },
+  // Wallets that never held shielded ZEC: Ironwood does not apply to them.
+  "transparent only": {
+    pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
+    dot: "bg-slate-400",
+  },
 };
 
 const ironwoodFallbackStyle = {
   pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
   dot: "bg-slate-500",
-};
-
-const sectionLabel = "text-[11px] font-medium uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400";
-const chip =
-  "rounded-full bg-slate-200 px-2.5 py-0.5 text-[13px] text-slate-700 dark:bg-white/10 dark:text-slate-200";
-
-// Short descriptors that the wallet list in the content repo does not carry yet.
-// Logos that replace the image coming from the wallet list in the content repo.
-const walletLogoOverrides: { [key: string]: { src: string; keepColors?: boolean } } = {
-  zallet: { src: "/dex-logos/zebra-icon.png", keepColors: true }, // Zcash Foundation zebra
-  noirwallet: { src: "/dex-logos/noirwallet-text.png" }, // wordmark only, no grey backdrop
-};
-
-const walletNotes: { [key: string]: string } = {
-  dizzy: "Discord wallet",
-  mayaprotocol: "Cross-chain DEX, not a wallet",
-};
-
-const featureLinkMap: { [key: string]: string } = {
-  "Orchard": "https://zechub.wiki/using-zcash/shielded-pools#orchard",
-  "Sapling": "https://zechub.wiki/using-zcash/shielded-pools#sapling",
-  "Transparent": "https://zechub.wiki/using-zcash/shielded-pools#transparent",
-  "Shielded": "https://zechub.wiki/using-zcash/shielded-pools",
-  "Mobile": "https://zechub.wiki/using-zcash/mobile-wallets",
-  "Desktop": "https://zechub.wiki/using-zcash/desktop-wallets",
-  "Web": "https://zechub.wiki/using-zcash/web-wallets",
 };
 
 const WalletItem: React.FC<WalletItemProps> = ({
@@ -88,6 +82,8 @@ const WalletItem: React.FC<WalletItemProps> = ({
   tags,
   syncSpeed,
   ironwood,
+  stage,
+  deprecated,
   likes,
   onLike,
   onDislike,
@@ -97,8 +93,6 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
-  const logoOverride = walletLogoOverrides[title.toLowerCase().replace(/[^a-z0-9]/g, "")];
-  const note = walletNotes[title.toLowerCase().replace(/[^a-z0-9]/g, "")];
 
   const handleLike = () => {
     onLike();
@@ -110,14 +104,6 @@ const WalletItem: React.FC<WalletItemProps> = ({
     onDislike();
     setDisliked(true);
     setLiked(false);
-  };
-
-  const getFeatureLink = (value: string): string => {
-    return featureLinkMap[value] || "https://zechub.wiki/using-zcash/shielded-pools";
-  };
-
-  const isFeatureLink = (value: any): value is FeatureLink => {
-    return typeof value === 'object' && 'name' in value && 'url' in value;
   };
 
   const featureValues = useMemo(() => {
@@ -134,138 +120,204 @@ const WalletItem: React.FC<WalletItemProps> = ({
     [featureValues],
   );
 
-  const allFeatures = tags.find((t) => t.category === "Features")?.values ?? [];
-  const collapsedFeatures: (string | FeatureLink)[] =
-    hasShielded || hasTransparent
-      ? [...(hasShielded ? ["Shielded"] : []), ...(hasTransparent ? ["Transparent"] : [])]
-      : allFeatures.slice(0, 3);
-
   return (
-    <div className="wallet-item flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
-      <div className="flex flex-1 flex-col p-4">
-        {/* Logo top-left, Open button top-right */}
-        <div className="flex min-h-16 items-center justify-between gap-3">
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${title} (opens in a new tab)`}
-            className="flex min-w-0 items-center"
-          >
-            <WalletLogo
-              src={logoOverride?.src ?? logo}
-              alt={`${title} Logo`}
-              keepColors={Boolean(logoOverride?.keepColors)}
-            />
-          </a>
+    <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
+      {/* Logo — taller + more padding on mobile */}
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block bg-gray-100 dark:bg-gray-200 p-5 md:p-6 flex items-center justify-center h-52 md:h-48"
+      >
+        <Image
+          className="w-full h-full object-contain"
+          width={260}
+          height={180}
+          src={logo}
+          alt={`${title} Logo`}
+          priority={false}
+        />
+      </a>
+
+      <div className="flex-1 flex flex-col p-5 md:p-6">
+        {/* Title + Open button */}
+        <div className="flex justify-between items-start mb-4">
+          <h5 className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-200 flex-1 pr-3">
+            {title}
+            {syncSpeed && (
+              <span className="inline-block ml-2 align-middle">
+                <Image src={syncSpeed} width={32} height={32} alt="Sync" />
+              </span>
+            )}
+          </h5>
           <Link
             href={link}
-            className="inline-flex shrink-0 items-center self-start whitespace-nowrap rounded-lg border border-brand/50 px-3.5 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
+            className="px-4 py-2 border border-slate-500 dark:border-slate-400 text-slate-500 dark:text-slate-400 text-sm hover:bg-slate-500 hover:text-white rounded-lg transition whitespace-nowrap"
             target="_blank"
             rel="noopener noreferrer"
           >
             Open
-            <Icon icon={OpenNew} className="ms-2 inline-block" size="small" />
+            <Icon icon={OpenNew} className="inline-block ms-2" size="small" />
           </Link>
         </div>
 
-        {/* Name */}
-        <div className="mt-4 min-w-0">
-          <h2 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
-            {title}
-            {syncSpeed && (
-              <span className="ml-2 inline-block align-middle">
-                <Image src={syncSpeed} width={24} height={24} alt="Sync" />
-              </span>
-            )}
-          </h2>
-          {note ? (
-            <p className="m-0 mt-1 text-[13px] font-medium text-brand dark:text-brand-soft">{note}</p>
-          ) : null}
-        </div>
-
-        {/* NU6.3 "Ironwood" readiness badge */}
-        {ironwood && (
-          <div className="mt-3">
-            <span
-              title="NU6.3 Ironwood network upgrade status"
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
-                (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).pill
-              }`}
-            >
-              <span
-                className={`h-1.5 w-1.5 rounded-full ${
-                  (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).dot
-                }`}
-              />
-              Ironwood {ironwood}
+        {/* Deprecated: a red badge and the reason, in place of the Ironwood badge */}
+        {deprecated !== undefined && (
+          <div className="mb-4 -mt-1">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-rose-600 text-white dark:bg-rose-700">
+              Deprecated
             </span>
+            {deprecated && (
+              <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">{deprecated}</p>
+            )}
           </div>
         )}
 
-        {/* Labelled sections: Devices, Pools, Features */}
-        <div className="mt-4 divide-y divide-slate-200 border-t border-slate-200 dark:divide-white/10 dark:border-white/10">
-          {tags
-            .filter((t) => ["Devices", "Pools"].includes(t.category) && t.values.length > 0)
-            .map((tag) => (
-              <div key={tag.category} className="py-3">
-                <div className={sectionLabel}>{tag.category}</div>
-                <div className="mt-1.5 flex flex-wrap gap-1.5">
-                  {tag.values.map((value, vIndex) => (
-                    <span key={vIndex} className={chip}>
-                      {typeof value === "string" ? value : (value as FeatureLink).name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+        {/* NU6.3 "Ironwood" readiness badge, plus the release stage when not final */}
+        {deprecated === undefined && (ironwood || stage) && (
+          <div className="mb-4 -mt-1 flex flex-wrap gap-2">
+            {ironwood && (
+              <span
+                title="NU6.3 Ironwood network upgrade status"
+                className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full ${
+                  (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).pill
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).dot
+                  }`}
+                />
+                Ironwood {ironwood}
+              </span>
+            )}
+            {stage && (
+              <span
+                title="Release stage"
+                className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border border-slate-300 text-slate-600 dark:border-slate-600 dark:text-slate-300"
+              >
+                {stage}
+              </span>
+            )}
+          </div>
+        )}
 
-          {tags.some((t) => t.category === "Features" && t.values.length > 0) && (
-            <div className="py-3">
-              <div className="flex items-center justify-between gap-3">
-                <div className={sectionLabel}>Features</div>
-                <button
-                  type="button"
-                  onClick={() => setFeaturesOpen((v) => !v)}
-                  className="inline-flex cursor-pointer items-center gap-1 text-[13px] font-medium text-slate-500 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                  aria-expanded={featuresOpen}
-                  aria-controls={`${title}-features`}
+        {/* Devices + Pools (compact pills) */}
+        {tags
+          .filter((t) => ["Devices", "Pools"].includes(t.category))
+          .map((tag, index) => (
+            <div key={index} className="flex flex-wrap gap-2 mb-4">
+              <Icon
+                icon={categoryIcons[tag.category as CategoryKey]}
+                title={tag.category}
+                className="text-slate-500 mt-1"
+                size="medium"
+              />
+              {tag.values.map((value, vIndex) => (
+                <span
+                  key={vIndex}
+                  className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300"
                 >
-                  <span>{featuresOpen ? "Hide" : "Show all"}</span>
-                  <Icon
-                    icon={MdKeyboardArrowDown}
-                    className={`transition ${featuresOpen ? "rotate-180" : ""}`}
-                    size="small"
-                  />
-                </button>
-              </div>
-              <div id={`${title}-features`} className="mt-1.5 flex flex-wrap gap-1.5">
-                {(featuresOpen
-                  ? (tags.find((t) => t.category === "Features")?.values ?? [])
-                  : collapsedFeatures
-                ).map((value, index) => {
-                  const displayValue = typeof value === "string" ? value : (value as FeatureLink).name;
-                  const linkUrl = typeof value === "string" ? getFeatureLink(value) : (value as FeatureLink).url;
-                  return (
-                    <Link
-                      key={index}
-                      href={linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${chip} no-underline transition hover:bg-slate-300 dark:hover:bg-slate-600`}
-                    >
-                      {displayValue}
-                    </Link>
-                  );
-                })}
-              </div>
+                  {typeof value === "string" ? value : (value as FeatureLink).name}
+                </span>
+              ))}
             </div>
-          )}
-        </div>
+          ))}
+
+        {/* Features section — more space between tags */}
+        {tags.some((t) => t.category === "Features") && (
+          <>
+            <hr className="my-3 border-slate-200 dark:border-slate-700" />
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <Icon
+                  icon={MdChecklist}
+                  title="Features"
+                  className="text-slate-500"
+                  size="medium"
+                />
+
+                {hasShielded ? (
+                  <Link
+                    href={getFeatureLink("Shielded", link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                  >
+                    Shielded
+                  </Link>
+                ) : null}
+                {hasTransparent ? (
+                  <Link
+                    href={getFeatureLink("Transparent", link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                  >
+                    Transparent
+                  </Link>
+                ) : null}
+
+                {!hasShielded && !hasTransparent ? (
+                  <span className="text-sm text-slate-500 dark:text-slate-400">
+                    Feature details
+                  </span>
+                ) : null}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setFeaturesOpen((v) => !v)}
+                className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 cursor-pointer"
+                aria-expanded={featuresOpen}
+                aria-controls={`${title}-features`}
+              >
+                <span>{featuresOpen ? "Hide" : "Show"}</span>
+                <Icon
+                  icon={MdKeyboardArrowDown}
+                  className={`transition ${featuresOpen ? "rotate-180" : ""}`}
+                  size="small"
+                />
+              </button>
+            </div>
+
+            {featuresOpen ? (
+              <div
+                id={`${title}-features`}
+                className="mt-3 flex flex-wrap gap-2"
+              >
+                {tags
+                  .find((t) => t.category === "Features")
+                  ?.values.map((value, index) => {
+                    const displayValue =
+                      typeof value === "string"
+                        ? value
+                        : (value as FeatureLink).name;
+                    const linkUrl =
+                      typeof value === "string"
+                        ? getFeatureLink(value, link)
+                        : (value as FeatureLink).url;
+
+                    return (
+                      <Link
+                        key={index}
+                        href={linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                      >
+                        {displayValue}
+                      </Link>
+                    );
+                  })}
+              </div>
+            ) : null}
+          </>
+        )}
       </div>
 
       {/* Rating pinned at bottom */}
-      <div className="mt-auto flex items-center border-t border-slate-200 px-4 py-3 dark:border-white/10">
+      <div className="border-t border-slate-200 dark:border-slate-700 p-5 mt-auto flex items-center">
         <div className="flex-grow text-sm text-gray-400">Rating: {likes}</div>
         <div className="text-pink-700 dark:text-red-300 text-xs pr-2">{error}</div>
         <div className="text-green-700 dark:text-green-300 text-xs pr-2">{success}</div>

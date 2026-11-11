@@ -27,6 +27,14 @@ jobs:
       OPENAI_API_KEY: ""
       NEXT_TELEMETRY_DISABLED: "1"
       EGRESS_BASE_URL: "http://localhost:3000"
+      # Serve real content pages. Without a content source every wiki route is
+      # the not-found page, so the checks below ran against it and passed
+      # without exercising the page. ZecHub/zechub is public: raw files come
+      # from the CDN. GITHUB_TOKEN (read-only) is set only on the steps that
+      # build and serve the site, to lift the contents-API rate limit.
+      OWNER: "ZecHub"
+      REPO: "zechub"
+      BRANCH: "main"
     steps:
       - uses: actions/checkout@v7
         with:
@@ -39,8 +47,12 @@ jobs:
       - name: Install Playwright (chromium)
         run: yarn playwright install --with-deps chromium
       - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn build
       - name: Start server
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn start &
           # Wait (up to ~60s) for the server to accept connections; FAIL if it

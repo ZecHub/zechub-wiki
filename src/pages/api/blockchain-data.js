@@ -1,7 +1,7 @@
 // Same-origin proxy for Zcash on-chain data (Dashboard "Zcash Metrics" + Halving
 // meter): block height, circulating supply, and shielded-pool value.
 //
-// Source: Cipherscan (keyless). The browser only ever talks to this origin.
+// Source: Cipherscan, now ZecBlock (keyless). The browser only ever talks to this origin.
 // Blockchair (previously used here, with a now-expired hardcoded key) is gone.
 // Market price / market cap are NOT here — they come from /api/prices/simple.
 //
@@ -15,6 +15,9 @@
 // memo can only ever hold a validated snapshot; last-good is served on outage
 // up to MEMO_MAX_STALE_MS, after which the route reports unavailable (503).
 const CIPHERSCAN = "https://api.mainnet.cipherscan.app/api/blockchain-info";
+// Same API (ZecBlock, formerly Cipherscan): 24h transaction count. Optional:
+// if it fails or looks wrong, the card shows N/A and the rest still loads.
+const CIPHERSCAN_STATS = "https://api.mainnet.cipherscan.app/api/network/stats";
 const CACHE = "public, s-maxage=60, stale-while-revalidate=300";
 const MEMO_TTL_MS = 60_000;
 const MEMO_MAX_STALE_MS = 15 * 60_000;
@@ -32,7 +35,25 @@ function toZat(v) {
   return Number.isSafeInteger(n) && n >= 0 ? n : null;
 }
 
+// 24h transactions, coinbase included (as most explorers count them).
+// Returns null on any failure or implausible value instead of throwing.
+async function fetchTx24h() {
+  try {
+    const r = await fetch(CIPHERSCAN_STATS, {
+      headers: { accept: "application/json" },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!r.ok) return null;
+    const n = (await r.json())?.blockchain?.tx24h;
+    // ~1,150 blocks a day means at least that many coinbase transactions.
+    return Number.isSafeInteger(n) && n >= 500 && n < 10_000_000 ? n : null;
+  } catch {
+    return null;
+  }
+}
+
 async function fetchChain() {
+  const txPromise = fetchTx24h();
   const chainRes = await fetch(CIPHERSCAN, {
     headers: { accept: "application/json" },
     signal: AbortSignal.timeout(8000),
@@ -77,7 +98,7 @@ async function fetchChain() {
       blocks,
       circulation: supplyZat * 1e-8,
       shielded_value_zec: shieldedZat * 1e-8, // 0 is a valid value, not null
-      transactions_24h: null, // pending combined 24h total from the data pipeline
+      transactions_24h: await txPromise, // null -> the card shows N/A
     },
   };
 }

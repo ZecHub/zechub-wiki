@@ -18,11 +18,15 @@
   align-items: center;
 }
 
-.header .image {
+.header .imageFrame {
+  position: relative;
   width: 100%; 
   height: 240px; 
-  object-fit: cover;
   margin-bottom: 24px;
+}
+
+.header .image {
+  object-fit: cover;
 }
 
 /* .header  */
@@ -78,24 +82,27 @@
 
 /* On mobile devices (max-width: 480px) */
 @media (max-width: 480px) {
-  .header .image {
+  .header .imageFrame {
     height: 160px;  /* Reduce the height for smaller screens */
+  }
+  .header .image {
     object-fit: contain;
   }
 }
 
 /* On small tablets (481px to 768px) */
 @media (max-width: 768px) {
-  .header .image {
+  .header .imageFrame {
     height: 200px;  /* Slightly reduce the height for tablets */
-    /* object-fit: contain; */
   }
 }
 
 /* On medium to larger screens (769px and up) */
 @media (min-width: 769px) {
-  .header .image {
+  .header .imageFrame {
     height: 240px; /* Default height for larger screens */
+  }
+  .header .image {
     object-fit: cover;
   }
 }

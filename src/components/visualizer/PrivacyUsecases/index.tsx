@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { Shield } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent, STAGES } from "./PrivacyUsecasesContent";
-import { Shield, Lock } from "lucide-react";
 
 const STAGE_INTERVAL = 10000; // 10 seconds per stage
 
@@ -15,7 +14,7 @@ interface PrivacyUseCasesVisualizerProps {
 
 export const PrivacyUseCasesVisualizer = ({
   onComplete,
-  autoStart = false
+  autoStart = false,
 }: PrivacyUseCasesVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
@@ -78,45 +77,22 @@ export const PrivacyUseCasesVisualizer = ({
   }, [isPlaying, goToNext]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border mt-12"
-      >
-        <div className="flex items-center justify-center gap-3">
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Shield className="w-10 h-10 text-green-400" />
-          </motion.div>
-          <h1 className="text-2xl font-bold text-foreground">
-            Zcash Privacy Use Cases
-          </h1>
-          <Lock className="w-6 h-6 text-purple-400" />
-        </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Real-world applications of zero-knowledge privacy
-        </p>
-      </motion.header>
-
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+    <VisualizerCanvas
+      title="Zcash Privacy Use Cases"
+      description="Real-world applications of zero-knowledge privacy"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Shield className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 mt-12">
         <StageContent stage={stage} isAnimating={isAnimating} />
-      </main>
-
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onRestart={restart}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-        />      
-        </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };

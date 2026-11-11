@@ -19,7 +19,6 @@ import {
   Wrench,
   Map,
   Gem,
-  BookOpenText,
   KeyRound,
   LayoutDashboard,
   SlidersHorizontal,
@@ -30,6 +29,13 @@ import {
   Hash,
   Info,
   Presentation,
+  GraduationCap,
+  Users,
+  Building2,
+  Activity,
+  Cpu,
+  ShieldCheck as PrivacyShield,
+  FlaskConical,
 } from "lucide-react";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -51,7 +57,79 @@ export type NavigationItem = {
   links?: Array<NavigationItem>;
 };
 
+// Organizations now live inside the Ecosystem menu (nested), see below.
+const organizationLinks: Array<NavigationItem> = [
+  {
+    name: "ZODL",
+    path: "/zcash-organizations/ZODL",
+  },
+  {
+    name: "Electric Coin Company",
+    path: "/zcash-organizations/electric-coin-company",
+  },
+  {
+    name: "Zcash Foundation",
+    path: "/zcash-organizations/zcash-foundation",
+  },
+  {
+    name: "Zcash Community Grants",
+    path: "/zcash-organizations/zcash-community-grants",
+  },
+  {
+    name: "Financial Privacy Foundation",
+    path: "/zcash-organizations/financial-privacy-foundation",
+  },
+  {
+    name: "Shielded Labs",
+    path: "/zcash-organizations/shielded-labs",
+  },
+  {
+    name: "Valar Group",
+    path: "/zcash-organizations/valar-group",
+  },
+  {
+    name: "Zcash Labs",
+    path: "/zcash-organizations/zcash-labs",
+  },
+  {
+    name: "CoinHolder Directed Retroactive Grants",
+    path: "/zcash-organizations/coinholder-directed-retroactive-grants",
+  },
+  {
+    name: "Sovright",
+    path: "/zcash-organizations/sovright",
+  },
+  {
+    name: "Obscura Labs",
+    path: "/zcash-organizations/obscura-labs",
+  },
+  {
+    name: "Zingo Labs",
+    path: "/zcash-organizations/zingo-labs",
+  },
+  {
+    name: "Brand",
+    path: "/zcash-organizations/brand",
+    icon: BrandIcon,
+  },
+  {
+    name: "ZKAV Club",
+    path: "/zcash-organizations/zkav",
+    icon: "zkav-club.png",
+  },
+];
+
 export const navigations: Array<NavigationItem> = [
+  {
+    name: "Learn Zcash",
+    label: "Learn Zcash",
+    links: [
+      { name: "Zcash Tech", path: "/zcash-tech", icon: Cpu },
+      { name: "Privacy Tools", path: "/privacy-tools", icon: PrivacyShield },
+      { name: "Visualizer", path: "/visualizer", icon: BsPlay },
+      { name: "Research", path: "/research", icon: FlaskConical },
+    ],
+  },
   {
     name: "Using Zcash",
     label: "Use Zcash",
@@ -122,7 +200,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/zallet-quick-reference-guide",
       },
       {
-        name: "Metamask Snap",
+        name: "MetaMask Snap",
         path: "/using-zcash/metamask-snap",
       },
       {
@@ -202,6 +280,13 @@ export const navigations: Array<NavigationItem> = [
     label: "Ecosystem",
     links: [
       {
+        name: "Zcash Organizations",
+        label: "Organizations",
+        path: "/zcash-organizations",
+        icon: Building2,
+        links: organizationLinks,
+      },
+      {
         name: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
       },
@@ -224,6 +309,11 @@ export const navigations: Array<NavigationItem> = [
         newTab: true,
       },
       {
+        name: "Community Building",
+        path: "/zcash-community/building",
+        icon: Users,
+      },
+      {
         name: "Community Projects",
         path: "/zcash-community/community-projects",
       },
@@ -234,6 +324,11 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zcash Media",
         path: "/zcash-community/zcash-media",
+      },
+      {
+        name: "Zero to Zero Knowledge",
+        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
+        icon: GraduationCap,
       },
       {
         name: "ZCAP",
@@ -279,6 +374,11 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/free2z-live",
       },
       {
+        name: "ZKAV Club",
+        path: "/zfav-club/guides-for-creators",
+        icon: AudioVideo,
+      },
+      {
         name: "Keystone Zodl (Zashi)",
         path: "/guides/keystone-zashi",
       },
@@ -289,6 +389,11 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Nym VPN",
         path: "/guides/nym-vpn",
+      },
+      {
+        name: "Nym Mixnet Wallet Setup",
+        path: "/guides/nym-mixnet-wallet-setup",
+        icon: "/Logo/nym.svg",
       },
       {
         name: "Using ZEC in DeFi",
@@ -400,75 +505,12 @@ export const navigations: Array<NavigationItem> = [
     ],
   },
   {
-    name: "Zcash Organizations",
-    label: "Organizations",
-    links: [
-      {
-        name: "ZODL",
-        path: "/zcash-organizations/ZODL",
-      },
-      {
-        name: "Electric Coin Company",
-        path: "/zcash-organizations/electric-coin-company",
-      },
-      {
-        name: "Zcash Foundation",
-        path: "/zcash-organizations/zcash-foundation",
-      },
-      {
-        name: "Zcash Community Grants",
-        path: "/zcash-organizations/zcash-community-grants",
-      },
-      {
-        name: "Financial Privacy Foundation",
-        path: "/zcash-organizations/financial-privacy-foundation",
-      },
-      {
-        name: "Shielded Labs",
-        path: "/zcash-organizations/shielded-labs",
-      },
-      {
-        name: "Valar Group",
-        path: "/zcash-organizations/valar-group",
-      },
-      {
-        name: "Zcash Labs",
-        path: "/zcash-organizations/zcash-labs",
-      },
-      {
-        name: "CoinHolder Directed Retroactive Grants",
-        path: "/zcash-organizations/coinholder-directed-retroactive-grants",
-      },
-      {
-        name: "Sovright",
-        path: "/zcash-organizations/sovright",
-      },
-      {
-        name: "Obscura Labs",
-        path: "/zcash-organizations/obscura-labs",
-      },
-      {
-        name: "Zingo Labs",
-        path: "/zcash-organizations/zingo-labs",
-      },
-      {
-        name: "Brand",
-        path: "/zcash-organizations/brand",
-        icon: BrandIcon,
-      },
-      {
-        name: "ZKAV Club",
-        path: "/zcash-organizations/zkav",
-        icon: "zkav-club.png",
-      },
-    ],
-  },
-  {
     name: "Data",
     label: "Network",
     icon: LayoutDashboard,
     links: [
       { name: "Ecosystem Dashboard", path: "/dashboard", icon: LayoutDashboard },
+      { name: "Chain State Explorer", path: "/chain-stats", icon: Activity },
       {
         name: "Protocol Parameters",
         path: "/protocol-parameters",
@@ -489,6 +531,13 @@ export const navigations: Array<NavigationItem> = [
       { name: "Consensus", path: "/visualizer/consensus", icon: Blocks },
       { name: "Hash Function", path: "/visualizer/hash-function", icon: Hash },
       { name: "Zcash Keys", path: "/visualizer/zcash-key", icon: KeyRound },
+      { name: "Network Upgrades", path: "/start-here/network-upgrades" },
+      { name: "NU7", path: "/start-here/network-upgrades" },
+      { name: "Ironwood", path: "/zcash-tech/ironwood" },
+      { name: "NU6.2", path: "/zcash-tech/nu6-2" },
+      { name: "NU6.1", path: "/zcash-tech/nu6-1" },
+      { name: "NU6", path: "/zcash-tech/nu6" },
+      { name: "NU5", path: "/zcash-tech/nu5" },
     ],
   },
   {
@@ -527,11 +576,6 @@ export const navigations: Array<NavigationItem> = [
     icon: SiHomeassistant,
   },
   {
-    name: "Visualizer",
-    path: "/visualizer",
-    icon: BsPlay,
-  },
-  {
     name: "Sitemap",
     path: "/sitemap",
     icon: Map,
@@ -540,11 +584,6 @@ export const navigations: Array<NavigationItem> = [
     name: "Visual Identity",
     path: "/visual-identity",
     icon: Gem,
-  },
-  {
-    name: "Research",
-    path: "/research",
-    icon: BookOpenText,
   },
 ];
 
@@ -579,6 +618,10 @@ export const socialMedia = [
 export type MenuSection = { title: string; items: string[] };
 
 export const menuSections: Record<string, MenuSection[]> = {
+  "Learn Zcash": [
+    { title: "Understand the protocol", items: ["Zcash Tech", "Research"] },
+    { title: "Explore and protect", items: ["Visualizer", "Privacy Tools"] },
+  ],
   "Using Zcash": [
     {
       title: "Get started",
@@ -606,7 +649,7 @@ export const menuSections: Record<string, MenuSection[]> = {
     },
     {
       title: "Tools",
-      items: ["Tools", "Metamask Snap", "Zallet Quick Reference Guide", "Testnet"],
+      items: ["Tools", "MetaMask Snap", "Zallet Quick Reference Guide", "Testnet"],
     },
   ],
   "Zcash Community": [
@@ -618,8 +661,13 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Community Blogs",
         "Community Projects",
         "Zcash Global Ambassadors",
+        "Community Building",
         "Cypherpunk Zero NFT",
       ],
+    },
+    {
+      title: "Organizations",
+      items: ["Zcash Organizations"],
     },
     {
       title: "Media & events",
@@ -630,6 +678,7 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Zcash Engineering Office Hours",
         "Zcon Archive",
         "Zcon Vozes Archive",
+        "Zero to Zero Knowledge",
       ],
     },
     {
@@ -640,7 +689,7 @@ export const menuSections: Record<string, MenuSection[]> = {
   Data: [
     {
       title: "Live data",
-      items: ["Ecosystem Dashboard", "Protocol Parameters"],
+      items: ["Ecosystem Dashboard", "Chain State Explorer", "Protocol Parameters"],
     },
     {
       title: "Explore the network",
@@ -653,6 +702,10 @@ export const menuSections: Record<string, MenuSection[]> = {
     {
       title: "Cryptography",
       items: ["Hash Function", "Zcash Keys"],
+    },
+    {
+      title: "Network upgrades",
+      items: ["Network Upgrades", "NU7", "Ironwood", "NU6.2", "NU6.1", "NU6", "NU5"],
     },
   ],
   Guides: [
@@ -679,6 +732,7 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Zkool Multisig",
         "Ywallet FROST Demo",
         "Nym VPN",
+        "Nym Mixnet Wallet Setup",
         "Viewing Key Transaction Export",
         "Zero-Knowledge vs Decoys",
       ],
@@ -693,6 +747,7 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Avalanche RedBridge",
         "ShapeShift Zcash",
         "Free2z Live",
+        "ZKAV Club",
       ],
     },
     {

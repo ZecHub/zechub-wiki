@@ -187,4 +187,6 @@ export type ShieldedTransactionDatum = {
   sapling_filter: number;
   orchard: number;
   orchard_filter: number;
+  ironwood?: number;
+  ironwood_filter?: number;
 };

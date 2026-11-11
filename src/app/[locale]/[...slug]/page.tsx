@@ -84,6 +84,7 @@ import { rewriteIronwoodGuide } from "@/lib/pageOverrides/ironwoodGuide";
 import { rewriteIndexerBenchmark } from "@/lib/pageOverrides/indexerBenchmarkGuide";
 import { rewriteHeartwoodGuide } from "@/lib/pageOverrides/heartwoodGuide";
 import { rewriteCreatorsTipsGuide } from "@/lib/pageOverrides/creatorsTipsGuide";
+import { rewriteZcashMediaGuide } from "@/lib/pageOverrides/zcashMediaGuide";
 import { rewriteHackathonBuildersGuide } from "@/lib/pageOverrides/hackathonBuildersGuide";
 import { rewriteGalleryPage, rewriteInfographicsPage } from "@/lib/pageOverrides/galleryPages";
 import GlossaryHub from "@/components/Hubs/GlossaryHub";
@@ -100,7 +101,6 @@ import {
   getLocalizedFileContentCached,
   getRootCached,
   getAllMarkdownRecursively,
-  getSiteFolders,
   getMenuTitlesCached,
 } from "@/lib/authAndFetch";
 import {
@@ -121,6 +121,7 @@ import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
+import { getLiveHero } from "@/lib/liveHero";
 import {
   RESEARCH_SERIES,
   getResearchSeries,
@@ -131,10 +132,15 @@ import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import MdxComponents from "@/components/MdxComponents/MdxComponent";
+import MdxReady from "@/components/MdxReady";
+import { visit, SKIP } from "unist-util-visit";
 import { serialize } from "next-mdx-remote/serialize";
+import { stripFrontmatter } from "@/lib/stripFrontmatter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import { visit, SKIP } from "unist-util-visit";
+import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
 
 // Defense-in-depth: content markdown is rendered via rehypeRaw (raw HTML
 // passthrough) with no allow-list sanitizer, so a malicious content-repo change
@@ -5889,6 +5895,8 @@ export default async function Page(props: {
   if (slug.length === 0) return notFound();
   if (slug[0] === ".well-known") return null;
 
+  const liveHero = getLiveHero(slug[0]);
+
   // Server-side dictionary load so the research index/series chrome renders in
   // the active locale (the surrounding page is a server component).
   const dict = (await getDictionary(locale)) as Record<string, any>;
@@ -5931,15 +5939,9 @@ export default async function Page(props: {
 
   try {
     if (isResearchIndex) {
-      const topLevel = await getRootCached(urlRoot).catch(() => []);
-      let seriesArticles: string[] = [];
-      for (const series of RESEARCH_SERIES) {
-        try {
-          const found = await getAllMarkdownRecursively(series.contentDir);
-          seriesArticles = seriesArticles.concat(found);
-        } catch {}
-      }
-
+      const topLevel = await getRootCached(urlRoot);
+      // Series cards come from RESEARCH_SERIES. Their article trees are only
+      // needed on the individual series pages, not on this index.
       const nonSeriesRoots = topLevel.filter(
         (p: string) => !isResearchSeriesPath(p),
       );
@@ -5965,7 +5967,7 @@ export default async function Page(props: {
         }),
       );
 
-      roots = [...topLevel, ...seriesArticles];
+      roots = nonSeriesRoots;
 
       return (
         <MdxContainer
@@ -6068,23 +6070,7 @@ export default async function Page(props: {
       const seriesName = slug[1];
       const series = getResearchSeries(seriesName);
       const basePath = `site/Research/${seriesName}`;
-      const collectArticles = async (path: string): Promise<string[]> => {
-        try {
-          const items = await getSiteFolders(path).catch(() => []);
-          let mds: string[] = [];
-          for (const item of items) {
-            if (item.endsWith(".md")) mds.push(item);
-            else if (!item.includes(".") && !item.endsWith(".md")) {
-              const sub = await collectArticles(item);
-              mds = mds.concat(sub);
-            }
-          }
-          return mds;
-        } catch {
-          return [];
-        }
-      };
-      const articlePaths = await collectArticles(basePath);
+      const articlePaths = await getAllMarkdownRecursively(basePath);
       await Promise.all(
         articlePaths.map(async (filePath) => {
           try {
@@ -6113,6 +6099,7 @@ export default async function Page(props: {
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
+          liveHero={liveHero}
           {...(heroImage ? { heroImage } : {})}
         >
           <div className="px-2 pb-8">
@@ -6170,6 +6157,9 @@ export default async function Page(props: {
       markdown = md;
     }
   } catch (e) {
+    // Listing failures belong to Next's default error boundary; optional
+    // thumbnail failures are handled separately above.
+    if (isResearchIndex || isResearchSeries) throw e;
     console.error("Failed to fetch and parse .md file: ", e);
     markdown = null;
     roots = [];
@@ -6422,6 +6412,9 @@ export default async function Page(props: {
   if (slug.join("/") === "using-zcash/creators-and-tips" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteCreatorsTipsGuide(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-community/zcash-media" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZcashMediaGuide(processedMarkdown);
+  }
   if (slug.join("/") === "glossary-and-faqs/zechub-hackathon-builders-guide" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHackathonBuildersGuide(processedMarkdown);
   }
@@ -6558,6 +6551,7 @@ export default async function Page(props: {
           showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
         }
         roots={roots}
+        liveHero={liveHero}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
         breadcrumbs={breadcrumbTrail}
       >
@@ -6738,6 +6732,7 @@ export default async function Page(props: {
           showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
         }
         roots={roots}
+        liveHero={liveHero}
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.

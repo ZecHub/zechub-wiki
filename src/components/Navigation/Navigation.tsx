@@ -2,7 +2,7 @@
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations, menuSections, socialNav } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useId, useLayoutEffect, useState, useRef } from "react";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import ZecPrice from "./ZecPrice";
@@ -20,6 +20,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Code,
+  Lightbulb,
   Menu,
   Moon,
   Search,
@@ -135,7 +136,7 @@ const getTranslatedLabel = (
     "Buying ZEC": t.navigation?.usingZcash?.buyingZec || "Buying ZEC",
     Faucets: t.navigation?.usingZcash?.faucets || "Faucets",
     Wallets: t.navigation?.usingZcash?.wallets || "Wallets",
-    "Metamask Snap": t.navigation?.usingZcash?.metamaskSnap || "Metamask Snap",
+    "MetaMask Snap": t.navigation?.usingZcash?.metamaskSnap || "MetaMask Snap",
     Exchanges: t.navigation?.usingZcash?.exchanges || "Exchanges",
     "Block Explorers":
       t.navigation?.usingZcash?.blockExplorers || "Block Explorers",
@@ -372,6 +373,62 @@ const getTranslatedLabel = (
 };
 const ROW =
   "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/5 dark:hover:text-white";
+// Keeps an open panel inside the viewport: on narrow windows a dropdown that
+// starts at its trigger can run past the screen edge. Shifts it back in, and
+// flips a nested flyout to the other side when there is no room on its side.
+const VIEWPORT_MARGIN = 8;
+function useKeepInViewport(ref: React.RefObject<HTMLElement | null>, open: boolean, flip = false) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!open || !el) return;
+    const place = () => {
+      Object.assign(el.style, { translate: "", insetInlineStart: "", insetInlineEnd: "", top: "" });
+      const vw = document.documentElement.clientWidth;
+      const outside = (r: DOMRect) => r.left < VIEWPORT_MARGIN || r.right > vw - VIEWPORT_MARGIN;
+      if (flip && outside(el.getBoundingClientRect())) {
+        // Open on the other side of the parent item instead...
+        Object.assign(el.style, { insetInlineEnd: "auto", insetInlineStart: "100%" });
+        if (outside(el.getBoundingClientRect())) {
+          // ...or, when neither side has room (narrow windows), below it.
+          Object.assign(el.style, { insetInlineStart: "0", top: "100%" });
+        }
+      }
+      const r = el.getBoundingClientRect();
+      let dx = 0;
+      if (r.right > vw - VIEWPORT_MARGIN) dx = vw - VIEWPORT_MARGIN - r.right;
+      if (r.left + dx < VIEWPORT_MARGIN) dx = VIEWPORT_MARGIN - r.left;
+      if (dx) el.style.translate = `${dx}px 0`;
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [ref, open, flip]);
+}
+// Closes an open menu when the pointer goes down outside it (a tap does not
+// focus the trigger on every browser, so blur alone is not enough).
+function useCloseOnOutsidePointer(
+  ref: React.RefObject<HTMLElement | null>,
+  open: boolean,
+  close: () => void,
+) {
+  const closeRef = useRef(close);
+  closeRef.current = close;
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) closeRef.current();
+    };
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, [ref, open]);
+}
+// Hover opens menus for a mouse only: on touch, the emulated mouseenter
+// followed by the click would open and close the menu in one tap.
+const isMouse = (e: React.PointerEvent) => e.pointerType === "mouse";
+// Moves focus to the first link of a panel opened with ArrowDown.
+function focusFirstIn(el: HTMLElement | null) {
+  el?.querySelector<HTMLElement>("a[href], button")?.focus();
+}
 // ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
 const FlyoutLinkItem = ({
   link,
@@ -386,6 +443,19 @@ const FlyoutLinkItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flyoutRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const focusFirstRef = useRef(false);
+  useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }, []);
+  useKeepInViewport(flyoutRef, flyoutOpen, true);
+  useCloseOnOutsidePointer(itemRef, flyoutOpen, () => setFlyoutOpen(false));
+  useEffect(() => {
+    if (flyoutOpen && focusFirstRef.current) focusFirstIn(flyoutRef.current);
+    focusFirstRef.current = false;
+  }, [flyoutOpen]);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -419,12 +489,37 @@ const FlyoutLinkItem = ({
   // Has nested children — render with flyout opening to the left
   return (
     <div
+      ref={itemRef}
       className="relative"
-      onMouseEnter={openFlyout}
-      onMouseLeave={closeFlyout}
+      onPointerEnter={(e) => isMouse(e) && openFlyout()}
+      onPointerLeave={(e) => isMouse(e) && closeFlyout()}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFlyoutOpen(false);
+      }}
+      onKeyDown={(e) => {
+        // Escape closes this flyout only, not the menu around it.
+        if (e.key === "Escape" && flyoutOpen) {
+          e.preventDefault();
+          e.stopPropagation();
+          setFlyoutOpen(false);
+          triggerRef.current?.focus();
+        }
+      }}
     >
-      <div
-        className={`flex w-full cursor-pointer items-center justify-between gap-2 ${ROW}`}
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-expanded={flyoutOpen}
+        onClick={() => openFlyout()}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            focusFirstRef.current = true;
+            if (flyoutOpen) focusFirstIn(flyoutRef.current);
+            else openFlyout();
+          }
+        }}
+        className={`flex w-full cursor-pointer items-center justify-between gap-2 text-start ${ROW}`}
       >
         <span className="flex items-center gap-2.5">
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
@@ -436,13 +531,14 @@ const FlyoutLinkItem = ({
           )}
           {label}
         </span>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-50" />
-      </div>
+        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-50 rtl:rotate-0" />
+      </button>
       {flyoutOpen && (
         <div
-          className="absolute right-full top-0 z-[60] min-w-[250px] rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-xl dark:border-white/10 dark:bg-slate-900"
-          onMouseEnter={openFlyout}
-          onMouseLeave={closeFlyout}
+          ref={flyoutRef}
+          className="absolute end-full top-0 z-[60] min-w-[250px] rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-xl dark:border-white/10 dark:bg-slate-900"
+          onPointerEnter={(e) => isMouse(e) && openFlyout()}
+          onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
           {link.links.map((child, idx) => (
             <Link
@@ -456,9 +552,9 @@ const FlyoutLinkItem = ({
                 rel: "noopener noreferrer",
               })}
             >
-              {(child.icon || matchIcons(parentItem.name, child.name)) && (
+              {(child.icon || matchIcons(link.name, child.name) || matchIcons(parentItem.name, child.name)) && (
                 <Icon
-                  icon={child.icon ?? matchIcons(parentItem.name, child.name)}
+                  icon={child.icon ?? matchIcons(link.name, child.name) ?? matchIcons(parentItem.name, child.name)}
                   size={16}
                   className="shrink-0 opacity-80"
                 />
@@ -569,7 +665,7 @@ const GroupedLinks = ({
     </>
   );
 };
-// ─── Primary dropdown (hover) ────────────────────────────────────────────────
+// ─── Primary dropdown (hover, or click / keyboard) ───────────────────────────
 const Dropdown = ({
   label,
   children,
@@ -580,21 +676,80 @@ const Dropdown = ({
   centered?: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const focusFirstRef = useRef(false);
+  // A mouse that hovered the trigger already opened the menu: the click that
+  // usually follows must not close it again.
+  const openedByHoverRef = useRef(false);
+  const panelId = useId();
+  // Centered panels position themselves with a CSS translate, so only the
+  // left-aligned ones are shifted back into view.
+  useKeepInViewport(panelRef, isOpen && !centered);
+  useCloseOnOutsidePointer(rootRef, isOpen, () => setIsOpen(false));
+  useEffect(() => {
+    if (isOpen && focusFirstRef.current) focusFirstIn(panelRef.current);
+    focusFirstRef.current = false;
+    if (!isOpen) openedByHoverRef.current = false;
+  }, [isOpen]);
   return (
     <div
+      ref={rootRef}
       className={centered ? "" : "relative"}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onPointerEnter={(e) => {
+        if (!isMouse(e)) return;
+        if (!isOpen) openedByHoverRef.current = true;
+        setIsOpen(true);
+      }}
+      onPointerLeave={(e) => isMouse(e) && setIsOpen(false)}
+      onKeyDown={(e) => {
+        if (e.key === "Escape" && isOpen) {
+          // React's root is the document, so stopPropagation does not stop the
+          // header's own Escape listener there: it checks defaultPrevented.
+          e.preventDefault();
+          e.stopPropagation();
+          setIsOpen(false);
+          buttonRef.current?.focus();
+        }
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsOpen(false);
+      }}
     >
-      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? panelId : undefined}
+        onClick={() => {
+          if (openedByHoverRef.current) {
+            openedByHoverRef.current = false;
+            return;
+          }
+          setIsOpen((open) => !open);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            focusFirstRef.current = true;
+            if (isOpen) focusFirstIn(panelRef.current);
+            else setIsOpen(true);
+          }
+        }}
+        className="flex items-center gap-1 whitespace-nowrap text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+      >
         {label}
         <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          aria-hidden="true"
+          className={`h-4 w-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
-      </div>
+      </button>
       {isOpen && (
         <div
-          className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "left-0"}`}
+          id={panelId}
+          ref={panelRef}
+          className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "start-0"}`}
         >
           <div className="grid w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
             {children}
@@ -1081,6 +1236,7 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
 // Two levels: the first screen lists the sections, quick shortcuts and preferences; tapping a section
 // opens its pages on a second screen with a Back button.
 const DRAWER_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  "Learn Zcash": Lightbulb,
   "Using Zcash": Wallet,
   "Zcash Community": Users,
   Guides: BookOpen,
@@ -1251,8 +1407,21 @@ const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
             <ColorThemePicker />
           </div>
         </div>
-        <div className="[&_.nav-donate-btn]:w-full [&_a]:w-full [&_a]:py-3">
-          <DonationBtn />
+        <div className="grid grid-cols-2 gap-2">
+          <div className="[&_.nav-donate-btn]:w-full [&_a]:w-full [&_a]:py-3">
+            <DonationBtn />
+          </div>
+          <Link
+            prefetch
+            href="https://zechub.store/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className={`${shortcutCls} justify-center py-3`}
+          >
+            <ShoppingBag aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+            {t.navigation?.shop || "Shop"}
+          </Link>
         </div>
         <div className="grid grid-cols-4 gap-2">
           {socialNav.map(({ name, url, icon }) => (
@@ -1276,7 +1445,7 @@ const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
 // ─── Top tabs ─────────────────────────────────────────────────────────────────
 // A short row of menus for the long tail of pages. The home page already
 // highlights the main sections, so only the menus with many pages live here.
-const TAB_MENUS = ["Using Zcash", "Zcash Community", "Guides", "Data"];
+const TAB_MENUS = ["Learn Zcash", "Using Zcash", "Zcash Community", "Guides", "Data"];
 
 // Icon-only shortcut in the top bar: label tooltip, current-page state and an
 // "opens in a new tab" hint for external links.
@@ -1463,6 +1632,14 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             <div className="hidden min-[1180px]:flex items-center space-x-2 md:space-x-3">
               <ZecPrice />
               <LanguageSwitcher />
+            </div>
+            {/* Donate and Shop: always one click away on wide screens. Narrower screens
+                have them in the menu drawer and the footer. */}
+            <div className="hidden min-[1320px]:flex items-center gap-1">
+              <DonationBtn />
+              <IconTab href="https://zechub.store/" label="Shop" external>
+                <ShoppingBag aria-hidden="true" className="h-5 w-5" />
+              </IconTab>
             </div>
             <SearchBar
               openSearch={openSearch}

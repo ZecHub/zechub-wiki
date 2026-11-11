@@ -17,6 +17,8 @@ import {
 import ChartHeader from "../../ChartHeader";
 import ChartContainer from "../ChartContainer";
 
+type Network = "mainnet" | "testnet";
+
 type TotalSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
@@ -25,19 +27,21 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
   const [totalSupplyData, setTotalSupplyData] = useState<totalSupply[]>([]);
+  const [network, setNetwork] = useState<Network>("mainnet");
   const fontSize = useResponsiveFontSize();
   const isMobile = useInMobile();
 
-  // Fetch data once (no artificial delay)
   useEffect(() => {
     const controller = new AbortController();
     const fetchSupplyData = async () => {
       setLoading(true);
       try {
-        const supply = await getTotalSupplyData(
-          DATA_URL.totalSupplyUrl,
-          controller.signal
-        );
+        const mainUrl = DATA_URL.totalSupplyUrl;
+        const url =
+          network === "mainnet"
+            ? mainUrl
+            : mainUrl.replace("/zcash/", "/zcash/testnet/");
+        const supply = await getTotalSupplyData(url, controller.signal);
         setTotalSupplyData(supply || []);
       } catch (err) {
         console.error("Error fetching total supply data:", err);
@@ -47,7 +51,7 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
     };
     fetchSupplyData();
     return () => controller.abort();
-  }, []);
+  }, [network]);
 
   const extractYear = useCallback((dateStr: string) => {
     const parsed = new Date(dateStr);
@@ -63,7 +67,6 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
     return ["all", ...years];
   }, [totalSupplyData, extractYear]);
 
-  // Memoized filtered data → instant year switching
   const filteredData = useMemo(() => {
     return selectedYear === "all"
       ? totalSupplyData
@@ -72,11 +75,38 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
 
   const latestSupply = filteredData[filteredData.length - 1]?.supply || 0;
 
+  const chartTitle = `${network === "testnet" ? "Testnet " : ""}Total Supply Overview`;
+
   return (
     <ErrorBoundary fallback={"Failed to load Total Supply Chart"}>
-      <ChartHeader title="Total Supply Overview">
+      <ChartHeader title={chartTitle}>
         <div className="flex flex-wrap gap-16 items-center">
-          {/* Year Dropdown */}
+          <div className="relative flex rounded-full bg-slate-800/60 p-0.5 text-xs font-medium">
+            <div
+              className={`absolute top-0.5 bottom-0.5 rounded-full transition-all duration-200 shadow-sm ${
+                network === "mainnet"
+                  ? "bg-emerald-700 left-0.5 right-[calc(50%+2px)]"
+                  : "bg-amber-700 left-[calc(50%+2px)] right-0.5"
+              }`}
+            />
+            <button
+              onClick={() => setNetwork("mainnet")}
+              className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${
+                network === "mainnet" ? "text-white" : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              Mainnet
+            </button>
+            <button
+              onClick={() => setNetwork("testnet")}
+              className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${
+                network === "testnet" ? "text-white" : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              Testnet
+            </button>
+          </div>
+
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
             <DefaultSelect

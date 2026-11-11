@@ -1,6 +1,6 @@
 'use client';
 
-import QRCode from 'qrcode.react';
+import { QRCodeSVG as QRCode } from 'qrcode.react';
 import useClipboardFeedback from '@/hooks/useClipboardFeedback';
 
 export default function ZcashUAZArt() {
