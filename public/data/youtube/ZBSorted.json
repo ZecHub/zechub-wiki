@@ -205,12 +205,12 @@
     {
       "title": "Noir Wallet do zero: instalar, blindar e enviar ZEC",
       "video_id": "csSW8_3pBUw",
-      "views": 442
+      "views": 443
     },
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 430
+      "views": 433
     },
     {
       "title": "A evolução da privacidade em criptomoedas: de Zerocoin a Zcash",
@@ -563,14 +563,14 @@
       "views": 192
     },
     {
-      "title": "Desenvolvendo soluções para a liberdade financeira",
-      "video_id": "gQ3w46Pwf-M",
-      "views": 188
-    },
-    {
       "title": "Como usar ZEC como garantia na RHEA Finance",
       "video_id": "p6rLMOPPyBk",
-      "views": 188
+      "views": 190
+    },
+    {
+      "title": "Desenvolvendo soluções para a liberdade financeira",
+      "video_id": "gQ3w46Pwf-M",
+      "views": 189
     },
     {
       "title": "Quanto dinheiro você tem?",
@@ -838,19 +838,19 @@
       "views": 142
     },
     {
-      "title": "Intent to Connect | Zcash Soundtrack",
-      "video_id": "mdizWdKz57Q",
-      "views": 141
-    },
-    {
       "title": "LiveZEC: doações em Zcash na sua live (OBS) | Tutorial completo",
       "video_id": "NmfEKZtjQjY",
-      "views": 141
+      "views": 142
     },
     {
       "title": "Como Fazer Bridge de ZEC Para Solana",
       "video_id": "78NKlajioL8",
-      "views": 140
+      "views": 142
+    },
+    {
+      "title": "Intent to Connect | Zcash Soundtrack",
+      "video_id": "mdizWdKz57Q",
+      "views": 141
     },
     {
       "title": "Novo Ouro Digital?",
@@ -1440,7 +1440,7 @@
     {
       "title": "Shielded Zcash na Ledger via Vizor | Zec Insider",
       "video_id": "CSrllq6chbg",
-      "views": 87
+      "views": 88
     },
     {
       "title": "A Ilusão do Controle",
@@ -2553,6 +2553,11 @@
       "views": 40
     },
     {
+      "title": "Privacidade Não É Sumir do Mundo. É Saber o Que Você Compartilha",
+      "video_id": "3CCfHqcF5NQ",
+      "views": 40
+    },
+    {
       "title": "Vitalik pediu uma IA offline no Android. Alguém fez.",
       "video_id": "yefgJ3m3GjY",
       "views": 40
@@ -2665,11 +2670,6 @@
     {
       "title": "Protocol Study #6: Proving Without Revealing (zk-SNARKs in Zcash)",
       "video_id": "rcCHNY6A6zo",
-      "views": 38
-    },
-    {
-      "title": "Privacidade Não É Sumir do Mundo. É Saber o Que Você Compartilha",
-      "video_id": "3CCfHqcF5NQ",
       "views": 38
     },
     {
@@ -3003,6 +3003,11 @@
       "views": 32
     },
     {
+      "title": "NU7, Tachyon e PIR na Vizor | Zec Insider",
+      "video_id": "tY--OxflKsM",
+      "views": 32
+    },
+    {
       "title": "Jack Gavigan - JP Morgan e Desintermediação LEGENDADO",
       "video_id": "ig1IVBq8y4k",
       "views": 31
@@ -3060,11 +3065,6 @@
     {
       "title": "Michael Explica Por Que Privacidade Importa",
       "video_id": "g3hyyK1X820",
-      "views": 31
-    },
-    {
-      "title": "NU7, Tachyon e PIR na Vizor | Zec Insider",
-      "video_id": "tY--OxflKsM",
       "views": 31
     },
     {
@@ -3373,6 +3373,11 @@
       "views": 25
     },
     {
+      "title": "NEAR Intents publicava seu shielded address sem você ver",
+      "video_id": "GxfYySITctQ",
+      "views": 25
+    },
+    {
       "title": "Shielded Call | ZSA e DevFund",
       "video_id": "5paJh6Tcm0Q",
       "views": 24
@@ -3410,11 +3415,6 @@
     {
       "title": "Balaji: Bitcoin é reserva, Zcash é dinheiro cifrado",
       "video_id": "WZE-q_qspWM",
-      "views": 24
-    },
-    {
-      "title": "NEAR Intents publicava seu shielded address sem você ver",
-      "video_id": "GxfYySITctQ",
       "views": 24
     },
     {
@@ -3675,6 +3675,11 @@
     {
       "title": "Bitcoin para instituições, Zcash para indivíduos",
       "video_id": "mxY-uD5aj6Q",
+      "views": 20
+    },
+    {
+      "title": "NU7, Zebra Ándale e Coinholder Grants Q4 | Zec Insider",
+      "video_id": "6aSzhQQxEOU",
       "views": 20
     },
     {
@@ -4038,6 +4043,11 @@
       "views": 12
     },
     {
+      "title": "NSA, Bitcoin sujo e a revolução cripto‐anarquista.",
+      "video_id": "Eda3LX7g4Vk",
+      "views": 12
+    },
+    {
       "title": "Vitor - Tornado Cash & Privacidade",
       "video_id": "yY4Zab-gfWI",
       "views": 11
@@ -4075,11 +4085,6 @@
     {
       "title": "A Importância da Experiencia",
       "video_id": "BKAhWl7K6mk",
-      "views": 11
-    },
-    {
-      "title": "NSA, Bitcoin sujo e a revolução cripto‐anarquista.",
-      "video_id": "Eda3LX7g4Vk",
       "views": 11
     },
     {
@@ -4236,11 +4241,6 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
-    },
-    {
-      "title": "NU7, Zebra Ándale e Coinholder Grants Q4 | Zec Insider",
-      "video_id": "6aSzhQQxEOU",
-      "views": 2
     },
     {
       "title": "A IA é o Apocalipse?",
