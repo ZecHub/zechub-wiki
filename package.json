@@ -73,7 +73,6 @@
     "eslint-config-next": "^16.4.5",
     "express-session": "^1.18.0",
     "flowbite": "^4.0.2",
-    "flowbite-react": "^0.12.17",
     "framer-motion": "14.9.1",
     "gitlog": "^5.1.0",
     "google-map-react": "^2.2.1",
@@ -123,7 +122,8 @@
     "tailwind-merge": "^3.7.0",
     "tailwindcss": "^4.1.9",
     "web-push": "^3.6.7",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "react-leaflet": "5.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
@@ -158,7 +158,10 @@
     "react-dom": "19.3.1",
     "react-is": "19.3.1",
     "sharp": "0.35.5",
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.10",
+    "undici": ">=7.30.1",
+    "image-size": ">=2.0.3",
+    "zod": ">=4.6.6"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "eslintConfig": {
