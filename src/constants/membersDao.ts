@@ -1,6 +1,20 @@
 import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
+    {
+    imgUrl: "content-images/returniflost.webp",
+    name: "returniflost",
+    description: "co-founder @terpnetofficial",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/loaf0bred",
+        icon: socialIcons.x,
+      },
+    ],
+    zcashAddress: "u",
+    role: "Member",
+  },
   {
     imgUrl: "/speedfox.png",
     name: "Speedfox",
