@@ -1,52 +1,18 @@
 [
   {
-    "date": "2026-10-20",
-    "generatedAt": "2026-10-20T15:20:41.393Z",
-    "filesScanned": 744,
-    "serious": 144,
+    "date": "2026-11-12",
+    "generatedAt": "2026-11-12T14:11:31.742Z",
+    "filesScanned": 751,
+    "serious": 37,
     "totals": {
-      "broken": 89,
-      "dns": 15,
-      "blocked": 51,
-      "redirect": 594,
-      "route": 39,
-      "asset": 1,
-      "timeout": 5,
-      "error": 10,
-      "invalid": 0
-    }
-  },
-  {
-    "date": "2026-10-20",
-    "generatedAt": "2026-10-20T15:59:03.282Z",
-    "filesScanned": 744,
-    "serious": 144,
-    "totals": {
-      "broken": 89,
-      "dns": 15,
-      "blocked": 47,
-      "redirect": 602,
-      "route": 39,
-      "asset": 1,
-      "timeout": 5,
-      "error": 8,
-      "invalid": 0
-    }
-  },
-  {
-    "date": "2026-10-28",
-    "generatedAt": "2026-10-28T14:02:12.395Z",
-    "filesScanned": 746,
-    "serious": 16,
-    "totals": {
-      "broken": 13,
-      "dns": 0,
-      "blocked": 63,
-      "redirect": 615,
-      "route": 2,
-      "asset": 1,
-      "timeout": 1,
-      "error": 7,
+      "broken": 34,
+      "dns": 3,
+      "blocked": 243,
+      "redirect": 441,
+      "route": 0,
+      "asset": 0,
+      "timeout": 0,
+      "error": 12,
       "invalid": 0
     }
   }
