@@ -87,7 +87,7 @@ export const searcher: Searcher[] = [
     url: "/using-zcash/memos",
   },
   {
-    name: "Metamask Snap",
+    name: "MetaMask Snap",
     desc: "Use Zcash shielded transactions directly within MetaMask via the Zcash Snap.",
     url: "/using-zcash/metamask-snap",
   },

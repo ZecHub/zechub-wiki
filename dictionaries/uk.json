@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "Мемо",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "Поповнення мобільного",
     "Newsletter": "Інформаційний бюлетень",
     "Nym VPN": "Nym VPN",
@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Варіанти використання Zcash",
     "Zcash Tech": "Технології Zcash",
     "Privacy Tools": "Інструменти приватності",
-    "Zcash Social Media": "Соціальні мережі Zcash",
     "Glossary & FAQ's": "Глосарій і FAQ",
     "Use Zcash": "Використовуйте Zcash",
     "Block Explorers": "Блок-експлорери",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Мережа Akash Zcashd",
-    "CoinHolder Directed Retroactive Grants": "Ретроактивні гранти, спрямовані CoinHolder"
+    "CoinHolder Directed Retroactive Grants": "Ретроактивні гранти, спрямовані CoinHolder",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Повне дослідження",
@@ -164,7 +166,11 @@
     "searchTryDifferent": "Спробуйте коротші запити, синоніми або інші слова.",
     "searchSuggested": "Рекомендовані сторінки",
     "searchResultsLabel": "Результати",
-    "skipToContent": "Перейти до вмісту"
+    "skipToContent": "Перейти до вмісту",
+    "languageSearch": "Пошук мов",
+    "languageSuggested": "Рекомендовані",
+    "languageAll": "Усі мови",
+    "languageNone": "Мову не знайдено"
   },
   "navigation": {
     "wallets": "Гаманці",
@@ -186,7 +192,7 @@
       "buyingZec": "Купівля ZEC",
       "faucets": "Крани",
       "wallets": "Гаманці",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "Біржі",
       "blockExplorers": "Оглядачі блокчейна",
       "shieldedPools": "Shielded Pools",
@@ -235,7 +241,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Бренд",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "Ретроактивні гранти, спрямовані CoinHolder",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Платіжний процесор Zgo",
@@ -270,7 +282,7 @@
     "heroTitle": "Ласкаво просимо до ZecHub",
     "heroSubtitle": "Освітній хаб із відкритим вихідним кодом для Zcash",
     "heroDescription": "Дізнавайтеся про технологію приватності Zcash, досліджуйте інтерактивні візуалізатори та робіть внесок в екосистему",
-    "description": "ZecHub — це освітній хаб для криптовалюти Zcash (ZEC), що розвивається спільнотою. Zcash — це цифрова валюта, що забезпечує стійкі до цензури, безпечні й приватні платежі. Блокчейн Zcash використовує надзвичайно просунуті 'verifiable' zk-snarks, які не потребують Trusted Setup після оновлення мережі NU5 у 2022 році.",
+    "description": "ZecHub — це освітній центр Zcash (ZEC), керований спільнотою. Zcash — це децентралізована цифрова валюта, створена для стійких до цензури, безпечних і приватних платежів. Zcash використовує передову криптографію з нульовим розголошенням, щоб уможливити транзакції, дійсність яких можна перевірити без розкриття конфіденційної фінансової інформації. У 2026 році було представлено екранований пул Ironwood, формально верифікований за допомогою математичних доказів, перевірених машиною; він гарантує цілісність балансу. Project Tachyon розробляє запропонований екранований протокол наступного покоління, покликаний суттєво покращити масштабованість приватних платежів, зменшити зростання стану валідаторів і наблизити Zcash до повністю постквантово безпечної приватності.",
     "featuredSection": "Рекомендовані ресурси",
     "latestUpdates": "Останні оновлення",
     "getInvolved": "Долучайтеся",
@@ -307,11 +319,6 @@
         "description": "Глобальні амбасадори Zcash — це лідери спільноти, які присвятили себе просуванню впровадження та освіти у сфері криптовалюти, орієнтованої на приватність, у всьому світі. Кожен проєкт амбасадора зосереджений на підвищенні обізнаності та залученості у відповідних регіонах.",
         "link": "Познайомитися з амбасадорами"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Підпишіться, використовуючи свій Unified Address, щоб отримувати shielded доступ до оновлень екосистеми Zcash і статистики мережі прямо у свій гаманець!",
-        "link": "Підписатися"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z — це соціальна платформа на базі Zcash. Із peer-to-peer пожертвами, програмою розподілу доходів, розширеними творчими інструментами та величезною глобальною онлайн-спільнотою.",
@@ -324,9 +331,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Приєднатися до хакатону",
-        "description": "Створюйте, співпрацюйте та запускайте впливові ідеї разом зі спільнотою Zcash. Змагайтеся у п’яти інноваційних напрямах: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions та Accounting for financial workflows. 25 травня - 15 липня 2026. На вас чекає призовий фонд 25 ZEC.",
-        "mainLink": "Приєднатися до хакатону"
+        "title": "Архів хакатонів ZecHub",
+        "description": "Хакатон ZecHub 2026 завершився. Ознайомтеся з проєктами, поданими в категоріях Інфраструктура, Ігри, FROST, Zcash Login та Бухгалтерія.",
+        "mainLink": "Переглянути проєкти"
+      },
+      "visualizer": {
+        "description": "Інтерактивні навчальні інструменти для розуміння технології приватності Zcash, інфраструктури та доказів із нульовим розголошенням",
+        "link": "Відкрити Візуалізатор",
+        "title": "Візуалізатор ZecHub"
+      },
+      "zecMap": {
+        "description": "ZecMap — це підтримувана спільнотою карта світу з продавцями, сервісами та банкоматами, які приймають Zcash. Знайдіть місце, де можна витратити ZEC поруч із вами, або додайте відомий вам бізнес, щоб сприяти зростанню реального впровадження.",
+        "link": "Відвідати ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -452,8 +469,13 @@
     "download": "Завантажити",
     "visitWebsite": "Відвідати вебсайт",
     "filters": "Фільтри",
-    "showNavigation": "Показати навігацію",
     "close": "Закрити",
+    "clearAll": "Скинути все",
+    "showWallets": "Показати гаманці: {count}",
+    "showWallet": "Показати 1 гаманець",
+    "walletCount": "Гаманців: {count}",
+    "walletCountOne": "1 гаманець",
+    "activeCount": "активно: {count}",
     "savedReview": "Ми зберегли ваш відгук!",
     "errorGettingLikes": "Помилка отримання вподобайок:",
     "errorUpdatingRating": "Помилка оновлення рейтингу:"
@@ -580,7 +602,8 @@
           "transactions24h": "Транзакції за 24 год",
           "shieldedTx24h": "Екрановані TX (24 год)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Орк"
+          "orchardAbbrev": "Орк",
+          "shieldedValue": "Екранована вартість"
         },
         "zcashChart": {
           "title": "Аналітичні графіки",
@@ -966,12 +989,12 @@
       "configure": "Налаштувати",
       "runZainod": "Запустити zainod",
       "installingZingoCli": "Встановлення Zingo CLI",
-      "zingoCliInfo": "це клієнт lightwalletd-proxy командного рядка, створений на Rust. Релізи наразі є попередніми — цей посібник охоплює компіляцію з вихідного коду.",
-      "buildZingoCli": "Зібрати Zingo CLI",
+      "zingoCliInfo": "— це легкий гаманець командного рядка для Zcash. v7 типово збирає транспорт Nym mixnet і постачає nym-proxy разом із виконуваним файлом. У цьому посібнику описано компіляцію з вихідного коду.",
+      "buildZingoCli": "Зібрати Zingo CLI (v7)",
       "running": "Запуск",
-      "startZingoCliDefault": "Запустити Zingo CLI (типово)",
-      "startZingoCliCustom": "Запустити Zingo CLI (власне налаштування)",
-      "zingoSyncWarning": "⚠ Це виконає повну синхронізацію під час першого запуску, подібно до lightwalletd.",
+      "startZingoCliDefault": "Запустити Zingo CLI (типово, офлайн)",
+      "startZingoCliCustom": "Запустити Zingo CLI (онлайн через локальний індексатор)",
+      "zingoSyncWarning": "⚠ Новий сеанс працює офлайн, доки ви не надасте згоду (--online, --remember-online або --server). Проксі Nym визначається за допомогою --nym-proxy, $ZINGO_NYM_PROXY, виконуваного файлу поруч із zingo-cli або PATH. Синхронізація типово продовжується після вершини ланцюга. Перший онлайн-запуск виконує повну синхронізацію. Щоб зібрати без mixnet (лише офлайн): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Наступні кроки та ресурси",
       "readyToBuild": "Готові створювати?",
       "officialDocumentation": "Офіційна документація",
@@ -982,7 +1005,17 @@
       "zcashCommunityForum": "Форум спільноти Zcash",
       "githubIssues": "Питання GitHub",
       "troubleshootingGuide": "Посібник з усунення несправностей",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Обладнання",
+      "compareColLanguage": "Мова",
+      "compareColPlatforms": "Платформи",
+      "compareColRole": "Роль",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Програмне забезпечення",
+      "compareColStatus": "Статус",
+      "compareFootnote": "zcashd досяг кінця життєвого циклу на блоці 3417100 18 липня 2026 року — нові проєкти мають розроблятися на основі наведеного вище програмного забезпечення.",
+      "compareLead": "Стек Zcash складається з кількох окремих інструментів. Скористайтеся цією таблицею, щоб визначити, який саме потрібен вашому проєкту, а тоді зверніться до відповідного посібника нижче.",
+      "compareTitle": "Порівняння вузлів та клієнтів"
     },
     "governanceHowto": {
       "pageTitle": "Управління ZecHub DAO",
@@ -1037,7 +1070,17 @@
         "Organizations": "Організації",
         "Guides": "Посібники",
         "Use Zcash": "Використовуйте Zcash",
-        "Ecosystem": "Екосистема"
+        "Ecosystem": "Екосистема",
+        "Contribute": "Зробити внесок",
+        "Glossary & FAQs": "Глосарій і FAQ",
+        "Privacy Tools": "Інструменти конфіденційності",
+        "Research": "Дослідження",
+        "Start Here": "Почніть тут",
+        "Tutorials": "Посібники",
+        "Use Cases": "Варіанти використання",
+        "Zcash Tech": "Технології Zcash",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Соціальні мережі"
       },
       "links": {
         "Homepage": "Головна сторінка",
@@ -1063,7 +1106,7 @@
         "Payment Request URIs": "URI запитів платежу",
         "Payment Processors": "Платіжні процесори",
         "Recovering Funds": "Відновлення коштів",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "Форум спільноти",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
@@ -1092,7 +1135,7 @@
       "formalVerificationSeriesDescription": "Серія з трьох частин, що пояснює формальну верифікацію з перших принципів, розглядає помилку коректності Orchard у 2026 році та показує, як Ironwood відповів на неї машинно перевіреним математичним доказом.",
       "newSeriesBadge": "Нова серія"
     },
-    "browseSidebar": "Переглядайте статті за допомогою бічної панелі ліворуч 👈",
+    "browseSidebar": "Відкрийте навігацію, щоб переглянути статті в цьому розділі.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Global Ambassadors",
       "description": "Zcash Global Ambassadors — це лідери спільноти, які присвячують себе просуванню впровадження та освіти у сфері криптовалют, орієнтованих на приватність, у всьому світі. Кожен проєкт амбасадора зосереджений на підвищенні обізнаності та залученості у своєму регіоні.",
@@ -1212,5 +1255,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Освітній хаб з відкритим кодом для Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Почніть тут",
+      "sub": "Почніть свою навчальну подорож із Zcash"
+    },
+    "guides": {
+      "title": "Керівництва",
+      "sub": "Структурована документація для розуміння протоколів Zcash"
+    },
+    "zcash-tech": {
+      "title": "Технології Zcash",
+      "sub": "Технології, що лежать в основі Zcash"
+    },
+    "organizations": {
+      "title": "Організації",
+      "sub": "Структура · Управління · Учасники"
+    },
+    "privacy-tools": {
+      "title": "Інструменти конфіденційності",
+      "sub": "Практичні рішення для конфіденційності"
+    },
+    "research": {
+      "title": "Дослідження",
+      "sub": "Вивчення нульового розголошення · Конфіденційності · Криптографії"
+    },
+    "glossary": {
+      "title": "Глосарій і FAQ",
+      "sub": "Визначення, відповіді, ясність."
+    },
+    "contribute": {
+      "title": "Зробити внесок",
+      "sub": "Пишіть · Перекладайте · Проєктуйте · Розробляйте"
+    },
+    "tutorials": {
+      "title": "Посібники",
+      "sub": "Дивіться та повторюйте"
+    }
   }
 }

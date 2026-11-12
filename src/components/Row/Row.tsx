@@ -2,7 +2,6 @@
 import React from "react";
 import { Card } from "../Card/Card";
 import type { StaticImageData } from "next/image";
-import noDataImage from "@/assets/nodata.svg";
 import zcashImage from "@/assets/brand/Zcash/SVG/Primary Brandmark/Brandmark Yellow.svg";
 import zcashBrasilImage from "@/assets/brand/ZcashBrasil/SVG/ZcashBRYellow.svg";
 import zechubImage from "@/assets/brand/ZecHub/SVG/ZecHubBlue.svg";
@@ -10,6 +9,7 @@ import eccImage from "@/assets/brand/ECC/SVG/ECCBlackSignature.svg";
 import walletsImage from "@/assets/brand/Wallets/Zodl_Logo_Black.png";
 import espanolImage from "@/assets/brand/ZcashEspanol/ZcashEspanol.png";
 import nigeriaImage from "@/assets/brand/ZcashNigeria/ZcashNigeria_Black.png";
+import ukraineImage from "@/assets/brand/ZcashUkraine/Zcash_Ukraine.jpg";
 
 type Project = {
   title: string;
@@ -77,9 +77,9 @@ const projects: Project[] = [
   {
     title: "Zcash Ukraine",
     description:
-      "A community-led hub bridging Zcash to Turkey, empowering users with financial privacy through localized education, grassroots activism for global sovereignty.",
-    link: "/downloads/brand/zcashUkraine.zip",
-    imageUrl: noDataImage,
+      "A community-led hub bridging Zcash to Ukraine, empowering users with financial privacy through localized education, grassroots activism for global sovereignty.",
+    link: ukraineImage.src,
+    imageUrl: ukraineImage,
     size: 200,
   },
   {

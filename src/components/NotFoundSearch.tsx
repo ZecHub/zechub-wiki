@@ -2,6 +2,8 @@
 
 import {
   useMemo,
+  useEffect,
+  useRef,
   useState,
   type ChangeEvent,
   type KeyboardEvent,
@@ -38,6 +40,8 @@ export default function NotFoundSearch({ searchItems }: NotFoundSearchProps) {
   const router = useRouter();
   const { t } = useLanguage();
   const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const resultRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
   const trimmedQuery = query.trim();
   const hasQuery = trimmedQuery.length > 0;
@@ -58,7 +62,19 @@ export default function NotFoundSearch({ searchItems }: NotFoundSearchProps) {
     ? t.common?.searchResultsLabel || "Results"
     : t.common?.searchSuggested || "Suggested pages";
 
+  const listKey = list.map((item) => item.url).join("\n");
+  useEffect(() => {
+    setActiveIndex(-1);
+  }, [query, listKey]);
+
+  useEffect(() => {
+    if (activeIndex >= 0) {
+      resultRefs.current[activeIndex]?.scrollIntoView?.({ block: "nearest" });
+    }
+  }, [activeIndex]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setActiveIndex(-1);
     setQuery(e.target.value);
   };
 
@@ -68,10 +84,23 @@ export default function NotFoundSearch({ searchItems }: NotFoundSearchProps) {
     // Let IME candidate confirmation finish without opening a result.
     if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
 
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      if (!list.length) return;
+      e.preventDefault();
+      setActiveIndex((index) => {
+        if (index < 0) return e.key === "ArrowDown" ? 0 : list.length - 1;
+        return (index + (e.key === "ArrowDown" ? 1 : -1) + list.length) % list.length;
+      });
+      return;
+    }
+    if (e.key === "Escape") {
+      setActiveIndex(-1);
+      return;
+    }
     if (e.key !== "Enter") return;
     e.preventDefault();
-    const first = list[0];
-    if (first) router.push(first.url);
+    const selected = list[activeIndex] ?? list[0];
+    if (selected) router.push(selected.url);
   };
 
   return (
@@ -91,20 +120,28 @@ export default function NotFoundSearch({ searchItems }: NotFoundSearchProps) {
           "Search by page title, topic, or path. Use arrow keys to choose, Enter to open."}
       </p>
 
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {activeIndex >= 0 && list[activeIndex]
+          ? `${activeIndex + 1} / ${list.length}: ${list[activeIndex].name}`
+          : ""}
+      </p>
+
       {list.length > 0 ? (
         <>
           <h2 className="mt-8 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             {heading}
           </h2>
           <ul className="mt-3 flex flex-col gap-1.5">
-            {list.map((item) => {
+            {list.map((item, index) => {
               const section = pathSectionLabel(item.url);
 
               return (
                 <li key={item.url}>
                   <Link
                     href={item.url}
-                    className="block rounded-xl outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500"
+                    ref={(element) => { resultRefs.current[index] = element; }}
+                    aria-current={index === activeIndex ? "true" : undefined}
+                    className={`block rounded-xl outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500 ${index === activeIndex ? "ring-2 ring-blue-500 bg-blue-50 dark:bg-slate-800" : ""}`}
                   >
                     <div className="flex items-start gap-3 rounded-xl border border-transparent bg-white px-3 py-3 text-left transition hover:border-slate-200 dark:bg-slate-900 dark:hover:border-slate-600 dark:hover:bg-slate-800/90 sm:px-4">
                       <div className="min-w-0 flex-1">

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Network } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { VisualizerFooter } from "../Footer";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
@@ -13,9 +13,13 @@ interface ConsensusVisualizerProps {
   onComplete?: () => void;
   autoStart?: boolean;
 }
-export const ConsensusVisualizer = ({ onComplete, autoStart = false }: ConsensusVisualizerProps) => {
+
+export const ConsensusVisualizer = ({
+  onComplete,
+  autoStart = false,
+}: ConsensusVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(autoStart); 
+  const [isPlaying, setIsPlaying] = useState(autoStart);
   const [isAnimating, setIsAnimating] = useState(true);
 
   const stage = STAGES[currentStage];
@@ -51,14 +55,14 @@ export const ConsensusVisualizer = ({ onComplete, autoStart = false }: Consensus
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   // Completion logic
   useEffect(() => {
     if (currentStage === STAGES.length - 1 && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, OTHER_STAGES_INTERVAL);
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, onComplete]);
@@ -78,47 +82,22 @@ export const ConsensusVisualizer = ({ onComplete, autoStart = false }: Consensus
   }, [isPlaying, currentStage, goToNext]);
 
   return (
-    <div className="flex flex-col ">
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b  border-slate-200 dark:border-slate-600 mt-12"
-      >
-        <div className="flex items-center justify-center gap-3">
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="w-10 h-10 rounded-full gradient-gold hidden imd:flex items-center justify-center"
-          >
-            <span className="text-xl font-bold text-primary-foreground">Z</span>
-          </motion.div>
-          <h1 className="text-2xl font-bold text-foreground">
-            Zcash Decentralized Consensus
-          </h1>
-        </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Interactive guide to Zcash privacy technology
-        </p>
-      </motion.header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+    <VisualizerCanvas
+      title="Zcash Decentralized Consensus"
+      description="Interactive guide to Zcash privacy technology"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Network className="w-10 h-10 text-emerald-400" />}
+    >
+      <div className="container mx-auto p-8">
         <StageContent stage={stage} isAnimating={isAnimating} />
-      </main>
-
-      {/* Controls Footer */}
-      <VisualizerFooter
-        stages={STAGES}
-        currentStage={currentStage}
-        isPlaying={isPlaying}
-        onRestart={restart}
-        onPrevious={goToPrevious}
-        goToNext={goToNext}
-        goToPrevious={goToPrevious}
-        onPause={() => setIsPlaying(false)}
-        onPlay={() => setIsPlaying(true)}
-      />
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };

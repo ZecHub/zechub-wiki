@@ -1,4 +1,4 @@
-import { Spinner } from "flowbite-react";
+import { Spinner } from "@/components/UI/Spinner";
 import { forwardRef, ReactElement } from "react";
 import { ResponsiveContainer } from "recharts";
 

@@ -1,8 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import createMDX from "@next/mdx";
-import rehypePlugins from "rehype-prism-plus";
-import remarkGfm from "remark-gfm";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -76,6 +74,26 @@ const nextConfig = {
         destination: "/:locale/using-zcash/centralized-swaps",
         permanent: true,
       },
+      {
+        source: "/zcash-social-media",
+        destination: "/zero-to-zero-knowledge",
+        permanent: true,
+      },
+      {
+        source: "/zcash-social-media/:path*",
+        destination: "/zero-to-zero-knowledge/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:locale/zcash-social-media",
+        destination: "/:locale/zero-to-zero-knowledge",
+        permanent: true,
+      },
+      {
+        source: "/:locale/zcash-social-media/:path*",
+        destination: "/:locale/zero-to-zero-knowledge/:path*",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
@@ -83,6 +101,15 @@ const nextConfig = {
       {
         source: "/start-here/network-upgrades",
         destination: "/zcash-evolution",
+      },
+      {
+        // Every page advertises https://zechub.wiki/rss.xml (<link
+        // rel="alternate">, the feed's own atom:link, the dashboard's RSS
+        // button), but the feed route lives under [locale]/ and the proxy
+        // matcher skips paths with a dot, so the unprefixed English URL never
+        // reached it and answered 404. Serve it from the English route.
+        source: "/rss.xml",
+        destination: "/en/rss.xml",
       },
       {
         // Raw-markdown endpoint for LLM/crawler discovery: any content page is
@@ -125,30 +152,9 @@ const nextConfig = {
     //     still runs. Treat XSS via a sanitizer/nonce as separate follow-up work.
     //   * Preview deploys inject the vercel.live toolbar (violates script/connect/
     //     frame) — monitor a PRODUCTION deploy, or filter those out.
-    // To ENFORCE: rename the header to "Content-Security-Policy" (+ /embed carve-out).
-    const cspReportOnly = [
-      "default-src 'self'",
-      "base-uri 'self'",
-      "object-src 'none'",
-      "form-action 'self'",
-      "frame-ancestors 'self'",
-      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://i.ytimg.com https://i.postimg.cc https://*.basemaps.cartocdn.com https://img.shields.io https://upload.wikimedia.org https://ipfs.daodao.zone",
-      "font-src 'self' data:",
-      // raw.githubusercontent: the Namada protocol-parameters page fetches JSON
-      // client-side (candidate to proxy same-origin later).
-      "connect-src 'self' https://raw.githubusercontent.com",
-      "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
-      // free2z / jsdelivr: hackathon submission demo videos (user-initiated).
-      "media-src 'self' https://free2z.cash https://cdn.jsdelivr.net",
-      "worker-src 'self' blob:",
-      "manifest-src 'self'",
-      "report-uri /api/csp-report",
-      "report-to csp-endpoint",
-    ].join("; ");
+    // Enforcing nonce-based CSP is set in src/proxy.ts.
 
-    const baseline = [
+        const baseline = [
       // Send only the ORIGIN (scheme+host, never the path) to cross-origin
       // destinations, and nothing on an HTTPS->HTTP downgrade. We do NOT use
       // no-referrer: YouTube's embed player refuses to play (PlayabilityStatus
@@ -171,10 +177,8 @@ const nextConfig = {
         key: "Strict-Transport-Security",
         value: "max-age=63072000; includeSubDomains; preload",
       },
-      // Report-only CSP (policy built above). Blocks nothing yet — reports
-      // violations to the console and to /api/csp-report so we can watch a
-      // preview before flipping to the enforcing "Content-Security-Policy".
-      { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
+      // Enforcing nonce-based CSP is set in src/proxy.ts (per-request nonce).
+      // Do not also set it here — a static header would override or conflict.
       // Declares the endpoint named by the report-to directive (Reporting API).
       { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
     ];
@@ -183,7 +187,8 @@ const nextConfig = {
       {
         // Clickjacking protection everywhere EXCEPT the embeddable widget under
         // /embed (and its locale-prefixed form /xx/embed), which is designed to
-        // be framed by third-party sites.
+        // be framed by third-party sites. CSP frame-ancestors for /embed is
+        // handled in src/proxy.ts.
         source: "/((?!(?:[a-z]{2}/)?embed(?:/|$)).*)",
         headers: [{ key: "X-Frame-Options", value: "DENY" }],
       },
@@ -199,17 +204,11 @@ const nextConfig = {
 const withMDX = createMDX({
   options: {
     mdxExtensions: ["mdx", "md"],
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypePlugins],
+    remarkPlugins: ["remark-gfm"],
+    rehypePlugins: ["rehype-prism-plus"],
   },
 });
 
-// removes the bad key injected by old @next/mdx
-const mdxConfig = withMDX(nextConfig);
-if (mdxConfig.experimental?.turbo) {
-  delete mdxConfig.experimental.turbo;
-}
-
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-export default withNextIntl(mdxConfig);
+export default withNextIntl(withMDX(nextConfig));

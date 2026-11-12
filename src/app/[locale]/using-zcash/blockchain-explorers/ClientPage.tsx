@@ -1,15 +1,11 @@
 "use client";
 import ExplorerDirectoryCard from "@/app/[locale]/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
 import { blockchainExplorers } from "@/constants/blockchainExplorers";
-import { blockchainExplorersIt } from "@/constants/blockchainExplorers.it";
 import { useLanguage } from "@/context/LanguageContext";
-import { useLocale } from "next-intl";
 
 const BlockchainExplorersClient = () => {
   const { t } = useLanguage();
-  const locale = useLocale();
-  const byLocale: Record<string, typeof blockchainExplorers> = { it: blockchainExplorersIt };
-  const explorers = byLocale[locale] ?? blockchainExplorers;
+  const explorers = blockchainExplorers;
   const title = t?.pages?.usingZcash?.blockchainExplorers?.title ?? "Blockchain Explorers";
   const description =
     t?.pages?.usingZcash?.blockchainExplorers?.description ??
@@ -35,6 +31,11 @@ const BlockchainExplorersClient = () => {
         {explorers.map((itm, i) => (
           <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
+            thumbnailImageLight={itm.thumbnailImageLight}
+            thumbnailImageDark={itm.thumbnailImageDark}
+            badge={itm.badge}
+            badgeTone={itm.badgeTone}
+            credit={itm.credit}
             description={itm.description}
             title={itm.title}
             url={itm.url}

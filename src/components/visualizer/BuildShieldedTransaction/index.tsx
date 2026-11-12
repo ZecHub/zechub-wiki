@@ -1,19 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
-import { Shield, Lock } from "lucide-react";
+import { Shield } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import {
-  STAGES,
-  OverviewStage,
-  TheNoteStage,
-  SpendDescriptionStage,
-  OutputDescriptionStage,
-  PedersenStage,
-  ZkProofStage,
   BindingSignatureStage,
   BuilderStage,
+  OutputDescriptionStage,
+  OverviewStage,
+  PedersenStage,
+  SpendDescriptionStage,
+  STAGES,
+  TheNoteStage,
+  ZkProofStage,
 } from "./BuildShieldedTransactionContent";
 
 const STAGE_INTERVAL = 14000; // 14 seconds per stage
@@ -25,15 +25,24 @@ interface BuildShieldedTransactionVisualizerProps {
 
 const renderStageContent = (stageId: string) => {
   switch (stageId) {
-    case "overview":           return <OverviewStage />;
-    case "the-note":           return <TheNoteStage />;
-    case "spend-description":  return <SpendDescriptionStage />;
-    case "output-description": return <OutputDescriptionStage />;
-    case "pedersen":           return <PedersenStage />;
-    case "zk-proof":           return <ZkProofStage />;
-    case "binding-signature":  return <BindingSignatureStage />;
-    case "builder":            return <BuilderStage />;
-    default:                   return null;
+    case "overview":
+      return <OverviewStage />;
+    case "the-note":
+      return <TheNoteStage />;
+    case "spend-description":
+      return <SpendDescriptionStage />;
+    case "output-description":
+      return <OutputDescriptionStage />;
+    case "pedersen":
+      return <PedersenStage />;
+    case "zk-proof":
+      return <ZkProofStage />;
+    case "binding-signature":
+      return <BindingSignatureStage />;
+    case "builder":
+      return <BuilderStage />;
+    default:
+      return null;
   }
 };
 
@@ -102,51 +111,33 @@ export const BuildShieldedTransactionVisualizer = ({
   }, [isPlaying, currentStage, goToNext]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border mt-12"
-      >
-        <div className="flex items-center justify-center gap-3">
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Shield className="w-10 h-10 text-emerald-400" />
-          </motion.div>
-          <h1 className="text-2xl font-bold text-foreground">
-            Shielded Transaction Visualizer
-          </h1>
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          >
-            <Lock className="w-6 h-6 text-purple-400" />
-          </motion.div>
-        </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Build and understand a Zcash shielded transaction — step by step
-        </p>
-      </motion.header>
+    <VisualizerCanvas
+      title="Shielded Transaction Visualizer"
+      description="Build and understand a Zcash shielded transaction — step by step"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Shield className="w-10 h-10 text-emerald-400" />}
+    >
+      <motion.div
+        animate={{ rotate: [0, 10, -10, 0] }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      ></motion.div>
 
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+      <div className="w-full max-w-6xl mx-auto md:py-12 space-y-8 relative top-40">
         {renderStageContent(stage.id)}
-      </main>
-
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onRestart={restart}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-        />
-      </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };
 

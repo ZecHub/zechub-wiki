@@ -58,7 +58,7 @@ export const CONTENT_SECTIONS: ContentSectionDef[] = [
   { category: "Privacy_Tools", title: "Privacy Tools", icon: ShieldCheck },
   { category: "Research", title: "Research", icon: FlaskConical },
   { category: "Glossary_and_FAQs", title: "Glossary & FAQs", icon: BookMarked },
-  { category: "Zcash_Social_Media", title: "Social Media", icon: Share2 },
+  { category: "Zero_to_Zero_Knowledge", title: "Zero to Zero Knowledge", icon: GraduationCap },
   { category: "ZFAV_Club", title: "ZFAV Club", icon: Clapperboard },
   { category: "tutorials", title: "Tutorials", icon: GraduationCap },
   { category: "contribute", title: "Contribute", icon: HeartHandshake },
@@ -215,7 +215,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Buying ZEC", href: "/using-zcash/buying-zec" },
       { label: "Faucets", href: "/using-zcash/faucets" },
       { label: "Wallets", href: "/wallets" },
-      { label: "Metamask Snap", href: "/using-zcash/metamask-snap" },
+      { label: "MetaMask Snap", href: "/using-zcash/metamask-snap" },
       { label: "Exchanges", href: "/dex" },
       {
         label: "Block Explorers",

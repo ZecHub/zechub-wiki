@@ -1,6 +1,19 @@
+export type NetworkRollout = {
+  network: "Testnet" | "Mainnet";
+  date: string;
+} & (
+  | { state: "activated"; activationHeight: number }
+  | { state: "tentative"; activationHeight?: never }
+);
+
 export interface NetworkUpgrade {
   id: string;
   name: string;
+  title?: string;
+  networkRollout?: NetworkRollout[];
+  sources?: { title: string; href: string }[];
+  notice?: { message: string; guidance: string; links: { title: string; href: string }[] };
+  comparison?: { label: string; before: string; after: string; explanation: string };
   subtitle: string;
   date: string;
   blockHeight: number | null;
@@ -289,40 +302,66 @@ export const networkUpgrades: NetworkUpgrade[] = [
     ],
     privacyLevel: 96,
     privacyLabel: "Audited Ironwood Pool",
-    status: "current",
+    status: "past",
     eraColor: "28 90% 42%",
   },
   {
     id: "nu7",
+    notice: {
+      message: "Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Remaining Sprout funds are unspendable.Review any recovery options promptly.",
+      guidance: "Community-maintained guidance for supported wallets and recovery material; recovery is not guaranteed.",
+      links: [
+        { title: "ZecHub wallet recovery guide", href: "https://zechub.wiki/using-zcash/recovering-funds" },
+        { title: "ZIP 2003 v4 transaction retirement", href: "https://zips.z.cash/zip-2003" },
+      ],
+    },
     name: "NU7",
-    subtitle: "Faster Blocks and Shielded Assets Era",
-    date: "TBD",
-    blockHeight: null,
+    title: "NU7 — Shorter block intervals and network sustainability",
+    subtitle: "Faster Blocks & Network Sustainability",
+    date: "November 5 2026",
+    // Official rollout sources rechecked November 5, 2026; Mainnet height is set.
+    networkRollout: [
+      { network: "Testnet", state: "activated", date: "October 4, 2026", activationHeight: 4465026 },
+      { network: "Mainnet", state: "activated", date: "November 5, 2026", activationHeight: 3543405 },
+    ],
+    blockHeight: 3543405,
+    comparison: {
+      label: "Target block spacing",
+      before: "75 seconds",
+      after: "25 seconds",
+      explanation:
+        "Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.",
+    },
     description:
-      "NU7 is a planned future Zcash network upgrade, separate from and after Ironwood. Its activation height has not yet been set. Candidate ZIPs include 25-second block spacing, Zcash Shielded Assets, version 6 transactions, memo bundles, and network sustainability changes.",
+      "The current NU7 reduces target block spacing to 25 seconds, adds shielded action limits and the Network Sustainability Mechanism, removes 60% of transaction fees from circulation, and disables v4 transactions.",
     features: [
-      "25-second target block spacing candidate",
-      "Zcash Shielded Assets (custom private tokens) candidate",
-      "Version 6 transaction format candidate",
-      "Memo bundles for improved metadata candidate",
-      "Network sustainability mechanisms such as fee burn and issuance smoothing",
-      "Zebra node upgrade path for major consensus changes",
+      "Shielded action limits and 25-second target block spacing (ZIP 218)",
+      "Network Sustainability Mechanism (ZIP 237)",
+      "Removal of 60% of transaction fees from circulation (ZIP 235)",
+      "Disables v4 transactions; v5 and v6 remain valid (ZIP 2003)",
+      "Funding-stream recipient operational address update (ZIP 2008)",
     ],
     zips: [
-      { number: 218, title: "25-second Block Target Spacing" },
-      { number: 226, title: "Transfer and Burn of Zcash Shielded Assets" },
-      { number: 227, title: "Issuance of Zcash Shielded Assets" },
-      { number: 229, title: "Version 6 Transaction Format" },
-      { number: 231, title: "Memo Bundles" },
-      { number: 233, title: "Network Sustainability Mechanism: Removing Funds From Circulation" },
-      { number: 234, title: "Network Sustainability Mechanism: Issuance Smoothing" },
+      { number: 259, title: "Deployment of the NU7 Network Upgrade (Draft)" },
+      { number: 200, title: "Network Upgrade Mechanism" },
+      { number: 201, title: "Network Peer Management mechanisms apply" },
+      { number: 207, title: "Funding Streams (revision 2)" },
+      { number: 214, title: "Consensus Rules for a Zcash Dev Fund (revision 3)" },
+      { number: 218, title: "Consensus rules for block spacing and shielded action limits" },
       { number: 235, title: "Remove 60% of Transaction Fees From Circulation" },
-      { number: 2002, title: "Explicit Fees" },
-      { number: 2003, title: "Disallow version 4 transactions" },
+      { number: 237, title: "Network Sustainability Mechanism" },
+      { number: 2003, title: "Deprecate v4 transactions" },
+      { number: 2008, title: "Update to FS_FPF_ZCG_H3 address list" },
     ],
-    privacyLevel: 100,
-    privacyLabel: "Programmable Privacy",
-    status: "future",
-    eraColor: "0 0% 45%",
+    sources: [
+      {
+        title: "Zcash Foundation NU7 rollout update",
+        href: "https://forum.zcashcommunity.com/t/zf-engineering-update-21-september-5-october-2026/58059",
+      },
+    ],
+    privacyLevel: 98,
+    privacyLabel: "Sustainable Privacy",
+    status: "current",
+    eraColor: "265 70% 52%",
   },
 ];

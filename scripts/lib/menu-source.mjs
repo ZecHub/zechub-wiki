@@ -61,6 +61,15 @@ export const MENU_BRANDS = new Set([
   // unchanged, treating the product name as indivisible; that is the
   // translator's judgement per language, not a gap the list can close.
   "Valar Group", "Zcash Labs", "ShapeShift Zcash",
+  // The title of ZecHub's video series ("Zero to Zero Knowledge series and
+  // Zcash podcasts"), kept in English everywhere like the programme names
+  // above. Its words read as descriptive, so a translator would otherwise
+  // localise the series name itself.
+  "Zero to Zero Knowledge",
+  // A product name, written as the vendor writes it (MetaMask). Three locales
+  // had turned the label into a description ("Metamask ƒe Nɔnɔmetata",
+  // "Àdàkọ Metamask Snap"); listed so it self-maps everywhere.
+  "MetaMask Snap",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
   // "BTCPayServer Zcash Plugin" (plugin), "Fork zechub-wiki" (fork). Listing the

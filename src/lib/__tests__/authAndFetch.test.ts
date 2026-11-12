@@ -36,7 +36,7 @@ jest.mock("octokit", () => ({
 // ref reaches the cache as an ARGUMENT (and therefore as part of the cache
 // key) or is resolved inside the callback — and that distinction is the whole
 // point of the wrapper layer, because Next bypasses a nested unstable_cache.
-type CacheRec = { keyParts: string[]; calls: unknown[][] };
+type CacheRec = { keyParts: string[]; calls: unknown[][]; options?: { revalidate?: number; tags?: string[] } };
 const cacheRecs: CacheRec[] = [];
 (globalThis as unknown as { __caches: CacheRec[] }).__caches = cacheRecs;
 (globalThis as unknown as { __cacheStore: Map<string, unknown> }).__cacheStore =
@@ -48,10 +48,11 @@ const cacheRecs: CacheRec[] = [];
 // call on every request. Keyed like the real thing — key parts plus arguments —
 // and cleared between tests.
 jest.mock("next/cache", () => ({
-  unstable_cache: (fn: (...a: unknown[]) => unknown, keyParts: string[]) => {
-    const rec: { keyParts: string[]; calls: unknown[][] } = {
+  unstable_cache: (fn: (...a: unknown[]) => unknown, keyParts: string[], options: CacheRec["options"]) => {
+    const rec: CacheRec = {
       keyParts: keyParts ?? [],
       calls: [],
+      options,
     };
     (globalThis as unknown as { __caches: typeof rec[] }).__caches.push(rec);
     return (...args: unknown[]) => {
@@ -77,7 +78,9 @@ jest.mock("next/cache", () => ({
 
 jest.mock("@/lib/helpers", () => ({
   getFiles: (data: unknown) =>
-    Array.isArray(data) ? data.map((e: { path: string }) => e.path) : [],
+    Array.isArray(data)
+      ? data.filter((e: { path: string }) => e.path).map((e: { path: string }) => e.path)
+      : [],
   transformUri: (uri: string) => uri,
 }));
 
@@ -127,6 +130,7 @@ beforeEach(() => {
   // start cold or it inherits the previous test's resolved ref.
   mockGetCommit.mockResolvedValue({ data: SHA });
   mod.__resetContentRefMemo();
+  mod.__resetListingMemos();
   (globalThis as unknown as { __cacheStore: Map<string, unknown> }).__cacheStore.clear();
 });
 
@@ -514,4 +518,159 @@ describe("getFileContentCached — case-insensitive folder fallback", () => {
     // A second raw read would mean it fetched the wrong file.
     expect(mockFetch).toHaveBeenCalledTimes(1);
   });
+});
+
+
+describe.each([
+  ["getSiteFolders", "github-site-folders-v1"],
+  ["getAllMarkdownRecursively", "github-all-md-recursive-v2"],
+] as const)("%s directory caching", (method, cacheKey) => {
+  const folder = "site/Research/zcash-foundations-series";
+  const file = `${folder}/intro.md`;
+  const listing = { data: [{ type: "file", name: "intro.md", path: file }] };
+  const read = (path = folder) => mod[method](path);
+
+  it("reuses normalized paths and registers the content tag and hour TTL", async () => {
+    mockGetContent.mockResolvedValue(listing);
+    await expect(read(`/${folder}`)).resolves.toEqual([file]);
+    await expect(read(folder)).resolves.toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(1);
+    expect(mockGetContent).toHaveBeenCalledWith(expect.objectContaining({ path: folder, ref: SHA }));
+    const rec = cacheRecs.find((r) => r.keyParts[0] === cacheKey);
+    expect(rec?.options).toEqual({ revalidate: 3600, tags: ["github-content"] });
+    expect(rec?.calls).toContainEqual([folder, SHA]);
+  });
+
+  it("uses a new cache entry when the content commit changes", async () => {
+    mockGetContent.mockResolvedValue(listing);
+    await read();
+    const nextSha = "a".repeat(40);
+    mod.__resetContentRefMemo();
+    mockGetCommit.mockResolvedValue({ data: nextSha });
+    await read();
+    expect(mockGetContent).toHaveBeenCalledTimes(2);
+    expect(mockGetContent).toHaveBeenLastCalledWith(expect.objectContaining({ ref: nextSha }));
+  });
+
+  it("caches a genuine missing directory", async () => {
+    mockGetContent.mockRejectedValue(httpError(404));
+    await expect(read()).resolves.toEqual([]);
+    await expect(read()).resolves.toEqual([]);
+    expect(mockGetContent).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([403, 429, 500, 503, undefined])("retries a transient %s instead of caching an empty listing", async (status) => {
+    const error = status ? httpError(status) : new Error("network failure");
+    mockGetContent.mockRejectedValueOnce(error).mockResolvedValue(listing);
+    await expect(read()).rejects.toBe(error);
+    mod.__resetListingMemos();
+    await expect(read()).resolves.toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not retry a fresh transient within the failure TTL", async () => {
+    const error = httpError(429);
+    mockGetContent.mockRejectedValue(error);
+    await expect(read()).rejects.toBe(error);
+    await expect(read()).rejects.toBe(error);
+    expect(mockGetContent).toHaveBeenCalledTimes(1);
+  });
+
+  it("coalesces concurrent cold misses", async () => {
+    mockGetContent.mockImplementation(
+      () => new Promise((resolve) => {
+        setTimeout(() => resolve(listing), 20);
+      }),
+    );
+    const [a, b] = await Promise.all([read(), read()]);
+    expect(a).toEqual([file]);
+    expect(b).toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(1);
+  });
+
+  it("serves last-good through a transient on the uncached branch fallback", async () => {
+    mockGetCommit.mockRejectedValue(httpError(503));
+    mockGetContent.mockResolvedValueOnce(listing).mockRejectedValue(httpError(503));
+    await expect(read()).resolves.toEqual([file]);
+    await expect(read()).resolves.toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(2);
+  });
+
+  it("degrades a build rate limit outside the cache", async () => {
+    process.env.NEXT_PHASE = "phase-production-build";
+    try {
+      mockGetContent.mockRejectedValueOnce(httpError(429)).mockResolvedValue(listing);
+      await expect(read()).resolves.toEqual([]);
+      mod.__resetListingMemos();
+      await expect(read()).resolves.toEqual([file]);
+      expect(mockGetContent).toHaveBeenCalledTimes(2);
+    } finally {
+      delete process.env.NEXT_PHASE;
+    }
+  });
+
+  it("does not degrade a build server error", async () => {
+    process.env.NEXT_PHASE = "phase-production-build";
+    try {
+      mockGetContent.mockRejectedValue(httpError(500));
+      await expect(read()).rejects.toMatchObject({ status: 500 });
+    } finally {
+      delete process.env.NEXT_PHASE;
+    }
+  });
+
+  it("bypasses the cache for a mutable branch fallback", async () => {
+    mockGetCommit.mockRejectedValue(httpError(503));
+    mockGetContent.mockRejectedValueOnce(httpError(404)).mockResolvedValue(listing);
+    await expect(read()).resolves.toEqual([]);
+    await expect(read()).resolves.toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(2);
+    expect(mockGetContent).toHaveBeenLastCalledWith(expect.objectContaining({ ref: "main" }));
+  });
+
+  it("rejects dot segments before making any request", async () => {
+    await expect(read("site/Research/../private")).resolves.toEqual([]);
+    expect(mockGetCommit).not.toHaveBeenCalled();
+    expect(mockGetContent).not.toHaveBeenCalled();
+  });
+});
+
+describe("recursive article listings", () => {
+  const root = "site/Research/zcash-foundations-series";
+  const child = `${root}/chapter.1`;
+  const top = `${root}/intro.md`;
+  const nested = `${child}/article.md`;
+
+  it("preserves directories in getSiteFolders", async () => {
+    mockGetContent.mockResolvedValue({ data: [{ type: "dir", path: child }, { type: "file", path: top }] });
+    await expect(mod.getSiteFolders(root)).resolves.toEqual([child, top]);
+  });
+
+  it("discards partial results and retries the whole tree at one ref", async () => {
+    const error = httpError(503);
+    mockGetContent.mockResolvedValueOnce({ data: [
+      { type: "file", path: top }, { type: "dir", path: child },
+    ] }).mockRejectedValueOnce(error);
+    await expect(mod.getAllMarkdownRecursively(root)).rejects.toBe(error);
+    mod.__resetListingMemos();
+    mockGetContent.mockResolvedValueOnce({ data: [
+      { type: "file", path: top }, { type: "dir", path: child },
+    ] }).mockResolvedValueOnce({ data: [
+      { type: "file", path: nested }, { type: "file", path: `${child}/cover.png` },
+    ] });
+    await expect(mod.getAllMarkdownRecursively(root)).resolves.toEqual([top, nested]);
+    await expect(mod.getAllMarkdownRecursively(root)).resolves.toEqual([top, nested]);
+    expect(mockGetContent).toHaveBeenCalledTimes(4);
+    expect(mockGetCommit).toHaveBeenCalledTimes(1);
+    expect(mockGetContent.mock.calls.every(([args]) => args.ref === SHA)).toBe(true);
+  });
+});
+
+
+it.each(["getSiteFolders", "getRootCached"] as const)("%s treats a file response as a non-directory without calling the array-only helper", async (method) => {
+  const file = "site/Research/intro.md";
+  mockGetContent.mockResolvedValue({ data: { type: "file", path: file } });
+  await expect(mod[method](file)).resolves.toEqual([]);
+  await expect(mod[method](file)).resolves.toEqual([]);
+  expect(mockGetContent).toHaveBeenCalledTimes(1);
 });

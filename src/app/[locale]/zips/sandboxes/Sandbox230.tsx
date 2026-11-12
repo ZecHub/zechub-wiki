@@ -48,7 +48,7 @@ export default function Sandbox230() {
   return (
     <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
-        ZIP 230 is the v6 transaction format that bundles ZSAs (226/227), memo bundles (231), explicit fees (2002), and quantum recoverability (2005). v6 is only larger than v5 when its optional fields are actually used — toggle features to see the per-tx size.
+        ZIP 230 was withdrawn. The version 6 transaction format that activated with NU6.3 (Ironwood) on 28 July 2026 is ZIP 229, which adds the Ironwood shielded component. This sandbox models the withdrawn ZIP 230 design, whose optional bundles for ZSAs (226/227), memo bundles (231) and explicit fees (2002) are still separate draft ZIPs. Toggle features to see the per-tx size under that design.
       </SandboxDisclaim>
 
       <BaselineStrip
@@ -63,14 +63,14 @@ export default function Sandbox230() {
       <SandboxLayout
         left={
           <>
-            <SbCard title="What ZIP 230 Changes">
+            <SbCard title="What ZIP 230 Proposed">
               <BodyText>
-                ZIP 230 is the{" "}
+                ZIP 230 proposed a{" "}
                 <strong className="text-zinc-900 dark:text-zinc-100 font-semibold">v6 transaction format</strong>
-                . It's a structural envelope that adds optional bundles for ZSA transfers, ZSA issuance, asset burns, memo bundles, and explicit fees.
+                {" "}as a structural envelope with optional bundles for ZSA transfers, ZSA issuance, asset burns, memo bundles, and explicit fees.
               </BodyText>
               <BodyText className="mt-2.5">
-                A vanilla shielded send under v6 is essentially the same size as v5. The new bundles add bytes only when they're used.
+                Under that design, a vanilla shielded send is essentially the same size as v5. The new bundles add bytes only when they're used.
               </BodyText>
             </SbCard>
 

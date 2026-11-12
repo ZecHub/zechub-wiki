@@ -5507,5 +5507,285 @@
     "orchard": 178,
     "ironwood": 5592,
     "timestamp": "09/24/2026"
+  },
+  {
+    "sprout": 6,
+    "sapling": 279,
+    "orchard": 165,
+    "ironwood": 3811,
+    "timestamp": "09/25/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 498,
+    "orchard": 133,
+    "ironwood": 3573,
+    "timestamp": "09/26/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 349,
+    "orchard": 148,
+    "ironwood": 3698,
+    "timestamp": "09/27/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 282,
+    "orchard": 142,
+    "ironwood": 3285,
+    "timestamp": "09/27/2026"
+  },
+  {
+    "sprout": 12,
+    "sapling": 412,
+    "orchard": 114,
+    "ironwood": 3632,
+    "timestamp": "09/29/2026"
+  },
+  {
+    "sprout": 5,
+    "sapling": 358,
+    "orchard": 122,
+    "ironwood": 3343,
+    "timestamp": "09/29/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 228,
+    "orchard": 141,
+    "ironwood": 3061,
+    "timestamp": "09/30/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 228,
+    "orchard": 142,
+    "ironwood": 3068,
+    "timestamp": "09/30/2026"
+  },
+  {
+    "sprout": 1,
+    "sapling": 206,
+    "orchard": 107,
+    "ironwood": 2508,
+    "timestamp": "10/02/2026"
+  },
+  {
+    "sprout": 1,
+    "sapling": 189,
+    "orchard": 91,
+    "ironwood": 2417,
+    "timestamp": "10/02/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 174,
+    "orchard": 80,
+    "ironwood": 2255,
+    "timestamp": "10/03/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 188,
+    "orchard": 102,
+    "ironwood": 2547,
+    "timestamp": "10/07/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 200,
+    "orchard": 65,
+    "ironwood": 3691,
+    "timestamp": "10/08/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 165,
+    "orchard": 81,
+    "ironwood": 2816,
+    "timestamp": "10/10/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 203,
+    "orchard": 58,
+    "ironwood": 2583,
+    "timestamp": "10/11/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 198,
+    "orchard": 81,
+    "ironwood": 2456,
+    "timestamp": "10/12/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 188,
+    "orchard": 91,
+    "ironwood": 3583,
+    "timestamp": "10/12/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 197,
+    "orchard": 93,
+    "ironwood": 3847,
+    "timestamp": "10/12/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 217,
+    "orchard": 84,
+    "ironwood": 4768,
+    "timestamp": "10/13/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 249,
+    "orchard": 107,
+    "ironwood": 8593,
+    "timestamp": "10/14/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 237,
+    "orchard": 92,
+    "ironwood": 7762,
+    "timestamp": "10/14/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 182,
+    "orchard": 61,
+    "ironwood": 2860,
+    "timestamp": "10/17/2026"
+  },
+  {
+    "sprout": 1,
+    "sapling": 199,
+    "orchard": 70,
+    "ironwood": 3310,
+    "timestamp": "10/18/2026"
+  },
+  {
+    "sprout": 4,
+    "sapling": 225,
+    "orchard": 57,
+    "ironwood": 3222,
+    "timestamp": "10/19/2026"
+  },
+  {
+    "sprout": 4,
+    "sapling": 231,
+    "orchard": 62,
+    "ironwood": 2884,
+    "timestamp": "10/20/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 202,
+    "orchard": 54,
+    "ironwood": 2953,
+    "timestamp": "10/22/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 159,
+    "orchard": 59,
+    "ironwood": 16009,
+    "timestamp": "10/24/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 176,
+    "orchard": 46,
+    "ironwood": 5971,
+    "timestamp": "10/27/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 227,
+    "orchard": 56,
+    "ironwood": 6062,
+    "timestamp": "10/28/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 235,
+    "orchard": 70,
+    "ironwood": 3848,
+    "timestamp": "10/29/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 159,
+    "orchard": 98,
+    "ironwood": 5600,
+    "timestamp": "10/31/2026"
+  },
+  {
+    "sprout": 1,
+    "sapling": 193,
+    "orchard": 45,
+    "ironwood": 5677,
+    "timestamp": "11/01/2026"
+  },
+  {
+    "sprout": 2,
+    "sapling": 210,
+    "orchard": 63,
+    "ironwood": 5529,
+    "timestamp": "11/02/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 172,
+    "orchard": 61,
+    "ironwood": 2342,
+    "timestamp": "11/04/2026"
+  },
+  {
+    "sprout": 2,
+    "sapling": 216,
+    "orchard": 55,
+    "ironwood": 4466,
+    "timestamp": "11/05/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 75,
+    "orchard": 18,
+    "ironwood": 838,
+    "timestamp": "11/06/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 88,
+    "orchard": 24,
+    "ironwood": 10728,
+    "timestamp": "11/09/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 92,
+    "orchard": 29,
+    "ironwood": 7427,
+    "timestamp": "11/10/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 76,
+    "orchard": 24,
+    "ironwood": 878,
+    "timestamp": "11/11/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 86,
+    "orchard": 8,
+    "ironwood": 757,
+    "timestamp": "11/12/2026"
   }
 ]

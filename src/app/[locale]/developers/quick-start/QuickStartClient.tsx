@@ -396,13 +396,13 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v6.3.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
             />
           </>
         )}
@@ -419,13 +419,13 @@ const ZebradTab = () => {
               {qs?.manualDownload ?? "Manual Download"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v6.3.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
             />
           </>
         )}
@@ -444,13 +444,13 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v6.3.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
             />
           </>
         )}
@@ -568,9 +568,7 @@ use_color = true`}
             "is a server that provides a lightweight interface to the Zcash blockchain, designed for mobile and desktop wallets that don't need to run a full node."}
         </InfoBox>
 
-        <div
-          className="grid grid-cols-1 imd:grid-cols-2 gap-5"
-        >
+        <div className="grid grid-cols-1 imd:grid-cols-2 gap-5">
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.prerequisites ?? "Prerequisites"}</SubLabel>
             <CodeBlock
@@ -656,45 +654,38 @@ const ZainodTab = () => {
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.buildZaino ?? "Build Zaino"}</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nPATH=$PATH:~/zaino/target/release/`}
+              code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nexport PATH="$PATH:$HOME/zaino/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.configure ?? "Configure"}
             </SubLabel>
             <CodeBlock
-              code={`cd ~/zaino/zainod\nsudo nano zindexer.toml\n# Adjust port to 8232 for mainnet`}
+              code={`# Generate default configuration (~/.config/zaino/zainod.toml)\nzainod generate-config\n\n# Edit configuration for your Zebra node\nnano ~/.config/zaino/zainod.toml`}
             />
           </SectionCard>
 
           <SectionCard title={qs?.configuration ?? "Configuration"}>
-            <SubLabel>zindexer.toml</SubLabel>
+            <SubLabel>~/.config/zaino/zainod.toml</SubLabel>
             <CodeBlock
               language="toml"
-              code={`# TcpIngestor status
-tcp_active = true
+              code={`# Backend type: "rpc" connects to Zebra over JSON-RPC / gRPC
+backend = "rpc"
+network = "Mainnet" # Use "PubTestnet" for testnet
 
-# Listen port
-listen_port = 8137
+[grpc_settings]
+# gRPC listen address for light client traffic
+listen_address = "127.0.0.1:8137"
 
-# LightWalletD listen port [DEPRECATED]
-lightwalletd_port = 9067
-
-# Full node / validator listen port
-zebrad_port = 8232
-
-# Optional credentials
-node_user = "xxxxxx"
-node_password = "xxxxxx"
-
-# Worker pool settings
-max_queue_size = 1024
-max_worker_pool_size = 64
-idle_worker_pool_size = 4`}
+[validator_settings]
+# Zebra validator addresses and optional credentials
+validator_jsonrpc_listen_address = "127.0.0.1:8232" # 18232 for testnet
+# validator_user = "rpcuser"
+# validator_password = "rpcpassword"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.runZainod ?? "Run zainod"}
             </SubLabel>
-            <CodeBlock code={`zainod --config zindexer.toml`} />
+            <CodeBlock code={`zainod start`} />
           </SectionCard>
         </div>
       </section>
@@ -722,7 +713,7 @@ const ZingolibTab = () => {
             Zingo-cli
           </strong>{" "}
           {qs?.zingoCliInfo ??
-            "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source."}
+            "is a command-line light wallet for Zcash. v8 builds the Nym mixnet transport by default and bundles nym-proxy beside the binary. This guide covers compiling from source. v8.0.0 adds full NU7 Mainnet support (activation height 3,543,405) and significantly faster sync."}
         </InfoBox>
 
         <div
@@ -732,32 +723,49 @@ const ZingolibTab = () => {
           }}
         >
           <SectionCard title={qs?.installation ?? "Installation"}>
-            <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI"}</SubLabel>
+            <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI (v8)"}</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v5.0.0\ncargo build --release --package zingo-cli\ncp target/release/zingo-cli ~/.cargo/bin/`}
+              code={`cargo install cargo-make
+
+git clone https://github.com/zingolabs/zingolib.git
+cd zingolib
+git checkout tags/zingolib_v8.0.0
+
+makers run-cli --build-only
+
+cp target/release/zingo-cli ~/.cargo/bin/
+cp target/release/nym-proxy ~/.cargo/bin/`}
             />
           </SectionCard>
 
           <SectionCard title={qs?.running ?? "Running"}>
             <div className="pb-4">
               <SubLabel>
-                {qs?.startZingoCliDefault ?? "Start Zingo CLI (Default)"}
+                {qs?.startZingoCliDefault ??
+                  "Start Zingo CLI (Default, offline)"}
               </SubLabel>
               <CodeBlock
                 code={`zingo-cli --data-dir /path/to/your/wallet/data`}
               />
             </div>
-            <div>
+            <div className="pb-4">
               <SubLabel>
-                {qs?.startZingoCliCustom ?? "Start Zingo CLI (Custom)"}
+                {qs?.startZingoCliCustom ??
+                  "Start Zingo CLI (online via local indexer)"}
               </SubLabel>
               <CodeBlock
-                code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data`}
+                code={`zingo-cli --server http://127.0.0.1:8137 \\
+  --data-dir /path/to/wallet`}
+              />
+              <SubLabel className="mt-3">Or consent for this session</SubLabel>
+              <CodeBlock
+                code={`zingo-cli --online \\
+  --data-dir /path/to/wallet`}
               />
             </div>
             <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
               {qs?.zingoSyncWarning ??
-                "⚠ This will perform a full sync on first run, similar to lightwalletd."}
+                "⚠ A fresh session is offline until you grant consent (--online, --remember-online, or --server). The Nym proxy is resolved from --nym-proxy, $ZINGO_NYM_PROXY, the binary next to zingo-cli, or PATH. Sync continues after the chain tip by default. First online run performs a full sync. To build without the mixnet (offline-only): makers run-cli --nakednet --build-only. Use v8.0.0+ for NU7 Mainnet compatibility."}
             </div>
           </SectionCard>
         </div>
@@ -1171,7 +1179,9 @@ export default function QuickStartClient() {
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
       `}</style>
 
-      <div className={`min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200 ${spaceMono.variable}`}>
+      <div
+        className={`min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200 ${spaceMono.variable}`}
+      >
         {/* Hero */}
         <div
           className="relative overflow-hidden px-10 pt-20 pb-[72px] text-center

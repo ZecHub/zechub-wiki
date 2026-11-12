@@ -1,6 +1,5 @@
 import { getFiles, transformUri } from "@/lib/helpers";
 import { unstable_cache } from "next/cache";
-import { Octokit } from "octokit";
 
 const { GITHUB_TOKEN, OWNER, REPO, BRANCH } = process.env;
 
@@ -9,7 +8,16 @@ const owner = (OWNER ?? "").trim();
 const repo = (REPO ?? "").trim();
 const branch = (BRANCH ?? "main").trim();
 
-const octokit = new Octokit({ auth: authUser });
+let octokitPromise: Promise<any> | null = null;
+
+async function getOctokit() {
+  if (!octokitPromise) {
+    octokitPromise = import("octokit").then(
+      ({ Octokit }) => new Octokit({ auth: authUser }),
+    );
+  }
+  return octokitPromise;
+}
 
 /** Strip leading slashes so GitHub never sees %2Fsite/... */
 function cleanPath(path: string): string {
@@ -148,6 +156,7 @@ async function resolveContentRef(): Promise<string> {
   refInFlight = (async (): Promise<string> => {
     if (!assertRepoConfig()) return branch;
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getCommit({
         owner,
         repo,
@@ -210,6 +219,58 @@ export function __resetContentRefMemo(): void {
   refInFlight = null;
 }
 
+const LISTING_FAILURE_TTL_MS = 30_000;
+type ListingKind = "site-folders" | "all-md";
+const listingInFlight = new Map<string, Promise<string[]>>();
+const listingFailureAt = new Map<string, { at: number; err: unknown }>();
+const listingLastGood = new Map<string, string[]>();
+
+function listingMemoKey(kind: ListingKind, path: string, ref: string): string {
+  return `${kind}:${path}:${ref}`;
+}
+
+export function __resetListingMemos(): void {
+  listingInFlight.clear();
+  listingFailureAt.clear();
+  listingLastGood.clear();
+}
+
+async function readListing(
+  kind: ListingKind,
+  path: string,
+  ref: string,
+  cached: (path: string, ref: string) => Promise<string[]>,
+  uncached: (path: string, ref: string) => Promise<string[]>,
+): Promise<string[]> {
+  const key = listingMemoKey(kind, path, ref);
+  const failed = listingFailureAt.get(key);
+  if (failed && Date.now() - failed.at < LISTING_FAILURE_TTL_MS) {
+    const stale = listingLastGood.get(key);
+    if (stale) return stale;
+    throw failed.err;
+  }
+  const inflight = listingInFlight.get(key);
+  if (inflight) return inflight;
+  const read = ref === branch ? uncached : cached;
+  const pending = read(path, ref).then(
+    (value) => {
+      listingFailureAt.delete(key);
+      listingLastGood.set(key, value);
+      return value;
+    },
+    (err: unknown) => {
+      listingFailureAt.set(key, { at: Date.now(), err });
+      const stale = listingLastGood.get(key);
+      if (stale) return stale;
+      throw err;
+    },
+  ).finally(() => {
+    listingInFlight.delete(key);
+  });
+  listingInFlight.set(key, pending);
+  return pending;
+}
+
 // Send a credential to raw ONLY for a private content repo, and only when that
 // is declared explicitly. raw answers a bad or unscoped token with 404 — not
 // 401 — so an Authorization header that the contents API accepts but raw
@@ -262,40 +323,24 @@ async function fetchRawFile(
     .split("/")
     .map(encodeURIComponent)
     .join("/")}`;
-
-  let res: Response | undefined;
-  let lastErr: any;
-  // A cold dev server fires dozens of reads at once, and a socket that is
-  // reset or times out is transient. Retry network-level failures (never HTTP
-  // statuses) a couple of times before reporting them.
-  for (let attempt = 0; attempt < 3 && !res; attempt++) {
-    if (attempt > 0) {
-      await new Promise((r) => setTimeout(r, 300 * attempt));
-    }
-    try {
-      res = await fetch(url, {
-        method,
-        headers:
-          contentRepoIsPrivate && authUser
-            ? { Authorization: `token ${authUser}` }
-            : undefined,
-        // Next must not layer its own fetch cache under unstable_cache: the
-        // wrapper already owns the TTL and the revalidate tag.
-        cache: "no-store",
-      });
-    } catch (err: any) {
-      lastErr = err;
-    }
-  }
-  if (!res) {
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method,
+      headers:
+        contentRepoIsPrivate && authUser
+          ? { Authorization: `token ${authUser}` }
+          : undefined,
+      // Next must not layer its own fetch cache under unstable_cache: the
+      // wrapper already owns the TTL and the revalidate tag.
+      cache: "no-store",
+    });
+  } catch (err: any) {
     // DNS/socket failure — transient by definition, never "missing". Thrown,
     // never returned as null, so it is never cached as an absent page.
-    if (lastErr?.status) throw lastErr;
-    throw Object.assign(new Error(lastErr?.message ?? "fetch failed"), {
-      status: 0,
-    });
+    if (err?.status) throw err;
+    throw Object.assign(new Error(err?.message ?? "fetch failed"), { status: 0 });
   }
-
   if (res.status === 404) return null;
   if (!res.ok) {
     // Always throws for a non-404, including a build-phase rate limit.
@@ -397,6 +442,7 @@ async function listDirUncached(
   if (!assertRepoConfig()) return [];
   if (hasDotSegment(dir)) return [];
   try {
+    const octokit = await getOctokit();
     const res = await octokit.rest.repos.getContent({
       owner,
       repo,
@@ -467,12 +513,12 @@ const getEnglishSourceStatusAtRefCached = unstable_cache(
     // and runs once per localized page. Pulling 3,960 bodies to answer a
     // yes/no would waste the bandwidth the quota fix just saved.
     if ((await fetchRawFile(safePath, ref, "HEAD")) !== null) return "present";
-
     const folderPath = safePath.split("/").slice(0, -1).join("/");
     const wantSlug = normalize(
       safePath.split("/").pop()?.replace(/\.md$/i, "") || "",
     );
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getContent({
         owner,
         repo,
@@ -518,7 +564,6 @@ const getEnglishSourceStatusAtRefCached = unstable_cache(
  *      consulted again once SHA resolution recovers — rather than pinning
  *      stale content for the reader's full TTL.
  */
-
 export async function getFileContentCached(path: string): Promise<string | null> {
   return degradeOnBuildRateLimit(async () =>
     readFileAtRef(path, await resolveContentRef()),
@@ -543,10 +588,8 @@ async function readFileAtRef(
   // instead. Raw is unmetered, so the only cost is extra CDN requests during
   // an outage that is already degraded.
   if (ref === branch) return readFileAtRefUncached(safePath, ref);
-
   const direct = await readFileAtRefCached(safePath, ref);
   if (direct !== null) return direct;
-
   const folderPath = safePath.split("/").slice(0, -1).join("/");
   const realFiles = await listDirAtRefCached(folderPath, ref);
   const wantSlug = normalize(
@@ -649,7 +692,6 @@ export async function getLocalizedFileContentCached(
   // skew, not the blank-page failure above, and fixing it properly means
   // threading a ref through the page components.
   const ref = await resolveContentRef();
-
   if (locale && locale !== "en") {
     const itPath = `translations/${locale}/${normalizedPath}`;
     const exact = await translationProbe(itPath, ref).catch(() => null);
@@ -678,6 +720,7 @@ const getRootAtRefCached = unstable_cache(
   async (path: string) => {
     if (!assertRepoConfig()) return [];
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getContent({
         owner,
         repo,
@@ -685,7 +728,7 @@ const getRootAtRefCached = unstable_cache(
         ref: branch,
       });
       const data = res.data;
-      const elements = getFiles(data);
+      const elements = Array.isArray(data) ? getFiles(data) : [];
       return elements.filter((item: string) => item.endsWith(".md"));
     } catch (err: any) {
       // See listDirUncached: a swallow here would cache [] and blank every
@@ -718,52 +761,99 @@ export async function getRootCached(path: string): Promise<string[]> {
   return (await degradeOnBuildRateLimit(() => getRootAtRefCached(path))) ?? [];
 }
 
-export async function getSiteFolders(path: string) {
-  if (!assertRepoConfig()) return [];
+async function listSiteFoldersUncached(
+  path: string,
+  ref: string,
+): Promise<string[]> {
   try {
-    const res = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path: cleanPath(path),
-      ref: branch,
-    });
-    return getFiles(res.data);
-  } catch {
-    return [];
+    const octokit = await getOctokit();
+    const res = await octokit.rest.repos.getContent({ owner, repo, path, ref });
+    // A file is not a directory; getFiles itself only accepts arrays.
+    return Array.isArray(res.data) ? getFiles(res.data) : [];
+  } catch (err) {
+    if (isMissing(err)) return [];
+    throw err;
   }
 }
 
-export const getAllMarkdownRecursively = unstable_cache(
-  async (initialPath: string): Promise<string[]> => {
-    if (!assertRepoConfig()) return [];
-    const results: string[] = [];
-    const walk = async (currentPath: string, isInitial: boolean) => {
-      try {
-        const apiPath = isInitial
-          ? toGithubPath(currentPath)
-          : cleanPath(currentPath);
-        const res = await octokit.rest.repos.getContent({
-          owner,
-          repo,
-          path: apiPath,
-          ref: branch,
-        });
-        const items = Array.isArray(res.data) ? res.data : [res.data];
-        for (const item of items) {
-          if (!item?.path) continue;
-          if (item.type === "file" && item.path.endsWith(".md")) {
-            results.push(item.path);
-          } else if (item.type === "dir") {
-            await walk(item.path, false);
-          }
-        }
-      } catch {
-        // ignore individual subdirectory failures
-      }
-    };
-    await walk(initialPath, true);
-    return results;
-  },
-  ["github-all-md-recursive-final"],
-  { revalidate: 60, tags: ["github-content"] },
+const listSiteFoldersAtRefCached = unstable_cache(
+  listSiteFoldersUncached,
+  ["github-site-folders-v1", owner, repo, branch],
+  { revalidate: 3600, tags: ["github-content"] },
 );
+
+export async function getSiteFolders(path: string): Promise<string[]> {
+  if (!assertRepoConfig()) return [];
+  const safePath = cleanPath(path);
+  if (hasDotSegment(safePath)) return [];
+  return (
+    (await degradeOnBuildRateLimit(async () => {
+      const ref = await resolveContentRef();
+      return readListing(
+        "site-folders",
+        safePath,
+        ref,
+        listSiteFoldersAtRefCached,
+        listSiteFoldersUncached,
+      );
+    })) ?? []
+  );
+}
+
+async function getAllMarkdownRecursivelyUncached(
+  initialPath: string,
+  ref: string,
+): Promise<string[]> {
+  const results: string[] = [];
+  const walk = async (path: string): Promise<void> => {
+    // Only the API call is caught: a child failure must reject the entire
+    // traversal, otherwise a partial article index would be cached for an hour.
+    let data;
+    try {
+      const octokit = await getOctokit();
+      const res = await octokit.rest.repos.getContent({ owner, repo, path, ref });
+      data = res.data;
+    } catch (err) {
+      if (isMissing(err)) return;
+      throw err;
+    }
+    const items = Array.isArray(data) ? data : [data];
+    for (const item of items) {
+      if (!item?.path) continue;
+      if (item.type === "file" && item.path.endsWith(".md")) {
+        results.push(item.path);
+      } else if (item.type === "dir") {
+        await walk(item.path);
+      }
+    }
+  };
+  // One ref for the entire tree, and no nested unstable_cache calls.
+  await walk(initialPath);
+  return results;
+}
+
+const getAllMarkdownRecursivelyAtRefCached = unstable_cache(
+  getAllMarkdownRecursivelyUncached,
+  ["github-all-md-recursive-v2", owner, repo, branch],
+  { revalidate: 3600, tags: ["github-content"] },
+);
+
+export async function getAllMarkdownRecursively(
+  initialPath: string,
+): Promise<string[]> {
+  if (!assertRepoConfig()) return [];
+  const safePath = toGithubPath(initialPath);
+  if (hasDotSegment(safePath)) return [];
+  return (
+    (await degradeOnBuildRateLimit(async () => {
+      const ref = await resolveContentRef();
+      return readListing(
+        "all-md",
+        safePath,
+        ref,
+        getAllMarkdownRecursivelyAtRefCached,
+        getAllMarkdownRecursivelyUncached,
+      );
+    })) ?? []
+  );
+}

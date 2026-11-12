@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Archive,
   ArrowRight,
@@ -9,9 +9,9 @@ import {
   CheckCircle,
   Coins,
   ExternalLink,
-  Mic
+  Mic,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const OPPORTUNITIES_URL = "https://zkav.club/opportunities";
 
@@ -25,10 +25,10 @@ const slides = [
       "A privacy-first audiovisual club for open-source and decentralized communities",
       "Brings a portable recording station to meetups, conferences and camps",
       "Creators keep ownership; approved recordings go to a public archive",
-      "Runs on small networks of people who keep recordings usable long after the event"
+      "Runs on small networks of people who keep recordings usable long after the event",
     ],
     link: "https://zkav.club/",
-    linkText: "Visit zkav.club"
+    linkText: "Visit zkav.club",
   },
   {
     id: "coordinators",
@@ -39,10 +39,10 @@ const slides = [
       "The Archivist — turns messy recording folders into structured archive items",
       "The Archivist keeps metadata clean so the archive stays usable long-term",
       "The Storyteller — adds titles, descriptions, tags and context to recordings",
-      "The Storyteller runs the transcription network and keeps public indexes readable"
+      "The Storyteller runs the transcription network and keeps public indexes readable",
     ],
     link: OPPORTUNITIES_URL,
-    linkText: "Read the Role Descriptions"
+    linkText: "Read the Role Descriptions",
   },
   {
     id: "gigs",
@@ -53,10 +53,10 @@ const slides = [
       "Workshops — run a hands-on session, publish it and share the recording",
       "Transcription — turn recorded conversations into accurate transcripts and quotes",
       "Event production — camera operation, livestream tech, live translation, show calling",
-      "Post-production — long-form edits, social clips, thumbnails and motion graphics"
+      "Post-production — long-form edits, social clips, thumbnails and motion graphics",
     ],
     link: OPPORTUNITIES_URL,
-    linkText: "See Open Gigs"
+    linkText: "See Open Gigs",
   },
   {
     id: "how-it-works",
@@ -67,10 +67,10 @@ const slides = [
       "Most gigs are paid per contribution, whenever work is available",
       "Payment is in Zcash — work done in a month is paid at the start of the next",
       "Work appears around events and funding; you get contacted with scope and pay",
-      "Open to anyone who wants to help document these communities while preserving privacy"
+      "Open to anyone who wants to help document these communities while preserving privacy",
     ],
     link: OPPORTUNITIES_URL,
-    linkText: "Explore Opportunities"
+    linkText: "Explore Opportunities",
   },
   {
     id: "join",
@@ -81,11 +81,11 @@ const slides = [
       "Message the club through the Join the Club links on zkav.club",
       "Share your skills, timezone and availability",
       "Add portfolio links and the languages you can work in",
-      "The club reaches out when a gig matches what you do"
+      "The club reaches out when a gig matches what you do",
     ],
     link: OPPORTUNITIES_URL,
-    linkText: "Join the Club"
-  }
+    linkText: "Join the Club",
+  },
 ];
 
 export { slides };
@@ -99,7 +99,7 @@ interface ZkavClubContentProps {
 export const ZkavClubContent = ({
   currentSlide,
   onSlideChange,
-  isPlaying
+  isPlaying,
 }: ZkavClubContentProps) => {
   const [progress, setProgress] = useState(0);
 
@@ -153,8 +153,8 @@ export const ZkavClubContent = ({
           ZKAV Club Opportunities
         </h2>
         <p className="text-muted-foreground text-lg">
-          Privacy-first audiovisual roles and paid gigs with the
-          Zero-knowledge Audiovisual Club
+          Privacy-first audiovisual roles and paid gigs with the Zero-knowledge
+          Audiovisual Club
         </p>
       </motion.div>
 
@@ -202,7 +202,7 @@ export const ZkavClubContent = ({
                 type: "spring",
                 stiffness: 200,
                 damping: 15,
-                delay: 0.2
+                delay: 0.2,
               }}
               className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${slide.color} p-1 shadow-2xl`}
             >
@@ -214,12 +214,12 @@ export const ZkavClubContent = ({
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
                 animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.5, 0, 0.5]
+                  opacity: [0.5, 0, 0.5],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.div>
@@ -249,7 +249,7 @@ export const ZkavClubContent = ({
                   transition={{
                     delay: 0.5 + index * 0.1,
                     type: "spring",
-                    stiffness: 200
+                    stiffness: 200,
                   }}
                   className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${slide.color} flex items-center justify-center text-white font-bold shadow-lg`}
                 >
@@ -286,37 +286,29 @@ export const ZkavClubContent = ({
           <motion.div
             animate={{
               rotate: [0, 360],
-              scale: [1, 1.2, 1]
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
           <motion.div
             animate={{
               rotate: [360, 0],
-              scale: [1, 1.3, 1]
+              scale: [1, 1.3, 1],
             }}
             transition={{
               duration: 15,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
         </motion.div>
       </AnimatePresence>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-12 text-center text-sm text-muted-foreground"
-      >
-        Step {currentSlide + 1} of {slides.length}
-      </motion.div>
     </div>
   );
 };

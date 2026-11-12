@@ -86,16 +86,17 @@ export const CollisionContent = () => {
               outputs
             </p>
             <p className="text-muted-foreground">
-              That is more atoms than exist in the observable universe
+              Each output is 256 bits, with two possible values for each bit.
             </p>
           </div>
           <div>
             <p className="text-muted-foreground mb-2">
-              <span className="text-foreground font-medium">2²⁵⁶</span>{" "}
-              operations to find collision outputs
+              Approximately <span className="text-foreground font-medium">2¹²⁸</span>{" "}
+              hash evaluations for a generic classical collision search
             </p>
             <p className="text-muted-foreground">
-              Would take billions of years with all computers on Earth
+              The birthday bound gives 128-bit collision resistance, as listed by{" "}
+              <a href="https://csrc.nist.gov/Projects/Hash-Functions">NIST</a>.
             </p>
           </div>
         </div>

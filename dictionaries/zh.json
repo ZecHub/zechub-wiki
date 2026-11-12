@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "备注",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "手机充值",
     "Newsletter": "新闻简报",
     "Nym VPN": "Nym VPN",
@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash 使用场景",
     "Zcash Tech": "Zcash 技术",
     "Privacy Tools": "隐私工具",
-    "Zcash Social Media": "Zcash 社交媒体",
     "Glossary & FAQ's": "术语表与常见问题",
     "Use Zcash": "使用 Zcash",
     "Block Explorers": "区块浏览器",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
-    "CoinHolder Directed Retroactive Grants": "CoinHolder 定向追溯性资助"
+    "CoinHolder Directed Retroactive Grants": "CoinHolder 定向追溯性资助",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",
@@ -164,7 +166,11 @@
     "searchTryDifferent": "请尝试更短的查询词、同义词或其他词语。",
     "searchSuggested": "推荐页面",
     "searchResultsLabel": "结果",
-    "skipToContent": "跳到内容"
+    "skipToContent": "跳到内容",
+    "languageSearch": "搜索语言",
+    "languageSuggested": "推荐",
+    "languageAll": "所有语言",
+    "languageNone": "未找到语言"
   },
   "navigation": {
     "wallets": "钱包",
@@ -186,7 +192,7 @@
       "buyingZec": "购买 ZEC",
       "faucets": "水龙头",
       "wallets": "钱包",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "交易所",
       "blockExplorers": "区块浏览器",
       "shieldedPools": "屏蔽池",
@@ -235,7 +241,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "品牌",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder 定向追溯性资助",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo 支付处理器",
@@ -270,7 +282,7 @@
     "heroTitle": "欢迎来到 ZecHub",
     "heroSubtitle": "面向 Zcash 的开源教育中心",
     "heroDescription": "了解 Zcash 隐私技术，探索交互式可视化工具，并为生态系统做出贡献",
-    "description": "ZecHub 是由社区推动的 Zcash 加密货币（ZEC）教育中心。Zcash 是一种数字货币，提供抗审查、安全且私密的支付。Zcash Blockchain 在 2022 年 NU5 网络升级后采用了高度先进的“可验证” zk-snarks，无需 Trusted Setup。",
+    "description": "ZecHub 是由社区推动的 Zcash (ZEC) 教育中心。Zcash 是一种去中心化数字货币，专为抗审查、安全且私密的支付而构建。Zcash 使用先进的零知识密码学，使交易的有效性可在不披露敏感财务信息的情况下得到验证。2026 年引入了 Ironwood 屏蔽池；它通过机器检验的数学证明进行形式化验证，确保余额完整性。Project Tachyon 正在开发拟议的下一代屏蔽协议，旨在大幅提升私密支付的可扩展性、减少验证者状态增长，并推动 Zcash 实现完全后量子安全的隐私保护。",
     "featuredSection": "精选资源",
     "latestUpdates": "最新动态",
     "getInvolved": "参与进来",
@@ -307,11 +319,6 @@
         "description": "Zcash 全球大使是致力于在全球推广以隐私为核心的加密货币采用与教育的社区领袖。每个大使项目都专注于在各自地区提升认知并促进参与。",
         "link": "认识这些大使"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "使用你的 Unified Address 订阅，将 Zcash 生态更新和网络统计直接以屏蔽方式发送到你的钱包！",
-        "link": "订阅"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z 是一个由 Zcash 驱动的社交平台，提供点对点捐赠、收益分成计划、高级创作工具以及庞大的全球在线社区。",
@@ -324,9 +331,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "加入黑客松",
-        "description": "与 Zcash 社区一起构建、协作，并发布有影响力的创意。围绕五个创新赛道展开竞赛：面向节点和索引器的基础设施、用于交互式体验的游戏、用于门限签名的 FROST、用于身份验证解决方案的 Zcash Login，以及用于财务工作流的会计。2026 年 5 月 25 日 - 7 月 15 日。25 ZEC 奖池等你来赢取。",
-        "mainLink": "加入黑客松"
+        "title": "ZecHub 黑客松存档",
+        "description": "2026 年 ZecHub 黑客松已结束。探索在基础设施、游戏、FROST、Zcash Login 和会计等类别中提交的项目。",
+        "mainLink": "查看项目"
+      },
+      "visualizer": {
+        "description": "用于了解 Zcash 隐私技术、基础设施与零知识证明的交互式教育工具",
+        "link": "打开可视化工具",
+        "title": "ZecHub 可视化工具"
+      },
+      "zecMap": {
+        "description": "ZecMap 是一张由社区维护的世界地图，收录接受 Zcash 的商家、服务和 ATM。查找您附近可使用 ZEC 的地方，或者添加您了解的商家，帮助推动现实世界的普及。",
+        "link": "访问 ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -452,8 +469,13 @@
     "download": "下载",
     "visitWebsite": "访问网站",
     "filters": "筛选",
-    "showNavigation": "显示导航",
     "close": "关闭",
+    "clearAll": "全部清除",
+    "showWallets": "显示 {count} 个钱包",
+    "showWallet": "显示 1 个钱包",
+    "walletCount": "{count} 个钱包",
+    "walletCountOne": "1 个钱包",
+    "activeCount": "已启用 {count} 个",
     "savedReview": "我们已保存你的评价！",
     "errorGettingLikes": "获取点赞时出错：",
     "errorUpdatingRating": "更新评分时出错："
@@ -580,7 +602,8 @@
           "transactions24h": "24 小时交易数",
           "shieldedTx24h": "屏蔽交易（24 小时）",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "屏蔽池价值"
         },
         "zcashChart": {
           "title": "分析图表",
@@ -966,12 +989,12 @@
       "configure": "配置",
       "runZainod": "运行 zainod",
       "installingZingoCli": "安装 Zingo CLI",
-      "zingoCliInfo": "是一个使用 Rust 构建的命令行 lightwalletd 代理客户端。目前发布版本仍为临时版本——本指南介绍如何从源码编译。",
-      "buildZingoCli": "构建 Zingo CLI",
+      "zingoCliInfo": "是一款适用于 Zcash 的命令行轻钱包。v7 默认构建 Nym mixnet 传输，并在二进制文件旁捆绑 nym-proxy。本指南介绍如何从源代码编译。",
+      "buildZingoCli": "构建 Zingo CLI (v7)",
       "running": "运行",
-      "startZingoCliDefault": "启动 Zingo CLI（默认）",
-      "startZingoCliCustom": "启动 Zingo CLI（自定义）",
-      "zingoSyncWarning": "⚠ 首次运行时将执行完整同步，与 lightwalletd 类似。",
+      "startZingoCliDefault": "启动 Zingo CLI（默认，离线）",
+      "startZingoCliCustom": "启动 Zingo CLI（通过本地索引器在线）",
+      "zingoSyncWarning": "⚠ 新会话默认处于离线状态，直到您授予同意（--online、--remember-online 或 --server）。Nym proxy 会依次从 --nym-proxy、$ZINGO_NYM_PROXY、zingo-cli 旁的二进制文件或 PATH 中解析。默认情况下，同步会在链尖端之后继续进行。首次在线运行将执行完整同步。如需在不使用 mixnet 的情况下构建（仅离线）：makers run-cli --nakednet --build-only。",
       "nextStepsResources": "后续步骤与资源",
       "readyToBuild": "准备开始构建了吗？",
       "officialDocumentation": "官方文档",
@@ -982,7 +1005,17 @@
       "zcashCommunityForum": "Zcash 社区论坛",
       "githubIssues": "GitHub Issues",
       "troubleshootingGuide": "故障排查指南",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "硬件",
+      "compareColLanguage": "语言",
+      "compareColPlatforms": "平台",
+      "compareColRole": "角色",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "软件",
+      "compareColStatus": "状态",
+      "compareFootnote": "zcashd 已于 2026 年 7 月 18 日在区块 3417100 到达生命周期终点——新项目应基于上述软件构建。",
+      "compareLead": "Zcash 技术栈由几个相互独立的工具组成。使用此表确定您的项目需要哪一个，然后按照下方对应的指南操作。",
+      "compareTitle": "节点与客户端对比"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO 治理",
@@ -1037,7 +1070,17 @@
         "Organizations": "组织",
         "Guides": "指南",
         "Use Zcash": "使用 Zcash",
-        "Ecosystem": "生态系统"
+        "Ecosystem": "生态系统",
+        "Contribute": "参与贡献",
+        "Glossary & FAQs": "术语表与常见问题",
+        "Privacy Tools": "隐私工具",
+        "Research": "研究",
+        "Start Here": "从这里开始",
+        "Tutorials": "教程",
+        "Use Cases": "使用场景",
+        "Zcash Tech": "Zcash 技术",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "社交媒体"
       },
       "links": {
         "Homepage": "首页",
@@ -1063,7 +1106,7 @@
         "Payment Request URIs": "支付请求 URI",
         "Payment Processors": "支付处理商",
         "Recovering Funds": "资金追回",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "社区论坛",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
@@ -1092,7 +1135,7 @@
       "formalVerificationSeriesDescription": "一个由三部分组成的系列，从基本原理解释形式化验证，深入讲解 2026 年 Orchard 健全性漏洞，并展示 Ironwood 如何通过机器验证的数学证明予以回应。",
       "newSeriesBadge": "新系列"
     },
-    "browseSidebar": "使用左侧边栏浏览文章 👈",
+    "browseSidebar": "打开导航以浏览本节中的文章。",
     "zcashGlobalAmbassadors": {
       "title": "Zcash 全球大使",
       "description": "Zcash 全球大使是致力于在世界各地推动以隐私为核心的加密货币采用与教育的社区领袖。每个大使项目都专注于在各自所在地区提升认知度与社区参与度。",
@@ -1212,5 +1255,43 @@
   "meta": {
     "title": "ZecHub 维基",
     "description": "一个面向 Zcash 的开源教育中心"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "从这里开始",
+      "sub": "开启你的 Zcash 学习之旅"
+    },
+    "guides": {
+      "title": "指南",
+      "sub": "用于理解 Zcash 协议的结构化文档"
+    },
+    "zcash-tech": {
+      "title": "Zcash 技术",
+      "sub": "深入了解驱动 Zcash 的技术"
+    },
+    "organizations": {
+      "title": "组织",
+      "sub": "架构 · 治理 · 贡献者"
+    },
+    "privacy-tools": {
+      "title": "隐私工具",
+      "sub": "实用的隐私解决方案"
+    },
+    "research": {
+      "title": "研究",
+      "sub": "探索零知识 · 隐私 · 密码学"
+    },
+    "glossary": {
+      "title": "术语表与常见问题",
+      "sub": "定义、解答、清晰。"
+    },
+    "contribute": {
+      "title": "参与贡献",
+      "sub": "编写 · 翻译 · 设计 · 开发"
+    },
+    "tutorials": {
+      "title": "教程",
+      "sub": "观看并跟随操作"
+    }
   }
 }

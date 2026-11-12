@@ -13,6 +13,7 @@ import {
 import { ChevronDown, Landmark, Coins } from "lucide-react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import SheetTreasuryTab from "@/components/Charts/SheetTreasuryTab";
+import { formatUnits, toUnits, tokenName } from "@/lib/daoTreasuryUnits";
 
 // ─── DAO Treasury (existing) ──────────────────────────────────────────────────
 
@@ -67,16 +68,11 @@ function DaoTreasuryTab() {
       .catch(() => setLoading(false));
   }, []);
 
-  const formatAmount = (amt: string) =>
-    (parseFloat(amt) / 1_000_000).toLocaleString(undefined, {
-      maximumFractionDigits: 2,
-    });
-
   const displayName = (ticker: string) => {
     if (ticker === "TNAM1Q9GR66CVU4HRZM0SD5KMLNJJE82GS3XLFG3V6NU7")
       return "NAM";
     if (ticker === "PENUMBRA") return "UM";
-    return ticker;
+    return tokenName(ticker);
   };
 
   const allTickers = useMemo(() => {
@@ -97,7 +93,8 @@ function DaoTreasuryTab() {
       .filter((b) => selectedAssets.has(b.ticker))
       .forEach((b) => {
         const name = displayName(b.ticker);
-        totals[name] = (totals[name] || 0) + parseFloat(b.amount);
+        // Whole tokens, not base units: assets differ in decimals.
+        totals[name] = (totals[name] || 0) + toUnits(b.ticker, b.amount);
       });
     return Object.entries(totals)
       .map(([name, value]) => ({ name, value }))
@@ -108,7 +105,7 @@ function DaoTreasuryTab() {
     () =>
       data
         ? [...data.treasury.juno_native_balances].sort(
-            (a, b) => parseFloat(b.amount) - parseFloat(a.amount),
+            (a, b) => toUnits(b.ticker, b.amount) - toUnits(a.ticker, a.amount),
           )
         : [],
     [data],
@@ -117,7 +114,7 @@ function DaoTreasuryTab() {
     () =>
       data
         ? [...data.treasury.osmosis_native_balances].sort(
-            (a, b) => parseFloat(b.amount) - parseFloat(a.amount),
+            (a, b) => toUnits(b.ticker, b.amount) - toUnits(a.ticker, a.amount),
           )
         : [],
     [data],
@@ -275,13 +272,13 @@ function DaoTreasuryTab() {
                     {rows.map((b, i) => (
                       <TableRow key={i}>
                         <TableCell className="font-medium">
-                          {b.ticker}
+                          {displayName(b.ticker)}
                         </TableCell>
                         <TableCell className="font-mono text-xs text-muted-foreground break-all">
                           {b.denom}
                         </TableCell>
                         <TableCell className="text-right font-mono">
-                          {formatAmount(b.amount)}
+                          {formatUnits(toUnits(b.ticker, b.amount))}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -315,7 +312,7 @@ function DaoTreasuryTab() {
                 ))}
               </Pie>
               <Tooltip
-                formatter={(v) => (v ? formatAmount(v.toString()) : "0")}
+                formatter={(v) => (v ? formatUnits(Number(v)) : "0")}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -336,7 +333,7 @@ function DaoTreasuryTab() {
                   />
                   <div className="flex-1 text-sm font-medium">{item.name}</div>
                   <div className="font-mono text-xs text-muted-foreground">
-                    {pct}% · {formatAmount(item.value.toString())}
+                    {pct}% · {formatUnits(item.value)}
                   </div>
                 </div>
               );

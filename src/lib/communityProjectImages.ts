@@ -1,114 +1,105 @@
 import type { CommunityProject } from "./parseCommunityProjects";
 
 /**
- * Maps project titles → image paths in /public/community-projects/
- * Projects without a file will simply render without a thumbnail.
+ * Maps project titles → image paths in /public/content-images/
+ * Titles must match EXACTLY what appears in Community_Projects.md
+ * Projects without a matching file will render without a thumbnail.
+ *
+ * Source of truth for titles:
+ * ZecHub/zechub → site/Zcash_Community/Community_Projects.md
  */
 export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
-  // Education, Media, and Community
-  "My First Zcash": "/community-projects/my-first-zcash.png",
-  "ZECPublish": "/community-projects/zechpublish.png",
-  "ZK Radio": "/community-projects/zk-radio.png",
-  "ZShieldHer": "/community-projects/zshieldher.png",
-  "ZecForge": "/community-projects/zecforge.jpg",
-  "Mastering Zcash Video Series": "/community-projects/mastering-zcash.png",
-  "Zcast": "/community-projects/zcast.jpg",
-  "Zero-knowledge Audiovisual Club (ZKAV)": "/community-projects/zkav.png",
-  "Zcash Network School": "/community-projects/zcash-network-school.png",
-  "Zectastic": "/community-projects/zectastic.png",
-  "Zec App": "/community-projects/zec-app.png",
-  "PGPZ Community": "/community-projects/pgpz.png",
-  "Gleyo": "/community-projects/gleyo.png",
-  "Zcash Grants Hub": "/community-projects/zcash-grants-hub.png",
 
-  // Wallets and Payment Tools
-  "Cipherpay": "/community-projects/Cipherpay.png",
-  "Ezcash": "/community-projects/ezcash.png",
-  "Nozy Wallet": "/community-projects/nozy.jpg",
-  "Overpay.com": "/community-projects/overpay.png",
-  "Zafu Wallet": "/community-projects/zafu.png",
-  "ZGo": "/community-projects/z-go.png",
-  "Zimppy": "/community-projects/zimmpy.png",
-  "Dizzy Wallet": "/community-projects/dizzy-wallet.png",
-  "ZODL": "/community-projects/zodl.png",
-  "Noir Wallet": "/community-projects/noir-wallet.png",
-  "ZecVault": "/community-projects/zecvault.png",
-  "Zkool": "/community-projects/zkool.png",
-  "MonteZecret": "/community-projects/montezecret.png",
-  "Gem Wallet": "/community-projects/gem-wallet-icon.png",
-  "TIPZ": "/community-projects/tipz.png",
-  "CYZE": "/community-projects/cyze.jpg",
-  "Pendrake Watch": "/community-projects/pendrake-watch.png",
+  // ── Education, Media, and Community ──────────────────────────────
+  "My First Zcash":                          "/content-images/my-first-zcash.webp",
+  "ZECPublish":                              "/content-images/zechpublish.webp",
+  "ZK Radio":                                "/content-images/zk-radio.webp",
+  "ZShieldHer":                              "/content-images/zshieldher.webp",
+  "ZecForge":                                "/content-images/zecforge.webp",
+  "Mastering Zcash Video Series":            "/content-images/mastering-zcash.webp",
+  "Zcast":                                   "/content-images/zcast.webp",
+  "Zero-knowledge Audiovisual Club (ZKAV)":  "/content-images/zkav.webp",
+  "Zcash Network School":                    "/content-images/zcash-network-school.webp",
+  "Zectastic":                               "/content-images/zectastic.webp",
+  "ZEC App":                                 "/content-images/zec-app.webp",
+  "PGPZ Community":                          "/content-images/pgpz.webp",
+  "Gleyo":                                   "/content-images/gleyo.webp",
+  "Zcash Grants Hub":                        "/content-images/zcash-grants-hub.webp",
 
-  // Explorers, Data, and Network Dashboards
-  "CipherScan": "/community-projects/CipherScan.png",
-  "Exblo": "/community-projects/exblo.png",
-  "OpenZcash": "/community-projects/openzcash-icon.png",
-  "Zcash Block Explorer": "/community-projects/zcash-block-explorer.png",
-  "Zcash.Space": "/community-projects/zcash-space.png",
-  "ZecMap": "/community-projects/zecmap-icon.png",
-  "ZECping": "/community-projects/zecping.png",
-  "ZecStats": "/community-projects/zecstats.jpg",
-  "zecprice": "/community-projects/zecprice.png",
-  "Zecmarket": "/community-projects/zecmarket-icon.png",
-  "Zecsite": "/community-projects/zecsite.png",
-  "ZEC-OS": "/community-projects/zec-os-icon.png",
+  // ── Wallets and Payment Tools ─────────────────────────────────────
+  "CipherPay":                               "/content-images/cipherpay.webp",
+  "eZcash":                                  "/content-images/ezcash.webp",
+  "Nozy Wallet":                             "/content-images/nozy.webp",
+  "Overpay.com":                             "/content-images/overpay.webp",
+  "ZcashToCash":                             "/content-images/zcashtocash.png",
+  "Zafu Wallet":                             "/content-images/zafu.webp",
+  "ZGo":                                     "/content-images/z-go.webp",
+  "Zimppy":                                  "/content-images/zimmpy.webp",
+  "Dizzy Wallet":                            "/content-images/dizzy-wallet.webp",
+  "ZODL":                                    "/content-images/zodl.webp",
+  "Noir Wallet":                             "/content-images/noir-wallet.webp",
+  "ZecVault":                                "/content-images/zecvault.webp",
+  "Zkool":                                   "/content-images/zkool.webp",
+  "MonteZecret":                             "/content-images/montezecret.webp",
+  "Gem Wallet":                              "/content-images/gem-wallet.webp",
+  "TIPZ":                                    "/content-images/tipz.webp",
+  "CYZE":                                    "/content-images/cyze.webp",
+  "Pendrake Watch":                          "/content-images/pendrake-watch.webp",
 
-  // Identity, Names, and User Experience
-  "ZcashNames": "/community-projects/zcashNames.png",
-  "Zapp / JustZappIt": "/community-projects/zapp.png",
-  "Zentat": "/community-projects/zentat.png",
-  "Shielded Wall": "/community-projects/shielded-wall.png",
-  "Ztrash": "/community-projects/ztrash.png",
-  "LiveZEC": "/community-projects/livezec.png",
-  "ZecLedger": "/community-projects/zecledger.png",
-  "Authentication with ZcashMe": "/community-projects/authentication-with-zcashme.png",
+  // ── Explorers, Data, and Network Dashboards ───────────────────────
+  "CipherScan":                              "/content-images/cipherscan.webp",
+  "Exblo":                                   "/content-images/exblo.webp",
+  "OpenZcash":                               "/content-images/openzcash.webp",
+  "Zcash Block Explorer":                    "/content-images/zcash-block-explorer.webp",
+  "Zcash.Space":                             "/content-images/zcash-space.webp",
+  "ZecMap":                                  "/content-images/zecmap.webp",
+  "ZECping":                                 "/content-images/zecping.webp",
+  "ZecStats":                                "/content-images/zecstats.webp",
+  "ZecZcash":                                "/content-images/zeczcash.webp",
+  "zecprice":                                "/content-images/zecprice.webp",
+  "Zlink":                                   "/content-images/zlink.webp",
+  "Zecmarket":                               "/content-images/zecmarket.webp",
+  "Zecsite":                                 "/content-images/zecsite.webp",
+  "ZEC-OS":                                  "/content-images/zec-os.webp",
 
-  // Developer, Testing, and Infrastructure
-  "Ziggurat": "/community-projects/ziggurat.png",
-  "ZecDev": "/community-projects/zecdev.png",
-  "Zebra Coverage-Guided Fuzzing Infrastructure": "/community-projects/zebra.png",
-  "Frost": "/community-projects/frost.png",
-  "MonteZcret Benchmark": "/community-projects/montezcret-benchmark.png",
+  // ── Identity, Names, and User Experience ─────────────────────────
+  "ZcashNames":                              "/content-images/zcashnames.webp",
+  "Zapp / JustZappIt":                       "/content-images/zapp.webp",
+  "Zentat":                                  "/content-images/zentat.webp",
+  "Shielded Wall":                           "/content-images/shielded-wall.webp",
+  "Ztrash":                                  "/content-images/ztrash.webp",
+  "LiveZEC":                                 "/content-images/livezec.webp",
+  "ZecLedger":                               "/content-images/zecledger.webp",
+  "Authentication with ZcashMe":             "/content-images/authentication-with-zcashme.webp",
 
-  // Wider Applications Utilizing Zcash
-  "aftok": "/community-projects/aftok.png",
-  "ZK Global Credit": "/community-projects/zkglobalcredit.png",
-  "Free2z": "/community-projects/free2z.png",
-  "Rhea Finance": "/community-projects/rhea-finance.png",
-  "BazaarSwap": "/community-projects/bazaarswap.jpg",
-  "DCRDEX": "/community-projects/dcrdex.png",
-  "Brave Wallet": "/community-projects/brave-wallet.png",
-  "Nano-GPT": "/community-projects/nano-gpt.png",
-  "zk.poker": "/community-projects/zk-poker.png",
+  // ── Developer, Testing, and Infrastructure ────────────────────────
+  "Ziggurat":                                "/content-images/ziggurat.webp",
+  "ZecDev":                                  "/content-images/zecdev.webp",
+  "Zebra Coverage-Guided Fuzzing Infrastructure": "/content-images/zebra.webp",
+  "FROST":                                   "/content-images/frost.webp",
+  "MonteZcret Benchmark":                    "/content-images/montezcret-benchmark.webp",
 
-  // Added after the upstream list was renamed / extended
-  "ZecBlock": "/community-projects/CipherScan.png",
-  "ZecZcash": "/community-projects/zeczcash.png",
-  "Ztreamer": "/community-projects/ztreamer.png",
-  "ZcashToCash": "/community-projects/zcashtocash.png",
-  "Zipher": "/community-projects/zipher.png",
-  "Vizor": "/community-projects/vizor.png",
-  "Zaino Indexer": "/community-projects/zaino.png",
-  "Zecd": "/community-projects/zecd.png",
-  "Zero Indexer": "/community-projects/zero-indexer.png",
+  // ── Wider Applications Utilizing Zcash ───────────────────────────
+  "aftok":                                   "/content-images/aftok.webp",
+  "ZK Global Credit":                        "/content-images/zkglobalcredit.webp",
+  "Free2Z":                                  "/content-images/free2z.webp",
+  "Rhea Finance":                            "/content-images/rhea-finance.webp",
+  "BazaarSwap":                              "/content-images/bazaarswap.webp",
+  "DCRDEX":                                  "/content-images/dcrdex.webp",
+  "Brave Wallet":                            "/content-images/brave-wallet.webp",
+  "Nano-GPT":                                "/content-images/nano-gpt.webp",
+  "zk.poker":                                "/content-images/zk-poker.webp",
 
-  // Organizations & Labs
-  "Shielded Labs": "/community-projects/Sl.png",
-  "Cypherpunk": "/community-projects/cypherPunk.png",
+  // ── Organizations & Labs ─────────────────────────────────────────
+  "Shielded Labs":                           "/content-images/shielded-labs.webp",
+  "Cypherpunk":                              "/content-images/cypherpunk.webp",
 };
 
 export function attachImages(
   projects: CommunityProject[]
 ): CommunityProject[] {
-  // Upstream titles drift in case/spacing (CipherPay vs Cipherpay, Zec App vs ZEC App),
-  // so look images up by a normalised key.
-  const key = (t: string) => t.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const byKey = new Map(
-    Object.entries(COMMUNITY_PROJECT_IMAGES).map(([t, img]) => [key(t), img] as const)
-  );
   return projects.map((p) => ({
     ...p,
-    thumbnailImage: COMMUNITY_PROJECT_IMAGES[p.title] ?? byKey.get(key(p.title)),
+    thumbnailImage: COMMUNITY_PROJECT_IMAGES[p.title],
   }));
 }

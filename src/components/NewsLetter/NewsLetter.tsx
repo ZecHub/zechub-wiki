@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import QRCodeComponent from "@/components/QRComponent/QRCodeComponent";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -11,6 +11,8 @@ const NewsLetter: React.FC = () => {
   const [unifiedAddress, setUnifiedAddress] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Ecosystem News");
   const [isValidAddress, setIsValidAddress] = useState(false);
+  const subscriptionQrRef = useRef<HTMLCanvasElement>(null);
+  const unsubscribeQrRef = useRef<HTMLCanvasElement>(null);
 
   // Subscription Data
   const [subscriptionData, setSubscriptionData] = useState<{ memo: string; amount: number } | null>(null);
@@ -64,8 +66,7 @@ const NewsLetter: React.FC = () => {
   };
 
   // Function to Download QR Code
-  const downloadQRCode = (filename: string) => {
-    const canvas = document.querySelector("canvas");
+  const downloadQRCode = (canvas: HTMLCanvasElement | null, filename: string) => {
     if (canvas) {
       const image = canvas.toDataURL("image/png");
       const link = document.createElement("a");
@@ -141,6 +142,7 @@ const NewsLetter: React.FC = () => {
       {subscriptionData && (
         <div className="mt-6 text-center">
           <QRCodeComponent
+            canvasRef={subscriptionQrRef}
             amount={subscriptionData.amount}
             memo={subscriptionData.memo}
           />
@@ -148,7 +150,7 @@ const NewsLetter: React.FC = () => {
             <strong>{s.doNotEditMemo ?? "Do not edit the memo generated in your wallet."}</strong>
           </p>
           <button
-            onClick={() => downloadQRCode("subscription_qr.png")}
+            onClick={() => downloadQRCode(subscriptionQrRef.current, "subscription_qr.png")}
             className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             {s.downloadQR ?? "Download QR Code"}
@@ -208,11 +210,12 @@ const NewsLetter: React.FC = () => {
           {unsubscribeData && (
             <div className="mt-6">
               <QRCodeComponent
+                canvasRef={unsubscribeQrRef}
                 amount={unsubscribeData.amount}
                 memo={unsubscribeData.memo}
               />
               <button
-                onClick={() => downloadQRCode("unsubscribe_qr.png")}
+                onClick={() => downloadQRCode(unsubscribeQrRef.current, "unsubscribe_qr.png")}
                 className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 {s.downloadQR ?? "Download QR Code"}

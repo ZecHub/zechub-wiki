@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "メモ",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "モバイル・トップアップ",
     "Newsletter": "ニュースレター",
     "Nym VPN": "Nym VPN",
@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash のユースケース",
     "Zcash Tech": "Zcash 技術",
     "Privacy Tools": "プライバシーツール",
-    "Zcash Social Media": "Zcash ソーシャルメディア",
     "Glossary & FAQ's": "用語集 & FAQ",
     "Use Zcash": "Zcashを使う",
     "Block Explorers": "ブロックエクスプローラー",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
-    "CoinHolder Directed Retroactive Grants": "CoinHolder 指定の遡及的助成金"
+    "CoinHolder Directed Retroactive Grants": "CoinHolder 指定の遡及的助成金",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",
@@ -164,7 +166,11 @@
     "searchTryDifferent": "より短いクエリ、同義語、または別の単語を試してください。",
     "searchSuggested": "おすすめのページ",
     "searchResultsLabel": "結果",
-    "skipToContent": "コンテンツにスキップ"
+    "skipToContent": "コンテンツにスキップ",
+    "languageSearch": "言語を検索",
+    "languageSuggested": "おすすめ",
+    "languageAll": "すべての言語",
+    "languageNone": "該当する言語が見つかりません"
   },
   "navigation": {
     "wallets": "ウォレット",
@@ -186,7 +192,7 @@
       "buyingZec": "ZECの購入",
       "faucets": "フォーセット",
       "wallets": "ウォレット",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "取引所",
       "blockExplorers": "ブロックエクスプローラー",
       "shieldedPools": "シールドプール",
@@ -235,7 +241,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "ブランド",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder 指定の遡及的助成金",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Payment Processor",
@@ -270,7 +282,7 @@
     "heroTitle": "ZecHubへようこそ",
     "heroSubtitle": "Zcashのためのオープンソース教育ハブ",
     "heroDescription": "Zcashのプライバシー技術について学び、インタラクティブなビジュアライザーを探索し、エコシステムに貢献しましょう",
-    "description": "ZecHubは、Zcash暗号通貨（ZEC）のコミュニティ主導型教育ハブです。Zcashは、検閲耐性があり、安全でプライベートな支払いを提供するデジタル通貨です。Zcash Blockchainは、2022年のNU5ネットワークアップグレード以降、Trusted Setupを必要としない、非常に高度な「検証可能な」zk-snarksを利用しています。",
+    "description": "ZecHubは、検閲耐性があり、安全かつプライベートな決済のために設計された分散型デジタル通貨Zcash（ZEC）の、コミュニティ主導型教育ハブです。Zcashは高度なゼロ知識暗号技術を用いて、機密性の高い金融情報を明かさずに有効性を検証できる取引を可能にします。2026年にはIronwoodシールドプールが導入され、機械検証された数学的証明により正式に検証され、残高の完全性を保証します。Project Tachyonは、プライベート決済のスケーラビリティを大幅に向上させ、バリデータの状態増大を抑え、完全な耐量子プライバシーに向けてZcashを前進させるために設計された、提案中の次世代シールドプロトコルを開発しています。",
     "featuredSection": "注目のリソース",
     "latestUpdates": "最新情報",
     "getInvolved": "参加する",
@@ -307,11 +319,6 @@
         "description": "Zcash Global Ambassadorsは、プライバシー重視の暗号通貨の普及と教育を世界中で推進することに尽力するコミュニティリーダーです。各アンバサダープロジェクトは、それぞれの地域で認知向上とエンゲージメント構築に重点を置いています。",
         "link": "アンバサダーを見る"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Unified Addressを使って登録すると、ウォレットに直接届くZcash Ecosystem Updates & Network Statsへのshieldedアクセスを受け取れます！",
-        "link": "登録する"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2ZはZcashによって支えられているソーシャルプラットフォームです。個人間寄付、収益分配プログラム、高度なクリエイティブツール、そして大規模なオンラインのグローバルコミュニティを備えています。",
@@ -324,9 +331,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "ハッカソンに参加する",
-        "description": "Zcashコミュニティとともに、インパクトのあるアイデアを構築し、コラボレーションし、世に送り出しましょう。5つの革新的なトラックで競い合います：ノードとインデクサ向けのInfrastructure、インタラクティブな体験のためのGames、しきい値署名のための FROST、認証ソリューションのためのZcash Login、そして財務ワークフローのためのAccounting。2026年5月25日 - 7月15日。25 ZECの賞金プールがあなたを待っています。",
-        "mainLink": "ハッカソンに参加する"
+        "title": "ZecHub ハッカソンアーカイブ",
+        "description": "2026年のZecHubハッカソンは終了しました。インフラストラクチャ、ゲーム、FROST、Zcash Login、会計の各部門に応募されたプロジェクトをご覧ください。",
+        "mainLink": "プロジェクトを見る"
+      },
+      "visualizer": {
+        "description": "Zcashのプライバシー技術、インフラストラクチャ、ゼロ知識証明を理解するためのインタラクティブな教育ツール",
+        "link": "ビジュアライザーを開く",
+        "title": "ZecHub ビジュアライザー"
+      },
+      "zecMap": {
+        "description": "ZecMapは、Zcashを受け付ける店舗、サービス、ATMをコミュニティで管理する世界地図です。お近くでZECを使える場所を見つけたり、ご存知の店舗を追加して実際の普及を支援できます。",
+        "link": "ZecMapを見る",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -452,8 +469,13 @@
     "download": "ダウンロード",
     "visitWebsite": "ウェブサイトを見る",
     "filters": "フィルター",
-    "showNavigation": "ナビゲーションを表示",
     "close": "閉じる",
+    "clearAll": "すべてクリア",
+    "showWallets": "{count}件のウォレットを表示",
+    "showWallet": "1件のウォレットを表示",
+    "walletCount": "{count}件のウォレット",
+    "walletCountOne": "1件のウォレット",
+    "activeCount": "{count}件適用中",
     "savedReview": "レビューを保存しました！",
     "errorGettingLikes": "「いいね」の取得エラー:",
     "errorUpdatingRating": "評価の更新エラー:"
@@ -580,7 +602,8 @@
           "transactions24h": "24時間の取引数",
           "shieldedTx24h": "Shielded TX（24時間）",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "オーク"
+          "orchardAbbrev": "オーク",
+          "shieldedValue": "シールドされた価値"
         },
         "zcashChart": {
           "title": "分析チャート",
@@ -966,12 +989,12 @@
       "configure": "設定する",
       "runZainod": "zainod を実行する",
       "installingZingoCli": "Zingo CLI をインストールする",
-      "zingoCliInfo": "Rust で構築されたコマンドライン lightwalletd-proxy クライアントです。現在のリリースは暫定的なものであり、このガイドではソースからのコンパイルを扱います。",
-      "buildZingoCli": "Zingo CLI をビルドする",
+      "zingoCliInfo": "はZcash向けのコマンドライン軽量ウォレットです。v7ではNymミックスネット転送がデフォルトで構築され、バイナリとともにnym-proxyが同梱されます。このガイドではソースからのコンパイルについて説明します。",
+      "buildZingoCli": "Zingo CLI（v7）をビルド",
       "running": "実行",
-      "startZingoCliDefault": "Zingo CLI を起動する（デフォルト）",
-      "startZingoCliCustom": "Zingo CLI を起動する（カスタム）",
-      "zingoSyncWarning": "⚠ これは初回実行時に、lightwalletd と同様の完全同期を実行します。",
+      "startZingoCliDefault": "Zingo CLIを起動（デフォルト、オフライン）",
+      "startZingoCliCustom": "Zingo CLIを起動（ローカルインデクサー経由でオンライン）",
+      "zingoSyncWarning": "⚠ 新しいセッションは、同意を付与するまでオフラインです（--online、--remember-online、または--server）。Nymプロキシは、--nym-proxy、$ZINGO_NYM_PROXY、zingo-cliの隣にあるバイナリ、またはPATHから解決されます。同期はデフォルトでチェーン先端以降も継続します。初回のオンライン実行では完全同期が行われます。ミックスネットなしでビルドする場合（オフライン専用）：makers run-cli --nakednet --build-only。",
       "nextStepsResources": "次のステップとリソース",
       "readyToBuild": "準備はできましたか？",
       "officialDocumentation": "公式ドキュメント",
@@ -982,7 +1005,17 @@
       "zcashCommunityForum": "Zcashコミュニティフォーラム",
       "githubIssues": "GitHub Issues",
       "troubleshootingGuide": "トラブルシューティングガイド",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "ハードウェア",
+      "compareColLanguage": "言語",
+      "compareColPlatforms": "プラットフォーム",
+      "compareColRole": "役割",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "ソフトウェア",
+      "compareColStatus": "ステータス",
+      "compareFootnote": "zcashd は 2026 年 7 月 18 日、ブロック 3417100 でサポートを終了しました。新規プロジェクトは上記のソフトウェアをベースに構築してください。",
+      "compareLead": "Zcash スタックはいくつかの独立したツールで構成されています。この表を使ってプロジェクトに必要なツールを確認し、下記の対応するガイドに従ってください。",
+      "compareTitle": "ノードとクライアントの比較"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAOガバナンス",
@@ -1037,7 +1070,17 @@
         "Organizations": "組織",
         "Guides": "ガイド",
         "Use Zcash": "Zcashを使う",
-        "Ecosystem": "エコシステム"
+        "Ecosystem": "エコシステム",
+        "Contribute": "貢献する",
+        "Glossary & FAQs": "用語集とFAQ",
+        "Privacy Tools": "プライバシーツール",
+        "Research": "リサーチ",
+        "Start Here": "ここから始める",
+        "Tutorials": "チュートリアル",
+        "Use Cases": "ユースケース",
+        "Zcash Tech": "Zcash 技術",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "ソーシャルメディア"
       },
       "links": {
         "Homepage": "ホームページ",
@@ -1063,7 +1106,7 @@
         "Payment Request URIs": "支払いリクエストURI",
         "Payment Processors": "決済代行サービス",
         "Recovering Funds": "資金の回復",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "コミュニティフォーラム",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
@@ -1092,7 +1135,7 @@
       "formalVerificationSeriesDescription": "形式検証を基本原理から解説し、2026年のOrchard健全性バグをたどり、Ironwoodが機械検証済みの数学的証明でどう対応したかを示す全3回のシリーズ。",
       "newSeriesBadge": "新シリーズ"
     },
-    "browseSidebar": "左側のサイドバーを使って記事を閲覧してください 👈",
+    "browseSidebar": "このセクションの記事を閲覧するには、ナビゲーションを開いてください。",
     "zcashGlobalAmbassadors": {
       "title": "Zcash グローバルアンバサダー",
       "description": "Zcash グローバルアンバサダーは、世界中でプライバシー重視の暗号通貨の採用と教育を推進することに尽力するコミュニティリーダーです。各アンバサダープロジェクトは、それぞれの地域における認知向上と関与の構築に重点を置いています。",
@@ -1212,5 +1255,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Zcashのためのオープンソース教育ハブ"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "ここから始める",
+      "sub": "Zcashを学ぶ旅を始めましょう"
+    },
+    "guides": {
+      "title": "ガイド",
+      "sub": "Zcashプロトコルを理解するための体系的なドキュメント"
+    },
+    "zcash-tech": {
+      "title": "Zcash 技術",
+      "sub": "Zcashを支える技術の内部"
+    },
+    "organizations": {
+      "title": "組織",
+      "sub": "構造 · ガバナンス · 貢献者"
+    },
+    "privacy-tools": {
+      "title": "プライバシーツール",
+      "sub": "実用的なプライバシーソリューション"
+    },
+    "research": {
+      "title": "リサーチ",
+      "sub": "ゼロ知識 · プライバシー · 暗号技術を探求"
+    },
+    "glossary": {
+      "title": "用語集とFAQ",
+      "sub": "定義、回答、明確さ。"
+    },
+    "contribute": {
+      "title": "貢献する",
+      "sub": "執筆 · 翻訳 · デザイン · 開発"
+    },
+    "tutorials": {
+      "title": "チュートリアル",
+      "sub": "視聴して手順に従う"
+    }
   }
 }

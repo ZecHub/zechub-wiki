@@ -2,7 +2,7 @@
   "dao_address": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
   "chain_id": "juno-1",
   "name": "ZecHub",
-  "timestamp": "2026-09-24T18:58:59Z",
+  "timestamp": "2026-11-12T13:14:14Z",
   "treasury": {
     "juno_native_balances": [
       {
@@ -165,5 +165,46 @@
     ],
     "juno_cw20_balances": [],
     "osmosis_cw20_balances": []
+  },
+  "dao_config": {
+    "name": "ZecHub",
+    "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+    "image_url": "ipfs://QmQbhdCn53Q6bn7BuJRY5WGWMpjWf4otAQA4GDoZqbafY8",
+    "automatically_add_cw20s": true,
+    "automatically_add_cw721s": true,
+    "dao_uri": null
+  },
+  "full_dump_state": {
+    "admin": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+    "config": {
+      "name": "ZecHub",
+      "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+      "image_url": "ipfs://QmQbhdCn53Q6bn7BuJRY5WGWMpjWf4otAQA4GDoZqbafY8",
+      "automatically_add_cw20s": true,
+      "automatically_add_cw721s": true,
+      "dao_uri": null
+    },
+    "pause_info": {
+      "unpaused": {}
+    },
+    "version": {
+      "contract": "crates.io:dao-core",
+      "version": "2.1.0"
+    },
+    "proposal_modules": [
+      {
+        "address": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "prefix": "A",
+        "status": "enabled"
+      },
+      {
+        "address": "juno1yjzmqpta208886l2uf5kjyyd9gzr254t78e7t9f27u7jzjlq72gs9smnet",
+        "prefix": "B",
+        "status": "enabled"
+      }
+    ],
+    "voting_module": "juno1css749cl7xevujhqpsxuxxafn5rrwmtt0dcftvg990956yqcld4supl7jj",
+    "active_proposal_module_count": 2,
+    "total_proposal_module_count": 2
   }
 }

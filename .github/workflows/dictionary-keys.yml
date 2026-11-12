@@ -1,0 +1,67 @@
+name: Dictionary-key report
+
+# Reports which dictionary keys are missing from each locale against
+# dictionaries/en.json, which are left over from an English rename, and which
+# diverge in shape.
+#
+# Now a hard gate. A missing key falls back to English at runtime, so gaps
+# used to be report-only while a backlog existed. That backlog is gone
+# (#1053), so --strict makes new English-only strings fail the PR instead of
+# shipping untranslated. The complementary hard gate is Menu-label coverage
+# (.github/workflows/menu-labels.yml), which owns the menuLabels / exploreMenu
+# namespaces. This check covers every other namespace.
+#
+# See scripts/check-dictionary-keys.mjs.
+
+# Least privilege: the check only reads the tree. Also stops the checkout token
+# from being persisted where PR-controlled code (deps, imported modules) could
+# reach it.
+permissions:
+  contents: read
+
+on:
+  push:
+    paths:
+      - "dictionaries/**"
+      - "src/i18n/routing.ts" # CANONICAL_LOCALES is derived from here
+      - "scripts/check-dictionary-keys.mjs"
+      - "scripts/lib/**" # the report's own logic
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/dictionary-keys.yml"
+  pull_request:
+    paths:
+      - "dictionaries/**"
+      - "src/i18n/routing.ts"
+      - "scripts/check-dictionary-keys.mjs"
+      - "scripts/lib/**"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/dictionary-keys.yml"
+
+jobs:
+  dictionary-key-report:
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: pin actions to full commit SHAs (supply-chain hardening).
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24 # matches the menu-label gate
+          cache: yarn
+
+      # Install is needed because the locale list is IMPORTED from
+      # src/i18n/routing.ts (via tsx) rather than regex-parsed, the same way the
+      # menu-label gate reads it. --ignore-scripts so a malicious PR dependency
+      # can't run lifecycle code in CI.
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Check dictionary-key coverage
+        # --strict exits 1 on any missing, extra, or shape-mismatched key.
+        # On current main the script reports 0/0/0, so this passes today and
+        # blocks future gaps.
+        run: yarn tsx scripts/check-dictionary-keys.mjs --strict

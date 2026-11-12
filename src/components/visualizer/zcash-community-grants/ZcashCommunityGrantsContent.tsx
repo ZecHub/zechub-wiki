@@ -1,18 +1,17 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  FileText,
-  Github,
-  MessageCircle,
-  Users,
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowRight,
   CheckCircle,
   ExternalLink,
-  ArrowRight,
   Lightbulb,
-  Target
+  MessageCircle,
+  Target,
+  Users,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { FaGithub } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 const slides = [
   {
@@ -25,25 +24,25 @@ const slides = [
       "Problem statement and proposed solution",
       "Deliverables, timeline, and milestones",
       "Budget and funding request",
-      "Relevant experience and potential risks"
+      "Relevant experience and potential risks",
     ],
-    link: "https://zcashcommunitygrants.org/",
-    linkText: "Visit ZCG Website"
+    link: "https://zcashcommunitygrants.org/selection/",
+    linkText: "Read the Grant Process",
   },
   {
     id: "github",
     title: "Submit on GitHub",
-    icon: Github,
+    icon: FaGithub,
     color: "from-slate-600 to-slate-800",
     steps: [
-      "Go to Zcash Community Grants GitHub repository",
-      "Open the Issues tab and click New Issue",
-      "Select the grant application template",
-      "Complete all required fields",
-      "Submit your GitHub issue (official record)"
+      "Log in to GitHub and open the ZCG Grant Application template",
+      'Keep the title format "Grant Application - [Project Name]"',
+      "Accept the terms, including KYC for grants above $50,000",
+      "Complete every required field, including budget and milestones",
+      "Click Create to submit your issue (official record)",
     ],
-    link: "https://github.com/ZcashCommunityGrants/arborist-calls",
-    linkText: "Open GitHub Repository"
+    link: "https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/new?labels=Pending+Grant+Application&template=grant_application.yaml&title=Grant+Application+-+%7BApplication+Name%7D",
+    linkText: "Open Application Template",
   },
   {
     id: "forum",
@@ -51,14 +50,14 @@ const slides = [
     icon: MessageCircle,
     color: "from-blue-500 to-cyan-600",
     steps: [
-      "Go to the Zcash Community Forum",
-      "Create a new thread in ZCG category",
-      "Use the same title as GitHub issue",
-      "Add a short summary of your proposal",
-      "Include a link to the GitHub issue"
+      "Start a new thread in Community Grants > Applications",
+      "Use the same title as your GitHub issue",
+      "Post your request details and link your GitHub issue",
+      "Required: ZCG only discusses and votes on posted applications",
+      "Can't post as a new user? Comment on your GitHub issue",
     ],
-    link: "https://forum.zcashcommunity.com/",
-    linkText: "Visit Community Forum"
+    link: "https://forum.zcashcommunity.com/c/grants/applications/36",
+    linkText: "Open Applications Forum",
   },
   {
     id: "review",
@@ -66,14 +65,14 @@ const slides = [
     icon: Users,
     color: "from-emerald-500 to-teal-600",
     steps: [
-      "Monitor your GitHub issue and forum thread",
-      "Respond to questions from ZCG Committee",
-      "Address community feedback promptly",
-      "Clarify any concerns or requirements",
-      "Update proposal based on input"
+      "FPF checks that your application meets eligibility requirements",
+      "The community has at least one week to comment",
+      "Answer questions on your forum thread and GitHub issue",
+      "The ZCG Committee reviews applications every other week",
+      "Update your proposal based on feedback",
     ],
     link: "https://zcashcommunitygrants.org/committee/",
-    linkText: "Meet the Committee"
+    linkText: "Meet the Committee",
   },
   {
     id: "outcome",
@@ -81,15 +80,15 @@ const slides = [
     icon: Target,
     color: "from-amber-500 to-orange-600",
     steps: [
-      "ZCG Committee reviews your complete application",
-      "Approved proposals proceed to funding",
-      "Begin work on deliverables and milestones",
-      "Submit regular progress reports",
-      "Unapproved proposals may be revised and resubmitted"
+      "Approval needs a simple majority of the committee (3 of 5)",
+      "After the bi-weekly meeting, FPF works with you to revise milestones",
+      "Complete the grant agreement, and KYC if required, with FPF",
+      "All documentation must be complete before milestone payouts",
+      "Post updates on your forum thread before each milestone payout",
     ],
     link: "https://docs.google.com/spreadsheets/d/1FQ28rDCyRW0TiNxrm3rgD8ai2KGUsXAjPieQmI1kKKg/",
-    linkText: "View Approved Projects"
-  }
+    linkText: "View Approved Projects",
+  },
 ];
 
 export { slides };
@@ -100,10 +99,10 @@ interface ZcashCommunityGrantsContentProps {
   isPlaying: boolean;
 }
 
-export const ZcashCommunityGrantsContent = ({ 
-  currentSlide, 
+export const ZcashCommunityGrantsContent = ({
+  currentSlide,
   onSlideChange,
-  isPlaying 
+  isPlaying,
 }: ZcashCommunityGrantsContentProps) => {
   const [progress, setProgress] = useState(0);
 
@@ -156,10 +155,10 @@ export const ZcashCommunityGrantsContent = ({
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
+        <h2 className="text-2xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
           Zcash Community Grants
         </h2>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-muted-foreground text-md">
           Funding independent teams for the public good of Zcash
         </p>
       </motion.div>
@@ -172,11 +171,11 @@ export const ZcashCommunityGrantsContent = ({
             onClick={() => onSlideChange(index)}
             className="relative"
           >
-            <div 
+            <div
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-purple-400 w-8' 
-                  : 'bg-slate-400/30 hover:bg-slate-400/50'
+                index === currentSlide
+                  ? "bg-purple-400 w-8"
+                  : "bg-slate-400/30 hover:bg-slate-400/50"
               }`}
             />
             {index === currentSlide && isPlaying && (
@@ -184,7 +183,7 @@ export const ZcashCommunityGrantsContent = ({
                 className="absolute inset-0 bg-purple-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
-                style={{ transformOrigin: 'left' }}
+                style={{ transformOrigin: "left" }}
               />
             )}
           </button>
@@ -206,28 +205,28 @@ export const ZcashCommunityGrantsContent = ({
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 200, 
+              transition={{
+                type: "spring",
+                stiffness: 200,
                 damping: 15,
-                delay: 0.2 
+                delay: 0.2,
               }}
               className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${slide.color} p-1 shadow-2xl`}
             >
               <div className="w-full h-full bg-background rounded-xl flex items-center justify-center">
                 <Icon className="w-12 h-12 text-foreground" />
               </div>
-              
+
               <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
-                animate={{ 
+                animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.5, 0, 0.5]
+                  opacity: [0.5, 0, 0.5],
                 }}
-                transition={{ 
-                  duration: 2, 
+                transition={{
+                  duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.div>
@@ -256,10 +255,10 @@ export const ZcashCommunityGrantsContent = ({
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
+                  transition={{
                     delay: 0.5 + index * 0.1,
                     type: "spring",
-                    stiffness: 200
+                    stiffness: 200,
                   }}
                   className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${slide.color} flex items-center justify-center text-white font-bold shadow-lg`}
                 >
@@ -282,7 +281,7 @@ export const ZcashCommunityGrantsContent = ({
             transition={{ delay: 0.8 }}
             className="flex justify-center"
           >
-            <a            
+            <a
               href={slide.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -298,38 +297,29 @@ export const ZcashCommunityGrantsContent = ({
           <motion.div
             animate={{
               rotate: [0, 360],
-              scale: [1, 1.2, 1]
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
           <motion.div
             animate={{
               rotate: [360, 0],
-              scale: [1, 1.3, 1]
+              scale: [1, 1.3, 1],
             }}
             transition={{
               duration: 15,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Progress Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-12 text-center text-sm text-muted-foreground"
-      >
-        Step {currentSlide + 1} of {slides.length}
-      </motion.div>
     </div>
   );
 };

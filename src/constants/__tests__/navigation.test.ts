@@ -13,11 +13,11 @@ const flattenLinks = (items: NavigationItem[]): NavigationItem[] =>
   ]);
 
 describe("navigation section entry points", () => {
-  it("links Zcash Social Media from the Ecosystem menu", () => {
+  it("links Zero to Zero Knowledge from the Ecosystem menu", () => {
     expect(findSection("Zcash Community")?.links).toContainEqual(
       expect.objectContaining({
-        name: "Zcash Social Media",
-        path: "/zcash-social-media/zero-to-zero-knowledge",
+        name: "Zero to Zero Knowledge",
+        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
       }),
     );
   });
@@ -36,7 +36,7 @@ describe("navigation section entry points", () => {
 
     expect(
       allLinks.filter(
-        (item) => item.path === "/zcash-social-media/zero-to-zero-knowledge",
+        (item) => item.path === "/zero-to-zero-knowledge/zero-to-zero-knowledge",
       ),
     ).toHaveLength(1);
     expect(

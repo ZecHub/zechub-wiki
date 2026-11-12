@@ -17,6 +17,8 @@ import {
 import ChartHeader from "../../ChartHeader";
 import ChartContainer from "../ChartContainer";
 
+type Network = "mainnet" | "testnet";
+
 type TransparentSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
@@ -25,19 +27,21 @@ export default function TransparentSupplyChart(props: TransparentSupplyChartProp
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
   const [supplyData, setSupplyData] = useState<SupplyData[]>([]);
+  const [network, setNetwork] = useState<Network>("mainnet");
   const fontSize = useResponsiveFontSize();
   const isMobile = useInMobile();
 
-  // Fetch data once (no artificial delay)
   useEffect(() => {
     const controller = new AbortController();
     const fetchSupplyData = async () => {
       setLoading(true);
       try {
-        const supply = await getSupplyData(
-          DATA_URL.transparentSupplyUrl,
-          controller.signal
-        );
+        const mainUrl = DATA_URL.transparentSupplyUrl;
+        const url =
+          network === "mainnet"
+            ? mainUrl
+            : mainUrl.replace("/zcash/", "/zcash/testnet/");
+        const supply = await getSupplyData(url, controller.signal);
         setSupplyData(supply || []);
       } catch (err) {
         console.error("Error fetching supply data:", err);
@@ -47,7 +51,7 @@ export default function TransparentSupplyChart(props: TransparentSupplyChartProp
     };
     fetchSupplyData();
     return () => controller.abort();
-  }, []);
+  }, [network]);
 
   const extractYear = useCallback((dateStr: string) => {
     const parsed = new Date(dateStr);
@@ -63,21 +67,46 @@ export default function TransparentSupplyChart(props: TransparentSupplyChartProp
     return ["all", ...years];
   }, [supplyData, extractYear]);
 
-  // Memoized filtered data for instant year switching
   const filteredData = useMemo(() => {
     return selectedYear === "all"
       ? supplyData
       : supplyData.filter((d) => extractYear(d.close) === selectedYear);
   }, [supplyData, selectedYear, extractYear]);
 
-  // Get latest supply from filtered data
   const latestSupply = filteredData[filteredData.length - 1]?.supply || 0;
+
+  const chartTitle = `${network === "testnet" ? "Testnet " : ""}Transparent Supply Overview`;
 
   return (
     <ErrorBoundary fallback={"Failed to load Transparent Supply Chart"}>
-      <ChartHeader title="Transparent Supply Overview">
+      <ChartHeader title={chartTitle}>
         <div className="flex flex-wrap gap-16 items-center">
-          {/* Year Dropdown */}
+          <div className="relative flex rounded-full bg-slate-800/60 p-0.5 text-xs font-medium">
+            <div
+              className={`absolute top-0.5 bottom-0.5 rounded-full transition-all duration-200 shadow-sm ${
+                network === "mainnet"
+                  ? "bg-emerald-700 left-0.5 right-[calc(50%+2px)]"
+                  : "bg-amber-700 left-[calc(50%+2px)] right-0.5"
+              }`}
+            />
+            <button
+              onClick={() => setNetwork("mainnet")}
+              className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${
+                network === "mainnet" ? "text-white" : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              Mainnet
+            </button>
+            <button
+              onClick={() => setNetwork("testnet")}
+              className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${
+                network === "testnet" ? "text-white" : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              Testnet
+            </button>
+          </div>
+
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
             <DefaultSelect

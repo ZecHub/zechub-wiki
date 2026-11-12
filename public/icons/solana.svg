@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Solana">
+  <defs>
+    <linearGradient id="solana" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00FFA3"/>
+      <stop offset="50%" stop-color="#DC1FFF"/>
+      <stop offset="100%" stop-color="#9945FF"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#solana)" d="M4.2 17.35c.12-.12.28-.18.45-.18h15.02c.28 0 .42.33.22.53l-2.07 2.13c-.12.12-.28.18-.45.18H2.35c-.28 0-.42-.33-.22-.53l2.07-2.13z"/>
+  <path fill="url(#solana)" d="M4.2 4.17c.12-.12.28-.18.45-.18h15.02c.28 0 .42.33.22.53L17.82 6.65c-.12.12-.28.18-.45.18H2.35c-.28 0-.42-.33-.22-.53L4.2 4.17z"/>
+  <path fill="url(#solana)" d="M17.82 10.58c-.12-.12-.28-.18-.45-.18H2.35c-.28 0-.42.33-.22.53l2.07 2.13c.12.12.28.18.45.18h15.02c.28 0 .42-.33.22-.53l-2.07-2.13z"/>
+</svg>

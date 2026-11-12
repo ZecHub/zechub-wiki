@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import QRCode from "qrcode.react";
+import { QRCodeSVG as QRCode } from "qrcode.react";
 import { useState, useEffect } from "react";
 import PenumbraWalletConnect from "../Penumbra/PenumbraWalletConnect";
 import "./donation.css";
