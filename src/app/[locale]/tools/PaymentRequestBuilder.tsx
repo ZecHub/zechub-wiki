@@ -459,6 +459,13 @@ export default function PaymentRequestBuilder() {
                       <p className="text-[13px] text-amber-500 font-medium">
                         Memos are not supported for transparent addresses in ZIP 321.
                       </p>
+                      <button
+                        type="button"
+                        onClick={() => updatePayment(i, "memo", "")}
+                        className="mt-2 text-sm text-amber-600 dark:text-amber-400 underline cursor-pointer"
+                      >
+                        Clear memo
+                      </button>
                     </div>
                   ) : null}
 
