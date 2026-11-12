@@ -1,5 +1,32 @@
 export const arboristCalls = [
   {
+    id: 134,
+    date: "15 Oct 2026",
+    agenda: "",
+    notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20134%20-%20notes.md",
+    twitter: "",
+    video: "https://www.youtube.com/watch?v=3FKbc3N41Zw",
+    status: "Completed",
+  },
+  {
+    id: 133,
+    date: "1 Oct 2026",
+    agenda: "",
+    notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20133%20-%20notes.md",
+    twitter: "",
+    video: "https://www.youtube.com/watch?v=gJA1brRxnf4",
+    status: "Completed",
+  },
+  {
+    id: 132,
+    date: "17 Sep 2026",
+    agenda: "",
+    notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20132%20-%20notes.md",
+    twitter: "",
+    video: "https://www.youtube.com/watch?v=5Vgq0sXJ_Co",
+    status: "Completed",
+  },
+  {
     id: 131,
     date: "3 Sep 2026",
     agenda: "",
@@ -55,7 +82,7 @@ export const arboristCalls = [
   },
   {
     id: 125,
-    date: "May 28th, 2026.",
+    date: "May 28th, 2026",
     agenda: "",
     notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20125%20-%20notes.md",
     twitter: "",
@@ -64,7 +91,7 @@ export const arboristCalls = [
   },
   {
     id: 124,
-    date: "April 30th, 2026.",
+    date: "April 30th, 2026",
     agenda: "",
     notes: "https://github.com/ZcashCommunityGrants/arboretum-notes/blob/main/AllArboristCallNotes/Arborist%20call%20124%20-%20notes.md",
     twitter: "",

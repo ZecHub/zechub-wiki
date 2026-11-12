@@ -49,7 +49,7 @@
     "Recovering Funds": "Nkwụghachi Ego",
     "Research": "Nnyocha",
     "Send Money Privately": "Na-ezipụ Ego n'Ebe Ọ Bụla",
-    "Shielded Labs": "Ụlọ nyocha echedoro",
+    "Shielded Labs": "Shielded Labs",
     "Shielded Pools": "Ọdọ Mmiri Ndị E Chebere",
     "Sitemap": "Site map",
     "Start Here": "Malite Ebe a",
@@ -166,7 +166,11 @@
     "searchTryDifferent": "Gbalịa jiri ajụjụ ndị dị mkpirikpi, okwu ndị yiri ibe ha, ma ọ bụ okwu ndị ọzọ mee ihe.",
     "searchSuggested": "Peeji ndị a tụrụ aro",
     "searchResultsLabel": "Nsonaazụ",
-    "skipToContent": "Gaa na ọdịnaya"
+    "skipToContent": "Gaa na ọdịnaya",
+    "languageSearch": "Chọọ asụsụ",
+    "languageSuggested": "A tụrụ aro",
+    "languageAll": "Asụsụ niile",
+    "languageNone": "Achọtaghị asụsụ ọ bụla"
   },
   "navigation": {
     "wallets": "Akpa ego",

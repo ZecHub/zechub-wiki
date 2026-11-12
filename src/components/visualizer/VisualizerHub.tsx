@@ -286,6 +286,7 @@ export const VisualizerHub: React.FC = () => {
             <Button
               onClick={goToPrevious}
               disabled={isFirst}
+              aria-label="Previous visualizer"
               variant="secondary"
               className="bg-card/90 backdrop-blur-md border border-border/50 hover:bg-card disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -320,6 +321,7 @@ export const VisualizerHub: React.FC = () => {
           >
             <Button
               onClick={goToNext}
+              aria-label="Next visualizer"
               variant="secondary"
               className="bg-card/90 backdrop-blur-md border border-border/50 hover:bg-card"
             >

@@ -6,17 +6,12 @@ import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
-import { Metadata } from "next";
-import DynamicComponent from "next/dynamic";
-import { serialize } from "next-mdx-remote/serialize";
 import { stripFrontmatter } from "@/lib/stripFrontmatter";
-
-const MdxComponent = DynamicComponent(
-  () => import("@/components/MdxRenderer"),
-  {
-    loading: () => <span className="text-center text-3xl">Loading...</span>,
-  }
-);
+import { Metadata } from "next";
+import { Suspense } from "react";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import MdxComponents from "@/components/MdxComponents/MdxComponent";
+import MdxReady from "@/components/MdxReady";
 
 export async function generateMetadata({
   params,
@@ -52,9 +47,14 @@ export default async function Page(props: {
   ]);
   const content = markdown ? markdown : "No Data or Wrong file";
 
-  const mdxSource = await serialize(normalizeMdx(stripFrontmatter(String(content))), {
-    mdxOptions: { rehypePlugins: [rehypeJsxYouTubeFacade] },
-  });
+  // Render MDX on the server (next-mdx-remote/rsc), the same way the [...slug]
+  // content route does since the CSP was switched to enforcing. The previous
+  // client-side <MDXRemote> (next-mdx-remote) evaluated the compiled source with
+  // Reflect.construct(Function, …), which the enforcing script-src blocks (no
+  // 'unsafe-eval' in production), so this bespoke page still rendered "couldn't
+  // load" after the catch-all route was migrated. MDX options are unchanged, so
+  // the page renders exactly as before — only the evaluation moves server-side.
+  const mdxSource = normalizeMdx(stripFrontmatter(String(content)));
 
   return (
     <MdxContainer
@@ -63,7 +63,19 @@ export default async function Page(props: {
       roots={roots}
       heroImage={{ src: getBanner(`using-zcash`) }}
     >
-      <MdxComponent source={mdxSource} />
+      <Suspense
+        fallback={<span className="text-center text-3xl">Loading...</span>}
+      >
+        <MDXRemote
+          source={mdxSource}
+          components={MdxComponents}
+          options={{
+            blockJS: true,
+            mdxOptions: { rehypePlugins: [rehypeJsxYouTubeFacade] },
+          }}
+        />
+        <MdxReady />
+      </Suspense>
     </MdxContainer>
   );
 }

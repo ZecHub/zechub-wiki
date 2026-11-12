@@ -1,6 +1,6 @@
 "use client";
 
-import ExplorerDirectoryCard from "@/app/[locale]/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
+import CommunityProjectCard from "@/components/CommunityProjects/CommunityProjectCard";
 import { useLanguage } from "@/context/LanguageContext";
 import type { CommunityProject } from "@/lib/parseCommunityProjects";
 import { useMemo, useState } from "react";
@@ -123,7 +123,7 @@ const CommunityProjectsClient = ({ projects }: Props) => {
             }}
             placeholder="Search community projects..."
             autoComplete="off"
-            className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-12 pr-12 text-base text-slate-900 shadow-sm outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-slate-500 dark:focus:ring-slate-800"
+            className="w-full rounded-xl border border-slate-200 bg-white py-3.5 pl-12 pr-12 text-base text-slate-900 shadow-sm outline-none transition focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/30 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-[#F4B728] dark:focus:ring-[#F4B728]/20"
           />
 
           {/* Clear Search Button */}
@@ -155,20 +155,35 @@ const CommunityProjectsClient = ({ projects }: Props) => {
       </div>
 
       {/* Project Count + Category Filters */}
-      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sticky top-0 z-10 py-3 -mx-4 px-4 md:static md:py-0 md:mx-0 md:px-0 bg-gradient-to-b from-white via-white/90 to-transparent dark:from-[#0b1520] dark:via-[#0b1520]/85 dark:to-transparent backdrop-blur-sm md:bg-none md:backdrop-blur-none">
         <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
           {visibleProjectCount}{" "}
           {visibleProjectCount === 1 ? "project" : "projects"}
         </p>
 
-        <div className="flex flex-wrap gap-2">
+        {/* Mobile: select. Desktop: scrollable chips */}
+        <div className="md:hidden">
+          <label className="sr-only" htmlFor="category-select">Category</label>
+          <select
+            id="category-select"
+            value={activeCategory}
+            onChange={(e) => setActiveCategory(e.target.value)}
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+          >
+            <option value="all">All categories</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+        <div className="hidden md:flex md:flex-wrap gap-2">
           <button
             type="button"
             onClick={() => setActiveCategory("all")}
             className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
               activeCategory === "all"
-                ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                ? "bg-[#F4B728] text-slate-900"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border dark:border-slate-700 dark:hover:bg-slate-700"
             }`}
           >
             All
@@ -181,8 +196,8 @@ const CommunityProjectsClient = ({ projects }: Props) => {
               onClick={() => setActiveCategory(cat)}
               className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
                 activeCategory === cat
-                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                  ? "bg-[#F4B728] text-slate-900"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border dark:border-slate-700 dark:hover:bg-slate-700"
               }`}
             >
               {cat}
@@ -247,15 +262,28 @@ const CommunityProjectsClient = ({ projects }: Props) => {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {/* Compact list on mobile, card grid on md+ */}
+              <div className="flex flex-col gap-2 md:hidden">
                 {items.map((itm, i) => (
-                  <ExplorerDirectoryCard
-                    key={`${category}-${itm.title}-${i}`}
-                    thumbnailImage={itm.thumbnailImage ?? ""}
-                    description={itm.description}
+                  <CommunityProjectCard
+                    key={`${category}-c-${itm.title}-${i}`}
                     title={itm.title}
+                    description={itm.description}
                     url={itm.url}
-                    features={itm.features}
+                    thumbnailImage={itm.thumbnailImage}
+                    ctaLabel={cta}
+                    compact
+                  />
+                ))}
+              </div>
+              <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+                {items.map((itm, i) => (
+                  <CommunityProjectCard
+                    key={`${category}-g-${itm.title}-${i}`}
+                    title={itm.title}
+                    description={itm.description}
+                    url={itm.url}
+                    thumbnailImage={itm.thumbnailImage}
                     ctaLabel={cta}
                   />
                 ))}

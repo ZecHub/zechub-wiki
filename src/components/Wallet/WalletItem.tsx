@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import React, { useMemo, useState } from "react";
@@ -20,10 +21,9 @@ interface WalletItemProps {
   tags: Tag[];
   likes: number;
   syncSpeed: string;
-  ironwood?: string;
+  nu7?: string;
   stage?: string;
-  // Set (possibly to "") only for a deprecated wallet: the reason it is listed
-  // as no longer supporting Zcash. Replaces the Ironwood badge.
+  // Replaces the NU7 badge for deprecated wallets.
   deprecated?: string;
   onLike: () => void;
   onDislike: () => void;
@@ -49,11 +49,15 @@ const categoryIcons = {
   Features: MdChecklist,
 };
 
-// NU6.3 "Ironwood" upgrade status → badge colors (status text comes from Wallets.md)
-const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
-  "ready": {
+// NU7 compatibility status badge colors.
+const nu7BadgeStyles: Record<string, { pill: string; dot: string }> = {
+  compatible: {
     pill: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
     dot: "bg-emerald-500",
+  },
+  "compatible for transparent zec": {
+    pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+    dot: "bg-amber-500",
   },
   "in progress": {
     pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
@@ -63,14 +67,13 @@ const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
     pill: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
     dot: "bg-rose-500",
   },
-  // Wallets that never held shielded ZEC: Ironwood does not apply to them.
-  "transparent only": {
+  "not verified": {
     pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
     dot: "bg-slate-400",
   },
 };
 
-const ironwoodFallbackStyle = {
+const nu7FallbackStyle = {
   pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
   dot: "bg-slate-500",
 };
@@ -81,7 +84,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   logo,
   tags,
   syncSpeed,
-  ironwood,
+  nu7,
   stage,
   deprecated,
   likes,
@@ -115,6 +118,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
     () => featureValues.some((v) => v.toLowerCase() === "transparent"),
     [featureValues],
   );
+
   const hasShielded = useMemo(
     () => featureValues.some((v) => v.toLowerCase() === "shielded"),
     [featureValues],
@@ -122,7 +126,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
 
   return (
     <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
-      {/* Logo — taller + more padding on mobile */}
+      {/* Logo */}
       <a
         href={link}
         target="_blank"
@@ -161,34 +165,36 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </Link>
         </div>
 
-        {/* Deprecated: a red badge and the reason, in place of the Ironwood badge */}
+        {/* Deprecated wallet badge */}
         {deprecated !== undefined && (
           <div className="mb-4 -mt-1">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-rose-600 text-white dark:bg-rose-700">
               Deprecated
             </span>
             {deprecated && (
-              <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">{deprecated}</p>
+              <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">
+                {deprecated}
+              </p>
             )}
           </div>
         )}
 
-        {/* NU6.3 "Ironwood" readiness badge, plus the release stage when not final */}
-        {deprecated === undefined && (ironwood || stage) && (
+        {/* NU7 compatibility badge + release stage */}
+        {deprecated === undefined && (nu7 || stage) && (
           <div className="mb-4 -mt-1 flex flex-wrap gap-2">
-            {ironwood && (
+            {nu7 && (
               <span
-                title="NU6.3 Ironwood network upgrade status"
+                title="NU7 network upgrade compatibility status"
                 className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full ${
-                  (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).pill
+                  (nu7BadgeStyles[nu7.trim().toLowerCase()] ?? nu7FallbackStyle).pill
                 }`}
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
-                    (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).dot
+                    (nu7BadgeStyles[nu7.trim().toLowerCase()] ?? nu7FallbackStyle).dot
                   }`}
                 />
-                Ironwood {ironwood}
+                NU7: {nu7}
               </span>
             )}
             {stage && (
@@ -202,7 +208,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </div>
         )}
 
-        {/* Devices + Pools (compact pills) */}
+        {/* Devices + Pools */}
         {tags
           .filter((t) => ["Devices", "Pools"].includes(t.category))
           .map((tag, index) => (
@@ -224,7 +230,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
             </div>
           ))}
 
-        {/* Features section — more space between tags */}
+        {/* Features section */}
         {tags.some((t) => t.category === "Features") && (
           <>
             <hr className="my-3 border-slate-200 dark:border-slate-700" />
@@ -247,6 +253,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                     Shielded
                   </Link>
                 ) : null}
+
                 {hasTransparent ? (
                   <Link
                     href={getFeatureLink("Transparent", link)}
@@ -293,6 +300,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                       typeof value === "string"
                         ? value
                         : (value as FeatureLink).name;
+
                     const linkUrl =
                       typeof value === "string"
                         ? getFeatureLink(value, link)
@@ -318,14 +326,26 @@ const WalletItem: React.FC<WalletItemProps> = ({
 
       {/* Rating pinned at bottom */}
       <div className="border-t border-slate-200 dark:border-slate-700 p-5 mt-auto flex items-center">
-        <div className="flex-grow text-sm text-gray-400">Rating: {likes}</div>
-        <div className="text-pink-700 dark:text-red-300 text-xs pr-2">{error}</div>
-        <div className="text-green-700 dark:text-green-300 text-xs pr-2">{success}</div>
+        <div className="flex-grow text-sm text-gray-400">
+          Rating: {likes}
+        </div>
+        <div className="text-pink-700 dark:text-red-300 text-xs pr-2">
+          {error}
+        </div>
+        <div className="text-green-700 dark:text-green-300 text-xs pr-2">
+          {success}
+        </div>
         <div className="flex gap-4">
-          <button onClick={handleLike} className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
+          <button
+            onClick={handleLike}
+            className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}
+          >
             <Icon icon={Like} size="small" />
           </button>
-          <button onClick={handleDislike} className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
+          <button
+            onClick={handleDislike}
+            className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}
+          >
             <Icon icon={Dislike} size="small" />
           </button>
         </div>

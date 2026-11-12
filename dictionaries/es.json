@@ -166,7 +166,11 @@
     "searchTryDifferent": "Prueba consultas más cortas, sinónimos u otras palabras.",
     "searchSuggested": "Páginas sugeridas",
     "searchResultsLabel": "Resultados",
-    "skipToContent": "Saltar al contenido"
+    "skipToContent": "Saltar al contenido",
+    "languageSearch": "Buscar idiomas",
+    "languageSuggested": "Sugeridos",
+    "languageAll": "Todos los idiomas",
+    "languageNone": "No se encontró ningún idioma"
   },
   "navigation": {
     "wallets": "Carteras",
