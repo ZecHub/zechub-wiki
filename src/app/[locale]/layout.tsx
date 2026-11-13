@@ -36,7 +36,7 @@ const organizationJsonLd = {
 
 // Locales that render right-to-left. Drives the <html dir> attribute so RTL
 // languages (e.g. Arabic) lay out correctly.
-const RTL_LOCALES = new Set<string>(["ar"]);
+const RTL_LOCALES = new Set<string>(["ar", "fa"]);
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
