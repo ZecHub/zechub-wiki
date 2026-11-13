@@ -246,6 +246,8 @@ const iconsForMenu: IconsFor = {
     "Avalanche RedBridge": CableStayedBridge,
     "Akash Network Zcashd": Akash,
     "Akash Network Zebra": IoCloudUploadOutline,
+    "Akash Network Zakura": Akash,
+    "Thus Spoke Zakura Akash": Akash,
     "BTCPayServer Zcash Plugin": Pay,
     "Full Nodes": ServerSolid,
     "Nym VPN": MdVpnLock,
