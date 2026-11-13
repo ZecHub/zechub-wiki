@@ -73,7 +73,7 @@
     "eslint-config-next": "^16.4.5",
     "express-session": "^1.18.0",
     "flowbite": "^4.0.2",
-    "framer-motion": "14.9.1",
+    "framer-motion": "14.12.0",
     "gitlog": "^5.1.0",
     "google-map-react": "^2.2.1",
     "googleapis": "^186.0.0",
