@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 24,
-    "proposal_count": 192,
+    "proposal_count": 193,
     "config": {
       "name": "ZecHub",
       "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
@@ -7902,7 +7902,7 @@
           },
           "total_power": "24",
           "msgs": [],
-          "status": "open",
+          "status": "passed",
           "votes": {
             "yes": "13",
             "no": "0",
@@ -7912,6 +7912,43 @@
         },
         "source": "lcd",
         "createdAt": "2026-11-13T10:58:23Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 193,
+        "proposal": {
+          "title": "Penumbra Validator: Approve Operation Cost And Begin",
+          "description": "Approve the operation cost outlined in the [Penumbra validator playbook](https://s3.terp.network/bud/512f51236d6a95fe1bcab1838c67ba83f430d5a8954be10377c9f7e0a2901637.html), and fund the first two months ($1,100) up front.",
+          "proposer": "juno1hafmtgxpruf5kzrrwftnxccuer46534e7z5t0jl4g4le66x8kkysrcgj9y",
+          "start_height": 43681274,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1794954623135406837"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "open",
+          "votes": {
+            "yes": "5",
+            "no": "0",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-17T22:30:23Z"
       }
     ]
   },
