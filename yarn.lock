@@ -6235,10 +6235,10 @@ googleapis-common@^9.0.0:
     qs "^6.7.0"
     url-template "^2.0.8"
 
-googleapis@^186.0.0:
-  version "186.0.0"
-  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-186.0.0.tgz#e171ec1805587651b9c4def8733a6b1e2afb4ea0"
-  integrity sha512-ljnYwbM1IX6xM0q5tQHqAtnFdHBC9rPa5jidpoQB7wRiqBYOs5hOQPUPidF454tNLO5LCwB06EvkPg/93E1OJw==
+googleapis@^189.0.0:
+  version "189.0.0"
+  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-189.0.0.tgz#74fe6866f05014c922441dacec525d98957283a2"
+  integrity sha512-TmFQmaLNcY/aaGNC9wZW9GvPueWB/fdNmt6eNFLKo5nrAxod4OAnvQNRxZuGO8iKObie5g3iLJloHQ8iiiIlvA==
   dependencies:
     google-auth-library "^11.0.0"
     googleapis-common "^9.0.0"
