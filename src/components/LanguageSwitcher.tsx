@@ -404,17 +404,14 @@ export function LanguageSwitcher() {
         // blurs (closing the panel) and the click then opens it again.
         onMouseDown={(e) => { if (isOpen) e.preventDefault(); }}
         onClick={() => (isOpen ? close(true) : setIsOpen(true))}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:border-[#F4B728] hover:bg-[#F4B728]/10 focus-visible:ring-2 focus-visible:ring-amber-700 dark:focus-visible:ring-[#F4B728] transition-all cursor-pointer"
+        className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-900/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white focus-visible:ring-2 focus-visible:ring-brand transition-colors cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="dialog"
       >
-        <Globe className="w-4 h-4" />
-        <span ref={desktopLabelRef} className="hidden sm:inline text-sm font-medium" suppressHydrationWarning />
-        <span ref={mobileLabelRef} className="sm:hidden text-xs font-semibold" suppressHydrationWarning />
-        <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <Globe className="w-[18px] h-[18px]" strokeWidth={1.7} />
+        <span ref={desktopLabelRef} className="hidden" suppressHydrationWarning />
+        <span ref={mobileLabelRef} className="text-xs font-semibold tracking-wide" suppressHydrationWarning />
       </button>
 
       {isOpen && (isPhone ? createPortal(
