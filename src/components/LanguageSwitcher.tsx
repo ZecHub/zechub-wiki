@@ -29,7 +29,7 @@ function browserLocales(): string[] {
   return out;
 }
 
-// ZecHub accent (#F4B728): the current language gets a filled badge, and
+// ZecHub accent (brand blue): the current language gets a filled badge, and
 // hover/focus tint the row and outline the badge. Colour is never the only
 // cue: the current row is also bold, checked and aria-selected.
 function CodeBadge({ code, current = false }: { code: string; current?: boolean }) {
