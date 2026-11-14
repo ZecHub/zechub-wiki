@@ -1,3 +1,5 @@
+import { useLanguage } from "@/context/LanguageContext";
+import { Globe2, Map as MapIcon } from "lucide-react";
 import Head from "next/head";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -8,10 +10,8 @@ import {
 } from "./constants";
 import { FilterBar } from "./filter-bar";
 import Globe from "./Globe";
-import { Globe2, Map as MapIcon } from "lucide-react";
 import { PinDetails } from "./pin-details";
 import { StatsBar } from "./stats-bar";
-import { useLanguage } from "@/context/LanguageContext";
 import "./style.css";
 
 type ViewMode = "globe" | "map";
@@ -125,15 +125,18 @@ export default function GlobalAmbassadorsMap() {
         attributionControl: false,
       });
 
+      const cartoKey = process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY;
+      const tileParams = cartoKey ? `?key=${cartoKey}` : "";
+
       // Dark styled tiles via CartoDB dark matter
       L.tileLayer(
-        `https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png?key=${process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY}`,
+        `https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png${tileParams}`,
         { maxZoom: 19 },
       ).addTo(map);
 
       // Country name label to top (separate layer, lighter)
       L.tileLayer(
-        `https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png?key=${process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY}`,
+        `https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png${tileParams}`,
         { maxZoom: 19, opacity: 0.5 },
       ).addTo(map);
 
