@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2493
+      "views": 2495
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -145,7 +145,7 @@
     {
       "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
       "video_id": "El59GnEA1FY",
-      "views": 994
+      "views": 995
     },
     {
       "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
@@ -340,7 +340,7 @@
     {
       "title": "Cultivating Sapling at Zcon0 (2018) by Sean Bowe",
       "video_id": "t5krRSD-GYM",
-      "views": 488
+      "views": 489
     },
     {
       "title": "Zcon Vozes - Parte 1",
@@ -918,6 +918,11 @@
       "views": 228
     },
     {
+      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+      "video_id": "he_j9O5INVk",
+      "views": 228
+    },
+    {
       "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
       "video_id": "fgkFrxiB14g",
       "views": 227
@@ -925,12 +930,7 @@
     {
       "title": "ZecHub Zcash Education with Tecnopapapi, Dismad, & Squirrel - ZconV: Zcash Unified 2024 #Zcash #ZEC",
       "video_id": "fgtNXWM57UE",
-      "views": 226
-    },
-    {
-      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-      "video_id": "he_j9O5INVk",
-      "views": 226
+      "views": 227
     },
     {
       "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
@@ -983,6 +983,11 @@
       "views": 220
     },
     {
+      "title": "ZconV Recap at Zcash Global Lounge - Zcash Unified 2024 #Zcash #ZEC",
+      "video_id": "wJ_uN05YVns",
+      "views": 218
+    },
+    {
       "title": "Arborist Call 08-20-2026",
       "video_id": "doDbR0i9zZA",
       "views": 218
@@ -995,11 +1000,6 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #3",
       "video_id": "A8nmkcHkeW4",
-      "views": 217
-    },
-    {
-      "title": "ZconV Recap at Zcash Global Lounge - Zcash Unified 2024 #Zcash #ZEC",
-      "video_id": "wJ_uN05YVns",
       "views": 217
     },
     {
@@ -1038,13 +1038,13 @@
       "views": 209
     },
     {
-      "title": "Governance Panel at Zcon3",
-      "video_id": "TdlcNU5TXy8",
-      "views": 207
-    },
-    {
       "title": "Interactive Design of a Zcash Trailing Finality Layer (Hybrid PoW+PoS) by Nate Wilcox: Zcon4",
       "video_id": "qhMzMYeEPMM",
+      "views": 208
+    },
+    {
+      "title": "Governance Panel at Zcon3",
+      "video_id": "TdlcNU5TXy8",
       "views": 207
     },
     {
@@ -1268,6 +1268,11 @@
       "views": 160
     },
     {
+      "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
+      "video_id": "VfQTSLpoH40",
+      "views": 158
+    },
+    {
       "title": "FROST Demo",
       "video_id": "skeVu0mQNQ0",
       "views": 158
@@ -1275,11 +1280,6 @@
     {
       "title": "Zcash Arborist Call 6/27/24",
       "video_id": "KtVvt3lis6o",
-      "views": 157
-    },
-    {
-      "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
-      "video_id": "VfQTSLpoH40",
       "views": 157
     },
     {
@@ -1448,13 +1448,13 @@
       "views": 137
     },
     {
-      "title": "Zcash Arborist Call 01-09-2025",
-      "video_id": "BG8C1Rf4jXg",
-      "views": 136
-    },
-    {
       "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
       "video_id": "m20tP1iqBRQ",
+      "views": 137
+    },
+    {
+      "title": "Zcash Arborist Call 01-09-2025",
+      "video_id": "BG8C1Rf4jXg",
       "views": 136
     },
     {
@@ -1875,7 +1875,7 @@
     {
       "title": "Arborist Call 11-12-2026",
       "video_id": "O16Szrjy35Q",
-      "views": 24
+      "views": 28
     }
   ]
 }
