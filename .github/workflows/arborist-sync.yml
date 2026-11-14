@@ -1,8 +1,9 @@
 name: Arborist calls sync
 
-# Every day: pick up new recordings and notes, download cover images, write AI summaries
-# for calls that have notes, and open a pull request with the result. Nothing is published
-# until the pull request is merged, so the summaries can be reviewed first.
+# Every day: pick up new recordings and notes, download cover images and write AI summaries
+# for calls that have notes, then commit the result to the branch the workflow runs on
+# (the deploy follows from that push). Summaries stay marked as AI-written on the page.
+# Scheduled workflows only run from the repository's default branch.
 on:
   schedule:
     - cron: "23 6 * * *"
@@ -10,7 +11,10 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+
+concurrency:
+  group: arborist-sync
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -34,23 +38,16 @@ jobs:
         run: node scripts/summarize-arborist-calls.mjs
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      - name: Open pull request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          branch: automation/arborist-sync
-          delete-branch: true
-          commit-message: "Sync Arborist calls: recordings, notes, covers and summaries"
-          title: "Sync Arborist calls"
-          body: |
-            Automatic daily sync of the Arborist calls page.
-
-            - New recordings from the Zcash Foundation playlist
-            - New notes from ZcashCommunityGrants/arboretum-notes
-            - Cover images for new videos
-            - AI summaries (`src/constants/arboristSummaries.json`), written only from the call notes. Please read them before merging.
-          add-paths: |
-            src/constants/arboristCalls.ts
-            src/constants/arboristRecordings.ts
-            src/constants/arboristSummaries.json
-            scripts/video-ids.txt
-            public/video-thumbs
+      - name: Commit and push
+        run: |
+          git add src/constants/arboristCalls.ts src/constants/arboristRecordings.ts \
+            src/constants/arboristSummaries.json scripts/video-ids.txt public/video-thumbs
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync Arborist calls: recordings, notes, covers and summaries"
+          git pull --rebase
+          git push
