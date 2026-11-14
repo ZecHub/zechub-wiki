@@ -37,6 +37,15 @@ interface Props {
 
 const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  // /hardware-wallets, /mobile-wallets, /desktop-wallets and /web-wallets open this list with ?device=<type>
+  // so the matching Devices filter is already on.
+  useEffect(() => {
+    const device = new URLSearchParams(window.location.search).get("device");
+    if (!device) return;
+    const key = `Devices:${device.charAt(0).toUpperCase()}${device.slice(1).toLowerCase()}`;
+    setActiveFilters((prev) => (prev.includes(key) ? prev : [...prev, key]));
+  }, []);
   const [filters, setFilters] = useState({
     Devices: new Set<string>(),
     "Operating System": new Set<string>(),
@@ -228,7 +237,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             ref={filterTriggerRef}
             aria-haspopup="dialog"
             aria-expanded={isFilterVisible}
-            className="wl-btn focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="wl-btn focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             onClick={handleToggleFilter}
           >
             <svg className="wl-btn-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -254,7 +263,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               <button
                 type="button"
                 key={item}
-                className="wl-chip focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                className="wl-chip focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                 onClick={(event) => {
                   const neighbor = event.currentTarget.nextElementSibling ?? event.currentTarget.previousElementSibling;
                   setActiveFilters((prev) => prev.filter((filter) => filter !== item));
@@ -369,7 +378,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   {activeFilters.length > 0 && (
                     <button
                       type="button"
-                      className="text-sm font-medium text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
+                      className="text-sm font-medium text-brand dark:text-brand-soft underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-brand rounded"
                       onClick={() => setActiveFilters([])}
                     >
                       {clearAllLabel}
@@ -379,7 +388,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                     type="button"
                     ref={closeFilterRef}
                     aria-label={closeLabel}
-                    className="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-blue-600"
+                    className="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-brand"
                     onClick={() => setIsFilterVisible(false)}
                   >
                     <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
@@ -392,7 +401,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               <div className="px-6 pt-4 pb-2">
                 <button
                   type="button"
-                  className="wl-btn-apply w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                  className="wl-btn-apply w-full rounded-xl bg-brand hover:bg-brand-hover text-on-brand font-semibold py-3 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   onClick={() => setIsFilterVisible(false)}
                 >
                   {showWalletsLabel(sortedWallets.length)}
