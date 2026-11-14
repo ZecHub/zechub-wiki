@@ -170,11 +170,7 @@ export default function MediaArchivePage({
                     Summary written by AI from the call notes.
                   </p>
                 </>
-              ) : (
-                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
-                  The summary appears here once the notes for this call have been published and processed.
-                </p>
-              )}
+              ) : null}
               <div className="mt-4 flex flex-wrap gap-2 lg:mt-auto lg:pt-4">
                 {featured.video && (
                   <a href={featured.video} target="_blank" rel="noopener noreferrer" className={pillQuiet}>
