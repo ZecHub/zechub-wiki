@@ -126,6 +126,7 @@ export default async function RootLayout({
         <Script
           id="zechub-theme-init"
           strategy="beforeInteractive"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html:
               "try{var t=localStorage.getItem('zechub-color-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-color-theme',t)}catch(e){}",
