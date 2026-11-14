@@ -3587,10 +3587,10 @@
   resolved "https://registry.yarnpkg.com/@types/rss/-/rss-0.0.32.tgz#19de5179a8160455c2f46a7699391ebacd4853cc"
   integrity sha512-2oKNqKyUY4RSdvl5eZR1n2Q9yvw3XTe3mQHsFPn9alaNBxfPnbXBtGP8R0SV8pK1PrVnLul0zx7izbm5/gF5Qw==
 
-"@types/serviceworker@^0.0.203":
-  version "0.0.203"
-  resolved "https://registry.yarnpkg.com/@types/serviceworker/-/serviceworker-0.0.203.tgz#71a8066a9f3c6e8a581ed3d5fb0a2d7bcb4cbbfb"
-  integrity sha512-7AOQ77H9pWdHeYnS8iucDm4RJmSNMDuFOX+UYZ9W1WAHHyy2dO9ni/CYQboz/IMr/wDucxSMT1ed90bT++75KA==
+"@types/serviceworker@^0.0.206":
+  version "0.0.206"
+  resolved "https://registry.yarnpkg.com/@types/serviceworker/-/serviceworker-0.0.206.tgz#7df3176a7aaaef500063da28d17a34169cc32997"
+  integrity sha512-zatpzsdqSGfspmBAGxXLtdnOwe7jcPlTttpeOGkPb7V91to8nw8BhwPEJRcoxJvr7p0mVXvyV5dzkvviYqhu3Q==
 
 "@types/stack-utils@^2.0.3":
   version "2.0.3"
