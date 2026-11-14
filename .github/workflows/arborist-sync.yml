@@ -1,0 +1,56 @@
+name: Arborist calls sync
+
+# Every day: pick up new recordings and notes, download cover images, write AI summaries
+# for calls that have notes, and open a pull request with the result. Nothing is published
+# until the pull request is merged, so the summaries can be reviewed first.
+on:
+  schedule:
+    - cron: "23 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install sharp (cover images)
+        run: npm install --no-save --no-package-lock sharp
+      - name: Notes archive
+        run: node scripts/sync-arborist-calls.mjs
+        env:
+          ARBORETUM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Playlist recordings
+        run: node scripts/sync-arborist-recordings.mjs
+      - name: Cover images
+        run: node scripts/video-thumbnails.mjs
+      - name: AI summaries
+        run: node scripts/summarize-arborist-calls.mjs
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/arborist-sync
+          delete-branch: true
+          commit-message: "Sync Arborist calls: recordings, notes, covers and summaries"
+          title: "Sync Arborist calls"
+          body: |
+            Automatic daily sync of the Arborist calls page.
+
+            - New recordings from the Zcash Foundation playlist
+            - New notes from ZcashCommunityGrants/arboretum-notes
+            - Cover images for new videos
+            - AI summaries (`src/constants/arboristSummaries.json`), written only from the call notes. Please read them before merging.
+          add-paths: |
+            src/constants/arboristCalls.ts
+            src/constants/arboristRecordings.ts
+            src/constants/arboristSummaries.json
+            scripts/video-ids.txt
+            public/video-thumbs

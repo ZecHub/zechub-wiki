@@ -1,5 +1,6 @@
 import { arboristCalls } from "@/constants/arboristCalls";
-import { arboristRecordings } from "@/constants/arboristRecordings";
+import { arboristRecordings, type ArboristRecording } from "@/constants/arboristRecordings";
+import summariesJson from "@/constants/arboristSummaries.json";
 
 import type { MediaArchiveEntry } from "@/components/MediaArchive/types";
 
@@ -15,8 +16,8 @@ const toIso = (label: string): string | null => {
 
 // Video-only entries without a date in the title are ordered by where YouTube lists them,
 // i.e. next to the dated videos that follow them in the playlist.
-const sortDateFor = (position: number): string => {
-  const next = arboristRecordings.slice(position + 1).find((r) => r.date);
+const sortDateFor = (recordings: ArboristRecording[], position: number): string => {
+  const next = recordings.slice(position + 1).find((r) => r.date);
   return next?.date ?? "0000-00-00";
 };
 
@@ -25,7 +26,16 @@ const sortDateFor = (position: number): string => {
  * archive entry that already links the same YouTube video (or, failing that, has the same
  * date); recordings the archive does not know become entries of their own.
  */
-export function buildArboristArchive(): ArchiveEntry[] {
+export type ArboristSummaries = Record<string, { summary: string; topics?: string[] }>;
+
+export function buildArboristArchive(
+  /** Newer recordings found on YouTube that the checked-in list does not have yet. */
+  liveRecordings: ArboristRecording[] = [],
+  summaries: ArboristSummaries = summariesJson as ArboristSummaries,
+): ArchiveEntry[] {
+  const known = new Set(arboristRecordings.map((r) => r.id));
+  const recordings = [...liveRecordings.filter((r) => !known.has(r.id)), ...arboristRecordings];
+
   const entries: ArchiveEntry[] = arboristCalls.map((c) => ({
     key: `call-${c.id}`,
     label: typeof c.id === "number" ? `#${c.id}` : String(c.id),
@@ -49,7 +59,7 @@ export function buildArboristArchive(): ArchiveEntry[] {
   }
 
   const sortDate = new Map<string, string>();
-  arboristRecordings.forEach((r, i) => {
+  recordings.forEach((r, i) => {
     const match = byVideo.get(r.id) ?? (r.date && !r.dedicated ? byDate.get(r.date) : undefined);
     if (match) {
       match.title = r.title;
@@ -74,9 +84,17 @@ export function buildArboristArchive(): ArchiveEntry[] {
       agenda: "",
       twitter: "",
     };
-    if (!r.date) sortDate.set(e.key, sortDateFor(i));
+    if (!r.date) sortDate.set(e.key, sortDateFor(recordings, i));
     entries.push(e);
   });
+
+  for (const e of entries) {
+    const s = e.videoId ? summaries[e.videoId] : undefined;
+    if (s?.summary) {
+      e.summary = s.summary;
+      e.topics = s.topics ?? [];
+    }
+  }
 
   const key = (e: ArchiveEntry) => sortDate.get(e.key) ?? e.date ?? "0000-00-00";
   return entries.sort((a, b) => key(b).localeCompare(key(a)));

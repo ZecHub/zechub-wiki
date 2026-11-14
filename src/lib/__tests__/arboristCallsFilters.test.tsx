@@ -9,6 +9,12 @@ jest.mock("@/components/MdxComponents/VideoCarousel", () => ({
 }));
 
 const archive = buildArboristArchive();
+
+// The archive lives in its own tab.
+const renderArchive = () => {
+  render(<ArboristCallsPage />);
+  fireEvent.click(screen.getByRole("tab", { name: "Archive" }));
+};
 const years = [
   ...new Set(archive.map((e) => e.date?.slice(0, 4)).filter(Boolean) as string[]),
 ]
@@ -20,7 +26,7 @@ const showing = (shown: number) =>
 
 describe("Arborist call archive filters", () => {
   it("offers every archived year in newest-first order", () => {
-    render(<ArboristCallsPage />);
+    renderArchive();
     const options = screen
       .getAllByRole("option")
       .map((option) => option.textContent);
@@ -28,7 +34,7 @@ describe("Arborist call archive filters", () => {
   });
 
   it.each(years)("shows exactly the archive entries from %s", (year) => {
-    render(<ArboristCallsPage />);
+    renderArchive();
     fireEvent.change(screen.getByRole("combobox"), { target: { value: year } });
 
     const expected = archive.filter((e) => e.date?.startsWith(year));
@@ -37,7 +43,7 @@ describe("Arborist call archive filters", () => {
   });
 
   it("finds a call by number and restores the full archive", () => {
-    render(<ArboristCallsPage />);
+    renderArchive();
     const search = screen.getByPlaceholderText("Call number, date or title");
 
     fireEvent.change(search, { target: { value: "#134" } });

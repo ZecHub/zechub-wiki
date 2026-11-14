@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import MediaArchivePage from "@/components/MediaArchive/MediaArchivePage";
+import type { MediaArchiveEntry } from "@/components/MediaArchive/types";
 import { ARBORIST_PLAYLIST_ID } from "@/constants/arboristRecordings";
 import { buildArboristArchive } from "@/lib/arboristArchive";
 
@@ -22,8 +23,10 @@ const LINKS = [
   { label: "Foundation page", href: "https://zfnd.org/arborist-calls/" },
 ];
 
-export default function ArboristCallsPage() {
-  const entries = useMemo(() => buildArboristArchive(), []);
+export default function ArboristCallsPage({ entries: provided }: { entries?: MediaArchiveEntry[] }) {
+  // The route passes entries that include videos YouTube published after the last sync;
+  // without them (tests, previews) the checked-in archive is used.
+  const entries = useMemo(() => provided ?? buildArboristArchive(), [provided]);
   return (
     <MediaArchivePage
       eyebrow="Zcash protocol development"

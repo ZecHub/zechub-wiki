@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ExternalLink, FileText, Play, Search, Video } from "lucide-react";
+import { ExternalLink, FileText, Play, Search, Sparkles, Video } from "lucide-react";
 import VideoCarousel from "@/components/MdxComponents/VideoCarousel";
+import LiteYouTube from "@/components/LiteYouTube";
 import type { MediaArchiveEntry } from "./types";
 
 const formatDate = (iso: string | null) =>
@@ -61,8 +62,19 @@ export default function MediaArchivePage({
   searchPlaceholder = "Number, date or title",
 }: MediaArchivePageProps) {
   const dedicated = useMemo(() => archive.filter((e) => e.dedicated), [archive]);
+  // The newest regular recording that can be played gets its own spot above the tabs.
+  const featured = useMemo(() => archive.find((e) => e.videoId && !e.dedicated), [archive]);
+  const [tab, setTab] = useState<"previous" | "archive" | "dedicated">("previous");
   const [query, setQuery] = useState("");
   const [year, setYear] = useState("all");
+  const [topic, setTopic] = useState("all");
+
+  // Most used topics first, so the filter stays short.
+  const topics = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const e of archive) for (const t of e.topics ?? []) counts.set(t, (counts.get(t) ?? 0) + 1);
+    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 14);
+  }, [archive]);
 
   const years = useMemo(
     () =>
@@ -75,8 +87,19 @@ export default function MediaArchivePage({
   const rows = archive.filter((e) => {
     const q = query.trim().toLowerCase();
     const haystack = `${e.label} ${formatDate(e.date)} ${e.date ?? ""} ${e.title ?? ""}`.toLowerCase();
-    return (!q || haystack.includes(q)) && (year === "all" || e.date?.startsWith(year));
+    const text = `${haystack} ${e.summary ?? ""} ${(e.topics ?? []).join(" ")}`.toLowerCase();
+    return (
+      (!q || text.includes(q)) &&
+      (year === "all" || e.date?.startsWith(year)) &&
+      (topic === "all" || (e.topics ?? []).includes(topic))
+    );
   });
+
+  const tabs = [
+    { id: "previous" as const, label: "Previous calls" },
+    { id: "archive" as const, label: "Archive" },
+    ...(dedicated.length > 0 ? [{ id: "dedicated" as const, label: "Dedicated editions" }] : []),
+  ];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 md:py-12">
@@ -106,16 +129,109 @@ export default function MediaArchivePage({
         </div>
       </header>
 
-      <section aria-label="Recordings" className="mb-10">
-        <VideoCarousel
-          list={playlistId}
-          compact="true"
-          label={carouselLabel}
-        />
-      </section>
+      {featured && (
+        <section aria-label="Latest call" className="mb-12">
+          <h2 className="mb-4 text-xl font-bold text-slate-900 dark:text-white">Latest call</h2>
+          <div className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-white/[0.03] md:p-5 lg:grid-cols-5">
+            <div className="lg:col-span-3">
+              <LiteYouTube
+                videoId={featured.videoId as string}
+                title={featured.title ?? `${title} ${featured.label}`}
+                className="aspect-video w-full overflow-hidden rounded-xl border-0"
+              />
+            </div>
+            <div className="flex min-w-0 flex-col lg:col-span-2">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                {featured.label && (
+                  <span className="text-lg font-semibold text-slate-900 dark:text-white">{featured.label}</span>
+                )}
+                <span className="text-sm text-slate-600 dark:text-slate-300">{formatDate(featured.date)}</span>
+                {featured.duration && (
+                  <span className="text-xs text-slate-500 dark:text-slate-400">{featured.duration}</span>
+                )}
+              </div>
+              {featured.summary ? (
+                <>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-200">{featured.summary}</p>
+                  {featured.topics && featured.topics.length > 0 && (
+                    <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Topics">
+                      {featured.topics.map((t) => (
+                        <li
+                          key={t}
+                          className="rounded-md border border-slate-200 px-2 py-0.5 text-xs text-slate-600 dark:border-white/10 dark:text-slate-300"
+                        >
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <p className="mt-3 flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                    <Sparkles className="h-3 w-3" aria-hidden="true" />
+                    Summary written by AI from the call notes.
+                  </p>
+                </>
+              ) : (
+                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+                  The summary appears here once the notes for this call have been published and processed.
+                </p>
+              )}
+              <div className="mt-4 flex flex-wrap gap-2 lg:mt-auto lg:pt-4">
+                {featured.video && (
+                  <a href={featured.video} target="_blank" rel="noopener noreferrer" className={pillQuiet}>
+                    <Video className="h-3.5 w-3.5" aria-hidden="true" />
+                    Video
+                  </a>
+                )}
+                {featured.notes && (
+                  <a href={featured.notes} target="_blank" rel="noopener noreferrer" className={pillQuiet}>
+                    <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+                    Notes
+                  </a>
+                )}
+                {featured.agenda && (
+                  <a href={featured.agenda} target="_blank" rel="noopener noreferrer" className={pillQuiet}>
+                    <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+                    Agenda
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
-      {dedicated.length > 0 && (
-        <section aria-label="Dedicated editions" className="mb-12">
+      <div role="tablist" aria-label="Browse calls" className="mb-6 flex flex-wrap gap-1 border-b border-slate-200 dark:border-white/10">
+        {tabs.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            role="tab"
+            id={`tab-${t.id}`}
+            aria-selected={tab === t.id}
+            aria-controls={`panel-${t.id}`}
+            onClick={() => setTab(t.id)}
+            className={`-mb-px border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+              tab === t.id
+                ? "border-brand text-brand dark:text-brand-soft"
+                : "border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {tab === "previous" && (
+        <section id="panel-previous" role="tabpanel" aria-labelledby="tab-previous" aria-label="Previous calls">
+          <p className="mb-4 text-sm text-slate-600 dark:text-slate-300">
+            Browse earlier recordings from the playlist. Use the arrows or scroll sideways.
+          </p>
+          <VideoCarousel list={playlistId} compact="true" label={carouselLabel} />
+        </section>
+      )}
+
+      {tab === "dedicated" && dedicated.length > 0 && (
+        <section id="panel-dedicated" role="tabpanel" aria-labelledby="tab-dedicated" aria-label="Dedicated editions">
           <h2 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
             {dedicatedTitle}
           </h2>
@@ -162,7 +278,8 @@ export default function MediaArchivePage({
         </section>
       )}
 
-      <section aria-label="Archive">
+      {tab === "archive" && (
+      <section id="panel-archive" role="tabpanel" aria-labelledby="tab-archive" aria-label="Archive">
         <h2 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
           {archiveTitle}
         </h2>
@@ -201,6 +318,26 @@ export default function MediaArchivePage({
           </label>
         </div>
 
+        {topics.length > 0 && (
+          <div className="mb-4 flex flex-wrap gap-1.5" role="group" aria-label="Filter by topic">
+            {["all", ...topics.map(([t]) => t)].map((t) => (
+              <button
+                key={t}
+                type="button"
+                aria-pressed={topic === t}
+                onClick={() => setTopic(t)}
+                className={`rounded-md border px-2.5 py-1 text-xs font-medium transition-colors ${
+                  topic === t
+                    ? "border-brand bg-brand/10 text-brand dark:text-brand-soft"
+                    : "border-slate-200 text-slate-600 hover:border-brand/50 dark:border-white/10 dark:text-slate-300"
+                }`}
+              >
+                {t === "all" ? "All topics" : t}
+              </button>
+            ))}
+          </div>
+        )}
+
         <p className="mb-3 text-xs text-slate-500 dark:text-slate-400">
           Showing {rows.length} of {archive.length}
         </p>
@@ -234,6 +371,25 @@ export default function MediaArchivePage({
                 </div>
                 {e.dedicated && e.title && (
                   <p className="mt-1 text-sm text-slate-700 dark:text-slate-200">{e.title}</p>
+                )}
+                {e.summary && (
+                  <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    {e.summary}
+                  </p>
+                )}
+                {e.topics && e.topics.length > 0 && (
+                  <p className="mt-1.5 flex flex-wrap gap-1.5">
+                    {e.topics.map((t) => (
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={() => setTopic(t)}
+                        className="rounded border border-slate-200 px-1.5 py-0.5 text-[11px] text-slate-500 hover:border-brand/50 hover:text-brand dark:border-white/10 dark:text-slate-400"
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </p>
                 )}
               </div>
               <div className="flex flex-wrap gap-2">
@@ -270,6 +426,7 @@ export default function MediaArchivePage({
           )}
         </ul>
       </section>
+      )}
     </div>
   );
 }
