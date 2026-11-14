@@ -12,6 +12,7 @@ export type ArboristRecording = {
 export const ARBORIST_PLAYLIST_ID = "PL40dyJ0UYTLJqD_3PE9qiJTxse-iHnn1G";
 
 export const arboristRecordings: ArboristRecording[] = [
+  { id: "O16Szrjy35Q", date: "2026-11-12", title: "Arborist Call 11-12-2026", duration: "" },
   { id: "3FKbc3N41Zw", date: "2026-10-15", title: "Arborist Call 10-15-2026", duration: "38:09" },
   { id: "gJA1brRxnf4", date: "2026-10-01", title: "Arborist Call 10-1-2026", duration: "43:29" },
   { id: "5Vgq0sXJ_Co", date: "2026-09-17", title: "Arborist Call 09-17-2026", duration: "32:59" },
