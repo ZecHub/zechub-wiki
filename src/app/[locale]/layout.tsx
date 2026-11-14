@@ -93,7 +93,13 @@ export default async function RootLayout({
 
   // Nonce set by src/proxy.ts for the enforcing CSP. Required on any
   // hand-written <script> once script-src drops 'unsafe-inline'.
-  const nonce = (await headers()).get("x-nonce") ?? undefined;
+  const requestHeaders = await headers();
+  // Next exposes headers a proxy adds to the request under this prefix on some
+  // paths (rewrites), so read both spellings.
+  const nonce =
+    requestHeaders.get("x-nonce") ??
+    requestHeaders.get("x-middleware-request-x-nonce") ??
+    undefined;
 
   // Preload the locale dictionary on the server so the UI chrome renders in the
   // correct language during SSR (no English flash before client hydration).
@@ -151,6 +157,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
+            nonce={nonce}
             defaultTheme="dark"
             enableSystem={true}
             disableTransitionOnChange={true}
