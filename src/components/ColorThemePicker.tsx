@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Check, Palette } from "lucide-react";
+import { Check, Moon, Palette, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export const COLOR_THEME_KEY = "zechub-color-theme";
 
@@ -20,7 +21,16 @@ function applyTheme(id: string) {
   else root.setAttribute("data-color-theme", id);
 }
 
-export default function ColorThemePicker() {
+/**
+ * Colour theme picker. With `withMode` it is the single "Appearance" control of the header:
+ * light/dark switch on top, colour themes below.
+ */
+export default function ColorThemePicker({ withMode = false }: { withMode?: boolean }) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = mounted && resolvedTheme === "dark";
+  const label = withMode ? "Appearance" : "Color theme";
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("default");
   const ref = useRef<HTMLDivElement>(null);
@@ -64,10 +74,10 @@ export default function ColorThemePicker() {
     <div ref={ref} className="relative">
       <button
         type="button"
-        aria-label="Color theme"
+        aria-label={label}
         aria-haspopup="dialog"
         aria-expanded={open}
-        title="Color theme"
+        title={label}
         onClick={() => setOpen((v) => !v)}
         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-nav-foreground transition-colors hover:bg-nav-hover-bg hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
@@ -76,13 +86,44 @@ export default function ColorThemePicker() {
       {open ? (
         <div
           role="dialog"
-          aria-label="Color theme"
+          aria-label={label}
           className="absolute right-0 top-full z-50 mt-2 w-[min(19rem,calc(100vw-2rem))] rounded-xl border border-slate-200 bg-slate-50 shadow-xl dark:border-white/10 dark:bg-slate-900"
         >
-          <p className="border-b border-slate-200 px-4 py-3 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:border-white/10 dark:text-slate-100">
+          {withMode && (
+            <div className="border-b border-slate-200 p-3 dark:border-white/10">
+              <p className="mb-2 px-1 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
+                Mode
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { id: "light", name: "Light", Icon: Sun },
+                  { id: "dark", name: "Dark", Icon: Moon },
+                ].map(({ id, name, Icon }) => {
+                  const active = mounted && (id === "dark") === isDark;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setTheme(id)}
+                      aria-pressed={active}
+                      className={`flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                        active
+                          ? "border-brand bg-brand/10 text-slate-900 dark:text-white"
+                          : "border-slate-200 text-slate-700 hover:border-brand/60 dark:border-white/10 dark:text-slate-200"
+                      }`}
+                    >
+                      <Icon aria-hidden="true" className="h-4 w-4" />
+                      {name}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          <p className="px-4 pt-3 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
             Color theme
           </p>
-          <div className="grid grid-cols-2 gap-2 p-3">
+          <div className="grid grid-cols-2 gap-2 p-3 pt-2">
             {THEMES.map((t) => {
               const active = current === t.id;
               return (

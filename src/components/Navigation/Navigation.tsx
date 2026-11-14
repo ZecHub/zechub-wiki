@@ -1564,7 +1564,8 @@ const TopTabs = () => {
         </Link>
       ) : null}
       {/* The icon shortcuts only appear when the bar has room for them. */}
-      <div className="hidden min-[1440px]:flex">
+      <div className="hidden min-[1440px]:flex items-center gap-3">
+        <span aria-hidden="true" className="h-5 w-px bg-slate-300 dark:bg-slate-600" />
         <NavShortcuts />
       </div>
     </nav>
@@ -1669,20 +1670,9 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             >
               {mounted && isDark ? <Sun aria-hidden="true" className="h-4 w-4" /> : <Moon aria-hidden="true" className="h-4 w-4" />}
             </button>
-            <div className="hidden min-[1180px]:flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setTheme(!isDark ? "dark" : "light")}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
-            >
-              {mounted && isDark ? (
-                <Sun className="h-5 w-5 md:h-6 md:w-6" />
-              ) : (
-                <Moon className="h-5 w-5 md:h-6 md:w-6" />
-              )}
-            </Button>
-            <ColorThemePicker />
+            {/* One "Appearance" control (mode + colour theme) on wide screens. */}
+            <div className="hidden min-[1180px]:flex items-center">
+              <ColorThemePicker withMode />
             </div>
             </div>
             {/* Below 1180px the top tabs are hidden, so the menu opens from here. */}
