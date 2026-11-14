@@ -36,7 +36,7 @@ const organizationJsonLd = {
 
 // Locales that render right-to-left. Drives the <html dir> attribute so RTL
 // languages (e.g. Arabic) lay out correctly.
-const RTL_LOCALES = new Set<string>(["ar"]);
+const RTL_LOCALES = new Set<string>(["ar", "fa"]);
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -131,6 +131,10 @@ export default async function RootLayout({
         />
         <NextIntlClientProvider>
           <ThemeProvider
+            // next-themes injects an inline anti-FOUC <script>; it needs the
+            // request nonce once script-src drops 'unsafe-inline', or the
+            // enforcing CSP blocks it (wrong-theme flash + a report per load).
+            nonce={nonce}
             attribute="class"
             defaultTheme="dark"
             enableSystem={true}

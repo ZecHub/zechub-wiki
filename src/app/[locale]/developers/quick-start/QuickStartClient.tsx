@@ -713,7 +713,7 @@ const ZingolibTab = () => {
             Zingo-cli
           </strong>{" "}
           {qs?.zingoCliInfo ??
-            "is a command-line light wallet for Zcash. v7 builds the Nym mixnet transport by default and bundles nym-proxy beside the binary. This guide covers compiling from source."}
+            "is a command-line light wallet for Zcash. v8 builds the Nym mixnet transport by default and bundles nym-proxy beside the binary. This guide covers compiling from source. v8.0.0 adds full NU7 Mainnet support (activation height 3,543,405) and significantly faster sync."}
         </InfoBox>
 
         <div
@@ -723,13 +723,13 @@ const ZingolibTab = () => {
           }}
         >
           <SectionCard title={qs?.installation ?? "Installation"}>
-            <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI (v7)"}</SubLabel>
+            <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI (v8)"}</SubLabel>
             <CodeBlock
               code={`cargo install cargo-make
 
 git clone https://github.com/zingolabs/zingolib.git
 cd zingolib
-git checkout tags/zingolib_v7.0.0
+git checkout tags/zingolib_v8.0.0
 
 makers run-cli --build-only
 
@@ -765,7 +765,7 @@ cp target/release/nym-proxy ~/.cargo/bin/`}
             </div>
             <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
               {qs?.zingoSyncWarning ??
-                "⚠ A fresh session is offline until you grant consent (--online, --remember-online, or --server). The Nym proxy is resolved from --nym-proxy, $ZINGO_NYM_PROXY, the binary next to zingo-cli, or PATH. Sync continues after the chain tip by default. First online run performs a full sync. To build without the mixnet (offline-only): makers run-cli --nakednet --build-only."}
+                "⚠ A fresh session is offline until you grant consent (--online, --remember-online, or --server). The Nym proxy is resolved from --nym-proxy, $ZINGO_NYM_PROXY, the binary next to zingo-cli, or PATH. Sync continues after the chain tip by default. First online run performs a full sync. To build without the mixnet (offline-only): makers run-cli --nakednet --build-only. Use v8.0.0+ for NU7 Mainnet compatibility."}
             </div>
           </SectionCard>
         </div>

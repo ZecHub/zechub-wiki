@@ -25,35 +25,101 @@ import {
 } from "recharts";
 
 type View = "radicle" | "github" | "links";
+type HistoryFeed = Exclude<View, "links">;
 type Metric = "seeding" | "open_issues" | "merged_prs" | "stars" | "forks";
 
 interface Project {
   name: string;
-  seeding?: number;
-  issues_open?: number;
-  patches_merged?: number;
-  delegates?: number;
-  stars?: number;
-  forks?: number;
-  open_issues?: number;
-  merged_pull_requests?: number;
-  explorer_url?: string;
+  seeding?: number | null;
+  issues_open?: number | null;
+  patches_merged?: number | null;
+  delegates?: number | null;
+  stars?: number | null;
+  forks?: number | null;
+  open_issues?: number | null;
+  merged_pull_requests?: number | null;
+  explorer_url?: string | null;
 }
 
 interface HistoryEntry {
   date: string;
-  generated_at?: string;
+  generated_at?: string | null;
   projects?: Project[];
   summary?: {
-    total_projects?: number;
-    total_seeding?: number;
-    total_issues?: number;
-    total_patches?: number;
-    total_stars?: number;
-    total_open_issues?: number;
-    total_merged_prs?: number;
-    total_forks?: number;
-  };
+    total_projects?: number | null;
+    total_seeding?: number | null;
+    total_issues?: number | null;
+    total_patches?: number | null;
+    total_stars?: number | null;
+    total_open_issues?: number | null;
+    total_merged_prs?: number | null;
+    total_forks?: number | null;
+  } | null;
+}
+
+const projectNumberFields = [
+  "seeding",
+  "issues_open",
+  "patches_merged",
+  "delegates",
+  "stars",
+  "forks",
+  "open_issues",
+  "merged_pull_requests",
+] as const;
+const summaryNumberFields = [
+  "total_projects",
+  "total_seeding",
+  "total_issues",
+  "total_patches",
+  "total_stars",
+  "total_open_issues",
+  "total_merged_prs",
+  "total_forks",
+] as const;
+
+function isOptionalFiniteNumber(value: unknown) {
+  return (
+    value === undefined ||
+    value === null ||
+    (typeof value === "number" && Number.isFinite(value))
+  );
+}
+
+function isHistoryEntry(value: unknown): value is HistoryEntry {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+
+  const entry = value as Record<string, unknown>;
+  if (typeof entry.date !== "string") return false;
+  if (entry.generated_at != null && typeof entry.generated_at !== "string") {
+    return false;
+  }
+
+  if (entry.summary != null) {
+    if (typeof entry.summary !== "object" || Array.isArray(entry.summary)) {
+      return false;
+    }
+    const summary = entry.summary as Record<string, unknown>;
+    if (!summaryNumberFields.every((field) => isOptionalFiniteNumber(summary[field]))) {
+      return false;
+    }
+  }
+
+  if (entry.projects === undefined) return true;
+  if (!Array.isArray(entry.projects)) return false;
+
+  return entry.projects.every((project) => {
+    if (project === null || typeof project !== "object" || Array.isArray(project)) {
+      return false;
+    }
+
+    const record = project as Record<string, unknown>;
+    return (
+      typeof record.name === "string" &&
+      (record.explorer_url == null || typeof record.explorer_url === "string") &&
+      projectNumberFields.every((field) => isOptionalFiniteNumber(record[field]))
+    );
+  });
 }
 
 interface LinkHealthEntry {
@@ -133,37 +199,80 @@ export default function CodePulse() {
   const [githubHistory, setGithubHistory] = useState<HistoryEntry[]>([]);
   const [linkHistory, setLinkHistory] = useState<LinkHealthEntry[]>([]);
   const [latest, setLatest] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<Record<View, boolean>>({
+    radicle: true,
+    github: true,
+    links: true,
+  });
+  const [errors, setErrors] = useState<Record<HistoryFeed, boolean>>({
+    radicle: false,
+    github: false,
+  });
   const [selectedMetric, setSelectedMetric] = useState<Metric>("seeding");
   const [selectedRepo, setSelectedRepo] = useState("all");
   const [linkMetric, setLinkMetric] = useState<"serious" | "broken" | "blocked" | "redirect">("serious");
 
   useEffect(() => {
-    Promise.all([
-      fetch("/data/radicle/radicle.json"),
-      fetch("/data/github/github.json"),
-      fetch("/data/link-health/history.json").catch(() => null),
-      fetch("/data/link-health/latest.json").catch(() => null),
-    ])
-      .then(async ([radRes, gitRes, linkRes, latestRes]) => {
-        const [radData, gitData] = await Promise.all([
-          radRes.json(),
-          gitRes.json(),
-        ]);
-        setRadicleHistory(Array.isArray(radData) ? radData : []);
-        setGithubHistory(Array.isArray(gitData) ? gitData : []);
+    let active = true;
 
-        if (linkRes && linkRes.ok) {
+    const loadFeed = async (
+      feed: HistoryFeed,
+      setHistory: (history: HistoryEntry[]) => void,
+    ) => {
+      try {
+        const response = await fetch(`/data/${feed}/${feed}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const history = await response.json();
+        if (!Array.isArray(history) || !history.every(isHistoryEntry)) {
+          throw new Error("Invalid feed");
+        }
+        if (active) setHistory(history);
+      } catch (error) {
+        if (active) {
+          setErrors((previous) => ({ ...previous, [feed]: true }));
+          console.error(`Failed to load Code Pulse ${feed} feed`, error);
+        }
+      } finally {
+        if (active) {
+          setLoading((previous) => ({ ...previous, [feed]: false }));
+        }
+      }
+    };
+
+    const loadLinks = async () => {
+      try {
+        const [linkRes, latestRes] = await Promise.all([
+          fetch("/data/link-health/history.json").catch(() => null),
+          fetch("/data/link-health/latest.json").catch(() => null),
+        ]);
+
+        if (active && linkRes?.ok) {
           const linkData = await linkRes.json();
-          setLinkHistory(Array.isArray(linkData) ? linkData : []);
+          if (active) setLinkHistory(Array.isArray(linkData) ? linkData : []);
         }
-        if (latestRes && latestRes.ok) {
+        if (active && latestRes?.ok) {
           const latestData = await latestRes.json();
-          setLatest(latestData);
+          if (active) setLatest(latestData);
         }
-      })
-      .catch((error) => console.error("Failed to load Code Pulse data", error))
-      .finally(() => setLoading(false));
+      } catch (error) {
+        if (active) {
+          console.error("Failed to load Code Pulse link health data", error);
+        }
+      } finally {
+        if (active) {
+          setLoading((previous) => ({ ...previous, links: false }));
+        }
+      }
+    };
+
+    void loadFeed("radicle", setRadicleHistory);
+    void loadFeed("github", setGithubHistory);
+    void loadLinks();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const currentHistory = view === "radicle" ? radicleHistory : githubHistory;
@@ -248,22 +357,6 @@ export default function CodePulse() {
     if (nextView !== "github") setSelectedRepo("all");
   };
 
-  if (loading) {
-    return (
-      <div className="rounded-3xl border bg-card p-12 text-center text-muted-foreground">
-        Loading Code Pulse…
-      </div>
-    );
-  }
-
-  if (view !== "links" && !current) {
-    return (
-      <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-center text-red-600">
-        No Code Pulse data available yet.
-      </div>
-    );
-  }
-
   const delta =
     view === "links"
       ? percentChange(linkCurrent?.serious ?? 0, linkPrevious?.serious)
@@ -340,7 +433,34 @@ export default function CodePulse() {
         </div>
       </header>
 
-      {view === "links" ? (
+      {loading[view] ? (
+        <div
+          role="status"
+          className="rounded-3xl border bg-card p-12 text-center text-muted-foreground"
+        >
+          Loading{" "}
+          {view === "links"
+            ? "Link Health"
+            : view === "radicle"
+              ? "Radicle"
+              : "GitHub"}{" "}
+          feed…
+        </div>
+      ) : view !== "links" && errors[view] ? (
+        <div
+          role="alert"
+          className="rounded-3xl border bg-card p-8 text-center text-destructive"
+        >
+          Could not load the {view === "radicle" ? "Radicle" : "GitHub"} feed.
+        </div>
+      ) : view !== "links" && !current ? (
+        <div
+          role="status"
+          className="rounded-3xl border bg-card p-8 text-center text-muted-foreground"
+        >
+          No {view === "radicle" ? "Radicle" : "GitHub"} data available yet.
+        </div>
+      ) : view === "links" ? (
         <>
           <section
             aria-label="Current link health summary"
@@ -956,7 +1076,7 @@ function ProjectCard({ project, view }: { project: Project; view: View }) {
         ];
   const href =
     view === "radicle"
-      ? project.explorer_url
+      ? project.explorer_url ?? undefined
       : `https://github.com/ZecHub/${project.name}`;
   return (
     <article className="rounded-2xl border bg-background p-4 transition hover:-translate-y-0.5 hover:shadow-md">

@@ -1,11 +1,18 @@
 {
   "dao_data": {
     "dao_address": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
-    "name": "Unknown",
-    "description": "",
-    "member_count": 0,
-    "proposal_count": 189,
-    "config": {},
+    "name": "ZecHub",
+    "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+    "member_count": 24,
+    "proposal_count": 193,
+    "config": {
+      "name": "ZecHub",
+      "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+      "image_url": "ipfs://QmQbhdCn53Q6bn7BuJRY5WGWMpjWf4otAQA4GDoZqbafY8",
+      "automatically_add_cw20s": true,
+      "automatically_add_cw721s": true,
+      "dao_uri": null
+    },
     "proposals": [
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -51,7 +58,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-15T04:15:44Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -97,7 +105,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-18T15:16:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -133,7 +142,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-18T19:15:38Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -169,7 +179,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-18T19:50:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -215,7 +226,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-18T20:27:03Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -251,7 +263,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-18T20:48:16Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -297,7 +310,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-19T16:11:53Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -343,7 +357,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-19T18:12:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -389,7 +404,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-08-19T20:07:34Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -435,7 +451,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-02T16:44:32Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -481,7 +498,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-08T22:58:18Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -540,7 +558,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-11T18:21:44Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -595,7 +614,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-12T00:13:58Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -631,7 +651,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-14T22:09:38Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -667,7 +688,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-15T17:24:33Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -703,7 +725,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-24T18:51:42Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -749,7 +772,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-24T19:51:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -815,7 +839,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-29T15:59:44Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -861,7 +886,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-09-29T23:12:25Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -937,7 +963,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-10-13T13:37:18Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -983,7 +1010,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-10-21T20:09:03Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1038,7 +1066,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-11-22T17:38:20Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1084,7 +1113,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2023-12-13T16:22:12Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1130,7 +1160,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-01-22T02:47:47Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1166,7 +1197,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-01-24T21:54:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1212,7 +1244,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-01-26T16:48:01Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1258,7 +1291,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-02-01T00:02:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1304,7 +1338,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-03-09T21:53:00Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1350,7 +1385,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-03-10T18:54:53Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1427,7 +1463,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-03-20T19:29:25Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1463,7 +1500,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-05-03T21:47:43Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1499,7 +1537,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-05-05T16:13:17Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1545,7 +1584,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-05-05T18:58:26Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1600,7 +1640,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-05-23T22:23:56Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1636,7 +1677,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-06-01T21:51:56Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1686,7 +1728,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-06-20T21:23:38Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1732,7 +1775,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-06-25T01:25:25Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1768,7 +1812,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-06-26T16:41:00Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1814,7 +1859,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-07-01T19:15:26Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1860,7 +1906,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-07-24T12:43:41Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1896,7 +1943,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-07-29T14:03:30Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1932,7 +1980,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-08-16T01:38:55Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -1987,7 +2036,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-09-03T20:30:02Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2023,7 +2073,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-09-03T21:29:29Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2059,7 +2110,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-09-08T21:13:43Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2095,7 +2147,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-09-21T07:32:28Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2131,7 +2184,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-09-21T07:34:54Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2167,7 +2221,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-10-27T14:47:30Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2222,7 +2277,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-11-02T14:08:50Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2258,7 +2314,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2024-12-03T08:47:55Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2294,7 +2351,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-20T12:28:04Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2330,7 +2388,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-24T17:31:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2376,7 +2435,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-24T21:41:39Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2412,7 +2472,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-24T21:46:54Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2448,7 +2509,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-31T02:12:54Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2494,7 +2556,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-31T03:20:36Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2540,7 +2603,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-31T03:24:02Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2586,7 +2650,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-01-31T03:24:11Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2622,7 +2687,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-02-08T20:36:03Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2658,7 +2724,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-02-10T22:02:02Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2694,7 +2761,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-02-12T15:42:08Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2740,7 +2808,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-02-23T00:06:39Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2786,7 +2855,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-02-27T21:32:41Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2822,7 +2892,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-01T17:25:50Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2858,7 +2929,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-01T21:48:05Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2894,7 +2966,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-02T14:55:46Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -2940,7 +3013,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-04T20:50:25Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3004,7 +3078,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-08T19:25:19Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3040,7 +3115,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-12T17:26:47Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3076,7 +3152,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-13T01:26:15Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3122,7 +3199,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-13T01:58:28Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3158,7 +3236,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-03-26T16:55:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3194,7 +3273,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-06T12:13:36Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3230,7 +3310,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-09T13:00:36Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3266,7 +3347,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-10T17:42:31Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3312,7 +3394,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-12T19:14:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3348,7 +3431,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-12T19:41:27Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3384,7 +3468,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-14T16:51:19Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3430,7 +3515,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-16T08:36:36Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3476,7 +3562,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-16T16:41:19Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3522,7 +3609,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-16T16:43:37Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3558,7 +3646,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-23T14:18:27Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3594,7 +3683,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-23T14:24:46Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3630,7 +3720,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-04-23T14:32:04Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3676,7 +3767,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-05-21T21:44:29Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3731,7 +3823,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-05-21T22:13:01Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3767,7 +3860,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-05-31T20:48:41Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3803,7 +3897,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-05-31T20:50:20Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3839,7 +3934,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-05-31T21:53:10Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3875,7 +3971,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-06-01T18:53:09Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3911,7 +4008,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-06-02T08:22:26Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3947,7 +4045,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-06-03T15:16:12Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -3983,7 +4082,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-06-14T12:28:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4019,7 +4119,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-06-19T16:21:57Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4055,7 +4156,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-06-24T22:51:19Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4091,7 +4193,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-07-03T20:41:53Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4127,7 +4230,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-07-29T10:08:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4163,7 +4267,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-08-30T18:47:01Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4209,7 +4314,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-08-30T18:54:46Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4245,7 +4351,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-08-30T20:07:17Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4281,7 +4388,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-08-31T21:32:10Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4327,7 +4435,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-08T18:05:50Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4373,7 +4482,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-08T18:40:00Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4419,7 +4529,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-13T21:14:29Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4455,7 +4566,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-14T22:32:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4491,7 +4603,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-18T05:58:40Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4537,7 +4650,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-23T01:47:08Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4573,7 +4687,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-09-24T10:06:10Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4609,7 +4724,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-05T16:52:32Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4645,7 +4761,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-06T18:18:57Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4681,7 +4798,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-21T17:12:43Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4717,7 +4835,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-24T14:44:02Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4753,7 +4872,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-24T15:57:06Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4789,7 +4909,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-26T11:37:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4835,7 +4956,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-10-28T22:13:32Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4871,7 +4993,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-01T15:23:45Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4907,7 +5030,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-07T11:53:25Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4943,7 +5067,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-08T13:39:50Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -4979,7 +5104,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-09T15:37:41Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5015,7 +5141,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-11T18:19:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5051,7 +5178,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-12T09:17:08Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5087,7 +5215,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-12T11:12:34Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5133,7 +5262,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-11-14T12:24:12Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5169,7 +5299,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-12-06T23:45:00Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5205,7 +5336,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-12-07T22:06:45Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5241,7 +5373,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-12-14T00:44:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5277,7 +5410,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2025-12-16T07:43:45Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5313,7 +5447,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-01-11T08:59:32Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5349,7 +5484,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-01-16T09:05:05Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5385,7 +5521,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-01-29T20:25:42Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5421,7 +5558,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-03T15:54:13Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5457,7 +5595,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-07T10:05:28Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5493,7 +5632,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-07T16:34:28Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5529,7 +5669,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-08T13:18:26Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5565,7 +5706,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-14T21:38:46Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5601,7 +5743,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-17T10:53:29Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5637,7 +5780,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-18T11:22:49Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5683,7 +5827,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-02-19T05:11:21Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5719,7 +5864,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-03-02T10:14:24Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5755,7 +5901,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-03-16T12:35:54Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5791,7 +5938,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-03-21T12:49:26Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5827,7 +5975,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-03-21T16:48:02Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5863,7 +6012,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-03-21T19:14:27Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5899,7 +6049,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-03-23T20:34:05Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5935,7 +6086,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-04-27T15:25:01Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5971,7 +6123,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-09T21:02:51Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6007,7 +6160,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-14T22:23:17Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6043,7 +6197,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-16T08:41:47Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6079,7 +6234,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-23T10:10:27Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6115,7 +6271,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-26T14:59:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6151,7 +6308,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-30T12:31:13Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6197,7 +6355,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-05-31T21:14:57Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6233,7 +6392,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-03T17:08:20Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6269,7 +6429,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-03T23:36:45Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6305,7 +6466,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-06T15:31:37Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6341,7 +6503,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-06T19:29:52Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6377,7 +6540,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-07T13:47:44Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6413,7 +6577,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-15T13:08:46Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6468,7 +6633,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-18T22:34:43Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6504,7 +6670,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-20T22:38:17Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6550,7 +6717,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-06-21T17:25:58Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6586,7 +6754,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-06T21:43:46Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6622,7 +6791,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-20T11:15:48Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6658,7 +6828,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-22T12:12:24Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6694,7 +6865,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-22T21:04:08Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6730,7 +6902,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-22T21:10:03Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6766,7 +6939,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-31T19:28:16Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6812,7 +6986,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-07-31T23:56:55Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6848,7 +7023,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-08-03T16:24:17Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6900,7 +7076,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-08-05T12:21:59Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6946,7 +7123,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-08-06T17:20:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6982,7 +7160,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-08-12T03:17:52Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7018,7 +7197,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-08-16T12:27:23Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7054,7 +7234,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-08-22T19:07:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7090,7 +7271,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-09-01T10:54:02Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7126,7 +7308,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-09-14T11:08:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7162,7 +7345,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-09-16T07:07:04Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7198,7 +7382,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-09-17T20:32:29Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7234,7 +7419,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-09-22T16:25:21Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7270,7 +7456,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-09-27T17:57:22Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7306,7 +7493,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-11T15:51:14Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7342,7 +7530,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-14T14:18:35Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7378,7 +7567,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-14T14:21:57Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7414,7 +7604,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-17T21:59:14Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7450,7 +7641,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-19T16:22:44Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7478,7 +7670,7 @@
           },
           "total_power": "23",
           "msgs": [],
-          "status": "rejected",
+          "status": "closed",
           "votes": {
             "yes": "0",
             "no": "10",
@@ -7486,7 +7678,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-26T12:50:29Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7514,7 +7707,7 @@
           },
           "total_power": "23",
           "msgs": [],
-          "status": "rejected",
+          "status": "closed",
           "votes": {
             "yes": "0",
             "no": "10",
@@ -7522,7 +7715,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-28T10:25:07Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7558,7 +7752,8 @@
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-10-28T10:57:07Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7596,15 +7791,164 @@
               }
             }
           ],
-          "status": "open",
+          "status": "executed",
           "votes": {
-            "yes": "9",
+            "yes": "14",
             "no": "0",
             "abstain": "0"
           },
           "allow_revoting": true
         },
-        "source": "lcd"
+        "source": "lcd",
+        "createdAt": "2026-11-02T12:33:06Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 190,
+        "proposal": {
+          "title": "Zcash Abuja Developer Activation Programme",
+          "description": "\n*From First Shielded Transaction to Open-Source Contributions.*\n\n\n\n![Gemini_Generated_Image_f40rmbf40rmbf40r (1)](https://hackmd.io/_uploads/HJ-2Wak6Mg.jpg)\n\n---\n\n## Why Abuja, why now\n\nZcash's Nigerian initiatives in November address three complementary opportunities for ecosystem growth.\n\n- **Confluence 2.0, Ogbomoso (5–7 Nov):** Expanding everyday ZEC adoption through merchant onboarding, creator engagement and payment use cases.\n- **BlockchainUNN, Enugu (9–14 Nov):** Bringing developers into the ecosystem through a Zcash-focused hackathon, application development and a post-hackathon developer sprint.\n- **Blockchain UniAbuja, Abuja (20–21 Nov):** Developing the next layer of contributors through practical open-source participation, developer tooling, documentation, testing and contribution pathways into the existing Zcash ecosystem.\n\nThe Abuja programme is designed to complement these initiatives rather than repeat their activities.\n\nOur focus is helping emerging developers progress beyond introductory blockchain education and prototype development into meaningful contributions to existing Zcash projects and repositories.\n\nThrough guided exercises, technical mentorship and a structured 30-day follow-up, participants will learn how to navigate open-source repositories, understand development workflows, identify ecosystem needs and contribute through documentation, testing, code improvements and other practical tasks.\n\nAbuja also provides an opportunity to extend Zcash's developer presence into Nigeria's North-Central region through an established University of Abuja developer community.\n\nWe measure the journey from awareness to first shielded transaction, first Zcash build and continued open-source contribution. Nobody is asked to buy ZEC or share a private key or seed phrase.\n\n---\n\n## A proven format, with three additions\n\nZcash India has run the same kind of campus day four times in 2026. Each paired a Zcash introduction with hands-on wallet setup, a first testnet transaction and a ZEC bounty.\n\n| Event | Date | Attendance | Page |\n|---|---|---|---|\n| Indore (AITR) | 16 Apr 2026 | 184 | [Luma](https://luma.com/2snzqd45) |\n| Vadodara (Parul University) | 18 Jun 2026 | 229 | [Luma](https://luma.com/aye9lq9s) |\n| Bhopal (OIST) | 13 Jul 2026 | 216 | [Luma](https://luma.com/y4o0fdyr) |\n| Surat (P P Savani University) | 13 Aug 2026 | 159 | [Luma](https://luma.com/dukui59n) |\n\nThat is about 790 students across four events, so the format works on campus. Builder Day UniAbuja builds on this proven campus format while introducing three distinct elements:\n\n1. **Open-source contribution pathway:** Participants will work with existing Zcash repositories and learn practical contribution workflows, including documentation, testing, issue resolution and code improvements.\n2. **ZecHub integration:** Participants will be introduced to ZecHub bounties, open-source projects and community contribution opportunities as a pathway beyond the event.\n3. **30-day contributor development:** We will track meaningful contributions after the event, including substantive pull requests, documentation improvements, completed bounties and technical contributions to existing projects.\n\nThe objective is not simply to produce prototypes, but to help emerging developers become contributors to the existing Zcash ecosystem.\n\n---\n\n## Team and Zcash track record\n\n### Blockchain UniAbuja\n\n[Blockchain UniAbuja](https://x.com/uniabjweb3) is an established University of Abuja Web3 community. It has repeatedly gathered dozens to hundreds of students for practical tech events, so we are activating an existing community, not building an audience from zero.\n\nThe partner will secure the venue, run registration on Luma, promote the event on campus and community channels, supply volunteers for the wallet help desk, and handle logistics on the day.\n\n| Past event | Proof |\n|---|---|\n| UniAbuja Web3, AI & Tech Summit, 30 Jun 2026 (with NAKOSS UniAbuja) | [Luma](https://luma.com/396poh75) |\n| Developer onboarding event, 17 Jan 2026 | [Luma](https://luma.com/nfgiedsv) |\n| Ron AI Automation Workshop | [X post](https://x.com/uniabjweb3/status/2090148099406602255?s=20) |\n| Monad Blitz Abuja | [X post](https://x.com/uniabjweb3/status/2086023433981202815?s=20) |\n| Solana Students campus tour, 15–19 Dec 2025 | [Luma](https://luma.com/vu0pc6lp) |\n| GIRLS IN BLOCKCHAIN | [Luma](https://luma.com/631oghbz) |\n| TECH/WEB 3 CAMPUS UNBOARDING MEETUP UNIABUJA | [Luma](https://luma.com/nfgiedsv) |\n| Solana Students Campus tour: UNIABUJA | [Luma](https://luma.com/vu0pc6lp) |\n| Kaspa Education Series UniAbuja | [Luma](https://luma.com/ni380kgq) |\n\n### Project Leadership and Technical Delivery\n\nThe programme will be coordinated by **Wisdom Isnear as Project/Programme Lead**, responsible for overall programme execution, partnerships, budget management, stakeholder communication, participant coordination and post-event reporting.\n\nWisdom is also an active ZecHub contributor with practical experience contributing to the Zcash ecosystem.\n\n**His Zcash contributions include:**\n\n- Multiple completed ZecHub bounties:\n  - https://github.com/orgs/Zcash-Builder-Day-UniAbuja/repositories\n  - https://bounties.zechub.wiki/bounty/cmvppeyd8001ucva8cgctqblg\n  - https://bounties.zechub.wiki/bounty/cmu18rcou000mcvlrkm2l9vyo\n  - https://bounties.zechub.wiki/bounty/cmupy3zd3000qcvd5pfxo944k\n  - https://bounties.zechub.wiki/bounty/cmtho6kwe0039cv0uswdqpeo4\n  - https://bounties.zechub.wiki/bounty/cmu18z1z6000qcvlr94ppzumd\n- Over 15 pull requests submitted to the ZecHub GitHub repository, with multiple merged contributions.\n- Development of a notification bot for the ZecHub DAO on DAO DAO: [zcash_dao_discordBot](https://github.com/nwakaku/zcash_dao_discordBot).\n- Regular participation in ZecHub meetings, the Zcash Community Forum and ZecHub Discord.\n- Educational articles on [Zcash Shielded Transactions](https://medium.com/@nwakakucc/zcash-shielded-transactions-explained-what-stays-private-and-why-it-matters-eceb6b220a2e) and [Zcash in 7 Minutes](https://medium.com/@nwakakucc/zcash-in-7-minutes-a-beginners-guide-to-private-digital-money-5606ffa97e8d).\n\n\n### Technical Mentorship Team\n\nTechnical delivery will be supported by a three-member Technical Mentorship Team:\n\n- **[Jatin Sahijwani](https://github.com/jatinsahijwani):** Zcash infrastructure, zero-knowledge engineering and developer tooling. Founder of Zcash India, with experience building ZK developer tools and operating Zcash light-client infrastructure.\n- **[Anirudh Singh](https://github.com/AnirudhSingh07):** Zero-knowledge engineering, cryptographic tooling and cross-chain developer SDKs. Brings experience with Circom, Groth16, Rust, Move and Solidity, alongside hackathon and developer-community leadership.\n- **[Dre (Dre_Nesthub)](https://forum.zcashcommunity.com/u/dre_nesthub/summary):** Zcash ecosystem engagement, developer onboarding and community-led technical initiatives, with participation in Zcash developer workshops and ecosystem programmes.\n\nThe mentors will jointly support technical sessions, hands-on project guidance, debugging, milestone reviews and prototype evaluation. Responsibilities will be distributed according to their respective areas of expertise.\n\n\n- **Media:** @serialwinner — event photography and video documentation for programme reporting.\n- **Organizing Partner:** [Blockchain UniAbuja](https://x.com/uniabjweb3) — campus mobilization and event coordination.\n\n\n### Builder-Day Guide & Starter Template \n\n- https://github.com/orgs/Zcash-Builder-Day-UniAbuja/repositories\n\n---\n\n## Event plan\n\nThree phases: \n- DAO Post & preparation (2–19 Nov), \n- Builder Day (Friday 20 Nov & Saturday 21 Nov) and \n- A 30-day retention window ( from 21st Nov – 20th Dec).\n\n### Phase 1: Preparation (2–19 Nov)\n\n- Registration opens on Luma Post Approval\n- Attendees get a short Pre Day Virtual meeting and access to guide @https://github.com/orgs/Zcash-Builder-Day-UniAbuja/repositories\n- Volunteers and mentors are briefed on how the help desk works.\n\n### Phase 2: Builder Days (Fri 20 – Sat 21 Nov)\n\n#### Builder Day 1 (Friday 20 Nov, 11:00 – 17:30)\n\n| Time | Session |\n|---|---|\n| 11:00 | Check-in and wallet help desk |\n| 12:00 | Zcash 101: shielded vs transparent, unified addresses, why privacy matters |\n| 13:00 | Hands-on 1: create a wallet, receive ZEC, send a first shielded transaction |\n|14:00 | Contribution pathway: how Zcash repos work, issues, PR workflow, picking a good-first-issue\n|15:00  |\tTeam formation (up to 3), idea selection, starter templates handed out.|\n| 15:30 | Break and refreshments |\n| 16:30 | Hands-on 2: testnet build walkthrough with mentors (short) |\n| 17:30 |  Closing\n\n#### Builder Day 2 (Saturday 21 Nov, 11:00–17:30)\n\n| Time | Session |\n|---|---|\n| 11:00 | Check-in, teams confirm ideas |\n| 12:00 | Mini-hackathon, hacking begins  |\n| 16:30 | Submission freeze |\n| 17:00 | Refreshment |\n| 17:30 | Demos, judging and awards |\n\n**Suggested builds:** payment links using unified addresses, merchant invoicing tools, notification bots and wallet onboarding guides.[Starter templates provided](https://github.com/Zcash-Builder-Day-UniAbuja/builder-day/blob/main/projects.md).\n\n### Phase 3: Retention (21 Nov–20 Dec)\n\n- Weekly office hours and a builder channel for attendees.\n- Winners ship a public milestone by 4 Dec.\n- Promising teams are pointed to ZecHub bounties, ZecHub DAO grants and Zcash Community Grants.\n\n---\n\n## Realistic targets\n\nWe expect 100 of 150 registrants to attend and 6 builders to still be active 30 days later. Each target is tied to a specific action.\n\n| Stage | Target | How we get there |\n|---|---|---|\n| Registered | 150 | Under half of the 348 who registered for the June summit, because this day is hands-on and laptop-based |\n| Attended | 100 | Reminders, a pre-event guide and a free certificate of attendance, as at the June summit |\n| First shielded transaction | 60 | Wallet guide before the day; volunteers at a dedicated help desk |\n| Completed testnet workshop | 40 | Step-by-step curriculum, groups by experience, mentors Active |\n| Prototypes | 12 | Teams of up to 3 with starter ideas and mentor support, not a blank page |\n| Active after 30 days | 6 | A commit, PR, bounty submission, Forum post or ZecHub contribution. |\n| Engaged after 30 days | 15 | Attended at least one office hour (reported separately, not counted as active) |\n\n\nWe also aim for all four prize-winning teams to hit their milestone by 4 Dec. Public content will include a Forum report, an X recap thread and a ZecHub newsletter feature.\n\n---\n\n## Budget and payments\n\nThe total request is **$3,625** paid in two tranches.\n\n| Item | Cost (USD) | Why |\n|---|---|---|\n| Venue, sound, projector, power backup | $450 | Hall for 100, PA, projector, generator fuel |\n| Internet and data | $250 | Connectivity for 100 laptops, plus backup data |\n| Refreshments | $350 | Water and light food over a 7-hour day for 2 days |\n| Project and technical lead | $400 | Curriculum, delivery, mentoring, four weeks of office hours, reports |\n| Technical mentors (3 × $75) | $225 | Hands-on help during build sessions |\n| Blockchain UniAbuja mobilization | $400 | Registration, promotion, on-the-day coordination |\n| Volunteer help desk | $100 | Transport and data for wallet-setup volunteers |\n| Prize pool (paid in shielded ZEC) | $600 | 1st $250, 2nd $150, 3rd $100, special mention $100 |\n| Branding, printed guides, certificates | $250 | Banners, quick-start guides, certificates |\n| Photo and video | $250 | Recap content and proof of delivery |\n| Contingency | $350 | Returned to the DAO if unused |\n| **Total** | **$3625** | |\n\n| Tranche | Amount | Covers | Timing |\n|---|---|---|---|\n| 1. Pre-event | $2,050 | operating costs of $1,800 (venue, internet, refreshments, mobilization, volunteers, branding) plus $250 for first-half prizes, paid out on 21 Nov. | Before 16 Nov 2026 |\n| 2. Post-event | $1,575 | $1,225 (lead, mentors, media, contingency) plus $350 in second-half prizes and the special mention, released only after verified milestones. | By 7 Dec 2026, after the post-event report and verified milestones |\n\nUnspent contingency and any forfeited prize halves go back to the ZecHub DAO treasury. The final report will include receipts for both tranches.\n\n---\n\n## Prizes, milestones and forfeiture\n\nHalf of every prize is paid right after judging on 21 Nov. The other half is paid only after the winning team ships a public milestone by 4 Dec 2026. The special mention is paid entirely on milestones. All prizes are paid in shielded ZEC.\n\n| Place | Prize | After judging (21 Nov) | On milestone |\n|---|---|---|---|\n| 1st | $250 | $125 | $125 |\n| 2nd | $150 | $75 | $75 |\n| 3rd | $100 | $50 | $50 |\n| Special mention ( Best contribution to an existing Zcash project ) | $100 | $0 | $100 |\n| **Total** | **$600** | **$250** | **$350** |\n\n**Submission requirements:** a shielded ZEC transaction (Orchard or unified address) on testnet or mainnet; a public open-source repository; a working demo with a 3-minute video; and a README explaining how Zcash is used.\n\n**Milestone:** each winner agrees one milestone with us when selected, such as a feature live on mainnet, a public beta with real users, or a scoped roadmap feature. We verify milestones by 7 Dec.\n\n**Forfeiture:** a team that misses 4 Dec loses its second half, and the money returns to the ZecHub DAO treasury.\n\n| Judging criterion | Weight |\n|---|---|\n| Depth of Zcash integration | 40% |\n| Technical execution | 25% |\n| User experience | 20% |\n| Real-world usefulness | 15% |\n\n---\n\n## Reporting and key dates\n\nWe will publish a post-event report by 27 Nov 2026 and a final 30-day report by 21 Dec 2026. Both go on the Zcash Community Forum and are shared with the DAO.\n\n| Date | Milestone |\n|---|---|\n| 2–19 Nov | Preparation |\n| 16 Nov | Tranche 1 needed |\n| 20–21 Nov | Builder Days |\n| 21 Nov | Awards; first prize halves paid |\n| 27 Nov | Post-event report |\n| 4 Dec | Winners' milestone deadline |\n| 7 Dec | Milestones verified; tranche 2 paid |\n| 21 Dec | Final 30-day report |\n\n---\n\n## Risks and how we handle them\n\n| Risk | Mitigation |\n|---|---|\n| Power or internet failure | Generator fuel and backup data in the budget, an offline quick-start guide |\n| Low turnout | Targets set below the June summit, early registration, reminders |\n| Beginners fall behind | Pre-event guide, grouping by experience, volunteers, [Starter templates provision](https://github.com/orgs/Zcash-Builder-Day-UniAbuja/repositories) and mentors active |\n| Security or misuse of funds | No keys or seed phrases shared with organizers, testnet for builds, small first-transaction amounts, no investment promotion |\n| A team misses its milestone | Second half of its prize is forfeited and returned to the DAO |\n| Tranche 1 arrives late | Needed by 16 Nov; scope scales down if it lands later |\n\n---\n\n## Why this matters\n\nGrowing Zcash requires more than introducing people to shielded transactions or encouraging them to build standalone applications. It also requires a growing community of developers capable of improving, documenting, testing and extending the existing ecosystem.\n\nThe Abuja programme addresses this contributor-development gap.\n\nBy combining practical Zcash onboarding, guided development, open-source contribution exercises and 30-day mentorship, we aim to move emerging developers from first-time participants towards sustained contributors.\n\nTogether with the merchant-adoption focus in Ogbomoso and the application-development focus in Enugu, Abuja provides a complementary contribution pathway for Zcash's growing Nigerian ecosystem.\n\n---\n\n## The ask in brief\n\nWe request **$3625** to run Zcash Builder Day Abuja on Friday 20 & Saturday 21 November 2026 at the University of Abuja. Our organizing partner is Blockchain UniAbuja, an established student Web3 community.\n\n**Venue:** FACULTY OF AGRICULTURE HALL, UNIVERSITY OF ABUJA \n\nThis is a two-day, hands-on event. Every attendee sets up a Zcash wallet and sends a first shielded transaction (a private Zcash payment). Teams then build a small Zcash project in a guided mini-hackathon. A 30-day follow-up counts who keeps building.\n\n- **Targets:** 100 attendees, 60 first shielded transactions, 12 prototypes, 6 builders still active after 30 days.\n- **Value:** about $36.25 per attendee and $60.40 per first shielded transaction.\n- **Safe payout:** two payments, $2050 before the event and $1,575 after verified results. Half of every prize is held until the winner ships something public.\n- **Reports:** a post-event report by 27 Nov and a final 30-day report by 21 Dec, both on the Zcash Community Forum.\n\n*Thank you to Lowo, Vito , squirrel and others in the community who reviewed this Proposal and shared their advice.*\n\n![Gemini_Generated_Image_f40rmbf40rmbf40r (1)](https://hackmd.io/_uploads/Hyc6ba16Ml.jpg)",
+          "proposer": "juno1u8kulvletvj6jxq75s4xctlz7shftz4r3vqfkm",
+          "start_height": 43430982,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1794308996203424660"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "closed",
+          "votes": {
+            "yes": "8",
+            "no": "7",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-10T11:09:56Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 191,
+        "proposal": {
+          "title": "Zcash in Spain - CryptoDays Madrid 2026",
+          "description": "# Proposal: Strengthening Zcash's Presence in Spain – CryptoDays Madrid 2026\n\n**Event:** CryptoDays Madrid – What's Next for 2027?  \n**Date:** December 3, 2026  \n**Location:** Madrid Innovation Lab, Madrid, Spain  \n**Applicants:** Aura Brito and Roosevelt Gordones  \n**Total funding requested:** €4,500\n\n**Event Sponsorship Brief:** [CryptoDays × Zcash – What's Next for 2027? (PDF)](https://drive.proton.me/urls/SR4RMFNRFR#sGkathVY1R7z)\n\n## 1. Executive Summary\n\nWe are requesting **€4,500 from the ZecHub DAO** to support Zcash's participation as Title Sponsor at CryptoDays Madrid 2026.\n\nOur goal is to strengthen Zcash's presence in the Spanish technology and blockchain ecosystem, increase awareness of its privacy technology, connect with developers and potential contributors, and establish relationships that can lead to future collaborations.\n\nThis initiative builds on the ongoing work of [Zcash en Español](https://zcashesp.com/), [Club Zcash Barcelona](https://zcashesp.com/club-zcash-barcelona/), and [Zcast](https://zcashesp.com/zcast/), through which we have been developing a Spanish-speaking community with educational activities, meetups, workshops, content creation, and ecosystem outreach.\n\nWe see CryptoDays as an opportunity to extend this work beyond our existing community and introduce Zcash to founders, developers, startups, and technology professionals.\n\nIt is also an important step toward our plans for 2027, when we aim to organize **the first Zcash hackathon in Spain**, bringing together developers and builders to experiment with Zcash technology and create practical applications.\n\n## 2. Why CryptoDays Madrid?\n\nCryptoDays brings together founders, developers, startups, and technology professionals to discuss blockchain, finance, AI, and emerging technologies.\n\nIts Madrid edition expects approximately 50–80 attendees and includes expert panels and curated networking opportunities.\n\nWe believe this is an especially valuable environment for Zcash because it allows us to reach people who are actively building technology and developing products.\n\nOur participation will help position Zcash as more than a cryptocurrency: an open-source technology ecosystem offering privacy-preserving financial infrastructure and opportunities for developers to build with zero-knowledge technology.\n\n## 3. Importance for Zcash in Spain\n\nOur work in Spain focuses on building a sustainable local presence for Zcash, creating relationships, educating new audiences, and encouraging adoption.\n\nThrough Zcash en Español, Zcast, and Club Zcash Barcelona, we have been working on:\n\n- Organizing online and in-person meetups.\n- Hosting educational sessions about Zcash, privacy, and its ecosystem.\n- Organizing practical workshops introducing participants to Zcash wallets and tools.\n- Building relationships with other blockchain and technology communities.\n- Producing podcasts, interviews, livestreams, and educational content.\n- Connecting users, developers, entrepreneurs, and privacy advocates.\n- Promoting Zcash adoption and privacy-preserving financial tools.\n\nOur participation in CryptoDays will allow us to expand these efforts into Madrid and reach new audiences, particularly developers and technical teams.\n\nWe see three main opportunities:\n\n**Visibility:** Increase Zcash's presence in Spain's technology and blockchain communities.\n\n**Developer outreach:** Identify developers and teams interested in zero-knowledge proofs, privacy technologies, blockchain infrastructure, and potential Zcash integrations.\n\n**Community growth:** Establish relationships with organizations and individuals who can contribute to future educational, technical, and adoption initiatives.\n\n## 4. Objectives at CryptoDays\n\nOur participation will focus on three concrete objectives:\n\n### 1. Zcash visibility\n\nRepresent Zcash as Title Sponsor, introduce the ecosystem to attendees, and increase awareness of its technology and community initiatives in Spain.\n\n### 2. Panel participation\n\nSecure a speaking opportunity in the blockchain panel to discuss financial privacy, Zcash technology, and opportunities for developers and businesses to build with Zcash.\n\n### 3. Developer discovery\n\nConnect directly with founders, developers, and technical teams who may be interested in:\n\n- Zero-knowledge proofs and privacy technologies.\n- Privacy-preserving payment systems.\n- Blockchain infrastructure and integrations.\n- Open-source development.\n- New financial applications.\n\nOur intention is to identify potential collaborators and introduce them to the Zcash ecosystem.\n\n## 5. Looking Ahead: The First Zcash Hackathon in Spain – 2027\n\nOne of the most important reasons for attending CryptoDays is an initiative we are currently exploring and preparing for 2027.\n\n**We want to organize the first Zcash hackathon in Spain.**\n\nOur vision is to bring together developers, builders, students, and technology enthusiasts to experiment with Zcash and develop new applications, integrations, and solutions.\n\nWe believe Spain has a growing blockchain developer community, but there is still significant potential to introduce more people to Zcash technology and its development opportunities.\n\nCryptoDays will help us lay the groundwork for this initiative by:\n\n- Identifying potential hackathon participants.\n- Connecting with developers and startup founders.\n- Finding potential mentors, speakers, and collaborators.\n- Establishing relationships with technology communities and organizations.\n- Identifying potential partners and supporters for the initiative.\n\nWe see this event as a starting point for building the network needed to make the 2027 hackathon possible.\n\nOur ambition is not simply to attend an event, but to use this opportunity to create long-term value for the Zcash ecosystem in Spain.\n\n## 6. Our Team\n\nTwo active members of the Zcash en Español community will represent the project.\n\n### Aura Brito\n\nAura is a Community Builder, web designer, and blogger. She has collaborated in the design of the [Zcash en Español website](https://zcashesp.com/) and created Zerch, the Zcash merchandise initiative.\n\nShe is also co-host of [Zcast](https://zcashesp.com/zcast/), the podcast of Zcash en Español, available on [YouTube](https://www.youtube.com/@ZcastEsp), and actively contributes to community-building, educational activities, content creation, and local event organization.\n\nHer experience in communication, community development, and networking will be valuable for establishing new relationships and introducing people to Zcash.\n\n### Roosevelt Gordones\n\nRoosevelt has been an active member and moderator of the Zcash community since 2022. He is a blogger, podcaster, technology enthusiast, and advocate of free and open-source software.\n\nHe is co-host of [Zcast](https://zcashesp.com/zcast/) and actively creates educational and informational content about Zcash, privacy, and the broader ecosystem.\n\nHe is also one of the organizers of [Club Zcash Barcelona](https://zcashesp.com/club-zcash-barcelona/), working on community development, educational meetups, workshops, and partnerships with other technology communities.\n\nHis experience in community outreach, event organization, communication, and networking will help establish connections with developers, founders, and potential ecosystem collaborators.\n\nTogether, we bring complementary experience in community building, communication, education, and ecosystem development.\n\n**Community channels and resources:**\n\n- [Zcash en Español – Website](https://zcashesp.com/)\n- [Club Zcash Barcelona](https://zcashesp.com/club-zcash-barcelona/)\n- [Zcast – Podcast](https://zcashesp.com/zcast/)\n- [Zcast – YouTube](https://www.youtube.com/@ZcastEsp)\n- [Zcash en Español – Telegram Channel](https://t.me/zcashesp)\n- [Zcash en Español – Telegram Community Chat](https://t.me/zcashespchat)\n\n## 7. Budget and Funding Request\n\nWe are requesting a total of **€4,500**.\n\n| Item | Amount |\n|---|---:|\n| CryptoDays Title Sponsorship | €3,500 |\n| Accommodation for two team members | €1,000 |\n| **Total requested** | **€4,500** |\n\nThe €3,500 sponsorship covers the Title Sponsor package proposed by CryptoDays, including Zcash's main sponsorship positioning and visibility, a dedicated presence, and a proposed speaking opportunity on the blockchain panel.\n\nThe €1,000 accommodation budget will cover the stay of both representatives:\n\n- Aura Brito.\n- Roosevelt Gordones.\n\n**All meals and transportation expenses will be covered personally by the applicants.** We are not requesting funding for these expenses.\n\n## 8. Expected Impact and Deliverables\n\nFollowing our participation, we will provide the ZecHub DAO with a report documenting:\n\n1. Zcash's visibility and participation at the event.\n2. Panel participation and key discussion points, if confirmed.\n3. Relevant contacts and networking outcomes.\n4. Developers and potential contributors identified.\n5. Opportunities for future partnerships and collaborations.\n6. Progress toward the planned 2027 Zcash hackathon.\n7. Content produced through our community channels and Zcast.\n\nWe will also share relevant photographs, event highlights, and links to published content.\n\n## 9. Why Support This Proposal?\n\nSupporting this proposal means investing in the growth of Zcash in Spain.\n\nWe already have people actively doing the work: organizing meetups, educating users, producing content, connecting communities, and introducing Zcash to new audiences.\n\nThe next step is to expand these efforts and connect with people who can contribute to the technical growth of the ecosystem.\n\nCryptoDays gives us an opportunity to put Zcash in front of precisely that audience and build relationships that can generate results beyond a single event.\n\nMore importantly, these connections can help us develop our 2027 plans, including the first Zcash hackathon in Spain.\n\nWe believe growing Zcash requires more than online communication. It requires showing up, meeting people, building trust, sharing knowledge, and creating opportunities for others to participate.\n\nWe are committed to continuing this work and making Zcash more visible, accessible, and relevant to the Spanish technology community.\n\n**Let's bring Zcash closer to the people who can build with it.**\n\nThank you for considering our proposal and supporting community-driven initiatives that strengthen the Zcash ecosystem.",
+          "proposer": "juno1zyegrfva453l09k83v9xpsuflslhpdc05xypy6",
+          "start_height": 43437451,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1794326054155290377"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "executed",
+          "votes": {
+            "yes": "10",
+            "no": "0",
+            "abstain": "3"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-10T15:54:14Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 192,
+        "proposal": {
+          "title": "PayWithZcash Hosting Renewal & Managed Application Maintenance",
+          "description": "# WEBSITE HOSTING RENEWAL & MANAGED APPLICATION MAINTENANCE PROPOSAL\n\n## 1. INTRODUCTION\n\nFollowing the development and deployment of PayWithZcash (https://paywithz.cash) in March 2025, I have continued to oversee its hosting and technical operations to maintain its online presence.\n\nOn the 3rd of March 2026, I communicated the impending expiration of the hosting subscription, due on March 29, 2026. But I didn't officially submit a request for it, while I independently sustained the application's hosting to prevent service interruption.\n\nBeyond maintaining its availability, I have recently undertaken further improvements, including a revamped user interface and the integration of map functionality for new listings while behind the scene I have geo-located 69 of existing listings.\n\nThe last audit that was carried out on the first week of November 2026 is as follows:\n- 320 businesses in total are listed\n- 13 newly signup from June 9, 2025 to date\n- 40 businesses have no obvious evidence of accepting Zcash (and have been tagged under `Review`)\n- 71 businesses currently are offline  (and have been tagged under `Review`)\n\nNOTE: The number of published listing is 209 ~ (320 - (40 + 71))\n \nWith the previous hosting and technical support arrangement having ended in March 2026, this proposal outlines the arrangements for continued hosting and ongoing technical support.\n\n## 2. APPLICATION IMPROVEMENTS & ACTIVITY\n\nRecent improvements include:\n\n- **UI Revamp:** Improved visual presentation, layout, and user experience.\n- **Map Integration:** Added location-related functionality to improve usability and accessibility.\n\n**Website Activity**\n\nOver the past 12 months, the application recorded **13 signup**, demonstrating its continued use as an online business profile and communication channel for prospective customers and other interested visitors.\n\n## 3. OUTSTANDING COMMUNICATION CHANNEL TO HELP DRIVE ADOPTION: X (TWITTER) ACCOUNT\n\nDuring the transition from the previous developer, administrative ownership/access of PayWithZcash's existing X (formerly Twitter) account was not transferred/enabled alongside the domain. On two separate occasions, I recommended contacting the former developer to facilitate such transfer or we be provided appropriate administrative access.\n\nI considered creating a replacement account but decided against introducing a different handle that could create inconsistency with the PayWithZcash's existing digital identity.\n\n**Recommended action:** Revisit the account recovery or transfer process so we can have it to enhance the communication of its existing social media identity.\n\n## 4. PROPOSED SERVICE OPTIONS\n\nTwo service arrangements are available:\n\n### OPTION A: WEBSITE HOSTING ONLY\n\nCovers the infrastructure required to keep the application deployed and accessible online.\n\n- Website hosting and environment management.\n- Basic hosting availability checks.\n\nApplication maintenance, bug fixes, security updates, technical support, and enhancements are excluded and will be quoted separately if/when required.\n\n**Cost: $20/month | $240/year**\n\n### OPTION B: MANAGED APPLICATION MAINTENANCE & TECHNICAL SUPPORT\n\n<badge color=\"success\">Recommended</badge>\n\nA comprehensive arrangement combining hosting with ongoing technical management and support to keep the application functional, secure, and relevant to the PayWitZcash's needs.\n\nIncludes:\n\n- Routine application monitoring and performance checks.\n- Bug investigation and resolution.\n- Security and dependency updates.\n- Database and backup management, where applicable.\n- Technical support and troubleshooting.\n- Monitoring of existing integrations, including map functionality.\n- Minor UI/UX adjustments and content updates.\n- Reasonable minor enhancements to existing application features.\n\nMajor new modules, substantial feature development, significant architectural changes, and complex third-party integrations will be assessed and quoted separately.\n\n| Service | Monthly | Annual |\n|---|---:|---:|\n| Website hosting | $20 | $240 |\n| Managed maintenance & support | $200 | $2,400 |\n| **Total** | **$220** | **$2,640** |\n\n## 5. OUTSTANDING HOSTING EXPENDITURE\n\nFollowing the expiration of the previous hosting subscription in March 2026, I continued funding the application's hosting independently to maintain its availability.\n\nThe hosting expenditure for the period March 2026 – February 2027 is presented for reconciliation and settlement.\n\n**$20 × 12 months = $240.**\n\nThis is a hosting expense and is separate from the proposed maintenance agreement.\n\n## 6. PAYMENT & SERVICE ARRANGEMENT\n\nUpon approval:\n\n- The preferred service option will cover an agreed 12-month period.\n- Hosting will be renewed subject to the applicable payment arrangement.\n- Under Option B, maintenance and technical support will commence upon approval and cover 12 months.\n- The annual maintenance fee may be paid upfront or in monthly instalments of $200, subject to mutual agreement.\n- Additional development outside the agreed maintenance scope will be quoted separately.\n\n## 7. CONCLUSION & ACCEPTANCE\n\nThe improvements made to the application, together with its continued availability and map functionality, reinforce its role as an important part of the PayWithZcash's digital presence.\n\nI recommend **Option B – Managed Application Maintenance & Technical Support** for consistent technical oversight, ongoing maintenance, and reasonable improvements as the business's needs evolve.\n\nThank you for the continued opportunity to support PayWithZcash's digital presence.\n\nSpeedFox",
+          "proposer": "juno154xpy7ge2nmqft7n8dfhgmquyqhsfgm3w78qzg",
+          "start_height": 43530547,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1794567503188788641"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "passed",
+          "votes": {
+            "yes": "13",
+            "no": "0",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-13T10:58:23Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 193,
+        "proposal": {
+          "title": "Penumbra Validator: Approve Operation Cost And Begin",
+          "description": "Approve the operation cost outlined in the [Penumbra validator playbook](https://s3.terp.network/bud/512f51236d6a95fe1bcab1838c67ba83f430d5a8954be10377c9f7e0a2901637.html), and fund the first two months ($1,100) up front.",
+          "proposer": "juno1hafmtgxpruf5kzrrwftnxccuer46534e7z5t0jl4g4le66x8kkysrcgj9y",
+          "start_height": 43681274,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1794954623135406837"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "open",
+          "votes": {
+            "yes": "8",
+            "no": "1",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-17T22:30:23Z"
       }
     ]
   },

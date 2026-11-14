@@ -49,5 +49,22 @@
       "error": 7,
       "invalid": 0
     }
+  },
+  {
+    "date": "2026-11-12",
+    "generatedAt": "2026-11-12T14:26:02.740Z",
+    "filesScanned": 751,
+    "serious": 37,
+    "totals": {
+      "broken": 34,
+      "dns": 3,
+      "blocked": 248,
+      "redirect": 443,
+      "route": 0,
+      "asset": 0,
+      "timeout": 0,
+      "error": 7,
+      "invalid": 0
+    }
   }
 ]

@@ -58,6 +58,34 @@ describe("ZIP-321 Amount Boundaries & Formatting", () => {
     );
   });
 
+  it.each([
+    0.123456789,
+    1.0000000000000002,
+    1.5e-8,
+    "1.5e-8",
+    "1.234567891e0",
+    "1.000000009e0",
+  ])("rejects excess precision without rounding %s", (amount) => {
+    expect(() => formatZecAmount(amount)).toThrow(/maximum 8 decimal places/i);
+    const payment = { address: "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC", amount };
+    expect(validateZip321Payment(payment).valid).toBe(false);
+    expect(() => buildZip321Uri([payment])).toThrow(/maximum 8 decimal places/i);
+  });
+
+  it.each([
+    ["1.2345678e-1", "0.12345678"],
+    ["12.345678e-2", "0.12345678"],
+    ["1.23456789e1", "12.3456789"],
+    ["2.1e7", "21000000"],
+    ["1E+2", "100"],
+    ["1000e-11", "0.00000001"],
+    [".1e-7", "0.00000001"],
+    ["+1e-8", "0.00000001"],
+    [0.29, "0.29"],
+  ] as const)("expands valid amounts exactly: %s", (amount, expected) => {
+    expect(formatZecAmount(amount)).toBe(expected);
+  });
+
   it("rejects zero and negative amounts", () => {
     expect(() => formatZecAmount(0)).toThrow(/greater than zero/i);
     expect(() => formatZecAmount("0")).toThrow(/greater than zero/i);

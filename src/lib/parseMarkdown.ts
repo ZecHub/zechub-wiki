@@ -12,12 +12,14 @@ export function parseMarkdown(md: string) {
     let url = '';
     let imageUrl = '';
     let syncSpeed = '';
-    let ironwood = '';
-    // `- Status: Deprecated | <reason>` moves a wallet out of the directory
-    // into the "no longer supports Zcash" section; `- Stage: Beta` is a tag.
+    let nu7 = '';
+
+    // Deprecated wallets are listed separately.
+    // Stage (e.g. Beta) is shown as a badge.
     let status = '';
     let statusReason = '';
     let stage = '';
+
     const devices: string[] = [];
     const pools: string[] = [];
     const features: string[] = [];
@@ -56,12 +58,11 @@ export function parseMarkdown(md: string) {
         const value = line.split(': ')[1];
         if (value) features.push(...value.split(' | ').map(s => s.trim()));
       }
-      else if (line.startsWith('- Ironwood:')) {
+      else if (line.startsWith('- NU7:')) {
         const value = line.split(': ')[1];
-        if (value) ironwood = value.trim();
+        if (value) nu7 = value.trim();
       }
       else if (line.startsWith('- Status:')) {
-        // Everything after the first ": " — a reason may itself contain ": ".
         const at = line.indexOf(': ');
         if (at > -1) {
           const [value, ...reason] = line.slice(at + 2).split(' | ');
@@ -79,7 +80,6 @@ export function parseMarkdown(md: string) {
       }
     });
 
-
     return {
       title,
       url,
@@ -90,7 +90,7 @@ export function parseMarkdown(md: string) {
       operatingSystem: [...new Set(operatingSystem)],
       walletSupport: [...new Set(walletSupport)],
       syncSpeed,
-      ironwood,
+      nu7,
       status,
       statusReason,
       stage,
