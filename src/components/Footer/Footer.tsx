@@ -1,7 +1,5 @@
 "use client";
 import { Link } from "@/i18n/navigation";
-import { ShopButton } from "../Shop-button/shop-button";
-import DonationBtn from "@/components/UI/DonationBtn";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Footer = () => {
@@ -31,10 +29,6 @@ const Footer = () => {
               {t.footer?.privacy || "Privacy"}
             </Link>
           </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <DonationBtn />
-          <ShopButton shopUrl="https://zechub.store" />
         </div>
       </div>
     </footer>

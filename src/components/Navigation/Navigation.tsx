@@ -751,7 +751,7 @@ const Dropdown = ({
           ref={panelRef}
           className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "start-0"}`}
         >
-          <div className="grid w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
+          <div className="grid max-h-[calc(100vh-6rem)] w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 overflow-y-auto overscroll-contain rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
             {children}
           </div>
         </div>
@@ -1543,7 +1543,7 @@ const TopTabs = () => {
   return (
     <nav
       aria-label="Main"
-      className="absolute left-24 hidden items-center gap-3 font-[family-name:var(--font-heading)] text-sm min-[1180px]:flex xl:left-1/2 xl:-translate-x-1/2 xl:gap-6"
+      className="relative mx-4 hidden min-w-0 flex-1 items-center justify-center gap-3 font-[family-name:var(--font-heading)] text-sm min-[1180px]:flex xl:gap-6"
     >
       {menus.map((item) => (
         <Dropdown
@@ -1563,7 +1563,10 @@ const TopTabs = () => {
           {getTranslatedLabel(dao.name, dao.label, t, dao.label)}
         </Link>
       ) : null}
-      <NavShortcuts />
+      {/* The icon shortcuts only appear when the bar has room for them. */}
+      <div className="hidden min-[1440px]:flex">
+        <NavShortcuts />
+      </div>
     </nav>
   );
 };
@@ -1630,7 +1633,9 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <TopTabs />
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
             <div className="hidden min-[1180px]:flex items-center space-x-2 md:space-x-3">
-              <ZecPrice />
+              <div className="hidden min-[1600px]:block">
+                <ZecPrice />
+              </div>
               <LanguageSwitcher />
             </div>
             {/* Donate and Shop: always one click away on wide screens. Narrower screens

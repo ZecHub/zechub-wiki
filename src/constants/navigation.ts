@@ -24,9 +24,10 @@ import {
   SlidersHorizontal,
   Network,
   Layers,
+  Eye,
+  FileText,
+  BookOpen,
   ShieldCheck,
-  Blocks,
-  Hash,
   Info,
   Presentation,
   GraduationCap,
@@ -128,6 +129,12 @@ export const navigations: Array<NavigationItem> = [
       { name: "Privacy Tools", path: "/privacy-tools", icon: PrivacyShield },
       { name: "Visualizer", path: "/visualizer", icon: BsPlay },
       { name: "Research", path: "/research", icon: FlaskConical },
+      { name: "Zero to Zero Knowledge", path: "/zero-to-zero-knowledge/zero-to-zero-knowledge", icon: GraduationCap },
+      { name: "Shielded Pools", path: "/using-zcash/shielded-pools", icon: Layers },
+      { name: "Zero-Knowledge vs Decoys", path: "/guides/zero-knowledge-vs-decoys", icon: Eye },
+      { name: "Zcash Improvement Proposals", path: "/guides/zcash-improvement-proposals", icon: FileText },
+      { name: "Network Upgrades", path: "/start-here/network-upgrades", icon: Cpu },
+      { name: "My First Zcash Workbook", path: "/guides/my-first-zcash-workbook", icon: BookOpen },
     ],
   },
   {
@@ -516,28 +523,21 @@ export const navigations: Array<NavigationItem> = [
         path: "/protocol-parameters",
         icon: SlidersHorizontal,
       },
-      { name: "All Visualizers", path: "/visualizer", icon: BsPlay },
       {
         name: "Network & Infrastructure",
         path: "/zcash-infrastructure-visualizer",
         icon: Network,
       },
       { name: "Value Pools", path: "/zcash-pool-visualizer", icon: Layers },
-      {
-        name: "zk-SNARK Proofs",
-        path: "/zksnark-proof-visualizer",
-        icon: ShieldCheck,
-      },
-      { name: "Consensus", path: "/visualizer/consensus", icon: Blocks },
-      { name: "Hash Function", path: "/visualizer/hash-function", icon: Hash },
-      { name: "Zcash Keys", path: "/visualizer/zcash-key", icon: KeyRound },
-      { name: "Network Upgrades", path: "/start-here/network-upgrades" },
-      { name: "NU7", path: "/start-here/network-upgrades" },
-      { name: "Ironwood", path: "/zcash-tech/ironwood" },
-      { name: "NU6.2", path: "/zcash-tech/nu6-2" },
-      { name: "NU6.1", path: "/zcash-tech/nu6-1" },
-      { name: "NU6", path: "/zcash-tech/nu6" },
-      { name: "NU5", path: "/zcash-tech/nu5" },
+      { name: "Network Upgrades", path: "/start-here/network-upgrades", icon: Cpu },
+      { name: "Zcash Improvement Proposals", path: "/guides/zcash-improvement-proposals", icon: FileText },
+      { name: "zk-SNARKs", path: "/zcash-tech/zk-snarks" },
+      { name: "Halo", path: "/zcash-tech/halo" },
+      { name: "Unified Addresses", path: "/zcash-tech/unified-addresses" },
+      { name: "Viewing Keys", path: "/zcash-tech/viewing-keys" },
+      { name: "FROST Threshold Signatures", path: "/zcash-tech/frost" },
+      { name: "Shielded Assets (ZSAs)", path: "/zcash-tech/zcash-shielded-assets" },
+      { name: "Post-Quantum Security", path: "/zcash-tech/post-quantum-security", icon: ShieldCheck },
     ],
   },
   {
@@ -619,8 +619,9 @@ export type MenuSection = { title: string; items: string[] };
 
 export const menuSections: Record<string, MenuSection[]> = {
   "Learn Zcash": [
-    { title: "Understand the protocol", items: ["Zcash Tech", "Research"] },
-    { title: "Explore and protect", items: ["Visualizer", "Privacy Tools"] },
+    { title: "Start learning", items: ["Zero to Zero Knowledge", "My First Zcash Workbook"] },
+    { title: "Understand the protocol", items: ["Zcash Tech", "Shielded Pools", "Zero-Knowledge vs Decoys", "Network Upgrades"] },
+    { title: "Explore and research", items: ["Visualizer", "Privacy Tools", "Research", "Zcash Improvement Proposals"] },
   ],
   "Using Zcash": [
     {
@@ -689,23 +690,19 @@ export const menuSections: Record<string, MenuSection[]> = {
   Data: [
     {
       title: "Live data",
-      items: ["Ecosystem Dashboard", "Chain State Explorer", "Protocol Parameters"],
-    },
-    {
-      title: "Explore the network",
-      items: ["All Visualizers", "Network & Infrastructure", "Value Pools"],
+      items: ["Ecosystem Dashboard", "Chain State Explorer", "Network & Infrastructure", "Value Pools"],
     },
     {
       title: "Protocol",
-      items: ["Consensus", "zk-SNARK Proofs"],
+      items: ["Network Upgrades", "Protocol Parameters", "Zcash Improvement Proposals", "Post-Quantum Security"],
     },
     {
       title: "Cryptography",
-      items: ["Hash Function", "Zcash Keys"],
+      items: ["zk-SNARKs", "Halo", "FROST Threshold Signatures"],
     },
     {
-      title: "Network upgrades",
-      items: ["Network Upgrades", "NU7", "Ironwood", "NU6.2", "NU6.1", "NU6", "NU5"],
+      title: "Addresses & assets",
+      items: ["Unified Addresses", "Viewing Keys", "Shielded Assets (ZSAs)"],
     },
   ],
   Guides: [
