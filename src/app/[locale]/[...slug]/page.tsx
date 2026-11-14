@@ -2516,7 +2516,9 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         if (isWs(x)) rows.splice(i, 1);
         else if (x && (x.type === "mdxJsxFlowElement" || x.type === "element") && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
       }
-      const codeBlock = (lines: string[], lang: string) => el("pre", {}, [el("code", { className: ["language-" + lang] }, [txt(lines.join("\n") + "\n")])]);
+      // The source has "sudo dpkg - <file>.deb" (missing the -i flag), which fails when run.
+      const fixCmd = (line: string) => line.replace(/^(sudo\s+dpkg)\s+-\s+/, "$1 -i ");
+      const codeBlock = (lines: string[], lang: string) => el("pre", {}, [el("code", { className: ["language-" + lang] }, [txt(lines.map(fixCmd).join("\n") + "\n")])]);
       const iframesIn = (n: any, acc: any[] = []) => {
         if (isEl(n, "iframe") || (n && n.type === "mdxJsxFlowElement" && String(n.name) === "iframe")) acc.push(n);
         (n?.children || []).forEach((c: any) => iframesIn(c, acc));
