@@ -1,6 +1,5 @@
 import { arboristCalls } from "@/constants/arboristCalls";
 import { arboristRecordings, type ArboristRecording } from "@/constants/arboristRecordings";
-import summariesJson from "@/constants/arboristSummaries.json";
 
 import type { MediaArchiveEntry } from "@/components/MediaArchive/types";
 
@@ -26,12 +25,9 @@ const sortDateFor = (recordings: ArboristRecording[], position: number): string 
  * archive entry that already links the same YouTube video (or, failing that, has the same
  * date); recordings the archive does not know become entries of their own.
  */
-export type ArboristSummaries = Record<string, { summary: string; topics?: string[] }>;
-
 export function buildArboristArchive(
   /** Newer recordings found on YouTube that the checked-in list does not have yet. */
   liveRecordings: ArboristRecording[] = [],
-  summaries: ArboristSummaries = summariesJson as ArboristSummaries,
 ): ArchiveEntry[] {
   const known = new Set(arboristRecordings.map((r) => r.id));
   const recordings = [...liveRecordings.filter((r) => !known.has(r.id)), ...arboristRecordings];
@@ -87,14 +83,6 @@ export function buildArboristArchive(
     if (!r.date) sortDate.set(e.key, sortDateFor(recordings, i));
     entries.push(e);
   });
-
-  for (const e of entries) {
-    const s = e.videoId ? summaries[e.videoId] : undefined;
-    if (s?.summary) {
-      e.summary = s.summary;
-      e.topics = s.topics ?? [];
-    }
-  }
 
   const key = (e: ArchiveEntry) => sortDate.get(e.key) ?? e.date ?? "0000-00-00";
   return entries.sort((a, b) => key(b).localeCompare(key(a)));

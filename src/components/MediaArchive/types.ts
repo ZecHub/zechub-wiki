@@ -14,8 +14,4 @@ export type MediaArchiveEntry = {
   notes: string;
   agenda: string;
   twitter: string;
-  /** Short AI-written summary of the call, built from its notes (see scripts/summarize-arborist-calls.mjs). */
-  summary?: string;
-  /** Topic tags used by the archive filter. */
-  topics?: string[];
 };

@@ -1,8 +1,8 @@
 name: Arborist calls sync
 
-# Every day: pick up new recordings and notes, download cover images and write AI summaries
-# for calls that have notes, then commit the result to the branch the workflow runs on
-# (the deploy follows from that push). Summaries stay marked as AI-written on the page.
+# Every day: pick up new recordings and notes, download cover images,
+# then commit the result to the branch the workflow runs on
+# (the deploy follows from that push).
 # Scheduled workflows only run from the repository's default branch.
 on:
   schedule:
@@ -34,20 +34,16 @@ jobs:
         run: node scripts/sync-arborist-recordings.mjs
       - name: Cover images
         run: node scripts/video-thumbnails.mjs
-      - name: AI summaries
-        run: node scripts/summarize-arborist-calls.mjs
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - name: Commit and push
         run: |
           git add src/constants/arboristCalls.ts src/constants/arboristRecordings.ts \
-            src/constants/arboristSummaries.json scripts/video-ids.txt public/video-thumbs
+            scripts/video-ids.txt public/video-thumbs
           if git diff --cached --quiet; then
             echo "Nothing new."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Sync Arborist calls: recordings, notes, covers and summaries"
+          git commit -m "Sync Arborist calls: recordings, notes and covers"
           git pull --rebase
           git push
