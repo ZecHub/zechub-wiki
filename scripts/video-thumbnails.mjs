@@ -59,10 +59,13 @@ async function fetchOne(id) {
   failed.push(id);
 }
 
+// "videoseries" is the embed path of playlist players, not a video.
+ids.delete("videoseries");
 const list = [...ids];
 const queue = list.slice();
 await Promise.all(Array.from({ length: 6 }, async () => {
   while (queue.length) await fetchOne(queue.shift());
 }));
 console.log(`${list.length} videos: ${done} downloaded, ${skipped} already there, ${failed.length} unavailable`);
-if (failed.length) console.log("Unavailable (private or removed):", failed.join(", "));
+// Private or removed videos have no cover; the card falls back to the dark placeholder.
+if (failed.length) console.log(`${failed.length} private or removed video(s) skipped.`);
