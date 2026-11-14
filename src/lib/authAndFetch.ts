@@ -12,9 +12,32 @@ let octokitPromise: Promise<any> | null = null;
 
 async function getOctokit() {
   if (!octokitPromise) {
-    octokitPromise = import("octokit").then(
-      ({ Octokit }) => new Octokit({ auth: authUser }),
-    );
+    octokitPromise = import("octokit").then(({ Octokit }) => {
+      const octokit = new Octokit({ auth: authUser });
+      // The content repo is public. A token that GitHub rejects (revoked, expired, mistyped) would
+      // otherwise turn every page that reads content into a 500, so such a request is repeated
+      // without credentials, and a warning explains what to fix.
+      let anonymous: InstanceType<typeof Octokit> | null = null;
+      let warned = false;
+      octokit.hook.wrap("request", async (request, options) => {
+        try {
+          return await request(options);
+        } catch (err: any) {
+          if (err?.status !== 401 || !authUser) throw err;
+          if (!warned) {
+            warned = true;
+            console.warn(
+              "[authAndFetch] GITHUB_TOKEN was rejected by GitHub (Bad credentials). Falling back to unauthenticated " +
+                "requests, which have a much lower rate limit. Replace or remove the token in .env.local / the host's env vars.",
+            );
+          }
+          anonymous ??= new Octokit();
+          const { authorization: _drop, ...headers } = (options.headers ?? {}) as Record<string, string>;
+          return anonymous.request({ ...options, headers } as any);
+        }
+      });
+      return octokit;
+    });
   }
   return octokitPromise;
 }
