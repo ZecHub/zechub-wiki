@@ -160,19 +160,19 @@ const ZKSNARKProofVisualizer = ({
     >
       <div className="w-full max-w-6xl mx-auto p-4 md:p-8 space-y-8">
         {/* Progress Bar */}
-        <Card className="bg-card p-6 space-y-4">
+        <Card className="bg-card shadow-none p-6 space-y-4">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">
               {Math.round(progress)}% Complete
             </span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <Progress value={progress} className="h-2 bg-slate-200 dark:bg-white/10" />
         </Card>
 
         {/* Main Visualization Area */}
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Visual Diagram */}
-          <Card className="bg-card p-8 min-h-[500px] flex items-center justify-center border-primary/20">
+          <Card className="bg-card shadow-none p-8 min-h-[500px] flex items-center justify-center border-primary/20">
             <AnimatePresence mode="wait">
               <ProofStep
                 key={currentStep}
@@ -183,7 +183,7 @@ const ZKSNARKProofVisualizer = ({
           </Card>
 
           {/* Explanation Panel */}
-          <Card className="bg-card p-8 space-y-6 border-secondary/20">
+          <Card className="bg-card shadow-none p-8 space-y-6 border-secondary/20">
             <motion.div
               key={currentStep}
               initial={{ opacity: 0, x: 20 }}
@@ -199,7 +199,7 @@ const ZKSNARKProofVisualizer = ({
                 <h2 className="text-3xl font-bold">
                   {steps[currentStep].title}
                 </h2>
-                <p className="text-xl text-secondary">
+                <p className="text-lg imd:text-xl text-brand dark:text-brand-soft">
                   {steps[currentStep].description}
                 </p>
               </div>
@@ -215,7 +215,7 @@ const ZKSNARKProofVisualizer = ({
 
               {currentStep === 3 && (
                 <Card className="p-4 bg-accent/5 border-accent/20">
-                  <h4 className="font-semibold mb-2 text-accent">
+                  <h4 className="font-semibold mb-2 text-brand dark:text-brand-soft">
                     Key Insight:
                   </h4>
                   <p className="text-sm text-muted-foreground">

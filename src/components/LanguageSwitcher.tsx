@@ -39,8 +39,8 @@ function CodeBadge({ code, current = false }: { code: string; current?: boolean 
       data-current-badge={current ? '' : undefined}
       className={`inline-flex items-center justify-center w-8 h-6 shrink-0 rounded-md border text-[11px] font-semibold tracking-wide transition-colors ${
         current
-          ? 'border-[#F4B728] bg-[#F4B728] text-slate-900'
-          : 'border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 bg-white/60 dark:bg-slate-900/40 group-hover:border-[#F4B728] group-focus-visible:border-[#F4B728]'
+          ? 'border-brand bg-brand text-on-brand'
+          : 'border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 bg-white/60 dark:bg-slate-900/40 group-hover:border-brand group-focus-visible:border-brand'
       }`}
     >
       {code.toUpperCase()}
@@ -266,10 +266,10 @@ export function LanguageSwitcher() {
       data-code={lang.code}
       aria-selected={lang.code === locale}
       onClick={() => handleSelect(lang.code)}
-      className={`group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-700 dark:focus-visible:ring-[#F4B728] transition-colors cursor-pointer ${
+      className={`group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand dark:focus-visible:ring-brand transition-colors cursor-pointer ${
         lang.code === locale
-          ? 'bg-[#F4B728]/20 hover:bg-[#F4B728]/25 focus-visible:bg-[#F4B728]/25'
-          : 'hover:bg-[#F4B728]/10 focus-visible:bg-[#F4B728]/10'
+          ? 'bg-brand/20 hover:bg-brand/25 focus-visible:bg-brand/25'
+          : 'hover:bg-brand/10 focus-visible:bg-brand/10'
       }`}
     >
       <CodeBadge code={lang.code} current={lang.code === locale} />
@@ -284,7 +284,7 @@ export function LanguageSwitcher() {
         )}
       </span>
       {lang.code === locale && (
-        <svg className="ms-auto w-4 h-4 text-amber-700 dark:text-[#F4B728] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <svg className="ms-auto w-4 h-4 text-brand dark:text-brand-soft shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
       )}
@@ -353,7 +353,7 @@ export function LanguageSwitcher() {
                   placeholder={L.search}
                   aria-controls={listboxId}
                   autoComplete="off"
-                  className="w-full ps-9 pe-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-base imd:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full ps-9 pe-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-base imd:text-sm focus:outline-none focus:ring-2 focus:ring-brand"
                 />
               </label>
             </div>
