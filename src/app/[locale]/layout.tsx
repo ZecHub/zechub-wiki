@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getDictionary } from "@/lib/getDictionary";
@@ -6,6 +5,7 @@ import { Metadata } from "next";
 import AuroraBackground from "@/components/Background/AuroraBackground";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import ColorThemeInit from "@/components/ColorThemeInit";
 import NavigationWrapper from "@/components/NavigationWrapper";
 import SkipToContent from "@/components/SkipToContent";
 import MotionProvider from "@/components/MotionProvider";
@@ -120,18 +120,6 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        {/* Applies the saved colour theme before first paint (no flash). Uses
-            next/script because a raw <script> in the layout makes React 19 log
-            "Encountered a script tag while rendering React component". */}
-        <Script
-          id="zechub-theme-init"
-          strategy="beforeInteractive"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('zechub-color-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-color-theme',t)}catch(e){}",
-          }}
-        />
         {/* Manual RSS link as backup for better feed detection (Brave, Feedly, etc.) */}
         <link
           rel="alternate"
@@ -148,6 +136,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={`px-0 ${inter.className} ${headingFont.variable} bg-page dark:bg-surface dark:text-white`}>
+        <ColorThemeInit />
         {/* First focusable element on the page, so keyboard and screen-reader
             users can bypass the header, menus and search (WCAG 2.4.1). Rendered
             here rather than inside the providers so nothing precedes it in the
