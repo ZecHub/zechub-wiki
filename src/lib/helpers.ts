@@ -47,6 +47,7 @@ const OG_LOCALE_MAP: Record<string, string> = {
   ee: "ee_GH",
   id: "id_ID",
   el: "el_GR",
+  fa: "fa_IR",
 };
 
 export const toOgLocale = (locale: string): string => {
