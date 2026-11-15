@@ -72,7 +72,6 @@ In August 2026 Firo disclosed a vulnerability affecting multi-input Spark spends
 | Proof system | One-of-many and other zero-knowledge proofs; no trusted setup | zk-SNARKs (Orchard uses Halo 2, with no trusted setup) |
 | Hiding set | Large set of coins | Every note in the shielded pool |
 | Transparent transactions | Optional, chosen explicitly | Optional, chosen explicitly |
-| Network layer | Dandelion++ | Optional Tor or other network tools |
 
 ## Further reading
 
