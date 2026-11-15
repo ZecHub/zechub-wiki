@@ -74,7 +74,7 @@ A Zcash wallet must scan the blockchain to find your notes. The **birthday heigh
 - [ZIP 32: Shielded Hierarchical Deterministic Wallets](https://zips.z.cash/zip-0032)
 - [Zcash Protocol Specification](https://zips.z.cash/protocol/protocol.pdf)
 - [BIP-39: Mnemonic code for generating deterministic keys](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
-- [Recovering funds](/guides/recovering-funds)
+- [Recovering funds](/using-zcash/recovering-funds)
 - [Zero to Zero Knowledge](/zero-to-zero-knowledge/zero-to-zero-knowledge): the full series
 `;
 }
