@@ -69,6 +69,7 @@ import { rewriteWalletSyncing } from "@/lib/pageOverrides/walletSyncingGuide";
 import { rewriteBlockExplorerGuide } from "@/lib/pageOverrides/blockExplorerGuide";
 import { rewriteTurnstileGuide } from "@/lib/pageOverrides/turnstileGuide";
 import { rewriteCryptonoteGuide } from "@/lib/pageOverrides/cryptonoteGuide";
+import { rewriteLelantusGuide } from "@/lib/pageOverrides/lelantusGuide";
 import { rewriteUnifiedAddressesGuide } from "@/lib/pageOverrides/unifiedAddressesGuide";
 import { rewriteZainoGuide } from "@/lib/pageOverrides/zainoGuide";
 import { rewriteZalletGuide } from "@/lib/pageOverrides/zalletGuide";
@@ -6312,6 +6313,9 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zcash-tech/what-a-block-explorer-can-see" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteBlockExplorerGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zero-to-zero-knowledge/lelantus" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteLelantusGuide(processedMarkdown);
   }
   if (slug.join("/") === "zero-to-zero-knowledge/cryptonote" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteCryptonoteGuide(processedMarkdown);
