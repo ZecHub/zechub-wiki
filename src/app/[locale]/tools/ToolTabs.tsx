@@ -3,6 +3,7 @@
 import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter";
 import { useSearchParams } from "next/navigation";
 import AddressDecoder from "./AddressDecoder";
+import LinkabilityCheck from "./LinkabilityCheck";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 import Faucet from "./Faucet";
@@ -16,6 +17,7 @@ type TabId =
   | "payment-request"
   | "payment-request-widget"
   | "address-decoder"
+  | "linkability"
   | "faucet"
   | "block-time"
   | "crosslink";
@@ -61,6 +63,14 @@ const TABS: Tab[] = [
     badge: "Unified Address",
     title: "Address Decoder",
     subtitle: "Extract transparent, sapling & orchard receivers from a UA",
+  },
+  {
+    id: "linkability",
+    label: "Linkability",
+    shortLabel: "Linkable",
+    badge: "Am I Linkable",
+    title: "Linkability Check",
+    subtitle: "Could a withdrawal be linked to a recent deposit by amount and timing?",
   },
   {
     id: "faucet",
@@ -178,6 +188,7 @@ export default function ToolTabs() {
           {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
           {active === "address-decoder" && <AddressDecoder />}
+          {active === "linkability" && <LinkabilityCheck />}
           {active === "faucet" && <Faucet />}
           {active === "block-time" && <BlockTime />}
           {active === "crosslink" && <CrosslinkTools />}
