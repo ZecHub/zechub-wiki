@@ -2,7 +2,7 @@
 // the chatty opener and the note about a possible future "Posterity Fund" emission curve (unverified) are
 // removed; the Ring CT section stops calling Pedersen commitments "homomorphic encryption" (they are
 // additively homomorphic commitments, and the amount proof is a range proof); the CryptoNight note names
-// RandomX; the Zcash comparison now says how the two designs differ instead of only quoting anonymity-set size.
+// RandomX; Monero facts (ring of 16, Bulletproofs+, tail emission, FCMP++ in progress) come from getmonero.org; the Zcash comparison now says how the two designs differ instead of only quoting anonymity-set size.
 // If the page no longer has this shape (no CryptoNote heading), the original markdown is returned untouched.
 export function rewriteCryptonoteGuide(original: string): string {
   if (!/^#\s+.*CryptoNote/im.test(original)) return original;
@@ -38,14 +38,14 @@ A ring signature proves that a transaction was signed by one member of a group o
 Two details matter:
 
 - **Key images.** Each spent output produces a unique key image. The network rejects a repeated key image, which prevents double spending without identifying the spender.
-- **Ring size.** The number of decoys is a protocol parameter. A larger ring gives a larger set of possible senders, but makes each transaction bigger.
+- **Ring size.** The number of decoys is a protocol parameter. A larger ring gives a larger set of possible senders, but makes each transaction bigger. Monero uses a fixed ring of 16 members: the real output and 15 decoys.
 
 ## Hiding the amount: Ring CT
 
 The original protocol hid the sender but left amounts visible, so decoys had to share the same amount. Ring Confidential Transactions (Ring CT) closed that gap:
 
 - Amounts are replaced by **Pedersen commitments**. A commitment hides the value but can be added and compared, so the network can check that inputs equal outputs.
-- A **range proof** shows that each committed amount is within a valid range, so nobody can create value by committing to a negative number. Monero uses Bulletproofs-style range proofs for this.
+- A **range proof** shows that each committed amount is within a valid range, so nobody can create value by committing to a negative number. Monero uses Bulletproofs+ range proofs for this.
 - **Stealth addresses** give the recipient a fresh one-time address for every payment, so outputs cannot be linked to a public address.
 
 ## Egalitarian proof of work
@@ -54,16 +54,20 @@ CryptoNote's original mining algorithm, CryptoNight, is memory-hard: it fills a 
 
 ## Dynamic emission
 
-Bitcoin halves its block reward at fixed intervals. CryptoNote instead reduces the reward smoothly, which produces a continuous emission curve rather than steps. Zcash follows a different schedule: a fixed supply cap of 21 million ZEC with halvings.
+Bitcoin halves its block reward at fixed intervals. CryptoNote instead reduces the reward smoothly, which produces a continuous emission curve rather than steps. Monero later added a **tail emission**, a small constant reward per block that continues indefinitely so miners are always paid. Zcash follows a different schedule: a fixed supply cap of 21 million ZEC with halvings.
+
+## Where Monero is heading: FCMP++
+
+Ring signatures have a known limit: the hiding set is only the ring, and it depends on how decoys are chosen. Monero's roadmap lists **FCMP++** (Full-Chain Membership Proofs) as work in progress. It would replace ring signatures with a zero-knowledge proof that a spent output is one of all outputs on the chain, which moves Monero's design closer to the shielded-pool model Zcash already uses. Follow the [Monero roadmap](https://www.getmonero.org/resources/roadmap/) for its status; test networks exist, but it is not part of the protocol described above until it activates on mainnet.
 
 ## How it compares with Zcash
 
 | | CryptoNote (Monero) | Zcash shielded pools |
 |---|---|---|
 | Sender privacy | Ring signature over a set of decoys | Zero-knowledge proof; no decoys |
-| Size of the hiding set | A fixed-size ring chosen per transaction | Every note in the shielded pool |
+| Size of the hiding set | A fixed-size ring (16) chosen per transaction | Every note in the shielded pool |
 | Amounts | Hidden with Pedersen commitments and range proofs | Hidden inside the shielded note |
-| Cryptographic basis | Ring signatures, commitments | zk-SNARKs |
+| Cryptographic basis | Ring signatures, commitments | zk-SNARKs (Orchard uses Halo 2, with no trusted setup) |
 | Privacy is | Default for every transaction | Optional: transparent and shielded transactions both exist |
 
 The main difference is the hiding set. In a ring-based design, privacy depends on how decoys are chosen and how large the ring is. In a zero-knowledge design, a shielded spend is indistinguishable among all notes in the pool. The trade-offs on the other side are that zk-SNARKs are a newer and more complex cryptographic stack, and that Zcash users must choose to use shielded addresses.
@@ -72,6 +76,7 @@ The main difference is the hiding set. In a ring-based design, privacy depends o
 
 - [Zero to Zero Knowledge](/zero-to-zero-knowledge/zero-to-zero-knowledge): the full series
 - [Shielded pools](/using-zcash/shielded-pools): how Zcash's pools work
+- [Monero technical specs](https://docs.getmonero.org/technical-specs/): the Monero side of this comparison
 
 *Based on the Zero to Zero Knowledge thread by ZecHub on X: https://x.com/ZecHub/status/1636473585781948416*
 `;
