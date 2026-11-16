@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import ZakuraIcon from "@/components/UI/ZakuraIcon";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 
@@ -433,12 +434,12 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zakura Node",
         path: "/zcash-tech/zakura-node",
-        icon: "/icons/zakura.svg",
+        icon: ZakuraIcon,
       },
       {
         name: "Zakura on Akash",
         path: "/guides/akash-network-zakura",
-        icon: "/icons/zakura.svg",
+        icon: ZakuraIcon,
       },
       {
         name: "Avalanche RedBridge",
