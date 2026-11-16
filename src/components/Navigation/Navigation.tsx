@@ -533,7 +533,6 @@ const GroupedLinks = ({
     return { title: section.title, links: sectionLinks };
   });
   const rest = links.filter((l) => !used.has(l.name));
-  if (rest.length > 0) blocks.push({ title: "More", links: rest });
   const shown = blocks.filter((b) => b.links.length > 0);
 
   if (shown.length === 1) {
@@ -566,6 +565,11 @@ const GroupedLinks = ({
           {row.map(renderBlock)}
         </div>
       ))}
+      {rest.length > 0 && (
+        <div className="col-span-2 mt-2 border-t border-slate-200 pt-3 dark:border-white/10">
+          {rest.map(renderLink)}
+        </div>
+      )}
     </>
   );
 };
@@ -596,7 +600,7 @@ const Dropdown = ({
         <div
           className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "left-0"}`}
         >
-          <div className="grid w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
+          <div className="grid h-[768px] w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
             {children}
           </div>
         </div>

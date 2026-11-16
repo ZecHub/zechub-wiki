@@ -2,7 +2,7 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
     {
-    imgUrl: "content-images/returniflost.webp",
+    imgUrl: "/content-images/returniflost.webp",
     name: "returniflost",
     description: "co-founder @terpnetofficial",
     social: [
