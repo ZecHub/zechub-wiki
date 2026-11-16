@@ -156,7 +156,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import MdxComponents from "@/components/MdxComponents/MdxComponent";
 import MdxReady from "@/components/MdxReady";
 import { visit, SKIP } from "unist-util-visit";
-import { serialize } from "next-mdx-remote/serialize";
 import { stripFrontmatter } from "@/lib/stripFrontmatter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -5778,8 +5777,6 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
   };
 }
 
-const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
-
 export async function generateMetadata({
   params,
 }: {
@@ -6641,8 +6638,8 @@ export default async function Page(props: {
     );
   }
 
-  const serializedSource = await serialize(normalizeMdx(processedMarkdown), {
-    mdxOptions: {
+  const mdxSource = normalizeMdx(processedMarkdown);
+  const mdxCompileOptions: NonNullable<React.ComponentProps<typeof MDXRemote>["options"]>["mdxOptions"] = {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
         [
@@ -6736,8 +6733,7 @@ export default async function Page(props: {
         ],
         rehypePruneShortJumpNav,
       ],
-    },
-  });
+  };
 
   const heroImage = getHeroImage(slug[0]);
 
@@ -6826,7 +6822,12 @@ export default async function Page(props: {
           fallback={<span className="text-center text-3xl">Loading...</span>}
         >
           {editUrl ? <EditPageLink href={editUrl} /> : null}
-          <LazyMdxComponent source={serializedSource} />
+          <MDXRemote
+            source={mdxSource}
+            components={MdxComponents}
+            options={{ blockJS: true, mdxOptions: mdxCompileOptions }}
+          />
+          <MdxReady />
         </Suspense>
       </MdxContainer>
     </>
