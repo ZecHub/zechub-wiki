@@ -48,9 +48,9 @@ export default function MemberCard({ member }: MemberCardProps) {
 
   return (
     <>
-      <div className="relative min-h-[340px] perspective-1000">
+      <div className="relative h-full min-h-[340px] perspective-1000">
         <div
-          className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
+          className={`relative grid h-full w-full transition-transform duration-700 transform-style-3d ${
             isFlipped ? "rotate-y-180" : ""
           }`}
           style={{
@@ -59,7 +59,7 @@ export default function MemberCard({ member }: MemberCardProps) {
           }}
         >
           <div
-            className="absolute w-full h-full backface-hidden"
+            className="h-full w-full backface-hidden [grid-area:1/1]"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-6 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
@@ -106,15 +106,16 @@ export default function MemberCard({ member }: MemberCardProps) {
                   );
                 })}
               </div>
+              <div className="mt-auto">
               {!canMessage && (
                 <p
                   id={unavailableId}
-                  className="mt-auto mb-2 text-center text-xs text-slate-600 dark:text-slate-400"
+                  className="mb-3 text-center text-xs leading-snug text-slate-600 dark:text-slate-400"
                 >
                   Messaging unavailable: no shielded address listed.
                 </p>
               )}
-              <div className={`flex gap-3 pt-4 ${canMessage ? "mt-auto" : ""}`}>
+              <div className="flex gap-3 pt-1">
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="flex-1 cursor-pointer rounded-lg border border-brand/70 bg-brand/15 px-4 py-2 text-sm font-semibold text-brand shadow-sm shadow-brand/10 transition-colors hover:border-brand hover:bg-brand/25 dark:text-white"
@@ -130,12 +131,13 @@ export default function MemberCard({ member }: MemberCardProps) {
                   Message
                 </button>
               </div>
+              </div>
             </div>
           </div>
 
           {/* Back Side */}
           <div
-            className="absolute w-full h-full backface-hidden"
+            className="h-full w-full backface-hidden [grid-area:1/1]"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
