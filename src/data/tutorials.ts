@@ -576,7 +576,11 @@ function correctedTitle(title: string) {
     .trim();
 }
 
-export const tutorials: Tutorial[] = tutorialData.map((tutorial) => ({
+// Video walkthroughs of zcashd, which is retired (it halted on 18 July 2026). They stay in the data for
+// the record but are not shown on the Tutorials page.
+const RETIRED_ZCASHD_TUTORIALS = new Set([58, 78, 80, 88]);
+
+export const tutorials: Tutorial[] = tutorialData.filter((tutorial) => !RETIRED_ZCASHD_TUTORIALS.has(tutorial.id)).map((tutorial) => ({
   ...tutorial,
   title: correctedTitle(tutorial.title),
   category: categoryFor(tutorial.id),

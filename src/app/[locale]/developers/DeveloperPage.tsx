@@ -259,15 +259,6 @@ export default function DeveloperPage() {
     },
     {
       title:
-        t?.pages?.developers?.fundamentalsLinks?.nodesZcashd ??
-        "Nodes (zcashd)",
-      description:
-        t?.pages?.developers?.fundamentalsLinks?.nodesZcashdDesc ??
-        "Set up and manage Zcash nodes using zcashd.",
-      url: "https://zcash.github.io/zcash/",
-    },
-    {
-      title:
         t?.pages?.developers?.fundamentalsLinks?.nodesZebrad ??
         "Nodes (zebrad)",
       description:

@@ -39,6 +39,17 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        // Replaced by the Zebra + Zallet guide (the old steps no longer match how Zebra is configured).
+        source: "/guides/raspberry-pi-4-zebra-node",
+        destination: "/guides/raspberry-pi-4-full-node",
+        permanent: false,
+      },
+      {
+        source: "/:locale/guides/raspberry-pi-4-zebra-node",
+        destination: "/:locale/guides/raspberry-pi-4-full-node",
+        permanent: false,
+      },
+      {
         // Merged into the Free2Z Live guide.
         source: "/guides/free2z-livestreaming",
         destination: "/guides/free2z-live",

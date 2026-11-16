@@ -162,7 +162,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Using ZEC in DeFi", href: "/guides/using-zec-in-defi" },
       { label: "Using ZEC Privately", href: "/guides/using-zec-privately" },
       {
-        label: "Raspberry Pi Zcashd Node",
+        label: "Zebra + Zallet on Raspberry Pi 4",
         href: "/guides/raspberry-pi-4-full-node",
       },
       {

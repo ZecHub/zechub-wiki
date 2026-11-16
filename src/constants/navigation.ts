@@ -137,6 +137,7 @@ export const navigations: Array<NavigationItem> = [
       { name: "Zcash Library", path: "/glossary-and-faqs/zcash-library", icon: BookOpen },
       { name: "FAQ", path: "/glossary-and-faqs/faq", icon: Info },
       { name: "Zcash Tech", path: "/zcash-tech", icon: Cpu },
+      { name: "Full Nodes", path: "/zcash-tech/full-nodes", icon: Network },
       { name: "Privacy Tools", path: "/privacy-tools", icon: PrivacyShield },
       { name: "Visualizer", path: "/visualizer", icon: BsPlay },
       { name: "Research", path: "/research", icon: FlaskConical },
@@ -414,17 +415,12 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Raspberry Pi 4 Full Node",
-        label: "Raspberry Pi Zcashd Node",
+        label: "Zebra + Zallet on Raspberry Pi 4",
         path: "/guides/raspberry-pi-4-full-node",
       },
       {
         name: "Raspberry pi5 Zebra Lightwalletd Zingo",
         path: "/guides/raspberry-pi5-zebra-lightwalletd-zingo",
-      },
-      {
-        name: "Raspberry pi 4 Zebra Node",
-        label: "Raspberry Pi Zebra Node",
-        path: "/guides/raspberry-pi-4-zebra-node",
       },
       {
         name: "Hardened Zebrad",
@@ -608,7 +604,7 @@ export const menuSections: Record<string, MenuSection[]> = {
     },
     {
       title: "How Zcash works",
-      items: ["Zcash Tech", "Shielded Pools", "Zero-Knowledge vs Decoys", "Monetary Policy", "How Zcash Is Organized"],
+      items: ["Zcash Tech", "Full Nodes", "Shielded Pools", "Zero-Knowledge vs Decoys", "Monetary Policy", "How Zcash Is Organized"],
     },
     {
       title: "Go deeper",
@@ -694,7 +690,6 @@ export const menuSections: Record<string, MenuSection[]> = {
     {
       title: "Run a node",
       items: [
-        "Raspberry pi 4 Zebra Node",
         "Raspberry Pi 4 Full Node",
         "Raspberry pi5 Zebra Lightwalletd Zingo",
         "Hardened Zebrad",
