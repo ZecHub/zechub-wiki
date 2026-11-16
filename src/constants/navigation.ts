@@ -129,11 +129,11 @@ export const navigations: Array<NavigationItem> = [
       { name: "Privacy Tools", path: "/privacy-tools", icon: PrivacyShield },
       { name: "Visualizer", path: "/visualizer", icon: BsPlay },
       { name: "Research", path: "/research", icon: FlaskConical },
+      { name: "Visualizing the Zcash Network", path: "/guides/visualizing-the-zcash-network", icon: Network },
+      { name: "Visualizing Zcash Addresses", path: "/guides/visualizing-zcash-addresses", icon: Map },
       { name: "Zero to Zero Knowledge", path: "/zero-to-zero-knowledge/zero-to-zero-knowledge", icon: GraduationCap },
       { name: "Shielded Pools", path: "/using-zcash/shielded-pools", icon: Layers },
       { name: "Zero-Knowledge vs Decoys", path: "/guides/zero-knowledge-vs-decoys", icon: Eye },
-      { name: "Zcash Improvement Proposals", path: "/guides/zcash-improvement-proposals", icon: FileText },
-      { name: "Network Upgrades", path: "/start-here/network-upgrades", icon: Cpu },
       { name: "My First Zcash Workbook", path: "/guides/my-first-zcash-workbook", icon: BookOpen },
     ],
   },
@@ -253,10 +253,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Memos",
         path: "/using-zcash/memos",
-      },
-      {
-        name: "Shielded Pools",
-        path: "/using-zcash/shielded-pools",
       },
       {
         name: "Transparent Exchange Addresses",
@@ -444,10 +440,6 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/ywallet-frost-demo",
       },
       {
-        name: "Blockchain Explorers",
-        path: "/guides/blockchain-explorers",
-      },
-      {
         name: "Brave Wallet Guide",
         path: "/guides/brave-wallet-guide",
       },
@@ -458,10 +450,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Migration Guide Zcashd To Zebrad Zallet",
         path: "/guides/migration-guide-zcashd-to-zebrad-zallet",
-      },
-      {
-        name: "My First Zcash Workbook",
-        path: "/guides/my-first-zcash-workbook",
       },
       {
         name: "Verifying Zcash Releases",
@@ -476,20 +464,8 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/btcpayserver-zcash-plugin",
       },
       {
-        name: "Visualizing the Zcash Network",
-        path: "/guides/visualizing-the-zcash-network",
-      },
-      {
-        name: "Visualizing Zcash Addresses",
-        path: "/guides/visualizing-zcash-addresses",
-      },
-      {
         name: "Zcash Devtool",
         path: "/guides/zcash-devtool",
-      },
-      {
-        name: "Zcash Improvement Proposals",
-        path: "/guides/zcash-improvement-proposals",
       },
       {
         name: "Zingolib and Zaino Tutorial",
@@ -498,11 +474,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zenith Installation",
         path: "/guides/zenith-installation",
-      },
-      {
-        name: "Zero-Knowledge vs Decoys",
-        label: "Zero Knowledge vs Decoy Systems",
-        path: "/guides/zero-knowledge-vs-decoys",
       },
     ],
   },
@@ -614,9 +585,10 @@ export type MenuSection = { title: string; items: string[] };
 
 export const menuSections: Record<string, MenuSection[]> = {
   "Learn Zcash": [
-    { title: "Start learning", items: ["Zero to Zero Knowledge", "My First Zcash Workbook"] },
-    { title: "Understand the protocol", items: ["Zcash Tech", "Shielded Pools", "Zero-Knowledge vs Decoys", "Network Upgrades"] },
-    { title: "Explore and research", items: ["Visualizer", "Privacy Tools", "Research", "Zcash Improvement Proposals"] },
+    { title: "Start here", items: ["Zero to Zero Knowledge", "My First Zcash Workbook"] },
+    { title: "Protocol & privacy", items: ["Zcash Tech", "Shielded Pools", "Zero-Knowledge vs Decoys"] },
+    { title: "Visualize", items: ["Visualizer", "Visualizing the Zcash Network", "Visualizing Zcash Addresses"] },
+    { title: "Research & tools", items: ["Research", "Privacy Tools"] },
   ],
   "Using Zcash": [
     {
@@ -635,13 +607,7 @@ export const menuSections: Record<string, MenuSection[]> = {
     },
     {
       title: "Understand",
-      items: [
-        "Transactions",
-        "Memos",
-        "Shielded Pools",
-        "Transparent Exchange Addresses",
-        "Blockchain Explorers",
-      ],
+      items: ["Transactions", "Memos", "Transparent Exchange Addresses", "Blockchain Explorers"],
     },
     {
       title: "Tools",
@@ -662,10 +628,6 @@ export const menuSections: Record<string, MenuSection[]> = {
       ],
     },
     {
-      title: "Organizations",
-      items: ["Zcash Organizations"],
-    },
-    {
       title: "Media & events",
       items: [
         "Zcash Media",
@@ -674,12 +636,11 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Zcash Engineering Office Hours",
         "Zcon Archive",
         "Zcon Vozes Archive",
-        "Zero to Zero Knowledge",
       ],
     },
     {
-      title: "Governance & security",
-      items: ["Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
+      title: "Organizations & governance",
+      items: ["Zcash Organizations", "Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
     },
   ],
   Data: [
@@ -700,6 +661,8 @@ export const menuSections: Record<string, MenuSection[]> = {
       items: ["Unified Addresses", "Viewing Keys", "Shielded Assets (ZSAs)"],
     },
   ],
+  // Guides are step-by-step walkthroughs only: concepts live in Learn Zcash and
+  // reference material in Network, so each page has exactly one home.
   Guides: [
     {
       title: "Run a node",
@@ -715,44 +678,30 @@ export const menuSections: Record<string, MenuSection[]> = {
       ],
     },
     {
-      title: "Wallets & privacy",
+      title: "Wallets & signing",
       items: [
-        "Using ZEC Privately",
-        "My First Zcash Workbook",
         "Keystone Zodl (Zashi)",
         "Brave Wallet Guide",
         "Zkool Multisig",
         "Ywallet FROST Demo",
-        "Nym VPN",
-        "Nym Mixnet Wallet Setup",
         "Viewing Key Transaction Export",
-        "Zero-Knowledge vs Decoys",
       ],
     },
     {
-      title: "Payments & apps",
-      items: [
-        "Zgo Payment Processor",
-        "BTCPayServer Zcash Plugin",
-        "Using ZEC in DeFi",
-        "Maya Protocol",
-        "Avalanche RedBridge",
-        "ShapeShift Zcash",
-        "Free2z Live",
-        "ZKAV Club",
-      ],
+      title: "Privacy & networks",
+      items: ["Using ZEC Privately", "Nym VPN", "Nym Mixnet Wallet Setup"],
     },
     {
-      title: "Explore & build",
-      items: [
-        "Blockchain Explorers",
-        "Visualizing the Zcash Network",
-        "Visualizing Zcash Addresses",
-        "Zcash Devtool",
-        "Zcash Improvement Proposals",
-        "Zingolib and Zaino Tutorial",
-        "Zenith Installation",
-      ],
+      title: "Payments & creators",
+      items: ["Zgo Payment Processor", "BTCPayServer Zcash Plugin", "Free2z Live", "ZKAV Club"],
+    },
+    {
+      title: "DeFi & swaps",
+      items: ["Using ZEC in DeFi", "Maya Protocol", "Avalanche RedBridge", "ShapeShift Zcash"],
+    },
+    {
+      title: "Developer tools",
+      items: ["Zcash Devtool", "Zingolib and Zaino Tutorial", "Zenith Installation"],
     },
   ],
 };
