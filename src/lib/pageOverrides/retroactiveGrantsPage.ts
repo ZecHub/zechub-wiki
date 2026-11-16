@@ -9,21 +9,9 @@
 // Dropped as unsourced: the Orchard-only/no-lockup voting detail, a forum title format, and the Key-Holder names (ZIP 1016 does
 // not name them). Round dates are not repeated here because each round announces its own. If the page no longer looks like this
 // one, the original markdown is returned untouched.
-const GLANCE = JSON.stringify([
-  { label: "What it funds", text: "Work that is already finished and publicly verifiable" },
-  { label: "Who can apply", text: "Anyone, for their own work or by nominating someone else" },
-  { label: "Funding", text: "12% of the block subsidy plus the Deferred Dev Fund Lockbox, set up by ZIP 1016" },
-  { label: "Who decides", text: "ZEC holders, in a separate Yes/No vote on each proposal" },
-  { label: "Rounds", text: "Every three months, each with its own call for proposals" },
-]);
-
 const PAGE = `# Coinholder-Directed Retroactive Grants
 
 The **Coinholder-Directed Retroactive Grants Program** pays for work that has already been done. People who hold ZEC vote on each application, and the money comes from the Coinholder-Controlled Fund, one of the two funding streams created by [ZIP 1016](https://zips.z.cash/zip-1016).
-
-## TL;DR
-
-<FaqGlance items='${GLANCE}' />
 
 ## How the program is funded
 
