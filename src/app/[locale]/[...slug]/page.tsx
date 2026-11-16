@@ -51,6 +51,7 @@ import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteTransactionsGuide } from "@/lib/pageOverrides/transactionsGuide";
 import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
 import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
+import { rewriteRetroactiveGrantsPage } from "@/lib/pageOverrides/retroactiveGrantsPage";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
 import { rewriteZkSnarksGuide } from "@/lib/pageOverrides/zkSnarksGuide";
@@ -6385,6 +6386,9 @@ export default async function Page(props: {
   if (slug.join("/") === "zcash-organizations/sovright" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteSovrightPage(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-organizations/coinholder-directed-retroactive-grants" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteRetroactiveGrantsPage(processedMarkdown);
+  }
   if (slug.join("/") === "guides/raspberry-pi-4-zebra-node" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewritePiZebraGuide(processedMarkdown);
   }
@@ -6766,7 +6770,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || slug.join("/") === "zcash-organizations/coinholder-directed-retroactive-grants"}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
