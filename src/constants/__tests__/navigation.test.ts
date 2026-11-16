@@ -13,8 +13,8 @@ const flattenLinks = (items: NavigationItem[]): NavigationItem[] =>
   ]);
 
 describe("navigation section entry points", () => {
-  it("links Zero to Zero Knowledge from the Ecosystem menu", () => {
-    expect(findSection("Zcash Community")?.links).toContainEqual(
+  it("links Zero to Zero Knowledge from the Learn Zcash menu", () => {
+    expect(findSection("Learn Zcash")?.links).toContainEqual(
       expect.objectContaining({
         name: "Zero to Zero Knowledge",
         path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",

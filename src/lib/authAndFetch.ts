@@ -19,7 +19,7 @@ async function getOctokit() {
       // without credentials, and a warning explains what to fix.
       let anonymous: InstanceType<typeof Octokit> | null = null;
       let warned = false;
-      octokit.hook.wrap("request", async (request, options) => {
+      octokit.hook?.wrap("request", async (request, options) => {
         try {
           return await request(options);
         } catch (err: any) {

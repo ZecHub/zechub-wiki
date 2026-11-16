@@ -279,6 +279,7 @@ const MdxComponents = {
         <code
           className={`font-mono text-sm bg-transparent !bg-transparent !p-0 !m-0 block w-full ${props.className || ""}`}
           style={{ backgroundColor: "transparent" }}
+          dir="ltr"
           {...props}
         />
       );
@@ -286,6 +287,8 @@ const MdxComponents = {
     return (
       <code
         className="rounded-md border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[0.875em] text-slate-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
+        // Isolates inline code such as H(hA, hB) inside right-to-left prose.
+        dir="ltr"
         {...props}
       />
     );

@@ -123,7 +123,7 @@ describe("WalletList", () => {
 `);
     render(<WalletList allWallets={list} />);
 
-    const titles = screen.getAllByRole("heading", { level: 5 }).map((h) => h.textContent);
+    const titles = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
     expect(titles).toEqual(["Early", "Busy", "Late", "Transp", "NoStatus"]);
   });
 });

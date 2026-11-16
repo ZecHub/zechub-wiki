@@ -333,11 +333,6 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-community/zcash-media",
       },
       {
-        name: "Zero to Zero Knowledge",
-        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
-        icon: GraduationCap,
-      },
-      {
         name: "ZCAP",
         path: "/zcash-community/zcap",
       },
