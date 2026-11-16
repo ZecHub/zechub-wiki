@@ -1,0 +1,1772 @@
+yarn run v1.22.22
+$ jest --no-watch
+PASS src/lib/__tests__/mdxCodeDirection.test.tsx
+PASS src/constants/__tests__/navigation.test.ts
+FAIL src/lib/__tests__/walletLikesLocking.test.ts
+  ● wallet-likes vote path › locks the title inside the transaction before any read it acts on
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 503
+
+      60 |     const r = await vote("Zashi");
+      61 |
+    > 62 |     expect(r.code).toBe(200);
+         |                    ^
+      63 |     const begin = index("BEGIN");
+      64 |     const lock = index("pg_advisory_xact_lock");
+      65 |     expect(begin).toBeGreaterThanOrEqual(0);
+
+      at Object.toBe (src/lib/__tests__/walletLikesLocking.test.ts:62:20)
+
+  ● wallet-likes vote path › releases the lock by rolling back when the reviewer already voted
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 429
+    Received: 503
+
+      75 |     const r = await vote("Zashi");
+      76 |
+    > 77 |     expect(r.code).toBe(429);
+         |                    ^
+      78 |     expect(index("ROLLBACK")).toBeGreaterThan(index("SELECT EXISTS"));
+      79 |     expect(index("COMMIT")).toBe(-1);
+      80 |   });
+
+      at Object.toBe (src/lib/__tests__/walletLikesLocking.test.ts:77:20)
+
+  ● wallet-likes vote path › uses one lock key per title
+
+    TypeError: Cannot read properties of undefined (reading 'values')
+
+      85 |       queries.length = 0;
+      86 |       await vote(title);
+    > 87 |       return queries[index("pg_advisory_xact_lock")].values?.[1];
+         |                                                      ^
+      88 |     };
+      89 |
+      90 |     const a1 = await keyFor("Zashi");
+
+      at values (src/lib/__tests__/walletLikesLocking.test.ts:87:54)
+      at Object.<anonymous> (src/lib/__tests__/walletLikesLocking.test.ts:90:16)
+
+  ● wallet-likes vote path › checks the daily cap after the lock and rolls it back
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 429
+    Received: 503
+
+      105 |     const r = await vote("Zashi");
+      106 |
+    > 107 |     expect(r.code).toBe(429);
+          |                    ^
+      108 |     expect(index("SELECT votes")).toBeGreaterThan(index("pg_advisory_xact_lock"));
+      109 |     expect(index("ROLLBACK")).toBeGreaterThan(index("SELECT votes"));
+      110 |     expect(index("COMMIT")).toBe(-1);
+
+      at Object.toBe (src/lib/__tests__/walletLikesLocking.test.ts:107:20)
+
+FAIL src/lib/__tests__/learningControls.test.tsx
+  ● QuizCard › opens from the keyboard with "{Enter}"
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      26 |     const user = userEvent.setup();
+      27 |     const onOpen = jest.fn();
+    > 28 |     render(<QuizCard title="Beginner Quiz" onOpen={onOpen} />);
+         |           ^
+      29 |
+      30 |     const button = screen.getByRole("button", { name: "Beginner Quiz" });
+      31 |     await user.tab();
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at src/lib/__tests__/learningControls.test.tsx:28:11
+
+  ● QuizCard › opens from the keyboard with " "
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      26 |     const user = userEvent.setup();
+      27 |     const onOpen = jest.fn();
+    > 28 |     render(<QuizCard title="Beginner Quiz" onOpen={onOpen} />);
+         |           ^
+      29 |
+      30 |     const button = screen.getByRole("button", { name: "Beginner Quiz" });
+      31 |     await user.tab();
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at src/lib/__tests__/learningControls.test.tsx:28:11
+
+  ● QuizCard › opens once when the quiz button is clicked
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      39 |     const user = userEvent.setup();
+      40 |     const onOpen = jest.fn();
+    > 41 |     render(<QuizCard title="Beginner Quiz" onOpen={onOpen} />);
+         |           ^
+      42 |
+      43 |     await user.click(screen.getByRole("button", { name: "Beginner Quiz" }));
+      44 |
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at Object.<anonymous> (src/lib/__tests__/learningControls.test.tsx:41:11)
+
+  ● QuizCard › preserves the default caption and an explicitly supplied caption
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      47 |
+      48 |   it("preserves the default caption and an explicitly supplied caption", () => {
+    > 49 |     const { rerender } = render(
+         |                                ^
+      50 |       <QuizCard title="Beginner Quiz" onOpen={jest.fn()} />,
+      51 |     );
+      52 |     const defaultCaption = "Test your knowledge with a short quiz. Click to open.";
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at Object.<anonymous> (src/lib/__tests__/learningControls.test.tsx:49:32)
+
+FAIL src/lib/__tests__/mdxHeadings.test.tsx
+  ● MDX h2 anchors › uses heading text for emphasis from the Italian Raspberry Pi guide
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Installazione di zcashd"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Installazione di zcashd Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"installazione-di-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      emphasis:
+
+      Name "":
+      [36m<em />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#installazione-di-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"installazione-di-zcashd"[39m
+        [36m>[39m
+          [0mInstallazione di [0m
+          [36m<em>[39m
+            [0mzcashd[0m
+          [36m</em>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#installazione-di-zcashd"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for strong text
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "The Zcash Network"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "The Zcash Network Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"the-zcash-network"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      strong:
+
+      Name "":
+      [36m<strong />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#the-zcash-network"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"the-zcash-network"[39m
+        [36m>[39m
+          [0mThe [0m
+          [36m<strong>[39m
+            [0mZcash Network[0m
+          [36m</strong>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#the-zcash-network"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for inline code
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Using zcashd"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Using zcashd Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"using-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      code:
+
+      Name "":
+      [36m<code />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#using-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"using-zcashd"[39m
+        [36m>[39m
+          [0mUsing [0m
+          [36m<code>[39m
+            [0mzcashd[0m
+          [36m</code>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#using-zcashd"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for nested inline elements and fragments
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Run zcashd on Raspberry Pi 4"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Run zcashd on Raspberry Pi 4 Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"run-zcashd-on-raspberry-pi-4"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      strong:
+
+      Name "":
+      [36m<strong />[39m
+
+      --------------------------------------------------
+      emphasis:
+
+      Name "":
+      [36m<em />[39m
+
+      --------------------------------------------------
+      code:
+
+      Name "":
+      [36m<code />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#run-zcashd-on-raspberry-pi-4"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"run-zcashd-on-raspberry-pi-4"[39m
+        [36m>[39m
+          [0mRun [0m
+          [36m<strong>[39m
+            [36m<em>[39m
+              [0mzcashd[0m
+            [36m</em>[39m
+          [36m</strong>[39m
+          [0m on [0m
+          [36m<code>[39m
+            [0mRaspberry Pi[0m
+          [36m</code>[39m
+          [0m [0m
+          [0m4[0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#run-zcashd-on-raspberry-pi-4"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for existing plain-text punctuation rules
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Zcash (Mainnet) + test_net"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Zcash (Mainnet) + test_net Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"zcash-mainnet-and-test-net"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#zcash-mainnet-and-test-net"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"zcash-mainnet-and-test-net"[39m
+        [36m>[39m
+          [0m Zcash (Mainnet) + test_net [0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#zcash-mainnet-and-test-net"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for numbers including zero and empty nodes
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Section 0 + 2"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Section 0 + 2 Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"section-0-and-2"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#section-0-and-2"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"section-0-and-2"[39m
+        [36m>[39m
+          [0mSection [0m
+          [0m0[0m
+          [0m + [0m
+          [0m2[0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#section-0-and-2"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for bigint text
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Block 9007199254740993"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Block 9007199254740993 Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"block-9007199254740993"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#block-9007199254740993"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"block-9007199254740993"[39m
+        [36m>[39m
+          [0mBlock [0m
+          [0m9007199254740993[0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#block-9007199254740993"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+FAIL src/lib/__tests__/researchSeriesPage.test.tsx
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /Users/v/Documents/zechub-wiki/node_modules/next-intl/dist/esm/production/routing.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+       9 |   defaultLocale: "en",
+      10 |
+    > 11 |   // English is served unprefixed at the root (`/`); other locales are
+         |                  ^
+      12 |   // prefixed (`/it/...`). next-intl only adds the prefix when needed.
+      13 |   localePrefix: "as-needed",
+      14 | });
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/i18n/routing.ts:11:18)
+      at Object.<anonymous> (src/app/[locale]/[...slug]/page.tsx:132:18)
+      at Object.<anonymous> (src/lib/__tests__/researchSeriesPage.test.tsx:54:54)
+
+FAIL src/lib/__tests__/galleryKeyboard.test.tsx
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /Users/v/Documents/zechub-wiki/node_modules/next-intl/dist/esm/production/navigation.react-client.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/i18n/navigation.ts:28:21)
+      at Object.<anonymous> (src/components/Gallery/Gallery.tsx:17:21)
+      at Object.<anonymous> (src/lib/__tests__/galleryKeyboard.test.tsx:16:57)
+
+PASS src/components/__tests__/walletList.test.tsx
+  ● Console
+
+    console.error
+      An update to WalletList inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      143 |         if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0;
+      144 |       });
+    > 145 |       setLikes(initialLikes);
+          |       ^
+      146 |     };
+      147 |
+      148 |     fetchLikes();
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:20466:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:20465:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:17920:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9556:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9513:7)
+      at setLikes (src/components/Wallet/WalletList.tsx:145:7)
+
+    console.error
+      An update to WalletList inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      143 |         if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0;
+      144 |       });
+    > 145 |       setLikes(initialLikes);
+          |       ^
+      146 |     };
+      147 |
+      148 |     fetchLikes();
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:20466:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:20465:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:17920:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9556:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9513:7)
+      at setLikes (src/components/Wallet/WalletList.tsx:145:7)
+
+    console.error
+      An update to WalletList inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      143 |         if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0;
+      144 |       });
+    > 145 |       setLikes(initialLikes);
+          |       ^
+      146 |     };
+      147 |
+      148 |     fetchLikes();
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:20466:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:20465:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:17920:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9556:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9513:7)
+      at setLikes (src/components/Wallet/WalletList.tsx:145:7)
+
+FAIL src/lib/__tests__/galleryImageSets.test.tsx
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /Users/v/Documents/zechub-wiki/node_modules/next-intl/dist/esm/production/navigation.react-client.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/i18n/navigation.ts:28:21)
+      at Object.<anonymous> (src/components/Gallery/Gallery.tsx:17:21)
+      at Object.<anonymous> (src/lib/__tests__/galleryImageSets.test.tsx:17:57)
+
+PASS src/lib/__tests__/searchComposition.test.tsx
+PASS src/components/__tests__/transactionSummaryChart.test.tsx
+PASS src/lib/__tests__/authAndFetch.test.ts
+PASS src/components/__tests__/shieldedSupplyChart.test.tsx
+PASS src/lib/__tests__/donationCopy.test.tsx
+PASS src/lib/__tests__/embedAutoMountZecUsdRate.test.ts
+PASS src/lib/__tests__/walletFiltersKeyboard.test.tsx
+PASS src/lib/__tests__/grantList.test.tsx
+PASS src/lib/__tests__/arboristCallsFilters.test.tsx
+PASS src/lib/__tests__/embedZip321ValidationIntegration.test.ts
+PASS src/lib/__tests__/shortenRoute.test.ts
+FAIL src/components/__tests__/languageSwitcher.test.tsx
+  ● LanguageSwitcher › marks only the current language with the accent badge, and not by colour alone
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "focus-visible:bg-[#F4B728]/10"
+    Received string:    "group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand dark:focus-visible:ring-brand transition-colors cursor-pointer hover:bg-brand/10 focus-visible:bg-brand/10"
+
+      191 |     // Keyboard focus must not make the current row look less selected.
+      192 |     expect(option(/Español/).className).not.toContain("focus-visible:bg-[#F4B728]/10");
+    > 193 |     expect(option(/English/).className).toContain("focus-visible:bg-[#F4B728]/10");
+          |                                         ^
+      194 |   });
+      195 |
+      196 |   it("says so when no language matches", async () => {
+
+      at Object.toContain (src/components/__tests__/languageSwitcher.test.tsx:193:41)
+
+PASS src/components/__tests__/proposalsAnalyticsDashboard.test.tsx
+PASS src/lib/__tests__/zcashPaymentWidgetEmbedA11y.test.ts
+PASS src/lib/__tests__/zcashPaymentWidgetEmbedDom.test.ts
+PASS src/components/__tests__/shieldedStatsPro.test.tsx
+PASS src/components/__tests__/sitemap.test.tsx
+PASS src/components/__tests__/privacySetVisualizationChart.test.tsx
+PASS src/lib/__tests__/aiConversationLifecycle.test.tsx
+PASS src/components/__tests__/sheetTreasuryTab.test.tsx
+PASS src/lib/__tests__/zcashPriceFeedRoute.test.ts
+  ● Console
+
+    console.error
+      ZEC price fetch failed: Error: network down
+          at /Users/v/Documents/zechub-wiki/src/lib/__tests__/zcashPriceFeedRoute.test.ts:49:40
+          at /Users/v/Documents/zechub-wiki/node_modules/jest-mock/build/index.js:370:39
+          at /Users/v/Documents/zechub-wiki/node_modules/jest-mock/build/index.js:377:13
+          at mockConstructor (/Users/v/Documents/zechub-wiki/node_modules/jest-mock/build/index.js:116:19)
+          at fetch (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:26:23)
+          at GET (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/route.ts:16:48)
+          at Object.GET (/Users/v/Documents/zechub-wiki/src/lib/__tests__/zcashPriceFeedRoute.test.ts:53:23)
+          at processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+      45 |     return { price: lastKnownPrice, source: src };
+      46 |   } catch (err) {
+    > 47 |     console.error("ZEC price fetch failed:", err);
+         |             ^
+      48 |     return { price: lastKnownPrice || 0, source: src || source };
+      49 |   }
+      50 | }
+
+      at error (src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:47:13)
+      at GET (src/app/api/payment-request-uri/zcash-price-feed/route.ts:16:29)
+      at Object.<anonymous> (src/lib/__tests__/zcashPriceFeedRoute.test.ts:53:17)
+
+    console.error
+      ZEC price fetch failed: Error: Upstream price feed responded with 500
+          at getZcashPrice (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:31:13)
+          at processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at GET (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/route.ts:16:29)
+          at Object.<anonymous> (/Users/v/Documents/zechub-wiki/src/lib/__tests__/zcashPriceFeedRoute.test.ts:62:17)
+
+      45 |     return { price: lastKnownPrice, source: src };
+      46 |   } catch (err) {
+    > 47 |     console.error("ZEC price fetch failed:", err);
+         |             ^
+      48 |     return { price: lastKnownPrice || 0, source: src || source };
+      49 |   }
+      50 | }
+
+      at error (src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:47:13)
+      at GET (src/app/api/payment-request-uri/zcash-price-feed/route.ts:16:29)
+      at Object.<anonymous> (src/lib/__tests__/zcashPriceFeedRoute.test.ts:62:17)
+
+    console.error
+      ZEC price fetch failed: Error: Upstream price feed returned an invalid price
+          at getZcashPrice (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:38:13)
+          at processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at GET (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/route.ts:16:29)
+          at Object.<anonymous> (/Users/v/Documents/zechub-wiki/src/lib/__tests__/zcashPriceFeedRoute.test.ts:76:17)
+
+      45 |     return { price: lastKnownPrice, source: src };
+      46 |   } catch (err) {
+    > 47 |     console.error("ZEC price fetch failed:", err);
+         |             ^
+      48 |     return { price: lastKnownPrice || 0, source: src || source };
+      49 |   }
+      50 | }
+
+      at error (src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:47:13)
+      at GET (src/app/api/payment-request-uri/zcash-price-feed/route.ts:16:29)
+      at Object.<anonymous> (src/lib/__tests__/zcashPriceFeedRoute.test.ts:76:17)
+
+    console.error
+      ZEC price fetch failed: Error: timeout
+          at /Users/v/Documents/zechub-wiki/src/lib/__tests__/zcashPriceFeedRoute.test.ts:140:40
+          at /Users/v/Documents/zechub-wiki/node_modules/jest-mock/build/index.js:370:39
+          at /Users/v/Documents/zechub-wiki/node_modules/jest-mock/build/index.js:377:13
+          at mockConstructor (/Users/v/Documents/zechub-wiki/node_modules/jest-mock/build/index.js:116:19)
+          at fetch (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:26:23)
+          at POST (/Users/v/Documents/zechub-wiki/src/app/api/payment-request-uri/zcash-price-feed/route.ts:46:48)
+          at processTicksAndRejections (node:internal/process/task_queues:104:5)
+          at Object.<anonymous> (/Users/v/Documents/zechub-wiki/src/lib/__tests__/zcashPriceFeedRoute.test.ts:144:17)
+
+      45 |     return { price: lastKnownPrice, source: src };
+      46 |   } catch (err) {
+    > 47 |     console.error("ZEC price fetch failed:", err);
+         |             ^
+      48 |     return { price: lastKnownPrice || 0, source: src || source };
+      49 |   }
+      50 | }
+
+      at error (src/app/api/payment-request-uri/zcash-price-feed/utils/get-zec-price.ts:47:13)
+      at POST (src/app/api/payment-request-uri/zcash-price-feed/route.ts:46:29)
+      at Object.<anonymous> (src/lib/__tests__/zcashPriceFeedRoute.test.ts:144:17)
+
+PASS src/components/__tests__/newsletterQrDownload.test.tsx
+PASS src/lib/__tests__/notFoundSuggestions.test.ts
+PASS src/components/__tests__/paymentWidgetModal.test.tsx
+PASS src/components/DaoComponents/__tests__/memberMemo.test.tsx
+PASS src/lib/__tests__/notFoundSearchKeyboard.test.tsx
+PASS src/components/__tests__/button.test.tsx
+PASS src/components/Map/__tests__/spedn-map.test.tsx
+PASS src/lib/__tests__/projectCardsImages.test.tsx
+PASS src/components/__tests__/zecToZatsConverter.test.tsx
+PASS src/lib/__tests__/notFoundSearchComposition.test.tsx
+PASS src/components/__tests__/skipToContent.test.tsx
+PASS src/components/visualizer/__tests__/zodlRebrand.test.ts
+PASS src/components/visualizer/hash-function-visualizer/__tests__/collisionContent.test.tsx
+PASS src/lib/__tests__/widgetTelemetryRoute.test.ts
+PASS src/hooks/__tests__/useExportDashboardAsPNG.test.tsx
+PASS src/components/__tests__/motionProvider.test.tsx
+PASS src/lib/__tests__/bodyResultsLoading.test.tsx
+PASS src/lib/__tests__/catchAllNotFoundStatus.test.ts
+PASS src/hooks/__tests__/useNavFit.test.tsx
+PASS src/lib/__tests__/zip317.test.ts
+PASS src/components/visualizer/__tests__/openSourceReposContent.test.ts
+PASS src/lib/__tests__/wikiSearch.test.ts
+PASS src/lib/zips/__tests__/grantHistory.test.ts
+PASS src/lib/__tests__/xss-sanitizer.test.ts
+PASS src/lib/__tests__/parseVenueMarkdown.test.ts
+PASS src/lib/__tests__/grantNumbers.test.ts
+PASS src/lib/__tests__/sitemapSections.test.ts
+PASS src/lib/__tests__/zip321.test.ts
+PASS src/lib/__tests__/breadcrumbs.test.ts
+PASS src/lib/__tests__/normalizeMdx.test.ts
+PASS src/lib/__tests__/localeCoverageAlternates.test.ts
+PASS src/lib/__tests__/apiRequestGuards.test.ts
+PASS src/components/visualizer/__tests__/visualizerMetadata.test.ts
+PASS src/lib/__tests__/searchIndex.test.ts
+PASS src/components/visualizer/__tests__/quizData.test.ts
+PASS src/lib/__tests__/visualizerRouting.test.ts
+PASS src/lib/__tests__/walletScanSimulation.test.ts
+PASS src/lib/__tests__/rehypeJsxYouTubeFacade.test.ts
+PASS src/components/visualizer/__tests__/visualizerCardCopy.test.ts
+PASS src/lib/__tests__/contentPaths.test.ts
+PASS src/lib/__tests__/stripFrontmatter.test.ts
+PASS src/lib/search/__tests__/tokenize.test.ts
+PASS src/app/[locale]/tools/helper/__tests__/index.test.ts
+PASS src/lib/__tests__/parseMarkdown.test.ts
+PASS src/lib/__tests__/embedZip321Validation.test.ts
+PASS src/lib/search/__tests__/client.test.ts
+PASS src/lib/__tests__/walletFeatureLinks.test.ts
+PASS src/lib/__tests__/daoTreasuryUnits.test.ts
+PASS src/lib/__tests__/parseTreasurySheet.test.ts
+PASS src/lib/__tests__/transformUri.test.ts
+PASS src/components/__tests__/youtubeDashboard.test.tsx
+
+Summary of all failing tests
+FAIL src/lib/__tests__/walletLikesLocking.test.ts
+  ● wallet-likes vote path › locks the title inside the transaction before any read it acts on
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 503
+
+      60 |     const r = await vote("Zashi");
+      61 |
+    > 62 |     expect(r.code).toBe(200);
+         |                    ^
+      63 |     const begin = index("BEGIN");
+      64 |     const lock = index("pg_advisory_xact_lock");
+      65 |     expect(begin).toBeGreaterThanOrEqual(0);
+
+      at Object.toBe (src/lib/__tests__/walletLikesLocking.test.ts:62:20)
+
+  ● wallet-likes vote path › releases the lock by rolling back when the reviewer already voted
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 429
+    Received: 503
+
+      75 |     const r = await vote("Zashi");
+      76 |
+    > 77 |     expect(r.code).toBe(429);
+         |                    ^
+      78 |     expect(index("ROLLBACK")).toBeGreaterThan(index("SELECT EXISTS"));
+      79 |     expect(index("COMMIT")).toBe(-1);
+      80 |   });
+
+      at Object.toBe (src/lib/__tests__/walletLikesLocking.test.ts:77:20)
+
+  ● wallet-likes vote path › uses one lock key per title
+
+    TypeError: Cannot read properties of undefined (reading 'values')
+
+      85 |       queries.length = 0;
+      86 |       await vote(title);
+    > 87 |       return queries[index("pg_advisory_xact_lock")].values?.[1];
+         |                                                      ^
+      88 |     };
+      89 |
+      90 |     const a1 = await keyFor("Zashi");
+
+      at values (src/lib/__tests__/walletLikesLocking.test.ts:87:54)
+      at Object.<anonymous> (src/lib/__tests__/walletLikesLocking.test.ts:90:16)
+
+  ● wallet-likes vote path › checks the daily cap after the lock and rolls it back
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 429
+    Received: 503
+
+      105 |     const r = await vote("Zashi");
+      106 |
+    > 107 |     expect(r.code).toBe(429);
+          |                    ^
+      108 |     expect(index("SELECT votes")).toBeGreaterThan(index("pg_advisory_xact_lock"));
+      109 |     expect(index("ROLLBACK")).toBeGreaterThan(index("SELECT votes"));
+      110 |     expect(index("COMMIT")).toBe(-1);
+
+      at Object.toBe (src/lib/__tests__/walletLikesLocking.test.ts:107:20)
+
+FAIL src/lib/__tests__/learningControls.test.tsx
+  ● QuizCard › opens from the keyboard with "{Enter}"
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      26 |     const user = userEvent.setup();
+      27 |     const onOpen = jest.fn();
+    > 28 |     render(<QuizCard title="Beginner Quiz" onOpen={onOpen} />);
+         |           ^
+      29 |
+      30 |     const button = screen.getByRole("button", { name: "Beginner Quiz" });
+      31 |     await user.tab();
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at src/lib/__tests__/learningControls.test.tsx:28:11
+
+  ● QuizCard › opens from the keyboard with " "
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      26 |     const user = userEvent.setup();
+      27 |     const onOpen = jest.fn();
+    > 28 |     render(<QuizCard title="Beginner Quiz" onOpen={onOpen} />);
+         |           ^
+      29 |
+      30 |     const button = screen.getByRole("button", { name: "Beginner Quiz" });
+      31 |     await user.tab();
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at src/lib/__tests__/learningControls.test.tsx:28:11
+
+  ● QuizCard › opens once when the quiz button is clicked
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      39 |     const user = userEvent.setup();
+      40 |     const onOpen = jest.fn();
+    > 41 |     render(<QuizCard title="Beginner Quiz" onOpen={onOpen} />);
+         |           ^
+      42 |
+      43 |     await user.click(screen.getByRole("button", { name: "Beginner Quiz" }));
+      44 |
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at Object.<anonymous> (src/lib/__tests__/learningControls.test.tsx:41:11)
+
+  ● QuizCard › preserves the default caption and an explicitly supplied caption
+
+    Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+    Check the render method of `QuizCard`.
+
+      47 |
+      48 |   it("preserves the default caption and an explicitly supplied caption", () => {
+    > 49 |     const { rerender } = render(
+         |                                ^
+      50 |       <QuizCard title="Beginner Quiz" onOpen={jest.fn()} />,
+      51 |     );
+      52 |     const defaultCaption = "Test your knowledge with a short quiz. Click to open.";
+
+      at createFiberFromTypeAndProps (node_modules/react-dom/cjs/react-dom-client.development.js:5330:28)
+      at createFiberFromElement (node_modules/react-dom/cjs/react-dom-client.development.js:5344:14)
+      at createChild (node_modules/react-dom/cjs/react-dom-client.development.js:6701:26)
+      at reconcileChildrenArray (node_modules/react-dom/cjs/react-dom-client.development.js:7033:25)
+      at reconcileChildFibersImpl (node_modules/react-dom/cjs/react-dom-client.development.js:7357:20)
+      at node_modules/react-dom/cjs/react-dom-client.development.js:7456:33
+      at reconcileChildren (node_modules/react-dom/cjs/react-dom-client.development.js:10096:13)
+      at beginWork (node_modules/react-dom/cjs/react-dom-client.development.js:12468:13)
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:19176:22)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:19004:41)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:18985:11)
+      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:18094:35)
+      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:20665:7)
+      at flushActQueue (node_modules/react/cjs/react.development.js:664:34)
+      at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:960:10)
+      at node_modules/@testing-library/react/dist/act-compat.js:46:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:198:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:300:10)
+      at Object.<anonymous> (src/lib/__tests__/learningControls.test.tsx:49:32)
+
+FAIL src/lib/__tests__/mdxHeadings.test.tsx
+  ● MDX h2 anchors › uses heading text for emphasis from the Italian Raspberry Pi guide
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Installazione di zcashd"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Installazione di zcashd Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"installazione-di-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      emphasis:
+
+      Name "":
+      [36m<em />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#installazione-di-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"installazione-di-zcashd"[39m
+        [36m>[39m
+          [0mInstallazione di [0m
+          [36m<em>[39m
+            [0mzcashd[0m
+          [36m</em>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#installazione-di-zcashd"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for strong text
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "The Zcash Network"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "The Zcash Network Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"the-zcash-network"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      strong:
+
+      Name "":
+      [36m<strong />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#the-zcash-network"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"the-zcash-network"[39m
+        [36m>[39m
+          [0mThe [0m
+          [36m<strong>[39m
+            [0mZcash Network[0m
+          [36m</strong>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#the-zcash-network"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for inline code
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Using zcashd"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Using zcashd Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"using-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      code:
+
+      Name "":
+      [36m<code />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#using-zcashd"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"using-zcashd"[39m
+        [36m>[39m
+          [0mUsing [0m
+          [36m<code>[39m
+            [0mzcashd[0m
+          [36m</code>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#using-zcashd"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for nested inline elements and fragments
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Run zcashd on Raspberry Pi 4"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Run zcashd on Raspberry Pi 4 Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"run-zcashd-on-raspberry-pi-4"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      strong:
+
+      Name "":
+      [36m<strong />[39m
+
+      --------------------------------------------------
+      emphasis:
+
+      Name "":
+      [36m<em />[39m
+
+      --------------------------------------------------
+      code:
+
+      Name "":
+      [36m<code />[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#run-zcashd-on-raspberry-pi-4"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"run-zcashd-on-raspberry-pi-4"[39m
+        [36m>[39m
+          [0mRun [0m
+          [36m<strong>[39m
+            [36m<em>[39m
+              [0mzcashd[0m
+            [36m</em>[39m
+          [36m</strong>[39m
+          [0m on [0m
+          [36m<code>[39m
+            [0mRaspberry Pi[0m
+          [36m</code>[39m
+          [0m [0m
+          [0m4[0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#run-zcashd-on-raspberry-pi-4"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for existing plain-text punctuation rules
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Zcash (Mainnet) + test_net"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Zcash (Mainnet) + test_net Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"zcash-mainnet-and-test-net"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#zcash-mainnet-and-test-net"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"zcash-mainnet-and-test-net"[39m
+        [36m>[39m
+          [0m Zcash (Mainnet) + test_net [0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#zcash-mainnet-and-test-net"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for numbers including zero and empty nodes
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Section 0 + 2"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Section 0 + 2 Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"section-0-and-2"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#section-0-and-2"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"section-0-and-2"[39m
+        [36m>[39m
+          [0mSection [0m
+          [0m0[0m
+          [0m + [0m
+          [0m2[0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#section-0-and-2"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+  ● MDX h2 anchors › uses heading text for bigint text
+
+    TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name "Block 9007199254740993"
+
+    Here are the accessible roles:
+
+      heading:
+
+      Name "Block 9007199254740993 Link to this section":
+      [36m<h2[39m
+        [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+        [33mid[39m=[32m"block-9007199254740993"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+      link:
+
+      Name "Link to this section":
+      [36m<a[39m
+        [33maria-label[39m=[32m"Link to this section"[39m
+        [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+        [33mhref[39m=[32m"#block-9007199254740993"[39m
+      [36m/>[39m
+
+      --------------------------------------------------
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"[39m
+          [33mid[39m=[32m"block-9007199254740993"[39m
+        [36m>[39m
+          [0mBlock [0m
+          [0m9007199254740993[0m
+          [36m<a[39m
+            [33maria-label[39m=[32m"Link to this section"[39m
+            [33mclass[39m=[32m"ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"[39m
+            [33mhref[39m=[32m"#block-9007199254740993"[39m
+          [36m>[39m
+            [0m#[0m
+          [36m</a>[39m
+        [36m</h2>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      71 |     render(<Heading>{children}</Heading>);
+      72 |
+    > 73 |     const heading = screen.getByRole("heading", { name: text });
+         |                            ^
+      74 |     expect(heading.tagName.toLowerCase()).toBe(tag);
+      75 |     expect(heading).toHaveAttribute("id", id);
+      76 |     expect(heading).toHaveTextContent(text);
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at getByRole (src/lib/__tests__/mdxHeadings.test.tsx:73:28)
+
+FAIL src/lib/__tests__/researchSeriesPage.test.tsx
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /Users/v/Documents/zechub-wiki/node_modules/next-intl/dist/esm/production/routing.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+       9 |   defaultLocale: "en",
+      10 |
+    > 11 |   // English is served unprefixed at the root (`/`); other locales are
+         |                  ^
+      12 |   // prefixed (`/it/...`). next-intl only adds the prefix when needed.
+      13 |   localePrefix: "as-needed",
+      14 | });
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/i18n/routing.ts:11:18)
+      at Object.<anonymous> (src/app/[locale]/[...slug]/page.tsx:132:18)
+      at Object.<anonymous> (src/lib/__tests__/researchSeriesPage.test.tsx:54:54)
+
+FAIL src/lib/__tests__/galleryKeyboard.test.tsx
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /Users/v/Documents/zechub-wiki/node_modules/next-intl/dist/esm/production/navigation.react-client.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/i18n/navigation.ts:28:21)
+      at Object.<anonymous> (src/components/Gallery/Gallery.tsx:17:21)
+      at Object.<anonymous> (src/lib/__tests__/galleryKeyboard.test.tsx:16:57)
+
+FAIL src/lib/__tests__/galleryImageSets.test.tsx
+  ● Test suite failed to run
+
+    Must use import to load ES Module: /Users/v/Documents/zechub-wiki/node_modules/next-intl/dist/esm/production/navigation.react-client.js
+
+    The file contains ESM syntax (import/export) that could not be executed as CommonJS. Either:
+      - Configure a transform (e.g. babel-jest) that compiles this file to CommonJS (see https://jestjs.io/docs/code-transformation)
+      - If the file is in "node_modules", allow it to be transformed by adjusting "transformIgnorePatterns" (see https://jestjs.io/docs/configuration#transformignorepatterns-arraystring)
+      - Use Node v24.9+ where Jest supports require(esm) natively (see https://jestjs.io/docs/ecmascript-modules#require-of-esm)
+
+
+
+      at createRequireEsmError (node_modules/jest-runtime/build/index.js:452:17)
+      at Object.<anonymous> (src/i18n/navigation.ts:28:21)
+      at Object.<anonymous> (src/components/Gallery/Gallery.tsx:17:21)
+      at Object.<anonymous> (src/lib/__tests__/galleryImageSets.test.tsx:17:57)
+
+FAIL src/components/__tests__/languageSwitcher.test.tsx
+  ● LanguageSwitcher › marks only the current language with the accent badge, and not by colour alone
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "focus-visible:bg-[#F4B728]/10"
+    Received string:    "group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand dark:focus-visible:ring-brand transition-colors cursor-pointer hover:bg-brand/10 focus-visible:bg-brand/10"
+
+      191 |     // Keyboard focus must not make the current row look less selected.
+      192 |     expect(option(/Español/).className).not.toContain("focus-visible:bg-[#F4B728]/10");
+    > 193 |     expect(option(/English/).className).toContain("focus-visible:bg-[#F4B728]/10");
+          |                                         ^
+      194 |   });
+      195 |
+      196 |   it("says so when no language matches", async () => {
+
+      at Object.toContain (src/components/__tests__/languageSwitcher.test.tsx:193:41)
+
+
+Test Suites: 7 failed, 74 passed, 81 total
+Tests:       16 failed, 856 passed, 872 total
+Snapshots:   0 total
+Time:        4.433 s
+Ran all test suites.
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
