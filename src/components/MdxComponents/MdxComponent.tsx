@@ -13,6 +13,7 @@ import FaucetCard, { FaucetList } from "./FaucetCard";
 import { RecoveryNav, GuideCallout } from "./RecoveryBlocks";
 import { PointList, PointItem } from "./GuidePoints";
 import LinkButton from "./LinkButton";
+import HashLink from "./HashLink";
 import { AddressGrid, AddressSpecimen } from "./AddressSpecimen";
 import { CommunityGrid, CommunityGroup, CommunityCard, StatGrid, StatCard, OrgCard, MemberCard, TimelineList, TimelineItem } from "./CommunityBlocks";
 import JumpNav from "./JumpNav";
@@ -118,22 +119,15 @@ const MdxComponents = {
     let href = props.href || "";
     if (href.startsWith("#")) {
       const normalized = "#" + slugify(href.slice(1));
-      const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        const targetId = normalized.slice(1);
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      };
       return (
-        <a
-          href={normalized}
+        <HashLink
+          normalized={normalized}
           className={`${LINK} scroll-mt-20`}
-          onClick={handleClick}
-          {...props}
+          {...(props as Omit<HTMLProps<HTMLAnchorElement>, "ref">)}
         />
       );
     }
+
     const resolved = href.startsWith("/site")
       ? transformGithubFilePathToWikiLink(href)
       : href;
