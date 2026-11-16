@@ -6638,7 +6638,7 @@ export default async function Page(props: {
     );
   }
 
-  const mdxSource = normalizeMdx(processedMarkdown);
+  const mdxSource = normalizeMdx(stripFrontmatter(processedMarkdown));
   const mdxCompileOptions: NonNullable<React.ComponentProps<typeof MDXRemote>["options"]>["mdxOptions"] = {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
@@ -6655,6 +6655,7 @@ export default async function Page(props: {
         ],
         // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
         rehypeStripDangerous,
+        rehypeJsxYouTubeFacade,
         rehypeFlattenNestedParagraphs,
         [
           rehypeWikiPatterns,
