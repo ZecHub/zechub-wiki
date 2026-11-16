@@ -58,7 +58,8 @@ After the Orchard vulnerability, Project Tachyon, Valar Group and ZODL helped de
 - [Zakura Node](/zcash-tech/zakura-node): the full node Valar Group co-leads
 - [Shielded Coinholder Voting](/zcash-tech/shielded-coinholder-voting): how the polls work and how to vote
 - [Project Tachyon](/zcash-tech/project-tachyon): the scaling effort Valar Group works with
-- [Shielded Labs](/zcash-organizations/shielded-labs) and [ZODL](/zcash-organizations/zodl): other organizations in the Shielded Vote multisig
+- [Shielded Labs](/zcash-organizations/shielded-labs): one of the five organizations in the Shielded Vote multisig
+- [ZODL](/zcash-organizations/zodl): another organization in the Shielded Vote multisig
 
 ## Sources
 
