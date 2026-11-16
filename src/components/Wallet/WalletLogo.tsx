@@ -135,10 +135,15 @@ function process(img: HTMLImageElement, keepColors: boolean): Variants {
 
 export default function WalletLogo({ src, alt, keepColors = false }: { src: string; alt: string; keepColors?: boolean }) {
   const [v, setV] = useState<Variants>(null);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let alive = true;
+    setFailed(false);
     const img = new window.Image();
+    img.onerror = () => {
+      if (alive) setFailed(true);
+    };
     img.crossOrigin = "anonymous";
     img.onload = () => {
       try {
@@ -154,6 +159,19 @@ export default function WalletLogo({ src, alt, keepColors = false }: { src: stri
     };
   }, [src, keepColors]);
 
+  // A logo that does not exist (yet) shows the wallet's initial instead of a broken image.
+  if (failed) {
+    return (
+      <span
+        role="img"
+        aria-label={alt}
+        className="grid h-14 w-14 place-items-center rounded-xl bg-brand/15 text-2xl font-bold text-brand dark:text-brand-soft"
+      >
+        {(alt.trim()[0] ?? "?").toUpperCase()}
+      </span>
+    );
+  }
+
   if (v) {
     return (
       <>
@@ -164,5 +182,5 @@ export default function WalletLogo({ src, alt, keepColors = false }: { src: stri
       </>
     );
   }
-  return <Image className={FRAME} width={260} height={180} src={src} alt={alt} priority={false} />;
+  return <Image className={FRAME} width={260} height={180} src={src} alt={alt} priority={false} onError={() => setFailed(true)} />;
 }
