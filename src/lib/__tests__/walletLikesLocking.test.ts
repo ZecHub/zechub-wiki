@@ -50,6 +50,8 @@ const vote = (title: string, ip = "10.0.0.1") =>
 const index = (fragment: string) => queries.findIndex((q) => q.text.includes(fragment));
 
 beforeEach(() => {
+  // Without a database URL the handler reports ratings as unavailable.
+  process.env.POSTGRES_URL = "postgres://test";
   queries.length = 0;
   for (const k of Object.keys(results)) delete results[k];
 });
