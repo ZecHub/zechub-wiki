@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-12T14:11:31.742Z",
+  "generatedAt": "2026-11-12T14:26:02.740Z",
   "filesScanned": 751,
   "linksFound": 12369,
   "uniqueExternalChecked": 2427,
-  "retriedAfterNetworkFailure": 120,
+  "retriedAfterNetworkFailure": 116,
   "allowlistEntries": 6,
   "totals": {
     "dns": 3,
@@ -12,10 +12,10 @@
     "asset": 0,
     "tls": 6,
     "timeout": 0,
-    "error": 12,
+    "error": 7,
     "invalid": 0,
-    "blocked": 243,
-    "redirect": 441,
+    "blocked": 248,
+    "redirect": 443,
     "duplicate": 396,
     "revived": 4
   },
@@ -409,14 +409,6 @@
     },
     {
       "kind": "error",
-      "url": "https://instagram.com/papelesacolor",
-      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
-      "line": 109,
-      "alsoIn": 0,
-      "detail": "ETIMEDOUT"
-    },
-    {
-      "kind": "error",
       "url": "https://emprendedorasdigitales.org/",
       "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
       "line": 137,
@@ -425,43 +417,11 @@
     },
     {
       "kind": "error",
-      "url": "https://instagram.com/emprendedorasdigitalesve",
-      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
-      "line": 141,
-      "alsoIn": 0,
-      "detail": "ETIMEDOUT"
-    },
-    {
-      "kind": "error",
       "url": "https://gorbrit.com/",
       "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
       "line": 162,
       "alsoIn": 0,
       "detail": "UND_ERR_SOCKET"
-    },
-    {
-      "kind": "error",
-      "url": "https://instagram.com/karinbeautystudio",
-      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
-      "line": 208,
-      "alsoIn": 0,
-      "detail": "ETIMEDOUT"
-    },
-    {
-      "kind": "error",
-      "url": "https://instagram.com/coronadebrillitos",
-      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
-      "line": 232,
-      "alsoIn": 0,
-      "detail": "ETIMEDOUT"
-    },
-    {
-      "kind": "error",
-      "url": "https://instagram.com/allegriniristorante",
-      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
-      "line": 352,
-      "alsoIn": 0,
-      "detail": "ETIMEDOUT"
     },
     {
       "kind": "error",
@@ -575,15 +535,6 @@
       "alsoIn": 0,
       "status": 302,
       "detail": "GitHub login required"
-    },
-    {
-      "kind": "blocked",
-      "url": "https://3xpl.com/zcash",
-      "file": "site/guides/Blockchain_Explorers.md",
-      "line": 75,
-      "alsoIn": 0,
-      "status": 429,
-      "detail": "HTTP 429"
     },
     {
       "kind": "blocked",
@@ -1061,6 +1012,15 @@
       "alsoIn": 0,
       "status": 302,
       "detail": "GitHub login required"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.coinbase.com/",
+      "file": "site/Using_Zcash/Buying_ZEC.md",
+      "line": 40,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
     },
     {
       "kind": "blocked",
@@ -1937,6 +1897,15 @@
     },
     {
       "kind": "blocked",
+      "url": "https://www.exodus.com/",
+      "file": "site/zechubglobal/zcashesp/usandozec/wallets/mobilewallets.md",
+      "line": 91,
+      "alsoIn": 3,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
       "url": "https://www.coindesk.com/policy/2023/10/13/sec-reportedly-decides-not-to-appeal-its-bitcoin-etf-court-loss-against-grayscale/",
       "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly #64.md",
       "line": 53,
@@ -1982,6 +1951,24 @@
     },
     {
       "kind": "blocked",
+      "url": "https://www.theblock.co/post/230673/paradigm-coinbase-shares",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
+      "line": 74,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/230718/bitcoin-ether-price-correlation",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
+      "line": 78,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
       "url": "https://www.zonebourse.com/actualite-bourse/L-Italie-alloue-des-fonds-pour-proteger-les-travailleurs-de-la-menace-du-remplacement-par-l-IA--43855976/",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
       "line": 82,
@@ -1995,6 +1982,15 @@
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
       "line": 86,
       "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/232340/nym-ethereum-validators-privacy",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly44.md",
+      "line": 85,
+      "alsoIn": 3,
       "status": 403,
       "detail": "HTTP 403"
     },
@@ -2093,6 +2089,15 @@
       "url": "https://www.theblock.co/post/239769/ark-invest-coinbase-sells-cathie-wood",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly51.md",
       "line": 68,
+      "alsoIn": 2,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/241028/celsius-network-reaches-settlements-wsj",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
+      "line": 79,
       "alsoIn": 2,
       "status": 403,
       "detail": "HTTP 403"
@@ -2249,6 +2254,15 @@
       "alsoIn": 1,
       "status": 429,
       "detail": "HTTP 429"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://www.theblock.co/post/263611/worldcoin-price-drops-6-after-sam-altman-unseated-as-openai-ceo",
+      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly69.md",
+      "line": 53,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
     },
     {
       "kind": "blocked",
@@ -2585,15 +2599,6 @@
     },
     {
       "kind": "blocked",
-      "url": "https://openai.com/dall-e-3/",
-      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
-      "line": 52,
-      "alsoIn": 0,
-      "status": 403,
-      "detail": "HTTP 403"
-    },
-    {
-      "kind": "blocked",
       "url": "https://creator.nightcafe.studio/",
       "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
       "line": 53,
@@ -2690,6 +2695,15 @@
       "alsoIn": 0,
       "status": 308,
       "detail": "→ https://zechub.wiki/"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://learn.microsoft.com/en-us/style-guide/",
+      "file": "site/contribute/Style_Guide.md",
+      "line": 49,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ /en-us/style-guide/welcome/"
     },
     {
       "kind": "redirect",
@@ -3548,12 +3562,57 @@
     },
     {
       "kind": "redirect",
+      "url": "https://instagram.com/papelesacolor",
+      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
+      "line": 109,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://www.instagram.com/papelesacolor"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://instagram.com/emprendedorasdigitalesve",
+      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
+      "line": 141,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://www.instagram.com/emprendedorasdigitalesve"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://instagram.com/karinbeautystudio",
+      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
+      "line": 208,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://www.instagram.com/karinbeautystudio"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://instagram.com/coronadebrillitos",
+      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
+      "line": 232,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://www.instagram.com/coronadebrillitos"
+    },
+    {
+      "kind": "redirect",
       "url": "https://youtube.com/@tecnopapapi",
       "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
       "line": 264,
       "alsoIn": 0,
       "status": 301,
       "detail": "→ https://www.youtube.com/@tecnopapapi"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://instagram.com/allegriniristorante",
+      "file": "site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md",
+      "line": 352,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://www.instagram.com/allegriniristorante"
     },
     {
       "kind": "redirect",
@@ -5060,24 +5119,6 @@
     },
     {
       "kind": "redirect",
-      "url": "https://www.theblock.co/post/230673/paradigm-coinbase-shares",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
-      "line": 74,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/business/2023-05-12-paradigm-coinbase-shares-230673"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/230718/bitcoin-ether-price-correlation",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
-      "line": 78,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/ecosystems/2023-05-13-bitcoin-ether-price-correlation-230718"
-    },
-    {
-      "kind": "redirect",
       "url": "https://free2z.com/Sqribbles/zpage/sqribbles-issue-4",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly43.md",
       "line": 29,
@@ -5111,15 +5152,6 @@
       "alsoIn": 3,
       "status": 303,
       "detail": "→ https://www.youtube.com/watch?v=8eYDTyV39a4&feature=youtu.be"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/232340/nym-ethereum-validators-privacy",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly44.md",
-      "line": 85,
-      "alsoIn": 3,
-      "status": 301,
-      "detail": "→ /news/ecosystems/2023-05-26-nym-ethereum-validators-privacy-232340"
     },
     {
       "kind": "redirect",
@@ -5228,15 +5260,6 @@
       "alsoIn": 3,
       "status": 301,
       "detail": "→ /news/regulation/2023-07-21-doj-looks-to-increase-crypto-investigations-with-move-to-merge-teams-240967"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/241028/celsius-network-reaches-settlements-wsj",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly52.md",
-      "line": 79,
-      "alsoIn": 2,
-      "status": 301,
-      "detail": "→ /news/business/2023-07-21-celsius-network-reaches-settlements-wsj-241028"
     },
     {
       "kind": "redirect",
@@ -5489,15 +5512,6 @@
       "alsoIn": 2,
       "status": 301,
       "detail": "→ /Zcast/support_the_2nd_season_of_zcast"
-    },
-    {
-      "kind": "redirect",
-      "url": "https://www.theblock.co/post/263611/worldcoin-price-drops-6-after-sam-altman-unseated-as-openai-ceo",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly69.md",
-      "line": 53,
-      "alsoIn": 0,
-      "status": 301,
-      "detail": "→ /news/business/2023-11-17-worldcoin-price-drops-6-after-sam-altman-unseated-as-openai-ceo-263611"
     },
     {
       "kind": "redirect",
@@ -6596,6 +6610,15 @@
       "alsoIn": 0,
       "status": 308,
       "detail": "→ /dall-e-2/"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://openai.com/dall-e-3/",
+      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
+      "line": 52,
+      "alsoIn": 0,
+      "status": 307,
+      "detail": "→ /index/dall-e-3/"
     },
     {
       "kind": "redirect",

@@ -25,12 +25,12 @@
     "Faucets": "Faucets",
     "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Live",
-    "Freelance Privacy": "Confidentialité des freelances",
+    "Freelance Privacy": "Confidentialité pour les freelances",
     "Github": "Github",
     "Governance": "Gouvernance",
     "Guides": "Guides",
     "How to Participate": "Comment participer",
-    "Journalist Privacy": "Confidentialité des journalistes",
+    "Journalist Privacy": "Confidentialité pour les journalistes",
     "Keeping Records": "Tenir des registres",
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
@@ -43,14 +43,14 @@
     "Payment Request URIs": "URI de demande de paiement",
     "Podcast": "Podcast",
     "Private Community Treasury": "Trésorerie communautaire privée",
-    "Raspberry Pi 4 Full Node": "Nœud complet Raspberry Pi 4",
-    "Raspberry pi 4 Zebra Node": "Nœud Zebra Raspberry pi 4",
+    "Raspberry Pi 4 Full Node": "Nœud complet pour Raspberry Pi 4",
+    "Raspberry pi 4 Zebra Node": "Nœud Zebra pour Raspberry pi 4",
     "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
     "Recovering Funds": "Récupération de fonds",
     "Research": "Recherche",
     "Send Money Privately": "Envoyer de l'argent en privé",
     "Shielded Labs": "Shielded Labs",
-    "Shielded Pools": "Pools blindés",
+    "Shielded Pools": "Pools protégés",
     "Sitemap": "Plan du site",
     "Start Here": "Commencez ici",
     "Store": "Boutique",
@@ -60,7 +60,7 @@
     "Transparent Exchange Addresses": "Adresses d'exchange transparentes",
     "Tutorials": "Tutoriels",
     "Twitter": "Twitter",
-    "Use Cases": "Cas d'usage",
+    "Use Cases": "Cas d'utilisation",
     "Using ZEC Privately": "Utiliser ZEC en privé",
     "Using ZEC in DeFi": "Utiliser ZEC dans la DeFi",
     "Using Zcash": "Utiliser Zcash",
@@ -70,7 +70,7 @@
     "Visualizing the Zcash Network": "Visualiser le réseau Zcash",
     "Wallets": "Portefeuilles",
     "Youtube": "Youtube",
-    "Ywallet FROST Demo": "Démo FROST Ywallet",
+    "Ywallet FROST Demo": "Démo FROST avec Ywallet",
     "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIPs et subventions",
     "ZKAV Club": "ZKAV Club",
@@ -90,13 +90,13 @@
     "Zcon Archive": "Archives Zcon",
     "Zcon Vozes Archive": "Archives Zcon Vozes",
     "Zenith Installation": "Installation de Zenith",
-    "Zero-Knowledge vs Decoys": "Zero-Knowledge vs leurres",
+    "Zero-Knowledge vs Decoys": "Divulgation nulle de connaissance vs leurres",
     "Zgo Payment Processor": "Processeur de paiement Zgo",
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Tutoriel Zingolib et Zaino",
     "Zkool Multisig": "Multisig Zkool",
     "Custodial Exchanges": "Exchanges dépositaires",
-    "Zcash Use Cases": "Cas d’usage de Zcash",
+    "Zcash Use Cases": "Cas d'utilisation de Zcash",
     "Zcash Tech": "Technologie Zcash",
     "Privacy Tools": "Outils de confidentialité",
     "Glossary & FAQ's": "Glossaire et FAQ",
@@ -105,13 +105,13 @@
     "Ecosystem": "Écosystème",
     "Raspberry Pi Zcashd Node": "Nœud Zcashd Raspberry Pi",
     "Raspberry Pi Zebra Node": "Nœud Zebra sur Raspberry Pi",
-    "Zero Knowledge vs Decoy Systems": "Zero Knowledge vs systèmes leurres",
+    "Zero Knowledge vs Decoy Systems": "Preuves à divulgation nulle de connaissance vs systèmes leurres",
     "Organizations": "Organisations",
     "Sovright": "Sovright",
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Payer l'IA",
+    "Pay for AI": "Utiliser ZEC pour de l'IA",
     "Spend Zcash": "Dépenser des Zcash",
     "Places to Spend ZEC": "Où dépenser ZEC",
     "Free2Z Livestreaming": "Free2Z Diffusion en direct",
@@ -126,12 +126,12 @@
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Réseau Akash Zcashd",
     "CoinHolder Directed Retroactive Grants": "Subventions rétroactives dirigées par CoinHolder",
-    "Community Building": "Community Building",
+    "Community Building": "Construire la communauté",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Configuration du portefeuille Nym Mixnet"
   },
   "exploreMenu": {
-    "Full Explore": "Explorer entièrement",
+    "Full Explore": "Tour d'horizon",
     "Start Here": "Commencez ici",
     "Tutorials": "Tutoriels",
     "Using Zcash": "Utiliser Zcash",
@@ -195,7 +195,7 @@
       "metamaskSnap": "MetaMask Snap",
       "exchanges": "Exchanges",
       "blockExplorers": "Explorateurs de blocs",
-      "shieldedPools": "Pools blindés",
+      "shieldedPools": "Pools protégés",
       "transparentExchangeAddresses": "Adresses d'exchange transparentes",
       "transactions": "Transactions",
       "memos": "Mémos",
@@ -205,12 +205,12 @@
       "recoveringFunds": "Récupération de fonds",
       "testnet": "Testnet",
       "tools": "Outils",
-      "useCases": "Cas d'usage",
+      "useCases": "Cas d'utilisation",
       "useCasesSubmenu": {
         "startHere": "Commencez ici",
         "acceptPayments": "Accepter les paiements",
-        "freelancePrivacy": "Confidentialité des freelances",
-        "journalistPrivacy": "Confidentialité des journalistes",
+        "freelancePrivacy": "Confidentialité pour les freelances",
+        "journalistPrivacy": "Confidentialité pour les journalistes",
         "keepingRecords": "Tenir des registres",
         "privateCommunityTreasury": "Trésorerie communautaire privée",
         "donations": "Dons",
@@ -242,7 +242,7 @@
       "zingoLabs": "Zingo Labs",
       "brand": "Marque",
       "zkavClub": "ZKAV Club",
-      "coinholderDirectedRetroactiveGrants": "Subventions rétroactives dirigées par CoinHolder",
+      "coinholderDirectedRetroactiveGrants": "Rétro-subventions pilotées par les Zcashers",
       "obscuraLabs": "Obscura Labs",
       "sovright": "Sovright",
       "valarGroup": "Valar Group",
@@ -257,13 +257,13 @@
       "nymVpn": "Nym VPN",
       "usingZecInDefi": "Utiliser ZEC dans la DeFi",
       "usingZecPrivately": "Utiliser ZEC en privé",
-      "raspberryPiZcashdNode": "Nœud Raspberry Pi Zcashd",
+      "raspberryPiZcashdNode": "Nœud Zcashd pour Raspberry Pi",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
-      "raspberryPiZebraNode": "Nœud Raspberry Pi Zebra",
+      "raspberryPiZebraNode": "Nœud Zebra pour Raspberry Pi",
       "akashNetwork": "Akash Network",
       "avalancheRedbridge": "Avalanche RedBridge",
       "zkoolMultisig": "Multisig Zkool",
-      "ywalletFrostDemo": "Démo FROST Ywallet",
+      "ywalletFrostDemo": "Démo FROST avec Ywallet",
       "blockchainExplorers": "Explorateurs de blockchain",
       "braveWallet": "Brave Wallet",
       "btcPayServerPlugin": "Plugin BTCPayServer",
@@ -273,7 +273,7 @@
       "zcashImprovementProposals": "Propositions d'amélioration de Zcash",
       "zingolibAndZainoTutorial": "Tutoriel Zingolib et Zaino",
       "zenithInstallation": "Installation de Zenith",
-      "zeroKnowledgeVsDecoys": "Zero Knowledge vs systèmes leurres"
+      "zeroKnowledgeVsDecoys": "Preuves à divulgation nulle de connaissance vs systèmes leurres"
     },
     "overview": "Aperçu",
     "shop": "Boutique"
@@ -291,7 +291,7 @@
     "cards": {
       "startHere": {
         "title": "Commencez ici",
-        "content": "Découvrez ce qu'est Zcash et les cas d'usage du ZEC"
+        "content": "Découvrez ce qu'est Zcash et les cas d'utilisation du ZEC"
       },
       "pickWallet": {
         "title": "Choisissez un portefeuille",
@@ -387,7 +387,7 @@
     "autoPlayNote": "Chaque visualiseur se lance automatiquement. Utilisez les contrôles pour naviguer ou mettre en pause.",
     "wallets": {
       "title": "Introduction aux portefeuilles Zcash",
-      "description": "Fournir des fonctionnalités blindées"
+      "description": "Fournir des fonctionnalités protégées"
     },
     "pools": {
       "title": "Pools de valeur et types d'adresses",
@@ -411,7 +411,7 @@
     },
     "zkproof": {
       "title": "zk-SNARKs",
-      "description": "Démonstration interactive des transactions blindées"
+      "description": "Démonstration interactive des transactions protégées"
     },
     "keys": {
       "title": "Clés Zcash",
@@ -430,7 +430,7 @@
       "description": "Comprendre le minage Equihash et les preuves récursives à divulgation nulle de connaissance"
     },
     "privacyUseCases": {
-      "title": "Cas d'usage de la confidentialité",
+      "title": "Cas d'utilisation de la confidentialité",
       "description": "Applications concrètes de la technologie de confidentialité sur Zcash"
     },
     "governance": {
@@ -510,7 +510,7 @@
       {
         "icon": "🛡️",
         "title": "Première DAO de l'écosystème Zcash",
-        "description": "ZecHub est pionnier de la gouvernance décentralisée dans la communauté Zcash, avec des fonds détenus principalement dans le pool blindé Zcash pour une confidentialité maximale."
+        "description": "ZecHub est pionnier de la gouvernance décentralisée dans la communauté Zcash, avec des fonds détenus principalement dans le pool protégé Zcash pour une confidentialité maximale."
       },
       {
         "icon": "🌍",
@@ -554,15 +554,15 @@
       "custodial": "Exchanges dépositaires",
       "exchanges": {
         "Near-intents": "Échange rapide avec le soutien de NEAR. Effectuez des dépôts, vendez, échangez, y compris les populaires TRUMP, MELANIA, BERA et d'autres memecoins",
-        "Nativeswap": "Trading cross-chain natif sans barrières via Maya Protocol. Tradez directement on-chain, sans bridges ni tokens wrapped, avec des frais parmi les plus bas du secteur et un contrôle total de vos actifs.",
+        "Nativeswap": "Trading inter-chaînes natif sans barrières via Maya Protocol. Tradez directement on-chain, sans ponts ni jetons encapsulés, avec des frais parmi les plus bas du secteur et un contrôle total de vos actifs.",
         "Firo DEX": "Swaps décentralisés sans confiance grâce aux atomic swaps avec FiroDEX !.",
-        "LeoDEX": "Une interface d'échange crypto cross-chain pour Maya Protocol, Thorchain, ChainFlip et Rango. BTC, ETH, RUNE, DASH, LTC et plus encore",
+        "LeoDEX": "Une interface d'échange crypto inter-chaînes pour Maya Protocol, Thorchain, ChainFlip et Rango. BTC, ETH, RUNE, DASH, LTC et plus encore",
         "Bison Wallet": "Tradez des cryptos de pair à pair. Aucun frais de trading. Aucun KYC.",
-        "THORSwap": "DEX cross-chain propulsé par THORChain, permettant des swaps natifs entre Bitcoin, Ethereum et d'autres actifs majeurs sans tokens wrapped.",
-        "Router Protocol": "Couche de transport de liquidité cross-chain permettant des transferts fluides d'actifs et de données entre plusieurs blockchains.",
+        "THORSwap": "DEX inter-chaînes propulsé par THORChain, permettant des échanges natifs entre Bitcoin, Ethereum et d'autres actifs majeurs sans jetons encapsulés.",
+        "Router Protocol": "Couche de transport de liquidité inter-chaînes permettant des transferts fluides d'actifs et de données entre plusieurs blockchains.",
         "Peer": "Échange décentralisé pair à pair permettant des transactions crypto directes avec une confidentialité renforcée et un meilleur contrôle par l'utilisateur.",
-        "RocketX": "Agrégateur DEX hybride permettant des swaps cross-chain sur plusieurs blockchains avec un routage optimal et des taux compétitifs.",
-        "THORChain": "Échange cross-chain décentralisé de Layer 1. Swappez des actifs natifs comme ZEC, BTC et ETH directement, sans bridges, tokens wrapped ni intermédiaires.",
+        "RocketX": "Agrégateur DEX hybride permettant des échanges inter-chaînes sur plusieurs blockchains avec un routage optimal et des taux compétitifs.",
+        "THORChain": "Échange inter-chaînes décentralisé de Layer 1. Échangez des actifs natifs comme ZEC, BTC et ETH directement, sans ponts, jetons encapsulés ni intermédiaires.",
         "Loofta": "Plateforme non custodiale de paiements privés et de swaps. Envoyez et recevez des cryptos en privé à travers différentes chaînes, avec Zcash comme couche de règlement pour une meilleure confidentialité financière."
       },
       "disclaimer": "ZecHub ne cautionne aucun service d’échange en particulier ; veuillez effectuer vos propres recherches."
@@ -577,7 +577,7 @@
       "charts": {
         "headerTitle": "Tableau(x) de bord",
         "headerSubtitle": "Analysez les métriques et tendances du réseau Zcash",
-        "shieldedNetworks": "Réseaux blindés",
+        "shieldedNetworks": "Réseaux protégés",
         "currentYoutubeChannel": "Chaîne YouTube actuelle",
         "totalVideos": "Total des vidéos",
         "totalViews": "Total des vues",
@@ -600,16 +600,16 @@
           "marketPriceBtc": "Prix du marché (BTC)",
           "blocks": "Blocs",
           "transactions24h": "Transactions sur 24 h",
-          "shieldedTx24h": "TX blindées (24 h)",
+          "shieldedTx24h": "TX protégées (24 h)",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
-          "shieldedValue": "Valeur blindée"
+          "shieldedValue": "Valeur protégée"
         },
         "zcashChart": {
           "title": "Graphiques analytiques",
           "supplyTypeAriaLabel": "Type d'offre",
           "supplyOptions": {
-            "shielded": "Blindée",
+            "shielded": "Protégée",
             "transparent": "Transparente",
             "totalSupply": "Offre totale"
           }
@@ -622,7 +622,7 @@
           "flows": "Flux",
           "txSummary": "Résumé TX",
           "privacySet": "Ensemble de confidentialité",
-          "shieldedStats": "Statistiques blindées",
+          "shieldedStats": "Statistiques des pools protégés",
           "blockFees": "Frais de bloc",
           "networkSolps": "Solps réseau",
           "miningPools": "Pools de minage",
@@ -680,7 +680,7 @@
         },
         "frost": {
           "name": "FROST",
-          "description": "Portefeuilles à signature à seuil, séquestre blindé ZEC, récupération sociale"
+          "description": "Portefeuilles à signature à seuil, séquestre ZEC protégé, récupération sociale"
         },
         "zcashLogin": {
           "name": "Connexion Zcash",
@@ -817,13 +817,13 @@
         "introToZcash": "Introduction à Zcash",
         "introToZcashDesc": "Découvrez Zcash, son histoire et ses principes fondamentaux.",
         "introToZec": "Introduction au ZEC",
-        "introToZecDesc": "Découvrez les cas d'usage et les avantages du ZEC, la cryptomonnaie native de Zcash.",
+        "introToZecDesc": "Découvrez les cas d'utilisation et les avantages du ZEC, la cryptomonnaie native de Zcash.",
         "introToZebra": "Introduction à Zebra",
         "introToZebraDesc": "Comprendre comment Zebra alimente le réseau Zcash avec une implémentation modulaire et sécurisée basée sur Rust",
         "introToLightwalletd": "Introduction à Lightwalletd",
         "introToLightwalletdDesc": "Comprendre le projet lightwalletd — un serveur évolutif écrit en Go qui fournit efficacement des données blockchain compactes aux clients légers Zcash via gRPC.",
         "zalletBook": "Le livre Zallet",
-        "zalletBookDesc": "Introduction à Zallet, un portefeuille Zcash full-node écrit en Rust et conçu pour remplacer le portefeuille zcashd.",
+        "zalletBookDesc": "Introduction à Zallet, un portefeuille Zcash de nœud complet écrit en Rust et conçu pour remplacer le portefeuille zcashd.",
         "developerResources": "Ressources développeur",
         "developerResourcesDesc": "Liens vers une documentation technique Zcash plus approfondie."
       },
@@ -989,7 +989,7 @@
       "configure": "Configurer",
       "runZainod": "Exécuter zainod",
       "installingZingoCli": "Installation de Zingo CLI",
-      "zingoCliInfo": "est un wallet léger en ligne de commande pour Zcash. La v7 intègre par défaut le transport du mixnet Nym et fournit nym-proxy à côté du binaire. Ce guide explique comment compiler depuis les sources.",
+      "zingoCliInfo": "est un portefeuille léger en ligne de commande pour Zcash. La v7 intègre par défaut le transport du mixnet Nym et fournit nym-proxy à côté du binaire. Ce guide explique comment compiler depuis les sources.",
       "buildZingoCli": "Compiler Zingo CLI (v7)",
       "running": "Exécution",
       "startZingoCliDefault": "Démarrer Zingo CLI (par défaut, hors ligne)",
@@ -1031,7 +1031,7 @@
       "installKeplrDesc": "Configurez votre portefeuille Keplr pour interagir avec la DAO",
       "keplrVideoTitle": "Guide de configuration du portefeuille Keplr",
       "acquireJuno": "Obtenir du JUNO",
-      "acquireJunoDesc": "Obtenez des tokens JUNO pour interagir avec le contrat daodao. Contactez les membres de l'équipe centrale pour obtenir de l'aide.",
+      "acquireJunoDesc": "Obtenez des jetons JUNO pour interagir avec le contrat daodao. Contactez les membres de l'équipe centrale pour obtenir de l'aide.",
       "viewOpenProposals": "Voir les propositions ouvertes",
       "viewOpenProposalsDesc": "Consultez les propositions actuelles et les possibilités de vote",
       "visitVotingPortal": "Visiter le portail de vote",
@@ -1077,7 +1077,7 @@
         "Research": "Recherche",
         "Start Here": "Commencez ici",
         "Tutorials": "Tutoriels",
-        "Use Cases": "Cas d'usage",
+        "Use Cases": "Cas d'utilisation",
         "Zcash Tech": "Technologie Zcash",
         "ZFAV Club": "ZFAV Club",
         "Social Media": "Réseaux sociaux"
@@ -1098,7 +1098,7 @@
         "Faucets": "Faucets",
         "Exchanges": "Exchanges",
         "Block Explorers": "Explorateurs de blocs",
-        "Shielded Pools": "Pools blindés",
+        "Shielded Pools": "Pools protégés",
         "Transparent Exchange Addresses": "Adresses d'exchange transparentes",
         "Transactions": "Transactions",
         "Memos": "Mémos",
@@ -1121,15 +1121,15 @@
       "seriesSubheading": "Analyses approfondies des concepts fondamentaux de Zcash",
       "foundationsSeriesTitle": "Série Fondations Zcash",
       "coreSeriesBadge": "Série principale",
-      "foundationsSeriesCardDescription": "Articles fondamentaux sur les transactions blindées, les modèles de confidentialité et la conception du protocole.",
+      "foundationsSeriesCardDescription": "Articles fondamentaux sur les transactions protégées, les modèles de confidentialité et la conception du protocole.",
       "exploreSeries": "Explorer la série →",
       "articlesHeading": "Articles de recherche",
       "articlesSubheading": "Articles et notes de la communauté ZecHub.",
-      "foundationsSeriesDescription": "Une collection d'articles fondamentaux couvrant les transactions blindées Zcash, les modèles de confidentialité, la conception du protocole et les concepts clés qui alimentent le réseau.",
-      "tagShieldedTransactions": "Transactions blindées",
+      "foundationsSeriesDescription": "Une collection d'articles fondamentaux couvrant les transactions protégées Zcash, les modèles de confidentialité, la conception du protocole et les concepts clés qui alimentent le réseau.",
+      "tagShieldedTransactions": "Transactions protégées",
       "tagPrivacyModels": "Modèles de confidentialité",
       "tagProtocolDesign": "Conception du protocole",
-      "tagZeroKnowledge": "Zero Knowledge",
+      "tagZeroKnowledge": "Divulgation nulle de connaissance",
       "formalVerificationSeriesTitle": "Série de vérification formelle Zcash",
       "formalVerificationSeriesCardDescription": "Ce qu'est la vérification formelle, le bug de solidité d'Orchard de 2026 et comment Ironwood y a répondu avec une preuve vérifiée par machine.",
       "formalVerificationSeriesDescription": "Une série en trois parties qui explique la vérification formelle à partir des principes fondamentaux, revient sur le bug de solidité d'Orchard de 2026 et montre comment Ironwood y a répondu avec une preuve mathématique vérifiée par machine.",
@@ -1199,7 +1199,7 @@
       "categoryStats": "Statistiques réseau",
       "addressPlaceholder": "Entrez votre Unified Address Zcash",
       "invalidAddressInline": "Adresse invalide. Doit commencer par \"u\" ou \"z\".",
-      "invalidAddressAlert": "Veuillez entrer une adresse Zcash blindée valide.",
+      "invalidAddressAlert": "Veuillez entrer une adresse Zcash protégée valide.",
       "generating": "Génération...",
       "subscribe": "S'abonner",
       "doNotEditMemo": "Ne modifiez pas le mémo généré dans votre portefeuille.",
@@ -1207,11 +1207,11 @@
       "box1Title": "Quel est ce service ?",
       "box1Desc": "Recevez les actualités de l'écosystème Zcash et les statistiques réseau directement via le réseau Zcash à l'aide de mémos chiffrés.",
       "box2Title": "Comment ça marche",
-      "box2DescPre": "Nous envoyons des newsletters une fois par semaine à plusieurs destinataires dans une seule transaction blindée à l'aide de la méthode RPC",
+      "box2DescPre": "Nous envoyons des newsletters une fois par semaine à plusieurs destinataires dans une seule transaction protégée à l'aide de la méthode RPC",
       "box2DescPost": ".",
       "box3Title": "Comment recevoir les mises à jour",
       "box3DescPre": "Entrez votre",
-      "box3DescBold": "adresse Zcash blindée",
+      "box3DescBold": "adresse Zcash protégée",
       "box3DescPost": "Mises à jour hebdomadaires livrées on-chain. Aucun e-mail requis.",
       "unsubscribe": "Se désabonner",
       "cancelUnsubscribe": "Annuler le désabonnement",
@@ -1239,7 +1239,7 @@
       "quickQuestions": [
         "Qu'est-ce que Zcash ?",
         "Qu'est-ce que ZecHub ?",
-        "Comment fonctionnent les transactions blindées ?",
+        "Comment fonctionnent les transactions protégées ?",
         "Quels portefeuilles prennent en charge Zcash ?",
         "Qu'est-ce qu'une z-address par rapport à une t-address ?",
         "Comment débuter avec le ZEC ?",
