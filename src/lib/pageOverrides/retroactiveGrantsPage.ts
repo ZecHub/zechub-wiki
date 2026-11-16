@@ -87,10 +87,10 @@ They cannot override a rejection: a proposal that coin holders vote down stays r
 
 ## Related pages
 
-- [Zcash Community Grants](/zcash-organizations/zcash-community-grants)
-- [Financial Privacy Foundation](/zcash-organizations/financial-privacy-foundation)
-- [Zcash Labs](/zcash-organizations/zcash-labs), which uses this program to seek reimbursement for work it funds itself
-- [Development Fund](/start-here/development-fund)
+- [Zcash Community Grants](/zcash-organizations/zcash-community-grants): funding for proposed work
+- [Financial Privacy Foundation](/zcash-organizations/financial-privacy-foundation): runs the application process
+- [Zcash Labs](/zcash-organizations/zcash-labs): seeks reimbursement through this program for work it funds itself
+- [Development Fund](/start-here/development-fund): where the funding streams come from
 
 ## Sources
 
