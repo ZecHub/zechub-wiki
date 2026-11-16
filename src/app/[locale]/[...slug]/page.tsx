@@ -54,6 +54,7 @@ import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageO
 import { rewriteRetroactiveGrantsPage } from "@/lib/pageOverrides/retroactiveGrantsPage";
 import { rewriteEccPage } from "@/lib/pageOverrides/electricCoinCompanyPage";
 import { rewriteFpfPageFull } from "@/lib/pageOverrides/financialPrivacyFoundationPage";
+import { rewriteObscuraLabsPage } from "@/lib/pageOverrides/obscuraLabsPage";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
 import { rewriteZkSnarksGuide } from "@/lib/pageOverrides/zkSnarksGuide";
@@ -6394,6 +6395,9 @@ export default async function Page(props: {
   if (slug.join("/") === "zcash-organizations/electric-coin-company" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteEccPage(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-organizations/obscura-labs" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteObscuraLabsPage(processedMarkdown);
+  }
   if (slug.join("/") === "guides/raspberry-pi-4-zebra-node" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewritePiZebraGuide(processedMarkdown);
   }
@@ -6775,7 +6779,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || ["zcash-organizations/coinholder-directed-retroactive-grants", "zcash-organizations/electric-coin-company", "zcash-organizations/financial-privacy-foundation"].includes(slug.join("/"))}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || ["zcash-organizations/coinholder-directed-retroactive-grants", "zcash-organizations/electric-coin-company", "zcash-organizations/financial-privacy-foundation", "zcash-organizations/obscura-labs"].includes(slug.join("/"))}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
