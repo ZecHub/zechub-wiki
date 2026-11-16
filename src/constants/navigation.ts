@@ -3,10 +3,20 @@ import ZakuraIcon from "@/components/UI/ZakuraIcon";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 
-import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
+import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip, MdFoundation, MdRadar as Radar } from "react-icons/md";
 import { LuFileKey as FileKey } from "react-icons/lu";
 import { GrGroup as Group } from "react-icons/gr";
-import { FaJarWheat as Jar } from "react-icons/fa6";
+import { FaJarWheat as Jar, FaLaptopCode } from "react-icons/fa6";
+import {
+  GiEgyptianSphinx as EgyptianSphinx,
+  GiBorderedShield as BordererShield,
+  GiCheckedShield as CheckedShield,
+  GiSoapExperiment,
+  GiHorseHead as HorseHead,
+} from "react-icons/gi";
+import { HiOutlineBuildingLibrary } from "react-icons/hi2";
+import { GrStakeholder as Stakeholder } from "react-icons/gr";
+import { TbHexagonLetterZ as HexagonLetterZ, TbCircleKey as CircleKey } from "react-icons/tb";
 import { BsFillArrowUpRightCircleFill as ArrowUp } from "react-icons/bs";
 
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
@@ -31,6 +41,7 @@ import {
   ShieldCheck,
   Info,
   Presentation,
+<<<<<<< HEAD
   GraduationCap,
   Users,
   Building2,
@@ -38,6 +49,9 @@ import {
   Cpu,
   ShieldCheck as PrivacyShield,
   FlaskConical,
+=======
+  Library,
+>>>>>>> 04887f4ee (nav: uniform dropdowns, browse-all footers, org list; fix DAO image crash)
 } from "lucide-react";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -289,6 +303,11 @@ export const navigations: Array<NavigationItem> = [
         name: "Testnet",
         path: "/using-zcash/testnet",
       },
+      {
+        name: "Browse all Use Zcash",
+        path: "/using-zcash/buying-zec",
+        icon: Library,
+      },
     ],
   },
   {
@@ -369,6 +388,27 @@ export const navigations: Array<NavigationItem> = [
       {
 	name: "Zcash Engineering Office Hours",
 	path: "/zcash-community/zcash-engineering-office-hours",
+      },
+      { name: "ZODL", path: "/zcash-organizations/ZODL", icon: EgyptianSphinx },
+      { name: "Electric Coin Company", path: "/zcash-organizations/electric-coin-company", icon: Radar },
+      { name: "Zcash Foundation", path: "/zcash-organizations/zcash-foundation", icon: CheckedShield },
+      { name: "Zcash Community Grants", path: "/zcash-organizations/zcash-community-grants", icon: HexagonLetterZ },
+      { name: "Shielded Labs", path: "/zcash-organizations/shielded-labs", icon: BordererShield },
+      { name: "Zingo Labs", path: "/zcash-organizations/zingo-labs", icon: GiSoapExperiment },
+      {
+        name: "More orgs",
+        path: "/zcash-organizations/financial-privacy-foundation",
+        icon: HiOutlineBuildingLibrary,
+        links: [
+          { name: "Financial Privacy Foundation", path: "/zcash-organizations/financial-privacy-foundation", icon: MdFoundation },
+          { name: "Valar Group", path: "/zcash-organizations/valar-group", icon: FaLaptopCode },
+          { name: "Zcash Labs", path: "/zcash-organizations/zcash-labs", icon: HiOutlineBuildingLibrary },
+          { name: "CoinHolder Directed Retroactive Grants", path: "/zcash-organizations/coinholder-directed-retroactive-grants", icon: Stakeholder },
+          { name: "Sovright", path: "/zcash-organizations/sovright", icon: CircleKey },
+          { name: "Obscura Labs", path: "/zcash-organizations/obscura-labs", icon: HorseHead },
+          { name: "Brand", path: "/zcash-organizations/brand", icon: BrandIcon },
+          { name: "ZKAV Club", path: "/zcash-organizations/zkav", icon: "zkav-club.png" },
+        ],
       },
     ],
   },
@@ -489,6 +529,83 @@ export const navigations: Array<NavigationItem> = [
         name: "Zenith Installation",
         path: "/guides/zenith-installation",
       },
+<<<<<<< HEAD
+=======
+      {
+        name: "Zero-Knowledge vs Decoys",
+        label: "Zero Knowledge vs Decoy Systems",
+        path: "/guides/zero-knowledge-vs-decoys",
+      },
+      {
+        name: "Browse all Guides",
+        path: "/guides/raspberry-pi-4-full-node",
+        icon: Library,
+      },
+    ],
+  },
+  {
+    name: "Zcash Organizations",
+    label: "Organizations",
+    links: [
+      {
+        name: "ZODL",
+        path: "/zcash-organizations/ZODL",
+      },
+      {
+        name: "Electric Coin Company",
+        path: "/zcash-organizations/electric-coin-company",
+      },
+      {
+        name: "Zcash Foundation",
+        path: "/zcash-organizations/zcash-foundation",
+      },
+      {
+        name: "Zcash Community Grants",
+        path: "/zcash-organizations/zcash-community-grants",
+      },
+      {
+        name: "Financial Privacy Foundation",
+        path: "/zcash-organizations/financial-privacy-foundation",
+      },
+      {
+        name: "Shielded Labs",
+        path: "/zcash-organizations/shielded-labs",
+      },
+      {
+        name: "Valar Group",
+        path: "/zcash-organizations/valar-group",
+      },
+      {
+        name: "Zcash Labs",
+        path: "/zcash-organizations/zcash-labs",
+      },
+      {
+        name: "CoinHolder Directed Retroactive Grants",
+        path: "/zcash-organizations/coinholder-directed-retroactive-grants",
+      },
+      {
+        name: "Sovright",
+        path: "/zcash-organizations/sovright",
+      },
+      {
+        name: "Obscura Labs",
+        path: "/zcash-organizations/obscura-labs",
+      },
+      {
+        name: "Zingo Labs",
+        path: "/zcash-organizations/zingo-labs",
+      },
+      {
+        name: "Brand",
+        path: "/zcash-organizations/brand",
+        icon: BrandIcon,
+      },
+      {
+        name: "ZKAV Club",
+        path: "/zcash-organizations/zkav",
+        icon: "zkav-club.png",
+      },
+>>>>>>> 04887f4ee (nav: uniform dropdowns, browse-all footers, org list; fix DAO image crash)
     ],
   },
   {
@@ -636,13 +753,20 @@ export const menuSections: Record<string, MenuSection[]> = {
       ],
     },
     {
+      title: "Tools",
+      items: ["Tools", "Metamask Snap", "Zallet Quick Reference Guide", "Testnet"],
+    },
+    {
       title: "Understand",
       items: ["Transactions", "Memos", "Transparent Exchange Addresses", "Blockchain Explorers"],
     },
+<<<<<<< HEAD
     {
       title: "Tools",
       items: ["Tools", "MetaMask Snap", "Zallet Quick Reference Guide", "Testnet"],
     },
+=======
+>>>>>>> 04887f4ee (nav: uniform dropdowns, browse-all footers, org list; fix DAO image crash)
   ],
   "Zcash Community": [
     {
@@ -671,6 +795,18 @@ export const menuSections: Record<string, MenuSection[]> = {
     {
       title: "Organizations & governance",
       items: ["Zcash Organizations", "Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
+    },
+    {
+      title: "Organizations",
+      items: [
+        "ZODL",
+        "Electric Coin Company",
+        "Zcash Foundation",
+        "Zcash Community Grants",
+        "Shielded Labs",
+        "Zingo Labs",
+        "More orgs",
+      ],
     },
   ],
   Data: [

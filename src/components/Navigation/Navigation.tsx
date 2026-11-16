@@ -629,7 +629,6 @@ const GroupedLinks = ({
     return { title: section.title, links: sectionLinks };
   });
   const rest = links.filter((l) => !used.has(l.name));
-  if (rest.length > 0) blocks.push({ title: "More", links: rest });
   const shown = blocks.filter((b) => b.links.length > 0);
 
   if (shown.length === 1) {
@@ -662,6 +661,11 @@ const GroupedLinks = ({
           {row.map(renderBlock)}
         </div>
       ))}
+      {rest.length > 0 && (
+        <div className="col-span-2 mt-2 border-t border-slate-200 pt-3 dark:border-white/10">
+          {rest.map(renderLink)}
+        </div>
+      )}
     </>
   );
 };
@@ -751,7 +755,11 @@ const Dropdown = ({
           ref={panelRef}
           className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "start-0"}`}
         >
+<<<<<<< HEAD
           <div className="grid max-h-[calc(100vh-6rem)] w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 overflow-y-auto overscroll-contain rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
+=======
+          <div className="grid h-[768px] w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
+>>>>>>> 04887f4ee (nav: uniform dropdowns, browse-all footers, org list; fix DAO image crash)
             {children}
           </div>
         </div>

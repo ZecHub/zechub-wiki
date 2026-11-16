@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import MemberModal from "./member-modal";
 import { Link } from "@/i18n/navigation";
+<<<<<<< HEAD
 import Image from "next/image";
 import {
   encodeZip321Memo,
@@ -12,6 +13,9 @@ import {
 import { openPaymentUri } from "@/lib/openPaymentUri";
 
 // next/image throws on a relative src, so make sure local paths start with "/".
+=======
+import Image from "next/image";   // ← NEW
+>>>>>>> 04887f4ee (nav: uniform dropdowns, browse-all footers, org list; fix DAO image crash)
 function normalizeImg(src?: string): string {
   if (!src) return "/placeholder.svg";
   if (src.startsWith("/") || src.startsWith("http://") || src.startsWith("https://")) return src;
