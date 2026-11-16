@@ -5,6 +5,7 @@ import {
   Line,
   BarChart,
   Bar,
+  ComposedChart,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -19,7 +20,7 @@ type Day = {
   end: number;
   expiry: { total: number; zero: number; nonzero: number; pre_overwinter: number; zero_fraction: number };
   counts: { blocks: number; txs: number };
-  shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number };
+  shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number; nsm_value_balance?: number };
   types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number; shielded_coinbase?: number; transparent_coinbase?: number };
   addresses: { unique_receivers: number; total_receiving_outputs: number };
   anchors?: { sapling: number; orchard: number; ironwood: number };
@@ -37,6 +38,15 @@ type ShieldedCoinbaseRecord = {
   orchard_value_balance: number;
   ironwood_value_balance: number;
 };
+type TipPools = {
+  transparent: number;
+  sprout: number;
+  sapling: number;
+  orchard: number;
+  ironwood: number;
+  deferred: number;
+  nsm: number;
+};
 type Results = {
   expiry: Day["expiry"] & { delta_histogram: Record<string, number> };
   counts: Day["counts"];
@@ -47,12 +57,16 @@ type Results = {
   locktime: Day["locktime"];
   spends: Day["spends"];
   shielded_coinbases?: ShieldedCoinbaseRecord[];
+  tip_pools?: TipPools;
   per_day: Day[];
 };
+const NU7_HEIGHT = 3_543_405;
+
 const CHARTS = [
   { id: "txs", label: "Transactions", keys: ["txs"], group: "counts" },
   { id: "shielded", label: "Shielded actions", keys: ["sapling_spends", "sapling_outputs", "orchard", "ironwood", "sprout"], group: "shielded" },
   { id: "value", label: "Value balances", keys: ["sprout_vpub_old", "sprout_vpub_new", "sapling_vb", "orchard_vb", "ironwood_vb"], group: "shielded" },
+  { id: "nsm", label: "NSM", keys: ["nsm_vb", "nsm_cumul"], group: "nsm" },
   { id: "bytes", label: "Tx bytes", keys: ["tx_bytes"], group: "blocks" },
   { id: "anchors", label: "Anchors cited", keys: ["sapling_anchors", "orchard_anchors", "ironwood_anchors"], group: "shielded" },
   { id: "trees", label: "Tree size", keys: ["sapling_tree", "orchard_tree", "ironwood_tree", "sprout_tree"], group: "shielded" },
@@ -81,6 +95,10 @@ const INFO: Record<string, { title: string; body: string }> = {
   value: {
     title: "Value balances",
     body: "Net value moving into or out of each shielded pool per window, in ZEC. Positive means value entered the pool; negative means it left. Sprout uses vpub_old (left) and vpub_new (entered).",
+  },
+  nsm: {
+    title: "NSM",
+    body: "Network Sustainability Mechanism reserve from NU7 (height 3,543,405). Top chart is the cumulative reserve with a zoomed linear scale so growth is visible. Bottom chart is the per-window fee contribution (seed excluded so the scale fits daily fees). The tip value is the absolute current size from the state database.",
   },
   types: {
     title: "Transaction type mix",
@@ -135,6 +153,8 @@ const COLORS: Record<string, string> = {
   sapling_vb: "#8b5cf6",
   orchard_vb: "#22d3ee",
   ironwood_vb: "#fb923c",
+  nsm_vb: "#60a5fa",
+  nsm_cumul: "#f59e0b",
   tx_bytes: "#94a3b8",
   sapling_anchors: "#8b5cf6",
   orchard_anchors: "#22d3ee",
@@ -226,10 +246,12 @@ export default function ChainStatePage() {
     }
   }, [data]);
   useEffect(() => {
-    if (chartId === "shielded_cb") setLogScale(false);
+    if (chartId === "shielded_cb" || chartId === "nsm") setLogScale(false);
   }, [chartId]);
   if (!data) return <div className="p-4 text-slate-300">Loading chain stats…</div>;
-  const days = data.per_day || [];
+  const days = chartId === "nsm"
+    ? (data.per_day || []).filter((d) => d.end >= NU7_HEIGHT)
+    : (data.per_day || []);
   const rangeStart = days.length ? days[0].start : 0;
   const rangeEnd = days.length ? days[days.length - 1].end : 0;
   const fullSeries = (data.per_day || []).map((d) => ({
@@ -254,6 +276,14 @@ export default function ChainStatePage() {
     cumul.set(d.start, { sap: sapC, orch: orchC, iron: ironC, sprout: sproutC });
   }
   const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
+  let nsmCumul = 0;
+  const nsmCumulMap = new Map<number, number>();
+  for (const d of filtered) {
+    if (d.end >= NU7_HEIGHT) {
+      nsmCumul += n(d.shielded?.nsm_value_balance) / 1e8;
+    }
+    nsmCumulMap.set(d.start, nsmCumul);
+  }
   const rawSeries = filtered.map((d) => ({
     day: d.start,
     txs: n(d.counts?.txs),
@@ -267,6 +297,8 @@ export default function ChainStatePage() {
     sapling_vb: -n(d.shielded?.sapling_value_balance) / 1e8,
     orchard_vb: -n(d.shielded?.orchard_value_balance) / 1e8,
     ironwood_vb: -n(d.shielded?.ironwood_value_balance) / 1e8,
+    nsm_vb: n(d.shielded?.nsm_value_balance) / 1e8,
+    nsm_cumul: nsmCumulMap.get(d.start) ?? 0,
     tx_bytes: n(d.blocks?.total_tx_bytes),
     sapling_anchors: n(d.anchors?.sapling),
     orchard_anchors: n(d.anchors?.orchard),
@@ -436,8 +468,8 @@ export default function ChainStatePage() {
           </select>
         </div>
       </div>
-      <div className="h-[340px] md:h-[450px] w-full mb-2">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className={chartId === "nsm" ? "w-full mb-2" : "h-[340px] md:h-[450px] w-full mb-2"}>
+        <ResponsiveContainer width="100%" height={chartId === "nsm" ? 360 : "100%"}>
           {chartId === "expiry_delta" ? (
             <BarChart data={expiryChart}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
@@ -446,6 +478,22 @@ export default function ChainStatePage() {
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="count" fill="#3b82f6" />
             </BarChart>
+          ) : chartId === "nsm" ? (
+            <LineChart data={series}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+              <XAxis dataKey="day" stroke="#64748b" fontSize={12} angle={-45} textAnchor="end" height={50} />
+              <YAxis
+                stroke="#f59e0b"
+                fontSize={12}
+                domain={[
+                  (dataMin: number) => Math.floor(dataMin - 1),
+                  (dataMax: number) => Math.ceil(dataMax + 1),
+                ]}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Line type="monotone" dataKey="nsm_cumul" stroke="#f59e0b" dot={false} strokeWidth={2} name="Cumulative reserve" />
+            </LineChart>
           ) : (
             <LineChart data={series}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
@@ -471,6 +519,25 @@ export default function ChainStatePage() {
       </div>
       {chartId === "shielded_cb" && (
         <p className="text-xs text-slate-500 dark:text-slate-400 mb-2 -mt-1">Blocks with a shielded coinbase per day window</p>
+      )}
+      {chartId === "nsm" && (
+        <>
+          <div className="h-[220px] w-full mb-4">
+            <div className="text-xs text-slate-400 mb-1 px-1">Fee redirected to NSM per day window (ZEC)</div>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={series.filter((d) => (d.nsm_vb ?? 0) < 10)} margin={{ bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+                <XAxis dataKey="day" stroke="#64748b" fontSize={11} angle={-45} textAnchor="end" height={50} />
+                <YAxis stroke="#60a5fa" fontSize={11} />
+                <Tooltip content={<CustomTooltip />} />
+                <Bar dataKey="nsm_vb" fill="#60a5fa" name="Fee redirected to NSM" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-xs text-amber-200 bg-amber-950/40 border border-amber-700/60 rounded px-3 py-2 mb-4 mt-2">
+            The reserve starts at the NU7 seed of about 368.58 ZEC (height 3,543,405): unclaimed block subsidy and fees from before NU6 that were not paid out, set as the initial NSM balance. Subsequent growth is the 60% fee redirect after NU7. The tip value is the absolute current size from the state database.
+          </p>
+        </>
       )}
       {chartId !== "expiry_delta" && rangeEnd > rangeStart && (
         <div className="mb-4 px-2">
@@ -629,6 +696,14 @@ export default function ChainStatePage() {
             <Stat label="Sapling value balance" value={(-n(data.shielded.sapling_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#8b5cf6" />
             <Stat label="Orchard value balance" value={(-n(data.shielded.orchard_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#22d3ee" />
             <Stat label="Ironwood value balance" value={(-n(data.shielded.ironwood_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fb923c" />
+          </>
+        )}
+        {active.group === "nsm" && (
+          <>
+            <Stat label="NSM value balance (series sum)" value={(n(data.shielded.nsm_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fbbf24" />
+            {data.tip_pools && (
+              <Stat label="NSM tip (current)" value={(n(data.tip_pools.nsm) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fbbf24" />
+            )}
           </>
         )}
         {active.group === "types" && active.id !== "shielded_cb" && (
