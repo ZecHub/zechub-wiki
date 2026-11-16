@@ -1,7 +1,7 @@
 {
   "menuLabels": {
     "Accept Payments": "Accept Payments",
-    "Akash Network Zebra": "Akash Network Zebra",
+    "Akash Network Zebra": "Zebra on Akash",
     "Arborist Calls": "Arborist Calls",
     "Avalanche RedBridge": "Avalanche RedBridge",
     "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Plugin",
@@ -43,9 +43,9 @@
     "Payment Request URIs": "Payment Request URIs",
     "Podcast": "Podcast",
     "Private Community Treasury": "Private Community Treasury",
-    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 · Zcashd Full Node",
-    "Raspberry pi 4 Zebra Node": "Raspberry Pi 4 · Zebra Node",
-    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry Pi 5 · Zebra, Lightwalletd & Zingo",
+    "Raspberry Pi 4 Full Node": "Zebra + Zallet on Raspberry Pi 4",
+    "Raspberry pi 4 Zebra Node": "Zebra on Raspberry Pi 4",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Zebra stack on Raspberry Pi 5",
     "Recovering Funds": "Recovering Funds",
     "Research": "Research",
     "Send Money Privately": "Send Money Privately",

@@ -431,12 +431,12 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/hardened-zebrad",
       },
       {
-        name: "Akash Network Zcashd",
-        path: "/guides/akash-network-zcashd",
-      },
-      {
         name: "Akash Network Zebra",
         path: "/guides/akash-network-zebra",
+      },
+      {
+        name: "Zakura on Akash",
+        path: "/guides/akash-network-zakura",
       },
       {
         name: "Avalanche RedBridge",
@@ -694,15 +694,17 @@ export const menuSections: Record<string, MenuSection[]> = {
     {
       title: "Run a node",
       items: [
+        "Raspberry pi 4 Zebra Node",
         "Raspberry Pi 4 Full Node",
         "Raspberry pi5 Zebra Lightwalletd Zingo",
-        "Raspberry pi 4 Zebra Node",
         "Hardened Zebrad",
-        "Akash Network Zcashd",
         "Akash Network Zebra",
-        "Migration Guide Zcashd To Zebrad Zallet",
-        "Verifying Zcash Releases",
+        "Zakura on Akash",
       ],
+    },
+    {
+      title: "Upgrade & verify",
+      items: ["Migration Guide Zcashd To Zebrad Zallet", "Verifying Zcash Releases"],
     },
     {
       title: "Wallets & signing",
