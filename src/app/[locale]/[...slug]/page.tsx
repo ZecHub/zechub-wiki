@@ -60,6 +60,7 @@ import { rewriteSovrightPageFull } from "@/lib/pageOverrides/sovrightPage";
 import { rewriteValarGroupPage } from "@/lib/pageOverrides/valarGroupPage";
 import { rewriteZkavPage } from "@/lib/pageOverrides/zkavPage";
 import { rewriteZodlPage } from "@/lib/pageOverrides/zodlPage";
+import { rewriteZcgPageFull } from "@/lib/pageOverrides/zcgPageFull";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
 import { rewriteZkSnarksGuide } from "@/lib/pageOverrides/zkSnarksGuide";
@@ -6386,7 +6387,7 @@ export default async function Page(props: {
     processedMarkdown = rewriteZipListGuide(processedMarkdown);
   }
   if (slug.join("/") === "zcash-organizations/zcash-community-grants" && locale === routing.defaultLocale && processedMarkdown) {
-    processedMarkdown = rewriteZcgPage(processedMarkdown);
+    processedMarkdown = rewriteZcgPageFull(rewriteZcgPage(processedMarkdown));
   }
   if (slug.join("/") === "zcash-organizations/financial-privacy-foundation" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteFpfPageFull(rewriteFpfPage(processedMarkdown));
@@ -6796,7 +6797,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || ["zcash-organizations/coinholder-directed-retroactive-grants", "zcash-organizations/electric-coin-company", "zcash-organizations/financial-privacy-foundation", "zcash-organizations/obscura-labs", "zcash-organizations/shielded-labs", "zcash-organizations/sovright", "zcash-organizations/valar-group", "zcash-organizations/zkav", "zcash-organizations/zodl"].includes(slug.join("/").toLowerCase())}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || ["zcash-organizations/coinholder-directed-retroactive-grants", "zcash-organizations/electric-coin-company", "zcash-organizations/financial-privacy-foundation", "zcash-organizations/obscura-labs", "zcash-organizations/shielded-labs", "zcash-organizations/sovright", "zcash-organizations/valar-group", "zcash-organizations/zkav", "zcash-organizations/zodl", "zcash-organizations/zcash-community-grants"].includes(slug.join("/").toLowerCase())}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
