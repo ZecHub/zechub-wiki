@@ -53,6 +53,7 @@ import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
 import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
 import { rewriteRetroactiveGrantsPage } from "@/lib/pageOverrides/retroactiveGrantsPage";
 import { rewriteEccPage } from "@/lib/pageOverrides/electricCoinCompanyPage";
+import { rewriteFpfPageFull } from "@/lib/pageOverrides/financialPrivacyFoundationPage";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
 import { rewriteZkSnarksGuide } from "@/lib/pageOverrides/zkSnarksGuide";
@@ -6382,7 +6383,7 @@ export default async function Page(props: {
     processedMarkdown = rewriteZcgPage(processedMarkdown);
   }
   if (slug.join("/") === "zcash-organizations/financial-privacy-foundation" && locale === routing.defaultLocale && processedMarkdown) {
-    processedMarkdown = rewriteFpfPage(processedMarkdown);
+    processedMarkdown = rewriteFpfPageFull(rewriteFpfPage(processedMarkdown));
   }
   if (slug.join("/") === "zcash-organizations/sovright" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteSovrightPage(processedMarkdown);
@@ -6774,7 +6775,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || ["zcash-organizations/coinholder-directed-retroactive-grants", "zcash-organizations/electric-coin-company"].includes(slug.join("/"))}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides", "glossary-and-faqs", "privacy-tools", "zcash-tech", "contribute", "zero-to-zero-knowledge"].includes(slug[0]) || ["zcash-organizations/coinholder-directed-retroactive-grants", "zcash-organizations/electric-coin-company", "zcash-organizations/financial-privacy-foundation"].includes(slug.join("/"))}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
