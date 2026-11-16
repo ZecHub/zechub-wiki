@@ -18,10 +18,10 @@ interface WalletItemProps {
   tags: Tag[];
   likes: number;
   syncSpeed: string;
-  ironwood?: string;
+  nu7?: string;
   stage?: string;
   // Set (possibly to "") only for a deprecated wallet: the reason it is listed
-  // as no longer supporting Zcash. Replaces the Ironwood badge.
+  // as no longer supporting Zcash. Replaces the NU7 badge.
   deprecated?: string;
   onLike: () => void;
   onDislike: () => void;
@@ -55,11 +55,15 @@ const walletNotes: { [key: string]: string } = {
   mayaprotocol: "Cross-chain DEX, not a wallet",
 };
 
-// NU6.3 "Ironwood" upgrade status → badge colors (status text comes from Wallets.md)
-const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
-  "ready": {
+// NU7 compatibility status -> badge colours (the status text comes from Wallets.md).
+const nu7BadgeStyles: { [key: string]: { pill: string; dot: string } } = {
+  "compatible": {
     pill: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
     dot: "bg-emerald-500",
+  },
+  "compatible for transparent zec": {
+    pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+    dot: "bg-amber-500",
   },
   "in progress": {
     pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
@@ -69,14 +73,13 @@ const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
     pill: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
     dot: "bg-rose-500",
   },
-  // Wallets that never held shielded ZEC: Ironwood does not apply to them.
-  "transparent only": {
+  "not verified": {
     pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
     dot: "bg-slate-400",
   },
 };
 
-const ironwoodFallbackStyle = {
+const nu7FallbackStyle = {
   pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
   dot: "bg-slate-500",
 };
@@ -87,7 +90,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   logo,
   tags,
   syncSpeed,
-  ironwood,
+  nu7,
   stage,
   deprecated,
   likes,
@@ -134,7 +137,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
     hasShielded || hasTransparent
       ? [...(hasShielded ? ["Shielded"] : []), ...(hasTransparent ? ["Transparent"] : [])]
       : allFeatures.slice(0, 3);
-  const ironStyle = ironwood ? (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle) : null;
+  const nu7Style = nu7 ? (nu7BadgeStyles[nu7.trim().toLowerCase()] ?? nu7FallbackStyle) : null;
 
   return (
     <div className="wallet-item flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
@@ -178,7 +181,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
           ) : null}
         </div>
 
-        {/* Deprecated: a red badge and the reason, in place of the Ironwood badge */}
+        {/* Deprecated: a red badge and the reason, in place of the NU7 badge */}
         {deprecated !== undefined && (
           <div className="mt-3">
             <span className="inline-flex items-center rounded-full bg-rose-600 px-3 py-1 text-xs font-semibold text-white dark:bg-rose-700">
@@ -190,16 +193,16 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </div>
         )}
 
-        {/* NU6.3 "Ironwood" readiness badge, plus the release stage when not final */}
-        {deprecated === undefined && (ironwood || stage) && (
+        {/* NU7 compatibility badge, plus the release stage when not final */}
+        {deprecated === undefined && (nu7 || stage) && (
           <div className="mt-3 flex flex-wrap gap-2">
-            {ironwood && ironStyle && (
+            {nu7 && nu7Style && (
               <span
-                title="NU6.3 Ironwood network upgrade status"
-                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${ironStyle.pill}`}
+                title="NU7 network upgrade compatibility status"
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${nu7Style.pill}`}
               >
-                <span className={`h-1.5 w-1.5 rounded-full ${ironStyle.dot}`} />
-                Ironwood {ironwood}
+                <span className={`h-1.5 w-1.5 rounded-full ${nu7Style.dot}`} />
+                NU7: {nu7}
               </span>
             )}
             {stage && (

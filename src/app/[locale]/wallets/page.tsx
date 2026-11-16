@@ -76,7 +76,7 @@ export default async function Page(props: {
       operatingSystem: [] as string[],
       walletSupport: [] as string[],
       syncSpeed: "",
-      ironwood: "",
+      nu7: "",
     },
   ].filter((e) => !parsed.some((w: { title: string }) => w.title.toLowerCase().replace(/[^a-z0-9]/g, "") === e.title.toLowerCase().replace(/[^a-z0-9]/g, "")));
   const walletsParsed = [...parsed, ...extraEntries];

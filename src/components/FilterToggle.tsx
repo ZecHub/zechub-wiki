@@ -8,7 +8,7 @@ interface FilterToggleProps {
     Pools: Set<string>;
     "Wallet Support": Set<string>;
     Features: Set<string>;
-    Ironwood?: Set<string>;
+    NU7?: Set<string>;
   };
   activeFilters: string[];
   toggleFilter: (filterCategory: string, filterValue: string) => void;

@@ -15,7 +15,7 @@ interface Wallet {
   operatingSystem: string[];
   walletSupport: string[];
   syncSpeed: string;
-  ironwood: string;
+  nu7?: string;
   status?: string;
   statusReason?: string;
   stage?: string;
@@ -25,11 +25,19 @@ interface Wallet {
 // leaves the directory — no filters, no counts — and is listed at the bottom.
 const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
-const IRONWOOD_ORDER = ["ready", "in progress", "not ready", "transparent only"];
-const ironwoodRank = (w: Wallet) => {
-  const i = IRONWOOD_ORDER.indexOf(w.ironwood?.trim().toLowerCase() ?? "");
-  return i === -1 ? IRONWOOD_ORDER.length : i;
+// NU7 compatibility sorting order.
+const NU7_ORDER = [
+  "compatible",
+  "compatible for transparent zec",
+  "in progress",
+  "not ready",
+  "not verified",
+];
+const nu7Index = (value?: string) => {
+  const i = NU7_ORDER.indexOf(value?.trim().toLowerCase() ?? "");
+  return i === -1 ? NU7_ORDER.length : i;
 };
+const nu7Rank = (w: Wallet) => nu7Index(w.nu7);
 
 interface Props {
   allWallets: Wallet[];
@@ -52,7 +60,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Pools: new Set<string>(),
     "Wallet Support": new Set<string>(),
     Features: new Set<string>(),
-    Ironwood: new Set<string>(),
+    NU7: new Set<string>(),
   });
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
   const [error, setError] = useState<{ [key: string]: string }>({});
@@ -101,7 +109,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       const poolsSet = new Set<string>();
       const walletSupportSet = new Set<string>();
       const featuresSet = new Set<string>();
-      const ironwoodSet = new Set<string>();
+      const nu7Set = new Set<string>();
 
       allWallets.filter((w) => !isDeprecated(w)).forEach((wallet) => {
         wallet.devices.forEach((d) => devicesSet.add(d.trim()));
@@ -109,7 +117,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         wallet.pools.forEach((p) => poolsSet.add(p.trim()));
         wallet.walletSupport?.forEach((ws) => walletSupportSet.add(ws.trim()));
         wallet.features.forEach((f) => featuresSet.add(f.trim()));
-        if (wallet.ironwood) ironwoodSet.add(wallet.ironwood.trim());
+        if (wallet.nu7) nu7Set.add(wallet.nu7.trim());
       });
 
       setFilters({
@@ -122,7 +130,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           Array.from(walletSupportSet).sort((a, b) => a.localeCompare(b)),
         ),
         Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
-        Ironwood: new Set(Array.from(ironwoodSet).sort((a, b) => a.localeCompare(b))),
+        NU7: new Set(Array.from(nu7Set).sort((a, b) => nu7Index(a) - nu7Index(b) || a.localeCompare(b))),
       });
 
       let initialLikes: { [key: string]: number } = {};
@@ -207,7 +215,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (category === "Pools") return wallet.pools.includes(value);
       if (category === "Wallet Support") return wallet.walletSupport?.includes(value) ?? false;
       if (category === "Features") return wallet.features.includes(value);
-      if (category === "Ironwood") return wallet.ironwood === value;
+      if (category === "NU7") return wallet.nu7 === value;
       return true;
     });
   const filteredWallets = activeWallets.filter(matchesFilters);
@@ -215,11 +223,11 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   // lists deprecated wallets that don't match; the section hides when none do.
   const filteredDeprecated = deprecatedWallets.filter(matchesFilters);
 
-  // Ironwood-ready wallets first, then In Progress, Not Ready, Transparent only
-  // and wallets without a status; the rating orders wallets within each group.
+  // NU7-compatible wallets first, then transparent-only, In Progress, Not Ready and
+  // Not verified; the rating orders wallets within each group.
   const sortedWallets = [...filteredWallets].sort(
     (a, b) =>
-      ironwoodRank(a) - ironwoodRank(b) ||
+      nu7Rank(a) - nu7Rank(b) ||
       (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
 
@@ -314,7 +322,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   ]}
                   likes={likes[wallet.title] || 0}
                   syncSpeed={wallet.syncSpeed}
-                  ironwood={wallet.ironwood}
+                  nu7={wallet.nu7}
                   stage={wallet.stage}
                   onLike={() => handleLike(wallet.title)}
                   onDislike={() => handleDislike(wallet.title)}

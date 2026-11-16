@@ -106,6 +106,21 @@ export const blockchainExplorers = [
     thumbnailImageDark: '/explorer/sochain-dark.png',
   },
   {
+    title: 'ZecZcash Explorer',
+    badge: 'Zcash only',
+    description:
+      'A free Zcash-only block explorer for mainnet: transactions, blocks and transparent addresses with balance and history. Shielded and Unified addresses are recognized but never de-anonymized, and each lookup explains what is public on-chain and what stays private.',
+    features: [
+      'Mainnet',
+      'Blocks & transactions',
+      'Address lookup',
+    ],
+    url: 'https://zeczcash.com/explorer',
+    thumbnailImage: '/explorer/zeczcash.png',
+    thumbnailImageLight: '/explorer/zeczcash-light.png',
+    thumbnailImageDark: '/explorer/zeczcash-dark.png',
+  },
+  {
     title: 'BlockExplorer.one',
     badge: 'Multi-chain',
     description:

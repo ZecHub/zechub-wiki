@@ -1,0 +1,19 @@
+.shell {
+  --community-focus: #18181b;
+}
+
+:global(.dark) .shell {
+  --community-focus: #ffffff;
+}
+
+.shell a:focus-visible {
+  /* The site's global CSS suppresses outlines, so use a scoped focus ring. */
+  box-shadow: 0 0 0 3px var(--community-focus);
+  text-decoration: underline;
+}
+
+:global(.dark) .description {
+  /* Keep the introduction readable over the moving blue backdrop. */
+  --community-description: #c5d4e0;
+  color: var(--community-description);
+}

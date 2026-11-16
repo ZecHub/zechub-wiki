@@ -72,18 +72,35 @@ export function formatZecAmount(amount: number | string): string {
     if (amount <= 0) {
       throw new Error("Invalid amount: must be greater than zero");
     }
-    // Handle JavaScript floating-point scientific notation (e.g. 1e-8)
-    // Convert to fixed string with 8 decimals, then trim trailing zeroes
-    str = amount.toFixed(8);
+    // Preserve the represented value so excess precision can be rejected.
+    // toFixed(8) would silently change the amount before validation.
+    str = String(amount);
   } else {
     str = amount.trim();
-    if (/e/i.test(str)) {
-      const num = Number(str);
-      if (isNaN(num) || !isFinite(num) || num <= 0) {
-        throw new Error("Invalid amount: must be greater than zero");
-      }
-      str = num.toFixed(8);
+  }
+
+  if (/e/i.test(str)) {
+    const num = Number(str);
+    if (!Number.isFinite(num) || num <= 0) {
+      throw new Error("Invalid amount: must be greater than zero");
     }
+    if (num > MAX_ZEC_SUPPLY) {
+      throw new Error(`Invalid amount: exceeds maximum ZEC supply (${MAX_ZEC_SUPPLY})`);
+    }
+    const scientific = /^\+?(\d+(?:\.\d*)?|\.\d+)[eE]([+-]?\d+)$/.exec(str);
+    if (!scientific) {
+      throw new Error("Invalid amount format: must be a positive decimal number");
+    }
+    // Move the decimal point using the original digits, never a rounded Number.
+    const [whole, fraction = ""] = scientific[1].split(".");
+    const digits = whole + fraction;
+    const point = whole.length + Number(scientific[2]);
+    str = point <= 0
+      ? `0.${"0".repeat(-point)}${digits}`
+      : point >= digits.length
+        ? digits + "0".repeat(point - digits.length)
+        : `${digits.slice(0, point)}.${digits.slice(point)}`;
+    str = str.replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
   }
 
   // Validate decimal format: positive decimal number

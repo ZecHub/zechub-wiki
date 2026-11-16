@@ -78,6 +78,7 @@ const STATUS_FILTERS = ["All", "Executed", "Passed", "Rejected"] as const;
 const TOP_TABS = ["Proposals", "Charts", "Treasury"] as const;
 
 function flattenDao(dao: DaoData): FlatProposal[] {
+  if (!dao.proposals || !Array.isArray(dao.proposals)) return [];
   return dao.proposals
     .map((raw: any) => {
       if (raw.proposal && raw.proposal.votes !== undefined) {
@@ -134,6 +135,10 @@ function applyFilters(
     list = list.filter((p) => {
       const proposal = p.proposal;
 
+      // As on the card (proposal-card.tsx): an open proposal has no outcome
+      // yet. With revoting enabled it cannot pass before it expires.
+      if (proposal.status.toLowerCase() === "open") return false;
+
       const yes = parseInt(proposal.votes?.yes || "0", 10);
       const no = parseInt(proposal.votes?.no || "0", 10);
       const abstain = parseInt(proposal.votes?.abstain || "0", 10);
@@ -142,8 +147,8 @@ function applyFilters(
       if (totalPower === 0) return false;
 
       const participation = (yes + no + abstain) / totalPower;
-      const approvalRate =
-        yes + no + abstain > 0 ? yes / (yes + no + abstain) : 0;
+      // Abstentions count towards the quorum only (see proposal-card.tsx).
+      const approvalRate = yes + no > 0 ? yes / (yes + no) : 0;
 
       const requiredQuorum = parseFloat(
         proposal.threshold?.threshold_quorum?.quorum?.percent || "0"

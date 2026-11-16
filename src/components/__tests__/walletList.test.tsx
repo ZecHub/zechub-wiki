@@ -23,7 +23,7 @@ const wallets = parseMarkdown(`
 ## [Alive](https://alive.example)
 - Devices: Mobile
 - Pools: Orchard | Ironwood
-- Ironwood: Ready
+- NU7: Compatible
 - Stage: Beta
 
 ---
@@ -50,7 +50,7 @@ describe("WalletList", () => {
     expect(within(section).getByText("Gone")).toBeInTheDocument();
     expect(within(section).getByText("End-of-life, no NU6.3 support")).toBeInTheDocument();
     expect(within(section).queryByText("Alive")).not.toBeInTheDocument();
-    expect(within(section).queryByText(/^Ironwood /)).not.toBeInTheDocument();
+    expect(within(section).queryByText(/^NU7: /)).not.toBeInTheDocument();
   });
 
   it("applies the filters to the deprecated section too, hiding it when nothing matches", async () => {
@@ -85,14 +85,14 @@ describe("WalletList", () => {
     expect(within(sidebar).queryByText("Desktop")).not.toBeInTheDocument();
   });
 
-  it("shows the Ironwood badge and the release stage on an active wallet", () => {
+  it("shows the NU7 badge and the release stage on an active wallet", () => {
     render(<WalletList allWallets={wallets} />);
 
-    expect(screen.getByText("Ironwood Ready")).toBeInTheDocument();
+    expect(screen.getByText("NU7: Compatible")).toBeInTheDocument();
     expect(screen.getByText("Beta")).toBeInTheDocument();
   });
 
-  it("orders Ironwood-ready wallets first, whatever their position in the file", () => {
+  it("orders NU7-compatible wallets first, whatever their position in the file", () => {
     const list = parseMarkdown(`
 ## [NoStatus](https://a.example)
 - Devices: Mobile
@@ -101,25 +101,25 @@ describe("WalletList", () => {
 
 ## [Late](https://b.example)
 - Devices: Mobile
-- Ironwood: Not Ready
+- NU7: Not Ready
 
 ---
 
 ## [Transp](https://c.example)
 - Devices: Mobile
-- Ironwood: Transparent only
+- NU7: Compatible for transparent zec
 
 ---
 
 ## [Early](https://d.example)
 - Devices: Mobile
-- Ironwood: Ready
+- NU7: Compatible
 
 ---
 
 ## [Busy](https://e.example)
 - Devices: Mobile
-- Ironwood: In Progress
+- NU7: In Progress
 `);
     render(<WalletList allWallets={list} />);
 

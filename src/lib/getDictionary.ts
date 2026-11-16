@@ -24,6 +24,7 @@ const dictionaries: Record<string, () => Promise<Dictionary>> = {
   ee: () => import('../../dictionaries/ee.json').then((m) => (m && m.default) || m),
   id: () => import('../../dictionaries/id.json').then((m) => (m && m.default) || m),
   el: () => import('../../dictionaries/el.json').then((m) => (m && m.default) || m),
+  fa: () => import('../../dictionaries/fa.json').then((m) => (m && m.default) || m),
 };
 
 export const getDictionary = async (locale: Locale = i18n.defaultLocale): Promise<Dictionary> => {

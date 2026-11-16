@@ -9,11 +9,11 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'Zcash Developer Tools | ZecHub',
   description:
-    'ZEC/Zats converter, ZIP-321 payment request builder, unified address decoder, block-time converter, and Crosslink testnet tools.',
+    'ZEC/Zats converter, ZIP-321 payment request builder, and unified address decoder.',
   openGraph: {
     title: 'Zcash Developer Tools',
     description:
-      'Convert ZEC ↔ Zats, build ZIP-321 payment URIs, decode unified addresses, convert block times, and open Crosslink testnet tools.',
+      'Convert ZEC ↔ Zats, build ZIP-321 payment URIs, and decode unified addresses.',
   },
 }
 
