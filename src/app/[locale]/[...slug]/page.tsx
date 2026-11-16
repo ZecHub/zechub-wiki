@@ -72,6 +72,7 @@ import { rewriteCryptonoteGuide } from "@/lib/pageOverrides/cryptonoteGuide";
 import { rewriteLelantusGuide } from "@/lib/pageOverrides/lelantusGuide";
 import { rewriteSeedPhrasesGuide } from "@/lib/pageOverrides/seedPhrasesGuide";
 import { rewriteTeesGuide } from "@/lib/pageOverrides/teesGuide";
+import { rewriteZeroToZeroIndex } from "@/lib/pageOverrides/zeroToZeroIndex";
 import { rewriteHashFunctionsGuide } from "@/lib/pageOverrides/hashFunctionsGuide";
 import { rewriteZeroAddressesGuide } from "@/lib/pageOverrides/zeroAddressesGuide";
 import { rewriteUnifiedAddressesGuide } from "@/lib/pageOverrides/unifiedAddressesGuide";
@@ -6332,6 +6333,9 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zero-to-zero-knowledge/hash-functions" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHashFunctionsGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "zero-to-zero-knowledge/zero-to-zero-knowledge" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZeroToZeroIndex(processedMarkdown);
   }
   if (slug.join("/") === "zero-to-zero-knowledge/cryptonote" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteCryptonoteGuide(processedMarkdown);
