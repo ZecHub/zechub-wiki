@@ -431,8 +431,14 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/akash-network-zebra",
       },
       {
+        name: "Zakura Node",
+        path: "/zcash-tech/zakura-node",
+        icon: "/icons/zakura.svg",
+      },
+      {
         name: "Zakura on Akash",
         path: "/guides/akash-network-zakura",
+        icon: "/icons/zakura.svg",
       },
       {
         name: "Avalanche RedBridge",
@@ -694,6 +700,7 @@ export const menuSections: Record<string, MenuSection[]> = {
         "Raspberry pi5 Zebra Lightwalletd Zingo",
         "Hardened Zebrad",
         "Akash Network Zebra",
+        "Zakura Node",
         "Zakura on Akash",
       ],
     },
