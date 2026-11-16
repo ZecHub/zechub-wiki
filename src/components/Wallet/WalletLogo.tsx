@@ -111,9 +111,45 @@ function process(img: HTMLImageElement, keepColors: boolean): Variants {
     octx.fill();
     octx.globalCompositeOperation = "source-over";
   }
-  const light = out.toDataURL("image/png");
+  const original = out.toDataURL("image/png");
 
-  let darkUrl = light;
+  // Mostly light, low-saturation artwork (cream or white on a transparent background) vanishes on a
+  // light page: darken it for light mode and keep the original for dark mode.
+  let light = original;
+  if (!keepColors && !isAppIcon) {
+    const od = octx.getImageData(0, 0, bw, bh);
+    const q = od.data;
+    let pale = 0;
+    let solid = 0;
+    for (let i = 0; i < q.length; i += 4) {
+      if (q[i + 3] < 40) continue;
+      solid++;
+      const m = Math.max(q[i], q[i + 1], q[i + 2]);
+      if (m > 190 && m - Math.min(q[i], q[i + 1], q[i + 2]) < 50) pale++;
+    }
+    if (solid > 0 && pale / solid > 0.5) {
+      for (let i = 0; i < q.length; i += 4) {
+        const m = Math.max(q[i], q[i + 1], q[i + 2]);
+        const sat = m - Math.min(q[i], q[i + 1], q[i + 2]);
+        if (m > 150 && sat < 60) {
+          const t = m >= 200 ? 1 : (m - 150) / 50;
+          q[i] = q[i] + (27 - q[i]) * t;
+          q[i + 1] = q[i + 1] + (41 - q[i + 1]) * t;
+          q[i + 2] = q[i + 2] + (64 - q[i + 2]) * t;
+        }
+      }
+      const lc = document.createElement("canvas");
+      lc.width = bw;
+      lc.height = bh;
+      const lctx = lc.getContext("2d");
+      if (lctx) {
+        lctx.putImageData(od, 0, 0);
+        light = lc.toDataURL("image/png");
+      }
+    }
+  }
+
+  let darkUrl = original;
   if (!keepColors && !isAppIcon && dark / Math.max(opaque, 1) > 0.02) {
     const od = octx.getImageData(0, 0, bw, bh);
     const q = od.data;
