@@ -8,6 +8,8 @@ interface FilterToggleProps {
     Pools: Set<string>;
     "Wallet Support": Set<string>;
     Features: Set<string>;
+    Stage: Set<string>;
+    "Nym Mixnet": Set<string>;
     NU7: Set<string>;
   };
   activeFilters: string[];

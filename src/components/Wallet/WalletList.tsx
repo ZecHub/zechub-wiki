@@ -17,6 +17,7 @@ interface Wallet {
   walletSupport: string[];
   syncSpeed: string;
   nu7?: string;
+  nymMixnet?: string;
   status?: string;
   statusReason?: string;
   stage?: string;
@@ -24,6 +25,16 @@ interface Wallet {
 
 const isDeprecated = (w: Wallet) =>
   w.status?.toLowerCase() === "deprecated";
+
+const isBeta = (w: Wallet) =>
+  w.stage?.trim().toLowerCase() === "beta";
+
+const isTransparentOnly = (w: Wallet) =>
+  w.pools.length > 0 &&
+  w.pools.every((pool) => {
+    const value = pool.trim().toLowerCase();
+    return value === "transparent" || value === "transparent only";
+  });
 
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
@@ -53,6 +64,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Pools: new Set<string>(),
     "Wallet Support": new Set<string>(),
     Features: new Set<string>(),
+    Stage: new Set<string>(),
+    "Nym Mixnet": new Set<string>(),
     NU7: new Set<string>(),
   });
 
@@ -101,6 +114,28 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     t?.wallets?.deprecatedNote ??
     "Kept for reference only. Do not use these wallets for new funds.";
 
+  const betaTitle =
+    t?.wallets?.betaTitle ?? "Beta wallets";
+
+  const betaNote =
+    t?.wallets?.betaNote ??
+    "Test releases. Expect rough edges and use small amounts.";
+
+  const transparentOnlyTitle =
+    t?.wallets?.transparentOnlyTitle ??
+    "Transparent-only wallets";
+
+  const transparentOnlyNote =
+    t?.wallets?.transparentOnlyNote ??
+    "These wallets only support transparent ZEC, which does not hide transaction details.";
+
+  const nymMixnetTitle =
+    t?.wallets?.nymMixnetTitle ?? "Nym Mixnet support";
+
+  const nymMixnetNote =
+    t?.wallets?.nymMixnetNote ??
+    "Wallets that support routing Zcash traffic through the Nym mixnet.";
+
   const handleToggleFilter = () =>
     setIsFilterVisible((v) => !v);
 
@@ -127,6 +162,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       const poolsSet = new Set<string>();
       const walletSupportSet = new Set<string>();
       const featuresSet = new Set<string>();
+      const stageSet = new Set<string>();
+      const nymMixnetSet = new Set<string>();
       const nu7Set = new Set<string>();
 
       allWallets
@@ -155,6 +192,14 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           if (wallet.nu7) {
             nu7Set.add(wallet.nu7.trim());
           }
+
+          if (wallet.stage) {
+            stageSet.add(wallet.stage.trim());
+          }
+
+          if (wallet.nymMixnet) {
+            nymMixnetSet.add(wallet.nymMixnet.trim());
+          }
         });
 
       setFilters({
@@ -180,6 +225,16 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         ),
         Features: new Set(
           Array.from(featuresSet).sort((a, b) =>
+            a.localeCompare(b)
+          )
+        ),
+        Stage: new Set(
+          Array.from(stageSet).sort((a, b) =>
+            a.localeCompare(b)
+          )
+        ),
+        "Nym Mixnet": new Set(
+          Array.from(nymMixnetSet).sort((a, b) =>
             a.localeCompare(b)
           )
         ),
@@ -335,6 +390,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (category === "Features")
         return wallet.features.includes(value);
 
+      if (category === "Stage")
+        return wallet.stage === value;
+
+      if (category === "Nym Mixnet")
+        return wallet.nymMixnet === value;
+
       if (category === "NU7")
         return wallet.nu7 === value;
 
@@ -352,6 +413,52 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     (a, b) =>
       nu7Rank(a) - nu7Rank(b) ||
       (likes[b.title] ?? 0) - (likes[a.title] ?? 0)
+  );
+
+  const productionWallets = sortedWallets.filter(
+    (wallet) => !isBeta(wallet) && !isTransparentOnly(wallet)
+  );
+
+  const betaWallets = sortedWallets.filter(isBeta);
+
+  const transparentOnlyWallets = sortedWallets.filter(
+    (wallet) => !isBeta(wallet) && isTransparentOnly(wallet)
+  );
+
+  const nymMixnetWallets = sortedWallets.filter(
+    (wallet) => Boolean(wallet.nymMixnet)
+  );
+
+  const renderWalletCard = (wallet: Wallet) => (
+    <WalletItem
+      key={wallet.title}
+      title={wallet.title}
+      link={wallet.url}
+      logo={wallet.imageUrl}
+      tags={[
+        {
+          category: "Devices",
+          values: wallet.devices,
+        },
+        {
+          category: "Pools",
+          values: wallet.pools,
+        },
+        {
+          category: "Features",
+          values: wallet.features,
+        },
+      ]}
+      likes={likes[wallet.title] || 0}
+      syncSpeed={wallet.syncSpeed}
+      nu7={wallet.nu7}
+      stage={wallet.stage}
+      nymMixnet={wallet.nymMixnet}
+      onLike={() => handleLike(wallet.title)}
+      onDislike={() => handleDislike(wallet.title)}
+      error={error[wallet.title]}
+      success={success[wallet.title]}
+    />
   );
 
   return (
@@ -470,42 +577,56 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               </span>
             </div>
 
-            <div className="wl-wallet-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedWallets.map((wallet) => (
-                <WalletItem
-                  key={wallet.title}
-                  title={wallet.title}
-                  link={wallet.url}
-                  logo={wallet.imageUrl}
-                  tags={[
-                    {
-                      category: "Devices",
-                      values: wallet.devices,
-                    },
-                    {
-                      category: "Pools",
-                      values: wallet.pools,
-                    },
-                    {
-                      category: "Features",
-                      values: wallet.features,
-                    },
-                  ]}
-                  likes={likes[wallet.title] || 0}
-                  syncSpeed={wallet.syncSpeed}
-                  nu7={wallet.nu7}
-                  stage={wallet.stage}
-                  onLike={() =>
-                    handleLike(wallet.title)
-                  }
-                  onDislike={() =>
-                    handleDislike(wallet.title)
-                  }
-                  error={error[wallet.title]}
-                  success={success[wallet.title]}
-                />
-              ))}
-            </div>
+            {productionWallets.length > 0 && (
+              <div className="wl-wallet-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {productionWallets.map(renderWalletCard)}
+              </div>
+            )}
+
+            {/* Beta wallets */}
+            {betaWallets.length > 0 && (
+              <section className="mt-10">
+                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
+                  {betaTitle} ({betaWallets.length})
+                </h3>
+                <p className="mt-1 mb-4 text-sm text-slate-500 dark:text-slate-400">
+                  {betaNote}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {betaWallets.map(renderWalletCard)}
+                </div>
+              </section>
+            )}
+
+            {/* Transparent-only wallets */}
+            {transparentOnlyWallets.length > 0 && (
+              <section className="mt-10">
+                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
+                  {transparentOnlyTitle} ({transparentOnlyWallets.length})
+                </h3>
+                <p className="mt-1 mb-4 text-sm text-slate-500 dark:text-slate-400">
+                  {transparentOnlyNote}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {transparentOnlyWallets.map(renderWalletCard)}
+                </div>
+              </section>
+            )}
+
+            {/* Nym Mixnet wallets */}
+            {nymMixnetWallets.length > 0 && (
+              <section className="mt-10">
+                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
+                  {nymMixnetTitle} ({nymMixnetWallets.length})
+                </h3>
+                <p className="mt-1 mb-4 text-sm text-slate-500 dark:text-slate-400">
+                  {nymMixnetNote}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {nymMixnetWallets.map(renderWalletCard)}
+                </div>
+              </section>
+            )}
 
             {/* Deprecated wallets */}
             {filteredDeprecated.length > 0 && (

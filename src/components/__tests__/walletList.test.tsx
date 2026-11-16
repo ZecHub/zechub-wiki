@@ -128,7 +128,85 @@ describe("WalletList", () => {
       screen.getByText("NU7: Compatible")
     ).toBeInTheDocument();
 
-    expect(screen.getByText("Beta")).toBeInTheDocument();
+    expect(screen.getAllByText("Beta").length).toBeGreaterThan(0);
+  });
+
+  it("groups beta, transparent-only and Nym Mixnet wallets", async () => {
+    const list = parseMarkdown(`
+## [Regular](https://regular.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+
+---
+## [Preview](https://preview.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+- Stage: Beta
+
+---
+## [Clear](https://clear.example)
+- Devices: Mobile
+- Pools: Transparent
+- NU7: Compatible
+
+---
+## [Private](https://private.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+- Nym Mixnet: Supported
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const beta = screen
+      .getByText("Beta wallets (1)")
+      .closest("section") as HTMLElement;
+    const transparent = screen
+      .getByText("Transparent-only wallets (1)")
+      .closest("section") as HTMLElement;
+    const nym = screen
+      .getByText("Nym Mixnet support (1)")
+      .closest("section") as HTMLElement;
+
+    expect(within(beta).getByText("Preview")).toBeInTheDocument();
+    expect(within(transparent).getByText("Clear")).toBeInTheDocument();
+    expect(within(nym).getByText("Private")).toBeInTheDocument();
+    expect(within(beta).queryByText("Regular")).not.toBeInTheDocument();
+    expect(within(transparent).queryByText("Regular")).not.toBeInTheDocument();
+  });
+
+  it("filters by Nym Mixnet support", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [Regular](https://regular.example)
+- Devices: Mobile
+- Pools: Ironwood
+
+---
+## [Private](https://private.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Nym Mixnet: Supported
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const supported = await within(sidebar).findByRole("checkbox", {
+      name: "Supported",
+    });
+
+    await user.click(supported);
+
+    expect(
+      screen.queryByRole("heading", { name: "Regular" })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getAllByRole("heading", { name: "Private" }).length
+    ).toBeGreaterThan(0);
   });
 
   it("orders wallets by NU7 compatibility", () => {

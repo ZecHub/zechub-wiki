@@ -23,6 +23,7 @@ interface WalletItemProps {
   syncSpeed: string;
   nu7?: string;
   stage?: string;
+  nymMixnet?: string;
   // Replaces the NU7 badge for deprecated wallets.
   deprecated?: string;
   onLike: () => void;
@@ -86,6 +87,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   syncSpeed,
   nu7,
   stage,
+  nymMixnet,
   deprecated,
   likes,
   onLike,
@@ -180,7 +182,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
         )}
 
         {/* NU7 compatibility badge + release stage */}
-        {deprecated === undefined && (nu7 || stage) && (
+        {deprecated === undefined && (nu7 || stage || nymMixnet) && (
           <div className="mb-4 -mt-1 flex flex-wrap gap-2">
             {nu7 && (
               <span
@@ -203,6 +205,14 @@ const WalletItem: React.FC<WalletItemProps> = ({
                 className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border border-slate-300 text-slate-600 dark:border-slate-600 dark:text-slate-300"
               >
                 {stage}
+              </span>
+            )}
+            {nymMixnet && (
+              <span
+                title="Nym mixnet support"
+                className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300"
+              >
+                Nym: {nymMixnet}
               </span>
             )}
           </div>

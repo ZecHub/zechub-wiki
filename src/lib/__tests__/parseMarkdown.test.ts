@@ -12,6 +12,7 @@ const md = `
 - Devices: Mobile
 - Pools: Transparent | Sapling | Orchard | Ironwood
 - NU7: Compatible
+- Nym Mixnet: Supported
 - Stage: Beta
 
 ---
@@ -34,6 +35,7 @@ describe("parseMarkdown", () => {
     expect(active.status).toBe("");
     expect(active.statusReason).toBe("");
     expect(active.nu7).toBe("Compatible");
+    expect(active.nymMixnet).toBe("Supported");
     expect(active.pools).toEqual([
       "Transparent",
       "Sapling",
