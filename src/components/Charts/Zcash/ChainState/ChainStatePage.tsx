@@ -19,7 +19,7 @@ type Day = {
   end: number;
   expiry: { total: number; zero: number; nonzero: number; pre_overwinter: number; zero_fraction: number };
   counts: { blocks: number; txs: number };
-  shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number };
+  shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number; nsm_value_balance?: number };
   types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number; shielded_coinbase?: number; transparent_coinbase?: number };
   addresses: { unique_receivers: number; total_receiving_outputs: number };
   anchors?: { sapling: number; orchard: number; ironwood: number };
@@ -37,6 +37,15 @@ type ShieldedCoinbaseRecord = {
   orchard_value_balance: number;
   ironwood_value_balance: number;
 };
+type TipPools = {
+  transparent: number;
+  sprout: number;
+  sapling: number;
+  orchard: number;
+  ironwood: number;
+  deferred: number;
+  nsm: number;
+};
 type Results = {
   expiry: Day["expiry"] & { delta_histogram: Record<string, number> };
   counts: Day["counts"];
@@ -47,12 +56,13 @@ type Results = {
   locktime: Day["locktime"];
   spends: Day["spends"];
   shielded_coinbases?: ShieldedCoinbaseRecord[];
+  tip_pools?: TipPools;
   per_day: Day[];
 };
 const CHARTS = [
   { id: "txs", label: "Transactions", keys: ["txs"], group: "counts" },
   { id: "shielded", label: "Shielded actions", keys: ["sapling_spends", "sapling_outputs", "orchard", "ironwood", "sprout"], group: "shielded" },
-  { id: "value", label: "Value balances", keys: ["sprout_vpub_old", "sprout_vpub_new", "sapling_vb", "orchard_vb", "ironwood_vb"], group: "shielded" },
+  { id: "value", label: "Value balances", keys: ["sprout_vpub_old", "sprout_vpub_new", "sapling_vb", "orchard_vb", "ironwood_vb", "nsm_vb"], group: "shielded" },
   { id: "bytes", label: "Tx bytes", keys: ["tx_bytes"], group: "blocks" },
   { id: "anchors", label: "Anchors cited", keys: ["sapling_anchors", "orchard_anchors", "ironwood_anchors"], group: "shielded" },
   { id: "trees", label: "Tree size", keys: ["sapling_tree", "orchard_tree", "ironwood_tree", "sprout_tree"], group: "shielded" },
@@ -80,7 +90,7 @@ const INFO: Record<string, { title: string; body: string }> = {
   },
   value: {
     title: "Value balances",
-    body: "Net value moving into or out of each shielded pool per window, in ZEC. Positive means value entered the pool; negative means it left. Sprout uses vpub_old (left) and vpub_new (entered).",
+    body: "Net value moving into or out of each shielded pool per window, in ZEC. Positive means value entered the pool; negative means it left. Sprout uses vpub_old (left) and vpub_new (entered). NSM is the Network Sustainability Mechanism reserve (post-NU7 fee contribution).",
   },
   types: {
     title: "Transaction type mix",
@@ -135,6 +145,7 @@ const COLORS: Record<string, string> = {
   sapling_vb: "#8b5cf6",
   orchard_vb: "#22d3ee",
   ironwood_vb: "#fb923c",
+  nsm_vb: "#fbbf24",
   tx_bytes: "#94a3b8",
   sapling_anchors: "#8b5cf6",
   orchard_anchors: "#22d3ee",
@@ -267,6 +278,7 @@ export default function ChainStatePage() {
     sapling_vb: -n(d.shielded?.sapling_value_balance) / 1e8,
     orchard_vb: -n(d.shielded?.orchard_value_balance) / 1e8,
     ironwood_vb: -n(d.shielded?.ironwood_value_balance) / 1e8,
+    nsm_vb: n(d.shielded?.nsm_value_balance) / 1e8,
     tx_bytes: n(d.blocks?.total_tx_bytes),
     sapling_anchors: n(d.anchors?.sapling),
     orchard_anchors: n(d.anchors?.orchard),
@@ -629,6 +641,10 @@ export default function ChainStatePage() {
             <Stat label="Sapling value balance" value={(-n(data.shielded.sapling_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#8b5cf6" />
             <Stat label="Orchard value balance" value={(-n(data.shielded.orchard_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#22d3ee" />
             <Stat label="Ironwood value balance" value={(-n(data.shielded.ironwood_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fb923c" />
+            <Stat label="NSM value balance" value={(n(data.shielded.nsm_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fbbf24" />
+            {data.tip_pools && (
+              <Stat label="NSM tip (current)" value={(n(data.tip_pools.nsm) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fbbf24" />
+            )}
           </>
         )}
         {active.group === "types" && active.id !== "shielded_cb" && (
