@@ -478,7 +478,13 @@
     "activeCount": "{count} ń ṣiṣẹ́",
     "savedReview": "A ti pa àtúnyẹ̀wò rẹ mọ́!",
     "errorGettingLikes": "Àṣìṣe tí ó ń gba àwọn ìfẹ́:",
-    "errorUpdatingRating": "Àkọsílẹ̀ àtúnṣe àṣìṣe:"
+    "errorUpdatingRating": "Àkọsílẹ̀ àtúnṣe àṣìṣe:",
+    "betaTitle": "Àwọn wàléètì beta",
+    "betaNote": "Àwọn ẹ̀dà ìdánwò. Retí àìpé, kí o sì lo àwọn iye kékeré.",
+    "transparentOnlyTitle": "Àwọn wàléètì ìfarahàn nìkan",
+    "transparentOnlyNote": "Àwọn wàléètì wọ̀nyí ń gba ZEC ìfarahàn nìkan, èyí tí kò fi àwọn àlàyé ìdúnnàdúró pamọ́.",
+    "nymMixnetTitle": "Ìtìlẹ́yìn Nym Mixnet",
+    "nymMixnetNote": "Àwọn wàléètì tó ń gba ìtòjọ́ ìrìnàjò Zcash nípasẹ̀ Nym mixnet."
   },
   "guides": {
     "title": "Àwọn ìwé atọ́nà",

@@ -478,7 +478,13 @@
     "activeCount": "{count} actifs",
     "savedReview": "Nous avons enregistré votre avis !",
     "errorGettingLikes": "Erreur lors de la récupération des likes :",
-    "errorUpdatingRating": "Erreur lors de la mise à jour de la note :"
+    "errorUpdatingRating": "Erreur lors de la mise à jour de la note :",
+    "betaTitle": "Portefeuilles bêta",
+    "betaNote": "Versions de test. Attendez-vous à des imperfections et utilisez de petits montants.",
+    "transparentOnlyTitle": "Portefeuilles transparents uniquement",
+    "transparentOnlyNote": "Ces portefeuilles ne prennent en charge que le ZEC transparent, qui ne masque pas les détails des transactions.",
+    "nymMixnetTitle": "Prise en charge de Nym Mixnet",
+    "nymMixnetNote": "Portefeuilles qui prennent en charge le routage du trafic Zcash via le mixnet Nym."
   },
   "guides": {
     "title": "Guides",

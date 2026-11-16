@@ -478,7 +478,13 @@
     "activeCount": "активно: {count}",
     "savedReview": "Ми зберегли ваш відгук!",
     "errorGettingLikes": "Помилка отримання вподобайок:",
-    "errorUpdatingRating": "Помилка оновлення рейтингу:"
+    "errorUpdatingRating": "Помилка оновлення рейтингу:",
+    "betaTitle": "Бета-гаманці",
+    "betaNote": "Тестові версії. Можливі недоліки; використовуйте невеликі суми.",
+    "transparentOnlyTitle": "Лише прозорі гаманці",
+    "transparentOnlyNote": "Ці гаманці підтримують лише прозорий ZEC, який не приховує деталі транзакцій.",
+    "nymMixnetTitle": "Підтримка Nym Mixnet",
+    "nymMixnetNote": "Гаманці, що підтримують маршрутизацію трафіку Zcash через Nym mixnet."
   },
   "guides": {
     "title": "Посібники",

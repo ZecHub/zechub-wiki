@@ -478,7 +478,13 @@
     "activeCount": "{count} सक्रिय",
     "savedReview": "हमने आपकी समीक्षा सहेज ली!",
     "errorGettingLikes": "लाइक्स प्राप्त करने में त्रुटि:",
-    "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:"
+    "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:",
+    "betaTitle": "बीटा वॉलेट",
+    "betaNote": "परीक्षण संस्करण। खामियों की संभावना रहेगी, छोटी रकम का उपयोग करें।",
+    "transparentOnlyTitle": "केवल ट्रांसपेरेंट वॉलेट",
+    "transparentOnlyNote": "ये वॉलेट केवल ट्रांसपेरेंट ZEC का समर्थन करते हैं, जो लेनदेन का विवरण नहीं छिपाता।",
+    "nymMixnetTitle": "Nym Mixnet समर्थन",
+    "nymMixnetNote": "वे वॉलेट जो Nym mixnet के माध्यम से Zcash ट्रैफ़िक रूट करने का समर्थन करते हैं।"
   },
   "guides": {
     "title": "मार्गदर्शिकाएँ",

@@ -478,7 +478,13 @@
     "activeCount": "{count} activos",
     "savedReview": "¡Guardamos tu reseña!",
     "errorGettingLikes": "Error al obtener los me gusta:",
-    "errorUpdatingRating": "Error al actualizar la valoración:"
+    "errorUpdatingRating": "Error al actualizar la valoración:",
+    "betaTitle": "Carteras beta",
+    "betaNote": "Versiones de prueba. Espera fallos y usa cantidades pequeñas.",
+    "transparentOnlyTitle": "Carteras solo transparentes",
+    "transparentOnlyNote": "Estas carteras solo admiten ZEC transparente, que no oculta los detalles de las transacciones.",
+    "nymMixnetTitle": "Compatibilidad con Nym Mixnet",
+    "nymMixnetNote": "Carteras que permiten enrutar el tráfico de Zcash a través de la Nym Mixnet."
   },
   "guides": {
     "title": "Guías",

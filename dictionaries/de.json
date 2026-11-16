@@ -478,7 +478,13 @@
     "activeCount": "{count} aktiv",
     "savedReview": "Wir haben deine Bewertung gespeichert!",
     "errorGettingLikes": "Fehler beim Abrufen der Likes:",
-    "errorUpdatingRating": "Fehler beim Aktualisieren der Bewertung:"
+    "errorUpdatingRating": "Fehler beim Aktualisieren der Bewertung:",
+    "betaTitle": "Beta-Wallets",
+    "betaNote": "Testversionen. Mit Ecken und Kanten rechnen und kleine Beträge verwenden.",
+    "transparentOnlyTitle": "Nur transparente Wallets",
+    "transparentOnlyNote": "Diese Wallets unterstützen nur transparentes ZEC, das Transaktionsdetails nicht verbirgt.",
+    "nymMixnetTitle": "Nym-Mixnet-Unterstützung",
+    "nymMixnetNote": "Wallets, die das Routing von Zcash-Datenverkehr über das Nym-Mixnet unterstützen."
   },
   "guides": {
     "title": "Anleitungen",

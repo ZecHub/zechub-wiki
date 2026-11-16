@@ -478,7 +478,13 @@
     "activeCount": "активно: {count}",
     "savedReview": "Мы сохранили ваш отзыв!",
     "errorGettingLikes": "Ошибка при получении лайков:",
-    "errorUpdatingRating": "Ошибка при обновлении рейтинга:"
+    "errorUpdatingRating": "Ошибка при обновлении рейтинга:",
+    "betaTitle": "Бета-кошельки",
+    "betaNote": "Тестовые версии. Возможны недоработки; используйте небольшие суммы.",
+    "transparentOnlyTitle": "Только прозрачные кошельки",
+    "transparentOnlyNote": "Эти кошельки поддерживают только прозрачный ZEC, который не скрывает детали транзакций.",
+    "nymMixnetTitle": "Поддержка Nym Mixnet",
+    "nymMixnetNote": "Кошельки, поддерживающие маршрутизацию трафика Zcash через Nym Mixnet."
   },
   "guides": {
     "title": "Руководства",

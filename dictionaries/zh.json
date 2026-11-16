@@ -478,7 +478,13 @@
     "activeCount": "已启用 {count} 个",
     "savedReview": "我们已保存你的评价！",
     "errorGettingLikes": "获取点赞时出错：",
-    "errorUpdatingRating": "更新评分时出错："
+    "errorUpdatingRating": "更新评分时出错：",
+    "betaTitle": "测试版钱包",
+    "betaNote": "测试版本。可能不够完善，请使用小额资金。",
+    "transparentOnlyTitle": "仅透明钱包",
+    "transparentOnlyNote": "这些钱包仅支持透明 ZEC，无法隐藏交易详情。",
+    "nymMixnetTitle": "Nym Mixnet 支持",
+    "nymMixnetNote": "支持通过 Nym mixnet 路由 Zcash 流量的钱包。"
   },
   "guides": {
     "title": "指南",

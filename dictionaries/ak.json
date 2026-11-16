@@ -478,7 +478,13 @@
     "activeCount": "{count} a ɛyɛ adwuma",
     "savedReview": "Yɛde wo nsusuwii no siee!",
     "errorGettingLikes": "Mfomso a ɛbae wɔ likes a wonya mu:",
-    "errorUpdatingRating": "Mfomso a ɛwɔ update rating mu:"
+    "errorUpdatingRating": "Mfomso a ɛwɔ update rating mu:",
+    "betaTitle": "Sikakorabea beta",
+    "betaNote": "Nsɔhwɛ awo. Hwɛ sɛ biribiara nyɛ pɛ, na fa sika kakra.",
+    "transparentOnlyTitle": "Sikakorabea a ɛda adi pefee nkutoo",
+    "transparentOnlyNote": "Sikakorabea yi boa ZEC a ɛda adi pefee nkutoo, a ɛnkata adwuma nkyerɛkyerɛmu.",
+    "nymMixnetTitle": "Nym Mixnet mmoa",
+    "nymMixnetNote": "Sikakorabea a ɛboa ma wɔfa Zcash nkitahodi fa Nym mixnet so."
   },
   "guides": {
     "title": "Akwankyerɛfo",
