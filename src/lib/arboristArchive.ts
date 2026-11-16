@@ -9,7 +9,8 @@ const watchUrl = (id: string) => `https://www.youtube.com/watch?v=${id}`;
 const youtubeId = (url: string) => url.match(/[?&]v=([\w-]{11})/)?.[1] ?? null;
 
 const toIso = (label: string): string | null => {
-  const t = Date.parse(`${label} UTC`);
+  // "April 30th, 2026": V8 cannot parse the ordinal suffix, so strip it first.
+  const t = Date.parse(`${label.replace(/(\d+)(st|nd|rd|th)\b/, "$1")} UTC`);
   return Number.isNaN(t) ? null : new Date(t).toISOString().slice(0, 10);
 };
 
