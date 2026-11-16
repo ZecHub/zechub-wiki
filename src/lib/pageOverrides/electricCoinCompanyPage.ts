@@ -13,7 +13,7 @@ The **Electric Coin Company (ECC)** launched Zcash in 2016 and led its developme
 
 > **Status.** ECC no longer has a development team. Its staff resigned on 7 January 2026 and the former team went on to form ZODL. This page records what ECC built and what happened next. For current wallet and protocol work, see [ZODL](/zcash-organizations/zodl).
 
-[Website](https://electriccoin.co) - [X/Twitter](https://x.com/ElectricCoinCo) - [GitHub (now ZODL)](https://github.com/zodl-inc)
+<OrgLinks items='[{"label": "Website", "href": "https://electriccoin.co"}, {"label": "X/Twitter", "href": "https://x.com/ElectricCoinCo"}, {"label": "GitHub (now ZODL)", "href": "https://github.com/zodl-inc"}]' />
 
 ## Mission
 

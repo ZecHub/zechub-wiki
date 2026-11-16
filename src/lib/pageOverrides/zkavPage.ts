@@ -14,7 +14,7 @@ const PAGE = `# ZK AV Club
 
 The **Zero-Knowledge Audiovisual Club (ZK AV Club)** is a global group of volunteers and creators who help Zcash communities record and publish their own stories. Its tools are workshops, livestreams and a portable Recording Station that it brings to events, and it archives the results so that they stay available.
 
-[Website](https://zkav.club) - [GitHub](https://github.com/copernicus-mogley/zkav.club) - [X](https://x.com/ZkAv_Club) - [YouTube](https://www.youtube.com/@ZkAv_Club)
+<OrgLinks items='[{"label": "Website", "href": "https://zkav.club"}, {"label": "GitHub", "href": "https://github.com/copernicus-mogley/zkav.club"}, {"label": "X", "href": "https://x.com/ZkAv_Club"}, {"label": "YouTube", "href": "https://www.youtube.com/@ZkAv_Club"}]' />
 
 ## At a glance
 

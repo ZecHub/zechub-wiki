@@ -10,7 +10,7 @@ const PAGE = `# Sovright
 
 **Sovright** is a US 501(c)(3) non-profit that describes its mission as supporting human autonomy. It began with Zcash infrastructure, mining, protocol development and ecosystem support, and builds tools and services meant to make private digital currency infrastructure more resilient.
 
-[Website](https://sovright.com/) - [Mining pool](https://mining.sovright.com/) - [Argos](https://argos.sovright.com/) - [GitHub](https://github.com/sovright)
+<OrgLinks items='[{"label": "Website", "href": "https://sovright.com/"}, {"label": "Mining pool", "href": "https://mining.sovright.com/"}, {"label": "Argos", "href": "https://argos.sovright.com/"}, {"label": "GitHub", "href": "https://github.com/sovright"}]' />
 
 ## At a glance
 

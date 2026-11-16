@@ -14,7 +14,7 @@ const PAGE = `# Zcash Labs
 
 **Zcash Labs** is an independent organization that helps businesses, institutions and builders integrate and use Zcash. It describes itself as a "go to market" company: it offers consulting, technical integration, infrastructure and early funding, and it pays for some of this work with its own capital before asking ZEC holders to reimburse it.
 
-[Website](https://zcashlabs.org/) - [Announcement](https://forum.zcashcommunity.com/t/announcing-zcash-labs-a-zcash-go-to-market-company/56975) - [X](https://x.com/ZcashLabs)
+<OrgLinks items='[{"label": "Website", "href": "https://zcashlabs.org/"}, {"label": "Announcement", "href": "https://forum.zcashcommunity.com/t/announcing-zcash-labs-a-zcash-go-to-market-company/56975"}, {"label": "X", "href": "https://x.com/ZcashLabs"}]' />
 
 ## At a glance
 

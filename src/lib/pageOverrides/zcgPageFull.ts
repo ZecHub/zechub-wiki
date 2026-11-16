@@ -19,7 +19,7 @@ const PAGE = `# Zcash Community Grants
 
 **Zcash Community Grants (ZCG)** funds independent teams that do ongoing development and other work for the public good of the Zcash ecosystem. A committee of five people reviews applications and decides which to fund. ZCG is independent of the Electric Coin Company, now [ZODL](/zcash-organizations/zodl), and of the [Zcash Foundation](/zcash-organizations/zcash-foundation).
 
-[Website](https://zcashcommunitygrants.org/) - [Committee](https://zcashcommunitygrants.org/committee/) - [Funded projects](https://docs.google.com/spreadsheets/d/1FQ28rDCyRW0TiNxrm3rgD8ai2KGUsXAjPieQmI1kKKg/edit?gid=135980745#gid=135980745)
+<OrgLinks items='[{"label": "Website", "href": "https://zcashcommunitygrants.org/"}, {"label": "Committee", "href": "https://zcashcommunitygrants.org/committee/"}, {"label": "Funded projects", "href": "https://docs.google.com/spreadsheets/d/1FQ28rDCyRW0TiNxrm3rgD8ai2KGUsXAjPieQmI1kKKg/edit?gid=135980745#gid=135980745"}]' />
 
 ## At a glance
 

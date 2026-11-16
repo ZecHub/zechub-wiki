@@ -19,7 +19,7 @@ const PAGE = `# Zcash Foundation
 
 The **Zcash Foundation (ZF)** is a US 501(c)(3) non-profit that builds and supports open, privacy-preserving software and community infrastructure. It maintains **Zebra**, an independent Zcash consensus node, and **FROST**, a threshold signature library, and runs the Zcash Community Advisory Panel (ZCAP) and community events such as Zcon. It also works beyond Zcash, for example on privacy tools for humanitarian aid.
 
-[Website](https://zfnd.org/) - [Zebra](https://zebra.zfnd.org/) - [FROST](https://frost.zfnd.org/) - [Transparency reports](https://zfnd.org/category/transparency-reports/) - [Donate](https://zfnd.org/#donate)
+<OrgLinks items='[{"label": "Website", "href": "https://zfnd.org/"}, {"label": "Zebra", "href": "https://zebra.zfnd.org/"}, {"label": "FROST", "href": "https://frost.zfnd.org/"}, {"label": "Transparency reports", "href": "https://zfnd.org/category/transparency-reports/"}, {"label": "Donate", "href": "https://zfnd.org/#donate"}]' />
 
 ## At a glance
 

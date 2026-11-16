@@ -17,7 +17,7 @@ const PAGE = `# ZODL
 
 **ZODL (Zcash Open Development Lab)** is a company formed by the former Electric Coin Company (ECC) team after they left ECC in January 2026. It works on Zcash protocol software and maintains the **Zodl** wallet, which was called Zashi until February 2026. It describes its mission as a world without mass financial surveillance, where financial privacy is the default.
 
-[Website](https://zodl.com/) - [About](https://zodl.com/about/) - [GitHub](https://github.com/zodl-inc) - [X](https://x.com/zodl_app)
+<OrgLinks items='[{"label": "Website", "href": "https://zodl.com/"}, {"label": "About", "href": "https://zodl.com/about/"}, {"label": "GitHub", "href": "https://github.com/zodl-inc"}, {"label": "X", "href": "https://x.com/zodl_app"}]' />
 
 ## At a glance
 

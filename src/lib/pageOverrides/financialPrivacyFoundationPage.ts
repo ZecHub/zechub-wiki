@@ -13,7 +13,7 @@ const PAGE = `# Financial Privacy Foundation
 
 The **Financial Privacy Foundation (FPF)** is an independent non-profit based in the Cayman Islands. It does the legal, financial and administrative work for Zcash teams that have no company of their own, and it receives and pays out the money for [Zcash Community Grants](/zcash-organizations/zcash-community-grants).
 
-[Website](https://www.financialprivacyfoundation.org) - [Grants](https://www.financialprivacyfoundation.org/grants)
+<OrgLinks items='[{"label": "Website", "href": "https://www.financialprivacyfoundation.org"}, {"label": "Grants", "href": "https://www.financialprivacyfoundation.org/grants"}]' />
 
 ## What FPF does
 

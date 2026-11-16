@@ -10,7 +10,7 @@ const PAGE = `# Shielded Labs
 
 **Shielded Labs** is an independent, donation-funded organization based in Switzerland that adds engineering and research capacity to Zcash. Its stated mission is to build unstoppable private money that empowers human freedom and self-sovereignty, with a focus on the sustainability, security and scalability of the network.
 
-[Website](https://shieldedlabs.net/) - [Projects](https://shieldedlabs.net/projects/) - [Team](https://shieldedlabs.net/team/) - [GitHub](https://github.com/ShieldedLabs)
+<OrgLinks items='[{"label": "Website", "href": "https://shieldedlabs.net/"}, {"label": "Projects", "href": "https://shieldedlabs.net/projects/"}, {"label": "Team", "href": "https://shieldedlabs.net/team/"}, {"label": "GitHub", "href": "https://github.com/ShieldedLabs"}]' />
 
 ## At a glance
 

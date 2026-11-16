@@ -31,6 +31,7 @@ import Gallery from "@/components/Gallery/Gallery";
 import LibraryTools from "./LibraryTools";
 import FaqItem from "./FaqItem";
 import FaqGlance from "./FaqGlance";
+import OrgLinks from "./OrgLinks";
 import DvpnDiagram from "./DvpnDiagram";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
@@ -452,6 +453,7 @@ const MdxComponents = {
   PointList,
   PointItem,
   FaqGlance,
+  OrgLinks,
   DvpnDiagram,
 } as MDXComponents;
 

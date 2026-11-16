@@ -9,7 +9,7 @@ const PAGE = `# Obscura Labs
 
 **Obscura Labs** is an independent organization registered in Nigeria that works on Zcash infrastructure and adoption in Africa and other emerging markets.
 
-[Website](https://www.obscuralabs.org/) - [Announcement](https://forum.zcashcommunity.com/t/obscura-labs-an-independent-non-us-organisation/56325) - [Zcash Nigeria on X](https://x.com/ZcashNigeria)
+<OrgLinks items='[{"label": "Website", "href": "https://www.obscuralabs.org/"}, {"label": "Announcement", "href": "https://forum.zcashcommunity.com/t/obscura-labs-an-independent-non-us-organisation/56325"}, {"label": "Zcash Nigeria on X", "href": "https://x.com/ZcashNigeria"}]' />
 
 ## At a glance
 

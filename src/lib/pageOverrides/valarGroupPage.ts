@@ -13,7 +13,7 @@ const PAGE = `# Valar Group
 
 **Valar Group** is an independent engineering group that works on scaling Zcash and on private governance for ZEC holders. Its main projects are Shielded Vote, a private coinholder voting system, and [Zakura](/zcash-tech/zakura-node), a Zcash full node it co-leads with Project Tachyon.
 
-[Website](https://valargroup.dev/) - [GitHub](https://github.com/valargroup)
+<OrgLinks items='[{"label": "Website", "href": "https://valargroup.dev/"}, {"label": "GitHub", "href": "https://github.com/valargroup"}]' />
 
 ## At a glance
 

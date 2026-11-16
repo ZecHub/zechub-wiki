@@ -17,7 +17,7 @@ const PAGE = `# Zingo Labs
 
 **Zingo Labs** is an open-source team that builds Zcash software for wallets and infrastructure. It makes the **Zingo** wallet for mobile and desktop, the **Zingolib** wallet library, and **Zaino**, an indexer that serves wallets and block explorers from a Zebra node.
 
-[Website](https://zingolabs.org/) - [GitHub](https://github.com/zingolabs) - [X](https://x.com/ZingoLabs)
+<OrgLinks items='[{"label": "Website", "href": "https://zingolabs.org/"}, {"label": "GitHub", "href": "https://github.com/zingolabs"}, {"label": "X", "href": "https://x.com/ZingoLabs"}]' />
 
 ## At a glance
 
