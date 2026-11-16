@@ -14,7 +14,7 @@
 // - Shielded Labs's Ironwood page: the Foundation implemented Ironwood in Zebra.
 // Changed from the source page: "~12 employees" was dropped (no current figure is published in these sources), funding figures are not
 // repeated because they change every quarter (the page links to the transparency reports), and the Zcash Community Grants block was reduced
-// to a link because the ZCG page covers it. If the page no longer looks like this one, the original markdown is returned.
+// to a link because the ZCG page covers it. The three embedded YouTube videos (an old Zebrad tutorial, "How to Zcash" and Zcon Vozes 2023) were removed and an Arborist Calls section was added. If the page no longer looks like this one, the original markdown is returned.
 const PAGE = `# Zcash Foundation
 
 The **Zcash Foundation (ZF)** is a US 501(c)(3) non-profit that builds and supports open, privacy-preserving software and community infrastructure. It maintains **Zebra**, an independent Zcash consensus node, and **FROST**, a threshold signature library, and runs the Zcash Community Advisory Panel (ZCAP) and community events such as Zcon. It also works beyond Zcash, for example on privacy tools for humanitarian aid.
@@ -60,7 +60,15 @@ The Foundation holds Zcon and supports community events. For 2026 it announced:
 | Zcash Dev Summit | 8 May 2026, Rome |
 | Zcon7 | 27-29 October 2026, Cancún, Mexico, on the week of Zcash's tenth anniversary. Tickets were free |
 
-The Zcash Dev Summit began in Sofia in 2025 and its second edition was held in Rome in May 2026. Zcon VI in 2025 was online. See [Arborist Calls](/zcash-community/arborist-calls) for the Foundation's community calls.
+The Zcash Dev Summit began in Sofia in 2025 and its second edition was held in Rome in May 2026. Zcon VI in 2025 was online.
+
+## Arborist Calls
+
+The Foundation hosts the Zcash **Arborist Calls**, recurring protocol development meetings on network upgrade planning, node implementation work, wallet and infrastructure dependencies and protocol research. Anyone can attend. The calls alternate between time slots so that contributors in different regions can join.
+
+- The Foundation's [Arborist Calls page](https://zfnd.org/arborist-calls/) has the calendar and meeting links, which can change.
+- Agendas and minutes are in the [arboretum-notes](https://github.com/ZcashCommunityGrants/arboretum-notes) repository, and recordings are in the [Zcash Arborist Call playlist](https://www.youtube.com/playlist?list=PL40dyJ0UYTLJqD_3PE9qiJTxse-iHnn1G).
+- This wiki keeps a searchable [Arborist Calls archive](/arborist-calls) and an explainer on the [Arborist Calls page](/zcash-community/arborist-calls).
 
 ## Funding and transparency
 
@@ -70,51 +78,11 @@ Until November 2024 the Foundation received part of the Development Fund under [
 
 In 2025 the Foundation commissioned a Least Authority audit of the Zebra NU6.1 changes and an external audit of FROST's client and server tools. Its Q1 2026 report said Zebra 4.3.0 fixed two critical flaws, a remote denial-of-service bug and a consensus error that could allow a chain split. Its Q2 report says seven Zebra releases shipped, including security fixes for 13 issues reported through responsible disclosure, and that release binaries are reproducible and signed. If you run Zebra, always read the [release notes](https://github.com/ZcashFoundation/zebra/releases).
 
-## Videos
-
-**Zebrad for Linux Tutorials**
-
-<div className="my-8 w-full aspect-video max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-black">
-  <iframe
-    className="w-full h-full"
-    src="https://www.youtube.com/embed/videoseries?si=SZKFP5eAFDJ0MjJj&amp;list=PL40dyJ0UYTLI671cVldA_DhFSYxNwUJeQ"
-    title="Zebrad for Linux Tutorials"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    loading="lazy"
-  />
-</div>
-
-**How to Zcash**
-
-<div className="my-8 w-full aspect-video max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-black">
-  <iframe
-    className="w-full h-full"
-    src="https://www.youtube.com/embed/videoseries?si=fIbX-UP6HCMET0R2&amp;list=PL40dyJ0UYTLKyRbrz0sVLSWUh6bdVsQE1"
-    title="How to Zcash"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    loading="lazy"
-  />
-</div>
-
-**Zcon Vozes: Brasil 2023**
-
-<div className="my-8 w-full aspect-video max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-black">
-  <iframe
-    className="w-full h-full"
-    src="https://www.youtube.com/embed/videoseries?si=2h0YZZuRvayZ34Fb&amp;list=PL40dyJ0UYTLJm_hwYzpEPOOafwihL_mIu"
-    title="Zcon Vozes: Brasil 2023"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    loading="lazy"
-  />
-</div>
-
 ## Related pages
 
 - [Zcash Community Grants](/zcash-organizations/zcash-community-grants): the committee the Foundation's ZCAP elects
 - [ZODL](/zcash-organizations/zodl) and [Shielded Labs](/zcash-organizations/shielded-labs): organizations the Foundation works with
+- [Arborist Calls](/zcash-community/arborist-calls): the Foundation's recurring protocol calls
 - [ZK AV Club](/zcash-organizations/zkav): the community media group that began as the Foundation's A/V Club
 - [Ironwood](/zcash-tech/ironwood): the upgrade the Foundation implemented in Zebra
 
