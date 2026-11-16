@@ -125,6 +125,17 @@ export const navigations: Array<NavigationItem> = [
     name: "Learn Zcash",
     label: "Learn Zcash",
     links: [
+      { name: "Zcash Basics", path: "/start-here/what-is-zec-and-zcash", icon: Info },
+      { name: "Who Can See Your Payment?", path: "/start-here/who-can-see-your-zcash-payment", icon: Eye },
+      { name: "New User Guide", path: "/start-here/new-user-guide", icon: Users },
+      { name: "Monetary Policy", path: "/start-here/zcash-monetary-policy", icon: Gem },
+      { name: "How Zcash Is Organized", path: "/start-here/how-zcash-is-organized", icon: Building2 },
+      { name: "Zcash Evolution", path: "/zcash-evolution", icon: Activity },
+      { name: "Ironwood", path: "/zcash-tech/ironwood", icon: ShieldCheck },
+      { name: "Crosslink Protocol", path: "/zcash-tech/crosslink-protocol", icon: SlidersHorizontal },
+      { name: "Project Tachyon", path: "/zcash-tech/project-tachyon", icon: Cpu },
+      { name: "Zcash Library", path: "/glossary-and-faqs/zcash-library", icon: BookOpen },
+      { name: "FAQ", path: "/glossary-and-faqs/faq", icon: Info },
       { name: "Zcash Tech", path: "/zcash-tech", icon: Cpu },
       { name: "Privacy Tools", path: "/privacy-tools", icon: PrivacyShield },
       { name: "Visualizer", path: "/visualizer", icon: BsPlay },
@@ -585,10 +596,26 @@ export type MenuSection = { title: string; items: string[] };
 
 export const menuSections: Record<string, MenuSection[]> = {
   "Learn Zcash": [
-    { title: "Start here", items: ["Zero to Zero Knowledge", "My First Zcash Workbook"] },
-    { title: "Protocol & privacy", items: ["Zcash Tech", "Shielded Pools", "Zero-Knowledge vs Decoys"] },
+    {
+      title: "Start here",
+      items: [
+        "Zcash Basics",
+        "Who Can See Your Payment?",
+        "New User Guide",
+        "Zero to Zero Knowledge",
+        "My First Zcash Workbook",
+      ],
+    },
+    {
+      title: "How Zcash works",
+      items: ["Zcash Tech", "Shielded Pools", "Zero-Knowledge vs Decoys", "Monetary Policy", "How Zcash Is Organized"],
+    },
+    {
+      title: "Go deeper",
+      items: ["Zcash Evolution", "Ironwood", "Crosslink Protocol", "Project Tachyon", "Research"],
+    },
     { title: "Visualize", items: ["Visualizer", "Visualizing the Zcash Network", "Visualizing Zcash Addresses"] },
-    { title: "Research & tools", items: ["Research", "Privacy Tools"] },
+    { title: "Reference", items: ["Zcash Library", "FAQ", "Privacy Tools"] },
   ],
   "Using Zcash": [
     {
