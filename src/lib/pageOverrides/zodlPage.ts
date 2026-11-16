@@ -10,7 +10,8 @@
 // - Bitcoinist: Bootstrap said the dispute centered on a proposed move of Zashi into a for-profit structure with outside investment;
 //   ECC's side blamed board actions. The page states both and takes no side.
 // - The wiki's own ECC, Ironwood, Shielded Labs and Valar Group pages for the 7 January 2026 resignations and ZODL's role in Ironwood.
-// Dropped as unconfirmed: the USD 5M figure for one investor, David Friedberg, the impact numbers, the "Guardian of the Sovereign"
+// Added later from Cypherpunk's own press release (9 March 2026): its USD 5M investment and David Friedberg as a co-investor.
+// Dropped as unconfirmed: the impact numbers, the "Guardian of the Sovereign"
 // section, retailer names and the full feature list. If the page no longer looks like this one, the original markdown is returned.
 const PAGE = `# ZODL
 
@@ -43,11 +44,12 @@ ZODL's seed round of more than USD 25 million was reported on 9 and 10 March 202
 - a16z crypto
 - Winklevoss Capital
 - Coinbase Ventures
-- Cypherpunk Technologies
+- Cypherpunk Technologies, which announced a USD 5 million investment in its own press release of 9 March 2026 and called it its first technology investment outside of ZEC
 - Chapter One
+- David Friedberg
 - Balaji Srinivasan
 
-The reports introduce the list with "including", so it may not be complete, and they do not say who led the round. The money is meant for hiring engineers and for product development.
+The reports introduce the list with "including", so it may not be complete, and they do not say who led the round. The Cypherpunk figures come from that company's own press release. The money is meant for hiring engineers and for product development.
 
 Because ZODL has outside investors, it works differently from the Development Fund and Zcash Community Grants model that ECC relied on. See the [Funding & Governance Overview](/zcash-community/zcash-governance) for how Zcash development is funded today.
 
@@ -78,6 +80,7 @@ ZODL's engineers include many of the people who built Zcash's shielded protocols
 - [Zcash developers establish new entity and rebrand wallet](https://forklog.com/en/news/zcash-developers-establish-new-entity-and-rebrand-wallet), ForkLog, 17 February 2026
 - [Zashi becomes Zodl](https://bitcoinist.com/zashi-becomes-zodl-zcash-wallet/), Bitcoinist
 - [Zcash Open Development Lab raises over $25 million in seed funding](https://www.fxstreet.com/amp/cryptocurrencies/news/zcash-open-development-lab-raises-over-25-million-in-seed-funding-202603100327), FXStreet, 10 March 2026
+- [Cypherpunk Makes $5M Investment into ZODL](https://finviz.com/news/333645/cypherpunk-makes-5m-investment-into-zcash-open-development-lab-zodl), press release, 9 March 2026
 - [ZODL website](https://zodl.com/)
 `;
 
