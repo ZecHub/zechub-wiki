@@ -74,7 +74,16 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
     if (titled && titled.length <= 36) return titled;
     return fromFile;
   };
-  const root = roots.map((item) => item.slice(0, -3));
+  // The "Zero to Zero Knowledge" series is meant to be read in order, not alphabetically.
+  const SERIES_ORDER = ["zero_to_zero", "hash_functions", "mnemonic_seed", "zcash_addresses", "tees", "cryptonote", "lelantus"];
+  const seriesRank = (item: string) => {
+    const base = (item.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_");
+    const i = SERIES_ORDER.findIndex((k) => base.startsWith(k));
+    return i === -1 ? SERIES_ORDER.length : i;
+  };
+  const root = roots
+    .map((item) => item.slice(0, -3))
+    .sort((a, b) => (folder === "zero-to-zero-knowledge" ? seriesRank(a) - seriesRank(b) : 0));
   const name = folder[0].toUpperCase() + folder.slice(1);
   const fold = getName(name);
 
@@ -121,7 +130,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
               <NavItem
                 key={i}
                 href={`/${transformGithubFilePathToWikiLink(item)}`}
-                label={item ? menuLabel(item) : ""}
+                label={folder === "zero-to-zero-knowledge" && seriesRank(item) === 0 ? "Overview" : item ? menuLabel(item) : ""}
                 pathname={pathname}
               />
             );
