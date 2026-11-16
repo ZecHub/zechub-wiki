@@ -55,4 +55,12 @@ describe("Arborist call archive filters", () => {
     fireEvent.change(search, { target: { value: "" } });
     expect(showing(archive.length)).toBeVisible();
   });
+
+  it.each(["#124", "#125"])("lists call %s under 2026", (label) => {
+    renderArchive();
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "2026" } });
+
+    expect(archive.some((e) => e.label === label && e.date?.startsWith("2026"))).toBe(true);
+    expect(screen.getAllByText(label).length).toBeGreaterThan(0);
+  });
 });

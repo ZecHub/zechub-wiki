@@ -2,6 +2,11 @@ import { render } from "@testing-library/react";
 import ArboristCallsPage from "@/app/[locale]/arborist-calls/ArboristCallsPage";
 
 jest.mock("@/lib/helpers", () => ({ genMetadata: () => ({}) }));
+// The carousel loads the playlist from the network.
+jest.mock("@/components/MdxComponents/VideoCarousel", () => ({
+  __esModule: true,
+  default: () => null,
+}));
 
 // Mid and dark shades that read fine on white but fall well below WCAG AA on
 // the dark theme's slate-900 page (gray-700 is 1.7:1, gray-600 2.4:1).
