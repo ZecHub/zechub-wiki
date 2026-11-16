@@ -11,6 +11,13 @@ import {
 } from "@/lib/zip321";
 import { openPaymentUri } from "@/lib/openPaymentUri";
 
+// next/image throws on a relative src, so make sure local paths start with "/".
+function normalizeImg(src?: string): string {
+  if (!src) return "/placeholder.svg";
+  if (src.startsWith("/") || src.startsWith("http://") || src.startsWith("https://")) return src;
+  return `/${src}`;
+}
+
 interface MemberCardProps {
   member: {
     name: string;
@@ -65,7 +72,7 @@ export default function MemberCard({ member }: MemberCardProps) {
             <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-6 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
               <div className="mb-4 flex justify-center">
                 <Image
-                  src={member.imgUrl || "/placeholder.svg"}
+                  src={normalizeImg(member.imgUrl)}
                   alt={member.name}
                   width={96}
                   height={96}
