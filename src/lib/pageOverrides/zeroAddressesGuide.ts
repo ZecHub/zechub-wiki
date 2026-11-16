@@ -24,7 +24,7 @@ Zcash has two kinds of transactions, transparent and shielded, and a way to comb
 
 | | Transparent | Shielded |
 |---|---|---|
-| Addresses | t-addresses (Base58Check) | Addresses for the Sapling, Orchard or Ironwood pools |
+| Addresses | t-addresses (Base58Check) | Addresses for a shielded pool (Sapling, Orchard, and later pools) |
 | What is public | Sender, receiver and amount, as in Bitcoin | Nothing beyond the proof that the transaction is valid |
 | How privacy works | None | Zero-knowledge proofs |
 
