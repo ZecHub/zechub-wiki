@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 24,
-    "proposal_count": 193,
+    "proposal_count": 194,
     "config": {
       "name": "ZecHub",
       "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
@@ -7941,14 +7941,51 @@
           "msgs": [],
           "status": "open",
           "votes": {
-            "yes": "9",
-            "no": "1",
+            "yes": "11",
+            "no": "2",
             "abstain": "0"
           },
           "allow_revoting": true
         },
         "source": "lcd",
         "createdAt": "2026-11-17T22:30:23Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 194,
+        "proposal": {
+          "title": "Development and Maintenance of Anti-Scam and Anti-Spam Bots for Discord and Telegram (12 Months)",
+          "description": "## 1\\. About Me\n\nHello!\n\nI'm fireice_uk. I have been helping to run the Telegram community since 2019, as well as supporting its Discord and Reddit channels.\n\nI am a self-employed software developer, primarily working with Python and C++. Since 2019, I have developed, hosted and maintained bots to support these communities, covering all associated costs myself.\n\nI am now seeking funding to continue this work and dedicate more time to improving the communities' security.\n\n## 2\\. Planned Work\n\n### Telegram Anti-Spam CAPTCHA Bot\n\n- Develop a new CAPTCHA bot to prevent automated accounts and spammers from joining.\n- Improve detection of suspicious accounts and joining patterns.\n- Minimise the need for manual moderator intervention.\n\n### Discord Anti-Spam CAPTCHA Bot\n\n- Improve the existing CAPTCHA verification system.\n- Enhance spam detection and account verification.\n- Fix bugs and maintain compatibility with Discord API changes.\n\n### Admin Impersonation Protection (Telegram and Discord)\n\n- Detect accounts using identical or similar profile pictures to administrators, where supported by platform APIs.\n- Identify suspicious usernames and display names impersonating moderators.\n- Alert moderators to potential impersonation attempts and ban offenders.\n\n## 3\\. Budget Breakdown\n| Expense | Calculation | Annual cost |\n| --- | --- | --- |\n| Domain (zebrapub.uk) | $10/year | $10 |\n| Hosting | $20/month | $240 |\n| Claude Code (AI coding tool) | $100/month | $1,200 |\n| Development and maintenance | 3 hours/week × 52 weeks × $50 | $7,800 |\n| **Total** |  | **$9,250** |\n\n### Development Time\nThe requested three hours per week will cover:\n\n- Developing new features and security improvements.\n- Maintaining and updating existing bots.\n- Fixing bugs and resolving technical issues.\n- Adapting to changes in platform APIs.\n- Investigating new scam techniques and implementing countermeasures.\n\n## 4\\. Conclusion\n\nCommunity moderators are volunteers who dedicate their own time to keeping these communities safe. They should have reliable tools that automate repetitive tasks and allow them to focus on helping genuine members.\n\nFighting scams is an ongoing responsibility, particularly in cryptocurrency communities, which are frequent targets for phishing, impersonation and fraud. Scammers constantly adapt their methods, so security tools must evolve accordingly.\n\nThis funding will cover the development, infrastructure and maintenance needed to keep our defences effective over the next 12 months.\n\n**The goal is to reduce the workload on volunteer moderators and make our communities safer by making it harder for scammers to operate.**",
+          "proposer": "juno1vdt4zjvkj76jgvwprp8jcz4hu6m28u7wjnktw5",
+          "start_height": 43776268,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1795199969957403480"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "open",
+          "votes": {
+            "yes": "0",
+            "no": "0",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-20T18:39:29Z"
       }
     ]
   },
