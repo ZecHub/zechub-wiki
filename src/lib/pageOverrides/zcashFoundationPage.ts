@@ -38,7 +38,7 @@ On 20 October 2026 the Board of Directors named **David Campbell** Executive Dir
 
 He succeeds **Alex Bornstein**, who joined in 2021 as Chief Operating Officer and became Executive Director in March 2025. Bornstein announced that he was stepping down and will stay through the end of January 2027 to help with the handover.
 
-Other leaders named in the Foundation's announcements are Danika Delano (Chief Operating Officer), Pili Guerra (Head of Engineering) and Elise Hamdon (Chief Communications Officer). The Board is chaired by Andrew Miller, and its members are unpaid volunteers. See the [team page](https://zfnd.org/#our-team) for the current list.
+The Board of Directors is chaired by Andrew Miller, and its members are unpaid volunteers. See the Foundation's [team page](https://zfnd.org/#our-team) for the staff list.
 
 ## What it does
 
