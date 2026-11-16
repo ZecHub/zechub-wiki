@@ -18,6 +18,7 @@ interface Wallet {
   syncSpeed: string;
   nu7?: string;
   nymMixnet?: string;
+  sourceCode?: string;
   status?: string;
   statusReason?: string;
   stage?: string;
@@ -25,6 +26,12 @@ interface Wallet {
 
 const isDeprecated = (w: Wallet) =>
   w.status?.toLowerCase() === "deprecated";
+
+const hasPublicSource = (w: Wallet) =>
+  /^https?:\/\//i.test(w.sourceCode?.trim() ?? "");
+
+const sourceStatus = (w: Wallet) =>
+  hasPublicSource(w) ? "Open Source" : "Closed Source";
 
 const isBeta = (w: Wallet) =>
   w.stage?.trim().toLowerCase() === "beta";
@@ -66,6 +73,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Features: new Set<string>(),
     Stage: new Set<string>(),
     "Nym Mixnet": new Set<string>(),
+    Source: new Set<string>(["Open Source", "Closed Source"]),
     NU7: new Set<string>(),
   });
 
@@ -238,6 +246,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             a.localeCompare(b)
           )
         ),
+        Source: new Set(["Open Source", "Closed Source"]),
         NU7: new Set(
           Array.from(nu7Set).sort((a, b) => {
             const ai = NU7_ORDER.indexOf(a.toLowerCase());
@@ -396,6 +405,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (category === "Nym Mixnet")
         return wallet.nymMixnet === value;
 
+      if (category === "Source")
+        return sourceStatus(wallet) === value;
+
       if (category === "NU7")
         return wallet.nu7 === value;
 
@@ -454,6 +466,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       nu7={wallet.nu7}
       stage={wallet.stage}
       nymMixnet={wallet.nymMixnet}
+      sourceCode={wallet.sourceCode}
       onLike={() => handleLike(wallet.title)}
       onDislike={() => handleDislike(wallet.title)}
       error={error[wallet.title]}

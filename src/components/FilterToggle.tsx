@@ -10,6 +10,7 @@ interface FilterToggleProps {
     Features: Set<string>;
     Stage: Set<string>;
     "Nym Mixnet": Set<string>;
+    Source: Set<string>;
     NU7: Set<string>;
   };
   activeFilters: string[];

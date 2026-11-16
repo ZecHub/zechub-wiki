@@ -14,6 +14,7 @@ export function parseMarkdown(md: string) {
     let syncSpeed = '';
     let nu7 = '';
     let nymMixnet = '';
+    let sourceCode = '';
 
     // Deprecated wallets are listed separately.
     // Stage (e.g. Beta) is shown as a badge.
@@ -67,6 +68,10 @@ export function parseMarkdown(md: string) {
         const value = line.split(': ')[1];
         if (value) nymMixnet = value.trim();
       }
+      else if (line.startsWith('- Source Code:')) {
+        const value = line.split(': ')[1];
+        if (value) sourceCode = value.trim();
+      }
       else if (line.startsWith('- Status:')) {
         const at = line.indexOf(': ');
         if (at > -1) {
@@ -97,6 +102,7 @@ export function parseMarkdown(md: string) {
       syncSpeed,
       nu7,
       nymMixnet,
+      sourceCode,
       status,
       statusReason,
       stage,

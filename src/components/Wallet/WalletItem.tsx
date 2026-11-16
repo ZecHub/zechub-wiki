@@ -24,6 +24,7 @@ interface WalletItemProps {
   nu7?: string;
   stage?: string;
   nymMixnet?: string;
+  sourceCode?: string;
   // Replaces the NU7 badge for deprecated wallets.
   deprecated?: string;
   onLike: () => void;
@@ -88,6 +89,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   nu7,
   stage,
   nymMixnet,
+  sourceCode,
   deprecated,
   likes,
   onLike,
@@ -98,6 +100,9 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
+
+  const sourceUrl = sourceCode?.trim() ?? "";
+  const hasSource = /^https?:\/\//i.test(sourceUrl);
 
   const handleLike = () => {
     onLike();
@@ -181,8 +186,8 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </div>
         )}
 
-        {/* NU7 compatibility badge + release stage */}
-        {deprecated === undefined && (nu7 || stage || nymMixnet) && (
+        {/* Compatibility, release stage, network and source badges */}
+        {deprecated === undefined && (
           <div className="mb-4 -mt-1 flex flex-wrap gap-2">
             {nu7 && (
               <span
@@ -213,6 +218,24 @@ const WalletItem: React.FC<WalletItemProps> = ({
                 className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300"
               >
                 Nym: {nymMixnet}
+              </span>
+            )}
+            {hasSource ? (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open source repository"
+                className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700 transition hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
+              >
+                Open Source
+              </a>
+            ) : (
+              <span
+                title="No source code repository listed"
+                className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
+              >
+                Closed Source
               </span>
             )}
           </div>
@@ -328,6 +351,16 @@ const WalletItem: React.FC<WalletItemProps> = ({
                       </Link>
                     );
                   })}
+                {hasSource && (
+                  <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 text-sm bg-emerald-100 dark:bg-emerald-900/40 hover:bg-emerald-200 dark:hover:bg-emerald-900/60 rounded-full text-emerald-700 dark:text-emerald-300 transition"
+                  >
+                    Source Code
+                  </a>
+                )}
               </div>
             ) : null}
           </>

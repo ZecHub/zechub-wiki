@@ -209,6 +209,51 @@ describe("WalletList", () => {
     ).toBeGreaterThan(0);
   });
 
+  it("labels open and closed source wallets and filters by source", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [Open](https://open.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source Code: https://github.com/example/open
+
+---
+## [Closed](https://closed.example)
+- Devices: Mobile
+- Pools: Ironwood
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const openCard = screen
+      .getByRole("heading", { name: "Open" })
+      .closest(".wallet-item") as HTMLElement;
+    const closedCard = screen
+      .getByRole("heading", { name: "Closed" })
+      .closest(".wallet-item") as HTMLElement;
+
+    expect(
+      within(openCard).getByText("Open Source")
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/example/open"
+    );
+    expect(within(closedCard).getByText("Closed Source")).toBeInTheDocument();
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const openSource = await within(sidebar).findByRole("checkbox", {
+      name: "Open Source",
+    });
+
+    await user.click(openSource);
+
+    expect(
+      screen.getByRole("heading", { name: "Open" })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Closed" })
+    ).not.toBeInTheDocument();
+  });
   it("orders wallets by NU7 compatibility", () => {
     const list = parseMarkdown(`
 ## [NoStatus](https://a.example)

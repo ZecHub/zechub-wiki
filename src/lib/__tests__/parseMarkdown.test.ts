@@ -13,6 +13,7 @@ const md = `
 - Pools: Transparent | Sapling | Orchard | Ironwood
 - NU7: Compatible
 - Nym Mixnet: Supported
+- Source Code: https://github.com/example/active
 - Stage: Beta
 
 ---
@@ -36,6 +37,9 @@ describe("parseMarkdown", () => {
     expect(active.statusReason).toBe("");
     expect(active.nu7).toBe("Compatible");
     expect(active.nymMixnet).toBe("Supported");
+    expect(active.sourceCode).toBe(
+      "https://github.com/example/active"
+    );
     expect(active.pools).toEqual([
       "Transparent",
       "Sapling",
