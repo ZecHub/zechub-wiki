@@ -19,13 +19,13 @@ The **Financial Privacy Foundation (FPF)** is an independent non-profit based in
 
 | Role | What FPF does | Basis |
 |---|---|---|
-| Zcash Community Grants | Receives and administers the 8% of the block subsidy set aside for ZCG and pays grants and milestones | [ZIP 1015](https://zips.z.cash/zip-1015) |
+| Zcash Community Grants | Receives and administers the 8% of the block subsidy set aside for ZCG and pays grants and milestones | [ZIP 1015](https://zips.z.cash/zip-1015) and [ZIP 1016](https://zips.z.cash/zip-1016) |
 | Coinholder-directed retroactive grants | Runs the application process: submissions, reporting, a summary before each vote and KYC checks | [Retroactive grants program](/zcash-organizations/coinholder-directed-retroactive-grants) |
 | Back office for Zcash teams | Provides legal, financial and administrative services so that unincorporated teams can focus on building | [FPF Q1 2026 report](https://forum.zcashcommunity.com/t/fpf-q1-report-supplements/55722) |
 
 ## Zcash Community Grants
 
-ZIP 1015 sets out FPF's duties for the ZCG funding stream. It is a company limited by guarantee incorporated in the Cayman Islands. Under the ZIP, FPF:
+ZIP 1015 sets out FPF's duties for the ZCG funding stream, and ZIP 1016 continues the 8% stream under the same rules once the original stream expires. It is a company limited by guarantee incorporated in the Cayman Islands. Under the ZIP, FPF:
 
 - receives and administers the ZCG funds and may spend them only on grants and on expenses reasonably related to running ZCG, not on its own operations;
 - records the funds as a restricted fund and keeps separate accounts for them;
@@ -75,7 +75,7 @@ Questions about FPF programs can be sent to info@financialprivacyfoundation.org.
 
 ## Sources
 
-- [ZIP 1015: Block Subsidy Allocation for Non-Direct Development Funding](https://zips.z.cash/zip-1015)
+- [ZIP 1015: Block Subsidy Allocation for Non-Direct Development Funding](https://zips.z.cash/zip-1015) and [ZIP 1016](https://zips.z.cash/zip-1016)
 - [FPF Q1 Report + Supplements](https://forum.zcashcommunity.com/t/fpf-q1-report-supplements/55722), Zcash Community Forum
 - [Call for Proposals: Coinholder-Directed Retroactive Grants Program Q3](https://forum.zcashcommunity.com/t/call-for-proposals-coinholder-directed-retroactive-grants-program-q3/56885)
 `;

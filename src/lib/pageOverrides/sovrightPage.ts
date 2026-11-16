@@ -8,7 +8,7 @@
 // wiki's mining pages and are linked, not repeated. If the page no longer looks like this one, the original markdown is returned.
 const PAGE = `# Sovright
 
-**Sovright** is a US 501(c)(3) non-profit that describes its mission as supporting human autonomy. It began with Zcash infrastructure, mining, protocol development and ecosystem support, and builds tools and services meant to make private digital currency infrastructure more resilient.
+**Sovright** is a non-profit that describes its mission as supporting human autonomy. It began with Zcash infrastructure, mining, protocol development and ecosystem support, and builds tools and services meant to make private digital currency infrastructure more resilient.
 
 <OrgLinks items='[{"label": "Website", "href": "https://sovright.com/"}, {"label": "Mining pool", "href": "https://mining.sovright.com/"}, {"label": "Argos", "href": "https://argos.sovright.com/"}, {"label": "GitHub", "href": "https://github.com/sovright"}]' />
 
@@ -16,8 +16,8 @@ const PAGE = `# Sovright
 
 | | |
 |---|---|
-| Type | US 501(c)(3) non-profit |
-| Leadership | Michelle Lai (executive chairman), Zaki Manian and Kristi Põldsam (product development), as named by The Block |
+| Type | Non-profit, described as the successor to the non-profit side of the old ECC structure |
+| Leadership | Michelle Lai (executive chairman) and Kristi Põldsam (product development), as named by The Block. Zaki Manian, a former Bootstrap board member, is also named |
 | Products | Argos, for recovering funds from old wallets, and the Sovright Mining Pool |
 | Focus | Zcash infrastructure, mining and ecosystem support, now widening to secure communications, resilient networks and private compute |
 
@@ -25,10 +25,10 @@ const PAGE = `# Sovright
 
 Sovright came out of the 2026 split at Electric Coin Company and Bootstrap. The sources describe the link to Bootstrap in two ways:
 
-- The Block reports Sovright as a non-profit founded by three former Bootstrap board members, after the governance dispute that led the ECC team to leave and form [ZODL](/zcash-organizations/zodl).
-- The Energy Mag reports that Sovright was formerly known as Bootstrap.
+- The Block reports Sovright as a non-profit formed by three former Bootstrap board members after the governance dispute that led the ECC team to leave and form [ZODL](/zcash-organizations/zodl). It calls Sovright the non-profit successor to ECC.
+- The Energy Mag describes it as formerly known as Bootstrap Org. No other source says Bootstrap was renamed, so treat the Bootstrap link as one of people and succession.
 
-Either way, it is the non-profit that continues from Bootstrap's side of that dispute. See [Electric Coin Company](/zcash-organizations/electric-coin-company) for the events of January 2026.
+It is the non-profit that continues from Bootstrap's side of that dispute. See [Electric Coin Company](/zcash-organizations/electric-coin-company) for the events of January 2026.
 
 The name combines **sovereign** and **right**. It reflects the organization's focus on individual sovereignty, privacy and the right to choose how personal data, money, communications, compute and online activity are controlled.
 
