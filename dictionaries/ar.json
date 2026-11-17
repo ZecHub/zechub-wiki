@@ -169,7 +169,10 @@
     "Viewing Keys": "Viewing Keys",
     "FROST Threshold Signatures": "FROST Threshold Signatures",
     "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
-    "Post-Quantum Security": "Post-Quantum Security"
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all Network": "Browse all Network"
   },
   "exploreMenu": {
     "Full Explore": "استكشاف كامل",
