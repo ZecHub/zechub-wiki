@@ -151,7 +151,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Browse all Learn Zcash",
         label: "Browse all articles",
-        path: "/start-here/what-is-zec-and-zcash",
+        path: "/start-here/using-this-wiki",
         icon: BookOpen,
       },
     ],
@@ -298,7 +298,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Browse all Use Zcash",
         label: "Browse all articles",
-        path: "/using-zcash/buying-zec",
+        path: "/using-zcash/centralized-swaps",
         icon: BookOpen,
       },
     ],
@@ -385,7 +385,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Browse all Ecosystem",
         label: "Browse all articles",
-        path: "/zcash-community/community-projects",
+        path: "/zcash-community/zcash-global-ambassadors",
         icon: BookOpen,
       },
     ],
@@ -510,7 +510,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Browse all Guides",
         label: "Browse all articles",
-        path: "/guides/raspberry-pi-4-full-node",
+        path: "/guides/zcash-stack",
         icon: BookOpen,
       },
     ],
@@ -643,6 +643,7 @@ export const menuSections: Record<string, MenuSection[]> = {
     },
     { title: "Visualize", items: ["Visualizer", "Visualizing the Zcash Network", "Visualizing Zcash Addresses"] },
     { title: "Reference", items: ["Zcash Library", "FAQ", "Privacy Tools"] },
+    { title: "More", items: ["Browse all Learn Zcash"] },
   ],
   "Using Zcash": [
     {
@@ -667,6 +668,7 @@ export const menuSections: Record<string, MenuSection[]> = {
       title: "Tools",
       items: ["Tools", "MetaMask Snap", "Zallet Quick Reference Guide", "Testnet"],
     },
+    { title: "More", items: ["Browse all Use Zcash"] },
   ],
   "Zcash Community": [
     {
@@ -696,6 +698,7 @@ export const menuSections: Record<string, MenuSection[]> = {
       title: "Organizations & governance",
       items: ["Zcash Organizations", "Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
     },
+    { title: "More", items: ["Browse all Ecosystem"] },
   ],
   Data: [
     {
@@ -759,5 +762,6 @@ export const menuSections: Record<string, MenuSection[]> = {
       title: "Developer tools",
       items: ["Zcash Devtool", "Zingolib and Zaino Tutorial", "Zenith Installation"],
     },
+    { title: "More", items: ["Browse all Guides"] },
   ],
 };
