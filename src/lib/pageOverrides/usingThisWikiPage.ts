@@ -6,27 +6,48 @@
 const CARD =
   "rounded-2xl border border-slate-200 bg-slate-50/70 p-5 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2 [&_ul]:!my-2";
 
-const PATHS: Array<[string, string, string]> = [
-  [
-    "I am new to Zcash",
-    "Start with the basics and get up to speed before you touch any funds.",
-    "- [Zcash New User Guide](/start-here/new-user-guide)\n- [Zcash Resources](/start-here/zcash-resources)\n- [Zcash Basics](/start-here/what-is-zec-and-zcash)",
-  ],
-  [
-    "I am ready to use Zcash",
-    "After the intro pages, learn how to hold, send and receive ZEC.",
-    "- [Using ZEC Privately](/guides/using-zec-privately)\n- [Tutorials](https://youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O&si=4vleWUbCGbNJu1-M): video walkthroughs of using ZEC",
-  ],
-  [
-    "I am a Zcash community member",
-    "Stay up to date with what is happening across the ecosystem.",
-    "- Weekly newsletter: [Zcash Ecosystem Digest](https://zechub.substack.com/s/zcash-ecosystem-digest)\n- Follow the accounts on the [List of Zcash community pages](/zcash-community/community-links)",
-  ],
-  [
-    "I want to contribute to ZecHub",
-    "Learn what ZecHub is, then see how to get involved.",
-    "- [What is ZecHub](/start-here/what-is-zechub)\n- [Help Build ZecHub](/contribute/help-build-zechub)",
-  ],
+const PATHS: Array<{ eyebrow: string; title: string; text: string; links: Array<[string, string, string]> }> = [
+  {
+    eyebrow: "First steps",
+    title: "I am new to Zcash",
+    text: "Get up to speed on the basics before you handle any funds.",
+    links: [
+      ["Zcash New User Guide", "/start-here/new-user-guide", "a first walkthrough"],
+      ["Zcash Resources", "/start-here/zcash-resources", "where to keep learning"],
+      ["Zcash Basics", "/start-here/what-is-zec-and-zcash", "what ZEC and Zcash are"],
+    ],
+  },
+  {
+    eyebrow: "Hands on",
+    title: "I am ready to use Zcash",
+    text: "Once you have read the intro pages, learn how to hold, send and receive ZEC.",
+    links: [
+      ["Using ZEC Privately", "/guides/using-zec-privately", "step-by-step shielded use"],
+      [
+        "Tutorials",
+        "https://youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O&si=4vleWUbCGbNJu1-M",
+        "video walkthroughs of using ZEC",
+      ],
+    ],
+  },
+  {
+    eyebrow: "Community",
+    title: "I am a Zcash community member",
+    text: "The best way to stay current is to follow the newsletter and the community accounts.",
+    links: [
+      ["Zcash Ecosystem Digest", "https://zechub.substack.com/s/zcash-ecosystem-digest", "the weekly newsletter"],
+      ["List of Zcash community pages", "/zcash-community/community-links", "accounts worth following"],
+    ],
+  },
+  {
+    eyebrow: "Contribute",
+    title: "I want to contribute to ZecHub",
+    text: "Learn what ZecHub is, then see how you can help build it.",
+    links: [
+      ["What is ZecHub", "/start-here/what-is-zechub", "the mission and the projects"],
+      ["Help Build ZecHub", "/contribute/help-build-zechub", "ways to help and how rewards work"],
+    ],
+  },
 ];
 
 const TABS: Array<[string, string]> = [
@@ -48,8 +69,14 @@ const tabsCards = TABS.map(
   ([a, b]) => `<div className="${CARD}">\n\n${a}\n\n${b}.\n\n</div>`,
 ).join("\n\n");
 
+const PATH_CARD =
+  "flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50/70 p-5 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2 [&_ul]:!my-3 [&_ul]:list-none [&_ul]:!pl-0 [&_li]:!my-0 [&_li]:border-t [&_li]:border-slate-200 [&_li]:py-2 dark:[&_li]:border-slate-700";
+
 const pathCards = PATHS.map(
-  ([a, b, c]) => `<div className="${CARD}">\n\n**${a}**\n\n${b}\n\n${c}\n\n</div>`,
+  (x) =>
+    `<div className="${PATH_CARD}">\n\n<p className="text-xs font-semibold uppercase tracking-wider text-brand dark:text-brand-soft">${x.eyebrow}</p>\n\n**${x.title}**\n\n${x.text}\n\n${x.links
+      .map(([name, href, note]) => `- [${name}](${href}): ${note}`)
+      .join("\n")}\n\n</div>`,
 ).join("\n\n");
 
 const BODY = `## TL;DR
