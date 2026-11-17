@@ -50,12 +50,12 @@ const RECEIVER_META: Record<string, { label: string; icon: string; accent: strin
   sapling: { label: 'Sapling', icon: '✦', accent: '#34d399' },
   orchard: { label: 'Orchard', icon: '❋', accent: '#a78bfa' },
   tex: { label: 'TEX (P2PKH wrapped)', icon: '⬡', accent: '#fb923c' },
-  full: { label: 'Full Address', icon: '⬡', accent: '#F4B728' },
+  full: { label: 'Full Address', icon: '⬡', accent: '#147DF6' },
 };
 
 const INPUT_CLASS = [
   'w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]',
-  'focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15',
+  'focus:border-brand focus:ring-2 focus:ring-brand/15',
   'rounded-xl px-4 py-3.5 text-[15px] font-medium outline-none transition-all duration-200',
   'text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]',
 ].join(' ');
@@ -206,11 +206,11 @@ export default function AddressDecoder() {
           <p className="text-[13px] text-amber-400 font-semibold">Failed to initialize WASM decoder</p>
           <p className="text-[12px] text-zinc-500 dark:text-[#5a6a7e] leading-relaxed">
             This tool requires{' '}
-            <code className="text-[#F4B728]/80 text-[11px]">@elemental-zcash/zaddr_wasm_parser</code> to
+            <code className="text-brand dark:text-brand-soft text-[11px]">@elemental-zcash/zaddr_wasm_parser</code> to
             decode addresses in the browser.
           </p>
           <details className="text-[11px]">
-            <summary className="text-zinc-400 dark:text-[#4a5a6e] cursor-pointer hover:text-[#F4B728] transition-colors">
+            <summary className="text-zinc-400 dark:text-[#4a5a6e] cursor-pointer hover:text-brand transition-colors">
               Error details
             </summary>
             <pre className="mt-2 text-[10px] text-red-400/70 bg-zinc-100 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040] rounded-lg px-3 py-2 overflow-x-auto whitespace-pre-wrap">
@@ -247,14 +247,14 @@ export default function AddressDecoder() {
 
       {!wasmReady && !wasmError && (
         <div className="flex items-center gap-2.5 px-1">
-          <div className="w-4 h-4 border-2 border-[#F4B728]/20 border-t-[#F4B728] rounded-full animate-spin" />
+          <div className="w-4 h-4 border-2 border-brand/20 border-t-brand rounded-full animate-spin" />
           <span className="text-[12px] text-zinc-400 dark:text-[#4a5a6e]">Initializing WASM decoder...</span>
         </div>
       )}
 
       {addressType && (
         <div className="ml-1">
-          <span className="text-[10px] font-bold uppercase tracking-wider bg-[#F4B728]/10 border border-[#F4B728]/15 text-[#F4B728] px-2.5 py-1 rounded">
+          <span className="text-[10px] font-bold uppercase tracking-wider bg-brand/10 border border-brand/15 text-brand dark:text-brand-soft px-2.5 py-1 rounded">
             {addressType}
           </span>
         </div>
@@ -268,14 +268,14 @@ export default function AddressDecoder() {
 
       {loading && (
         <div className="flex justify-center py-4">
-          <div className="w-5 h-5 border-2 border-[#F4B728]/30 border-t-[#F4B728] rounded-full animate-spin" />
+          <div className="w-5 h-5 border-2 border-brand/30 border-t-brand rounded-full animate-spin" />
         </div>
       )}
 
       {!input && wasmReady && (
-        <div className="rounded-xl bg-[#F4B728]/5 border border-[#F4B728]/10 px-5 py-4">
+        <div className="rounded-xl bg-brand/5 border border-brand/10 px-5 py-4">
           <p className="text-sm text-zinc-500 dark:text-[#5a6a7e] leading-relaxed">
-            <span className="font-bold text-[#F4B728]">Unified Addresses</span> bundle multiple receiver
+            <span className="font-bold text-brand dark:text-brand-soft">Unified Addresses</span> bundle multiple receiver
             types into a single address. Paste any Zcash address above to decode its receivers and
             generate individual QR codes.
           </p>
@@ -298,7 +298,7 @@ export default function AddressDecoder() {
                 onClick={() => setSelectedQR(isOpen ? null : r.key)}
                 className={`rounded-xl border transition-all duration-200 cursor-pointer ${
                   isOpen
-                    ? 'bg-zinc-50 dark:bg-[#0f1720] border-[#F4B728]/25'
+                    ? 'bg-zinc-50 dark:bg-[#0f1720] border-brand/25'
                     : 'bg-zinc-50 dark:bg-[#111b27] border-zinc-200 dark:border-[#1e2d3d] hover:border-zinc-300 dark:hover:border-[#2d3e50]'
                 }`}
               >
@@ -324,8 +324,8 @@ export default function AddressDecoder() {
                     }}
                     className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all duration-200 border ${
                       isCopied
-                        ? 'bg-[#F4B728] border-[#F4B728] text-[#151e29]'
-                        : 'bg-transparent border-zinc-200 dark:border-[#1e2d3d] text-zinc-400 dark:text-[#4a5a6e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
+                        ? 'bg-brand border-brand text-white'
+                        : 'bg-transparent border-zinc-200 dark:border-[#1e2d3d] text-zinc-400 dark:text-[#4a5a6e] hover:border-brand/50 hover:text-brand'
                     }`}
                   >
                     {isCopied ? '✓ Copied' : 'Copy'}

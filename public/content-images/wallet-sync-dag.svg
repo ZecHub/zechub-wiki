@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 540" role="img" aria-label="A directed acyclic graph with five nodes, a to e, where arrows only point forward and never return to a node">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#475569"/></marker></defs>
+<line x1="208.0" y1="80.4" x2="119.2" y2="162.6" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="252.0" y1="80.4" x2="340.8" y2="162.6" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="230.0" y1="90.0" x2="230.0" y2="287.0" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="116.2" y1="206.2" x2="206.7" y2="296.7" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="343.8" y1="206.2" x2="253.3" y2="296.7" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="352.2" y1="212.1" x2="244.1" y2="440.2" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<line x1="230.0" y1="350.0" x2="230.0" y2="437.0" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<path d="M 259.0 72.0 C 540 50 560 420 257 449" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="230" cy="60" r="30" fill="#c7d2fe" stroke="#4338ca" stroke-width="2"/><text x="230" y="60" font-size="20" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-weight="600" fill="#0f172a" text-anchor="middle" dominant-baseline="central">a</text>
+<circle cx="95" cy="185" r="30" fill="#c7d2fe" stroke="#4338ca" stroke-width="2"/><text x="95" y="185" font-size="20" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-weight="600" fill="#0f172a" text-anchor="middle" dominant-baseline="central">b</text>
+<circle cx="365" cy="185" r="30" fill="#c7d2fe" stroke="#4338ca" stroke-width="2"/><text x="365" y="185" font-size="20" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-weight="600" fill="#0f172a" text-anchor="middle" dominant-baseline="central">c</text>
+<circle cx="230" cy="320" r="30" fill="#c7d2fe" stroke="#4338ca" stroke-width="2"/><text x="230" y="320" font-size="20" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-weight="600" fill="#0f172a" text-anchor="middle" dominant-baseline="central">d</text>
+<circle cx="230" cy="470" r="30" fill="#c7d2fe" stroke="#4338ca" stroke-width="2"/><text x="230" y="470" font-size="20" font-family="Inter,system-ui,-apple-system,Segoe UI,sans-serif" font-weight="600" fill="#0f172a" text-anchor="middle" dominant-baseline="central">e</text>
+</svg>

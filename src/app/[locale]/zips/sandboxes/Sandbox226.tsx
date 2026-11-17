@@ -115,8 +115,8 @@ export default function Sandbox226() {
                 series={[
                   {
                     values: poolCurve,
-                    color: "stroke-[#1984c7] dark:stroke-[#3fa3e0]",
-                    fill: "fill-[#1984c7]/10 dark:fill-[#3fa3e0]/10",
+                    color: "stroke-brand dark:stroke-[#3fa3e0]",
+                    fill: "fill-brand/10 dark:fill-[#3fa3e0]/10",
                   },
                   {
                     values: perAssetCurve,
@@ -129,7 +129,7 @@ export default function Sandbox226() {
               />
               <Legend
                 items={[
-                  { label: "Global pool size", color: "stroke-[#1984c7] dark:stroke-[#3fa3e0]" },
+                  { label: "Global pool size", color: "stroke-brand dark:stroke-[#3fa3e0]" },
                   { label: "Per-asset (naive view)", color: "stroke-amber-500 dark:stroke-amber-400" },
                 ]}
               />

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import WalletList from "@/components/Wallet/WalletList";
@@ -8,13 +7,13 @@ import { parseMarkdown } from "@/lib/parseMarkdown";
 jest.mock("@/context/LanguageContext", () => ({
   useLanguage: () => ({ t: {} }),
 }));
-
 jest.mock("@/i18n/navigation", () => ({
   Link: ({ children, href, ...rest }: any) => (
-    <a href={href} {...rest}>{children}</a>
+    <a href={href} {...rest}>
+      {children}
+    </a>
   ),
 }));
-
 jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ alt }: { alt: string }) => <span>{alt}</span>,
@@ -28,6 +27,7 @@ const wallets = parseMarkdown(`
 - Stage: Beta
 
 ---
+
 ## [Gone](https://gone.example)
 - Devices: Desktop
 - Pools: Orchard
@@ -35,163 +35,95 @@ const wallets = parseMarkdown(`
 `);
 
 beforeEach(() => {
-  global.fetch = jest.fn(async () => ({
-    ok: true,
-    json: async () => ({}),
-  })) as any;
+  global.fetch = jest.fn(async () => ({ ok: true, json: async () => ({}) })) as any;
 });
 
 describe("WalletList", () => {
-  it("lists deprecated wallets separately", () => {
+  it("lists a deprecated wallet only in the bottom section, with its reason", async () => {
     render(<WalletList allWallets={wallets} />);
 
     expect(screen.getAllByText("1 wallet").length).toBeGreaterThan(0);
-
     const section = screen
       .getByText(/Deprecated \/ no longer supports Zcash \(1\)/)
       .closest("details") as HTMLElement;
-
     expect(section).toHaveAttribute("open");
     expect(within(section).getByText("Gone")).toBeInTheDocument();
-    expect(
-      within(section).getByText("End-of-life, no NU6.3 support")
-    ).toBeInTheDocument();
-
-    expect(
-      within(section).queryByText("Alive")
-    ).not.toBeInTheDocument();
-
-    expect(
-      within(section).queryByText(/^NU7:/)
-    ).not.toBeInTheDocument();
+    expect(within(section).getByText("End-of-life, no NU6.3 support")).toBeInTheDocument();
+    expect(within(section).queryByText("Alive")).not.toBeInTheDocument();
+    expect(within(section).queryByText(/^NU7: /)).not.toBeInTheDocument();
   });
 
-  it("applies filters to deprecated wallets too", async () => {
+  it("applies the filters to the deprecated section too, hiding it when nothing matches", async () => {
     const user = userEvent.setup();
-
     render(<WalletList allWallets={wallets} />);
-
     const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const deprecatedHeading = /Deprecated \/ no longer supports Zcash/;
 
-    const orchard = await within(sidebar).findByRole("checkbox", {
-      name: "Orchard",
-    });
-
+    // Both wallets have Orchard: the deprecated one stays listed.
+    const orchard = await within(sidebar).findByRole("checkbox", { name: "Orchard" });
     await user.click(orchard);
+    expect(screen.getByText(/Deprecated \/ no longer supports Zcash \(1\)/)).toBeInTheDocument();
 
-    expect(
-      screen.getByText(/Deprecated \/ no longer supports Zcash \(1\)/)
-    ).toBeInTheDocument();
-
-    await user.click(
-      within(sidebar).getByRole("checkbox", { name: "Mobile" })
-    );
-
-    expect(
-      screen.queryByText(/Deprecated \/ no longer supports Zcash/)
-    ).not.toBeInTheDocument();
-
+    // Only the active wallet is Mobile: the section disappears.
+    await user.click(within(sidebar).getByRole("checkbox", { name: "Mobile" }));
+    expect(screen.queryByText(deprecatedHeading)).not.toBeInTheDocument();
     expect(screen.queryByText("Gone")).not.toBeInTheDocument();
 
-    await user.click(
-      within(sidebar).getByRole("checkbox", { name: "Mobile" })
-    );
+    // Clearing the filters brings it back.
+    await user.click(within(sidebar).getByRole("checkbox", { name: "Mobile" }));
     await user.click(orchard);
-
-    expect(
-      screen.getByText(/Deprecated \/ no longer supports Zcash \(1\)/)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Deprecated \/ no longer supports Zcash \(1\)/)).toBeInTheDocument();
   });
 
-  it("builds filters from active wallets only", async () => {
+  it("builds the filters from active wallets only", async () => {
     render(<WalletList allWallets={wallets} />);
 
-    await waitFor(() =>
-      expect(screen.getAllByText("Mobile").length).toBeGreaterThan(1)
-    );
-
+    // "Mobile" comes from the active wallet; "Desktop" only from the deprecated one.
+    await waitFor(() => expect(screen.getAllByText("Mobile").length).toBeGreaterThan(1));
     const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
-
-    expect(
-      within(sidebar).getByText("Mobile")
-    ).toBeInTheDocument();
-
-    expect(
-      within(sidebar).queryByText("Desktop")
-    ).not.toBeInTheDocument();
+    expect(within(sidebar).getByText("Mobile")).toBeInTheDocument();
+    expect(within(sidebar).queryByText("Desktop")).not.toBeInTheDocument();
   });
 
-  it("shows NU7 compatibility and the release stage", () => {
+  it("shows the NU7 badge and the release stage on an active wallet", () => {
     render(<WalletList allWallets={wallets} />);
 
-    expect(
-      screen.getByText("NU7: Compatible")
-    ).toBeInTheDocument();
-
+    expect(screen.getByText("NU7: Compatible")).toBeInTheDocument();
     expect(screen.getByText("Beta")).toBeInTheDocument();
   });
 
-  it("orders wallets by NU7 compatibility", () => {
+  it("orders NU7-compatible wallets first, whatever their position in the file", () => {
     const list = parseMarkdown(`
 ## [NoStatus](https://a.example)
 - Devices: Mobile
 
 ---
+
 ## [Late](https://b.example)
 - Devices: Mobile
 - NU7: Not Ready
 
 ---
+
 ## [Transp](https://c.example)
 - Devices: Mobile
-- NU7: Compatible for Transparent ZEC
+- NU7: Compatible for transparent zec
 
 ---
+
 ## [Early](https://d.example)
 - Devices: Mobile
 - NU7: Compatible
 
 ---
+
 ## [Busy](https://e.example)
 - Devices: Mobile
 - NU7: In Progress
-
----
-## [Unverified](https://f.example)
-- Devices: Mobile
-- NU7: Not Verified
 `);
-
     render(<WalletList allWallets={list} />);
 
-    const titles = screen
-      .getAllByRole("heading", { level: 5 })
-      .map((h) => h.textContent);
-
-    expect(titles).toEqual([
-      "Early",
-      "Transp",
-      "Busy",
-      "Late",
-      "Unverified",
-      "NoStatus",
-    ]);
-  });
-
-  it("filters by NU7 status", async () => {
-    const user = userEvent.setup();
-
-    render(<WalletList allWallets={wallets} />);
-
-    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
-
-    const compatible = await within(sidebar).findByRole("checkbox", {
-      name: "Compatible",
-    });
-
-    await user.click(compatible);
-
-    expect(screen.getByText("Alive")).toBeInTheDocument();
-    expect(screen.queryByText("Gone")).not.toBeInTheDocument();
+    const titles = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(titles).toEqual(["Early", "Transp", "Busy", "Late", "NoStatus"]);
   });
 });

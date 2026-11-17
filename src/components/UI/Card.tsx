@@ -117,7 +117,7 @@ const LegacyCard: React.FC<CardProps> = ({
       <div className="px-6 pb-4">
         <Link
           href={buttonLink}
-          className="bg-[#1984c7] text-white font-bold py-2 px-4 rounded"
+          className="bg-brand text-on-brand font-bold py-2 px-4 rounded"
         >
           {buttonText}
         </Link>

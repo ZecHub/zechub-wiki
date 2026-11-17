@@ -2,11 +2,20 @@ import { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 
-import { FcAbout as Info } from "react-icons/fc";
-import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
+import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip, MdFoundation, MdRadar as Radar } from "react-icons/md";
 import { LuFileKey as FileKey } from "react-icons/lu";
 import { GrGroup as Group } from "react-icons/gr";
-import { FaJarWheat as Jar } from "react-icons/fa6";
+import { FaJarWheat as Jar, FaLaptopCode } from "react-icons/fa6";
+import {
+  GiEgyptianSphinx as EgyptianSphinx,
+  GiBorderedShield as BordererShield,
+  GiCheckedShield as CheckedShield,
+  GiSoapExperiment,
+  GiHorseHead as HorseHead,
+} from "react-icons/gi";
+import { HiOutlineBuildingLibrary } from "react-icons/hi2";
+import { GrStakeholder as Stakeholder } from "react-icons/gr";
+import { TbHexagonLetterZ as HexagonLetterZ, TbCircleKey as CircleKey } from "react-icons/tb";
 import { BsFillArrowUpRightCircleFill as ArrowUp } from "react-icons/bs";
 
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
@@ -16,8 +25,23 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem, BookOpenText, KeyRound, GraduationCap, Users } from "lucide-react";
-import { FcVoicePresentation } from "react-icons/fc";
+import {
+  Wrench,
+  Map,
+  Gem,
+  BookOpenText,
+  KeyRound,
+  LayoutDashboard,
+  SlidersHorizontal,
+  Network,
+  Layers,
+  ShieldCheck,
+  Blocks,
+  Hash,
+  Info,
+  Presentation,
+  Library,
+} from "lucide-react";
 import { FaUserAstronaut } from "react-icons/fa";
 
 import {
@@ -109,7 +133,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/zallet-quick-reference-guide",
       },
       {
-        name: "MetaMask Snap",
+        name: "Metamask Snap",
         path: "/using-zcash/metamask-snap",
       },
       {
@@ -182,6 +206,11 @@ export const navigations: Array<NavigationItem> = [
         name: "Testnet",
         path: "/using-zcash/testnet",
       },
+      {
+        name: "Browse all Use Zcash",
+        path: "/using-zcash/buying-zec",
+        icon: Library,
+      },
     ],
   },
   {
@@ -211,11 +240,6 @@ export const navigations: Array<NavigationItem> = [
         newTab: true,
       },
       {
-        name: "Community Building",
-        path: "/zcash-community/building",
-        icon: Users,
-      },
-      {
         name: "Community Projects",
         path: "/zcash-community/community-projects",
       },
@@ -226,11 +250,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zcash Media",
         path: "/zcash-community/zcash-media",
-      },
-      {
-        name: "Zero to Zero Knowledge",
-        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
-        icon: GraduationCap,
       },
       {
         name: "ZCAP",
@@ -255,11 +274,32 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zcon Vozes Archive",
         path: "/zcash-community/zcon-vozes",
-        icon: FcVoicePresentation,
+        icon: Presentation,
       },
       {
 	name: "Zcash Engineering Office Hours",
 	path: "/zcash-community/zcash-engineering-office-hours",
+      },
+      { name: "ZODL", path: "/zcash-organizations/ZODL", icon: EgyptianSphinx },
+      { name: "Electric Coin Company", path: "/zcash-organizations/electric-coin-company", icon: Radar },
+      { name: "Zcash Foundation", path: "/zcash-organizations/zcash-foundation", icon: CheckedShield },
+      { name: "Zcash Community Grants", path: "/zcash-organizations/zcash-community-grants", icon: HexagonLetterZ },
+      { name: "Shielded Labs", path: "/zcash-organizations/shielded-labs", icon: BordererShield },
+      { name: "Zingo Labs", path: "/zcash-organizations/zingo-labs", icon: GiSoapExperiment },
+      {
+        name: "More orgs",
+        path: "/zcash-organizations/financial-privacy-foundation",
+        icon: HiOutlineBuildingLibrary,
+        links: [
+          { name: "Financial Privacy Foundation", path: "/zcash-organizations/financial-privacy-foundation", icon: MdFoundation },
+          { name: "Valar Group", path: "/zcash-organizations/valar-group", icon: FaLaptopCode },
+          { name: "Zcash Labs", path: "/zcash-organizations/zcash-labs", icon: HiOutlineBuildingLibrary },
+          { name: "CoinHolder Directed Retroactive Grants", path: "/zcash-organizations/coinholder-directed-retroactive-grants", icon: Stakeholder },
+          { name: "Sovright", path: "/zcash-organizations/sovright", icon: CircleKey },
+          { name: "Obscura Labs", path: "/zcash-organizations/obscura-labs", icon: HorseHead },
+          { name: "Brand", path: "/zcash-organizations/brand", icon: BrandIcon },
+          { name: "ZKAV Club", path: "/zcash-organizations/zkav", icon: "zkav-club.png" },
+        ],
       },
     ],
   },
@@ -276,16 +316,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/free2z-live",
       },
       {
-        name: "ZKAV Club",
-        path: "/zfav-club/guides-for-creators",
-        icon: AudioVideo,
-      },
-      {
-        name: "Free2Z Livestreaming",
-        path: "/guides/free2z-livestreaming",
-      },
-      {
-        name: "Keystone Zashi",
+        name: "Keystone Zodl (Zashi)",
         path: "/guides/keystone-zashi",
       },
       {
@@ -295,11 +326,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Nym VPN",
         path: "/guides/nym-vpn",
-      },
-      {
-        name: "Nym Mixnet Wallet Setup",
-        path: "/guides/nym-mixnet-wallet-setup",
-        icon: "/Logo/nym.svg",
       },
       {
         name: "Using ZEC in DeFi",
@@ -408,6 +434,11 @@ export const navigations: Array<NavigationItem> = [
         label: "Zero Knowledge vs Decoy Systems",
         path: "/guides/zero-knowledge-vs-decoys",
       },
+      {
+        name: "Browse all Guides",
+        path: "/guides/raspberry-pi-4-full-node",
+        icon: Library,
+      },
     ],
   },
   {
@@ -475,6 +506,34 @@ export const navigations: Array<NavigationItem> = [
     ],
   },
   {
+    name: "Data",
+    label: "Network",
+    icon: LayoutDashboard,
+    links: [
+      { name: "Ecosystem Dashboard", path: "/dashboard", icon: LayoutDashboard },
+      {
+        name: "Protocol Parameters",
+        path: "/protocol-parameters",
+        icon: SlidersHorizontal,
+      },
+      { name: "All Visualizers", path: "/visualizer", icon: BsPlay },
+      {
+        name: "Network & Infrastructure",
+        path: "/zcash-infrastructure-visualizer",
+        icon: Network,
+      },
+      { name: "Value Pools", path: "/zcash-pool-visualizer", icon: Layers },
+      {
+        name: "zk-SNARK Proofs",
+        path: "/zksnark-proof-visualizer",
+        icon: ShieldCheck,
+      },
+      { name: "Consensus", path: "/visualizer/consensus", icon: Blocks },
+      { name: "Hash Function", path: "/visualizer/hash-function", icon: Hash },
+      { name: "Zcash Keys", path: "/visualizer/zcash-key", icon: KeyRound },
+    ],
+  },
+  {
     name: "Governance",
     label: "Governance",
     icon: RiGovernmentLine,
@@ -534,12 +593,12 @@ export const navigations: Array<NavigationItem> = [
 export const socialNav = [
   { name: "Discord", url: "https://discord.gg/zcash", icon: Discord },
   {
-    name: "Youtube",
+    name: "YouTube",
     url: "https://www.youtube.com/channel/UC3-KM00kjCUheRzO5cq3PAA",
     icon: Youtube,
   },
-  { name: "Twitter", url: "https://x.com/zechub", icon: Twitter },
-  { name: "Github", url: "https://github.com/ZecHub/zechub", icon: Github },
+  { name: "X", url: "https://x.com/zechub", icon: Twitter },
+  { name: "GitHub", url: "https://github.com/ZecHub/zechub", icon: Github },
 ];
 
 export const socialMedia = [
@@ -553,3 +612,154 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
+// Desktop dropdown grouping. Purely presentational: the flat `links` arrays
+// above stay the single source of truth (mobile menu, search and translations
+// keep using them). Names must match `name` in `navigations`. Any link not
+// listed here is shown under a trailing "More" group, so nothing disappears
+// when a new page is added to `navigations`.
+export type MenuSection = { title: string; items: string[] };
+
+export const menuSections: Record<string, MenuSection[]> = {
+  "Using Zcash": [
+    {
+      title: "Get started",
+      items: ["Buying ZEC", "Wallets", "Exchanges", "Faucets", "Recovering Funds"],
+    },
+    {
+      title: "Spend & pay",
+      items: [
+        "Use Cases",
+        "Spend Zcash",
+        "Payment Processors",
+        "Mobile Top Ups",
+        "Payment Request URIs",
+      ],
+    },
+    {
+      title: "Tools",
+      items: ["Tools", "Metamask Snap", "Zallet Quick Reference Guide", "Testnet"],
+    },
+    {
+      title: "Understand",
+      items: [
+        "Transactions",
+        "Memos",
+        "Shielded Pools",
+        "Transparent Exchange Addresses",
+        "Blockchain Explorers",
+      ],
+    },
+  ],
+  "Zcash Community": [
+    {
+      title: "Community",
+      items: [
+        "Community Links",
+        "Community Forum",
+        "Community Blogs",
+        "Community Projects",
+        "Zcash Global Ambassadors",
+        "Cypherpunk Zero NFT",
+      ],
+    },
+    {
+      title: "Media & events",
+      items: [
+        "Zcash Media",
+        "Zcash Podcasts",
+        "Arborist Calls",
+        "Zcash Engineering Office Hours",
+        "Zcon Archive",
+        "Zcon Vozes Archive",
+      ],
+    },
+    {
+      title: "Governance & security",
+      items: ["Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
+    },
+    {
+      title: "Organizations",
+      items: [
+        "ZODL",
+        "Electric Coin Company",
+        "Zcash Foundation",
+        "Zcash Community Grants",
+        "Shielded Labs",
+        "Zingo Labs",
+        "More orgs",
+      ],
+    },
+  ],
+  Data: [
+    {
+      title: "Live data",
+      items: ["Ecosystem Dashboard", "Protocol Parameters"],
+    },
+    {
+      title: "Explore the network",
+      items: ["All Visualizers", "Network & Infrastructure", "Value Pools"],
+    },
+    {
+      title: "Protocol",
+      items: ["Consensus", "zk-SNARK Proofs"],
+    },
+    {
+      title: "Cryptography",
+      items: ["Hash Function", "Zcash Keys"],
+    },
+  ],
+  Guides: [
+    {
+      title: "Run a node",
+      items: [
+        "Raspberry Pi 4 Full Node",
+        "Raspberry pi5 Zebra Lightwalletd Zingo",
+        "Raspberry pi 4 Zebra Node",
+        "Hardened Zebrad",
+        "Akash Network Zcashd",
+        "Akash Network Zebra",
+        "Migration Guide Zcashd To Zebrad Zallet",
+        "Verifying Zcash Releases",
+      ],
+    },
+    {
+      title: "Wallets & privacy",
+      items: [
+        "Using ZEC Privately",
+        "My First Zcash Workbook",
+        "Keystone Zodl (Zashi)",
+        "Brave Wallet Guide",
+        "Zkool Multisig",
+        "Ywallet FROST Demo",
+        "Nym VPN",
+        "Viewing Key Transaction Export",
+        "Zero-Knowledge vs Decoys",
+      ],
+    },
+    {
+      title: "Payments & apps",
+      items: [
+        "Zgo Payment Processor",
+        "BTCPayServer Zcash Plugin",
+        "Using ZEC in DeFi",
+        "Maya Protocol",
+        "Avalanche RedBridge",
+        "ShapeShift Zcash",
+        "Free2z Live",
+      ],
+    },
+    {
+      title: "Explore & build",
+      items: [
+        "Blockchain Explorers",
+        "Visualizing the Zcash Network",
+        "Visualizing Zcash Addresses",
+        "Zcash Devtool",
+        "Zcash Improvement Proposals",
+        "Zingolib and Zaino Tutorial",
+        "Zenith Installation",
+      ],
+    },
+  ],
+};

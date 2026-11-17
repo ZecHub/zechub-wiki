@@ -12,9 +12,32 @@ let octokitPromise: Promise<any> | null = null;
 
 async function getOctokit() {
   if (!octokitPromise) {
-    octokitPromise = import("octokit").then(
-      ({ Octokit }) => new Octokit({ auth: authUser }),
-    );
+    octokitPromise = import("octokit").then(({ Octokit }) => {
+      const octokit = new Octokit({ auth: authUser });
+      // The content repo is public. A token that GitHub rejects (revoked, expired, mistyped) would
+      // otherwise turn every page that reads content into a 500, so such a request is repeated
+      // without credentials, and a warning explains what to fix.
+      let anonymous: InstanceType<typeof Octokit> | null = null;
+      let warned = false;
+      octokit.hook?.wrap("request", async (request, options) => {
+        try {
+          return await request(options);
+        } catch (err: any) {
+          if (err?.status !== 401 || !authUser) throw err;
+          if (!warned) {
+            warned = true;
+            console.warn(
+              "[authAndFetch] GITHUB_TOKEN was rejected by GitHub (Bad credentials). Falling back to unauthenticated " +
+                "requests, which have a much lower rate limit. Replace or remove the token in .env.local / the host's env vars.",
+            );
+          }
+          anonymous ??= new Octokit();
+          const { authorization: _drop, ...headers } = (options.headers ?? {}) as Record<string, string>;
+          return anonymous.request({ ...options, headers } as any);
+        }
+      });
+      return octokit;
+    });
   }
   return octokitPromise;
 }
@@ -323,23 +346,38 @@ async function fetchRawFile(
     .split("/")
     .map(encodeURIComponent)
     .join("/")}`;
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      method,
-      headers:
-        contentRepoIsPrivate && authUser
-          ? { Authorization: `token ${authUser}` }
-          : undefined,
-      // Next must not layer its own fetch cache under unstable_cache: the
-      // wrapper already owns the TTL and the revalidate tag.
-      cache: "no-store",
-    });
-  } catch (err: any) {
+
+  let res: Response | undefined;
+  let lastErr: any;
+  // A cold dev server fires dozens of reads at once, and a socket that is
+  // reset or times out is transient. Retry network-level failures (never HTTP
+  // statuses) a couple of times before reporting them.
+  for (let attempt = 0; attempt < 3 && !res; attempt++) {
+    if (attempt > 0) {
+      await new Promise((r) => setTimeout(r, 300 * attempt));
+    }
+    try {
+      res = await fetch(url, {
+        method,
+        headers:
+          contentRepoIsPrivate && authUser
+            ? { Authorization: `token ${authUser}` }
+            : undefined,
+        // Next must not layer its own fetch cache under unstable_cache: the
+        // wrapper already owns the TTL and the revalidate tag.
+        cache: "no-store",
+      });
+    } catch (err: any) {
+      lastErr = err;
+    }
+  }
+  if (!res) {
     // DNS/socket failure — transient by definition, never "missing". Thrown,
     // never returned as null, so it is never cached as an absent page.
-    if (err?.status) throw err;
-    throw Object.assign(new Error(err?.message ?? "fetch failed"), { status: 0 });
+    if (lastErr?.status) throw lastErr;
+    throw Object.assign(new Error(lastErr?.message ?? "fetch failed"), {
+      status: 0,
+    });
   }
   if (res.status === 404) return null;
   if (!res.ok) {

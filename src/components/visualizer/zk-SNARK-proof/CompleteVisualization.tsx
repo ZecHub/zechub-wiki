@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Lock, ShieldCheck, BadgeCheck } from "lucide-react";
 
 export const CompleteVisualization = () => (
   <div className="space-y-8 w-full flex flex-col items-center">
@@ -25,7 +25,7 @@ export const CompleteVisualization = () => (
       transition={{ delay: 0.3 }}
       className="text-center"
     >
-      <h3 className="text-2xl font-bold mb-2 text-gradient">
+      <h3 className="text-2xl font-bold mb-2 text-foreground">
         Transaction Complete!
       </h3>
       <p className="text-muted-foreground">
@@ -35,9 +35,9 @@ export const CompleteVisualization = () => (
 
     <div className="grid grid-cols-3 gap-4 w-full">
       {[
-        { label: "Private", icon: "🔒" },
-        { label: "Verified", icon: "✓" },
-        { label: "Secure", icon: "🛡️" },
+        { label: "Private", Icon: Lock },
+        { label: "Verified", Icon: BadgeCheck },
+        { label: "Secure", Icon: ShieldCheck },
       ].map((item, i) => (
         <motion.div
           key={item.label}
@@ -46,7 +46,7 @@ export const CompleteVisualization = () => (
           transition={{ delay: 0.5 + i * 0.1 }}
           className="p-4 rounded-lg bg-card border border-primary/20 text-center"
         >
-          <div className="text-2xl mb-2">{item.icon}</div>
+          <item.Icon aria-hidden="true" className="mx-auto mb-2 h-6 w-6 text-brand dark:text-brand-soft" />
           <p className="text-sm font-medium">{item.label}</p>
         </motion.div>
       ))}

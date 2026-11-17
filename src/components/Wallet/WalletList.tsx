@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
@@ -22,8 +21,9 @@ interface Wallet {
   stage?: string;
 }
 
-const isDeprecated = (w: Wallet) =>
-  w.status?.toLowerCase() === "deprecated";
+// A deprecated wallet (end-of-life, archived, or no longer supports Zcash)
+// leaves the directory — no filters, no counts — and is listed at the bottom.
+const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
@@ -33,13 +33,11 @@ const NU7_ORDER = [
   "not ready",
   "not verified",
 ];
-
-const nu7Rank = (w: Wallet) => {
-  const i = NU7_ORDER.indexOf(
-    w.nu7?.trim().toLowerCase() ?? ""
-  );
+const nu7Index = (value?: string) => {
+  const i = NU7_ORDER.indexOf(value?.trim().toLowerCase() ?? "");
   return i === -1 ? NU7_ORDER.length : i;
 };
+const nu7Rank = (w: Wallet) => nu7Index(w.nu7);
 
 interface Props {
   allWallets: Wallet[];
@@ -47,6 +45,15 @@ interface Props {
 
 const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  // /hardware-wallets, /mobile-wallets, /desktop-wallets and /web-wallets open this list with ?device=<type>
+  // so the matching Devices filter is already on.
+  useEffect(() => {
+    const device = new URLSearchParams(window.location.search).get("device");
+    if (!device) return;
+    const key = `Devices:${device.charAt(0).toUpperCase()}${device.slice(1).toLowerCase()}`;
+    setActiveFilters((prev) => (prev.includes(key) ? prev : [...prev, key]));
+  }, []);
   const [filters, setFilters] = useState({
     Devices: new Set<string>(),
     "Operating System": new Set<string>(),
@@ -55,67 +62,42 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Features: new Set<string>(),
     NU7: new Set<string>(),
   });
-
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
   const [error, setError] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState<{ [key: string]: string }>({});
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-
   const filterTriggerRef = useRef<HTMLButtonElement>(null);
   const closeFilterRef = useRef<HTMLButtonElement>(null);
 
   const { t } = useLanguage();
-
   const filtersLabel = t?.wallets?.filters ?? "Filters";
-
   const walletCountLabel = (count: number) =>
     count === 1
       ? (t?.wallets?.walletCountOne ?? "1 wallet")
-      : (t?.wallets?.walletCount ?? "{count} wallets").replace(
-          "{count}",
-          String(count)
-        );
-
+      : (t?.wallets?.walletCount ?? "{count} wallets").replace("{count}", String(count));
   const activeCountLabel = (count: number) =>
-    (t?.wallets?.activeCount ?? "{count} active").replace(
-      "{count}",
-      String(count)
-    );
-
+    (t?.wallets?.activeCount ?? "{count} active").replace("{count}", String(count));
   const closeLabel = t?.wallets?.close ?? "Close";
   const clearAllLabel = t?.wallets?.clearAll ?? "Clear all";
-  const savedReviewMsg =
-    t?.wallets?.savedReview ?? "We saved your review!";
-
+  const savedReviewMsg = t?.wallets?.savedReview ?? "We saved your review!";
   const errorGettingLikesMsgPrefix =
     t?.wallets?.errorGettingLikes ?? "Error getting likes:";
-
   const errorUpdatingRatingPrefix =
     t?.wallets?.errorUpdatingRating ?? "Error updating rating:";
 
   const deprecatedTitle =
-    t?.wallets?.deprecatedTitle ??
-    "Deprecated / no longer supports Zcash";
-
+    t?.wallets?.deprecatedTitle ?? "Deprecated / no longer supports Zcash";
   const deprecatedNote =
     t?.wallets?.deprecatedNote ??
     "Kept for reference only. Do not use these wallets for new funds.";
 
-  const handleToggleFilter = () =>
-    setIsFilterVisible((v) => !v);
-
+  const handleToggleFilter = () => setIsFilterVisible((v) => !v);
   const showWalletsLabel = (count: number) =>
     count === 1
       ? (t?.wallets?.showWallet ?? "Show 1 wallet")
-      : (t?.wallets?.showWallets ?? "Show {count} wallets").replace(
-          "{count}",
-          String(count)
-        );
+      : (t?.wallets?.showWallets ?? "Show {count} wallets").replace("{count}", String(count));
 
-  const activeWallets = allWallets.filter(
-    (w) => !isDeprecated(w)
-  );
-
+  const activeWallets = allWallets.filter((w) => !isDeprecated(w));
   const deprecatedWallets = allWallets
     .filter(isDeprecated)
     .sort((a, b) => a.title.localeCompare(b.title));
@@ -129,229 +111,124 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       const featuresSet = new Set<string>();
       const nu7Set = new Set<string>();
 
-      allWallets
-        .filter((w) => !isDeprecated(w))
-        .forEach((wallet) => {
-          wallet.devices.forEach((d) =>
-            devicesSet.add(d.trim())
-          );
-
-          wallet.operatingSystem?.forEach((os) =>
-            operatingSystemSet.add(os.trim())
-          );
-
-          wallet.pools.forEach((p) =>
-            poolsSet.add(p.trim())
-          );
-
-          wallet.walletSupport?.forEach((ws) =>
-            walletSupportSet.add(ws.trim())
-          );
-
-          wallet.features.forEach((f) =>
-            featuresSet.add(f.trim())
-          );
-
-          if (wallet.nu7) {
-            nu7Set.add(wallet.nu7.trim());
-          }
-        });
+      allWallets.filter((w) => !isDeprecated(w)).forEach((wallet) => {
+        wallet.devices.forEach((d) => devicesSet.add(d.trim()));
+        wallet.operatingSystem?.forEach((os) => operatingSystemSet.add(os.trim()));
+        wallet.pools.forEach((p) => poolsSet.add(p.trim()));
+        wallet.walletSupport?.forEach((ws) => walletSupportSet.add(ws.trim()));
+        wallet.features.forEach((f) => featuresSet.add(f.trim()));
+        if (wallet.nu7) nu7Set.add(wallet.nu7.trim());
+      });
 
       setFilters({
-        Devices: new Set(
-          Array.from(devicesSet).sort((a, b) =>
-            a.localeCompare(b)
-          )
-        ),
+        Devices: new Set(Array.from(devicesSet).sort((a, b) => a.localeCompare(b))),
         "Operating System": new Set(
-          Array.from(operatingSystemSet).sort((a, b) =>
-            a.localeCompare(b)
-          )
+          Array.from(operatingSystemSet).sort((a, b) => a.localeCompare(b)),
         ),
-        Pools: new Set(
-          Array.from(poolsSet).sort((a, b) =>
-            a.localeCompare(b)
-          )
-        ),
+        Pools: new Set(Array.from(poolsSet).sort((a, b) => a.localeCompare(b))),
         "Wallet Support": new Set(
-          Array.from(walletSupportSet).sort((a, b) =>
-            a.localeCompare(b)
-          )
+          Array.from(walletSupportSet).sort((a, b) => a.localeCompare(b)),
         ),
-        Features: new Set(
-          Array.from(featuresSet).sort((a, b) =>
-            a.localeCompare(b)
-          )
-        ),
-        NU7: new Set(
-          Array.from(nu7Set).sort((a, b) => {
-            const ai = NU7_ORDER.indexOf(a.toLowerCase());
-            const bi = NU7_ORDER.indexOf(b.toLowerCase());
-
-            return (
-              (ai === -1 ? NU7_ORDER.length : ai) -
-                (bi === -1 ? NU7_ORDER.length : bi) ||
-              a.localeCompare(b)
-            );
-          })
-        ),
+        Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
+        NU7: new Set(Array.from(nu7Set).sort((a, b) => nu7Index(a) - nu7Index(b) || a.localeCompare(b))),
       });
 
       let initialLikes: { [key: string]: number } = {};
-
       try {
         const response = await fetch("/api/wallet-likes", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ title: "", delta: 0 }),
         });
-
         if (response.ok) {
           initialLikes = await response.json();
         }
       } catch (error) {
-        console.log(
-          `${errorGettingLikesMsgPrefix} ${error}`
-        );
+        console.log(`${errorGettingLikesMsgPrefix} ${error}`);
       }
 
       allWallets.forEach((wallet) => {
-        if (!initialLikes[wallet.title]) {
-          initialLikes[wallet.title] = 0;
-        }
+        if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0;
       });
-
       setLikes(initialLikes);
     };
 
     fetchLikes();
   }, [allWallets]);
 
-  function toggleFilter(
-    filterCategory: string,
-    filterValue: string
-  ) {
+  function toggleFilter(filterCategory: string, filterValue: string) {
     const filterKey = `${filterCategory}:${filterValue}`;
-
     setActiveFilters((prev) =>
       prev.includes(filterKey)
         ? prev.filter((f) => f !== filterKey)
-        : [...prev, filterKey]
+        : [...prev, filterKey],
     );
   }
 
   const handleLike = async (walletTitle: string) => {
     setSuccess({});
     setError({});
-
     try {
       const response = await fetch("/api/wallet-likes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: walletTitle,
-          delta: 1,
-        }),
+        body: JSON.stringify({ title: walletTitle, delta: 1 }),
       });
-
       if (response.ok) {
-        setLikes((prev) => ({
-          ...prev,
-          [walletTitle]: prev[walletTitle] + 1,
-        }));
-
-        setSuccess({
-          [walletTitle]: savedReviewMsg,
-        });
+        setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] + 1 }));
+        setSuccess({ [walletTitle]: savedReviewMsg });
       } else {
         const data = await response.json();
-        setError({
-          [walletTitle]: data.message,
-        });
+        setError({ [walletTitle]: data.message });
       }
     } catch (error) {
-      setError({
-        [walletTitle]: `${errorUpdatingRatingPrefix} ${error}`,
-      });
+      setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
     }
   };
 
   const handleDislike = async (walletTitle: string) => {
     setSuccess({});
     setError({});
-
     try {
       const response = await fetch("/api/wallet-likes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: walletTitle,
-          delta: -1,
-        }),
+        body: JSON.stringify({ title: walletTitle, delta: -1 }),
       });
-
       if (response.ok) {
-        setLikes((prev) => ({
-          ...prev,
-          [walletTitle]: prev[walletTitle] - 1,
-        }));
-
-        setSuccess({
-          [walletTitle]: savedReviewMsg,
-        });
+        setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] - 1 }));
+        setSuccess({ [walletTitle]: savedReviewMsg });
       } else {
         const data = await response.json();
-        setError({
-          [walletTitle]: data.message,
-        });
+        setError({ [walletTitle]: data.message });
       }
     } catch (error) {
-      setError({
-        [walletTitle]: `${errorUpdatingRatingPrefix} ${error}`,
-      });
+      setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
     }
   };
 
   const matchesFilters = (wallet: Wallet) =>
     activeFilters.every((filter) => {
       const [category, value] = filter.split(":");
-
-      if (category === "Devices")
-        return wallet.devices.includes(value);
-
-      if (category === "Operating System")
-        return (
-          wallet.operatingSystem?.includes(value) ?? false
-        );
-
-      if (category === "Pools")
-        return wallet.pools.includes(value);
-
-      if (category === "Wallet Support")
-        return (
-          wallet.walletSupport?.includes(value) ?? false
-        );
-
-      if (category === "Features")
-        return wallet.features.includes(value);
-
-      if (category === "NU7")
-        return wallet.nu7 === value;
-
+      if (category === "Devices") return wallet.devices.includes(value);
+      if (category === "Operating System") return wallet.operatingSystem?.includes(value) ?? false;
+      if (category === "Pools") return wallet.pools.includes(value);
+      if (category === "Wallet Support") return wallet.walletSupport?.includes(value) ?? false;
+      if (category === "Features") return wallet.features.includes(value);
+      if (category === "NU7") return wallet.nu7 === value;
       return true;
     });
+  const filteredWallets = activeWallets.filter(matchesFilters);
+  // The same filters apply to the deprecated section, so a filtered view never
+  // lists deprecated wallets that don't match; the section hides when none do.
+  const filteredDeprecated = deprecatedWallets.filter(matchesFilters);
 
-  const filteredWallets =
-    activeWallets.filter(matchesFilters);
-
-  const filteredDeprecated =
-    deprecatedWallets.filter(matchesFilters);
-
-  // Sort by NU7 status first, then rating.
+  // NU7-compatible wallets first, then transparent-only, In Progress, Not Ready and
+  // Not verified; the rating orders wallets within each group.
   const sortedWallets = [...filteredWallets].sort(
     (a, b) =>
       nu7Rank(a) - nu7Rank(b) ||
-      (likes[b.title] ?? 0) - (likes[a.title] ?? 0)
+      (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
 
   return (
@@ -359,52 +236,29 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       <div className="wl-root">
         {/* Mobile header */}
         <div className="wl-mobile-header">
-          <span
-            className="wl-mobile-title"
-            aria-live="polite"
-          >
+          {/* The heading is the result count; the button says what it opens. */}
+          <span className="wl-mobile-title" aria-live="polite">
             {walletCountLabel(sortedWallets.length)}
           </span>
-
           <button
             type="button"
             ref={filterTriggerRef}
             aria-haspopup="dialog"
             aria-expanded={isFilterVisible}
-            className="wl-btn focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="wl-btn focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             onClick={handleToggleFilter}
           >
-            <svg
-              className="wl-btn-icon"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
+            <svg className="wl-btn-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" />
               <circle cx="16" cy="6" r="2" />
               <circle cx="10" cy="12" r="2" />
               <circle cx="18" cy="18" r="2" />
             </svg>
-
             {filtersLabel}
-
             {activeFilters.length > 0 && (
               <>
-                <span
-                  className="wl-active-count"
-                  aria-hidden="true"
-                >
-                  {activeFilters.length}
-                </span>
-
-                <span className="sr-only">
-                  , {activeCountLabel(activeFilters.length)}
-                </span>
+                <span className="wl-active-count" aria-hidden="true">{activeFilters.length}</span>
+                <span className="sr-only">, {activeCountLabel(activeFilters.length)}</span>
               </>
             )}
           </button>
@@ -417,29 +271,16 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               <button
                 type="button"
                 key={item}
-                className="wl-chip focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                className="wl-chip focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                 onClick={(event) => {
-                  const neighbor =
-                    event.currentTarget.nextElementSibling ??
-                    event.currentTarget.previousElementSibling;
-
-                  setActiveFilters((prev) =>
-                    prev.filter((filter) => filter !== item)
-                  );
-
-                  if (
-                    neighbor instanceof HTMLButtonElement
-                  ) {
-                    neighbor.focus();
-                  } else {
-                    filterTriggerRef.current?.focus();
-                  }
+                  const neighbor = event.currentTarget.nextElementSibling ?? event.currentTarget.previousElementSibling;
+                  setActiveFilters((prev) => prev.filter((filter) => filter !== item));
+                  if (neighbor instanceof HTMLButtonElement) neighbor.focus();
+                  else filterTriggerRef.current?.focus();
                 }}
               >
                 {item.split(":")[1]}
-                <span className="wl-chip-x">
-                  {closeLabel}
-                </span>
+                <span className="wl-chip-x">{closeLabel}</span>
               </button>
             ))}
           </div>
@@ -448,10 +289,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         <div className="wl-layout">
           {/* Desktop sidebar */}
           <aside className="wl-sidebar">
-            <p className="wl-sidebar-title">
-              {filtersLabel}
-            </p>
-
+            <p className="wl-sidebar-title">{filtersLabel}</p>
             <div className="wl-sidebar-panel">
               <FilterToggle
                 filters={filters}
@@ -462,7 +300,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             </div>
           </aside>
 
-          {/* Wallet results */}
+          {/* Results - 3-column grid + correct tags format */}
           <section className="wl-results">
             <div className="wl-results-meta">
               <span className="wl-results-count">
@@ -478,49 +316,28 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   link={wallet.url}
                   logo={wallet.imageUrl}
                   tags={[
-                    {
-                      category: "Devices",
-                      values: wallet.devices,
-                    },
-                    {
-                      category: "Pools",
-                      values: wallet.pools,
-                    },
-                    {
-                      category: "Features",
-                      values: wallet.features,
-                    },
+                    { category: "Devices", values: wallet.devices },
+                    { category: "Pools", values: wallet.pools },
+                    { category: "Features", values: wallet.features },
                   ]}
                   likes={likes[wallet.title] || 0}
                   syncSpeed={wallet.syncSpeed}
                   nu7={wallet.nu7}
                   stage={wallet.stage}
-                  onLike={() =>
-                    handleLike(wallet.title)
-                  }
-                  onDislike={() =>
-                    handleDislike(wallet.title)
-                  }
+                  onLike={() => handleLike(wallet.title)}
+                  onDislike={() => handleDislike(wallet.title)}
                   error={error[wallet.title]}
                   success={success[wallet.title]}
                 />
               ))}
             </div>
 
-            {/* Deprecated wallets */}
             {filteredDeprecated.length > 0 && (
-              <details
-                open
-                className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60"
-              >
+              <details open className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60">
                 <summary className="cursor-pointer px-5 py-4 font-semibold text-rose-700 dark:text-rose-300">
                   {deprecatedTitle} ({filteredDeprecated.length})
                 </summary>
-
-                <p className="px-5 text-sm text-slate-500 dark:text-slate-400">
-                  {deprecatedNote}
-                </p>
-
+                <p className="px-5 text-sm text-slate-500 dark:text-slate-400">{deprecatedNote}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
                   {filteredDeprecated.map((wallet) => (
                     <WalletItem
@@ -529,30 +346,15 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                       link={wallet.url}
                       logo={wallet.imageUrl}
                       tags={[
-                        {
-                          category: "Devices",
-                          values: wallet.devices,
-                        },
-                        {
-                          category: "Pools",
-                          values: wallet.pools,
-                        },
-                        {
-                          category: "Features",
-                          values: wallet.features,
-                        },
+                        { category: "Devices", values: wallet.devices },
+                        { category: "Pools", values: wallet.pools },
+                        { category: "Features", values: wallet.features },
                       ]}
                       likes={likes[wallet.title] || 0}
                       syncSpeed={wallet.syncSpeed}
-                      deprecated={
-                        wallet.statusReason ?? ""
-                      }
-                      onLike={() =>
-                        handleLike(wallet.title)
-                      }
-                      onDislike={() =>
-                        handleDislike(wallet.title)
-                      }
+                      deprecated={wallet.statusReason ?? ""}
+                      onLike={() => handleLike(wallet.title)}
+                      onDislike={() => handleDislike(wallet.title)}
                       error={error[wallet.title]}
                       success={success[wallet.title]}
                     />
@@ -563,8 +365,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           </section>
         </div>
 
-        {/* Mobile filter drawer */}
+        {/* Mobile drawer */}
         {isFilterVisible && (
+          // z-[300]: above the site header (Navigation, z-200), which otherwise
+          // covers the top of the panel on phones. dvh, not vh: vh includes the
+          // area behind the browser's own toolbars, pushing the panel's top
+          // row off-screen.
           <Dialog
             open={isFilterVisible}
             onClose={() => setIsFilterVisible(false)}
@@ -575,59 +381,36 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               className="bg-white dark:bg-slate-900 w-full max-h-[85dvh] rounded-t-3xl overflow-hidden shadow-xl flex flex-col"
             >
               <div className="wl-drawer-header px-6 py-4 border-b flex items-center justify-between gap-3">
-                <DialogTitle
-                  as="span"
-                  className="text-lg font-semibold"
-                >
-                  {filtersLabel}
-                </DialogTitle>
-
+                <DialogTitle as="span" className="text-lg font-semibold">{filtersLabel}</DialogTitle>
                 <div className="flex items-center gap-4">
                   {activeFilters.length > 0 && (
                     <button
                       type="button"
-                      className="text-sm font-medium text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
-                      onClick={() =>
-                        setActiveFilters([])
-                      }
+                      className="text-sm font-medium text-brand dark:text-brand-soft underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-brand rounded"
+                      onClick={() => setActiveFilters([])}
                     >
                       {clearAllLabel}
                     </button>
                   )}
-
                   <button
                     type="button"
                     ref={closeFilterRef}
                     aria-label={closeLabel}
-                    className="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-blue-600"
-                    onClick={() =>
-                      setIsFilterVisible(false)
-                    }
+                    className="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-brand"
+                    onClick={() => setIsFilterVisible(false)}
                   >
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      width="20"
-                      height="20"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    >
-                      <path d="M6 6l12 12M18 6L6 18" />
-                    </svg>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
                   </button>
                 </div>
               </div>
 
-              {/* Apply filters */}
+              {/* Apply: at the top, before the filters, so it is visible without
+                  scrolling; the count follows every toggle. */}
               <div className="px-6 pt-4 pb-2">
                 <button
                   type="button"
-                  className="wl-btn-apply w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
-                  onClick={() =>
-                    setIsFilterVisible(false)
-                  }
+                  className="wl-btn-apply w-full rounded-xl bg-brand hover:bg-brand-hover text-on-brand font-semibold py-3 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                  onClick={() => setIsFilterVisible(false)}
                 >
                   {showWalletsLabel(sortedWallets.length)}
                 </button>

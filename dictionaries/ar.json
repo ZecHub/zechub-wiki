@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "منح بأثر رجعي موجهة من CoinHolder",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "استكشاف كامل",
@@ -727,7 +743,7 @@
         },
         "whereSubmit": {
           "question": "أين نرسل المشاريع؟",
-          "answer": "شارك عرض الفيديو التوضيحي في Zcash Global Discord وأدرج أي روابط ذات صلة للمستودع أو العرض التوضيحي."
+          "answer": "شارك عرض الفيديو التوضيحي في Zcash Discord وأدرج أي روابط ذات صلة للمستودع أو العرض التوضيحي."
         },
         "winnersSelected": {
           "question": "كيف يتم اختيار الفائزين؟",
@@ -762,7 +778,7 @@
         },
         "share": {
           "title": "شارك في Discord",
-          "description": "انشر عرض الفيديو التوضيحي في Zcash Global Discord مع روابط المستودع والعرض التوضيحي قبل 15 يوليو 2026 (UTC)."
+          "description": "انشر عرض الفيديو التوضيحي في Zcash Discord مع روابط المستودع والعرض التوضيحي قبل 15 يوليو 2026 (UTC)."
         }
       },
       "deadlineLabel": "الموعد النهائي:",
@@ -781,7 +797,7 @@
       "buildsCount": "{count} مشاريع",
       "viewProject": "عرض المشروع",
       "needHelpTitle": "هل تحتاج إلى مساعدة؟",
-      "needHelpDesc": "يُعد Zcash Global Discord أفضل مكان لأسئلة البناء ونصائح البنية التحتية وأحاديث الهاكاثون.",
+      "needHelpDesc": "يُعد Zcash Discord أفضل مكان لأسئلة البناء ونصائح البنية التحتية وأحاديث الهاكاثون.",
       "joinDiscord": "انضم إلى Discord",
       "supportDonation": "ادعم بتبرع",
       "popup": {

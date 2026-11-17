@@ -156,13 +156,13 @@ export const SITE_LINKS: SiteLinkSection[] = [
         href: "/guides/zgo-payment-processor",
       },
       { label: "Free2z Live", href: "/guides/free2z-live" },
-      { label: "Keystone Zashi", href: "/guides/keystone-zashi" },
+      { label: "Keystone Zodl (Zashi)", href: "/guides/keystone-zashi" },
       { label: "Maya Protocol", href: "/guides/maya-protocol" },
       { label: "Nym VPN", href: "/guides/nym-vpn" },
       { label: "Using ZEC in DeFi", href: "/guides/using-zec-in-defi" },
       { label: "Using ZEC Privately", href: "/guides/using-zec-privately" },
       {
-        label: "Raspberry Pi Zcashd Node",
+        label: "Zebra + Zallet on Raspberry Pi 4",
         href: "/guides/raspberry-pi-4-full-node",
       },
       {

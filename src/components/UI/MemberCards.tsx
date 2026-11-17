@@ -118,7 +118,7 @@ const MemberCards = ({
           </Link> */}
             <button
               onClick={handleFlip}
-              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-[#1984c7] rounded-lg hover:bg-[#1984c7] hover:scale-105 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-[#1984c7] dark:hover:bg-[#1984c7] dark:focus:ring-purple-800 transition-all"
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-on-brand bg-brand rounded-lg hover:bg-brand hover:scale-105 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-brand dark:hover:bg-brand dark:focus:ring-purple-800 transition-all"
             >
               Message
             </button>

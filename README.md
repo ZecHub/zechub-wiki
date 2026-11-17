@@ -23,6 +23,7 @@
 
 # ZecHub Wiki
 
+
 Welcome to ZecHub, an open-source education hub for Zcash! This Next.js project is designed to provide a platform for educational content related to Zcash and privacy. If you're new to ZecHub or Next.js, this guide will help you get started.
 
 ## Getting Started

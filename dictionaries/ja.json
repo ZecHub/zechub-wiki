@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "CoinHolder 指定の遡及的助成金",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",
@@ -727,7 +743,7 @@
         },
         "whereSubmit": {
           "question": "プロジェクトはどこに提出しますか？",
-          "answer": "Zcash Global Discordで動画デモを共有し、関連するリポジトリまたはデモのリンクを含めてください。"
+          "answer": "Zcash Discordで動画デモを共有し、関連するリポジトリまたはデモのリンクを含めてください。"
         },
         "winnersSelected": {
           "question": "受賞者はどのように選ばれますか？",
@@ -762,7 +778,7 @@
         },
         "share": {
           "title": "Discordで共有",
-          "description": "2026年7月15日（UTC）までに、あなたのrepoとデモのリンクを添えて、Zcash Global Discordに動画デモを投稿してください。"
+          "description": "2026年7月15日（UTC）までに、あなたのrepoとデモのリンクを添えて、Zcash Discordに動画デモを投稿してください。"
         }
       },
       "deadlineLabel": "締め切り:",
@@ -781,7 +797,7 @@
       "buildsCount": "{count}件のビルド",
       "viewProject": "プロジェクトを表示",
       "needHelpTitle": "お困りですか？",
-      "needHelpDesc": "Zcash Global Discord は、ビルドに関する質問、インフラのヒント、ハッカソンの雑談に最適な場所です。",
+      "needHelpDesc": "Zcash Discord は、ビルドに関する質問、インフラのヒント、ハッカソンの雑談に最適な場所です。",
       "joinDiscord": "Discord に参加",
       "supportDonation": "寄付で支援する",
       "popup": {

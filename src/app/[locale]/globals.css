@@ -79,8 +79,14 @@
 
   --color-white: #fff9f9;
 
-  --color-brand: #1984c7;
-  --color-brand-hover: #1574af;
+  /* Colour theme tokens (see [data-color-theme] overrides below).
+     Default = ZecHub Visual Identity: Hadfield Blue on Black Blue. */
+  --color-brand: #147DF6;
+  --color-brand-hover: #0F62C0;
+  --color-brand-soft: #7DAFEB;
+  --color-surface: #06192F;
+  --color-page: #fff9f9;
+  --color-on-brand: #ffffff;
 
   --color-zcash-gold: hsl(var(--zcash-gold));
   --color-zcash-gold-glow: hsl(var(--zcash-gold-glow));
@@ -429,10 +435,10 @@ code::-webkit-scrollbar-track {
    ============================================================ */
 
 .wl-root {
-  font-family: "DM Sans", sans-serif;
-  --clr-accent: #1984c7;
+  font-family: inherit;
+  --clr-accent: var(--color-brand);
   --clr-accent-light: #e8f4fd;
-  --clr-accent-dark: #1265a0;
+  --clr-accent-dark: #0F62C0;
   --clr-surface: #f7f9fc;
   --clr-border: #e2e8f0;
   --clr-text: #0f1923;
@@ -452,7 +458,7 @@ code::-webkit-scrollbar-track {
 .dark .wl-root {
   --clr-accent: #3fa3e0;
   --clr-accent-light: #1a2e40;
-  --clr-accent-dark: #5db8f0;
+  --clr-accent-dark: var(--color-brand-soft);
   --clr-surface: #111921;
   --clr-border: #1e2d3d;
   --clr-text: #e8f1f8;
@@ -480,7 +486,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-mobile-title {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--clr-text);
@@ -528,7 +534,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-sidebar-title {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -584,7 +590,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-results-count {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -622,7 +628,7 @@ code::-webkit-scrollbar-track {
   color: #fff;
   border: none;
   border-radius: var(--wl-radius-sm);
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -700,7 +706,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-drawer-title {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--clr-text);
@@ -715,7 +721,7 @@ code::-webkit-scrollbar-track {
   padding: 6px 14px;
   border-radius: var(--wl-radius-sm);
   cursor: pointer;
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
   transition: background var(--wl-transition);
 }
 
@@ -818,28 +824,14 @@ input[type="search"]::-ms-clear {
 /* Payment processors page. Images are display:block from the Tailwind
    preflight, which would drop each logo onto its own row, so the logos beside
    the headings are made inline here. */
-.processor-logo {
-  display: inline-block;
-  height: 1.9rem;
-  width: auto;
-  margin-left: 0.6rem;
-  vertical-align: -0.35em;
-}
-
-.processor-logo-wide {
-  height: 1.25rem;
-  vertical-align: -0.05em;
-}
-
-/* The processor name has to stay a link so the card view can read it, but it
-   should read as a heading rather than as body-copy link. Scoped by :has so
-   only headings carrying a processor logo are affected. */
-h2:has(img.processor-logo) > a {
+/* Provider headings: the logo tile comes first (added by the page), and the name, which stays a
+   link, reads as a heading rather than as a body-copy link. */
+h2[data-processor-heading] > a {
   color: inherit;
   text-decoration: none;
 }
 
-h2:has(img.processor-logo) > a:hover {
+h2[data-processor-heading] > a:hover {
   text-decoration: underline;
 }
 
@@ -895,4 +887,190 @@ h2:has(img.processor-logo) > a:hover {
   html {
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Reading typography for wiki content.
+
+   Inter (loaded in [locale]/layout.tsx) is the only site font. The article
+   column (.mdx-article, set in MdxContainer) gets a comfortable body size and
+   line height, and text blocks are capped to a readable line length.
+   Tables, images and code blocks are not capped, so they keep the full width.
+   --------------------------------------------------------------------------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.mdx-article {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.mdx-article :is(p, ul, ol, blockquote) {
+  max-width: 100ch;
+  text-wrap: pretty;
+}
+
+.mdx-article :is(h1, h2, h3, h4) {
+  max-width: 100ch;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+/* Headings: JetBrains Mono, loaded in layout.tsx as --font-heading */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Colour themes (header palette picker). The attribute is set on <html> by an
+   inline script in the layout and by components/ColorThemePicker.
+   --------------------------------------------------------------------------- */
+:root[data-color-theme="ocean"] {
+  --color-brand: #0082a8;
+  --color-brand-hover: #006a88;
+  --color-brand-soft: #5cc4dd;
+  --color-surface: #02101a;
+  --color-page: #f0f8fc;
+}
+:root[data-color-theme="sunset"] {
+  --color-brand: #cc5a3a;
+  --color-brand-hover: #a8452b;
+  --color-brand-soft: #f0a58c;
+  --color-surface: #1a0e0a;
+  --color-page: #fcf6f2;
+}
+:root[data-color-theme="forest"] {
+  --color-brand: #3a7a40;
+  --color-brand-hover: #2d6032;
+  --color-brand-soft: #8ccb92;
+  --color-surface: #0a110a;
+  --color-page: #f3f8f3;
+}
+:root[data-color-theme="ledger"] {
+  --color-brand: #e8b245;
+  --color-brand-hover: #c99524;
+  --color-brand-soft: #f3cf7f;
+  --color-surface: #0e0f14;
+  --color-page: #f6f7fa;
+  --color-on-brand: #1a1a1a;
+}
+
+/* Embedded videos written as raw HTML in wiki markdown are centered with
+   mx-auto; align them with the left edge of the text column instead. */
+.mdx-article div.aspect-video.mx-auto {
+  margin-left: 0;
+  margin-right: auto;
+  box-shadow: none;
+  border: 1px solid color-mix(in srgb, var(--color-brand) 18%, transparent);
+}
+
+
+/* Tables marked data-stack (guide pages): first column as row title, rows stack on phones. */
+table[data-stack] td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+table[data-stack][data-wide] {
+  table-layout: fixed;
+  width: 100%;
+}
+table[data-stack][data-wide] td:first-child,
+table[data-stack][data-wide] th:first-child {
+  white-space: normal;
+  width: 40%;
+}
+table[data-stack] td {
+  color: inherit;
+}
+@media (max-width: 640px) {
+  table[data-stack],
+  table[data-stack] tbody,
+  table[data-stack] tr,
+  table[data-stack] td {
+    display: block;
+    width: 100%;
+  }
+  table[data-stack] thead {
+    display: none;
+  }
+  table[data-stack] tr {
+    padding: 0.75rem 1rem;
+  }
+  table[data-stack] td {
+    padding: 0.35rem 0;
+    white-space: normal !important;
+  }
+  table[data-stack] td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  table[data-stack] td:first-child {
+    font-size: 1rem;
+  }
+  table[data-stack] td:first-child::before {
+    display: none;
+  }
+}
+
+/* Inline code inside text: sit on the text line instead of the 12px block padding above. */
+:not(pre) > code {
+  display: inline;
+  padding: 0.1em 0.4em;
+  max-width: none;
+  overflow: visible;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Wiki tables: some pages ship rows with a light-only hover (hover:bg-slate-50), which turns the row white with white text in dark mode. */
+main table tbody tr:hover {
+  background-color: color-mix(in srgb, var(--color-brand) 6%, transparent) !important;
+}
+.dark main table tbody tr:hover {
+  background-color: rgb(255 255 255 / 0.04) !important;
+}
+
+/* Light mode: --muted-foreground is a hex value there, so the hsl(var(--muted-foreground)) token is invalid and text-muted-foreground fell back to white (breadcrumbs). */
+:root:not(.dark) {
+  --color-muted-foreground: #64748b;
+  /* Same issue for the other neutral tokens: valid colors instead of hsl(#hex). */
+  --color-border: #e1e7ef;
+  --color-input: #e1e7ef;
+  --color-background: #fff;
+  --color-foreground: #0f172a;
+  --color-card: #fff;
+  --color-card-foreground: #0f172a;
+  --color-popover: #fff;
+  --color-popover-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-secondary: #f1f5f9;
+  --color-destructive: #ef4343;
+}
+
+/* Header icon colors: nav-foreground / nav-hover-bg were never defined, so icons inherited the page color and looked pale in light mode. */
+@theme inline {
+  --color-nav-foreground: var(--nav-fg);
+  --color-nav-hover-bg: var(--nav-hover);
+}
+:root {
+  --nav-fg: #334155;
+  --nav-hover: rgb(20 125 246 / 0.1);
+}
+.dark {
+  --nav-fg: #cbd5e1;
+  --nav-hover: rgb(255 255 255 / 0.08);
 }

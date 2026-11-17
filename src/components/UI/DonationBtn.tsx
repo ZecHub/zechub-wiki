@@ -8,7 +8,10 @@ const DonationBtn = () => {
     
   return (
     <div className='nav-donate-btn'>
-        <Link href="/donation"  className={"px-4 py-2 text-sm md:text-lg"} style={{ background:"#1984c7",  fontWeight: "600", borderRadius: "0.4rem", color: 'white'}}>
+        <Link
+          href="/donation"
+          className="inline-flex items-center justify-center rounded-lg border border-brand/60 px-3.5 py-1.5 text-sm font-medium text-brand transition-colors hover:border-brand hover:bg-brand/10"
+        >
           {t.navigation?.donate || "Donate"}
         </Link>
     </div>

@@ -335,8 +335,8 @@ function InfoCard({
                 className={`flex-1 inline-flex justify-center items-center px-4 py-4 text-md font-medium rounded-lg focus:ring-4 focus:outline-none
                   ${
                     link.primary
-                      ? "font-bold text-white bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]"
-                      : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-[#1574af] dark:text-blue-300 dark:hover:bg-[#1574af]  focus:ring-blue-300 dark:focus:ring-[#1574af]"
+                      ? "font-bold text-on-brand bg-brand hover:bg-brand-hover focus:ring-brand"
+                      : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-brand-hover dark:text-blue-300 dark:hover:bg-brand-hover  focus:ring-blue-300 dark:focus:ring-brand-hover"
                   }
                 `}
               >
