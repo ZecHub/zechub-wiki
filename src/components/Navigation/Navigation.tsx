@@ -1468,6 +1468,14 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               <ZecPrice />
               <LanguageSwitcher />
             </div>
+            {/* Donate and Shop: always one click away on wide screens. Narrower screens
+                have them in the menu drawer and the footer. */}
+            <div className="hidden min-[1320px]:flex items-center gap-1">
+              <DonationBtn />
+              <IconTab href="https://zechub.store/" label="Shop" external>
+                <ShoppingBag aria-hidden="true" className="h-5 w-5" />
+              </IconTab>
+            </div>
             <SearchBar
               openSearch={openSearch}
               setOpenSearch={setOpenSearch}
