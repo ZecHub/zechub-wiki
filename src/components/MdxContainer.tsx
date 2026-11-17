@@ -17,6 +17,8 @@ type MdxContainerProps = {
     width?: number;
     height?: number;
   };
+  /** Hides the decorative banner image above the article (minimal layout). */
+  hideBanner?: boolean;
   /**
    * Trail shown above the article, so a reader landing on a deep page can see
    * where it sits. Research pages render their own inside the variant below.
@@ -50,6 +52,7 @@ export default async function MdxContainer({
   liveHero,
   layoutVariant = "default",
   researchMeta,
+  hideBanner = false,
 }: MdxContainerProps) {
   const lightSrc = heroImage?.src ?? defaultImgSource;
   const darkSrc = heroImage?.darkSrc ?? lightSrc;
@@ -59,7 +62,7 @@ export default async function MdxContainer({
 
   return (
     <main>
-      {!isResearchArticle ? (
+      {!isResearchArticle && !hideBanner ? (
         liveHero ? (
           <WikiSectionBanner id={liveHero} />
         ) : (
@@ -146,7 +149,7 @@ export default async function MdxContainer({
           </div>
         ) : (
           <section
-            className={`h-auto min-w-0 w-full overflow-x-auto p-3 dark:border-slate-400 ${
+            className={`mdx-article h-auto min-w-0 w-full overflow-x-auto p-3 dark:border-slate-400 ${
               hasSideMenu ? "lg:border-l" : ""
             }`}
           >

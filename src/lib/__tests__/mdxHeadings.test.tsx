@@ -70,7 +70,10 @@ describe.each(["h1", "h2", "h3"] as const)("MDX %s anchors", (tag) => {
   it.each(fixtures)("uses heading text for $name", ({ children, text, id }) => {
     render(<Heading>{children}</Heading>);
 
-    const heading = screen.getByRole("heading", { name: text });
+    // h2 headings also expose a "Link to this section" anchor inside the heading.
+    const heading = screen.getByRole("heading", {
+      name: (name) => name === text || name === `${text} Link to this section`,
+    });
     expect(heading.tagName.toLowerCase()).toBe(tag);
     expect(heading).toHaveAttribute("id", id);
     expect(heading).toHaveTextContent(text);

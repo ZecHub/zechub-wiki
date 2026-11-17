@@ -45,7 +45,7 @@ const Cards = ({ title, paraph, url, image, imageLight, imageDark }: Props) => {
         <div className="my-4 px-4 w-full ">
           <Link
             href={url}
-            className="inline-flex justify-center items-center w-full px-3 py-4 text-md font-medium text-center text-white rounded-lg bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]   focus:ring-4 focus:outline-none  dark:hover:bg-[#1574af] dark:focus:ring-blue-800"
+            className="inline-flex justify-center items-center w-full px-3 py-4 text-md font-medium text-center text-on-brand rounded-lg bg-brand hover:bg-brand-hover focus:ring-brand   focus:ring-4 focus:outline-none  dark:hover:bg-brand-hover dark:focus:ring-blue-800"
           >
             {t.common?.readMore || "Read more"}
             <svg

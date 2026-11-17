@@ -370,12 +370,43 @@ export const getName = (item: string) => {
   }
 };
 
+// Files under site/Zero_to_Zero_Knowledge use irregular casing on disk
+// (TEEs, The_ZK_Podcast, pgp_for_crypto_podcast, "Zero_to_Zero-knowledge"),
+// which the generic title-casing in transformUri cannot reproduce.
+const ZERO_TO_ZK_FILES: Record<string, string> = {
+  "": "Zero_to_Zero-knowledge",
+  cryptonote: "Cryptonote",
+  "hash-functions": "Hash_Functions",
+  lelantus: "Lelantus",
+  "mnemonic-seed-phrases": "Mnemonic_Seed_Phrases",
+  tees: "TEEs",
+  "zcash-addresses": "Zcash_Addresses",
+  "podcasts/podcasts": "Podcasts/Podcasts",
+  "podcasts/shielded-transaction-podcast": "Podcasts/Shielded_Transaction_Podcast",
+  "podcasts/the-zk-podcast": "Podcasts/The_ZK_Podcast",
+  "podcasts/the-zcash-podcast": "Podcasts/The_Zcash_Podcast",
+  "podcasts/the-z2z-podcast": "Podcasts/The_z2z_Podcast",
+  "podcasts/zcast-podcast": "Podcasts/Zcast_Podcast",
+  "podcasts/pgp-for-crypto-podcast": "Podcasts/pgp_for_crypto_podcast",
+  zero_to_zero_knowledge: "Zero_to_Zero-knowledge",
+};
+
 export const getDynamicRoute = (slug: string[]): string => {
   const uri = "/" + slug.join("/");
 
-  return uri === "/contribute/community-infrastructure"
-    ? `/site/contribute/Community_Infrastructure.md`
-    : `/site${transformUri(uri)}.md`;
+  if (slug[0] === "zero-to-zero-knowledge") {
+    const key = slug.slice(1).join("/").toLowerCase();
+    const file = ZERO_TO_ZK_FILES[key];
+    if (file) return `/site/Zero_to_Zero_Knowledge/${file}.md`;
+  }
+
+  // Slugs whose file name differs from the slug. Naming the file here means the page does not depend on a
+  // rate-limited folder listing to be found.
+  if (uri === "/contribute/community-infrastructure") return `/site/contribute/Community_Infrastructure.md`;
+  if (uri === "/using-zcash/spend-zcash/top-10-places-to-spend-zec") {
+    return `/site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md`;
+  }
+  return `/site${transformUri(uri)}.md`;
 };
 
 const normSlugSegment = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
@@ -504,7 +535,6 @@ const specialWordsMap = {
     "Raspberry_pi5_Zebra_Lightwalletd_Zingo",
   Btcpayserver_Zcash_Plugin: "BTCPayServer_Zcash_Plugin",
   Uris: "URIs",
-  Free2z_Livestreaming: "Free2Z_Livestreaming",
   Avalanche_Redbridge: "Avalanche_RedBridge",
   Raspberry_Pi_4_Full_Node: "Raspberry_Pi_4_Full_Node",
   Raspberry_Pi_4_Zebra_Node: "Raspberry_pi_4_Zebra_Node",

@@ -1,0 +1,49 @@
+name: Arborist calls sync
+
+# Every day: pick up new recordings and notes, download cover images,
+# then commit the result to the branch the workflow runs on
+# (the deploy follows from that push).
+# Scheduled workflows only run from the repository's default branch.
+on:
+  schedule:
+    - cron: "23 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arborist-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install sharp (cover images)
+        run: npm install --no-save --no-package-lock sharp
+      - name: Notes archive
+        run: node scripts/sync-arborist-calls.mjs
+        env:
+          ARBORETUM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Playlist recordings
+        run: node scripts/sync-arborist-recordings.mjs
+      - name: Cover images
+        run: node scripts/video-thumbnails.mjs
+      - name: Commit and push
+        run: |
+          git add src/constants/arboristCalls.ts src/constants/arboristRecordings.ts \
+            scripts/video-ids.txt public/video-thumbs
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync Arborist calls: recordings, notes and covers"
+          git pull --rebase
+          git push

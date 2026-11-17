@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const GovernanceDashboard = () => {
   const [activeTab, setActiveTab] = useState<'parameters' | 'proposals'>('parameters');
-  const [darkMode, setDarkMode] = useState(false);
   const [paramsData, setParamsData] = useState<any>(null);
   const [propsData, setPropsData] = useState<any>(null);
   const [loading, setLoading] = useState({ params: true, props: true });
@@ -46,33 +45,27 @@ const GovernanceDashboard = () => {
     fetchProps();
   }, []);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
   if (loading.params && loading.props) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 dark:border-blue-400"></div>
+      <div className="p-4 md:p-6">
+        <h1 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white md:text-3xl">
+          Namada Governance Dashboard
+        </h1>
+        <div className="flex h-64 items-center justify-center">
+          <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-brand dark:border-brand-soft"></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'dark' : ''}`}>
-      <div className="bg-gray-50 dark:bg-gray-900 dark:text-gray-100 min-h-screen p-6">
+    <div>
+      <div className="p-4 md:p-6">
         {/* Header */}
-        <header className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
+        <header className="mb-6">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white md:text-3xl">
             Namada Governance Dashboard
           </h1>
-          <button
-            onClick={toggleDarkMode}
-            className="cursor-pointer p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-yellow-300"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? '☀️' : '🌙'}
-          </button>
         </header>
 
         {/* Tabs */}
@@ -80,7 +73,7 @@ const GovernanceDashboard = () => {
           <button
             onClick={() => setActiveTab('parameters')}
             className={`cursor-pointer py-2 px-4 font-medium text-sm ${activeTab === 'parameters' 
-              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400 dark:border-blue-400' 
+              ? 'border-b-2 border-brand text-brand dark:text-brand-soft dark:border-brand-soft' 
               : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'}`}
           >
             Protocol Parameters
@@ -88,7 +81,7 @@ const GovernanceDashboard = () => {
           <button
             onClick={() => setActiveTab('proposals')}
             className={`cursor-pointer py-2 px-4 font-medium text-sm ${activeTab === 'proposals' 
-              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400 dark:border-blue-400' 
+              ? 'border-b-2 border-brand text-brand dark:text-brand-soft dark:border-brand-soft' 
               : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'}`}
           >
             Governance Proposals
@@ -101,14 +94,12 @@ const GovernanceDashboard = () => {
             data={paramsData} 
             loading={loading.params} 
             error={error.params} 
-            darkMode={darkMode} 
           />
         ) : (
           <ProposalsTab 
             data={propsData} 
             loading={loading.props} 
             error={error.props} 
-            darkMode={darkMode} 
           />
         )}
       </div>
@@ -116,7 +107,7 @@ const GovernanceDashboard = () => {
   );
 };
 
-const ParametersTab = ({ data, loading, error, darkMode }: any) => {
+const ParametersTab = ({ data, loading, error }: any) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -127,7 +118,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
 
   if (error) {
     return (
-      <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-800 text-red-400' : 'bg-white text-red-600'}`}>
+      <div className="p-4 rounded-lg bg-white text-red-600 dark:bg-white/5 dark:text-red-400">
         <strong>Error:</strong> {error}
       </div>
     );
@@ -136,15 +127,15 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
   if (!data) return null;
 
   return (
-    <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'dark' : ''}`}>
-      <div className="bg-gray-50 dark:bg-gray-900 dark:text-gray-100 min-h-screen p-6">
+    <div>
+      <div>
         {/* Header with dark mode toggle */}
         
 
         {/* Main content grid */}
         <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
           {/* Governance Parameters */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <div className="border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2">
               Governance Parameters
             </h2>
@@ -161,7 +152,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
           </div>
 
           {/* Public Goods Funding Parameters */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <div className="border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2">
               Public Goods Funding
             </h2>
@@ -178,7 +169,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
           </div>
 
           {/* Protocol Parameters */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <div className="border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2">
               Protocol Parameters
             </h2>
@@ -197,7 +188,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
           </div>
 
           {/* Proof of Stake Parameters */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <div className="border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2">
               Proof of Stake
             </h2>
@@ -215,7 +206,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
         </div>
 
         {/* Allowlists Section */}
-        <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div className="mt-8 border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-2">
             Allowlists
           </h2>
@@ -223,7 +214,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
           <div className="grid gap-8 md:grid-cols-2">
             <div>
               <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">VP Allowlist</h3>
-              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-md max-h-60 overflow-y-auto">
+              <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-md max-h-60 overflow-y-auto">
                 {data.Protocol_Parameters[0].VP_allowlist.map((hash: string, i: number) => (
                   <div key={i} className="text-sm font-mono text-gray-600 dark:text-gray-300 mb-1 break-all">
                     {hash}
@@ -234,7 +225,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
             
             <div>
               <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Transactions Allowlist</h3>
-              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-md max-h-60 overflow-y-auto">
+              <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-md max-h-60 overflow-y-auto">
                 {data.Protocol_Parameters[0].Transactions_allowlist.map((hash: string, i: number) => (
                   <div key={i} className="text-sm font-mono text-gray-600 dark:text-gray-300 mb-1 break-all">
                     {hash}
@@ -252,7 +243,7 @@ const ParametersTab = ({ data, loading, error, darkMode }: any) => {
   );
 };
 
-const ProposalsTab = ({ data, loading, error, darkMode }: any) => {
+const ProposalsTab = ({ data, loading, error }: any) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -263,7 +254,7 @@ const ProposalsTab = ({ data, loading, error, darkMode }: any) => {
 
   if (error) {
     return (
-      <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-800 text-red-400' : 'bg-white text-red-600'}`}>
+      <div className="p-4 rounded-lg bg-white text-red-600 dark:bg-white/5 dark:text-red-400">
         <strong>Error:</strong> {error}
       </div>
     );
@@ -279,9 +270,9 @@ const ProposalsTab = ({ data, loading, error, darkMode }: any) => {
         </h2>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+      <div className="border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 rounded-lg shadow overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-700">
+          <thead className="bg-slate-50 dark:bg-white/5">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Type</th>
@@ -291,9 +282,9 @@ const ProposalsTab = ({ data, loading, error, darkMode }: any) => {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Activation Epoch</th>
             </tr>
           </thead>
-          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody className="border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 divide-y divide-gray-200 dark:divide-gray-700">
             {data.Proposal.map((proposal: any) => (
-              <tr key={proposal.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+              <tr key={proposal.id} className="hover:bg-slate-50 dark:hover:bg-gray-700">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{proposal.id}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">{proposal.Type}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300 font-mono">{proposal.Author}</td>

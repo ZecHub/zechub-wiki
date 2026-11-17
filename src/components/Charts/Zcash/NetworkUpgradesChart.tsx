@@ -83,7 +83,7 @@ export default function NetworkUpgradesChart() {
             </h3>
             {isSwitching && (
               <div className="flex items-center gap-2 text-sm text-slate-500">
-                <div className="h-3 w-3 animate-spin rounded-full border-2 border-slate-300 border-t-purple-600" />
+                <div className="h-3 w-3 animate-spin rounded-full border-2 border-slate-300 border-t-brand" />
                 <span>Loading...</span>
               </div>
             )}
@@ -92,7 +92,7 @@ export default function NetworkUpgradesChart() {
             Zcash {network} upgrade activation heights. See{" "}
             <a
               href="https://zechub.wiki/start-here/network-upgrades"
-              className="text-purple-600 hover:underline dark:text-purple-400"
+              className="text-brand hover:underline dark:text-brand-soft"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -108,7 +108,7 @@ export default function NetworkUpgradesChart() {
             disabled={isSwitching}
             className={`px-5 py-1.5 text-sm font-medium rounded-full transition-all disabled:opacity-60 ${
               network === "mainnet"
-                ? "bg-purple-600 text-white shadow"
+                ? "bg-brand text-white shadow"
                 : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             }`}
           >
@@ -119,7 +119,7 @@ export default function NetworkUpgradesChart() {
             disabled={isSwitching}
             className={`px-5 py-1.5 text-sm font-medium rounded-full transition-all disabled:opacity-60 ${
               network === "testnet"
-                ? "bg-purple-600 text-white shadow"
+                ? "bg-brand text-white shadow"
                 : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
             }`}
           >
@@ -179,7 +179,7 @@ export default function NetworkUpgradesChart() {
                         href={`/zcash-evolution#${createSlug(u.name)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-slate-900 dark:text-slate-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                        className="font-medium text-slate-900 dark:text-slate-100 hover:text-brand dark:hover:text-brand-soft transition-colors"
                       >
                         {u.name}
                       </a>

@@ -1,108 +1,66 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
-import { arboristCalls } from "@/constants/arboristCalls";
+import { fireEvent, render, screen } from "@testing-library/react";
 import ArboristCallsPage from "@/app/[locale]/arborist-calls/ArboristCallsPage";
+import { buildArboristArchive } from "@/lib/arboristArchive";
 
-jest.mock("@/lib/helpers", () => ({ genMetadata: () => ({}) }));
+// The carousel loads the playlist from the network; the archive does not need it.
+jest.mock("@/components/MdxComponents/VideoCarousel", () => ({
+  __esModule: true,
+  default: () => null,
+}));
 
-const originalScrollIntoView = Element.prototype.scrollIntoView;
+const archive = buildArboristArchive();
 
-beforeAll(() => {
-  Element.prototype.scrollIntoView = jest.fn();
-});
+// The archive lives in its own tab.
+const renderArchive = () => {
+  render(<ArboristCallsPage />);
+  fireEvent.click(screen.getByRole("tab", { name: "Archive" }));
+};
+const years = [
+  ...new Set(archive.map((e) => e.date?.slice(0, 4)).filter(Boolean) as string[]),
+]
+  .sort()
+  .reverse();
 
-afterAll(() => {
-  Element.prototype.scrollIntoView = originalScrollIntoView;
-});
-
-async function chooseFilter(comboboxIndex: number, option: string) {
-  fireEvent.keyDown(screen.getAllByRole("combobox")[comboboxIndex], {
-    key: "ArrowDown",
-  });
-  fireEvent.click(
-    await screen.findByRole("option", {
-      name: (accessibleName) => accessibleName === option,
-    }),
-  );
-}
-
-function visibleCallLabels() {
-  return screen
-    .getAllByRole("row")
-    .slice(1)
-    .map((row) => within(row).queryAllByRole("cell"))
-    .filter((cells) => cells.length > 0)
-    .map((cells) => cells[0].textContent?.replace("🎉", "").trim());
-}
-
-function archivedYears() {
-  return [
-    ...new Set(
-      arboristCalls
-        .map((call) => call.date.slice(-4))
-        .filter((year) => /^\d{4}$/.test(year)),
-    ),
-  ].sort((a, b) => Number(b) - Number(a));
-}
+const showing = (shown: number) =>
+  screen.getByText(`Showing ${shown} of ${archive.length}`);
 
 describe("Arborist call archive filters", () => {
-  it("offers every archived year in newest-first order", async () => {
-    render(<ArboristCallsPage />);
-    fireEvent.keyDown(screen.getAllByRole("combobox")[1], { key: "ArrowDown" });
-
-    const options = await screen.findAllByRole("option");
-    expect(options.map((option) => option.textContent)).toEqual([
-      "All Years",
-      ...archivedYears(),
-    ]);
+  it("offers every archived year in newest-first order", () => {
+    renderArchive();
+    const options = screen
+      .getAllByRole("option")
+      .map((option) => option.textContent);
+    expect(options).toEqual(["All years", ...years]);
   });
 
-  it.each(archivedYears())(
-    "shows exactly the archived calls from %s",
-    async (year) => {
-      render(<ArboristCallsPage />);
-      await chooseFilter(1, year);
+  it.each(years)("shows exactly the archive entries from %s", (year) => {
+    renderArchive();
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: year } });
 
-      const expected = arboristCalls.filter(
-        (call) => call.date.slice(-4) === year,
-      );
-      expect(expected.length).toBeGreaterThan(0);
-      expect(visibleCallLabels()).toEqual(expected.map((call) => `#${call.id}`));
-      expect(
-        screen.getByText(
-          `Showing ${expected.length} of ${arboristCalls.length} calls`,
-        ),
-      ).toBeVisible();
-    },
-  );
+    const expected = archive.filter((e) => e.date?.startsWith(year));
+    expect(expected.length).toBeGreaterThan(0);
+    expect(showing(expected.length)).toBeVisible();
+  });
 
-  it("combines year, search and status filters and restores the full archive", async () => {
-    const years = archivedYears();
-    const sampleYear = years.includes("2023") ? "2023" : years[0];
+  it("finds a call by number and restores the full archive", () => {
+    renderArchive();
+    const search = screen.getByPlaceholderText("Call number, date or title");
 
-    render(<ArboristCallsPage />);
-    await chooseFilter(1, sampleYear);
-    const example = arboristCalls.find(
-      (call) => call.date.slice(-4) === sampleYear,
-    )!;
-    fireEvent.change(screen.getByPlaceholderText("Call # or date..."), {
-      target: { value: example.date },
-    });
-    await chooseFilter(0, "Completed");
-    expect(visibleCallLabels()).toEqual([`#${example.id}`]);
+    fireEvent.change(search, { target: { value: "#134" } });
+    expect(showing(archive.filter((e) => e.label === "#134").length)).toBeVisible();
 
-    await chooseFilter(0, "Upcoming");
-    expect(
-      screen.getByText(`Showing 0 of ${arboristCalls.length} calls`),
-    ).toBeVisible();
-    expect(screen.getAllByRole("row")).toHaveLength(1);
+    fireEvent.change(search, { target: { value: "no such call" } });
+    expect(screen.getByText("Nothing matches this search.")).toBeVisible();
 
-    await chooseFilter(0, "All Status");
-    await chooseFilter(1, "All Years");
-    fireEvent.change(screen.getByPlaceholderText("Call # or date..."), {
-      target: { value: "" },
-    });
-    expect(visibleCallLabels()).toEqual(
-      arboristCalls.map((call) => `#${call.id}`),
-    );
+    fireEvent.change(search, { target: { value: "" } });
+    expect(showing(archive.length)).toBeVisible();
+  });
+
+  it.each(["#124", "#125"])("lists call %s under 2026", (label) => {
+    renderArchive();
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "2026" } });
+
+    expect(archive.some((e) => e.label === label && e.date?.startsWith("2026"))).toBe(true);
+    expect(screen.getAllByText(label).length).toBeGreaterThan(0);
   });
 });

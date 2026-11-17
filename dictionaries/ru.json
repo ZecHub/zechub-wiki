@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "Ретроактивные гранты, направляемые CoinHolder",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "Полное исследование",
@@ -727,7 +743,7 @@
         },
         "whereSubmit": {
           "question": "Куда мы отправляем проекты?",
-          "answer": "Поделитесь своим видео-демо в Zcash Global Discord и добавьте все соответствующие ссылки на репозиторий или демо."
+          "answer": "Поделитесь своим видео-демо в Zcash Discord и добавьте все соответствующие ссылки на репозиторий или демо."
         },
         "winnersSelected": {
           "question": "Как выбираются победители?",
@@ -762,7 +778,7 @@
         },
         "share": {
           "title": "Поделитесь в Discord",
-          "description": "Опубликуйте своё видео-демо в Zcash Global Discord вместе со ссылками на ваш репозиторий и демо до 15 июля 2026 года (UTC)."
+          "description": "Опубликуйте своё видео-демо в Zcash Discord вместе со ссылками на ваш репозиторий и демо до 15 июля 2026 года (UTC)."
         }
       },
       "deadlineLabel": "Крайний срок:",

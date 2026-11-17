@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "Enyemaka n’azụ nke CoinHolder duziri",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "Nyochaa zuru ezu",
@@ -727,7 +743,7 @@
         },
         "whereSubmit": {
           "question": "Ebee ka anyị na-eziga ọrụ?",
-          "answer": "Kekọrịta ihe ngosi vidiyo gị na Zcash Global Discord ma tinye ebe nchekwa ma ọ bụ njikọ ngosi ọ bụla dị mkpa."
+          "answer": "Kekọrịta ihe ngosi vidiyo gị na Zcash Discord ma tinye ebe nchekwa ma ọ bụ njikọ ngosi ọ bụla dị mkpa."
         },
         "winnersSelected": {
           "question": "Olee otú e si ahọpụta ndị mmeri?",
@@ -762,7 +778,7 @@
         },
         "share": {
           "title": "Ikere Òkè n'Eseokwu",
-          "description": "Bipute ihe ngosi vidiyo gị na Zcash Global Discord na njikọ gị na njikọ ngosi tupu July 15, 2026 (UTC)."
+          "description": "Bipute ihe ngosi vidiyo gị na Zcash Discord na njikọ gị na njikọ ngosi tupu July 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Oge ikpeazụ:",
@@ -781,7 +797,7 @@
       "buildsCount": "{count} na-ewulite",
       "viewProject": "Lelee oru ngo",
       "needHelpTitle": "M̀ ga-enyere gị aka?",
-      "needHelpDesc": "Zcash Global Discord bụ ebe kachasị mma maka iwulite ajụjụ, ndụmọdụ infra, na mkparịta ụka hackathon.",
+      "needHelpDesc": "Zcash Discord bụ ebe kachasị mma maka iwulite ajụjụ, ndụmọdụ infra, na mkparịta ụka hackathon.",
       "joinDiscord": "Jikọọ Discord",
       "supportDonation": "Nkwado site n'inye onyinye",
       "popup": {
