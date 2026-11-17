@@ -3,9 +3,10 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import AuroraBackground from "@/components/Background/AuroraBackground";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Literata } from "next/font/google";
 import "./globals.css";
 import ColorThemeInit from "@/components/ColorThemeInit";
+import InterfaceInit from "@/components/InterfaceInit";
 import NavigationWrapper from "@/components/NavigationWrapper";
 import SkipToContent from "@/components/SkipToContent";
 import MotionProvider from "@/components/MotionProvider";
@@ -21,12 +22,20 @@ import { getMenuTitlesCached } from "@/lib/authAndFetch";
 import { searcher } from "@/constants/searcher";
 import { buildSearchIndex } from "@/lib/searchIndex";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 // Headings use JetBrains Mono (same choice as the Nym docs); body stays Inter.
 const headingFont = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
+});
+// Serif for the Reader interface (src/components/Interfaces). Not preloaded:
+// the browser only downloads it once a visitor picks Reader.
+const readerFont = Literata({
+  subsets: ["latin"],
+  variable: "--font-reader",
+  display: "swap",
+  preload: false,
 });
 
 // Organization structured data (schema.org), emitted once site-wide. `sameAs`
@@ -135,8 +144,9 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
-      <body className={`px-0 ${inter.className} ${headingFont.variable} bg-page dark:bg-surface dark:text-white`}>
+      <body className={`px-0 ${inter.className} ${inter.variable} ${headingFont.variable} ${readerFont.variable} bg-page dark:bg-surface dark:text-white`}>
         <ColorThemeInit />
+        <InterfaceInit />
         {/* First focusable element on the page, so keyboard and screen-reader
             users can bypass the header, menus and search (WCAG 2.4.1). Rendered
             here rather than inside the providers so nothing precedes it in the

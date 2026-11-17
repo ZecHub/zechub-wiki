@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, Moon, Palette, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { INTERFACES, applyInterface, saveInterface, savedInterface } from "@/lib/interfaces";
 
 export const COLOR_THEME_KEY = "zechub-color-theme";
 
@@ -22,17 +23,18 @@ function applyTheme(id: string) {
 }
 
 /**
- * Colour theme picker. With `withMode` it is the single "Appearance" control of the header:
- * light/dark switch on top, colour themes below.
+ * Appearance picker: interface on top (src/lib/interfaces.ts), then, with `withMode`, the
+ * light/dark switch, then colour themes. Interfaces and colour themes are independent.
  */
 export default function ColorThemePicker({ withMode = false }: { withMode?: boolean }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const isDark = mounted && resolvedTheme === "dark";
-  const label = withMode ? "Appearance" : "Color theme";
+  const label = "Appearance";
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("default");
+  const [currentInterface, setCurrentInterface] = useState<string>(INTERFACES[0].id);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,6 +44,7 @@ export default function ColorThemePicker({ withMode = false }: { withMode?: bool
     } catch {
       /* storage unavailable: stay on default */
     }
+    setCurrentInterface(savedInterface());
   }, []);
 
   useEffect(() => {
@@ -70,6 +73,12 @@ export default function ColorThemePicker({ withMode = false }: { withMode?: bool
     }
   };
 
+  const chooseInterface = (id: string) => {
+    setCurrentInterface(id);
+    applyInterface(id);
+    saveInterface(id);
+  };
+
   return (
     <div ref={ref} className="relative">
       <button
@@ -87,8 +96,44 @@ export default function ColorThemePicker({ withMode = false }: { withMode?: bool
         <div
           role="dialog"
           aria-label={label}
-          className="absolute right-0 top-full z-50 mt-2 w-[min(19rem,calc(100vw-2rem))] rounded-xl border border-slate-200 bg-slate-50 shadow-xl dark:border-white/10 dark:bg-slate-900"
+          className="absolute right-0 top-full z-50 mt-2 max-h-[calc(100dvh-6rem)] w-[min(19rem,calc(100vw-2rem))] overflow-y-auto rounded-xl border border-slate-200 bg-slate-50 shadow-xl dark:border-white/10 dark:bg-slate-900"
         >
+          <div className="border-b border-slate-200 p-3 dark:border-white/10">
+            <p className="mb-2 px-1 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
+              Interface
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {INTERFACES.map((option) => {
+                const active = currentInterface === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => chooseInterface(option.id)}
+                    aria-pressed={active}
+                    className={`rounded-lg border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                      active
+                        ? "border-brand bg-brand/10"
+                        : "border-slate-200 hover:border-brand/60 dark:border-white/10"
+                    }`}
+                  >
+                    <span className="flex items-center justify-between">
+                      <span
+                        aria-hidden="true"
+                        className="text-xl leading-none text-slate-900 dark:text-white"
+                        style={{ fontFamily: option.sampleFont }}
+                      >
+                        Aa
+                      </span>
+                      {active ? <Check aria-hidden="true" className="h-4 w-4 text-brand" /> : null}
+                    </span>
+                    <span className="mt-1.5 block text-sm text-slate-800 dark:text-slate-100">{option.name}</span>
+                    <span className="block text-xs leading-snug text-slate-600 dark:text-slate-400">{option.hint}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
           {withMode && (
             <div className="border-b border-slate-200 p-3 dark:border-white/10">
               <p className="mb-2 px-1 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
