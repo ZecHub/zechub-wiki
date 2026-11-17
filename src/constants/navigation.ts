@@ -150,6 +150,7 @@ export const navigations: Array<NavigationItem> = [
       { name: "My First Zcash Workbook", path: "/guides/my-first-zcash-workbook", icon: BookOpen },
       {
         name: "Browse all Learn Zcash",
+        label: "Browse all articles",
         path: "/start-here/what-is-zec-and-zcash",
         icon: BookOpen,
       },
@@ -296,6 +297,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Browse all Use Zcash",
+        label: "Browse all articles",
         path: "/using-zcash/buying-zec",
         icon: BookOpen,
       },
@@ -382,6 +384,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Browse all Ecosystem",
+        label: "Browse all articles",
         path: "/zcash-community/community-projects",
         icon: BookOpen,
       },
@@ -506,6 +509,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Browse all Guides",
+        label: "Browse all articles",
         path: "/guides/raspberry-pi-4-full-node",
         icon: BookOpen,
       },
