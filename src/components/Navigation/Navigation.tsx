@@ -486,7 +486,7 @@ const FlyoutLinkItem = ({
       </div>
     );
   }
-  // Has nested children — render with flyout opening to the left
+  // Has nested children: expand them inline under the row. A flyout outside the panel is clipped by its overflow.
   return (
     <div
       ref={itemRef}
@@ -536,7 +536,7 @@ const FlyoutLinkItem = ({
       {flyoutOpen && (
         <div
           ref={flyoutRef}
-          className="absolute end-full top-0 z-[60] min-w-[250px] rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-xl dark:border-white/10 dark:bg-slate-900"
+          className="mb-1 ms-5 mt-0.5 flex flex-col border-s border-slate-200 ps-1.5 dark:border-white/10"
           onPointerEnter={(e) => isMouse(e) && openFlyout()}
           onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
