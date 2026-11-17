@@ -289,6 +289,11 @@ export const navigations: Array<NavigationItem> = [
         name: "Testnet",
         path: "/using-zcash/testnet",
       },
+      {
+        name: "Browse all Use Zcash",
+        path: "/sitemap",
+        icon: BookOpen,
+      },
     ],
   },
   {
@@ -488,6 +493,11 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zenith Installation",
         path: "/guides/zenith-installation",
+      },
+      {
+        name: "Browse all Guides",
+        path: "/sitemap",
+        icon: BookOpen,
       },
     ],
   },
