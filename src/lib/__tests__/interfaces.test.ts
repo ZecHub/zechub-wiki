@@ -65,15 +65,24 @@ describe("interfaces registry", () => {
   it("accepts only listed ids", () => {
     expect(isInterfaceId("reader")).toBe(true);
     expect(isInterfaceId("classic")).toBe(true);
+    expect(isInterfaceId("desktop")).toBe(true);
     expect(isInterfaceId("nope")).toBe(false);
     expect(isInterfaceId(null)).toBe(false);
     expect(isInterfaceId(1)).toBe(false);
+  });
+
+  it("lists Desktop as an embedded interface", () => {
+    const desktop = INTERFACES.find((i) => i.id === "desktop");
+    expect(desktop?.embedUrl).toMatch(/^https:\/\//);
+    expect(desktop?.embedUrl).not.toContain(" ");
   });
 
   it("sets the attribute for a non-default interface and clears it for Classic or unknown ids", () => {
     const root = document.createElement("html");
     applyInterface("reader", root);
     expect(root.getAttribute(DATA_ATTRIBUTE)).toBe("reader");
+    applyInterface("desktop", root);
+    expect(root.getAttribute(DATA_ATTRIBUTE)).toBe("desktop");
     applyInterface("classic", root);
     expect(root.hasAttribute(DATA_ATTRIBUTE)).toBe(false);
     applyInterface("reader", root);
@@ -87,8 +96,11 @@ describe("interfaces registry", () => {
     saveInterface("reader", store);
     expect(store.data.get(INTERFACE_KEY)).toBe("reader");
     expect(savedInterface(store)).toBe("reader");
+    saveInterface("desktop", store);
+    expect(store.data.get(INTERFACE_KEY)).toBe("desktop");
+    expect(savedInterface(store)).toBe("desktop");
     saveInterface("bogus", store);
-    expect(store.data.get(INTERFACE_KEY)).toBe("reader");
+    expect(store.data.get(INTERFACE_KEY)).toBe("desktop");
     expect(savedInterface(memoryStorage({ [INTERFACE_KEY]: "bogus" }))).toBe("classic");
   });
 
@@ -109,14 +121,16 @@ describe("interfaces registry", () => {
 
 describe("interface stylesheets", () => {
   const index = readFileSync(join(DIR, "index.css"), "utf8");
-  const others = INTERFACES.filter((i) => i.id !== DEFAULT_INTERFACE);
+  const styleInterfaces = INTERFACES.filter(
+    (i) => i.id !== DEFAULT_INTERFACE && !i.embedUrl,
+  );
 
-  it.each(others.map((i) => i.id))("%s has a stylesheet imported in index.css", (id) => {
+  it.each(styleInterfaces.map((i) => i.id))("%s has a stylesheet imported in index.css", (id) => {
     expect(index).toContain(`@import "./${id}.css";`);
     expect(() => readFileSync(join(DIR, `${id}.css`), "utf8")).not.toThrow();
   });
 
-  it.each(others.map((i) => i.id))("%s scopes every rule to its data-interface value", (id) => {
+  it.each(styleInterfaces.map((i) => i.id))("%s scopes every rule to its data-interface value", (id) => {
     const css = readFileSync(join(DIR, `${id}.css`), "utf8");
     const found = rules(css);
     expect(found.length).toBeGreaterThan(0);
@@ -128,7 +142,7 @@ describe("interface stylesheets", () => {
     }
   });
 
-  it.each(others.map((i) => i.id))("%s never sets colours (colour themes own them)", (id) => {
+  it.each(styleInterfaces.map((i) => i.id))("%s never sets colours (colour themes own them)", (id) => {
     const css = readFileSync(join(DIR, `${id}.css`), "utf8");
     for (const [, body] of rules(css)) {
       expect(body).not.toMatch(/(^|[;\s])(color|background|background-color|border-color|fill|stroke|outline-color)\s*:/);
@@ -138,6 +152,6 @@ describe("interface stylesheets", () => {
 
   it("index.css imports nothing but interface stylesheets that exist in the registry", () => {
     const imports = [...index.matchAll(/@import "\.\/([a-z0-9-]+)\.css";/g)].map((m) => m[1]);
-    expect(imports.sort()).toEqual(others.map((i) => i.id).sort());
+    expect(imports.sort()).toEqual(styleInterfaces.map((i) => i.id).sort());
   });
 });
