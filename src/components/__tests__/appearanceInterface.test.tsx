@@ -41,6 +41,19 @@ describe("Appearance menu: Interface section", () => {
     expect(localStorage.getItem(INTERFACE_KEY)).toBe("classic");
   });
 
+  it("applies and saves Desktop", async () => {
+    render(<ColorThemePicker withMode />);
+    await user.click(screen.getByRole("button", { name: "Appearance" }));
+    const dialog = screen.getByRole("dialog", { name: "Appearance" });
+
+    const desktop = within(dialog).getByRole("button", { name: /^Desktop/ });
+    await user.click(desktop);
+
+    expect(document.documentElement.getAttribute("data-interface")).toBe("desktop");
+    expect(localStorage.getItem(INTERFACE_KEY)).toBe("desktop");
+    expect(desktop).toHaveAttribute("aria-pressed", "true");
+  });
+
   it("keeps the colour theme when the interface changes", async () => {
     render(<ColorThemePicker withMode />);
     await user.click(screen.getByRole("button", { name: "Appearance" }));

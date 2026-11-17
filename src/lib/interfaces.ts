@@ -19,7 +19,12 @@ export interface InterfaceOption {
   hint: string;
   /** CSS font-family for the "Aa" sample in the menu. */
   sampleFont: string;
+  embedUrl?: string;
 }
+
+export const DESKTOP_INTERFACE_URL =
+  process.env.NEXT_PUBLIC_DESKTOP_INTERFACE_URL ||
+  "https://zechub-wiki-workspace.vercel.app";
 
 export const INTERFACES: readonly InterfaceOption[] = [
   {
@@ -33,6 +38,13 @@ export const INTERFACES: readonly InterfaceOption[] = [
     name: "Reader",
     hint: "Serif type, a calm column, less motion",
     sampleFont: "var(--font-reader), Georgia, serif",
+  },
+  {
+    id: "desktop",
+    name: "Desktop",
+    hint: "The full wiki as a Mac-style desktop",
+    sampleFont: "ui-serif, Georgia, 'Times New Roman', serif",
+    embedUrl: DESKTOP_INTERFACE_URL,
   },
 ];
 
