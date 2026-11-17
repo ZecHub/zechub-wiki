@@ -189,8 +189,8 @@ describe("LanguageSwitcher", () => {
     expect(option(/Español/).querySelector("svg")).not.toBeNull();
     expect(option(/English/).querySelector("svg")).toBeNull();
     // Keyboard focus must not make the current row look less selected.
-    expect(option(/Español/).className).not.toContain("focus-visible:bg-[#F4B728]/10");
-    expect(option(/English/).className).toContain("focus-visible:bg-[#F4B728]/10");
+    expect(option(/Español/).className).not.toContain("focus-visible:bg-brand/10");
+    expect(option(/English/).className).toContain("focus-visible:bg-brand/10");
   });
 
   it("says so when no language matches", async () => {

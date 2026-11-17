@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "कॉइनहोल्डर द्वारा निर्देशित पूर्वव्यापी अनुदान",
     "Community Building": "समुदाय निर्माण",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet वॉलेट सेटअप"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet वॉलेट सेटअप",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "पूरा अन्वेषण करें",
@@ -733,7 +749,7 @@
         },
         "whereSubmit": {
           "question": "हम प्रोजेक्ट कहाँ सबमिट करें?",
-          "answer": "Zcash Global Discord में अपना वीडियो डेमो साझा करें और कोई भी प्रासंगिक repository या demo links शामिल करें।"
+          "answer": "Zcash Discord में अपना वीडियो डेमो साझा करें और कोई भी प्रासंगिक repository या demo links शामिल करें।"
         },
         "winnersSelected": {
           "question": "विजेताओं का चयन कैसे किया जाता है?",
@@ -768,7 +784,7 @@
         },
         "share": {
           "title": "Discord में साझा करें",
-          "description": "15 जुलाई, 2026 (UTC) से पहले Zcash Global Discord में अपना वीडियो डेमो अपने repo और demo links के साथ पोस्ट करें।"
+          "description": "15 जुलाई, 2026 (UTC) से पहले Zcash Discord में अपना वीडियो डेमो अपने repo और demo links के साथ पोस्ट करें।"
         }
       },
       "deadlineLabel": "अंतिम तिथि:",
@@ -787,7 +803,7 @@
       "buildsCount": "{count} builds",
       "viewProject": "Project देखें",
       "needHelpTitle": "मदद चाहिए?",
-      "needHelpDesc": "Zcash Global Discord निर्माण संबंधी प्रश्नों, infra सुझावों और hackathon चर्चाओं के लिए सबसे बेहतरीन जगह है।",
+      "needHelpDesc": "Zcash Discord निर्माण संबंधी प्रश्नों, infra सुझावों और hackathon चर्चाओं के लिए सबसे बेहतरीन जगह है।",
       "joinDiscord": "Discord से जुड़ें",
       "supportDonation": "दान के साथ समर्थन करें",
       "popup": {

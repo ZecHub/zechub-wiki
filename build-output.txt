@@ -1,0 +1,151 @@
+yarn run v1.22.22
+$ node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs && tsx scripts/generate-llms-txt.mjs && tsx scripts/generate-search-index.mjs
+[copy-pdf-worker] node_modules/react-pdf/node_modules/pdfjs-dist/build/pdf.worker.min.mjs -> public/pdf.worker.min.mjs
+[copy-zaddr-wasm] node_modules/@elemental-zcash/zaddr_wasm_parser/zaddr_wasm_parser_bg.wasm -> public/wasm/zaddr_wasm_parser_bg.wasm
+[generate-llms-txt] wrote public/llms.txt — 16 sections, 250 pages (240 manifest keys)
+[generate-llms-txt] wrote public/llms-full.txt — 240 pages (10 without markdown, e.g. app-rendered pages)
+[search-index] curated entries: 127
+[search-index] english pages from llms-full.txt: 240
+[search-index] manifest keys: 240
+[search-index] zh: 472 KB gzipped exceeds the 300 KB budget
+[search-index] ja: 341 KB gzipped exceeds the 300 KB budget
+[search-index] wrote 21 locale index(es), 4862 pages, 4106 KB gzipped total, in 168.6s
+[search-index]   en   235 pages  98%   110 KB gzipped
+[search-index]   it   236 pages  98%   171 KB gzipped
+[search-index]   fr   234 pages  98%   168 KB gzipped
+[search-index]   es   231 pages  96%   161 KB gzipped
+[search-index]   de   231 pages  96%   193 KB gzipped
+[search-index]   pt   234 pages  98%   158 KB gzipped
+[search-index]   ar   231 pages  96%   233 KB gzipped
+[search-index]   zh   231 pages  96%   472 KB gzipped
+[search-index]   hi   233 pages  97%    82 KB gzipped
+[search-index]   ru   231 pages  96%   256 KB gzipped
+[search-index]   ja   231 pages  96%   341 KB gzipped
+[search-index]   ko   231 pages  96%   221 KB gzipped
+[search-index]   tr   231 pages  96%   245 KB gzipped
+[search-index]   uk   231 pages  96%   247 KB gzipped
+[search-index]   sw   231 pages  96%   165 KB gzipped
+[search-index]   yo   228 pages  95%   154 KB gzipped
+[search-index]   ig   231 pages  96%   117 KB gzipped
+[search-index]   ak   228 pages  95%   136 KB gzipped
+[search-index]   ee   231 pages  96%   137 KB gzipped
+[search-index]   id   231 pages  96%   132 KB gzipped
+[search-index]   el   231 pages  96%   209 KB gzipped
+$ cross-env NODE_OPTIONS=--max-old-space-size=4096 next build
+▲ Next.js 16.4.6 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.mjs took 25ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1791ms
+  Running TypeScript ...
+  Finished TypeScript in 6.4s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/1300) ...
+  Generating static pages using 7 workers (325/1300) 
+  Generating static pages using 7 workers (650/1300) 
+  Generating static pages using 7 workers (975/1300) 
+[sitemap] generated 4878 urls (manifest pages: 240, site-links: 7, global routes: 4).
+✓ Generating static pages using 7 workers (1300/1300) in 22.9s
+  Finalizing page optimization ...
+
+Route (app)                                         Revalidate  Expire
+┌ ○ /_not-found
+├ ƒ /[locale]
+├ ƒ /[locale]/[...slug]
+├ ƒ /[locale]/arborist-calls
+├ ƒ /[locale]/chain-stats
+├ ƒ /[locale]/dao
+├ ƒ /[locale]/dashboard
+├ ƒ /[locale]/desktop-wallets
+├ ƒ /[locale]/developers
+├ ƒ /[locale]/developers/quick-start
+├ ƒ /[locale]/dex
+├ ƒ /[locale]/donation
+├ ƒ /[locale]/embed/zcash
+├ ƒ /[locale]/explore
+├ ƒ /[locale]/gallery
+├ ƒ /[locale]/governance-howto
+├ ƒ /[locale]/guides/btcpay-zcash
+├ ƒ /[locale]/hackathon
+├ ƒ /[locale]/hardware-wallets
+├ ƒ /[locale]/map
+├ ƒ /[locale]/mobile-wallets
+├ ƒ /[locale]/network
+├ ƒ /[locale]/newsletter
+├ ƒ /[locale]/omniflix
+├ ƒ /[locale]/payment-processors
+├ ƒ /[locale]/privacy
+├ ƒ /[locale]/proposals
+├ ƒ /[locale]/protocol-parameters
+├ ƒ /[locale]/research/zec-pool-migration/view
+├ ƒ /[locale]/rss.xml
+├ ƒ /[locale]/sitemap
+├ ƒ /[locale]/tools
+├ ƒ /[locale]/using-zcash/blockchain-explorers
+├ ƒ /[locale]/using-zcash/centralized-swaps
+├ ƒ /[locale]/using-zcash/custodial-exchanges
+├ ƒ /[locale]/using-zcash/shielded-pools
+├ ƒ /[locale]/visual-identity
+├ ƒ /[locale]/visualizer
+├ ƒ /[locale]/visualizer/consensus
+├ ƒ /[locale]/visualizer/hash-function
+├ ƒ /[locale]/visualizer/zcash-key
+├ ƒ /[locale]/wallets
+├ ƒ /[locale]/web-wallets
+├ ƒ /[locale]/welcome
+├ ƒ /[locale]/zcash-community/building
+├ ƒ /[locale]/zcash-community/building/event
+├ ƒ /[locale]/zcash-community/building/funding
+├ ƒ /[locale]/zcash-community/building/mentoring
+├ ƒ /[locale]/zcash-community/building/progression
+├ ƒ /[locale]/zcash-community/building/proposals
+├ ƒ /[locale]/zcash-community/building/reporting
+├ ƒ /[locale]/zcash-community/community-projects
+├ ƒ /[locale]/zcash-evolution
+├ ƒ /[locale]/zcash-global-ambassadors
+├ ƒ /[locale]/zcash-infrastructure-visualizer
+├ ƒ /[locale]/zcash-organizations/brand
+├ ƒ /[locale]/zcash-payment-uri
+├ ƒ /[locale]/zcash-pool-visualizer
+├ ƒ /[locale]/zcash-projects
+├ ƒ /[locale]/zebra
+├ ƒ /[locale]/zechub-tutorial
+├ ƒ /[locale]/zechub-tutorials
+├ ƒ /[locale]/zips-grants
+├ ƒ /[locale]/zksnark-proof-visualizer
+├ ƒ /api/ai
+├ ƒ /api/cipherscan/block/[id]
+├ ƒ /api/content-md
+├ ƒ /api/csp-report
+├ ƒ /api/data-updated
+├ ƒ /api/faucet/claim
+├ ƒ /api/faucet/status/[network]/[requestId]
+├ ƒ /api/github/file
+├ ƒ /api/latest-videos
+├ ƒ /api/payment-request-uri/qrcode
+├ ƒ /api/payment-request-uri/shorten
+├ ƒ /api/payment-request-uri/shorten/[shortId]
+├ ƒ /api/payment-request-uri/widget-telemetry
+├ ƒ /api/payment-request-uri/zcash-price-feed
+├ ƒ /api/prices/simple
+├ ƒ /api/revalidate
+├ ƒ /api/security-updates
+├ ƒ /api/youtube-playlist
+├ ○ /icon.png
+├ ○ /robots.txt
+└ ○ /sitemap.xml                                            5m      1y
+
+Route (pages)
+┌ ƒ /api/blockchain-data
+├ ƒ /api/mining-history
+├ ƒ /api/mining-pools
+├ ƒ /api/mining-pools-dominance
+└ ƒ /api/wallet-likes
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+Done in 233.79s.

@@ -133,8 +133,8 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
                   <nav
                     className={
                       isGuidesSection
-                        ? "grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                        : "grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                        ? "grid gap-2 imd:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                        : "grid gap-3 imd:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                     }
                   >
                     {section.links.map((link) => (
@@ -159,7 +159,7 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
 
                 {/* Subsections (for other sections) */}
                 {section.subsections && (
-                  <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid gap-8 imd:grid-cols-2 lg:grid-cols-3">
                     {section.subsections.map((subsection) => (
                       <div key={subsection.title}>
                         <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">

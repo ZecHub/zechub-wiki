@@ -68,9 +68,9 @@ function ZipAndGrants({ zipsData }: ZipAndGrantsGovernanceProps) {
       <div className="container flex py-4">
         <div className="flex justify-start gap-3">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-foreground">
+            <h1 className="text-xl font-bold tracking-tight text-foreground">
               Zcash <span className="text-gradient-zcash">Governance</span>
-            </h2>
+            </h1>
             <p className="text-sm text-muted-foreground">
               ZIPs · Grants Proposals
             </p>

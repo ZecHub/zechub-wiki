@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "Kɔingadzilawo ƒe kpekpeɖeŋu siwo wotsɔ na nu siwo va yi",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "Dzro Nu Bliboe",
@@ -733,7 +749,7 @@
         },
         "whereSubmit": {
           "question": "Afikae míeɖoa dɔwo ɖe?",
-          "answer": "Ma wò video ƒe wɔwɔfia le Zcash Global Discord me eye nàde nudzraɖoƒe alo wɔwɔfia ƒe kadodo ɖesiaɖe si sɔ la eme."
+          "answer": "Ma wò video ƒe wɔwɔfia le Zcash Discord me eye nàde nudzraɖoƒe alo wɔwɔfia ƒe kadodo ɖesiaɖe si sɔ la eme."
         },
         "winnersSelected": {
           "question": "Aleke wotiaa aʋadziɖulawoe?",
@@ -768,7 +784,7 @@
         },
         "share": {
           "title": "Gomekpɔkpɔ le Masɔmasɔ me",
-          "description": "Da wò video ƒe wɔwɔfia ɖe Zcash Global Discord me kple wò repo kple wɔwɔfia ƒe kadodowo do ŋgɔ na July 15, 2026 (UTC)."
+          "description": "Da wò video ƒe wɔwɔfia ɖe Zcash Discord me kple wò repo kple wɔwɔfia ƒe kadodowo do ŋgɔ na July 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Nuwuwu game:",
@@ -787,7 +803,7 @@
       "buildsCount": "{xexlẽ} tua xɔwo",
       "viewProject": "Kpɔ dɔa ɖa",
       "needHelpTitle": "Èhiã kpekpeɖeŋua?",
-      "needHelpDesc": "Zcash Global Discord nye teƒe nyuitɔ kekeake na xɔtutu biabia, infra aɖaŋuɖoɖowo, kple hackathon dzeɖoɖo.",
+      "needHelpDesc": "Zcash Discord nye teƒe nyuitɔ kekeake na xɔtutu biabia, infra aɖaŋuɖoɖowo, kple hackathon dzeɖoɖo.",
       "joinDiscord": "Wɔ ɖeka kple Discord",
       "supportDonation": "Do alɔe kple nudzɔdzɔ",
       "popup": {

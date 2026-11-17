@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "Ретроактивні гранти, спрямовані CoinHolder",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "Повне дослідження",
@@ -733,7 +749,7 @@
         },
         "whereSubmit": {
           "question": "Куди ми подаємо проєкти?",
-          "answer": "Поділіться своєю відеодемонстрацією в Zcash Global Discord і додайте всі відповідні посилання на репозиторій або демо."
+          "answer": "Поділіться своєю відеодемонстрацією в Zcash Discord і додайте всі відповідні посилання на репозиторій або демо."
         },
         "winnersSelected": {
           "question": "Як обирають переможців?",
@@ -768,7 +784,7 @@
         },
         "share": {
           "title": "Поділитися в Discord",
-          "description": "Опублікуйте своє відеодемо в Zcash Global Discord разом із посиланнями на ваш репозиторій і демо до 15 липня 2026 року (UTC)."
+          "description": "Опублікуйте своє відеодемо в Zcash Discord разом із посиланнями на ваш репозиторій і демо до 15 липня 2026 року (UTC)."
         }
       },
       "deadlineLabel": "Кінцевий термін:",
@@ -787,7 +803,7 @@
       "buildsCount": "{count} збірок",
       "viewProject": "Переглянути проєкт",
       "needHelpTitle": "Потрібна допомога?",
-      "needHelpDesc": "Zcash Global Discord — найкраще місце для запитань щодо розробки, порад з інфраструктури та спілкування про хакатон.",
+      "needHelpDesc": "Zcash Discord — найкраще місце для запитань щодо розробки, порад з інфраструктури та спілкування про хакатон.",
       "joinDiscord": "Приєднатися до Discord",
       "supportDonation": "Підтримати пожертвою",
       "popup": {

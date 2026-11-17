@@ -2,8 +2,11 @@ import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import AuroraBackground from "@/components/Background/AuroraBackground";
+import { Inter, JetBrains_Mono, Literata } from "next/font/google";
 import "./globals.css";
+import ColorThemeInit from "@/components/ColorThemeInit";
+import InterfaceInit from "@/components/InterfaceInit";
 import NavigationWrapper from "@/components/NavigationWrapper";
 import SkipToContent from "@/components/SkipToContent";
 import MotionProvider from "@/components/MotionProvider";
@@ -19,7 +22,21 @@ import { getMenuTitlesCached } from "@/lib/authAndFetch";
 import { searcher } from "@/constants/searcher";
 import { buildSearchIndex } from "@/lib/searchIndex";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+// Headings use JetBrains Mono (same choice as the Nym docs); body stays Inter.
+const headingFont = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+// Serif for the Reader interface (src/components/Interfaces). Not preloaded:
+// the browser only downloads it once a visitor picks Reader.
+const readerFont = Literata({
+  subsets: ["latin"],
+  variable: "--font-reader",
+  display: "swap",
+  preload: false,
+});
 
 // Organization structured data (schema.org), emitted once site-wide. `sameAs`
 // is sourced from the site's social navigation so it stays in sync with the
@@ -85,7 +102,13 @@ export default async function RootLayout({
 
   // Nonce set by src/proxy.ts for the enforcing CSP. Required on any
   // hand-written <script> once script-src drops 'unsafe-inline'.
-  const nonce = (await headers()).get("x-nonce") ?? undefined;
+  const requestHeaders = await headers();
+  // Next exposes headers a proxy adds to the request under this prefix on some
+  // paths (rewrites), so read both spellings.
+  const nonce =
+    requestHeaders.get("x-nonce") ??
+    requestHeaders.get("x-middleware-request-x-nonce") ??
+    undefined;
 
   // Preload the locale dictionary on the server so the UI chrome renders in the
   // correct language during SSR (no English flash before client hydration).
@@ -104,7 +127,7 @@ export default async function RootLayout({
   });
 
   return (
-    <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
+    <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         {/* Manual RSS link as backup for better feed detection (Brave, Feedly, etc.) */}
         <link
@@ -121,7 +144,9 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
-      <body className={`px-0 ${inter.className} dark:bg-slate-900 dark:text-white`}>
+      <body className={`px-0 ${inter.className} ${inter.variable} ${headingFont.variable} ${readerFont.variable} bg-page dark:bg-surface dark:text-white`}>
+        <ColorThemeInit />
+        <InterfaceInit />
         {/* First focusable element on the page, so keyboard and screen-reader
             users can bypass the header, menus and search (WCAG 2.4.1). Rendered
             here rather than inside the providers so nothing precedes it in the
@@ -134,13 +159,14 @@ export default async function RootLayout({
             // next-themes injects an inline anti-FOUC <script>; it needs the
             // request nonce once script-src drops 'unsafe-inline', or the
             // enforcing CSP blocks it (wrong-theme flash + a report per load).
-            nonce={nonce}
             attribute="class"
+            nonce={nonce}
             defaultTheme="dark"
             enableSystem={true}
             disableTransitionOnChange={true}
             enableColorScheme={true}
           >
+            <AuroraBackground />
             <LanguageProvider
               initialLocale={locale}
               initialDictionary={initialDictionary}

@@ -7,11 +7,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // next-mdx-remote is loaded natively from node_modules during SSR, so it gets
+  // its own copy of React and crashes with "Cannot read properties of null
+  // (reading 'useState')". Bundling it with the app shares Next's React.
+  transpilePackages: ["next-mdx-remote"],
   allowedDevOrigins: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     // Add the exact origin from your error, or your LAN IP for phone testing
     // 'http://192.168.1.42:3000',
+    // Extra dev hosts (e.g. a Tailscale name) come from .env.local so they stay
+    // out of git: DEV_ORIGINS=my-mac.example.ts.net,other-host
+    ...(process.env.DEV_ORIGINS ?? "")
+      .split(",")
+      .map((o) => o.trim())
+      .filter(Boolean),
   ],
   // Images are self-hosted under /content-images/ and public/ (same-origin).
   // The only remote host kept is Wikimedia — a privacy-respecting source we
@@ -20,12 +30,36 @@ const nextConfig = {
   // they're allow-listed in the CSP img-src instead.) Everything else is
   // same-origin, so a stray external <Image> still fails loudly in review.
   images: {
+    // 75 is the default; 80 is used by the home gallery.
+    qualities: [75, 80],
     remotePatterns: [
       { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
     ],
   },
   async redirects() {
     return [
+      {
+        // Replaced by the Zebra + Zallet guide (the old steps no longer match how Zebra is configured).
+        source: "/guides/raspberry-pi-4-zebra-node",
+        destination: "/guides/raspberry-pi-4-full-node",
+        permanent: false,
+      },
+      {
+        source: "/:locale/guides/raspberry-pi-4-zebra-node",
+        destination: "/:locale/guides/raspberry-pi-4-full-node",
+        permanent: false,
+      },
+      {
+        // Merged into the Free2Z Live guide.
+        source: "/guides/free2z-livestreaming",
+        destination: "/guides/free2z-live",
+        permanent: true,
+      },
+      {
+        source: "/:locale/guides/free2z-livestreaming",
+        destination: "/:locale/guides/free2z-live",
+        permanent: true,
+      },
       {
         // The card page used to live at the collapsed slug `centralizedswaps`,
         // which differed from the slug the [...slug] catch-all derives from

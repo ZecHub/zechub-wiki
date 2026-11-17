@@ -1,9 +1,9 @@
 "use client";
 
-import { Card } from "@/components/Card/Card";
 import ExchangeTypeNav from "@/components/ExchangeTypeNav";
-import Image from "next/image";
+import VenueCard from "@/components/VenueCard";
 import { useLanguage } from "@/context/LanguageContext";
+import { venueIcon } from "@/lib/venueIcons";
 import type { Venue } from "@/lib/parseVenueMarkdown";
 
 export default function DexClient({ venues }: { venues: Venue[] }) {
@@ -12,32 +12,29 @@ export default function DexClient({ venues }: { venues: Venue[] }) {
   const paragraph =
     t?.pages?.dex?.subtitle ??
     "ZecHub does not endorse any particular Decentralised Exchange service, please do your own research.";
+  const cta = t?.common?.visitWebsite ?? "Visit website";
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center my-12 flex-col lg:flex-row">
-        <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-6 imd:mb-0 text-center">
-          <Image
-            src={"/content-images/image-2024-02-03-173258092-a5440e5ee2.webp"}
-            alt={t?.pages?.dex?.imageAlt ?? "Alt Text"}
-            width={50}
-            height={50}
-            className="inline-block mr-2"
-          />
-          {heading}
-        </h1>
+    <div className="container mx-auto px-4 py-10">
+      <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h1 className="mb-3 mt-0 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-4xl">
+            {heading}
+          </h1>
+          <p className="m-0 max-w-2xl text-[15px] leading-relaxed text-slate-600 dark:text-slate-400">{paragraph}</p>
+        </div>
         <ExchangeTypeNav />
       </div>
-      <p className="dark:text-slate-300 text-gray-600 text-lg my-12">{paragraph}</p>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {venues.map((itm) => (
-          <Card
-            thumbnailImage={itm.logo}
-            description={itm.description ?? ""}
-            title={itm.name}
-            url={itm.url}
+          <VenueCard
             key={itm.name}
-            ctaLabel={t?.common?.readMore ?? "Read More"}
+            name={itm.name}
+            url={itm.url}
+            icon={venueIcon(itm.name).icon}
+            iconDark={venueIcon(itm.name).dark}
+            description={itm.description ?? ""}
+            ctaLabel={cta}
           />
         ))}
       </div>

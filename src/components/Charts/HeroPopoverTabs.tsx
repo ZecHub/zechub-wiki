@@ -53,7 +53,7 @@ export default function HeroPopoverTabs({
       {/* Top row: active tab pill + "All Tabs" toggle */}
       <div className="flex items-center justify-center gap-2 flex-wrap">
         {/* Active tab — matches Dashboard's active button style exactly */}
-        <div className="px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 text-sm md:text-base bg-purple-700 dark:bg-purple-800 text-white shadow-lg pointer-events-none select-none">
+        <div className="px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 text-sm md:text-base bg-brand-hover dark:bg-brand-hover text-white shadow-lg pointer-events-none select-none">
           {activeTabData.label}
         </div>
 
@@ -63,8 +63,8 @@ export default function HeroPopoverTabs({
           aria-expanded={isOpen}
           className={`flex items-center gap-1.5 px-5 py-2.5 md:px-7 md:py-3.5 rounded-3xl font-semibold text-sm md:text-base transition-all ${
             isOpen
-              ? "bg-purple-700 dark:bg-purple-800 text-white shadow-lg"
-              : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
+              ? "bg-brand-hover dark:bg-brand-hover text-white shadow-lg"
+              : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand-hover dark:hover:bg-brand-hover hover:text-white"
           }`}
         >
           <LayoutGrid className="w-4 h-4" />
@@ -85,8 +85,8 @@ export default function HeroPopoverTabs({
                 onClick={() => setSupplyTab(opt.value)}
                 className={`px-6 py-2.5 text-sm font-medium rounded-3xl transition-all whitespace-nowrap ${
                   supplyTab === opt.value
-                    ? "bg-purple-700 dark:bg-purple-800 text-white shadow-sm"
-                    : "text-slate-700 dark:text-slate-300 hover:bg-purple-100 dark:hover:bg-purple-950"
+                    ? "bg-brand-hover dark:bg-brand-hover text-white shadow-sm"
+                    : "text-slate-700 dark:text-slate-300 hover:bg-brand/10 dark:hover:bg-brand/20"
                 }`}
               >
                 {opt.label}
@@ -107,7 +107,7 @@ export default function HeroPopoverTabs({
                   onTabChange(tab.value);
                   setIsOpen(false);
                 }}
-                className="px-4 py-2.5 rounded-xl text-sm font-semibold text-left transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white whitespace-nowrap"
+                className="px-4 py-2.5 rounded-xl text-sm font-semibold text-left transition-all bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-brand-hover dark:hover:bg-brand-hover hover:text-white whitespace-nowrap"
               >
                 {tab.label}
               </button>

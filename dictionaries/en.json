@@ -1,7 +1,7 @@
 {
   "menuLabels": {
     "Accept Payments": "Accept Payments",
-    "Akash Network Zebra": "Akash Network Zebra",
+    "Akash Network Zebra": "Zebra on Akash",
     "Arborist Calls": "Arborist Calls",
     "Avalanche RedBridge": "Avalanche RedBridge",
     "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Plugin",
@@ -43,9 +43,9 @@
     "Payment Request URIs": "Payment Request URIs",
     "Podcast": "Podcast",
     "Private Community Treasury": "Private Community Treasury",
-    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node",
-    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Node",
-    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Raspberry Pi 4 Full Node": "Zebra + Zallet on Raspberry Pi 4",
+    "Raspberry pi 4 Zebra Node": "Zebra on Raspberry Pi 4",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Zebra stack on Raspberry Pi 5",
     "Recovering Funds": "Recovering Funds",
     "Research": "Research",
     "Send Money Privately": "Send Money Privately",
@@ -707,7 +707,7 @@
         },
         "whereSubmit": {
           "question": "Where do we submit projects?",
-          "answer": "Share your video demo in the Zcash Global Discord and include any relevant repository or demo links."
+          "answer": "Share your video demo in the Zcash Discord and include any relevant repository or demo links."
         },
         "winnersSelected": {
           "question": "How are winners selected?",
@@ -742,7 +742,7 @@
         },
         "share": {
           "title": "Share in Discord",
-          "description": "Post your video demo in the Zcash Global Discord with your repo and demo links before July 15, 2026 (UTC)."
+          "description": "Post your video demo in the Zcash Discord with your repo and demo links before July 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Deadline:",
@@ -761,7 +761,7 @@
       "buildsCount": "{count} builds",
       "viewProject": "View project",
       "needHelpTitle": "Need help?",
-      "needHelpDesc": "The Zcash Global Discord is the best place for build questions, infra tips, and hackathon chatter.",
+      "needHelpDesc": "The Zcash Discord is the best place for build questions, infra tips, and hackathon chatter.",
       "joinDiscord": "Join Discord",
       "supportDonation": "Support with a donation",
       "popup": {
@@ -829,7 +829,7 @@
         "introToStack": "Intro to the Stack",
         "introToStackDesc": "Understand the architecture and components of the Zcash stack.",
         "zecDev": "ZecDev",
-        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant. See also the",
+        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant.",
         "zcashCommunityWishlist": "Zcash Community Wishlist",
         "introToZingolib": "Intro to Zingolib",
         "introToZingolibDesc": "Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd.",

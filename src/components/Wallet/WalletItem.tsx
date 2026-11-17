@@ -1,218 +1,3 @@
-
-import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import React, { useMemo, useState } from "react";
-import {
-  MdThumbDown as Dislike,
-  MdThumbUp as Like,
-  MdChecklist,
-  MdDevices,
-  MdPool,
-  MdOpenInNew as OpenNew,
-  MdKeyboardArrowDown,
-} from "react-icons/md";
-import { Icon } from "../UI/Icon";
-import { getFeatureLink } from "@/lib/walletFeatureLinks";
-
-interface WalletItemProps {
-  title: string;
-  link: string;
-  logo: string;
-  tags: Tag[];
-  likes: number;
-  syncSpeed: string;
-  nu7?: string;
-  stage?: string;
-  nymMixnet?: string;
-  sourceCode?: string;
-  // Replaces the NU7 badge for deprecated wallets.
-  deprecated?: string;
-  onLike: () => void;
-  onDislike: () => void;
-  error: string;
-  success: string;
-}
-
-interface Tag {
-  category: string;
-  values: string[] | FeatureLink[];
-}
-
-interface FeatureLink {
-  name: string;
-  url: string;
-}
-
-type CategoryKey = "Devices" | "Pools" | "Features";
-
-const categoryIcons = {
-  Devices: MdDevices,
-  Pools: MdPool,
-  Features: MdChecklist,
-};
-
-// NU7 compatibility status badge colors.
-const nu7BadgeStyles: Record<string, { pill: string; dot: string }> = {
-  compatible: {
-    pill: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
-    dot: "bg-emerald-500",
-  },
-  "compatible for transparent zec": {
-    pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
-    dot: "bg-amber-500",
-  },
-  "in progress": {
-    pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
-    dot: "bg-amber-500",
-  },
-  "not ready": {
-    pill: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
-    dot: "bg-rose-500",
-  },
-  "not verified": {
-    pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
-    dot: "bg-slate-400",
-  },
-};
-
-const nu7FallbackStyle = {
-  pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
-  dot: "bg-slate-500",
-};
-
-const WalletItem: React.FC<WalletItemProps> = ({
-  title,
-  link,
-  logo,
-  tags,
-  syncSpeed,
-  nu7,
-  stage,
-  nymMixnet,
-  sourceCode,
-  deprecated,
-  likes,
-  onLike,
-  onDislike,
-  error,
-  success,
-}) => {
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
-  const [featuresOpen, setFeaturesOpen] = useState(false);
-
-  const sourceUrl = sourceCode?.trim() ?? "";
-  const hasSource = /^https?:\/\//i.test(sourceUrl);
-
-  const handleLike = () => {
-    onLike();
-    setLiked(true);
-    setDisliked(false);
-  };
-
-  const handleDislike = () => {
-    onDislike();
-    setDisliked(true);
-    setLiked(false);
-  };
-
-  const featureValues = useMemo(() => {
-    const values = tags.find((t) => t.category === "Features")?.values ?? [];
-    return values.map((v) => (typeof v === "string" ? v : v.name));
-  }, [tags]);
-
-  const hasTransparent = useMemo(
-    () => featureValues.some((v) => v.toLowerCase() === "transparent"),
-    [featureValues],
-  );
-
-  const hasShielded = useMemo(
-    () => featureValues.some((v) => v.toLowerCase() === "shielded"),
-    [featureValues],
-  );
-
-  return (
-    <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
-      {/* Logo */}
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block bg-gray-100 dark:bg-gray-200 p-5 md:p-6 flex items-center justify-center h-52 md:h-48"
-      >
-        <Image
-          className="w-full h-full object-contain"
-          width={260}
-          height={180}
-          src={logo}
-          alt={`${title} Logo`}
-          priority={false}
-        />
-      </a>
-
-      <div className="flex-1 flex flex-col p-5 md:p-6">
-        {/* Title + Open button */}
-        <div className="flex justify-between items-start mb-4">
-          <h5 className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-200 flex-1 pr-3">
-            {title}
-            {syncSpeed && (
-              <span className="inline-block ml-2 align-middle">
-                <Image src={syncSpeed} width={32} height={32} alt="Sync" />
-              </span>
-            )}
-          </h5>
-          <Link
-            href={link}
-            className="px-4 py-2 border border-slate-500 dark:border-slate-400 text-slate-500 dark:text-slate-400 text-sm hover:bg-slate-500 hover:text-white rounded-lg transition whitespace-nowrap"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open
-            <Icon icon={OpenNew} className="inline-block ms-2" size="small" />
-          </Link>
-        </div>
-
-        {/* Deprecated wallet badge */}
-        {deprecated !== undefined && (
-          <div className="mb-4 -mt-1">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-rose-600 text-white dark:bg-rose-700">
-              Deprecated
-            </span>
-            {deprecated && (
-              <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">
-                {deprecated}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Compatibility, release stage, network and source badges */}
-        {deprecated === undefined && (
-          <div className="mb-4 -mt-1 flex flex-wrap gap-2">
-            {nu7 && (
-              <span
-                title="NU7 network upgrade compatibility status"
-                className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full ${
-                  (nu7BadgeStyles[nu7.trim().toLowerCase()] ?? nu7FallbackStyle).pill
-                }`}
-              >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    (nu7BadgeStyles[nu7.trim().toLowerCase()] ?? nu7FallbackStyle).dot
-                  }`}
-                />
-                NU7: {nu7}
-              </span>
-            )}
-            {stage && (
-              <span
-                title="Release stage"
-                className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border border-slate-300 text-slate-600 dark:border-slate-600 dark:text-slate-300"
-              >
-                {stage}
-              </span>
-            )}
-            {nymMixnet && (
               <span
                 title="Nym mixnet support"
                 className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300"
@@ -241,154 +26,86 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </div>
         )}
 
-        {/* Devices + Pools */}
-        {tags
-          .filter((t) => ["Devices", "Pools"].includes(t.category))
-          .map((tag, index) => (
-            <div key={index} className="flex flex-wrap gap-2 mb-4">
-              <Icon
-                icon={categoryIcons[tag.category as CategoryKey]}
-                title={tag.category}
-                className="text-slate-500 mt-1"
-                size="medium"
-              />
-              {tag.values.map((value, vIndex) => (
-                <span
-                  key={vIndex}
-                  className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300"
-                >
-                  {typeof value === "string" ? value : (value as FeatureLink).name}
-                </span>
-              ))}
-            </div>
-          ))}
-
-        {/* Features section */}
-        {tags.some((t) => t.category === "Features") && (
-          <>
-            <hr className="my-3 border-slate-200 dark:border-slate-700" />
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <Icon
-                  icon={MdChecklist}
-                  title="Features"
-                  className="text-slate-500"
-                  size="medium"
-                />
-
-                {hasShielded ? (
-                  <Link
-                    href={getFeatureLink("Shielded", link)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
-                  >
-                    Shielded
-                  </Link>
-                ) : null}
-
-                {hasTransparent ? (
-                  <Link
-                    href={getFeatureLink("Transparent", link)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
-                  >
-                    Transparent
-                  </Link>
-                ) : null}
-
-                {!hasShielded && !hasTransparent ? (
-                  <span className="text-sm text-slate-500 dark:text-slate-400">
-                    Feature details
-                  </span>
-                ) : null}
+        {/* Labelled sections: Devices, Pools, Features */}
+        <div className="mt-4 divide-y divide-slate-200 border-t border-slate-200 dark:divide-white/10 dark:border-white/10">
+          {tags
+            .filter((t) => ["Devices", "Pools"].includes(t.category) && t.values.length > 0)
+            .map((tag) => (
+              <div key={tag.category} className="py-3">
+                <div className={sectionLabel}>{tag.category}</div>
+                <div className="mt-1.5 flex flex-wrap gap-1.5">
+                  {tag.values.map((value, vIndex) => (
+                    <span key={vIndex} className={chip}>
+                      {typeof value === "string" ? value : (value as FeatureLink).name}
+                    </span>
+                  ))}
+                </div>
               </div>
+            ))}
 
-              <button
-                type="button"
-                onClick={() => setFeaturesOpen((v) => !v)}
-                className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 cursor-pointer"
-                aria-expanded={featuresOpen}
-                aria-controls={`${title}-features`}
-              >
-                <span>{featuresOpen ? "Hide" : "Show"}</span>
-                <Icon
-                  icon={MdKeyboardArrowDown}
-                  className={`transition ${featuresOpen ? "rotate-180" : ""}`}
-                  size="small"
-                />
-              </button>
-            </div>
-
-            {featuresOpen ? (
-              <div
-                id={`${title}-features`}
-                className="mt-3 flex flex-wrap gap-2"
-              >
-                {tags
-                  .find((t) => t.category === "Features")
-                  ?.values.map((value, index) => {
-                    const displayValue =
-                      typeof value === "string"
-                        ? value
-                        : (value as FeatureLink).name;
-
-                    const linkUrl =
-                      typeof value === "string"
-                        ? getFeatureLink(value, link)
-                        : (value as FeatureLink).url;
-
-                    return (
-                      <Link
-                        key={index}
-                        href={linkUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
-                      >
-                        {displayValue}
-                      </Link>
-                    );
-                  })}
-                {hasSource && (
+          {tags.some((t) => t.category === "Features" && t.values.length > 0) && (
+            <div className="py-3">
+              <div className="flex items-center justify-between gap-3">
+                <div className={sectionLabel}>Features</div>
+                <button
+                  type="button"
+                  onClick={() => setFeaturesOpen((v) => !v)}
+                  className="inline-flex cursor-pointer items-center gap-1 text-[13px] font-medium text-slate-500 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                  aria-expanded={featuresOpen}
+                  aria-controls={`${title}-features`}
+                >
+                  <span>{featuresOpen ? "Hide" : "Show all"}</span>
+                  <Icon
+                    icon={MdKeyboardArrowDown}
+                    className={`transition ${featuresOpen ? "rotate-180" : ""}`}
+                    size="small"
+                  />
+                </button>
+              </div>
+              <div id={`${title}-features`} className="mt-1.5 flex flex-wrap gap-1.5">
+                {(featuresOpen ? allFeatures : collapsedFeatures).map((value, index) => {
+                  const displayValue = typeof value === "string" ? value : (value as FeatureLink).name;
+                  const linkUrl =
+                    typeof value === "string" ? getFeatureLink(value, link) : (value as FeatureLink).url;
+                  return (
+                    <Link
+                      key={index}
+                      href={linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${chip} no-underline transition hover:bg-slate-300 dark:hover:bg-slate-600`}
+                    >
+                      {displayValue}
+                    </Link>
+                  );
+                })}
+                {featuresOpen && hasSource && (
                   <a
                     href={sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-1 text-sm bg-emerald-100 dark:bg-emerald-900/40 hover:bg-emerald-200 dark:hover:bg-emerald-900/60 rounded-full text-emerald-700 dark:text-emerald-300 transition"
+                    title="Open source repository"
+                    className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[13px] text-emerald-700 no-underline transition hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
                   >
                     Source Code
                   </a>
                 )}
               </div>
-            ) : null}
-          </>
-        )}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Rating pinned at bottom */}
-      <div className="border-t border-slate-200 dark:border-slate-700 p-5 mt-auto flex items-center">
-        <div className="flex-grow text-sm text-gray-400">
-          Rating: {likes}
-        </div>
-        <div className="text-pink-700 dark:text-red-300 text-xs pr-2">
-          {error}
-        </div>
-        <div className="text-green-700 dark:text-green-300 text-xs pr-2">
-          {success}
-        </div>
+      <div className="mt-auto flex items-center border-t border-slate-200 px-4 py-3 dark:border-white/10">
+        <div className="flex-grow text-sm text-gray-400">Rating: {likes}</div>
+        <div className="pr-2 text-xs text-pink-700 dark:text-red-300">{error}</div>
+        <div className="pr-2 text-xs text-green-700 dark:text-green-300">{success}</div>
         <div className="flex gap-4">
-          <button
-            onClick={handleLike}
-            className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}
-          >
+          <button onClick={handleLike} className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
             <Icon icon={Like} size="small" />
           </button>
-          <button
-            onClick={handleDislike}
-            className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}
-          >
+          <button onClick={handleDislike} className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
             <Icon icon={Dislike} size="small" />
           </button>
         </div>

@@ -3,6 +3,13 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Gallery from "@/components/Gallery/Gallery";
 
+// Render the locale-aware Link as a plain anchor so the suite does not load next-intl ES modules.
+jest.mock("@/i18n/navigation", () => ({
+  Link: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
+    <a href={href} {...rest}>{children}</a>
+  ),
+}));
+
 jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt, className }: { src: string; alt: string; className?: string }) => <img src={src} alt={alt} className={className} />,
@@ -27,9 +34,9 @@ describe("Gallery image sets", () => {
     const buttons = thumbnails(container);
     expect(buttons).toHaveLength(15);
     buttons.forEach((button, i) => {
-      expect(button).toHaveAccessibleName(`Open Zcash gallery image ${i + 1}`);
+      expect(button).toHaveAccessibleName(`Open Zcash wallpaper ${i + 1}`);
       expect(within(button).getByRole("img")).toHaveAttribute("src", `/gallery/${i + 1}.png`);
-      expect(within(button).getByRole("img")).toHaveAttribute("alt", `Zcash gallery image ${i + 1}`);
+      expect(within(button).getByRole("img")).toHaveAttribute("alt", `Zcash wallpaper ${i + 1}`);
       expect(within(button).getByRole("img")).not.toHaveClass("object-top");
     });
   });
@@ -50,11 +57,7 @@ describe("Gallery image sets", () => {
 
   it("wraps arrow navigation and downloads over the 8 infographics", async () => {
     const user = userEvent.setup();
-    let downloaded: { href: string; name: string } | undefined;
-    const click = jest.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
-      downloaded = { href: this.getAttribute("href")!, name: this.download };
-    });
-    try {
+    {
       render(<Gallery set="infographics" />);
       const thumbnail = screen.getByRole("button", { name: "Open Zcash Encrypted Memos" });
       await user.click(thumbnail);
@@ -65,21 +68,20 @@ describe("Gallery image sets", () => {
       await user.keyboard("{ArrowLeft}");
       expect(dialog).toHaveAccessibleName("Zebra Node Compile");
       expect(within(dialog).getByAltText("Zebra Node Compile infographic")).toHaveAttribute("src", infographics[7][1]);
-      expect(within(dialog).getByText(/Image 8 of 8/)).toBeInTheDocument();
-      await user.click(within(dialog).getByRole("button", { name: "Download" }));
-      expect(downloaded).toEqual({ href: infographics[7][1], name: "Zebra-Node-Compile-413743711e.webp" });
+      expect(within(dialog).getByText(/8 \/ 8/)).toBeInTheDocument();
+      const download = within(dialog).getByRole("link", { name: "Download" });
+      expect(download).toHaveAttribute("href", infographics[7][1]);
+      expect(download).toHaveAttribute("download", "Zebra-Node-Compile-413743711e.webp");
 
       await user.keyboard("{ArrowRight}");
       expect(dialog).toHaveAccessibleName("Zcash Encrypted Memos");
-      expect(within(dialog).getByText(/Image 1 of 8/)).toBeInTheDocument();
+      expect(within(dialog).getByText(/1 \/ 8/)).toBeInTheDocument();
       await user.click(within(dialog).getByRole("button", { name: "Previous image" }));
       expect(dialog).toHaveAccessibleName("Zebra Node Compile");
 
       await user.keyboard("{Escape}");
       await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
       await waitFor(() => expect(thumbnail).toHaveFocus());
-    } finally {
-      click.mockRestore();
     }
   });
 

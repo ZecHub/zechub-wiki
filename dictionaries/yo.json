@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "Awọn Ẹbun Ipadà Sẹ́yìn tí CoinHolder Darí",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "Ṣàwárí ní kíkún",
@@ -733,7 +749,7 @@
         },
         "whereSubmit": {
           "question": "Ibo la ti máa ń fi àwọn ìwéwèé ránṣẹ́?",
-          "answer": "Ṣe àfihàn fídíò rẹ ní Zcash Global Discord kí o sì fi ìjápọ̀ ìpamọ́ tàbí ìjábọ̀ tí ó bá yẹ kún un."
+          "answer": "Ṣe àfihàn fídíò rẹ ní Zcash Discord kí o sì fi ìjápọ̀ ìpamọ́ tàbí ìjábọ̀ tí ó bá yẹ kún un."
         },
         "winnersSelected": {
           "question": "Báwo la ṣe máa ń yan àwọn tó máa gba àmì ẹ̀yẹ?",
@@ -768,7 +784,7 @@
         },
         "share": {
           "title": "Àwọn Tó Wà Ní Ìkùdíẹ̀-káàtó",
-          "description": "Fi àfihàn fídíò rẹ sínú Zcash Global Discord pẹ̀lú àwọn ìjápọ̀ repo àti àfihán rẹ ṣáájú July 15, 2026 (UTC)."
+          "description": "Fi àfihàn fídíò rẹ sínú Zcash Discord pẹ̀lú àwọn ìjápọ̀ repo àti àfihán rẹ ṣáájú July 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Àkókò tí a yàn:",
@@ -787,7 +803,7 @@
       "buildsCount": "{count} ń kọ́lé",
       "viewProject": "Wo iṣẹ-ṣiṣe",
       "needHelpTitle": "Ṣé o nílò ìrànlọ́wọ́?",
-      "needHelpDesc": "Zcash Global Discord ni ibi tó dára jùlọ fún àwọn ìbéèrè nípa ìpilẹ̀ṣẹ̀, àwọn ìmọ̀ràn nípa ìsọfúnni, àti ìfọ̀rọ̀wérọ̀ nípa ìdìbò.",
+      "needHelpDesc": "Zcash Discord ni ibi tó dára jùlọ fún àwọn ìbéèrè nípa ìpilẹ̀ṣẹ̀, àwọn ìmọ̀ràn nípa ìsọfúnni, àti ìfọ̀rọ̀wérọ̀ nípa ìdìbò.",
       "joinDiscord": "Darapọ̀ mọ́ Àríyànjiyàn",
       "supportDonation": "Ìrànlọ́wọ́ nípa ọrẹ",
       "popup": {

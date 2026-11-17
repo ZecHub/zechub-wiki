@@ -3,7 +3,6 @@ import { getLocalizedFileContentCached, getRootCached } from "@/lib/authAndFetch
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
-import Image from "next/image";
 import { headers } from "next/headers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
@@ -53,21 +52,23 @@ export default async function Page(props: {
 
   return (
     <main>
-      <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
-        <Image
-          className="w-full mb-5 object-cover"
-          alt="wiki-banner"
-          width={800}
-          height={50}
-          src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
-        />
-      </div>
 
       <div
         id="content"
         className={`flex flex-col space-y-5 container m-auto h-auto w-full py-5`}
       >
         <section className="h-auto w-full px-4">
+          <header className="mb-8 max-w-3xl">
+            <h1 className="mb-3 text-balance text-3xl font-semibold text-slate-900 md:text-4xl dark:text-white">
+              Payment Processors
+            </h1>
+            <p className="m-0 text-pretty text-base leading-7 text-slate-600 dark:text-slate-300">
+              Non-custodial and custodial payment gateways that accept shielded and transparent Zcash (ZEC) payments for e-commerce and merchants.
+            </p>
+          </header>
+          <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">
+            {paymentProcessors.length} processors
+          </p>
           <PaymentProcessorList allProcessors={paymentProcessors} />
         </section>
       </div>

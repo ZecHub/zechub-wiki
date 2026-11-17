@@ -22,7 +22,7 @@ type SortKey = "number-desc" | "number-asc" | "title" | "status";
 
 const STATUS_DOT: Record<ZipStatus, string> = {
   Final: "bg-emerald-600 dark:bg-emerald-400",
-  Active: "bg-[#1984c7] dark:bg-[#3fa3e0]",
+  Active: "bg-brand dark:bg-[#3fa3e0]",
   Proposed: "bg-amber-600 dark:bg-amber-400",
   Draft: "bg-purple-500 dark:bg-purple-400",
   Reserved: "bg-zinc-400 dark:bg-zinc-500",
@@ -32,7 +32,7 @@ const STATUS_DOT: Record<ZipStatus, string> = {
 
 const STATUS_NUM_TINT: Record<string, string> = {
   Final: "text-emerald-600 dark:text-emerald-400",
-  Active: "text-[#1984c7] dark:text-[#3fa3e0]",
+  Active: "text-brand dark:text-[#3fa3e0]",
   Proposed: "text-amber-600 dark:text-amber-400",
   Draft: "text-purple-500 dark:text-purple-400",
   Reserved: "text-zinc-500 dark:text-zinc-400",
@@ -200,7 +200,7 @@ export default function ZipTracker({
               href="https://github.com/zcash/zips"
               target="_blank"
               rel="noreferrer"
-              className="text-[13px] text-zinc-600 dark:text-zinc-300 hover:text-[#1984c7] dark:hover:text-[#3fa3e0]"
+              className="text-[13px] text-zinc-600 dark:text-zinc-300 hover:text-brand dark:hover:text-[#3fa3e0]"
             >
               GitHub ↗
             </a>
@@ -226,7 +226,7 @@ export default function ZipTracker({
             }}
             aria-hidden
           />
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1984c7] dark:text-[#3fa3e0] font-semibold mb-4">
+          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand dark:text-[#3fa3e0] font-semibold mb-4">
             ZIP-0000 · ZIP-2005 · {zips.length} proposals tracked
           </div>
           <h1
@@ -237,7 +237,7 @@ export default function ZipTracker({
             <br />
             Improvement Proposal,
             <br />
-            <em className="not-italic italic text-[#1984c7] dark:text-[#3fa3e0]">
+            <em className="not-italic italic text-brand dark:text-[#3fa3e0]">
               in one place.
             </em>
           </h1>
@@ -247,7 +247,7 @@ export default function ZipTracker({
             kept in sync with the canonical{" "}
             <a
               href="https://github.com/zcash/zips"
-              className="text-[#1984c7] dark:text-[#3fa3e0] hover:underline"
+              className="text-brand dark:text-[#3fa3e0] hover:underline"
             >
               zcash/zips
             </a>{" "}
@@ -343,7 +343,7 @@ export default function ZipTracker({
         className={`max-w-[1320px] mx-auto pt-7 pb-3 flex flex-col gap-4 ${embedded ? "px-0 mt-6" : "px-4 md:px-8"}`}
       >
         <div className="flex gap-3 items-center">
-          <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-[#0f1720] focus-within:border-[#1984c7] dark:focus-within:border-[#3fa3e0] focus-within:ring-2 focus-within:ring-[#1984c7]/15 dark:focus-within:ring-[#3fa3e0]/20 transition">
+          <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-[#0f1720] focus-within:border-brand dark:focus-within:border-[#3fa3e0] focus-within:ring-2 focus-within:ring-brand/15 dark:focus-within:ring-[#3fa3e0]/20 transition">
             <svg
               width="16"
               height="16"
@@ -397,7 +397,7 @@ export default function ZipTracker({
             id === "Final"
               ? "bg-emerald-600 border-emerald-600 text-white"
               : id === "Active"
-                ? "bg-[#1984c7] border-[#1984c7] text-white"
+                ? "bg-brand border-brand text-on-brand"
                 : id === "Proposed"
                   ? "bg-amber-600 border-amber-600 text-white"
                   : id === "Draft"
@@ -520,7 +520,7 @@ function EmbeddedHeader({
           href="https://github.com/zcash/zips"
           target="_blank"
           rel="noreferrer"
-          className="text-[12px] text-zinc-600 dark:text-zinc-300 hover:text-[#1984c7] dark:hover:text-[#3fa3e0]"
+          className="text-[12px] text-zinc-600 dark:text-zinc-300 hover:text-brand dark:hover:text-[#3fa3e0]"
         >
           GitHub ↗
         </a>
@@ -737,7 +737,7 @@ function Drawer({
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
           </button>
-          <div className="font-mono text-[12px] text-[#1984c7] dark:text-[#3fa3e0] mb-2 font-semibold tracking-wide">
+          <div className="font-mono text-[12px] text-brand dark:text-[#3fa3e0] mb-2 font-semibold tracking-wide">
             ZIP {fmtZipNum(zip.num)}
           </div>
           <div
@@ -799,12 +799,12 @@ function Drawer({
                           done
                             ? "bg-emerald-500 border-emerald-500"
                             : current
-                              ? "bg-[#1984c7] dark:bg-[#3fa3e0] border-[#1984c7] dark:border-[#3fa3e0] ring-4 ring-[#1984c7]/15 dark:ring-[#3fa3e0]/20"
+                              ? "bg-brand dark:bg-[#3fa3e0] border-brand dark:border-[#3fa3e0] ring-4 ring-brand/15 dark:ring-[#3fa3e0]/20"
                               : "bg-white dark:bg-[#0f1720] border-zinc-300 dark:border-zinc-600"
                         }`}
                       />
                       <div
-                        className={`font-medium ${current ? "text-[#1984c7] dark:text-[#3fa3e0]" : "text-zinc-900 dark:text-zinc-100"}`}
+                        className={`font-medium ${current ? "text-brand dark:text-[#3fa3e0]" : "text-zinc-900 dark:text-zinc-100"}`}
                       >
                         {s}
                       </div>
@@ -843,7 +843,7 @@ function Drawer({
             className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border transition w-full md:w-auto ${
               hasSandbox(zip.num)
                 ? "border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-500"
-                : "bg-[#1984c7] hover:bg-[#1574af] text-white border-[#1984c7]"
+                : "bg-brand hover:bg-brand-hover text-on-brand border-brand"
             }`}
           >
             Read full spec ↗

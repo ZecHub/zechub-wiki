@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "코인 보유자 지정 소급 보조금",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",
@@ -733,7 +749,7 @@
         },
         "whereSubmit": {
           "question": "프로젝트는 어디에 제출하나요?",
-          "answer": "Zcash Global Discord에 비디오 데모를 공유하고, 관련 저장소 또는 데모 링크를 포함하세요."
+          "answer": "Zcash Discord에 비디오 데모를 공유하고, 관련 저장소 또는 데모 링크를 포함하세요."
         },
         "winnersSelected": {
           "question": "수상자는 어떻게 선정되나요?",
@@ -768,7 +784,7 @@
         },
         "share": {
           "title": "Discord에 공유하세요",
-          "description": "2026년 7월 15일 (UTC) 이전에 Zcash Global Discord에 저장소 링크와 데모 링크와 함께 동영상 데모를 게시하세요."
+          "description": "2026년 7월 15일 (UTC) 이전에 Zcash Discord에 저장소 링크와 데모 링크와 함께 동영상 데모를 게시하세요."
         }
       },
       "deadlineLabel": "마감일:",
@@ -787,7 +803,7 @@
       "buildsCount": "{count}개 빌드",
       "viewProject": "프로젝트 보기",
       "needHelpTitle": "도움이 필요하신가요?",
-      "needHelpDesc": "Zcash Global Discord는 빌드 관련 질문, 인프라 팁, 해커톤 대화를 나누기에 가장 좋은 곳입니다.",
+      "needHelpDesc": "Zcash Discord는 빌드 관련 질문, 인프라 팁, 해커톤 대화를 나누기에 가장 좋은 곳입니다.",
       "joinDiscord": "Discord 참여하기",
       "supportDonation": "기부로 후원하기",
       "popup": {

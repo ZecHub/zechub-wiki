@@ -128,7 +128,23 @@
     "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -733,7 +749,7 @@
         },
         "whereSubmit": {
           "question": "Projeleri nereye gönderiyoruz?",
-          "answer": "Video demonuzu Zcash Global Discord'da paylaşın ve ilgili depo veya demo bağlantılarını ekleyin."
+          "answer": "Video demonuzu Zcash Discord'da paylaşın ve ilgili depo veya demo bağlantılarını ekleyin."
         },
         "winnersSelected": {
           "question": "Kazananlar nasıl seçiliyor?",
@@ -768,7 +784,7 @@
         },
         "share": {
           "title": "Discord'da paylaşın",
-          "description": "Video demonuzu, repo ve demo bağlantılarınızla birlikte 15 Temmuz 2026'dan (UTC) önce Zcash Global Discord'da paylaşın."
+          "description": "Video demonuzu, repo ve demo bağlantılarınızla birlikte 15 Temmuz 2026'dan (UTC) önce Zcash Discord'da paylaşın."
         }
       },
       "deadlineLabel": "Son tarih:",
@@ -787,7 +803,7 @@
       "buildsCount": "{count} yapı",
       "viewProject": "Projeyi görüntüle",
       "needHelpTitle": "Yardıma mı ihtiyacınız var?",
-      "needHelpDesc": "Zcash Global Discord, geliştirme soruları, altyapı ipuçları ve hackathon sohbetleri için en iyi yerdir.",
+      "needHelpDesc": "Zcash Discord, geliştirme soruları, altyapı ipuçları ve hackathon sohbetleri için en iyi yerdir.",
       "joinDiscord": "Discord'a Katıl",
       "supportDonation": "Bağışla destek olun",
       "popup": {

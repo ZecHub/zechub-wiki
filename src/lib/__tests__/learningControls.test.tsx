@@ -11,6 +11,7 @@ jest.mock("@/context/LanguageContext", () => ({
 
 // Use the real animation runtime; omit icons and the unused full quiz UI.
 jest.mock("lucide-react", () => ({
+  ArrowRight: () => null,
   CheckCircle2: () => null,
   ChevronLeft: () => null,
   ChevronRight: () => null,

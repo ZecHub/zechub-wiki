@@ -3,6 +3,11 @@ import { genMetadata, getBanner } from "@/lib/helpers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import ArboristCallsPage from "./ArboristCallsPage";
+import { buildArboristArchive } from "@/lib/arboristArchive";
+import { fetchLiveArboristRecordings } from "@/lib/arboristLive";
+
+// New calls show up within an hour of being published on YouTube, without a deploy.
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -24,6 +29,7 @@ export async function generateMetadata({
   });
 }
 
-export default function Page() {
-  return <ArboristCallsPage />;
+export default async function Page() {
+  const entries = buildArboristArchive(await fetchLiveArboristRecordings());
+  return <ArboristCallsPage entries={entries} />;
 }

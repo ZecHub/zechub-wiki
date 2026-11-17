@@ -1,7 +1,25 @@
 'use client';
 
 import { IconType } from "react-icons";
-import { KeyRound, Users } from "lucide-react";
+import {
+  KeyRound,
+  ArrowLeftRight as CurrencyExchange,
+  Presentation as VoicePresentation,
+  Images as Gallery,
+  Workflow as Process,
+  Globe,
+  Database as Collect,
+  Network as ZkAssets,
+  Server as Infra,
+  CircleHelp as Faq,
+  Library as LibraryC,
+  Store as Pay,
+  Info,
+  Users,
+  Link2 as FcLink,
+  ShieldCheck as FcPrivacy,
+  Images as FcGallery,
+} from "lucide-react";
 import {
   BiCheckShield as CheckShield,
   BiLock as Lock,
@@ -32,22 +50,6 @@ import {
   FaMagnifyingGlassChart as MagnifyingGlassChart,
   FaJarWheat as Jar
 } from "react-icons/fa6";
-import {
-  FcCurrencyExchange as CurrencyExchange,
-  FcVoicePresentation,
-  FcGallery,
-  FcProcess,
-  FcGlobe as Globe,
-  FcCollect as Collect,
-  FcWorkflow as ZkAssets,
-  FcServices as Infra,
-  FcFaq as Faq,
-  FcLibrary as LibraryC,
-  FcShop as Pay,
-  FcAbout as Info,
-  FcLink,
-  FcPrivacy,
-} from "react-icons/fc";
 import {
   GiEgyptianSphinx as EgyptianSphinx,
   GiBorderedShield as BordererShield,
@@ -208,7 +210,7 @@ const iconsForMenu: IconsFor = {
     Transactions: ArrowUp,
     "Transparent Exchange Addresses": RiSecurePaymentLine,
     "Mobile Top Ups": TbDeviceMobileShare,
-    "Payment Processors": FcProcess,
+    "Payment Processors": Process,
     Memos: MailSend,
     "Shielded Pools": ShieldShaded,
     Faucets: Faucet,
@@ -239,15 +241,13 @@ const iconsForMenu: IconsFor = {
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
-    "Keystone Zashi": SiKeystone,
+    "Keystone Zodl (Zashi)": SiKeystone,
     "Visualizing Zcash Addresses": QrCode,
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,
     "Avalanche RedBridge": CableStayedBridge,
     "Akash Network Zcashd": Akash,
     "Akash Network Zebra": IoCloudUploadOutline,
-    "Akash Network Zakura": Akash,
-    "Thus Spoke Zakura Akash": Akash,
     "BTCPayServer Zcash Plugin": Pay,
     "Full Nodes": ServerSolid,
     "Nym VPN": MdVpnLock,
@@ -373,7 +373,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Podcasts": MdOutlinePodcasts,
     "Zcon Archive": PresentationChar,
     "Zcash Governance": Governance,
-    "Zcon Vozes": FcVoicePresentation,
+    "Zcon Vozes": VoicePresentation,
     "Zcash Engineering Office Hours": FaLaptopCode,
   },
   "ZFAV Club": {
@@ -416,7 +416,7 @@ const iconsForMenu: IconsFor = {
   "Glossary & FAQ's": {
     "Zcash Library": LibraryC,
     FAQ: Faq,
-    Gallery: FcGallery,
+    Gallery: Gallery,
     "ZecHub Hackathon Builders Guide": Guide,
   },
   "Glossary and FAQs": {

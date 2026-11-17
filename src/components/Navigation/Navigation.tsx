@@ -1,49 +1,61 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
-import { navigations } from "@/constants/navigation";
+import { navigations, menuSections, socialNav } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useId, useLayoutEffect, useState, useRef } from "react";
-import { navMaxBarLevel, useNavFit } from "@/hooks/useNavFit";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
+import ZecPrice from "./ZecPrice";
 import SearchBar from "../SearchBar";
+import { usePathname } from "next/navigation";
+import ColorThemePicker from "../ColorThemePicker";
 import Logo from "../UI/Logo";
-import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 import { matchIcons } from "@/constants/Icons";
 import {
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
+  Code,
+  Lightbulb,
   Menu,
   Moon,
   Search,
+  Share2,
   Sun,
   ShoppingBag,
+  X,
 } from "lucide-react";
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { DarkModeContext } from "@/context/DarkModeContext";
 import Image from "next/image";
-import { Trophy, LayoutDashboard } from "lucide-react";
+import {
+  Trophy,
+  LayoutDashboard,
+  Wallet,
+  Users,
+  BookOpen,
+  Building2,
+  BarChart3,
+  Landmark,
+  Vote,
+  GraduationCap,
+  HeartHandshake,
+  Map,
+  Palette,
+  FlaskConical,
+  Circle,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import type { Searcher } from "@/types";
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 const PRIMARY_NAV_COUNT = 4;
 const overflowNavigations = navigations.slice(PRIMARY_NAV_COUNT);
-const NAV_MAX_BAR_LEVEL = navMaxBarLevel(PRIMARY_NAV_COUNT);
-// What the desktop bar looks like at a given fit level (see useNavFit).
-function navLayout(level: number) {
-  const moved = Math.min(Math.max(0, level - 2), PRIMARY_NAV_COUNT - 1);
-  return {
-    compact: level >= 1,
-    iconButtons: level >= 2,
-    visible: navigations.slice(0, PRIMARY_NAV_COUNT - moved),
-    moved: navigations.slice(PRIMARY_NAV_COUNT - moved, PRIMARY_NAV_COUNT),
-  };
-}
 const MORE_ROW_ORDER = [
   "Tutorials",
   "Developers",
@@ -217,8 +229,8 @@ const getTranslatedLabel = (
       t.navigation?.guidesSubmenu?.zgoPaymentProcessor ||
       "Zgo Payment Processor",
     "Free2z Live": t.navigation?.guidesSubmenu?.free2zLive || "Free2z Live",
-    "Keystone Zashi":
-      t.navigation?.guidesSubmenu?.keystoneZashi || "Keystone Zashi",
+    "Keystone Zodl (Zashi)":
+      t.navigation?.guidesSubmenu?.keystoneZashi || "Keystone Zodl (Zashi)",
     "Maya Protocol":
       t.navigation?.guidesSubmenu?.mayaProtocol || "Maya Protocol",
     "Nym VPN": t.navigation?.guidesSubmenu?.nymVpn || "Nym VPN",
@@ -359,7 +371,8 @@ const getTranslatedLabel = (
     searchName
   );
 };
-// ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
+const ROW =
+  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/5 dark:hover:text-white";
 // Keeps an open panel inside the viewport: on narrow windows a dropdown that
 // starts at its trigger can run past the screen edge. Shifts it back in, and
 // flips a nested flyout to the other side when there is no room on its side.
@@ -416,6 +429,7 @@ const isMouse = (e: React.PointerEvent) => e.pointerType === "mouse";
 function focusFirstIn(el: HTMLElement | null) {
   el?.querySelector<HTMLElement>("a[href], button")?.focus();
 }
+// ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
 const FlyoutLinkItem = ({
   link,
   parentItem,
@@ -436,6 +450,12 @@ const FlyoutLinkItem = ({
   useEffect(() => () => {
     if (timerRef.current) clearTimeout(timerRef.current);
   }, []);
+  useKeepInViewport(flyoutRef, flyoutOpen, true);
+  useCloseOnOutsidePointer(itemRef, flyoutOpen, () => setFlyoutOpen(false));
+  useEffect(() => {
+    if (flyoutOpen && focusFirstRef.current) focusFirstIn(flyoutRef.current);
+    focusFirstRef.current = false;
+  }, [flyoutOpen]);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -443,30 +463,22 @@ const FlyoutLinkItem = ({
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
   };
-  useKeepInViewport(flyoutRef, flyoutOpen, true);
-  useCloseOnOutsidePointer(itemRef, flyoutOpen, () => setFlyoutOpen(false));
-  useEffect(() => {
-    if (flyoutOpen && focusFirstRef.current) focusFirstIn(flyoutRef.current);
-    focusFirstRef.current = false;
-  }, [flyoutOpen]);
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
   if (!link.links || link.links.length === 0) {
     return (
-      <div
-        className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
-      >
+      <div className="w-full">
         <Link
           prefetch
           href={link.path ?? "#"}
           onClick={onLinkClick}
-          className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
+          className={`flex w-full items-center gap-2.5 ${ROW}`}
           {...(link.newTab && { target: "_blank", rel: "noopener noreferrer" })}
         >
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
             <Icon
               icon={link.icon ?? matchIcons(parentItem.name, link.name)}
-              size={link.name === "Wallets" ? 24 : "small"}
-              className="xl:w-6 w-4 h-4 xl:h-6"
+              size={16}
+              className="shrink-0 opacity-80"
             />
           )}
           {label}
@@ -507,23 +519,24 @@ const FlyoutLinkItem = ({
             else openFlyout();
           }
         }}
-        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-start text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+        className={`flex w-full cursor-pointer items-center justify-between gap-2 text-start ${ROW}`}
       >
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2.5">
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
             <Icon
               icon={link.icon ?? matchIcons(parentItem.name, link.name)}
-              className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+              size={16}
+              className="shrink-0 opacity-80"
             />
           )}
           {label}
         </span>
-        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180 rtl:rotate-0" />
+        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-50 rtl:rotate-0" />
       </button>
       {flyoutOpen && (
         <div
           ref={flyoutRef}
-          className="absolute end-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
+          className="absolute end-full top-0 z-[60] min-w-[250px] rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-xl dark:border-white/10 dark:bg-slate-900"
           onPointerEnter={(e) => isMouse(e) && openFlyout()}
           onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
@@ -533,16 +546,17 @@ const FlyoutLinkItem = ({
               key={`${child.name}-${idx}`}
               href={child.path ?? "#"}
               onClick={onLinkClick}
-              className={`flex items-center gap-2 text-sm w-full px-3 py-2 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+              className={`flex w-full items-center gap-2.5 ${ROW}`}
               {...(child.newTab && {
                 target: "_blank",
                 rel: "noopener noreferrer",
               })}
             >
-              {(child.icon || matchIcons(parentItem.name, child.name)) && (
+              {(child.icon || matchIcons(link.name, child.name) || matchIcons(parentItem.name, child.name)) && (
                 <Icon
-                  icon={child.icon ?? matchIcons(parentItem.name, child.name)}
-                  className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+                  icon={child.icon ?? matchIcons(link.name, child.name) ?? matchIcons(parentItem.name, child.name)}
+                  size={16}
+                  className="shrink-0 opacity-80"
                 />
               )}
               {getTranslatedLabel(parentItem.name, child.name, t, child.label)}
@@ -553,13 +567,113 @@ const FlyoutLinkItem = ({
     </div>
   );
 };
-// ─── Primary dropdown (hover, or click / keyboard) ──────────────────────────
+// ─── Grouped links for the desktop dropdowns ────────────────────────────────
+// Renders a menu's links under small section headings (see menuSections in
+// navigation.ts). Menus without a mapping, and links missing from a mapping,
+// fall back to the previous flat rendering / a trailing "More" group.
+const GroupedLinks = ({
+  item,
+  t,
+  onLinkClick,
+}: {
+  item: (typeof navigations)[number];
+  t: any;
+  onLinkClick: () => void;
+}) => {
+  const links = item.links ?? [];
+  const sections = menuSections[item.name];
+  const renderLink = (
+    link: NonNullable<(typeof navigations)[number]["links"]>[number],
+    j: number,
+  ) => (
+    <FlyoutLinkItem
+      key={`${link.name}-${j}`}
+      link={link}
+      parentItem={item}
+      t={t}
+      onLinkClick={onLinkClick}
+    />
+  );
+  const heading = (title: string) => (
+    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand dark:border-white/10">
+      {t.menuLabels?.[title] || title}
+    </p>
+  );
+  const renderBlock = (b: { title: string; links: typeof links }) => (
+    <div key={b.title}>
+      {heading(b.title)}
+      <div className="flex flex-col gap-0.5">{b.links.map(renderLink)}</div>
+    </div>
+  );
+
+  if (!sections) {
+    const half = Math.ceil(links.length / 2);
+    return (
+      <>
+        <div className="flex flex-col gap-0.5">
+          {links.slice(0, half).map(renderLink)}
+        </div>
+        <div className="flex flex-col gap-0.5">
+          {links.slice(half).map((l, k) => renderLink(l, k + half))}
+        </div>
+      </>
+    );
+  }
+
+  const used = new Set<string>();
+  const blocks = sections.map((section) => {
+    const sectionLinks = section.items
+      .map((name) => links.find((l) => l.name === name))
+      .filter((l): l is NonNullable<typeof l> => Boolean(l));
+    sectionLinks.forEach((l) => used.add(l.name));
+    return { title: section.title, links: sectionLinks };
+  });
+  const rest = links.filter((l) => !used.has(l.name));
+  if (rest.length > 0) blocks.push({ title: "More", links: rest });
+  const shown = blocks.filter((b) => b.links.length > 0);
+
+  if (shown.length === 1) {
+    const b = shown[0];
+    const half = Math.ceil(b.links.length / 2);
+    return (
+      <div className="col-span-2">
+        {heading(b.title)}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-0.5">
+          {b.links.slice(0, half).map(renderLink)}
+          {b.links.slice(half).map((l, k) => renderLink(l, k + half))}
+        </div>
+      </div>
+    );
+  }
+
+  // Blocks are laid out in rows of two so headings on the same row line up.
+  // The first half of the sections forms the left column, the rest the right.
+  const half = Math.ceil(shown.length / 2);
+  const rows = Array.from({ length: half }, (_, k) =>
+    [shown[k], shown[half + k]].filter(Boolean),
+  );
+  return (
+    <>
+      {rows.map((row, k) => (
+        <div
+          key={k}
+          className="col-span-2 mb-6 grid grid-cols-2 items-start gap-x-8 last:mb-0"
+        >
+          {row.map(renderBlock)}
+        </div>
+      ))}
+    </>
+  );
+};
+// ─── Primary dropdown (hover, or click / keyboard) ───────────────────────────
 const Dropdown = ({
   label,
   children,
+  centered = false,
 }: {
   label: string;
   children: React.ReactNode;
+  centered?: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -570,7 +684,9 @@ const Dropdown = ({
   // usually follows must not close it again.
   const openedByHoverRef = useRef(false);
   const panelId = useId();
-  useKeepInViewport(panelRef, isOpen);
+  // Centered panels position themselves with a CSS translate, so only the
+  // left-aligned ones are shifted back into view.
+  useKeepInViewport(panelRef, isOpen && !centered);
   useCloseOnOutsidePointer(rootRef, isOpen, () => setIsOpen(false));
   useEffect(() => {
     if (isOpen && focusFirstRef.current) focusFirstIn(panelRef.current);
@@ -580,7 +696,7 @@ const Dropdown = ({
   return (
     <div
       ref={rootRef}
-      className="relative"
+      className={centered ? "" : "relative"}
       onPointerEnter={(e) => {
         if (!isMouse(e)) return;
         if (!isOpen) openedByHoverRef.current = true;
@@ -601,7 +717,6 @@ const Dropdown = ({
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsOpen(false);
       }}
     >
-      {/* nowrap: longer translations ("Χρήση του Zcash") wrapped onto 3 lines. */}
       <button
         ref={buttonRef}
         type="button"
@@ -634,9 +749,11 @@ const Dropdown = ({
         <div
           id={panelId}
           ref={panelRef}
-          className="absolute top-full start-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg w-max min-w-[min(600px,calc(100vw-16px))] max-w-[calc(100vw-16px)] mt-0 grid grid-cols-1 md:grid-cols-2 gap-2 p-2 transition-opacity duration-150"
+          className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "start-0"}`}
         >
-          {children}
+          <div className="grid max-h-[calc(100vh-6rem)] w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 overflow-y-auto overscroll-contain rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
+            {children}
+          </div>
         </div>
       )}
     </div>
@@ -655,7 +772,7 @@ const MoreToggle = ({
     <button
       type="button"
       aria-expanded={moreOpen}
-      aria-controls={moreOpen ? "nav-more-row" : undefined}
+      aria-controls="nav-more-row"
       onClick={onToggle}
       className={`flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2 ${
         moreOpen ? "text-nav-hover" : ""
@@ -663,7 +780,6 @@ const MoreToggle = ({
     >
       {t.navigation?.more || "More"}
       <ChevronDown
-        aria-hidden="true"
         className={`h-4 w-4 transition-transform duration-200 ${moreOpen ? "rotate-180" : ""}`}
       />
     </button>
@@ -672,11 +788,9 @@ const MoreToggle = ({
 
 const MoreRow = ({
   items,
-  moved,
   onLinkClick,
 }: {
   items: typeof navigations;
-  moved: typeof navigations;
   onLinkClick: () => void;
 }) => {
   const { t } = useLanguage();
@@ -713,47 +827,8 @@ const MoreRow = ({
   return (
     <div
       id="nav-more-row"
-      className="hidden min-[480px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
+      className="hidden xl:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
-      {/* Below md the Bounties / Dashboard buttons are hidden: offer them here. */}
-      <Link
-        prefetch
-        href="https://bounties.zechub.wiki/"
-        target="_blank"
-        onClick={onLinkClick}
-        className={`md:hidden flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover ${liStyle}`}
-      >
-        <Trophy aria-hidden="true" className="w-4 h-4 shrink-0" />
-        {t.navigation?.bounties || "Bounties"}
-      </Link>
-      <Link
-        prefetch
-        href="/dashboard"
-        onClick={onLinkClick}
-        className={`md:hidden flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover ${liStyle}`}
-      >
-        <LayoutDashboard aria-hidden="true" className="w-4 h-4 shrink-0" />
-        {t.navigation?.dashboard || "Dashboard"}
-      </Link>
-      {/* Primary menus that no longer fit in the bar, still as menus. */}
-      {moved.map((item) => (
-        <div key={item.name} data-nav-moved="" className="px-2 text-sm">
-          <Dropdown label={getTranslatedLabel(item.name, item.label, t, item.label)}>
-            {item.links?.map((link, j) => (
-              <FlyoutLinkItem
-                key={`${link.name}-${j}`}
-                link={link}
-                parentItem={item}
-                t={t}
-                onLinkClick={onLinkClick}
-              />
-            ))}
-          </Dropdown>
-        </div>
-      ))}
-      {moved.length > 0 && (
-        <span aria-hidden="true" className="h-5 border-l border-slate-300 dark:border-slate-600" />
-      )}
       {entries.map((entry) => (
         <Link
           prefetch
@@ -783,42 +858,30 @@ const NavLinks = ({
   moreOpen,
   onMoreToggle,
   onMoreClose,
-  level = 0,
 }: {
   classes: string;
   closeMenu: () => void;
   moreOpen: boolean;
   onMoreToggle: () => void;
   onMoreClose: () => void;
-  level?: number;
 }) => {
   const { t } = useLanguage();
-  const { compact, iconButtons, visible } = navLayout(level);
   const handleLinkClick = () => {
     closeMenu();
     onMoreClose();
   };
+  const [openIndex, setOpenIndex] = useState<null | number>(null);
   return (
     <div className={`flex items-center ${classes}`}>
-      {/* Desktop bar (480px and up); useNavFit shrinks it step by step */}
-      <div
-        className={`hidden min-[480px]:flex items-center ${compact ? "space-x-3" : "space-x-4 xl:space-x-5"}`}
-      >
-        {visible.map((item, i) =>
+      {/* Large screens */}
+      <div className="hidden lg:flex items-center space-x-10">
+        {navigations.slice(0, 4).map((item, i) =>
           item.links ? (
             <Dropdown
               label={getTranslatedLabel(item.name, item.label, t, item.label)}
               key={`${item.name}-${i}`}
             >
-              {item.links.map((link, j) => (
-                <FlyoutLinkItem
-                  key={`${link.name}-${j}`}
-                  link={link}
-                  parentItem={item}
-                  t={t}
-                  onLinkClick={handleLinkClick}
-                />
-              ))}
+              <GroupedLinks item={item} t={t} onLinkClick={handleLinkClick} />
             </Dropdown>
           ) : (
             <Link
@@ -840,15 +903,111 @@ const NavLinks = ({
           <MoreToggle moreOpen={moreOpen} onToggle={onMoreToggle} />
         )}
       </div>
+      {/* Medium screens (md–lg) */}
+      <div className="hidden md:flex lg:hidden items-center space-x-12">
+        {navigations.slice(0, 3).map((item, i) => (
+          <Dropdown
+            label={getTranslatedLabel(item.name, item.label, t, item.label)}
+            key={`${item.name}-${i}`}
+          >
+            <GroupedLinks item={item} t={t} onLinkClick={handleLinkClick} />
+          </Dropdown>
+        ))}
+        {navigations.length > 2 && (
+          <Dropdown label={t.navigation?.more || "More"}>
+            <div onMouseLeave={() => setOpenIndex(null)}>
+              {navigations.slice(3).map((item, i) => {
+                const isOpen = openIndex === i;
+                return (
+                  <div
+                    key={`${item.name}-${i}`}
+                    className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200"
+                  >
+                    {item.links ? (
+                      <>
+                        <div
+                          className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+                          onClick={() => setOpenIndex(isOpen ? null : i)}
+                        >
+                          {getTranslatedLabel(
+                            item.name,
+                            item.label,
+                            t,
+                            item.label,
+                          )}
+                          <ChevronDown
+                            className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                          />
+                        </div>
+                        {isOpen &&
+                          item.links.map((link, j) => (
+                            <div
+                              key={`${link.name}-${j}`}
+                              className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
+                            >
+                              <Link
+                                prefetch
+                                href={link.path ?? "#"}
+                                onClick={handleLinkClick}
+                                className="flex items-center gap-2 text-sm w-full"
+                                {...(link.newTab && {
+                                  target: "_blank",
+                                  rel: "noopener noreferrer",
+                                })}
+                              >
+                                {(link.icon ||
+                                  matchIcons(item.name, link.name)) && (
+                                  <Icon
+                                    icon={
+                                      link.icon ??
+                                      matchIcons(item.name, link.name)
+                                    }
+                                    className="xl:w-6 w-4 h-4 xl:h-6"
+                                  />
+                                )}
+                                {getTranslatedLabel(
+                                  item.name,
+                                  link.name,
+                                  t,
+                                  link.label,
+                                )}
+                              </Link>
+                            </div>
+                          ))}
+                      </>
+                    ) : (
+                      <Link
+                        prefetch
+                        href={item.path ?? "#"}
+                        onClick={handleLinkClick}
+                        className="w-full text-white hover:text-nav-hover"
+                        {...(item.newTab && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
+                      >
+                        {getTranslatedLabel(
+                          item.name,
+                          item.label,
+                          t,
+                          item.label,
+                        )}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </Dropdown>
+        )}
+      </div>
       {/* CTA buttons */}
-      <div
-        className={`hidden md:flex items-center border-s border-slate-400 dark:border-slate-600 ${compact ? "gap-2 ms-3 ps-3" : "gap-3 ms-5 ps-5"}`}
-      >
+      <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
         <Button
           asChild
           variant="default"
           size="default"
-          className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
+          className="zebra-hover bg-brand hover:bg-brand-hover text-on-brand font-medium shadow-sm"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -866,24 +1025,15 @@ const NavLinks = ({
             href="https://bounties.zechub.wiki/"
             target="_blank"
             onClick={handleLinkClick}
-            data-nav-cta=""
-            {...(iconButtons && {
-              "aria-label": t.navigation?.bounties || "Bounties",
-              title: t.navigation?.bounties || "Bounties",
-            })}
           >
-            {iconButtons ? (
-              <Trophy aria-hidden="true" className="h-4 w-4" />
-            ) : (
-              t.navigation?.bounties || "Bounties"
-            )}
+            {t.navigation?.bounties || "Bounties"}
           </Link>
         </Button>
         <Button
           asChild
           variant="default"
           size="default"
-          className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
+          className="zebra-hover bg-brand hover:bg-brand-hover text-on-brand font-medium shadow-sm"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -896,21 +1046,8 @@ const NavLinks = ({
             e.currentTarget.style.setProperty("--mouse-y", "50%");
           }}
         >
-          <Link
-            prefetch
-            href="/dashboard"
-            onClick={handleLinkClick}
-            data-nav-cta=""
-            {...(iconButtons && {
-              "aria-label": t.navigation?.dashboard || "Dashboard",
-              title: t.navigation?.dashboard || "Dashboard",
-            })}
-          >
-            {iconButtons ? (
-              <LayoutDashboard aria-hidden="true" className="h-4 w-4" />
-            ) : (
-              t.navigation?.dashboard || "Dashboard"
-            )}
+          <Link prefetch href="/dashboard" onClick={handleLinkClick}>
+            {t.navigation?.dashboard || "Dashboard"}
           </Link>
         </Button>
       </div>
@@ -1095,17 +1232,351 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
     <SocialIcons newTab={true} />
   </div>
 );
+// ─── Mobile drawer ────────────────────────────────────────────────────────────
+// Two levels: the first screen lists the sections, quick shortcuts and preferences; tapping a section
+// opens its pages on a second screen with a Back button.
+const DRAWER_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  "Learn Zcash": Lightbulb,
+  "Using Zcash": Wallet,
+  "Zcash Community": Users,
+  Guides: BookOpen,
+  "Zcash Organizations": Building2,
+  Data: BarChart3,
+  Governance: Landmark,
+  DAO: Vote,
+  Tutorials: GraduationCap,
+  Developers: Code,
+  Contribute: HeartHandshake,
+  Visualizer: Share2,
+  Sitemap: Map,
+  "Visual Identity": Palette,
+  Research: FlaskConical,
+};
+
+const MobileDrawer = ({ closeMenu }: { closeMenu: () => void }) => {
+  const { t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
+  const [activeName, setActiveName] = useState<string | null>(null);
+  const active = navigations.find((n) => n.name === activeName);
+  const rowCls =
+    "flex w-full items-center justify-between rounded-xl border border-transparent px-3 py-2.5 text-left text-[15px] font-medium text-slate-800 transition-colors hover:border-brand/30 hover:bg-brand/10 dark:text-slate-100";
+  const shortcutCls =
+    "flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-brand/50 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-100 dark:hover:border-brand/50 dark:hover:bg-brand/10";
+
+  if (active) {
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <button
+            type="button"
+            onClick={() => setActiveName(null)}
+            className="flex w-fit items-center gap-1 rounded-lg px-2 py-2 text-sm font-medium text-brand dark:text-brand-soft"
+          >
+            <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+            {t.navigation?.back || "Back"}
+          </button>
+          <SheetClose
+            aria-label="Close menu"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-brand/10 hover:text-brand dark:text-slate-300"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </SheetClose>
+        </div>
+        <p className="px-2 font-[family-name:var(--font-heading)] text-xl font-semibold text-slate-900 dark:text-slate-50">
+          {getTranslatedLabel(active.name, active.label, t, active.label)}
+        </p>
+        <div className="flex flex-col gap-4 pb-8">
+          <GroupedLinks item={active} t={t} onLinkClick={closeMenu} />
+        </div>
+      </div>
+    );
+  }
+
+  const sections = navigations.filter((n) => n.links);
+  const pages = navigations.filter((n) => !n.links);
+  const chip =
+    "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand ring-1 ring-brand/20 dark:bg-brand/15 dark:text-brand-soft";
+  const renderRow = (item: (typeof navigations)[number], i: number) => {
+    const label = getTranslatedLabel(item.name, item.label, t, item.label);
+    const RowIcon = DRAWER_ICONS[item.name] ?? Circle;
+    const inner = (
+      <>
+        <span className="flex items-center gap-3">
+          <span className={chip}>
+            <RowIcon className="h-[18px] w-[18px]" aria-hidden="true" />
+          </span>
+          {label}
+        </span>
+        {item.links ? (
+          <ChevronRight aria-hidden="true" className="h-4 w-4 text-slate-400" />
+        ) : null}
+      </>
+    );
+    return item.links ? (
+      <button
+        key={`${item.name}-${i}`}
+        type="button"
+        onClick={() => setActiveName(item.name)}
+        className={rowCls}
+      >
+        {inner}
+      </button>
+    ) : (
+      <Link
+        prefetch
+        key={`${item.name}-${i}`}
+        href={item.path ?? "#"}
+        onClick={closeMenu}
+        className={rowCls}
+      >
+        {inner}
+      </Link>
+    );
+  };
+  const groupLabel =
+    "px-3 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400";
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <Link href="/" onClick={closeMenu} aria-label="ZecHub home" className="flex items-center gap-3">
+          {/* The blue logo disappears on the navy drawer, so dark mode gets the white one. */}
+          <span className="dark:hidden"><Logo /></span>
+          <span className="hidden dark:block"><Logo theme /></span>
+          <span className="font-[family-name:var(--font-heading)] text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+            ZecHub
+          </span>
+        </Link>
+        <SheetClose
+          aria-label="Close menu"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-brand/10 hover:text-brand dark:text-slate-300"
+        >
+          <X className="h-5 w-5" aria-hidden="true" />
+        </SheetClose>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <Link prefetch href="/dashboard" onClick={closeMenu} className={shortcutCls}>
+          <LayoutDashboard aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+          Dashboard
+        </Link>
+        <Link prefetch href="/visualizer" onClick={closeMenu} className={shortcutCls}>
+          <Share2 aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+          Visualizer
+        </Link>
+        <Link prefetch href="/developers" onClick={closeMenu} className={shortcutCls}>
+          <Code aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+          Builders
+        </Link>
+        <Link
+          prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu}
+          className={shortcutCls}
+        >
+          <Trophy aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+          Bounties
+        </Link>
+      </div>
+      <nav aria-label="Sections">
+        <p className={groupLabel}>Explore</p>
+        <div className="flex flex-col gap-1">{sections.map(renderRow)}</div>
+      </nav>
+      <nav aria-label="Pages">
+        <p className={groupLabel}>Pages</p>
+        <div className="flex flex-col gap-1">{pages.map(renderRow)}</div>
+      </nav>
+      <div className="flex flex-col gap-3 border-t border-slate-200 pt-5 pb-8 dark:border-white/10">
+        <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 dark:border-white/10 dark:bg-white/[0.03]">
+          <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
+            {t.navigation?.preferences || "Preferences"}
+          </span>
+          <div className="flex items-center gap-1">
+            <LanguageSwitcher />
+            <Button
+              variant="ghost"
+              size="sm"
+              aria-label="Toggle theme"
+              onClick={() => setTheme(!isDark ? "dark" : "light")}
+              className="cursor-pointer p-2"
+            >
+              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+            <ColorThemePicker />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="[&_.nav-donate-btn]:w-full [&_a]:w-full [&_a]:py-3">
+            <DonationBtn />
+          </div>
+          <Link
+            prefetch
+            href="https://zechub.store/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className={`${shortcutCls} justify-center py-3`}
+          >
+            <ShoppingBag aria-hidden="true" className="h-4 w-4 text-brand dark:text-brand-soft" />
+            {t.navigation?.shop || "Shop"}
+          </Link>
+        </div>
+        <div className="grid grid-cols-4 gap-2">
+          {socialNav.map(({ name, url, icon }) => (
+            <Link
+              key={name}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              className="flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-colors hover:border-brand/50 hover:bg-brand/10 hover:text-brand dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-200 dark:hover:text-brand-soft"
+            >
+              <Icon icon={icon} className="h-5 w-5" />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Top tabs ─────────────────────────────────────────────────────────────────
+// A short row of menus for the long tail of pages. The home page already
+// highlights the main sections, so only the menus with many pages live here.
+const TAB_MENUS = ["Learn Zcash", "Using Zcash", "Zcash Community", "Guides", "Data"];
+
+// Icon-only shortcut in the top bar: label tooltip, current-page state and an
+// "opens in a new tab" hint for external links.
+const IconTab = ({
+  href,
+  label,
+  external = false,
+  children,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+  children: React.ReactNode;
+}) => {
+  const pathname = usePathname() ?? "";
+  const active = !external && pathname.split("/").includes(href.slice(1));
+  const cls =
+    "group relative flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-brand/10 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand " +
+    (active ? "bg-brand/10 text-brand" : "text-nav-foreground");
+  const tip = (
+    <span
+      role="tooltip"
+      className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-slate-50 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-slate-100 dark:text-slate-900"
+    >
+      {label}
+      {external ? " ↗" : ""}
+    </span>
+  );
+  return external ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${label} (opens in a new tab)`}
+      className={cls}
+    >
+      {children}
+      {tip}
+    </a>
+  ) : (
+    <Link
+      prefetch
+      href={href}
+      aria-label={label}
+      aria-current={active ? "page" : undefined}
+      className={cls}
+    >
+      {children}
+      {tip}
+    </Link>
+  );
+};
+
+// The four icon shortcuts (Dashboard, Visualizer, Builders, Bounties). Shown in the top tabs on wide
+// screens and in a row under the header on small screens.
+const NavShortcuts = () => (
+  <div className="flex items-center gap-1">
+    <IconTab href="/dashboard" label="Dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <rect x="3.5" y="3.5" width="7" height="9" rx="1.6" />
+        <rect x="13.5" y="3.5" width="7" height="5" rx="1.6" />
+        <rect x="13.5" y="11.5" width="7" height="9" rx="1.6" />
+        <rect x="3.5" y="15.5" width="7" height="5" rx="1.6" />
+      </svg>
+    </IconTab>
+    <IconTab href="/visualizer" label="Visualizer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <circle cx="6" cy="17" r="2.3" />
+        <circle cx="12" cy="6.5" r="2.3" />
+        <circle cx="18.5" cy="15" r="2.3" />
+        <path d="m7.2 15 3.6-6.6M14 8.2l3.4 4.9M8.3 17.3l7.9-1.9" />
+      </svg>
+    </IconTab>
+    <IconTab href="/developers" label="Builders">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14" />
+      </svg>
+    </IconTab>
+    <IconTab href="https://bounties.zechub.wiki/" label="Bounties" external>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+        <path d="M12 3.5 5 6.2v5.6c0 4.4 2.9 7.6 7 9.2 4.1-1.6 7-4.8 7-9.2V6.2L12 3.5Z" />
+        <circle cx="12" cy="11.5" r="2.6" />
+      </svg>
+    </IconTab>
+  </div>
+);
+
+const TopTabs = () => {
+  const { t } = useLanguage();
+  const menus = TAB_MENUS.map((name) =>
+    navigations.find((n) => n.name === name),
+  ).filter((n): n is (typeof navigations)[number] => !!n && !!n.links);
+  const dao = navigations.find((n) => n.name === "DAO");
+  const noop = () => {};
+  return (
+    <nav
+      aria-label="Main"
+      className="relative mx-4 hidden min-w-0 flex-1 items-center justify-center gap-3 font-[family-name:var(--font-heading)] text-sm min-[1180px]:flex xl:gap-6"
+    >
+      {menus.map((item) => (
+        <Dropdown
+          centered
+          key={item.name}
+          label={getTranslatedLabel(item.name, item.label, t, item.label)}
+        >
+          <GroupedLinks item={item} t={t} onLinkClick={noop} />
+        </Dropdown>
+      ))}
+      {dao?.path ? (
+        <Link
+          prefetch
+          href={dao.path}
+          className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 whitespace-nowrap"
+        >
+          {getTranslatedLabel(dao.name, dao.label, t, dao.label)}
+        </Link>
+      ) : null}
+      {/* The icon shortcuts only appear when the bar has room for them. */}
+      <div className="hidden min-[1440px]:flex items-center gap-3">
+        <span aria-hidden="true" className="h-5 w-px bg-slate-300 dark:bg-slate-600" />
+        <NavShortcuts />
+      </div>
+    </nav>
+  );
+};
+
 const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
-  const rowRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  // The drawer closes only once the bar has been measured and fits: the media
-  // query alone would close it while the bar is still being fitted (and may
-  // end up on the menu button after all).
-  const navLevel = useNavFit(rowRef, navRef, t, NAV_MAX_BAR_LEVEL, () => setIsOpen(false));
-  const navTooWide = navLevel > NAV_MAX_BAR_LEVEL;
   const [openSearch, setOpenSearch] = useState(false);
+  const [isMac, setIsMac] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [showShop, setShowShop] = useState(false);
@@ -1116,12 +1587,9 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     setMounted(true);
   }, []);
   useEffect(() => {
-    if (navTooWide) setMoreOpen(false);
-  }, [navTooWide]);
-  useEffect(() => {
     if (!moreOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !e.defaultPrevented) setMoreOpen(false);
+      if (e.key === "Escape") setMoreOpen(false);
     };
     const onPointer = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
@@ -1136,119 +1604,115 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     };
   }, [moreOpen]);
   const closeMore = () => setMoreOpen(false);
+  // The home page search box asks the header to open the search / AI dialog.
+  useEffect(() => {
+    const open = () => setOpenSearch(true);
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setOpenSearch(true);
+      }
+    };
+    setIsMac(/Mac|iPhone|iPad/.test(navigator.platform));
+    window.addEventListener("zechub:open-search", open);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("zechub:open-search", open);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, []);
   return (
     <header
       ref={headerRef}
       className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200"
     >
-      <div className="mx-auto w-full max-w-372 px-2 md:px-4">
-        <div ref={rowRef} className="flex items-center justify-between py-3 md:py-4">
+      <div className="w-full px-4 md:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between py-3 md:py-4">
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          {/* No max width: the bar
-              uses all the room between the logo and the header buttons. */}
-          <nav
-            ref={navRef}
-            data-nav-level={navLevel}
-            className={`hidden ${navTooWide ? "" : "min-[480px]:flex"} flex-1 min-w-0 justify-center mx-4`}
-          >
-            <NavLinks
-              classes="w-full justify-start"
-              closeMenu={() => setIsOpen(false)}
-              moreOpen={moreOpen}
-              onMoreToggle={() => setMoreOpen((open) => !open)}
-              onMoreClose={closeMore}
-              level={navLevel}
-            />
-          </nav>
+          <TopTabs />
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
-            <LanguageSwitcher />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setOpenSearch(true)}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
-            >
-              <Search className="h-5 w-5 md:h-6 md:w-6" />
-            </Button>
+            <div className="hidden min-[1180px]:flex items-center space-x-2 md:space-x-3">
+              <div className="hidden min-[1600px]:block">
+                <ZecPrice />
+              </div>
+              <LanguageSwitcher />
+            </div>
+            {/* Donate and Shop: always one click away on wide screens. Narrower screens
+                have them in the menu drawer and the footer. */}
+            <div className="hidden min-[1320px]:flex items-center gap-1">
+              <DonationBtn />
+              <IconTab href="https://zechub.store/" label="Shop" external>
+                <ShoppingBag aria-hidden="true" className="h-5 w-5" />
+              </IconTab>
+            </div>
             <SearchBar
               openSearch={openSearch}
               setOpenSearch={setOpenSearch}
               searchItems={searchItems}
             />
-            <Button
-              variant="ghost"
-              size="sm"
+            <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => setOpenSearch(true)}
+              aria-label="Search the wiki or ask ZecHub AI"
+              title={`Search (${isMac ? "⌘K" : "Ctrl K"})`}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-nav-foreground transition-colors hover:bg-brand/10 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <Search aria-hidden="true" className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
               onClick={() => setTheme(!isDark ? "dark" : "light")}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+              aria-label={mounted && isDark ? "Switch to light theme" : "Switch to dark theme"}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-nav-foreground transition-colors hover:bg-brand/10 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand min-[1180px]:hidden"
             >
-              {mounted && isDark ? (
-                <Sun className="h-5 w-5 md:h-6 md:w-6" />
-              ) : (
-                <Moon className="h-5 w-5 md:h-6 md:w-6" />
-              )}
-            </Button>
-            <div
-              className="hidden min-[1280px]:flex relative"
-              onMouseEnter={() => setShowShop(true)}
-              onMouseLeave={() => setShowShop(false)}
-            >
-              <DonationBtn />
-              {showShop && (
-                <div
-                  className="absolute top-8.5 left-0 w-full z-50"
-                  style={{ marginTop: "-2px" }}
-                >
-                  <Link
-                    prefetch
-                    href="https://zechub.store/"
-                    target="_blank"
-                    className="flex items-center justify-center gap-2 w-full text-center text-sm font-semibold px-4 py-2 bg-slate-100 text-slate-600 dark:bg-slate-900 rounded-md shadow-md shadow-black/20 border-t border-yellow-600/30 transition-all duration-150 hover:brightness-110 animate-[slideDown_0.12s_ease-out]"
-                    style={{ transformOrigin: "top center" }}
-                  >
-                    <ShoppingBag className="h-4 w-4" /> {t.navigation?.shop || "Shop"}
-                  </Link>
-                </div>
-              )}
+              {mounted && isDark ? <Sun aria-hidden="true" className="h-4 w-4" /> : <Moon aria-hidden="true" className="h-4 w-4" />}
+            </button>
+            {/* One "Appearance" control (mode + colour theme) on wide screens. */}
+            <div className="hidden min-[1180px]:flex items-center">
+              <ColorThemePicker withMode />
             </div>
-            {mounted ? (
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className={navTooWide ? "" : "min-[480px]:hidden"} asChild>
-                  <Button
-                    data-nav-menu-button=""
-                    variant="ghost"
-                    size="sm"
-                    className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+            </div>
+            {/* Below 1180px the top tabs are hidden, so the menu opens from here. */}
+            <div className="min-[1180px]:hidden">
+              {mounted ? (
+                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                  <SheetTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      aria-label="Open menu"
+                      data-nav-menu-button
+                      className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+                    >
+                      <Menu className="h-6 w-6" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent
+                    side="left"
+                    className="bg-nav-background border-nav-border min-h-screen w-[340px] max-w-[92vw] bg-slate-50 dark:bg-[#06192F] z-201 [&>div:first-child]:hidden overflow-y-auto"
                   >
-                    <Menu className="h-10 w-10" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent
-                  side="left"
-                  className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900 z-201"
-                >
-                  <MobileNav closeMenu={() => setIsOpen(false)} />
-                </SheetContent>
-              </Sheet>
-            ) : (
-              <div className={navTooWide ? "" : "min-[480px]:hidden"}>
+                    <MobileDrawer closeMenu={() => setIsOpen(false)} />
+                  </SheetContent>
+                </Sheet>
+              ) : (
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+                  className="p-2"
                   aria-label="Open menu"
                 >
-                  <Menu className="h-10 w-10" />
+                  <Menu className="h-6 w-6" />
                 </Button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-        {moreOpen && !navTooWide && (
+        {moreOpen && (
           <MoreRow
             items={overflowNavigations}
-            moved={navLayout(navLevel).moved}
             onLinkClick={() => {
               setMoreOpen(false);
               setIsOpen(false);

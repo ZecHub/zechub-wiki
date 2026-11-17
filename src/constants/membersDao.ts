@@ -2,7 +2,7 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
     {
-    imgUrl: "content-images/returniflost.webp",
+    imgUrl: "/content-images/returniflost.webp",
     name: "returniflost",
     description: "co-founder @terpnetofficial",
     social: [
@@ -434,8 +434,7 @@ export const daoMembers = [
   //   role: "",
   // },
   {
-    imgUrl:
-      "/content-images/TLC71_rH_400x400-0d331c3058.webp",
+    imgUrl: "/content-images/vito-avatar.png",
     name: "vito",
     description: `Data Security Analyst & Core Team Member of ZecHub.`,
     linkName: "Twitter",
@@ -470,7 +469,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "/content-images/Hardaeborla.webp",
+    imgUrl: "/content-images/hardaeborla-avatar.jpg",
     name: "Hardaeborla",
     description: " Zcash Nigeria Team Member | Writer |Privacy Enthusiast | Web3 | Graphic Designer |Researcher|",
     social: [

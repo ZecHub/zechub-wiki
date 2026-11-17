@@ -1,0 +1,205 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { Check, Moon, Palette, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { INTERFACES, applyInterface, saveInterface, savedInterface } from "@/lib/interfaces";
+
+export const COLOR_THEME_KEY = "zechub-color-theme";
+
+// Swatches: [light page, accent, dark surface]. Keep in sync with the
+// [data-color-theme] blocks in globals.css.
+const THEMES = [
+  { id: "default", name: "Default", swatch: ["#fff9f9", "#147DF6", "#06192F"] },
+  { id: "ocean", name: "Ocean", swatch: ["#f0f8fc", "#0082a8", "#02101a"] },
+  { id: "sunset", name: "Sunset", swatch: ["#fcf6f2", "#cc5a3a", "#1a0e0a"] },
+  { id: "forest", name: "Forest", swatch: ["#f3f8f3", "#3a7a40", "#0a110a"] },
+  { id: "ledger", name: "Ledger", swatch: ["#f6f7fa", "#e8b245", "#0e0f14"] },
+] as const;
+
+function applyTheme(id: string) {
+  const root = document.documentElement;
+  if (id === "default") root.removeAttribute("data-color-theme");
+  else root.setAttribute("data-color-theme", id);
+}
+
+/**
+ * Appearance picker: interface on top (src/lib/interfaces.ts), then, with `withMode`, the
+ * light/dark switch, then colour themes. Interfaces and colour themes are independent.
+ */
+export default function ColorThemePicker({ withMode = false }: { withMode?: boolean }) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = mounted && resolvedTheme === "dark";
+  const label = "Appearance";
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState("default");
+  const [currentInterface, setCurrentInterface] = useState<string>(INTERFACES[0].id);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(COLOR_THEME_KEY);
+      if (saved && THEMES.some((t) => t.id === saved)) setCurrent(saved);
+    } catch {
+      /* storage unavailable: stay on default */
+    }
+    setCurrentInterface(savedInterface());
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    const onPointer = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onPointer);
+    };
+  }, [open]);
+
+  const choose = (id: string) => {
+    setCurrent(id);
+    applyTheme(id);
+    try {
+      localStorage.setItem(COLOR_THEME_KEY, id);
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const chooseInterface = (id: string) => {
+    setCurrentInterface(id);
+    applyInterface(id);
+    saveInterface(id);
+  };
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        aria-label={label}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        title={label}
+        onClick={() => setOpen((v) => !v)}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-nav-foreground transition-colors hover:bg-nav-hover-bg hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      >
+        <Palette aria-hidden="true" className="h-4 w-4" />
+      </button>
+      {open ? (
+        <div
+          role="dialog"
+          aria-label={label}
+          className="absolute right-0 top-full z-50 mt-2 max-h-[calc(100dvh-6rem)] w-[min(19rem,calc(100vw-2rem))] overflow-y-auto rounded-xl border border-slate-200 bg-slate-50 shadow-xl dark:border-white/10 dark:bg-slate-900"
+        >
+          <div className="border-b border-slate-200 p-3 dark:border-white/10">
+            <p className="mb-2 px-1 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
+              Interface
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {INTERFACES.map((option) => {
+                const active = currentInterface === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => chooseInterface(option.id)}
+                    aria-pressed={active}
+                    className={`rounded-lg border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                      active
+                        ? "border-brand bg-brand/10"
+                        : "border-slate-200 hover:border-brand/60 dark:border-white/10"
+                    }`}
+                  >
+                    <span className="flex items-center justify-between">
+                      <span
+                        aria-hidden="true"
+                        className="text-xl leading-none text-slate-900 dark:text-white"
+                        style={{ fontFamily: option.sampleFont }}
+                      >
+                        Aa
+                      </span>
+                      {active ? <Check aria-hidden="true" className="h-4 w-4 text-brand" /> : null}
+                    </span>
+                    <span className="mt-1.5 block text-sm text-slate-800 dark:text-slate-100">{option.name}</span>
+                    <span className="block text-xs leading-snug text-slate-600 dark:text-slate-400">{option.hint}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {withMode && (
+            <div className="border-b border-slate-200 p-3 dark:border-white/10">
+              <p className="mb-2 px-1 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
+                Mode
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { id: "light", name: "Light", Icon: Sun },
+                  { id: "dark", name: "Dark", Icon: Moon },
+                ].map(({ id, name, Icon }) => {
+                  const active = mounted && (id === "dark") === isDark;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setTheme(id)}
+                      aria-pressed={active}
+                      className={`flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                        active
+                          ? "border-brand bg-brand/10 text-slate-900 dark:text-white"
+                          : "border-slate-200 text-slate-700 hover:border-brand/60 dark:border-white/10 dark:text-slate-200"
+                      }`}
+                    >
+                      <Icon aria-hidden="true" className="h-4 w-4" />
+                      {name}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          <p className="px-4 pt-3 font-[family-name:var(--font-heading)] text-sm font-medium text-slate-900 dark:text-slate-100">
+            Color theme
+          </p>
+          <div className="grid grid-cols-2 gap-2 p-3 pt-2">
+            {THEMES.map((t) => {
+              const active = current === t.id;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => choose(t.id)}
+                  aria-pressed={active}
+                  className={`rounded-lg border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                    active
+                      ? "border-brand bg-brand/10"
+                      : "border-slate-200 hover:border-brand/60 dark:border-white/10"
+                  }`}
+                >
+                  <span className="flex h-8 overflow-hidden rounded-md border border-slate-300 dark:border-white/15">
+                    {t.swatch.map((c) => (
+                      <span key={c} className="flex-1" style={{ background: c }} />
+                    ))}
+                  </span>
+                  <span className="mt-1.5 flex items-center justify-between text-sm text-slate-800 dark:text-slate-100">
+                    {t.name}
+                    {active ? (
+                      <Check aria-hidden="true" className="h-4 w-4 text-brand" />
+                    ) : null}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
