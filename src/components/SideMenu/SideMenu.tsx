@@ -22,8 +22,8 @@ interface MenuProps {
 }
 
 const DUPLICATE_BASICS_TITLES: Record<string, string> = {
-  "zec_use_cases.md": "ZEC Use Cases",
-  "zcash_monetary_policy.md": "Zcash Monetary Policy",
+  zec_use_cases: "ZEC Use Cases",
+  zcash_monetary_policy: "Zcash Monetary Policy",
 };
 
 const normalize = (v: string) => decodeURIComponent(v).replace(/\/+$/, "").toLowerCase();
@@ -76,8 +76,9 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
     const fromFile = getName(item);
     // Two Start Here pages are headed "Zcash Basics" in the content repo (a copied title), so the manifest lists
     // three entries with that name. Give the other two their own names.
-    if (!titled || titled === "Zcash Basics") {
-      const fix = DUPLICATE_BASICS_TITLES[key.split("/").pop()?.toLowerCase() ?? ""];
+    if (!titled || titled.trim().toLowerCase() === "zcash basics") {
+      const base = (key.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_").replace(/\.md$/, "");
+      const fix = DUPLICATE_BASICS_TITLES[base];
       if (fix) return fix;
     }
     // Manifest titles are often the page H1 and wrap the sidebar.
