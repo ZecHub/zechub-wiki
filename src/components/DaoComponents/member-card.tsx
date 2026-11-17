@@ -1,9 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import MemberModal from "./member-modal";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";   // ← NEW
+import Image from "next/image";
+import {
+  encodeZip321Memo,
+  isShieldedAddress,
+  MAX_MEMO_BYTES,
+} from "@/lib/zip321";
+import { openPaymentUri } from "@/lib/openPaymentUri";
+
+// next/image throws on a relative src, so make sure local paths start with "/".
 function normalizeImg(src?: string): string {
   if (!src) return "/placeholder.svg";
   if (src.startsWith("/") || src.startsWith("http://") || src.startsWith("https://")) return src;
@@ -21,31 +29,35 @@ interface MemberCardProps {
   };
 }
 
-function base64UrlEncode(str: string) {
-  return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
 export default function MemberCard({ member }: MemberCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [message, setMessage] = useState("");
+  const messageBytes = new TextEncoder().encode(message).length;
+  const isMessageTooLong = messageBytes > MAX_MEMO_BYTES;
+  const canMessage = isShieldedAddress(member.zcashAddress);
+  const unavailableId = useId();
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
   const handleSend = () => {
-    const encodedMemo = base64UrlEncode(message);
-    const uri = `zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`;
-    window.location.href = uri;
-    handleFlip();
+    if (!canMessage || !message || isMessageTooLong) return;
+    try {
+      const encodedMemo = encodeZip321Memo(message, member.zcashAddress);
+      openPaymentUri(`zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`);
+      handleFlip();
+    } catch {
+      // Transparent address or encode failure: do not navigate.
+    }
   };
 
   return (
     <>
-      <div className="relative min-h-[340px] perspective-1000">
+      <div className="relative h-full min-h-[400px] perspective-1000">
         <div
-          className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${
+          className={`relative grid h-full w-full transition-transform duration-700 transform-style-3d ${
             isFlipped ? "rotate-y-180" : ""
           }`}
           style={{
@@ -53,9 +65,8 @@ export default function MemberCard({ member }: MemberCardProps) {
             transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
           }}
         >
-          {/* Front Side */}
           <div
-            className="absolute w-full h-full backface-hidden"
+            className="h-full w-full backface-hidden [grid-area:1/1]"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-6 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
@@ -102,7 +113,16 @@ export default function MemberCard({ member }: MemberCardProps) {
                   );
                 })}
               </div>
-              <div className="mt-auto flex gap-3 pt-4">
+              <div className="mt-auto">
+              {!canMessage && (
+                <p
+                  id={unavailableId}
+                  className="mb-3 text-center text-xs leading-snug text-slate-600 dark:text-slate-400"
+                >
+                  Messaging unavailable: no shielded address listed.
+                </p>
+              )}
+              <div className="flex gap-3 pt-1">
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="flex-1 cursor-pointer rounded-lg border border-brand/70 bg-brand/15 px-4 py-2 text-sm font-semibold text-brand shadow-sm shadow-brand/10 transition-colors hover:border-brand hover:bg-brand/25 dark:text-white"
@@ -111,17 +131,20 @@ export default function MemberCard({ member }: MemberCardProps) {
                 </button>
                 <button
                   onClick={handleFlip}
-                  className="flex-1 cursor-pointer rounded-lg border border-brand/70 bg-brand/15 px-4 py-2 text-sm font-semibold text-brand shadow-sm shadow-brand/10 transition-colors hover:border-brand hover:bg-brand/25 dark:text-white"
+                  disabled={!canMessage}
+                  aria-describedby={canMessage ? undefined : unavailableId}
+                  className="flex-1 cursor-pointer rounded-lg border border-brand/70 bg-brand/15 px-4 py-2 text-sm font-semibold text-brand shadow-sm shadow-brand/10 transition-colors hover:border-brand hover:bg-brand/25 disabled:cursor-not-allowed disabled:opacity-50 dark:text-white"
                 >
                   Message
                 </button>
+              </div>
               </div>
             </div>
           </div>
 
           {/* Back Side */}
           <div
-            className="absolute w-full h-full backface-hidden"
+            className="h-full w-full backface-hidden [grid-area:1/1]"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
@@ -137,14 +160,19 @@ export default function MemberCard({ member }: MemberCardProps) {
                     className="w-full resize-none rounded-lg border border-slate-300 bg-white p-3 text-sm text-slate-900 transition-colors focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 dark:border-white/15 dark:bg-white/[0.04] dark:text-white"
                     rows={6}
                     placeholder="Type your message..."
-                    maxLength={512}
+                    aria-invalid={isMessageTooLong || undefined}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
                   <div className="absolute bottom-2 right-2 rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-white/10 dark:text-slate-300">
-                    {message.length}/512
+                    {messageBytes}/{MAX_MEMO_BYTES} bytes
                   </div>
                 </div>
+                {isMessageTooLong && (
+                  <p role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">
+                    Shorten your message to fit the 512-byte limit.
+                  </p>
+                )}
               </div>
 
               <div className="mt-4 flex justify-end gap-3">
@@ -159,7 +187,8 @@ export default function MemberCard({ member }: MemberCardProps) {
                 </button>
                 <button
                   onClick={handleSend}
-                  className="cursor-pointer rounded-lg border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-hover"
+                  disabled={!canMessage || isMessageTooLong || !message}
+                  className="cursor-pointer rounded-lg border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Send
                 </button>
