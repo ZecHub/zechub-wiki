@@ -148,6 +148,12 @@ export const navigations: Array<NavigationItem> = [
       { name: "Shielded Pools", path: "/using-zcash/shielded-pools", icon: Layers },
       { name: "Zero-Knowledge vs Decoys", path: "/guides/zero-knowledge-vs-decoys", icon: Eye },
       { name: "My First Zcash Workbook", path: "/guides/my-first-zcash-workbook", icon: BookOpen },
+      {
+        name: "Browse all Learn Zcash",
+        label: "Browse all articles",
+        path: "/start-here/using-this-wiki",
+        icon: BookOpen,
+      },
     ],
   },
   {
@@ -289,6 +295,12 @@ export const navigations: Array<NavigationItem> = [
         name: "Testnet",
         path: "/using-zcash/testnet",
       },
+      {
+        name: "Browse all Use Zcash",
+        label: "Browse all articles",
+        path: "/using-zcash/centralized-swaps",
+        icon: BookOpen,
+      },
     ],
   },
   {
@@ -369,6 +381,12 @@ export const navigations: Array<NavigationItem> = [
       {
 	name: "Zcash Engineering Office Hours",
 	path: "/zcash-community/zcash-engineering-office-hours",
+      },
+      {
+        name: "Browse all Ecosystem",
+        label: "Browse all articles",
+        path: "/zcash-community/zcash-global-ambassadors",
+        icon: BookOpen,
       },
     ],
   },
@@ -488,6 +506,12 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zenith Installation",
         path: "/guides/zenith-installation",
+      },
+      {
+        name: "Browse all Guides",
+        label: "Browse all articles",
+        path: "/guides/zcash-stack",
+        icon: BookOpen,
       },
     ],
   },
@@ -619,6 +643,7 @@ export const menuSections: Record<string, MenuSection[]> = {
     },
     { title: "Visualize", items: ["Visualizer", "Visualizing the Zcash Network", "Visualizing Zcash Addresses"] },
     { title: "Reference", items: ["Zcash Library", "FAQ", "Privacy Tools"] },
+    { title: "More", items: ["Browse all Learn Zcash"] },
   ],
   "Using Zcash": [
     {
@@ -643,6 +668,7 @@ export const menuSections: Record<string, MenuSection[]> = {
       title: "Tools",
       items: ["Tools", "MetaMask Snap", "Zallet Quick Reference Guide", "Testnet"],
     },
+    { title: "More", items: ["Browse all Use Zcash"] },
   ],
   "Zcash Community": [
     {
@@ -672,6 +698,7 @@ export const menuSections: Record<string, MenuSection[]> = {
       title: "Organizations & governance",
       items: ["Zcash Organizations", "Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
     },
+    { title: "More", items: ["Browse all Ecosystem"] },
   ],
   Data: [
     {
@@ -735,5 +762,6 @@ export const menuSections: Record<string, MenuSection[]> = {
       title: "Developer tools",
       items: ["Zcash Devtool", "Zingolib and Zaino Tutorial", "Zenith Installation"],
     },
+    { title: "More", items: ["Browse all Guides"] },
   ],
 };
