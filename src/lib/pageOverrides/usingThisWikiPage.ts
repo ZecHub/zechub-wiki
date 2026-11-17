@@ -79,11 +79,7 @@ const pathCards = PATHS.map(
       .join("\n")}\n\n</div>`,
 ).join("\n\n");
 
-const BODY = `## TL;DR
-
-- There is a lot here, so pick the path below that matches why you came.
-- The top menu groups the wiki into tabs. Each tab ends with a **Browse all articles** button that lists everything in that section.
-- Use the search button in the top bar to jump to any page, or open the [Sitemap](/sitemap) for the full list.
+const BODY = `There is a lot of information on this wiki. This page shows where to begin, what each part of the wiki holds and how to find a page quickly.
 
 ## Where to start
 

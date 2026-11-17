@@ -1,6 +1,6 @@
 // ZEC Use Cases (start-here/zec-use-cases). The source file is headed "Zcash Basics", a copy of another page's title, so
 // the page, the browser title and the sidebar entry all read "Zcash Basics" next to the real Zcash Basics page. The H1 is
-// corrected to "ZEC Use Cases" and the three use cases become a TL;DR, a summary table (cards on phones) and the original
+// corrected to "ZEC Use Cases" and the three use cases become a summary table (cards on phones) and the original
 // sections. Kept from the original: every fact and every link. Skipped if the "Zcash Basics" H1 followed by the
 // "ZEC Use Cases" H2 is not found.
 
@@ -21,11 +21,7 @@ const usesTable = [
 
 const usesCards = USES.map(([a, b, c]) => `<div className="${CARD}">\n\n${a}\n\n${b}.\n\n${c}\n\n</div>`).join("\n\n");
 
-const BODY = `## TL;DR
-
-- ZEC can be used for payments, as a store of value and for messaging.
-- Shielded transactions keep the addresses, the amount and the memo field encrypted, while still letting you share them if you choose.
-- There will only ever be 21 million ZEC.
+const BODY = `ZEC has three main uses: payments, a store of value and private messaging. Shielded transactions keep the addresses, the amount and the memo field encrypted, while still letting you share them if you choose.
 
 <div className="hidden md:block">
 
