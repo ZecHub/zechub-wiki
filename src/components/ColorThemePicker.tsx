@@ -2,7 +2,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, Moon, Palette, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { INTERFACES, applyInterface, saveInterface, savedInterface } from "@/lib/interfaces";
+import {
+  DATA_ATTRIBUTE,
+  DEFAULT_INTERFACE,
+  INTERFACES,
+  applyInterface,
+  saveInterface,
+} from "@/lib/interfaces";
 
 export const COLOR_THEME_KEY = "zechub-color-theme";
 
@@ -34,7 +40,7 @@ export default function ColorThemePicker({ withMode = false }: { withMode?: bool
   const label = "Appearance";
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("default");
-  const [currentInterface, setCurrentInterface] = useState<string>(INTERFACES[0].id);
+  const [currentInterface, setCurrentInterface] = useState<string>(DEFAULT_INTERFACE);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,7 +50,19 @@ export default function ColorThemePicker({ withMode = false }: { withMode?: bool
     } catch {
       /* storage unavailable: stay on default */
     }
-    setCurrentInterface(savedInterface());
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const sync = () =>
+      setCurrentInterface(root.getAttribute(DATA_ATTRIBUTE) || DEFAULT_INTERFACE);
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: [DATA_ATTRIBUTE],
+    });
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {

@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import DesktopInterfaceHost from "@/components/DesktopInterfaceHost";
 import { INTERFACE_KEY, applyInterface } from "@/lib/interfaces";
 
@@ -10,8 +9,6 @@ jest.mock("next-themes", () => ({
 }));
 
 describe("Desktop interface host", () => {
-  const user = userEvent.setup();
-
   beforeEach(() => {
     localStorage.clear();
     document.documentElement.removeAttribute("data-interface");
@@ -32,22 +29,50 @@ describe("Desktop interface host", () => {
     expect(src).toContain("parentOrigin=");
   });
 
-  it("keeps the locale and exits back to Classic", async () => {
+  it("keeps the locale and switches back to Classic when the app asks", async () => {
     applyInterface("desktop");
     render(<DesktopInterfaceHost locale="fr" />);
 
-    const frame = await screen.findByTitle("ZecHub Desktop");
+    const frame = (await screen.findByTitle("ZecHub Desktop")) as HTMLIFrameElement;
     const src = frame.getAttribute("src") ?? "";
     expect(src).toMatch(/^https:\/\/[^/]+\/fr\?/);
     expect(src).toContain("theme=vault");
 
-    await user.click(screen.getByRole("button", { name: "Exit desktop" }));
+    window.dispatchEvent(
+      new MessageEvent("message", {
+        origin: new URL(src).origin,
+        source: frame.contentWindow,
+        data: { type: "zechub:switch-interface", interface: "classic" },
+      }),
+    );
 
     await waitFor(() => {
       expect(screen.queryByTitle("ZecHub Desktop")).toBeNull();
     });
     expect(document.documentElement.hasAttribute("data-interface")).toBe(false);
     expect(localStorage.getItem(INTERFACE_KEY)).toBe("classic");
+  });
+
+  it("switches to Reader when the app asks", async () => {
+    applyInterface("desktop");
+    render(<DesktopInterfaceHost locale="en" />);
+
+    const frame = (await screen.findByTitle("ZecHub Desktop")) as HTMLIFrameElement;
+    const src = frame.getAttribute("src") ?? "";
+
+    window.dispatchEvent(
+      new MessageEvent("message", {
+        origin: new URL(src).origin,
+        source: frame.contentWindow,
+        data: { type: "zechub:switch-interface", interface: "reader" },
+      }),
+    );
+
+    await waitFor(() => {
+      expect(document.documentElement.getAttribute("data-interface")).toBe("reader");
+    });
+    expect(localStorage.getItem(INTERFACE_KEY)).toBe("reader");
+    expect(screen.queryByTitle("ZecHub Desktop")).toBeNull();
   });
 
   it("adopts the app theme from a message", async () => {

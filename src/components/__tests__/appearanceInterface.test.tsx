@@ -1,7 +1,7 @@
-import { render, screen, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ColorThemePicker from "@/components/ColorThemePicker";
-import { INTERFACE_KEY } from "@/lib/interfaces";
+import { INTERFACE_KEY, applyInterface } from "@/lib/interfaces";
 
 describe("Appearance menu: Interface section", () => {
   const user = userEvent.setup();
@@ -74,9 +74,27 @@ describe("Appearance menu: Interface section", () => {
 
   it("restores a saved interface as the selected option", async () => {
     localStorage.setItem(INTERFACE_KEY, "reader");
+    applyInterface("reader");
     render(<ColorThemePicker withMode />);
     await user.click(screen.getByRole("button", { name: "Appearance" }));
     const dialog = screen.getByRole("dialog", { name: "Appearance" });
     expect(within(dialog).getByRole("button", { name: /^Reader/ })).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("reflects an interface change made outside the picker", async () => {
+    applyInterface("desktop");
+    render(<ColorThemePicker withMode />);
+    await user.click(screen.getByRole("button", { name: "Appearance" }));
+    const dialog = screen.getByRole("dialog", { name: "Appearance" });
+    const classic = within(dialog).getByRole("button", { name: /^Classic/ });
+    const desktop = within(dialog).getByRole("button", { name: /^Desktop/ });
+    expect(desktop).toHaveAttribute("aria-pressed", "true");
+
+    act(() => applyInterface("classic"));
+
+    await waitFor(() => {
+      expect(classic).toHaveAttribute("aria-pressed", "true");
+      expect(desktop).toHaveAttribute("aria-pressed", "false");
+    });
   });
 });

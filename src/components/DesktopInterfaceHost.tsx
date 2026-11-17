@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import {
   DATA_ATTRIBUTE,
@@ -16,6 +15,8 @@ export default function DesktopInterfaceHost({ locale }: { locale: string }) {
   const [active, setActive] = useState(DEFAULT_INTERFACE);
   const [frameSrc, setFrameSrc] = useState<string | null>(null);
   const [frameLoaded, setFrameLoaded] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [closing, setClosing] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -40,6 +41,14 @@ export default function DesktopInterfaceHost({ locale }: { locale: string }) {
     if (open) return;
     setFrameSrc(null);
     setFrameLoaded(false);
+    setVisible(false);
+    setClosing(false);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const timer = window.setTimeout(() => setVisible(true), 10);
+    return () => window.clearTimeout(timer);
   }, [open]);
 
   useEffect(() => {
@@ -60,20 +69,42 @@ export default function DesktopInterfaceHost({ locale }: { locale: string }) {
     );
   }, [open, frameLoaded, option?.embedUrl, theme]);
 
+  const closeDesktop = useCallback(
+    (next: string) => {
+      if (closing) return;
+      setClosing(true);
+      window.setTimeout(() => {
+        applyInterface(next);
+        saveInterface(next);
+        setActive(next);
+        setClosing(false);
+      }, 220);
+    },
+    [closing],
+  );
+
   useEffect(() => {
     if (!open || !option?.embedUrl) return;
     const appOrigin = new URL(option.embedUrl).origin;
     const onMessage = (event: MessageEvent) => {
       if (event.origin !== appOrigin) return;
       if (event.source !== frameRef.current?.contentWindow) return;
-      if (!event.data || event.data.type !== "zechub:theme") return;
-      const next: unknown = event.data.theme;
-      if (next !== "paper" && next !== "vault") return;
-      setTheme(next === "paper" ? "light" : "dark");
+      if (!event.data) return;
+      if (event.data.type === "zechub:theme") {
+        const next: unknown = event.data.theme;
+        if (next !== "paper" && next !== "vault") return;
+        setTheme(next === "paper" ? "light" : "dark");
+        return;
+      }
+      if (event.data.type === "zechub:switch-interface") {
+        const next: unknown = event.data.interface;
+        if (next !== "classic" && next !== "reader") return;
+        closeDesktop(next);
+      }
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, [open, option?.embedUrl, setTheme]);
+  }, [open, option?.embedUrl, setTheme, closeDesktop]);
 
   useEffect(() => {
     if (!open) return;
@@ -81,25 +112,17 @@ export default function DesktopInterfaceHost({ locale }: { locale: string }) {
     document.body.style.overflow = "hidden";
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      applyInterface(DEFAULT_INTERFACE);
-      saveInterface(DEFAULT_INTERFACE);
-      setActive(DEFAULT_INTERFACE);
+      closeDesktop(DEFAULT_INTERFACE);
     };
     document.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = previous;
       document.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, closeDesktop]);
 
   if (!open || !option?.embedUrl) return null;
   const embedUrl = option.embedUrl;
-
-  const exit = () => {
-    applyInterface(DEFAULT_INTERFACE);
-    saveInterface(DEFAULT_INTERFACE);
-    setActive(DEFAULT_INTERFACE);
-  };
 
   const sendTheme = () => {
     frameRef.current?.contentWindow?.postMessage(
@@ -109,7 +132,11 @@ export default function DesktopInterfaceHost({ locale }: { locale: string }) {
   };
 
   return (
-    <div className="fixed inset-0 z-[10000] bg-black">
+    <div
+      className={`fixed inset-0 z-[10000] transition-opacity duration-200 ${
+        theme === "paper" ? "bg-[#f4efe4]" : "bg-black"
+      } ${visible && !closing ? "opacity-100" : "opacity-0"}`}
+    >
       {frameSrc ? (
         <iframe
           ref={frameRef}
@@ -120,17 +147,21 @@ export default function DesktopInterfaceHost({ locale }: { locale: string }) {
             setFrameLoaded(true);
             sendTheme();
           }}
-          className="h-full w-full border-0"
+          className={`h-full w-full border-0 transition-opacity duration-300 ${
+            frameLoaded ? "opacity-100" : "opacity-0"
+          }`}
         />
       ) : null}
-      <button
-        type="button"
-        onClick={exit}
-        className="fixed right-3 top-9 z-[10001] flex items-center gap-1.5 rounded-full bg-slate-900/80 px-3 py-1.5 text-xs font-medium text-white shadow-lg backdrop-blur transition-colors hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-      >
-        <X aria-hidden="true" className="h-3.5 w-3.5" />
-        Exit desktop
-      </button>
+      {!frameLoaded ? (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div
+            aria-hidden="true"
+            className={`h-6 w-6 animate-spin rounded-full border-2 border-t-transparent ${
+              theme === "paper" ? "border-stone-400" : "border-white/40"
+            }`}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }
