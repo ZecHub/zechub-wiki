@@ -531,12 +531,12 @@ const FlyoutLinkItem = ({
           )}
           {label}
         </span>
-        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-50 rtl:rotate-0" />
+        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-75 rtl:rotate-0" />
       </button>
       {flyoutOpen && (
         <div
           ref={flyoutRef}
-          className="mb-1 ms-5 mt-0.5 flex flex-col border-s border-slate-200 ps-1.5 dark:border-white/10"
+          className="mb-1 ms-5 mt-0.5 flex flex-col border-s border-slate-300 ps-1.5 dark:border-white/25"
           onPointerEnter={(e) => isMouse(e) && openFlyout()}
           onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
@@ -595,7 +595,7 @@ const GroupedLinks = ({
     />
   );
   const heading = (title: string) => (
-    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand dark:border-white/10">
+    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand dark:border-white/20 dark:text-brand-soft">
       {t.menuLabels?.[title] || title}
     </p>
   );
