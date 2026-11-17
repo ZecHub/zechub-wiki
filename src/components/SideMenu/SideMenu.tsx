@@ -2,7 +2,7 @@
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { Link } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   BiRightArrowAlt as Arrow,
@@ -93,9 +93,20 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
     const i = SERIES_ORDER.findIndex((k) => base.startsWith(k));
     return i === -1 ? SERIES_ORDER.length : i;
   };
-  const root = roots
+  // The network upgrade pages of Zcash Tech are read in the order they activated, as one block, instead of being
+  // scattered through the alphabet.
+  const UPGRADE_ORDER = ["sprout", "overwinter", "sapling", "blossom", "heartwood", "canopy", "nu5", "nu6", "nu6_1", "nu6_2", "nu7"];
+  const upgradeRank = (item: string) =>
+    UPGRADE_ORDER.indexOf((item.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_"));
+  let root = roots
     .map((item) => item.slice(0, -3))
     .sort((a, b) => (folder === "zero-to-zero-knowledge" ? seriesRank(a) - seriesRank(b) : 0));
+  const firstUpgradeIndex = folder === "zcash-tech" ? root.findIndex((item) => upgradeRank(item) >= 0) : -1;
+  if (firstUpgradeIndex >= 0) {
+    const upgrades = root.filter((item) => upgradeRank(item) >= 0).sort((x, y) => upgradeRank(x) - upgradeRank(y));
+    const rest = root.filter((item) => upgradeRank(item) < 0);
+    root = [...rest.slice(0, firstUpgradeIndex), ...upgrades, ...rest.slice(firstUpgradeIndex)];
+  }
   const name = folder[0].toUpperCase() + folder.slice(1);
   const fold = getName(name);
 
@@ -139,12 +150,18 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
             )
               return null;
             return (
+              <Fragment key={i}>
+              {i === firstUpgradeIndex && (
+                <li className="px-3 pb-1 pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                  {chromeLabel("Network Upgrades")}
+                </li>
+              )}
               <NavItem
-                key={i}
                 href={`/${transformGithubFilePathToWikiLink(item)}`}
                 label={folder === "zero-to-zero-knowledge" && seriesRank(item) === 0 ? "Overview" : item ? menuLabel(item) : ""}
                 pathname={pathname}
               />
+              </Fragment>
             );
           })}
           {fold === "Using Zcash" && (
