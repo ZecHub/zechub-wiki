@@ -448,6 +448,8 @@ const MdxComponents = {
   PointItem,
   FaqGlance,
   OrgLinks,
+  LinkButton,
+  VideoCarousel,
   DvpnDiagram,
 } as MDXComponents;
 

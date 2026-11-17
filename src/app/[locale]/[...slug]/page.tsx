@@ -63,6 +63,7 @@ import { rewriteZodlPage } from "@/lib/pageOverrides/zodlPage";
 import { rewriteZingoLabsPage } from "@/lib/pageOverrides/zingoLabsPage";
 import { rewriteZcashLabsPage } from "@/lib/pageOverrides/zcashLabsPage";
 import { rewriteZcashFoundationPage } from "@/lib/pageOverrides/zcashFoundationPage";
+import { rewriteArboristCallsPage } from "@/lib/pageOverrides/arboristCallsPage";
 import { rewriteZcgPageFull } from "@/lib/pageOverrides/zcgPageFull";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
@@ -6403,6 +6404,9 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zcash-organizations/zcash-foundation" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZcashFoundationPage(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-community/arborist-calls" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteArboristCallsPage(processedMarkdown);
   }
   if (slug.join("/") === "zcash-organizations/zcash-labs" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZcashLabsPage(processedMarkdown);
