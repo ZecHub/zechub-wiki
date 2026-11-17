@@ -7,6 +7,7 @@ import { Inter, JetBrains_Mono, Literata } from "next/font/google";
 import "./globals.css";
 import ColorThemeInit from "@/components/ColorThemeInit";
 import InterfaceInit from "@/components/InterfaceInit";
+import DesktopInterfaceHost from "@/components/DesktopInterfaceHost";
 import NavigationWrapper from "@/components/NavigationWrapper";
 import SkipToContent from "@/components/SkipToContent";
 import MotionProvider from "@/components/MotionProvider";
@@ -179,6 +180,7 @@ export default async function RootLayout({
                 </MotionProvider>
               </DarkModeProvider>
             </LanguageProvider>
+            <DesktopInterfaceHost locale={locale} />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

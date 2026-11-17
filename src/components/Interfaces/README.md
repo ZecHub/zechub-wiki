@@ -4,8 +4,8 @@ An interface is a whole look for the wiki: type, spacing, shapes, motion. Visito
 
 ## Add an interface
 
-1. Create `src/components/Interfaces/<id>.css`. Scope **every** rule to `:root[data-interface="<id>"]`.
-2. Import it in `src/components/Interfaces/index.css`.
+1. For a stylesheet interface, create `src/components/Interfaces/<id>.css` and scope **every** rule to `:root[data-interface="<id>"]`. For a full interface with its own URL, set `embedUrl` and render it from `DesktopInterfaceHost`.
+2. Import the stylesheet in `src/components/Interfaces/index.css`.
 3. Add an entry to `INTERFACES` in `src/lib/interfaces.ts`: `id`, `name`, a short `hint`, and the `sampleFont` used for the "Aa" preview in the menu.
 4. Run `yarn test src/lib/__tests__/interfaces.test.ts`.
 
@@ -23,3 +23,4 @@ An interface is a whole look for the wiki: type, spacing, shapes, motion. Visito
 |---|---|---|
 | `classic` | Classic | Nothing: the standard ZecHub look (no attribute is set). |
 | `reader` | Reader | Serif headings and article text, about 68 characters a line, flatter corners, no background glow, less motion. Navigation stays sans. |
+| `desktop` | Desktop | The full Mac-style desktop wiki, embedded from `embedUrl` over the current page. Set `NEXT_PUBLIC_DESKTOP_INTERFACE_URL` to its deployment URL. |
