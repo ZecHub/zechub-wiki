@@ -8,6 +8,7 @@ import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 import Faucet from "./Faucet";
 import BlockTime from "./BlockTime";
 import CrosslinkTools from "./CrosslinkTools";
+import DepositCheck from "./DepositCheck";
 
 // Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
 // Renaming one changes a shareable link, so treat them as part of the API.
@@ -18,6 +19,7 @@ type TabId =
   | "address-decoder"
   | "faucet"
   | "block-time"
+  | "deposit-check"
   | "crosslink";
 
 interface Tab {
@@ -77,6 +79,14 @@ const TABS: Tab[] = [
     badge: "CipherScan",
     title: "Block Time",
     subtitle: "Convert a Zcash block height or hash into your local timezone",
+  },
+  {
+    id: "deposit-check",
+    label: "Deposit Check",
+    shortLabel: "Deposit",
+    badge: "Can I Shield",
+    title: "Deposit Check",
+    subtitle: "What exchanges and swaps did with shielded ZEC deposits",
   },
   {
     id: "crosslink",
@@ -180,6 +190,7 @@ export default function ToolTabs() {
           {active === "address-decoder" && <AddressDecoder />}
           {active === "faucet" && <Faucet />}
           {active === "block-time" && <BlockTime />}
+          {active === "deposit-check" && <DepositCheck />}
           {active === "crosslink" && <CrosslinkTools />}
         </div>
       </div>
