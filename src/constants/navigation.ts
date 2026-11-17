@@ -150,7 +150,7 @@ export const navigations: Array<NavigationItem> = [
       { name: "My First Zcash Workbook", path: "/guides/my-first-zcash-workbook", icon: BookOpen },
       {
         name: "Browse all Learn Zcash",
-        path: "/sitemap",
+        path: "/start-here/what-is-zec-and-zcash",
         icon: BookOpen,
       },
     ],
@@ -296,7 +296,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Browse all Use Zcash",
-        path: "/sitemap",
+        path: "/using-zcash/buying-zec",
         icon: BookOpen,
       },
     ],
@@ -382,7 +382,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Browse all Ecosystem",
-        path: "/sitemap",
+        path: "/zcash-community/community-projects",
         icon: BookOpen,
       },
     ],
@@ -506,7 +506,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Browse all Guides",
-        path: "/sitemap",
+        path: "/guides/raspberry-pi-4-full-node",
         icon: BookOpen,
       },
     ],
@@ -538,11 +538,6 @@ export const navigations: Array<NavigationItem> = [
       { name: "FROST Threshold Signatures", path: "/zcash-tech/frost" },
       { name: "Shielded Assets (ZSAs)", path: "/zcash-tech/zcash-shielded-assets" },
       { name: "Post-Quantum Security", path: "/zcash-tech/post-quantum-security", icon: ShieldCheck },
-      {
-        name: "Browse all Network",
-        path: "/sitemap",
-        icon: BookOpen,
-      },
     ],
   },
   {
