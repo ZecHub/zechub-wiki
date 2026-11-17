@@ -1,0 +1,101 @@
+// Using this Wiki (start-here/using-this-wiki). The page is the reader's map of the site, so it is organized as a
+// short intro, four "start here" cards by reader type, a table of what each menu tab holds, and ways to find
+// anything else. Kept from the original: every link and the four reader paths (new to Zcash, ready to use Zcash,
+// community member, contributor). The tab descriptions follow the current menu. Skipped if the H1 is missing.
+
+const CARD =
+  "rounded-2xl border border-slate-200 bg-slate-50/70 p-5 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2 [&_ul]:!my-2";
+
+const PATHS: Array<[string, string, string]> = [
+  [
+    "I am new to Zcash",
+    "Start with the basics and get up to speed before you touch any funds.",
+    "- [Zcash New User Guide](/start-here/new-user-guide)\n- [Zcash Resources](/start-here/zcash-resources)\n- [Zcash Basics](/start-here/what-is-zec-and-zcash)",
+  ],
+  [
+    "I am ready to use Zcash",
+    "After the intro pages, learn how to hold, send and receive ZEC.",
+    "- [Using ZEC Privately](/guides/using-zec-privately)\n- [Tutorials](https://youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O&si=4vleWUbCGbNJu1-M): video walkthroughs of using ZEC",
+  ],
+  [
+    "I am a Zcash community member",
+    "Stay up to date with what is happening across the ecosystem.",
+    "- Weekly newsletter: [Zcash Ecosystem Digest](https://zechub.substack.com/s/zcash-ecosystem-digest)\n- Follow the accounts on the [List of Zcash community pages](/zcash-community/community-links)",
+  ],
+  [
+    "I want to contribute to ZecHub",
+    "Learn what ZecHub is, then see how to get involved.",
+    "- [What is ZecHub](/start-here/what-is-zechub)\n- [Help Build ZecHub](/contribute/help-build-zechub)",
+  ],
+];
+
+const TABS: Array<[string, string]> = [
+  ["**Learn Zcash**", "Concepts and background: what Zcash is, how privacy works, monetary policy, network upgrades and the research behind them"],
+  ["**Use Zcash**", "Practical use: wallets, buying ZEC, exchanges, spending, shielded pools, memos and mining"],
+  ["**Ecosystem**", "The people and projects around Zcash: organizations, community links, calls, media and events"],
+  ["**Guides**", "Step-by-step walkthroughs: running a node, wallet setup, payments, DeFi and developer tools"],
+  ["**Network**", "Live data and tools: the ecosystem dashboard, chain state explorer, protocol parameters and visualizers"],
+  ["**DAO**", "How ZecHub makes funding decisions and how to take part"],
+];
+
+const tabsTable = [
+  "| Tab | What you will find |",
+  "| --- | --- |",
+  ...TABS.map(([a, b]) => `| ${a} | ${b} |`),
+].join("\n");
+
+const tabsCards = TABS.map(
+  ([a, b]) => `<div className="${CARD}">\n\n${a}\n\n${b}.\n\n</div>`,
+).join("\n\n");
+
+const pathCards = PATHS.map(
+  ([a, b, c]) => `<div className="${CARD}">\n\n**${a}**\n\n${b}\n\n${c}\n\n</div>`,
+).join("\n\n");
+
+const BODY = `## TL;DR
+
+- There is a lot here, so pick the path below that matches why you came.
+- The top menu groups the wiki into tabs. Each tab ends with a **Browse all articles** button that lists everything in that section.
+- Use the search button in the top bar to jump to any page, or open the [Sitemap](/sitemap) for the full list.
+
+## Where to start
+
+<div className="my-6 grid gap-4 md:grid-cols-2">
+
+${pathCards}
+
+</div>
+
+## How the wiki is organized
+
+<div className="hidden md:block">
+
+${tabsTable}
+
+</div>
+
+<div className="md:hidden my-4 space-y-3">
+
+${tabsCards}
+
+</div>
+
+## Finding what you need
+
+- **Search:** the search button in the top bar helps you jump straight to a page.
+- **Browse all articles:** each menu tab ends with this button. It opens the section with a side menu that lists every article in it.
+- **Sitemap:** the [Sitemap](/sitemap) lists every page on the wiki, with a filter to narrow it down.
+- **Language:** the language selector in the top bar switches the wiki to your language where a translation exists.
+`;
+
+export function rewriteUsingThisWikiPage(original: string): string {
+  const h1 = original.match(/^# Using this Wiki\s*$/im);
+  if (!h1 || h1.index === undefined) return original;
+  // Keep everything up to and including the first H1 (frontmatter and the Edit-page link), replace the body.
+  const first = h1.index + h1[0].length;
+  // The source repeats the H1 after the Edit-page link, so use the last H1 match as the cut point.
+  const all = [...original.matchAll(/^# Using this Wiki\s*$/gim)];
+  const last = all[all.length - 1];
+  const cut = (last.index ?? first) + last[0].length;
+  return original.slice(0, cut) + "\n\n" + BODY;
+}
