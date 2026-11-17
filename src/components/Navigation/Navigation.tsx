@@ -372,7 +372,7 @@ const getTranslatedLabel = (
   );
 };
 const ROW =
-  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/5 dark:hover:text-white";
+  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/12 dark:hover:text-white dark:focus-visible:bg-white/12";
 // Keeps an open panel inside the viewport: on narrow windows a dropdown that
 // starts at its trigger can run past the screen edge. Shifts it back in, and
 // flips a nested flyout to the other side when there is no room on its side.
