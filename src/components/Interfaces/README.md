@@ -1,0 +1,25 @@
+# Interfaces
+
+An interface is a whole look for the wiki: type, spacing, shapes, motion. Visitors pick one in the header's **Appearance** menu, above Mode. Interfaces are separate from colour themes, so any interface works with any colour theme in light and dark mode.
+
+## Add an interface
+
+1. Create `src/components/Interfaces/<id>.css`. Scope **every** rule to `:root[data-interface="<id>"]`.
+2. Import it in `src/components/Interfaces/index.css`.
+3. Add an entry to `INTERFACES` in `src/lib/interfaces.ts`: `id`, `name`, a short `hint`, and the `sampleFont` used for the "Aa" preview in the menu.
+4. Run `yarn test src/lib/__tests__/interfaces.test.ts`.
+
+## Rules
+
+- **No colours.** Use the colour theme tokens (`--color-brand`, `--color-page`, `--color-surface`, ...) and never set them. That keeps your interface working with every colour theme.
+- **Light and dark.** Check both modes. Dark mode is the `.dark` class on `<html>`.
+- **Only stable hooks.** Target elements, the `.mdx-article` article wrapper, `[data-backdrop]` (the page background), and theme variables such as `--font-heading`, `--font-body`, `--font-reader` and `--radius`. Avoid long chains of utility classes; they change often.
+- **Fonts.** Load new fonts with `next/font` in `src/app/[locale]/layout.tsx` (`preload: false`, a CSS `variable`), never from a third-party URL: the site makes no third-party requests on page load.
+- **Readable first.** Keep body text at 16px or more and enough contrast in both modes.
+
+## Available
+
+| id | Name | What it changes |
+|---|---|---|
+| `classic` | Classic | Nothing: the standard ZecHub look (no attribute is set). |
+| `reader` | Reader | Serif headings and article text, about 68 characters a line, flatter corners, no background glow, less motion. Navigation stays sans. |

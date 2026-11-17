@@ -16,6 +16,7 @@
 @import "../../components/visualizer/zk-SNARK-proof/index.css";
 @import "../../components/Proposals/index.css";
 @import "../../components/ZipsGrants/governance.css";
+@import "../../components/Interfaces/index.css";
 
 @variant dark (&:where(.dark, .dark *));
 
