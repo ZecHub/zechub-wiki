@@ -90,6 +90,8 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
   const sectionLabel = (title: string) => s?.sections?.[title] ?? title;
 
   const [query, setQuery] = useState("");
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const LIMIT = 12;
   const needle = query.trim().toLowerCase();
 
   // Filter by the label the reader actually sees, keeping the section order.
@@ -195,17 +197,21 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
                     .replace("{sections}", String(sections.length))}
             </p>
           </div>
+        </div>
+      </div>
 
-          {/* Jump links */}
+      {/* Jump links */}
+      <div className="sticky top-[4.5rem] z-30 border-b border-border bg-background/90 backdrop-blur">
+        <div className="container mx-auto px-6 py-3">
           <nav
             aria-label={s?.jumpTo ?? "Jump to section"}
-            className="mt-6 flex flex-wrap gap-2"
+            className="flex gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none]"
           >
             {visible.map((v) => (
               <a
                 key={v.section.title}
                 href={`#${anchorId(v.section.title)}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:border-brand hover:text-brand dark:hover:text-brand-soft"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:border-brand hover:text-brand dark:hover:text-brand-soft"
               >
                 {sectionLabel(v.section.title)}
                 <span className="text-muted-foreground">{countOf(v)}</span>
@@ -226,6 +232,7 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
             {visible.map((v) => {
               const { section } = v;
               const Icon = section.icon;
+              const open = !!needle || !!expanded[section.title];
               return (
                 <section
                   key={section.title}
@@ -246,10 +253,28 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
 
                   {v.links.length > 0 && (
                     <nav className="grid gap-x-4 gap-y-0.5 imd:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                      {v.links.map((link) => (
+                      {(open ? v.links : v.links.slice(0, LIMIT)).map((link) => (
                         <LinkRow key={link.href} link={link} sectionTitle={section.title} />
                       ))}
                     </nav>
+                  )}
+
+                  {v.links.length > LIMIT && !needle && (
+                    <button
+                      type="button"
+                      aria-expanded={open}
+                      onClick={() =>
+                        setExpanded((e) => ({ ...e, [section.title]: !open }))
+                      }
+                      className="mt-4 cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-brand hover:bg-brand/10 dark:text-brand-soft"
+                    >
+                      {open
+                        ? (s?.showLess ?? "Show less")
+                        : (s?.showAll ?? "Show all {count} pages").replace(
+                            "{count}",
+                            String(v.links.length),
+                          )}
+                    </button>
                   )}
 
                   {v.subsections.length > 0 && (
