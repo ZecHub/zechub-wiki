@@ -1,5 +1,410 @@
+"use client";
+import React, { useState, useEffect, useRef } from "react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import WalletItem from "@/components/Wallet/WalletItem";
+import FilterToggle from "@/components/FilterToggle";
+import { useLanguage } from "@/context/LanguageContext";
 
-            {/* Transparent-only wallets */}
+interface Wallet {
+  title: string;
+  url: string;
+  imageUrl: string;
+  devices: string[];
+  pools: string[];
+  features: string[];
+  operatingSystem: string[];
+  walletSupport: string[];
+  syncSpeed: string;
+  nu7?: string;
+  nymMixnet?: string;
+  sourceCode?: string;
+  status?: string;
+  statusReason?: string;
+  stage?: string;
+}
+
+// A deprecated wallet (end-of-life, archived, or no longer supports Zcash)
+// leaves the directory — no filters, no counts — and is listed at the bottom.
+const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
+
+const hasPublicSource = (w: Wallet) =>
+  /^https?:\/\//i.test(w.sourceCode?.trim() ?? "");
+
+const sourceStatus = (w: Wallet) =>
+  hasPublicSource(w) ? "Open Source" : "Closed Source";
+
+const isBeta = (w: Wallet) => w.stage?.trim().toLowerCase() === "beta";
+
+const isTransparentOnly = (w: Wallet) =>
+  w.pools.length > 0 &&
+  w.pools.every((pool) => {
+    const value = pool.trim().toLowerCase();
+    return value === "transparent" || value === "transparent only";
+  });
+
+// NU7 compatibility sorting order.
+const NU7_ORDER = [
+  "compatible",
+  "compatible for transparent zec",
+  "in progress",
+  "not ready",
+  "not verified",
+];
+const nu7Index = (value?: string) => {
+  const i = NU7_ORDER.indexOf(value?.trim().toLowerCase() ?? "");
+  return i === -1 ? NU7_ORDER.length : i;
+};
+const nu7Rank = (w: Wallet) => nu7Index(w.nu7);
+
+interface Props {
+  allWallets: Wallet[];
+}
+
+const WalletList: React.FC<Props> = ({ allWallets }) => {
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  // /hardware-wallets, /mobile-wallets, /desktop-wallets and /web-wallets open this list with ?device=<type>
+  // so the matching Devices filter is already on.
+  useEffect(() => {
+    const device = new URLSearchParams(window.location.search).get("device");
+    if (!device) return;
+    const key = `Devices:${device.charAt(0).toUpperCase()}${device.slice(1).toLowerCase()}`;
+    setActiveFilters((prev) => (prev.includes(key) ? prev : [...prev, key]));
+  }, []);
+  const [filters, setFilters] = useState({
+    Devices: new Set<string>(),
+    "Operating System": new Set<string>(),
+    Pools: new Set<string>(),
+    "Wallet Support": new Set<string>(),
+    Features: new Set<string>(),
+    Stage: new Set<string>(),
+    "Nym Mixnet": new Set<string>(),
+    Source: new Set<string>(["Open Source", "Closed Source"]),
+    NU7: new Set<string>(),
+  });
+  const [likes, setLikes] = useState<{ [key: string]: number }>({});
+  const [error, setError] = useState<{ [key: string]: string }>({});
+  const [success, setSuccess] = useState<{ [key: string]: string }>({});
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const filterTriggerRef = useRef<HTMLButtonElement>(null);
+  const closeFilterRef = useRef<HTMLButtonElement>(null);
+
+  const { t } = useLanguage();
+  const filtersLabel = t?.wallets?.filters ?? "Filters";
+  const walletCountLabel = (count: number) =>
+    count === 1
+      ? (t?.wallets?.walletCountOne ?? "1 wallet")
+      : (t?.wallets?.walletCount ?? "{count} wallets").replace("{count}", String(count));
+  const activeCountLabel = (count: number) =>
+    (t?.wallets?.activeCount ?? "{count} active").replace("{count}", String(count));
+  const closeLabel = t?.wallets?.close ?? "Close";
+  const clearAllLabel = t?.wallets?.clearAll ?? "Clear all";
+  const savedReviewMsg = t?.wallets?.savedReview ?? "We saved your review!";
+  const errorGettingLikesMsgPrefix =
+    t?.wallets?.errorGettingLikes ?? "Error getting likes:";
+  const errorUpdatingRatingPrefix =
+    t?.wallets?.errorUpdatingRating ?? "Error updating rating:";
+
+  const deprecatedTitle =
+    t?.wallets?.deprecatedTitle ?? "Deprecated / no longer supports Zcash";
+  const deprecatedNote =
+    t?.wallets?.deprecatedNote ??
+    "Kept for reference only. Do not use these wallets for new funds.";
+  const betaTitle = t?.wallets?.betaTitle ?? "Beta wallets";
+  const betaNote =
+    t?.wallets?.betaNote ?? "Test releases. Expect rough edges and use small amounts.";
+  const transparentOnlyTitle =
+    t?.wallets?.transparentOnlyTitle ?? "Transparent-only wallets";
+  const transparentOnlyNote =
+    t?.wallets?.transparentOnlyNote ??
+    "These wallets only support transparent ZEC, which does not hide transaction details.";
+  const nymMixnetTitle =
+    t?.wallets?.nymMixnetTitle ?? "Nym Mixnet support";
+  const nymMixnetNote =
+    t?.wallets?.nymMixnetNote ??
+    "Wallets that support routing Zcash traffic through the Nym mixnet.";
+
+  const handleToggleFilter = () => setIsFilterVisible((v) => !v);
+  const showWalletsLabel = (count: number) =>
+    count === 1
+      ? (t?.wallets?.showWallet ?? "Show 1 wallet")
+      : (t?.wallets?.showWallets ?? "Show {count} wallets").replace("{count}", String(count));
+
+  const activeWallets = allWallets.filter((w) => !isDeprecated(w));
+  const deprecatedWallets = allWallets
+    .filter(isDeprecated)
+    .sort((a, b) => a.title.localeCompare(b.title));
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const devicesSet = new Set<string>();
+      const operatingSystemSet = new Set<string>();
+      const poolsSet = new Set<string>();
+      const walletSupportSet = new Set<string>();
+      const featuresSet = new Set<string>();
+      const stageSet = new Set<string>();
+      const nymMixnetSet = new Set<string>();
+      const nu7Set = new Set<string>();
+
+      allWallets.filter((w) => !isDeprecated(w)).forEach((wallet) => {
+        wallet.devices.forEach((d) => devicesSet.add(d.trim()));
+        wallet.operatingSystem?.forEach((os) => operatingSystemSet.add(os.trim()));
+        wallet.pools.forEach((p) => poolsSet.add(p.trim()));
+        wallet.walletSupport?.forEach((ws) => walletSupportSet.add(ws.trim()));
+        wallet.features.forEach((f) => featuresSet.add(f.trim()));
+        if (wallet.nu7) nu7Set.add(wallet.nu7.trim());
+        if (wallet.stage) stageSet.add(wallet.stage.trim());
+        if (wallet.nymMixnet) nymMixnetSet.add(wallet.nymMixnet.trim());
+      });
+
+      setFilters({
+        Devices: new Set(Array.from(devicesSet).sort((a, b) => a.localeCompare(b))),
+        "Operating System": new Set(
+          Array.from(operatingSystemSet).sort((a, b) => a.localeCompare(b)),
+        ),
+        Pools: new Set(Array.from(poolsSet).sort((a, b) => a.localeCompare(b))),
+        "Wallet Support": new Set(
+          Array.from(walletSupportSet).sort((a, b) => a.localeCompare(b)),
+        ),
+        Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
+        Stage: new Set(Array.from(stageSet).sort((a, b) => a.localeCompare(b))),
+        "Nym Mixnet": new Set(
+          Array.from(nymMixnetSet).sort((a, b) => a.localeCompare(b)),
+        ),
+        Source: new Set(["Open Source", "Closed Source"]),
+        NU7: new Set(Array.from(nu7Set).sort((a, b) => nu7Index(a) - nu7Index(b) || a.localeCompare(b))),
+      });
+
+      let initialLikes: { [key: string]: number } = {};
+      try {
+        const response = await fetch("/api/wallet-likes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title: "", delta: 0 }),
+        });
+        if (response.ok) {
+          initialLikes = await response.json();
+        }
+      } catch (error) {
+        console.log(`${errorGettingLikesMsgPrefix} ${error}`);
+      }
+
+      allWallets.forEach((wallet) => {
+        if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0;
+      });
+      setLikes(initialLikes);
+    };
+
+    fetchLikes();
+  }, [allWallets]);
+
+  function toggleFilter(filterCategory: string, filterValue: string) {
+    const filterKey = `${filterCategory}:${filterValue}`;
+    setActiveFilters((prev) =>
+      prev.includes(filterKey)
+        ? prev.filter((f) => f !== filterKey)
+        : [...prev, filterKey],
+    );
+  }
+
+  const handleLike = async (walletTitle: string) => {
+    setSuccess({});
+    setError({});
+    try {
+      const response = await fetch("/api/wallet-likes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: walletTitle, delta: 1 }),
+      });
+      if (response.ok) {
+        setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] + 1 }));
+        setSuccess({ [walletTitle]: savedReviewMsg });
+      } else {
+        const data = await response.json();
+        setError({ [walletTitle]: data.message });
+      }
+    } catch (error) {
+      setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
+    }
+  };
+
+  const handleDislike = async (walletTitle: string) => {
+    setSuccess({});
+    setError({});
+    try {
+      const response = await fetch("/api/wallet-likes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: walletTitle, delta: -1 }),
+      });
+      if (response.ok) {
+        setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] - 1 }));
+        setSuccess({ [walletTitle]: savedReviewMsg });
+      } else {
+        const data = await response.json();
+        setError({ [walletTitle]: data.message });
+      }
+    } catch (error) {
+      setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
+    }
+  };
+
+  const matchesFilters = (wallet: Wallet) =>
+    activeFilters.every((filter) => {
+      const [category, value] = filter.split(":");
+      if (category === "Devices") return wallet.devices.includes(value);
+      if (category === "Operating System") return wallet.operatingSystem?.includes(value) ?? false;
+      if (category === "Pools") return wallet.pools.includes(value);
+      if (category === "Wallet Support") return wallet.walletSupport?.includes(value) ?? false;
+      if (category === "Features") return wallet.features.includes(value);
+      if (category === "Stage") return wallet.stage === value;
+      if (category === "Nym Mixnet") return wallet.nymMixnet === value;
+      if (category === "Source") return sourceStatus(wallet) === value;
+      if (category === "NU7") return wallet.nu7 === value;
+      return true;
+    });
+  const filteredWallets = activeWallets.filter(matchesFilters);
+  // The same filters apply to the deprecated section, so a filtered view never
+  // lists deprecated wallets that don't match; the section hides when none do.
+  const filteredDeprecated = deprecatedWallets.filter(matchesFilters);
+
+  // NU7-compatible wallets first, then transparent-only, In Progress, Not Ready and
+  // Not verified; the rating orders wallets within each group.
+  const sortedWallets = [...filteredWallets].sort(
+    (a, b) =>
+      nu7Rank(a) - nu7Rank(b) ||
+      (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
+  );
+
+  const productionWallets = sortedWallets.filter(
+    (wallet) => !isBeta(wallet) && !isTransparentOnly(wallet),
+  );
+  const betaWallets = sortedWallets.filter(isBeta);
+  const transparentOnlyWallets = sortedWallets.filter(
+    (wallet) => !isBeta(wallet) && isTransparentOnly(wallet),
+  );
+  const nymMixnetWallets = sortedWallets.filter((wallet) => Boolean(wallet.nymMixnet));
+
+  const renderWalletCard = (wallet: Wallet, deprecated?: string) => (
+    <WalletItem
+      key={wallet.title}
+      title={wallet.title}
+      link={wallet.url}
+      logo={wallet.imageUrl}
+      tags={[
+        { category: "Devices", values: wallet.devices },
+        { category: "Pools", values: wallet.pools },
+        { category: "Features", values: wallet.features },
+      ]}
+      likes={likes[wallet.title] || 0}
+      syncSpeed={wallet.syncSpeed}
+      nu7={wallet.nu7}
+      stage={wallet.stage}
+      nymMixnet={wallet.nymMixnet}
+      sourceCode={wallet.sourceCode}
+      deprecated={deprecated}
+      onLike={() => handleLike(wallet.title)}
+      onDislike={() => handleDislike(wallet.title)}
+      error={error[wallet.title]}
+      success={success[wallet.title]}
+    />
+  );
+
+  return (
+    <>
+      <div className="wl-root">
+        {/* Mobile header */}
+        <div className="wl-mobile-header">
+          {/* The heading is the result count; the button says what it opens. */}
+          <span className="wl-mobile-title" aria-live="polite">
+            {walletCountLabel(sortedWallets.length)}
+          </span>
+          <button
+            type="button"
+            ref={filterTriggerRef}
+            aria-haspopup="dialog"
+            aria-expanded={isFilterVisible}
+            className="wl-btn focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            onClick={handleToggleFilter}
+          >
+            <svg className="wl-btn-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" />
+              <circle cx="16" cy="6" r="2" />
+              <circle cx="10" cy="12" r="2" />
+              <circle cx="18" cy="18" r="2" />
+            </svg>
+            {filtersLabel}
+            {activeFilters.length > 0 && (
+              <>
+                <span className="wl-active-count" aria-hidden="true">{activeFilters.length}</span>
+                <span className="sr-only">, {activeCountLabel(activeFilters.length)}</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Active filter chips */}
+        {activeFilters.length > 0 && (
+          <div className="wl-active-chips">
+            {activeFilters.map((item) => (
+              <button
+                type="button"
+                key={item}
+                className="wl-chip focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                onClick={(event) => {
+                  const neighbor = event.currentTarget.nextElementSibling ?? event.currentTarget.previousElementSibling;
+                  setActiveFilters((prev) => prev.filter((filter) => filter !== item));
+                  if (neighbor instanceof HTMLButtonElement) neighbor.focus();
+                  else filterTriggerRef.current?.focus();
+                }}
+              >
+                {item.split(":")[1]}
+                <span className="wl-chip-x">{closeLabel}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="wl-layout">
+          {/* Desktop sidebar */}
+          <aside className="wl-sidebar">
+            <p className="wl-sidebar-title">{filtersLabel}</p>
+            <div className="wl-sidebar-panel">
+              <FilterToggle
+                filters={filters}
+                activeFilters={activeFilters}
+                toggleFilter={toggleFilter}
+                handleToggleFilter={handleToggleFilter}
+              />
+            </div>
+          </aside>
+
+          {/* Results - 3-column grid + correct tags format */}
+          <section className="wl-results">
+            <div className="wl-results-meta">
+              <span className="wl-results-count">
+                {walletCountLabel(sortedWallets.length)}
+              </span>
+            </div>
+
+            <div className="wl-wallet-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {productionWallets.map((wallet) => renderWalletCard(wallet))}
+            </div>
+
+            {betaWallets.length > 0 && (
+              <section className="mt-10">
+                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
+                  {betaTitle} ({betaWallets.length})
+                </h3>
+                <p className="mt-1 mb-4 text-sm text-slate-500 dark:text-slate-400">
+                  {betaNote}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {betaWallets.map((wallet) => renderWalletCard(wallet))}
+                </div>
+              </section>
+            )}
+
             {transparentOnlyWallets.length > 0 && (
               <section className="mt-10">
                 <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
@@ -9,12 +414,11 @@
                   {transparentOnlyNote}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {transparentOnlyWallets.map(renderWalletCard)}
+                  {transparentOnlyWallets.map((wallet) => renderWalletCard(wallet))}
                 </div>
               </section>
             )}
 
-            {/* Nym Mixnet wallets */}
             {nymMixnetWallets.length > 0 && (
               <section className="mt-10">
                 <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
@@ -24,7 +428,7 @@
                   {nymMixnetNote}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {nymMixnetWallets.map(renderWalletCard)}
+                  {nymMixnetWallets.map((wallet) => renderWalletCard(wallet))}
                 </div>
               </section>
             )}
@@ -36,26 +440,9 @@
                 </summary>
                 <p className="px-5 text-sm text-slate-500 dark:text-slate-400">{deprecatedNote}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
-                  {filteredDeprecated.map((wallet) => (
-                    <WalletItem
-                      key={wallet.title}
-                      title={wallet.title}
-                      link={wallet.url}
-                      logo={wallet.imageUrl}
-                      tags={[
-                        { category: "Devices", values: wallet.devices },
-                        { category: "Pools", values: wallet.pools },
-                        { category: "Features", values: wallet.features },
-                      ]}
-                      likes={likes[wallet.title] || 0}
-                      syncSpeed={wallet.syncSpeed}
-                      deprecated={wallet.statusReason ?? ""}
-                      onLike={() => handleLike(wallet.title)}
-                      onDislike={() => handleDislike(wallet.title)}
-                      error={error[wallet.title]}
-                      success={success[wallet.title]}
-                    />
-                  ))}
+                  {filteredDeprecated.map((wallet) =>
+                    renderWalletCard(wallet, wallet.statusReason ?? ""),
+                  )}
                 </div>
               </details>
             )}
@@ -126,3 +513,7 @@
         )}
       </div>
     </>
+  );
+};
+
+export default WalletList;
