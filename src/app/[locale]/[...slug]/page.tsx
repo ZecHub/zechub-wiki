@@ -144,7 +144,7 @@ import {
 import { buildBreadcrumbs } from "@/lib/breadcrumbs";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
-import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
+import { bulletizeLinkParagraphs, normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
 import { getLiveHero } from "@/lib/liveHero";
 import {
@@ -6658,7 +6658,7 @@ export default async function Page(props: {
     );
   }
 
-  const mdxSource = normalizeMdx(stripFrontmatter(processedMarkdown));
+  const mdxSource = normalizeMdx(bulletizeLinkParagraphs(stripFrontmatter(processedMarkdown)));
   const mdxCompileOptions: NonNullable<React.ComponentProps<typeof MDXRemote>["options"]>["mdxOptions"] = {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
