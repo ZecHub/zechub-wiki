@@ -37,7 +37,12 @@ export function rewriteUpgradePage(original: string, title: string, glance: stri
   const quizRaw = rest.slice(quizAt, resAt).replace(/^## Test your understanding\s*/, "").trim();
   const toList = (s: string) => s.split("\n").map((l) => l.trim()).filter(Boolean).map((l) => `- ${l}`).join("\n");
   const resources = toList(rest.slice(resAt, seeAt).replace(/^### Resources\s*/, ""));
-  const seeAlso = toList(rest.slice(seeAt, serAt).replace(/^### See also\s*/, ""));
+  // "See also" ends at the first horizontal rule; whatever sits between it and the Series line (a Related Pages
+  // table on most pages) is kept as written instead of being turned into list items.
+  const seeTail = rest.slice(seeAt, serAt);
+  const ruleAt = seeTail.search(/^---\s*$/m);
+  const seeAlso = toList((ruleAt < 0 ? seeTail : seeTail.slice(0, ruleAt)).replace(/^### See also\s*/, ""));
+  const related = ruleAt < 0 ? "" : seeTail.slice(ruleAt).replace(/^---\s*/, "").trim();
   const series = rest.slice(serAt).match(/Series:[^\n]*/)?.[0] ?? "";
 
   const faq = faqRaw
@@ -94,7 +99,7 @@ ${resources}
 
 ${seeAlso}
 
----
+${related ? related + "\n\n" : ""}---
 
 ${series}
 `;
