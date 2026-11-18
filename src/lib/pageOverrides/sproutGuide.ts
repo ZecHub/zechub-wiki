@@ -18,7 +18,7 @@ const GLANCE = `| | |
 | **Built by** | Electric Coin Company, led by Zooko Wilcox |
 | **Trusted setup** | The Ceremony: six participants, public parameters kept, toxic waste destroyed |
 | **New deposits** | Stopped at Canopy (November 18, 2020) |
-| **Today** | Unspendable since NU7 (November 6, 2026). About 12,224 ZEC remained, according to ZecStats |`;
+| **Since NU7** | Unspendable (November 6, 2026). About 12,224 ZEC remained, according to ZecStats |`;
 
 const SPROUT_2026 = `## What happened to Sprout in 2026
 

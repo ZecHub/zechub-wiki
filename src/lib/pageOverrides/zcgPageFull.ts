@@ -25,11 +25,11 @@ const PAGE = `# Zcash Community Grants
 
 | | |
 |---|---|
-| Decides | A five-member committee |
-| Chosen by | A ZCAP poll run by the Zcash Foundation |
-| Funding | 8% of the block subsidy under [ZIP 1016](https://zips.z.cash/zip-1016), until Zcash's third halving |
-| Money is held by | The [Financial Privacy Foundation](/zcash-organizations/financial-privacy-foundation), which pays grants and milestones |
-| Applications | A GitHub issue, plus a thread on the Zcash Community Forum |
+| **Decides** | A five-member committee |
+| **Chosen by** | A ZCAP poll run by the Zcash Foundation |
+| **Funding** | 8% of the block subsidy under [ZIP 1016](https://zips.z.cash/zip-1016), until Zcash's third halving |
+| **Money is held by** | The [Financial Privacy Foundation](/zcash-organizations/financial-privacy-foundation), which pays grants and milestones |
+| **Applications** | A GitHub issue, plus a thread on the Zcash Community Forum |
 
 ## How it works
 

@@ -25,12 +25,12 @@ The **Zcash Foundation (ZF)** is a US 501(c)(3) non-profit that builds and suppo
 
 | | |
 |---|---|
-| Type | US 501(c)(3) non-profit with a Board of Directors |
-| Leadership | David Campbell, Executive Director, named on 20 October 2026. Alex Bornstein, who led the Foundation from March 2025, stays in a transition role until the end of January 2027 |
-| Software | Zebra (node), FROST (threshold signatures), Zaino and Zallet in the Z3 stack |
-| Community | ZCAP polls, Zcon, Zcomm, Zcash Dev Summit, community calls |
-| Other work | Shielded Aid Initiative, which brings privacy tools to humanitarian aid |
-| Funding | Donations. It has not received Development Fund money since November 2024 |
+| **Type** | US 501(c)(3) non-profit with a Board of Directors |
+| **Leadership** | David Campbell, Executive Director, named on 20 October 2026. Alex Bornstein, who led the Foundation from March 2025, stays in a transition role until the end of January 2027 |
+| **Software** | Zebra (node), FROST (threshold signatures), Zaino and Zallet in the Z3 stack |
+| **Community** | ZCAP polls, Zcon, Zcomm, Zcash Dev Summit, community calls |
+| **Other work** | Shielded Aid Initiative, which brings privacy tools to humanitarian aid |
+| **Funding** | Donations. It has not received Development Fund money since November 2024 |
 
 ## Leadership
 
