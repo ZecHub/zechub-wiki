@@ -42,9 +42,9 @@ export default function ContinueReading({ folder, slug, roots, titles, enTitles,
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
         {strings?.heading ?? "Continue reading"}
       </h2>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <div>{prev ? card(prev, strings?.previous ?? "Previous", "start") : null}</div>
-        <div>{next ? card(next, strings?.next ?? "Next", "end") : null}</div>
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        {prev ? <div>{card(prev, strings?.previous ?? "Previous", "start")}</div> : <div className="hidden md:block" />}
+        {next ? <div>{card(next, strings?.next ?? "Next", "end")}</div> : null}
       </div>
     </nav>
   );

@@ -29,7 +29,8 @@ export function rewriteUpgradePage(original: string, title: string, glance: stri
   const quizAt = rest.search(/^## Test your understanding\s*$/m);
   const resAt = rest.search(/^### Resources\s*$/m);
   const seeAt = rest.search(/^### See also\s*$/m);
-  const serAt = rest.search(/^---\s*\n+Series:/m);
+  // The Series line may follow a rule directly, or a Related Pages table (newer source pages).
+  const serAt = rest.search(/^Series:/m);
   if ([faqAt, quizAt, resAt, seeAt, serAt].some((i) => i < 0) || !(faqAt < quizAt && quizAt < resAt && resAt < seeAt && seeAt < serAt)) return original;
 
   const body = rest.slice(0, faqAt).trim();
