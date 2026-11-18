@@ -7939,7 +7939,7 @@
           },
           "total_power": "24",
           "msgs": [],
-          "status": "passed",
+          "status": "executed",
           "votes": {
             "yes": "13",
             "no": "2",
@@ -7978,9 +7978,9 @@
           "msgs": [],
           "status": "open",
           "votes": {
-            "yes": "3",
+            "yes": "5",
             "no": "2",
-            "abstain": "1"
+            "abstain": "2"
           },
           "allow_revoting": true
         },
