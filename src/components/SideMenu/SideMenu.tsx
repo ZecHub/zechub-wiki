@@ -98,39 +98,66 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   const UPGRADE_ORDER = ["sprout", "overwinter", "sapling", "blossom", "heartwood", "canopy", "nu5", "nu6", "nu6_1", "nu6_2", "nu7"];
   const upgradeRank = (item: string) =>
     UPGRADE_ORDER.indexOf((item.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_"));
-  // The Guides tab is grouped by topic, with a small heading per group, instead of one long alphabetical list.
-  // A guide that is not listed here goes to the last group, so a new page never disappears from the menu.
-  const GUIDE_GROUPS: Array<{ title: string; slugs: string[] }> = [
-    { title: "Getting started", slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"] },
-    { title: "Wallets and hardware", slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
-    { title: "Privacy", slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
-    { title: "Payments and DeFi", slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
-    {
-      title: "Run a node",
-      slugs: ["raspberry-pi-4-full-node", "raspberry-pi-4-zebra-node", "raspberry-pi5-zebra-lightwalletd-zingo", "hardened-zebrad", "migration-guide-zcashd-to-zebrad-zallet", "zcash-node-rpc-and-indexing", "zcash-stack", "verifying-zcash-releases"],
-    },
-    { title: "Deploy on Akash", slugs: ["akash-network-zebra", "akash-network-zcashd", "akash-network-zakura", "thus-spoke-zakura-akash"] },
-    { title: "Developer tools", slugs: ["zcash-devtool", "zcash-js", "zingolib-and-zaino-tutorial", "zenith-installation", "zcash-improvement-proposals", "crosslink-feature-net"] },
-    { title: "Explore the network", slugs: ["blockchain-explorers", "visualizing-the-zcash-network", "visualizing-zcash-addresses"] },
-    { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
-  ];
-  const guideSlug = (item: string) => transformGithubFilePathToWikiLink(item).split("/").pop()?.toLowerCase() ?? "";
-  const guideGroupOf = (item: string) => {
-    const slug = guideSlug(item);
-    const gi = GUIDE_GROUPS.findIndex((g) => g.slugs.includes(slug));
-    return gi === -1 ? GUIDE_GROUPS.length : gi;
+  // Long tabs are grouped by topic, with a small heading per group, instead of one alphabetical list.
+  // A page that is not listed here goes to the last group ("More"), so a new page never disappears from the menu.
+  // Keys are page slugs; "__x" keys are the fixed entries that are not plain pages (see EXTRA_ITEMS).
+  const GROUPS: Record<string, Array<{ title: string; slugs: string[] }>> = {
+    guides: [
+      { title: "Getting started", slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"] },
+      { title: "Wallets and hardware", slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
+      { title: "Privacy", slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
+      { title: "Payments and DeFi", slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
+      {
+        title: "Run a node",
+        slugs: ["raspberry-pi-4-full-node", "raspberry-pi-4-zebra-node", "raspberry-pi5-zebra-lightwalletd-zingo", "hardened-zebrad", "migration-guide-zcashd-to-zebrad-zallet", "zcash-node-rpc-and-indexing", "zcash-stack", "verifying-zcash-releases"],
+      },
+      { title: "Deploy on Akash", slugs: ["akash-network-zebra", "akash-network-zcashd", "akash-network-zakura", "thus-spoke-zakura-akash"] },
+      { title: "Developer tools", slugs: ["zcash-devtool", "zcash-js", "zingolib-and-zaino-tutorial", "zenith-installation", "zcash-improvement-proposals", "crosslink-feature-net"] },
+      { title: "Explore the network", slugs: ["blockchain-explorers", "visualizing-the-zcash-network", "visualizing-zcash-addresses"] },
+      { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
+    ],
+    "using-zcash": [
+      { title: "Get started", slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
+      { title: "Swaps and exchanges", slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
+      { title: "Pay and get paid", slugs: ["__payment-processors", "payment-request-uris", "mobile-top-ups", "creators-and-tips", "zimppy", "metamask-snap"] },
+      { title: "Understand", slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
+      { title: "Mining", slugs: ["zcash-mining-guide", "zcash-mining-pools"] },
+      { title: "Tools", slugs: ["zallet-quick-reference-guide", "zecmap", "testnet", "shielded-newsletter"] },
+    ],
+    "zcash-community": [
+      { title: "Community", slugs: ["community-links", "community-projects", "community-blogs", "zcash-global-ambassadors", "cypherpunk-zero-nft"] },
+      { title: "Governance and security", slugs: ["zcash-governance", "zcap", "zcash-ecosystem-security"] },
+      { title: "Calls and events", slugs: ["arborist-calls", "zcash-engineering-office-hours", "zcon-archive", "zcon-vozes"] },
+      { title: "Media", slugs: ["zcash-media", "zcash-podcasts"] },
+    ],
   };
-  const guideRank = (item: string) => {
-    const gi = guideGroupOf(item);
-    return gi === GUIDE_GROUPS.length ? 0 : GUIDE_GROUPS[gi].slugs.indexOf(guideSlug(item));
+  // Fixed entries of Using Zcash that open pages outside /using-zcash, placed inside their groups.
+  const EXTRA_ITEMS: Record<string, { href: string; label: string }> = {
+    __wallets: { href: "/wallets", label: "Wallets" },
+    "__custodial-exchanges": { href: "/using-zcash/custodial-exchanges", label: "Custodial Exchanges" },
+    "__payment-processors": { href: "/payment-processors", label: "Payment Processors" },
+  };
+  const groups = GROUPS[folder];
+  const itemSlug = (item: string) =>
+    item.startsWith("__") ? item : (transformGithubFilePathToWikiLink(item).split("/").pop()?.toLowerCase() ?? "");
+  const groupOf = (item: string) => {
+    if (!groups) return 0;
+    const gi = groups.findIndex((g) => g.slugs.includes(itemSlug(item)));
+    return gi === -1 ? groups.length : gi;
+  };
+  const rankOf = (item: string) => {
+    const gi = groupOf(item);
+    return !groups || gi === groups.length ? 0 : groups[gi].slugs.indexOf(itemSlug(item));
   };
   let root = roots
     .map((item) => item.slice(0, -3))
     .sort((a, b) => (folder === "zero-to-zero-knowledge" ? seriesRank(a) - seriesRank(b) : 0));
-  if (folder === "guides") {
-    root = root
+  if (groups) {
+    // Fixed entries join the list, then everything is ordered by group and by position inside the group.
+    const extras = folder === "using-zcash" ? Object.keys(EXTRA_ITEMS) : [];
+    root = [...root.filter((item) => !["Wallets", "Payment Processors", "Custodial Exchanges"].includes(getName(item))), ...extras]
       .map((item, i) => ({ item, i }))
-      .sort((x, y) => guideGroupOf(x.item) - guideGroupOf(y.item) || guideRank(x.item) - guideRank(y.item) || x.i - y.i)
+      .sort((x, y) => groupOf(x.item) - groupOf(y.item) || rankOf(x.item) - rankOf(y.item) || x.i - y.i)
       .map((x) => x.item);
   }
   const firstUpgradeIndex = folder === "zcash-tech" ? root.findIndex((item) => upgradeRank(item) >= 0) : -1;
@@ -174,24 +201,22 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
         </p>
         <ul className="space-y-0.5 border-l border-slate-200 dark:border-white/10">
           {root.map((item: any, i: any) => {
-            const itemName = getName(item);
+            const extra = EXTRA_ITEMS[item];
+            const itemName = extra ? "" : getName(item);
             if (
-              itemName === "Wallets" ||
-              itemName === "Payment Processors" ||
-              itemName === "Custodial Exchanges"
+              !groups &&
+              (itemName === "Wallets" || itemName === "Payment Processors" || itemName === "Custodial Exchanges")
             )
               return null;
             return (
               <Fragment key={i}>
-              {folder === "guides" && (i === 0 || guideGroupOf(item) !== guideGroupOf(root[i - 1])) && (
+              {groups && (i === 0 || groupOf(item) !== groupOf(root[i - 1])) && (
                 <li
                   className={`px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400 ${
                     i === 0 ? "pt-1" : "mt-3 border-t border-slate-200 pt-3 dark:border-white/10"
                   }`}
                 >
-                  {chromeLabel(
-                    guideGroupOf(item) === GUIDE_GROUPS.length ? "More guides" : GUIDE_GROUPS[guideGroupOf(item)].title,
-                  )}
+                  {chromeLabel(groupOf(item) === groups.length ? "More" : groups[groupOf(item)].title)}
                 </li>
               )}
               {i === firstUpgradeIndex && (
@@ -199,29 +224,18 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
                   {chromeLabel("Network Upgrades")}
                 </li>
               )}
-              <NavItem
-                href={`/${transformGithubFilePathToWikiLink(item)}`}
-                label={folder === "zero-to-zero-knowledge" && seriesRank(item) === 0 ? "Overview" : item ? menuLabel(item) : ""}
-                pathname={pathname}
-              />
+              {extra ? (
+                <NavItem href={extra.href} label={chromeLabel(extra.label)} pathname={pathname} />
+              ) : (
+                <NavItem
+                  href={`/${transformGithubFilePathToWikiLink(item)}`}
+                  label={folder === "zero-to-zero-knowledge" && seriesRank(item) === 0 ? "Overview" : item ? menuLabel(item) : ""}
+                  pathname={pathname}
+                />
+              )}
               </Fragment>
             );
           })}
-          {fold === "Using Zcash" && (
-            <>
-              <NavItem href="/wallets" label={chromeLabel("Wallets")} pathname={pathname} />
-              <NavItem
-                href="/using-zcash/custodial-exchanges"
-                label={chromeLabel("Custodial Exchanges")}
-                pathname={pathname}
-              />
-              <NavItem
-                href="/payment-processors"
-                label={chromeLabel("Payment Processors")}
-                pathname={pathname}
-              />
-            </>
-          )}
         </ul>
         <div className="mt-6 hidden px-3 lg:block">{exploreLink}</div>
       </nav>
