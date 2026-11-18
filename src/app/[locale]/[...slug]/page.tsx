@@ -5444,7 +5444,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               if (m.type === "element" && m.tagName === "ul") {
                 m.properties = { ...(m.properties || {}), dataVariant: variant };
                 if (variant === "related") {
-                  // "[Wallets](/wallets) — description" → drop the dash so the
+                  // "[Wallets](/wallets) — description" (or ": description") → drop the dash or colon so the
                   // description reads as a card subtitle.
                   for (const li of m.children || []) {
                     if (li.type !== "element" || li.tagName !== "li") continue;
@@ -5452,7 +5452,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
                       (c: any, k: number, a: any[]) =>
                         k > 0 && a[k - 1].type === "element" && a[k - 1].tagName === "a" && c.type === "text",
                     );
-                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–-]\s*/, "");
+                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–:-]\s*/, "");
                     // A bare link to this wiki gets the one-line description the other entries have.
                     const kidsLi = (li.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
                     if (kidsLi.length === 1 && kidsLi[0].type === "element" && kidsLi[0].tagName === "a" && /^https?:\/\/(www\.)?zechub\.wiki\/?$/i.test(String(kidsLi[0].properties?.href || "")) && /^zechub wiki$/i.test(textOf(kidsLi[0]).trim())) {
