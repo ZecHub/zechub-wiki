@@ -14,6 +14,7 @@ const md = `
 - NU7: Compatible
 - Nym Mixnet: Supported
 - Source Code: https://github.com/example/active
+- Source: Open Source
 - Stage: Beta
 
 ---
@@ -40,6 +41,7 @@ describe("parseMarkdown", () => {
     expect(active.sourceCode).toBe(
       "https://github.com/example/active"
     );
+    expect(active.source).toBe("Open Source");
     expect(active.pools).toEqual([
       "Transparent",
       "Sapling",
@@ -58,6 +60,17 @@ describe("parseMarkdown", () => {
   it("accepts a status with no reason", () => {
     expect(bare.status).toBe("Deprecated");
     expect(bare.statusReason).toBe("");
+  });
+
+  it("reads the explicit source label independently of the source URL", () => {
+    const [closed] = parseMarkdown(`
+## [Closed](https://closed.example)
+- Source Code: https://github.com/example/closed
+- Source: Closed Source
+    `);
+
+    expect(closed.sourceCode).toBe("https://github.com/example/closed");
+    expect(closed.source).toBe("Closed Source");
   });
 
   it("reads all NU7 compatibility values", () => {

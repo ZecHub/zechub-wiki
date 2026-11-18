@@ -177,11 +177,14 @@ describe("WalletList", () => {
 - Devices: Mobile
 - Pools: Ironwood
 - Source Code: https://github.com/example/open
+- Source: Open Source
 
 ---
 ## [Closed](https://closed.example)
 - Devices: Mobile
 - Pools: Ironwood
+- Source Code: https://github.com/example/closed
+- Source: Closed Source
 `);
 
     render(<WalletList allWallets={list} />);
@@ -210,6 +213,41 @@ describe("WalletList", () => {
 
     expect(
       screen.getByRole("heading", { name: "Open" })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Closed" })
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows explicitly open-source wallets without a repository URL in the source filter", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [OpenWithoutUrl](https://open.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source: Open Source
+
+---
+## [Closed](https://closed.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source: Closed Source
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const openCard = screen
+      .getByRole("heading", { name: "OpenWithoutUrl" })
+      .closest(".wallet-item") as HTMLElement;
+    expect(within(openCard).getByText("Open Source")).toBeInTheDocument();
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    await user.click(
+      await within(sidebar).findByRole("checkbox", { name: "Open Source" })
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "OpenWithoutUrl" })
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "Closed" })

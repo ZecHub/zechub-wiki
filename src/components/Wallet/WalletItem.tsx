@@ -22,6 +22,7 @@ interface WalletItemProps {
   stage?: string;
   nymMixnet?: string;
   sourceCode?: string;
+  source?: string;
   // Set (possibly to "") only for a deprecated wallet: the reason it is listed
   // as no longer supporting Zcash. Replaces the NU7 badge.
   deprecated?: string;
@@ -96,6 +97,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   stage,
   nymMixnet,
   sourceCode,
+  source,
   deprecated,
   likes,
   onLike,
@@ -111,6 +113,9 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const note = walletNotes[key];
   const sourceUrl = sourceCode?.trim() ?? "";
   const hasSource = /^https?:\/\//i.test(sourceUrl);
+  const sourceLabel = source?.trim().toLowerCase();
+  const isOpenSource =
+    sourceLabel === "open source" || (!sourceLabel && hasSource);
 
   const handleLike = () => {
     onLike();
@@ -231,19 +236,28 @@ const WalletItem: React.FC<WalletItemProps> = ({
               Nym: {nymMixnet}
             </span>
           )}
-          {hasSource ? (
-            <a
-              href={sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Open source repository"
-              className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
-            >
-              Open Source
-            </a>
+          {isOpenSource ? (
+            hasSource ? (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open source repository"
+                className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
+              >
+                Open Source
+              </a>
+            ) : (
+              <span
+                title="Open source"
+                className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+              >
+                Open Source
+              </span>
+            )
           ) : (
             <span
-              title="No source code repository listed"
+              title="Closed source"
               className="inline-flex items-center rounded-full bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-700 dark:text-slate-300"
             >
               Closed Source
