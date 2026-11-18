@@ -27,6 +27,12 @@ jest.mock("pg", () => ({
   })),
 }));
 
+// Votes are limited to the wallets /wallets lists (walletLikesTitles.test.ts).
+jest.mock("@/lib/walletTitles", () => ({
+  MAX_WALLET_TITLE_LENGTH: 100,
+  getKnownWalletTitles: async () => new Set(["Zashi", "Ywallet"]),
+}));
+
 const vote = (title: string, ip = "10.0.0.1") =>
   new Promise<{ code: number; body: unknown }>((done) => {
     const res = {
