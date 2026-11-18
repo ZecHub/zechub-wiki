@@ -522,7 +522,13 @@
     "activeCount": "{count} etkin",
     "savedReview": "İncelemenizi kaydettik!",
     "errorGettingLikes": "Hata beğeniler alınırken:",
-    "errorUpdatingRating": "Hata puan güncellenirken:"
+    "errorUpdatingRating": "Hata puan güncellenirken:",
+    "betaTitle": "Beta cüzdanlar",
+    "betaNote": "Test sürümleri. Aksaklıklar olabilir, küçük miktarlar kullanın.",
+    "transparentOnlyTitle": "Yalnızca şeffaf cüzdanlar",
+    "transparentOnlyNote": "Bu cüzdanlar yalnızca şeffaf ZEC’i destekler; işlem ayrıntılarını gizlemez.",
+    "nymMixnetTitle": "Nym Mixnet desteği",
+    "nymMixnetNote": "Zcash trafiğini Nym mixnet üzerinden yönlendirmeyi destekleyen cüzdanlar."
   },
   "guides": {
     "title": "Rehberler",

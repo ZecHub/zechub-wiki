@@ -522,7 +522,13 @@
     "activeCount": "{count} na-arụ ọrụ",
     "savedReview": "Anyị chebere nyocha gị!",
     "errorGettingLikes": "Njehie na-enweta mmasị:",
-    "errorUpdatingRating": "Nhazi mmelite njehie:"
+    "errorUpdatingRating": "Nhazi mmelite njehie:",
+    "betaTitle": "Akpa ego beta",
+    "betaNote": "Ntọhapụ nnwale. Na-atụ anya ntụpọ ma jiri obere ego.",
+    "transparentOnlyTitle": "Akpa ego na-ahụ anya naanị",
+    "transparentOnlyNote": "Akpa ego ndị a na-akwado naanị ZEC na-ahụ anya, nke na-adịghị ezochi nkọwa azụmahịa.",
+    "nymMixnetTitle": "Nkwado Nym Mixnet",
+    "nymMixnetNote": "Akpa ego ndị na-akwado ibufe okporo ụzọ Zcash site na Nym mixnet."
   },
   "guides": {
     "title": "Akwụkwọ ntuziaka",

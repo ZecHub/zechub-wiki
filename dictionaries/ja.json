@@ -522,7 +522,13 @@
     "activeCount": "{count}件適用中",
     "savedReview": "レビューを保存しました！",
     "errorGettingLikes": "「いいね」の取得エラー:",
-    "errorUpdatingRating": "評価の更新エラー:"
+    "errorUpdatingRating": "評価の更新エラー:",
+    "betaTitle": "ベータ版ウォレット",
+    "betaNote": "テスト版です。未完成な部分があるため、少額で使用してください。",
+    "transparentOnlyTitle": "透明のみのウォレット",
+    "transparentOnlyNote": "これらのウォレットは透明ZECのみに対応しており、取引の詳細は隠されません。",
+    "nymMixnetTitle": "Nym Mixnet対応",
+    "nymMixnetNote": "Zcashの通信をNym mixnet経由でルーティングできるウォレット。"
   },
   "guides": {
     "title": "ガイド",

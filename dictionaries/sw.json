@@ -522,7 +522,13 @@
     "activeCount": "{count} vinafanya kazi",
     "savedReview": "Tumehifadhi maoni yako!",
     "errorGettingLikes": "Kosa kupata anapenda:",
-    "errorUpdatingRating": "Kosa updating rating:"
+    "errorUpdatingRating": "Kosa updating rating:",
+    "betaTitle": "Pochi za beta",
+    "betaNote": "Matoleo ya majaribio. Tarajia kasoro na tumia kiasi kidogo.",
+    "transparentOnlyTitle": "Pochi za uwazi pekee",
+    "transparentOnlyNote": "Pochi hizi zinaunga mkono ZEC ya uwazi pekee, ambayo haifichi maelezo ya miamala.",
+    "nymMixnetTitle": "Usaidizi wa Nym Mixnet",
+    "nymMixnetNote": "Pochi zinazounga mkono uelekezaji wa trafiki ya Zcash kupitia Nym mixnet."
   },
   "guides": {
     "title": "Miongozo",

@@ -522,7 +522,13 @@
     "activeCount": "{count}개 적용됨",
     "savedReview": "리뷰를 저장했습니다!",
     "errorGettingLikes": "좋아요를 가져오는 중 오류:",
-    "errorUpdatingRating": "평점을 업데이트하는 중 오류:"
+    "errorUpdatingRating": "평점을 업데이트하는 중 오류:",
+    "betaTitle": "베타 지갑",
+    "betaNote": "테스트 버전입니다. 일부 미완성 부분이 있을 수 있으니 소액으로 사용하세요.",
+    "transparentOnlyTitle": "투명 전용 지갑",
+    "transparentOnlyNote": "이 지갑은 투명 ZEC만 지원하며 거래 세부 정보를 숨기지 않습니다.",
+    "nymMixnetTitle": "Nym Mixnet 지원",
+    "nymMixnetNote": "Zcash 트래픽을 Nym mixnet을 통해 라우팅할 수 있는 지갑."
   },
   "guides": {
     "title": "가이드",

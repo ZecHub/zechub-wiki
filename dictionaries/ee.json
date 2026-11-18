@@ -522,7 +522,13 @@
     "activeCount": "{count} le dɔ wɔm",
     "savedReview": "Míedzra wò numetotoa ɖo!",
     "errorGettingLikes": "Vodada le likes xɔxɔ me:",
-    "errorUpdatingRating": "Vodada le asitɔtrɔ le dzidzedzekpɔkpɔ ŋu:"
+    "errorUpdatingRating": "Vodada le asitɔtrɔ le dzidzedzekpɔkpɔ ŋu:",
+    "betaTitle": "Beta gakotokuwo",
+    "betaNote": "Dodokpɔ ƒe tɔtrɔ. Kpɔ egbɔ be nu aɖewo mawɔ nyuie o eye zã ga sue.",
+    "transparentOnlyTitle": "Gakotoku siwo me kɔkɔe ko",
+    "transparentOnlyNote": "Gakotoku siawo wɔ dɔ kple ZEC si me kɔkɔe ko, si me ɖea asitsatsa ƒe nyawo ɖe go o.",
+    "nymMixnetTitle": "Nym Mixnet ƒe kpekpeɖeŋu",
+    "nymMixnetNote": "Gakotoku siwo wɔ dɔ kple Zcash ƒe mɔfiafia to Nym mixnet dzi."
   },
   "guides": {
     "title": "Mɔfialawo",

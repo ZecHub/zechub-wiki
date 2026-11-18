@@ -522,7 +522,13 @@
     "activeCount": "{count} attivi",
     "savedReview": "La tua recensione è stata salvata.",
     "errorGettingLikes": "Errore nel recupero dei voti:",
-    "errorUpdatingRating": "Errore nell'aggiornamento del voto:"
+    "errorUpdatingRating": "Errore nell'aggiornamento del voto:",
+    "betaTitle": "Portafogli beta",
+    "betaNote": "Versioni di test. Aspettati imperfezioni e usa importi piccoli.",
+    "transparentOnlyTitle": "Portafogli solo trasparenti",
+    "transparentOnlyNote": "Questi portafogli supportano solo ZEC trasparente, che non nasconde i dettagli delle transazioni.",
+    "nymMixnetTitle": "Supporto Nym Mixnet",
+    "nymMixnetNote": "Portafogli che supportano l'instradamento del traffico Zcash attraverso la Nym Mixnet."
   },
   "guides": {
     "title": "Guide",

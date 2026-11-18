@@ -522,7 +522,13 @@
     "activeCount": "{count} نشطة",
     "savedReview": "لقد حفظنا مراجعتك!",
     "errorGettingLikes": "خطأ في جلب الإعجابات:",
-    "errorUpdatingRating": "خطأ في تحديث التقييم:"
+    "errorUpdatingRating": "خطأ في تحديث التقييم:",
+    "betaTitle": "محافظ بيتا",
+    "betaNote": "إصدارات اختبارية. توقع بعض العيوب واستخدم مبالغ صغيرة.",
+    "transparentOnlyTitle": "محافظ شفافة فقط",
+    "transparentOnlyNote": "هذه المحافظ تدعم فقط ZEC الشفاف، الذي لا يخفي تفاصيل المعاملات.",
+    "nymMixnetTitle": "دعم Nym Mixnet",
+    "nymMixnetNote": "المحافظ التي تدعم توجيه حركة Zcash عبر Nym Mixnet."
   },
   "guides": {
     "title": "الأدلة",

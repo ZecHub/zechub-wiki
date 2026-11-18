@@ -522,7 +522,13 @@
     "activeCount": "{count} فعال",
     "savedReview": "نظر شما ذخیره شد!",
     "errorGettingLikes": "خطا در دریافت پسندها:",
-    "errorUpdatingRating": "خطا در به‌روزرسانی امتیاز:"
+    "errorUpdatingRating": "خطا در به‌روزرسانی امتیاز:",
+    "betaTitle": "کیف‌پول‌های بتا",
+    "betaNote": "نسخه‌های آزمایشی. انتظار نقص داشته باشید و از مبالغ کم استفاده کنید.",
+    "transparentOnlyTitle": "کیف‌پول‌های فقط شفاف",
+    "transparentOnlyNote": "این کیف‌پول‌ها فقط از ZEC شفاف پشتیبانی می‌کنند که جزئیات تراکنش را پنهان نمی‌کند.",
+    "nymMixnetTitle": "پشتیبانی از Nym Mixnet",
+    "nymMixnetNote": "کیف‌پول‌هایی که مسیریابی ترافیک Zcash را از طریق Nym mixnet پشتیبانی می‌کنند."
   },
   "guides": {
     "title": "راهنماها",

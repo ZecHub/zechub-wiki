@@ -522,7 +522,13 @@
     "activeCount": "{count} aktif",
     "savedReview": "Ulasan Anda telah disimpan!",
     "errorGettingLikes": "Kesalahan saat mengambil suka:",
-    "errorUpdatingRating": "Kesalahan saat memperbarui peringkat:"
+    "errorUpdatingRating": "Kesalahan saat memperbarui peringkat:",
+    "betaTitle": "Dompet beta",
+    "betaNote": "Versi uji. Harapkan kekurangan dan gunakan jumlah kecil.",
+    "transparentOnlyTitle": "Dompet hanya transparan",
+    "transparentOnlyNote": "Dompet ini hanya mendukung ZEC transparan, yang tidak menyembunyikan detail transaksi.",
+    "nymMixnetTitle": "Dukungan Nym Mixnet",
+    "nymMixnetNote": "Dompet yang mendukung perutean lalu lintas Zcash melalui Nym mixnet."
   },
   "guides": {
     "title": "Panduan",
