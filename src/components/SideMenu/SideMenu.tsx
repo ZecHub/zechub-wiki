@@ -116,6 +116,11 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
       { title: "Explore the network", slugs: ["blockchain-explorers", "visualizing-the-zcash-network", "visualizing-zcash-addresses"] },
       { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
     ],
+    "start-here": [
+      { title: "Begin here", slugs: ["using-this-wiki", "what-is-zec-and-zcash", "new-user-guide", "who-can-see-your-zcash-payment"] },
+      { title: "Understand Zcash", slugs: ["zec-use-cases", "zcash-monetary-policy", "how-zcash-is-organized", "network-upgrades", "development-fund"] },
+      { title: "ZecHub and resources", slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
+    ],
     "using-zcash": [
       { title: "Get started", slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
       { title: "Swaps and exchanges", slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
