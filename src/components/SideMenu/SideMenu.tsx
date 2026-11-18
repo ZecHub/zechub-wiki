@@ -98,9 +98,41 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   const UPGRADE_ORDER = ["sprout", "overwinter", "sapling", "blossom", "heartwood", "canopy", "nu5", "nu6", "nu6_1", "nu6_2", "nu7"];
   const upgradeRank = (item: string) =>
     UPGRADE_ORDER.indexOf((item.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_"));
+  // The Guides tab is grouped by topic, with a small heading per group, instead of one long alphabetical list.
+  // A guide that is not listed here goes to the last group, so a new page never disappears from the menu.
+  const GUIDE_GROUPS: Array<{ title: string; slugs: string[] }> = [
+    { title: "Getting started", slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"] },
+    { title: "Wallets and hardware", slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
+    { title: "Privacy", slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
+    { title: "Payments and DeFi", slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
+    {
+      title: "Run a node",
+      slugs: ["raspberry-pi-4-full-node", "raspberry-pi-4-zebra-node", "raspberry-pi5-zebra-lightwalletd-zingo", "hardened-zebrad", "migration-guide-zcashd-to-zebrad-zallet", "zcash-node-rpc-and-indexing", "zcash-stack", "verifying-zcash-releases"],
+    },
+    { title: "Deploy on Akash", slugs: ["akash-network-zebra", "akash-network-zcashd", "akash-network-zakura", "thus-spoke-zakura-akash"] },
+    { title: "Developer tools", slugs: ["zcash-devtool", "zcash-js", "zingolib-and-zaino-tutorial", "zenith-installation", "zcash-improvement-proposals", "crosslink-feature-net"] },
+    { title: "Explore the network", slugs: ["blockchain-explorers", "visualizing-the-zcash-network", "visualizing-zcash-addresses"] },
+    { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
+  ];
+  const guideSlug = (item: string) => transformGithubFilePathToWikiLink(item).split("/").pop()?.toLowerCase() ?? "";
+  const guideGroupOf = (item: string) => {
+    const slug = guideSlug(item);
+    const gi = GUIDE_GROUPS.findIndex((g) => g.slugs.includes(slug));
+    return gi === -1 ? GUIDE_GROUPS.length : gi;
+  };
+  const guideRank = (item: string) => {
+    const gi = guideGroupOf(item);
+    return gi === GUIDE_GROUPS.length ? 0 : GUIDE_GROUPS[gi].slugs.indexOf(guideSlug(item));
+  };
   let root = roots
     .map((item) => item.slice(0, -3))
     .sort((a, b) => (folder === "zero-to-zero-knowledge" ? seriesRank(a) - seriesRank(b) : 0));
+  if (folder === "guides") {
+    root = root
+      .map((item, i) => ({ item, i }))
+      .sort((x, y) => guideGroupOf(x.item) - guideGroupOf(y.item) || guideRank(x.item) - guideRank(y.item) || x.i - y.i)
+      .map((x) => x.item);
+  }
   const firstUpgradeIndex = folder === "zcash-tech" ? root.findIndex((item) => upgradeRank(item) >= 0) : -1;
   if (firstUpgradeIndex >= 0) {
     const upgrades = root.filter((item) => upgradeRank(item) >= 0).sort((x, y) => upgradeRank(x) - upgradeRank(y));
@@ -151,6 +183,17 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
               return null;
             return (
               <Fragment key={i}>
+              {folder === "guides" && (i === 0 || guideGroupOf(item) !== guideGroupOf(root[i - 1])) && (
+                <li
+                  className={`px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400 ${
+                    i === 0 ? "pt-1" : "mt-3 border-t border-slate-200 pt-3 dark:border-white/10"
+                  }`}
+                >
+                  {chromeLabel(
+                    guideGroupOf(item) === GUIDE_GROUPS.length ? "More guides" : GUIDE_GROUPS[guideGroupOf(item)].title,
+                  )}
+                </li>
+              )}
               {i === firstUpgradeIndex && (
                 <li className="px-3 pb-1 pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
                   {chromeLabel("Network Upgrades")}
