@@ -40,7 +40,7 @@
     {
       "title": "Qual o valor da sua privacidade? #Privacidade #Cripto #Zcash",
       "video_id": "SRJXi3B5f3w",
-      "views": 1058
+      "views": 1059
     },
     {
       "title": "Inclusão tecnológica e educação sobre privacidade andam juntas.",
@@ -193,14 +193,14 @@
       "views": 480
     },
     {
+      "title": "Zcash na Cake Wallet - Tutorial Completo",
+      "video_id": "ngzYYqcRa84",
+      "views": 473
+    },
+    {
       "title": "Zcash UX & Monero",
       "video_id": "y8facw4Gd10",
       "views": 472
-    },
-    {
-      "title": "Zcash na Cake Wallet - Tutorial Completo",
-      "video_id": "ngzYYqcRa84",
-      "views": 466
     },
     {
       "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
@@ -440,7 +440,7 @@
     {
       "title": "A inovação do Zooko que protege a rede e incentiva o staking.",
       "video_id": "UGbqnjzxl3o",
-      "views": 232
+      "views": 233
     },
     {
       "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
@@ -488,6 +488,11 @@
       "views": 219
     },
     {
+      "title": "Consciência sobre manipulação de massa.",
+      "video_id": "DY4ptjdOWKk",
+      "views": 216
+    },
+    {
       "title": "Inconsistências dos Bitcoiners",
       "video_id": "AKIxtDzvqFc",
       "views": 216
@@ -496,11 +501,6 @@
       "title": "A ilusão da privacidade na economia digital",
       "video_id": "wqOROjLNhDE",
       "views": 215
-    },
-    {
-      "title": "Consciência sobre manipulação de massa.",
-      "video_id": "DY4ptjdOWKk",
-      "views": 214
     },
     {
       "title": "A cultura da Zcash é diferente.",
@@ -920,6 +920,11 @@
     {
       "title": "O Controle Invisível das Grandes Corporações",
       "video_id": "NDWL37DktwU",
+      "views": 131
+    },
+    {
+      "title": "Workshop Zodl em Português | ZK AV Club x Zcash Brasil",
+      "video_id": "sfl4z9AfOy0",
       "views": 131
     },
     {
@@ -1523,6 +1528,11 @@
       "views": 83
     },
     {
+      "title": "Zec Insider - Listagens de Zcash (ZEC) em Exchanges DEXes",
+      "video_id": "ltmU1I-Iq_A",
+      "views": 83
+    },
+    {
       "title": "Bitcoin e Cartão de Crédito: Hackeados, vazados e expostos.",
       "video_id": "hzmcfrppWHo",
       "views": 82
@@ -1530,11 +1540,6 @@
     {
       "title": "Privacidade como um recurso: Por que a moeda ideal se assemelha ao dinheiro",
       "video_id": "tfe-REk-BRQ",
-      "views": 82
-    },
-    {
-      "title": "Zec Insider - Listagens de Zcash (ZEC) em Exchanges DEXes",
-      "video_id": "ltmU1I-Iq_A",
       "views": 82
     },
     {
@@ -1705,11 +1710,6 @@
     {
       "title": "Zcash Brasil no Modular Carnival",
       "video_id": "PVhkCQawMkA",
-      "views": 72
-    },
-    {
-      "title": "Workshop Zodl em Português | ZK AV Club x Zcash Brasil",
-      "video_id": "sfl4z9AfOy0",
       "views": 72
     },
     {
@@ -1903,13 +1903,13 @@
       "views": 63
     },
     {
-      "title": "Reestabelecendo Normas de Privacidade #consensus2025 #rastreabilidade  #zcash",
-      "video_id": "NBVAHtj1LwQ",
-      "views": 62
-    },
-    {
       "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
       "video_id": "gLqT_0B4tSU",
+      "views": 63
+    },
+    {
+      "title": "Reestabelecendo Normas de Privacidade #consensus2025 #rastreabilidade  #zcash",
+      "video_id": "NBVAHtj1LwQ",
       "views": 62
     },
     {
@@ -2290,6 +2290,11 @@
     {
       "title": "Multisig e Carteira Full Node: Máxima Segurança para Guardar ZEC | Zec Insider",
       "video_id": "IXJ8U3-rxrw",
+      "views": 46
+    },
+    {
+      "title": "NU7, Zebra Ándale e Coinholder Grants Q4 | Zec Insider",
+      "video_id": "6aSzhQQxEOU",
       "views": 46
     },
     {
@@ -2788,6 +2793,11 @@
       "views": 36
     },
     {
+      "title": "Autocustódia, Privacidade e Acesso: O Novo Mundo Financeiro",
+      "video_id": "2jWxXKxjLH0",
+      "views": 36
+    },
+    {
       "title": "De 60 GB Para 4 GB: As Otimizações no Prover da Zcash",
       "video_id": "8apRfqIeOk4",
       "views": 36
@@ -2843,18 +2853,8 @@
       "views": 35
     },
     {
-      "title": "Autocustódia, Privacidade e Acesso: O Novo Mundo Financeiro",
-      "video_id": "2jWxXKxjLH0",
-      "views": 35
-    },
-    {
       "title": "Como Zakura Remove Gargalos da Sincronização",
       "video_id": "Z2f1B7bB_78",
-      "views": 35
-    },
-    {
-      "title": "NU7, Zebra Ándale e Coinholder Grants Q4 | Zec Insider",
-      "video_id": "6aSzhQQxEOU",
       "views": 35
     },
     {
@@ -3218,6 +3218,11 @@
       "views": 28
     },
     {
+      "title": "Por que o voto dos coinholders da Zcash levou anos",
+      "video_id": "8rerNEJyanw",
+      "views": 28
+    },
+    {
       "title": "ZPACE Zcash e Brave - PARCERIA",
       "video_id": "DZU40gTSXoI",
       "views": 27
@@ -3400,11 +3405,6 @@
     {
       "title": "NEAR Intents publicava seu shielded address sem você ver",
       "video_id": "GxfYySITctQ",
-      "views": 25
-    },
-    {
-      "title": "Por que o voto dos coinholders da Zcash levou anos",
-      "video_id": "8rerNEJyanw",
       "views": 25
     },
     {
@@ -4018,6 +4018,11 @@
       "views": 13
     },
     {
+      "title": "A privacidade nunca foi tão valiosa",
+      "video_id": "7ZI0vDFPXV0",
+      "views": 13
+    },
+    {
       "title": "WeeklyCall #3 Ultima de Janeiro!",
       "video_id": "kZpXYF3DSAs",
       "views": 12
@@ -4153,6 +4158,11 @@
       "views": 10
     },
     {
+      "title": "Como se ataca uma hardware wallet comercial",
+      "video_id": "h2KE2xeeXsQ",
+      "views": 10
+    },
+    {
       "title": "WEEKLYCALL #10 - Node para Windows, MacOS e Debian.",
       "video_id": "fFlP1pwa0LQ",
       "views": 9
@@ -4258,6 +4268,11 @@
       "views": 6
     },
     {
+      "title": "Quem pode vetar o voto dos coinholders da Zcash?",
+      "video_id": "T0T97PTLlLA",
+      "views": 6
+    },
+    {
       "title": "Call de comemoração de 1 ano de Zcon Vozes",
       "video_id": "w3M8Tg0JzfQ",
       "views": 5
@@ -4265,11 +4280,6 @@
     {
       "title": "Zcash Shielded Call Vol.3 - ZIPS da NU7 Revelados",
       "video_id": "W8devS2w0xA",
-      "views": 5
-    },
-    {
-      "title": "A privacidade nunca foi tão valiosa",
-      "video_id": "7ZI0vDFPXV0",
       "views": 5
     },
     {
@@ -4281,11 +4291,6 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
-    },
-    {
-      "title": "Como se ataca uma hardware wallet comercial",
-      "video_id": "h2KE2xeeXsQ",
-      "views": 0
     }
   ]
 }
