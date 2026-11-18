@@ -18,6 +18,7 @@ interface Wallet {
   nu7?: string;
   nymMixnet?: string;
   sourceCode?: string;
+  source?: string;
   status?: string;
   statusReason?: string;
   stage?: string;
@@ -30,8 +31,12 @@ const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 const hasPublicSource = (w: Wallet) =>
   /^https?:\/\//i.test(w.sourceCode?.trim() ?? "");
 
-const sourceStatus = (w: Wallet) =>
-  hasPublicSource(w) ? "Open Source" : "Closed Source";
+const sourceStatus = (w: Wallet) => {
+  const source = w.source?.trim().toLowerCase();
+  if (source === "open source") return "Open Source";
+  if (source === "closed source") return "Closed Source";
+  return hasPublicSource(w) ? "Open Source" : "Closed Source";
+};
 
 const isBeta = (w: Wallet) => w.stage?.trim().toLowerCase() === "beta";
 
@@ -302,6 +307,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       stage={wallet.stage}
       nymMixnet={wallet.nymMixnet}
       sourceCode={wallet.sourceCode}
+      source={wallet.source}
       deprecated={deprecated}
       onLike={() => handleLike(wallet.title)}
       onDislike={() => handleDislike(wallet.title)}
