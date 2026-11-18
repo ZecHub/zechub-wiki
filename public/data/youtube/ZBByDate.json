@@ -3,24 +3,29 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Como se ataca uma hardware wallet comercial",
+            "video_id": "h2KE2xeeXsQ",
+            "views": 10
+        },
+        {
+            "title": "Quem pode vetar o voto dos coinholders da Zcash?",
+            "video_id": "T0T97PTLlLA",
+            "views": 6
+        },
+        {
             "title": "Workshop Zodl em Portugu\u00eas | ZK AV Club x Zcash Brasil",
             "video_id": "sfl4z9AfOy0",
-            "views": 72
+            "views": 131
         },
         {
             "title": "A privacidade nunca foi t\u00e3o valiosa",
             "video_id": "7ZI0vDFPXV0",
-            "views": 5
+            "views": 13
         },
         {
             "title": "Por que o voto dos coinholders da Zcash levou anos",
             "video_id": "8rerNEJyanw",
-            "views": 25
-        },
-        {
-            "title": "Como se ataca uma hardware wallet comercial",
-            "video_id": "h2KE2xeeXsQ",
-            "views": 0
+            "views": 28
         },
         {
             "title": "Quem decide pagar os devs da Zcash?",
@@ -50,7 +55,7 @@
         {
             "title": "NU7, Zebra \u00c1ndale e Coinholder Grants Q4 | Zec Insider",
             "video_id": "6aSzhQQxEOU",
-            "views": 35
+            "views": 46
         },
         {
             "title": "Ningu\u00e9m precisa ficar sabendo o que voc\u00ea faz com o seu dinheiro",
@@ -570,7 +575,7 @@
         {
             "title": "Autocust\u00f3dia, Privacidade e Acesso: O Novo Mundo Financeiro",
             "video_id": "2jWxXKxjLH0",
-            "views": 35
+            "views": 36
         },
         {
             "title": "Fedimint e Zcash: Confian\u00e7a Comunit\u00e1ria vs Garantia Criptogr\u00e1fica",
@@ -880,7 +885,7 @@
         {
             "title": "Zcash Protocol Walkthroug \u00a71.1\u20131.2 | Engineering #8",
             "video_id": "gLqT_0B4tSU",
-            "views": 62
+            "views": 63
         },
         {
             "title": "Edward Snowden, o sexto criador da Zcash | Zebra Talk",
@@ -1340,7 +1345,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 466
+            "views": 473
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -1760,7 +1765,7 @@
         {
             "title": "A inova\u00e7\u00e3o do Zooko que protege a rede e incentiva o staking.",
             "video_id": "UGbqnjzxl3o",
-            "views": 232
+            "views": 233
         },
         {
             "title": "Zec Insider - Roadmap ECC 2025 e Crosslink: Staking.",
@@ -1910,7 +1915,7 @@
         {
             "title": "Zec Insider - Listagens de Zcash (ZEC) em Exchanges DEXes",
             "video_id": "ltmU1I-Iq_A",
-            "views": 82
+            "views": 83
         },
         {
             "title": "Artista e pesquisador de AI fala sobre privacidade digital.",
@@ -3030,7 +3035,7 @@
         {
             "title": "Qual o valor da sua privacidade? #Privacidade #Cripto #Zcash",
             "video_id": "SRJXi3B5f3w",
-            "views": 1058
+            "views": 1059
         },
         {
             "title": "Duas propriedades necess\u00e1rias para a civiliza\u00e7\u00e3o... #Privacidade #Cripto #Zcash #direitohumano #IA",
@@ -3050,7 +3055,7 @@
         {
             "title": "Consci\u00eancia sobre manipula\u00e7\u00e3o de massa.",
             "video_id": "DY4ptjdOWKk",
-            "views": 214
+            "views": 216
         },
         {
             "title": "O impacto da coleta de dados. #rastreabilidade #blockchain #zcash",
