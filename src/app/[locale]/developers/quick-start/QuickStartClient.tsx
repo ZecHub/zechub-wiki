@@ -396,13 +396,13 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.1.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.1.0 zebrad`}
             />
           </>
         )}
@@ -419,13 +419,13 @@ const ZebradTab = () => {
               {qs?.manualDownload ?? "Manual Download"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.1.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.1.0 zebrad`}
             />
           </>
         )}
@@ -444,13 +444,13 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v7.1.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
             </SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.0.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v7.1.0 zebrad`}
             />
           </>
         )}
@@ -834,7 +834,7 @@ source "$HOME/.cargo/env"`}
           <SectionCard title={qs?.fromSource ?? "From GitHub"}>
             <SubLabel>{qs?.pinnedRelease ?? "Install Pinned Release"}</SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.2.0 zakura`}
+              code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.8.9 zakura`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.verifyInstallation ?? "Verify Installation"}
