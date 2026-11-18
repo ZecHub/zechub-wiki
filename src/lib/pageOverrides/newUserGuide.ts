@@ -1,4 +1,4 @@
-// New User Guide: rebuilt as a step-by-step onboarding path. It has a TL;DR, a "path at a glance" table, five numbered
+// New User Guide: rebuilt as a step-by-step onboarding path. It has a "path at a glance" table (the TL;DR repeated the same five steps and was removed), five numbered
 // steps, a seed phrase and safety section, a shielded-vs-transparent explainer, common mistakes and next steps.
 // The TL;DR no longer names exchanges (the list changes) and the Zashi video is labeled with its new name, ZODL.
 // The three tutorial videos and the Ledger article link are kept, and the image marker that the MDX image component
@@ -18,16 +18,6 @@ const frame = (id: string, title: string) => `<div className="my-8 w-full aspect
 
 const BODY = `New to Zcash? This guide takes you from zero to your first private payment. It is written for someone who has never held ZEC before, and every step links to a deeper page when you want more detail.
 
-## TL;DR
-
-1. **Buy ZEC** on an exchange from the [exchange list](/using-zcash/custodial-exchanges), or use another way from [Buying ZEC](/using-zcash/buying-zec).
-2. **Set up a shielded wallet** such as ZODL, Zingo! or Zkool, and write down its seed phrase.
-3. **Withdraw** your ZEC from the exchange to your wallet.
-4. **Send a small shielded payment** to try it.
-5. **Join the community** on the forum or Discord.
-
-You do not need to buy a whole ZEC. ZEC is divisible, so you can start with a fraction.
-
 ## The path at a glance
 
 | Step | What you do | Why it matters |
@@ -37,6 +27,8 @@ You do not need to buy a whole ZEC. ZEC is divisible, so you can start with a fr
 | 3. Withdraw | Send your ZEC from the exchange to your wallet | Your coins are now under your control |
 | 4. Send a payment | Make a small shielded transaction | You confirm that everything works |
 | 5. Join the community | Ask questions on the forum or Discord | You get help from other users |
+
+You do not need to buy a whole ZEC. ZEC is divisible, so you can start with a fraction.
 
 ## 1. Buy ZEC
 
@@ -106,7 +98,7 @@ The [Zcash Community Forum](https://forum.zcashcommunity.com/) is where the comm
 - [Unified Addresses](/zcash-tech/unified-addresses): one address for several receiver types
 - [Viewing Keys](/zcash-tech/viewing-keys): share transaction history without giving up spending control
 
-## Related Pages
+## Related pages
 
 - [Buying ZEC](/using-zcash/buying-zec): ways to acquire ZEC
 - [Wallets](/using-zcash/wallets): compare all Zcash wallets by features and platform

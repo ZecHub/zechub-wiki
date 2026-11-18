@@ -51,6 +51,7 @@ import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteTransactionsGuide } from "@/lib/pageOverrides/transactionsGuide";
 import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
 import { rewriteUsingThisWikiPage } from "@/lib/pageOverrides/usingThisWikiPage";
+import { rewriteWhoCanSeePaymentPage } from "@/lib/pageOverrides/whoCanSeePaymentPage";
 import { rewriteZcashResourcesPage } from "@/lib/pageOverrides/zcashResourcesPage";
 import { rewriteZecUseCasesPage } from "@/lib/pageOverrides/zecUseCasesPage";
 import { rewriteHowZcashIsOrganizedPage } from "@/lib/pageOverrides/howZcashIsOrganizedPage";
@@ -6459,6 +6460,9 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "start-here/zcash-resources" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZcashResourcesPage(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/who-can-see-your-zcash-payment" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteWhoCanSeePaymentPage(processedMarkdown);
   }
   if (slug.join("/") === "start-here/using-this-wiki" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteUsingThisWikiPage(processedMarkdown);
