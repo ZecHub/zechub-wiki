@@ -1,5 +1,6 @@
 'use client';
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import { menuLabelFor } from "@/lib/menuLabel";
 import { Link } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { Fragment, useState } from "react";
@@ -9,6 +10,7 @@ import {
   BiMenu as BurgerMenuIcon,
 } from "react-icons/bi";
 import { Icon } from "../UI/Icon";
+import { EXTRA_ITEMS, READING_GROUPS } from "@/constants/readingPaths";
 
 interface MenuProps {
   folder: string;
@@ -20,11 +22,6 @@ interface MenuProps {
   titles?: Record<string, string>;
   enTitles?: Record<string, string>;
 }
-
-const DUPLICATE_BASICS_TITLES: Record<string, string> = {
-  zec_use_cases: "ZEC Use Cases",
-  zcash_monetary_policy: "Zcash Monetary Policy",
-};
 
 const normalize = (v: string) => decodeURIComponent(v).replace(/\/+$/, "").toLowerCase();
 
@@ -70,22 +67,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   // site-relative path with ".md" (e.g. "guides/Foo.md"). Fallback order:
   // localized manifest -> English manifest -> filename-derived name. getName
   // stays the source of truth for icon/filter matching below.
-  const menuLabel = (item: string) => {
-    const key = item.replace(/^site\//, "") + ".md";
-    const titled = titles[key] ?? enTitles[key];
-    const fromFile = getName(item);
-    // Two Start Here pages are headed "Zcash Basics" in the content repo (a copied title), so the manifest lists
-    // three entries with that name. Give the other two their own names.
-    if (!titled || titled.trim().toLowerCase() === "zcash basics") {
-      const base = (key.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_").replace(/\.md$/, "");
-      const fix = DUPLICATE_BASICS_TITLES[base];
-      if (fix) return fix;
-    }
-    // Manifest titles are often the page H1 and wrap the sidebar.
-    // Prefer the short filename label when the title is much longer.
-    if (titled && titled.length <= 36) return titled;
-    return fromFile;
-  };
+  const menuLabel = (item: string) => menuLabelFor(item, titles, enTitles);
   // The "Zero to Zero Knowledge" series is meant to be read in order, not alphabetically.
   const SERIES_ORDER = ["zero_to_zero", "hash_functions", "mnemonic_seed", "zcash_addresses", "tees", "cryptonote", "lelantus"];
   const seriesRank = (item: string) => {
@@ -98,50 +80,9 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   const UPGRADE_ORDER = ["sprout", "overwinter", "sapling", "blossom", "heartwood", "canopy", "nu5", "nu6", "nu6_1", "nu6_2", "nu7"];
   const upgradeRank = (item: string) =>
     UPGRADE_ORDER.indexOf((item.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_"));
-  // Long tabs are grouped by topic, with a small heading per group, instead of one alphabetical list.
-  // A page that is not listed here goes to the last group ("More"), so a new page never disappears from the menu.
-  // Keys are page slugs; "__x" keys are the fixed entries that are not plain pages (see EXTRA_ITEMS).
-  const GROUPS: Record<string, Array<{ title: string; slugs: string[] }>> = {
-    guides: [
-      { title: "Getting started", slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"] },
-      { title: "Wallets and hardware", slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
-      { title: "Privacy", slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
-      { title: "Payments and DeFi", slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
-      {
-        title: "Run a node",
-        slugs: ["raspberry-pi-4-full-node", "raspberry-pi-4-zebra-node", "raspberry-pi5-zebra-lightwalletd-zingo", "hardened-zebrad", "migration-guide-zcashd-to-zebrad-zallet", "zcash-node-rpc-and-indexing", "zcash-stack", "verifying-zcash-releases"],
-      },
-      { title: "Deploy on Akash", slugs: ["akash-network-zebra", "akash-network-zcashd", "akash-network-zakura", "thus-spoke-zakura-akash"] },
-      { title: "Developer tools", slugs: ["zcash-devtool", "zcash-js", "zingolib-and-zaino-tutorial", "zenith-installation", "zcash-improvement-proposals", "crosslink-feature-net"] },
-      { title: "Explore the network", slugs: ["blockchain-explorers", "visualizing-the-zcash-network", "visualizing-zcash-addresses"] },
-      { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
-    ],
-    "start-here": [
-      { title: "Begin here", slugs: ["using-this-wiki", "what-is-zec-and-zcash", "new-user-guide", "who-can-see-your-zcash-payment"] },
-      { title: "Understand Zcash", slugs: ["zec-use-cases", "zcash-monetary-policy", "how-zcash-is-organized", "network-upgrades", "development-fund"] },
-      { title: "ZecHub and resources", slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
-    ],
-    "using-zcash": [
-      { title: "Get started", slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
-      { title: "Swaps and exchanges", slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
-      { title: "Pay and get paid", slugs: ["__payment-processors", "payment-request-uris", "mobile-top-ups", "creators-and-tips", "zimppy", "metamask-snap"] },
-      { title: "Understand", slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
-      { title: "Mining", slugs: ["zcash-mining-guide", "zcash-mining-pools"] },
-      { title: "Tools", slugs: ["zallet-quick-reference-guide", "zecmap", "testnet", "shielded-newsletter"] },
-    ],
-    "zcash-community": [
-      { title: "Community", slugs: ["community-links", "community-projects", "community-blogs", "zcash-global-ambassadors", "cypherpunk-zero-nft"] },
-      { title: "Governance and security", slugs: ["zcash-governance", "zcap", "zcash-ecosystem-security"] },
-      { title: "Calls and events", slugs: ["arborist-calls", "zcash-engineering-office-hours", "zcon-archive", "zcon-vozes"] },
-      { title: "Media", slugs: ["zcash-media", "zcash-podcasts"] },
-    ],
-  };
-  // Fixed entries of Using Zcash that open pages outside /using-zcash, placed inside their groups.
-  const EXTRA_ITEMS: Record<string, { href: string; label: string }> = {
-    __wallets: { href: "/wallets", label: "Wallets" },
-    "__custodial-exchanges": { href: "/using-zcash/custodial-exchanges", label: "Custodial Exchanges" },
-    "__payment-processors": { href: "/payment-processors", label: "Payment Processors" },
-  };
+  // Long tabs are grouped by topic (see src/constants/readingPaths.ts). A page that is not listed there goes to
+  // the last group ("More"), so a new page never disappears from the menu.
+  const GROUPS = READING_GROUPS;
   const groups = GROUPS[folder];
   const itemSlug = (item: string) =>
     item.startsWith("__") ? item : (transformGithubFilePathToWikiLink(item).split("/").pop()?.toLowerCase() ?? "");

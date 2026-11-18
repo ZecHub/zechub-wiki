@@ -1,0 +1,81 @@
+// Sidebar groups for the long tabs, and the reading trails built from them.
+// - Every page of a tab appears in the side menu grouped by topic; a page that is not listed goes to a last "More" group.
+// - A group marked `sequence: true` is an ordered trail (each page builds on the one before it). Only those groups get
+//   "Previous / Next" cards at the end of a page. Groups of loose topics (tools, exchanges, media) never do, so the wiki
+//   does not suggest an order that does not exist. Cards never cross from one group to the next.
+import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
+
+export type ReadingGroup = { title: string; slugs: string[]; sequence?: boolean };
+
+export const READING_GROUPS: Record<string, ReadingGroup[]> = {
+  guides: [
+    { title: "Getting started", sequence: true, slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"] },
+    { title: "Wallets and hardware", slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
+    { title: "Privacy", slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
+    { title: "Payments and DeFi", slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
+    {
+      title: "Run a node",
+      sequence: true,
+      slugs: ["raspberry-pi-4-full-node", "raspberry-pi-4-zebra-node", "raspberry-pi5-zebra-lightwalletd-zingo", "hardened-zebrad", "migration-guide-zcashd-to-zebrad-zallet", "zcash-node-rpc-and-indexing", "zcash-stack", "verifying-zcash-releases"],
+    },
+    { title: "Deploy on Akash", sequence: true, slugs: ["akash-network-zebra", "akash-network-zcashd", "akash-network-zakura", "thus-spoke-zakura-akash"] },
+    { title: "Developer tools", slugs: ["zcash-devtool", "zcash-js", "zingolib-and-zaino-tutorial", "zenith-installation", "zcash-improvement-proposals", "crosslink-feature-net"] },
+    { title: "Explore the network", slugs: ["blockchain-explorers", "visualizing-the-zcash-network", "visualizing-zcash-addresses"] },
+    { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
+  ],
+  "start-here": [
+    { title: "Begin here", sequence: true, slugs: ["using-this-wiki", "what-is-zec-and-zcash", "new-user-guide", "who-can-see-your-zcash-payment"] },
+    { title: "Understand Zcash", slugs: ["zec-use-cases", "zcash-monetary-policy", "how-zcash-is-organized", "network-upgrades", "development-fund"] },
+    { title: "ZecHub and resources", slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
+  ],
+  "using-zcash": [
+    { title: "Get started", sequence: true, slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
+    { title: "Swaps and exchanges", slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
+    { title: "Pay and get paid", slugs: ["__payment-processors", "payment-request-uris", "mobile-top-ups", "creators-and-tips", "zimppy", "metamask-snap"] },
+    { title: "Understand", sequence: true, slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
+    { title: "Mining", slugs: ["zcash-mining-guide", "zcash-mining-pools"] },
+    { title: "Tools", slugs: ["zallet-quick-reference-guide", "zecmap", "testnet", "shielded-newsletter"] },
+  ],
+  "zcash-community": [
+    { title: "Community", slugs: ["community-links", "community-projects", "community-blogs", "zcash-global-ambassadors", "cypherpunk-zero-nft"] },
+    { title: "Governance and security", slugs: ["zcash-governance", "zcap", "zcash-ecosystem-security"] },
+    { title: "Calls and events", slugs: ["arborist-calls", "zcash-engineering-office-hours", "zcon-archive", "zcon-vozes"] },
+    { title: "Media", slugs: ["zcash-media", "zcash-podcasts"] },
+  ],
+};
+
+export const EXTRA_ITEMS: Record<string, { href: string; label: string }> = {
+  __wallets: { href: "/wallets", label: "Wallets" },
+  "__custodial-exchanges": { href: "/using-zcash/custodial-exchanges", label: "Custodial Exchanges" },
+  "__payment-processors": { href: "/payment-processors", label: "Payment Processors" },
+};
+
+export type TrailEntry = { item: string; href: string; extraLabel?: string };
+
+// Slug of a menu item ("site/guides/Foo_Bar" -> "foo-bar"); fixed entries keep their "__" key.
+export const itemSlug = (item: string) =>
+  item.startsWith("__") ? item : (transformGithubFilePathToWikiLink(item).split("/").pop()?.toLowerCase() ?? "");
+
+// Previous and next page of the current page, inside its own ordered group. `items` are the tab's menu items
+// without the ".md" suffix. Returns nothing when the page is not in an ordered group, or has no neighbour.
+export function readingNeighbors(
+  folder: string,
+  items: string[],
+  currentSlug: string,
+): { prev?: TrailEntry; next?: TrailEntry } {
+  const group = READING_GROUPS[folder]?.find((g) => g.sequence && g.slugs.includes(currentSlug));
+  if (!group) return {};
+  const bySlug = new Map(items.map((item) => [itemSlug(item), item]));
+  const trail: TrailEntry[] = [];
+  for (const slug of group.slugs) {
+    const extra = EXTRA_ITEMS[slug];
+    if (extra) trail.push({ item: slug, href: extra.href, extraLabel: extra.label });
+    else if (bySlug.has(slug)) {
+      const item = bySlug.get(slug)!;
+      trail.push({ item, href: `/${transformGithubFilePathToWikiLink(item)}` });
+    }
+  }
+  const at = trail.findIndex((e) => itemSlug(e.item) === currentSlug);
+  if (at < 0) return {};
+  return { prev: trail[at - 1], next: trail[at + 1] };
+}

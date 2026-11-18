@@ -51,6 +51,7 @@ import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteTransactionsGuide } from "@/lib/pageOverrides/transactionsGuide";
 import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
 import { rewriteUsingThisWikiPage } from "@/lib/pageOverrides/usingThisWikiPage";
+import ContinueReading from "@/components/ContinueReading";
 import { rewriteWhoCanSeePaymentPage } from "@/lib/pageOverrides/whoCanSeePaymentPage";
 import { rewriteZcashResourcesPage } from "@/lib/pageOverrides/zcashResourcesPage";
 import { rewriteZecUseCasesPage } from "@/lib/pageOverrides/zecUseCasesPage";
@@ -6852,6 +6853,16 @@ export default async function Page(props: {
             components={MdxComponents}
             options={{ blockJS: true, mdxOptions: mdxCompileOptions }}
           />
+          {showSideMenu && slug.length === 2 ? (
+            <ContinueReading
+              folder={slug[0]}
+              slug={(slug[slug.length - 1] ?? "").toLowerCase()}
+              roots={roots}
+              titles={menuTitles}
+              enTitles={enMenuTitles}
+              strings={dict?.sideMenu?.continueReading}
+            />
+          ) : null}
           <MdxReady />
         </Suspense>
       </MdxContainer>
