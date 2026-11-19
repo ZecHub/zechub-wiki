@@ -1,5 +1,6 @@
 'use client';
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import { getSideMenuLabel } from "@/lib/sideMenuLabel";
 import { Link } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
@@ -21,11 +22,6 @@ interface MenuProps {
   enTitles?: Record<string, string>;
 }
 
-const DUPLICATE_BASICS_TITLES: Record<string, string> = {
-  zec_use_cases: "ZEC Use Cases",
-  zcash_monetary_policy: "Zcash Monetary Policy",
-};
-
 const normalize = (v: string) => decodeURIComponent(v).replace(/\/+$/, "").toLowerCase();
 
 // One sidebar entry. The current page gets an accent bar and brand colour;
@@ -45,7 +41,7 @@ const NavItem = ({
       <Link
         href={`${href}#content`}
         aria-current={active ? "page" : undefined}
-        className={`-ml-px block border-l-2 px-3 py-1.5 text-[13.5px] leading-snug transition-colors ${
+        className={`-ml-px block min-w-0 [overflow-wrap:anywhere] border-l-2 px-3 py-1.5 text-[13.5px] leading-snug transition-colors ${
           active
             ? "border-brand font-medium text-brand dark:text-brand-soft"
             : "border-transparent text-slate-600 hover:border-slate-400 hover:text-slate-900 dark:text-slate-300 dark:hover:border-white/40 dark:hover:text-white"
@@ -65,27 +61,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   // Localized chrome label helper: prefer the curated menuLabels dict, fall
   // back to the English source name.
   const chromeLabel = (name: string) => t?.menuLabels?.[name] ?? name;
-  // Localized display label for a side-menu item. `item` is the full item path
-  // minus ".md" (e.g. "site/guides/Foo"); the manifest is keyed by the
-  // site-relative path with ".md" (e.g. "guides/Foo.md"). Fallback order:
-  // localized manifest -> English manifest -> filename-derived name. getName
-  // stays the source of truth for icon/filter matching below.
-  const menuLabel = (item: string) => {
-    const key = item.replace(/^site\//, "") + ".md";
-    const titled = titles[key] ?? enTitles[key];
-    const fromFile = getName(item);
-    // Two Start Here pages are headed "Zcash Basics" in the content repo (a copied title), so the manifest lists
-    // three entries with that name. Give the other two their own names.
-    if (!titled || titled.trim().toLowerCase() === "zcash basics") {
-      const base = (key.split("/").pop() ?? "").toLowerCase().replace(/-/g, "_").replace(/\.md$/, "");
-      const fix = DUPLICATE_BASICS_TITLES[base];
-      if (fix) return fix;
-    }
-    // Manifest titles are often the page H1 and wrap the sidebar.
-    // Prefer the short filename label when the title is much longer.
-    if (titled && titled.length <= 36) return titled;
-    return fromFile;
-  };
+  const menuLabel = (item: string): string => getSideMenuLabel(item, titles, enTitles);
   // The "Zero to Zero Knowledge" series is meant to be read in order, not alphabetically.
   const SERIES_ORDER = ["zero_to_zero", "hash_functions", "mnemonic_seed", "zcash_addresses", "tees", "cryptonote", "lelantus"];
   const seriesRank = (item: string) => {
@@ -110,7 +86,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   );
 
   return (
-    <div className="relative flex flex-wrap items-center lg:items-start order-1 justify-between lg:flex-col">
+    <div className="relative min-w-0 w-full flex flex-wrap items-center lg:items-start order-1 justify-between lg:flex-col">
       <button onClick={toggleMenu} className="lg:hidden flex cursor-pointer">
         <BurgerMenuIcon size={24} />{" "}
         <h3 className="ms-2 font-bold">{t?.sideMenu?.navigation ?? "Navigation"}</h3>

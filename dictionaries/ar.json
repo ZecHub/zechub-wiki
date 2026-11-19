@@ -134,11 +134,11 @@
     "Browse all Guides": "Browse all Guides",
     "Data": "Data",
     "Network": "Network",
-    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Ecosystem Dashboard": "لوحة معلومات المنظومة",
     "Protocol Parameters": "Protocol Parameters",
     "All Visualizers": "All Visualizers",
     "Network & Infrastructure": "Network & Infrastructure",
-    "Value Pools": "Value Pools",
+    "Value Pools": "مجمّعات القيمة",
     "zk-SNARK Proofs": "zk-SNARK Proofs",
     "Consensus": "Consensus",
     "Hash Function": "Hash Function",
@@ -147,7 +147,7 @@
     "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
     "Learn Zcash": "Learn Zcash",
     "Zcash Basics": "Zcash Basics",
-    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "Who Can See Your Payment?": "من يمكنه رؤية دفعتك؟",
     "New User Guide": "New User Guide",
     "Monetary Policy": "Monetary Policy",
     "How Zcash Is Organized": "How Zcash Is Organized",
@@ -157,18 +157,18 @@
     "Project Tachyon": "Project Tachyon",
     "Zcash Library": "Zcash Library",
     "FAQ": "FAQ",
-    "Full Nodes": "Full Nodes",
+    "Full Nodes": "العقد الكاملة",
     "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
     "Zakura Node": "Zakura Node",
     "Zakura on Akash": "Zakura on Akash",
     "Chain State Explorer": "Chain State Explorer",
-    "Network Upgrades": "Network Upgrades",
+    "Network Upgrades": "ترقيات الشبكة",
     "zk-SNARKs": "zk-SNARKs",
     "Halo": "Halo",
     "Unified Addresses": "Unified Addresses",
     "Viewing Keys": "Viewing Keys",
-    "FROST Threshold Signatures": "FROST Threshold Signatures",
-    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "FROST Threshold Signatures": "التوقيعات الرقمية الحدّية FROST",
+    "Shielded Assets (ZSAs)": "الأصول المحمية (ZSAs)",
     "Post-Quantum Security": "Post-Quantum Security",
     "Browse all Learn Zcash": "Browse all Learn Zcash",
     "Browse all Ecosystem": "Browse all Ecosystem",
@@ -334,7 +334,7 @@
     "exploreZcash": "استكشف Zcash",
     "cards": {
       "startHere": {
-        "title": "ابدأ من هنا",
+        "title": "ابدأ هنا",
         "content": "تعرّف على Zcash وحالات استخدام ZEC"
       },
       "pickWallet": {
@@ -349,7 +349,7 @@
     "sections": {
       "whatIsZcash": {
         "title": "ما هو Zcash؟",
-        "description": "هو دفتر أستاذ قائم على blockchain ومفتوح المصدر يتميز بنظام متطور لإثبات المعرفة الصفرية. ويتخصص في تقديم مستوى أعلى من الخصوصية عبر نظام الإثبات الخاص به، مع الحفاظ على سرية البيانات الوصفية للمعاملات. وفي جوهره، يمثل Zcash ملكية خاصة للبيانات تُنقل دون إذن مسبق عند إجراء المعاملات.",
+        "description": "هو دفتر أستاذ قائم على سلسلة الكتل ومفتوح المصدر يتميز بنظام متطور لإثبات المعرفة الصفرية. ويتخصص في تقديم مستوى أعلى من الخصوصية عبر نظام الإثبات الخاص به، مع الحفاظ على سرية البيانات الوصفية للمعاملات. وفي جوهره، يمثل Zcash ملكية خاصة للبيانات تُنقل دون إذن مسبق عند إجراء المعاملات.",
         "mainLink": "ما هو Zcash؟",
         "techLink": "تقنية Zcash"
       },
@@ -392,7 +392,7 @@
     },
     "explore": {
       "startHere": "Start_Here",
-      "tutorials": "دروس تعليمية",
+      "tutorials": "الدروس",
       "usingZcash": "Using_Zcash",
       "guides": "أدلة",
       "zcashTech": "Zcash_Tech",
@@ -507,7 +507,7 @@
     "description": "اختر محفظة تناسب احتياجاتك",
     "desktopWallets": "محافظ سطح المكتب",
     "mobileWallets": "محافظ الهاتف المحمول",
-    "hardwareWallets": "محافظ الأجهزة",
+    "hardwareWallets": "محافظ مادية",
     "webWallets": "محافظ الويب",
     "features": "الميزات",
     "download": "تنزيل",
@@ -627,11 +627,11 @@
       "subtitle": "ZecHub لا تؤيد أي خدمة بورصات لامركزية بعينها، يُرجى إجراء بحثك الخاص.",
       "centralised": "منصات المبادلة المركزية",
       "centralizedTitle": "إدراج منصة مبادلة مركزية",
-      "custodial": "منصات تداول وصائية",
+      "custodial": "منصات التداول الوصائية",
       "exchanges": {
         "Near-intents": "تبادل سريع بدعم من NEAR. قم بالإيداع والبيع والمبادلة، بما في ذلك TRUMP وMELANIA وBERA وغيرها من العملات الميمية الشائعة",
         "Nativeswap": "تداول أصلي عبر السلاسل بلا حواجز عبر Maya Protocol. تداول مباشرة على السلسلة من دون جسور أو توكنات مغلّفة — واستمتع برسوم منخفضة على مستوى القطاع وتحكّم كامل بأصولك.",
-        "Firo DEX": "مبادلات لامركزية غير قائمة على الثقة باستخدام atomic swaps مع FiroDEX!.",
+        "Firo DEX": "مبادلات لامركزية غير قائمة على الثقة باستخدام المبادلات الذرية مع FiroDEX!.",
         "LeoDEX": "واجهة لمبادلة العملات الرقمية عبر السلاسل لـ Maya Protocol وThorchain وChainFlip وRango. BTC وETH وRUNE وDASH وLTC والمزيد",
         "Bison Wallet": "تداول العملات الرقمية من نظير إلى نظير. بلا رسوم تداول. بلا KYC.",
         "THORSwap": "DEX عبر السلاسل مدعوم من THORChain، يتيح مبادلات أصلية بين Bitcoin وEthereum وغيرها من الأصول الرئيسية من دون توكنات مغلّفة.",
@@ -645,7 +645,7 @@
     },
     "usingZcash": {
       "blockchainExplorers": {
-        "title": "مستكشفات البلوكشين"
+        "title": "مستكشفات سلسلة الكتل"
       }
     },
     "dashboard": {
@@ -771,7 +771,7 @@
       "prizesTitle": "الجوائز",
       "prizePoolTitle": "مجموع جوائز 25 ZEC",
       "prizePoolDesc": "ابنِ وقدّم ونافس على مجموع الجوائز المجتمعي.",
-      "devToolsEyebrow": "ابدأ من هنا",
+      "devToolsEyebrow": "ابدأ هنا",
       "devToolsTitle": "أدوات التطوير والوثائق",
       "devTools": {
         "quickStart": {
@@ -897,7 +897,7 @@
         "introToZebra": "مقدمة إلى Zebra",
         "introToZebraDesc": "فهم كيف يدعم Zebra شبكة Zcash من خلال تنفيذ معياري وآمن قائم على Rust",
         "introToLightwalletd": "مقدمة إلى Lightwalletd",
-        "introToLightwalletdDesc": "فهم مشروع lightwalletd — وهو خادم قابل للتوسع مكتوب بلغة Go ويخدم بيانات البلوكشين المدمجة بكفاءة إلى عملاء Zcash الخفيفين عبر gRPC.",
+        "introToLightwalletdDesc": "فهم مشروع lightwalletd — وهو خادم قابل للتوسع مكتوب بلغة Go ويخدم بيانات سلسلة الكتل المدمجة بكفاءة إلى عملاء Zcash الخفيفين عبر gRPC.",
         "zalletBook": "كتاب Zallet",
         "zalletBookDesc": "مقدمة إلى Zallet، وهي محفظة Zcash لعقدة كاملة مكتوبة بلغة Rust ومصممة كبديل لمحفظة zcashd.",
         "developerResources": "موارد المطورين",
@@ -1160,7 +1160,7 @@
       },
       "links": {
         "Homepage": "الصفحة الرئيسية",
-        "Dashboard": "لوحة التحكم",
+        "Dashboard": "لوحة المعلومات",
         "Donation": "التبرع",
         "Contribute": "المساهمة",
         "DAO": "DAO",
@@ -1393,7 +1393,7 @@
         "links": {
           "first": "جميع المحافظ",
           "second": "محافظ الهاتف المحمول",
-          "third": "محافظ الأجهزة"
+          "third": "محافظ مادية"
         }
       },
       "use": {
@@ -1416,7 +1416,7 @@
       }
     },
     "start": {
-      "title": "ابدأ من هنا",
+      "title": "ابدأ هنا",
       "subtitle": "هل أنت جديد على Zcash؟ ابدأ بهذه الأربعة."
     },
     "videos": {
@@ -1449,7 +1449,7 @@
     },
     "items": {
       "tutorials": {
-        "title": "دروس تعليمية",
+        "title": "الدروس",
         "description": "دروس فيديو خطوة بخطوة"
       },
       "guides": {
