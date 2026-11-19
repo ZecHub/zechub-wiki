@@ -21,10 +21,10 @@ export const READING_GROUPS: Record<string, ReadingGroup[]> = {
     {
       title: "Getting started",
       sequence: true,
-      nextStep: { group: "Wallets and hardware", slug: "keystone-zashi" },
+      nextStep: { group: "Wallets and hardware", slug: "zkool-multisig" },
       slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"],
     },
-    { title: "Wallets and hardware", sequence: true, nextStep: { group: "Privacy", slug: "nym-mixnet-wallet-setup" }, slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
+    { title: "Wallets and hardware", sequence: true, nextStep: { group: "Privacy", slug: "nym-mixnet-wallet-setup" }, slugs: ["zkool-multisig", "keystone-zashi", "ywallet-frost-demo", "ledger-shielded-zec", "brave-wallet-guide"] },
     { title: "Privacy", sequence: true, nextStep: { group: "Payments and DeFi", slug: "btcpayserver-zcash-plugin" }, slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
     { title: "Payments and DeFi", sequence: true, nextStep: { group: "Run a node", slug: "raspberry-pi-4-full-node" }, slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
     {

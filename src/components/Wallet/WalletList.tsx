@@ -25,6 +25,9 @@ interface Wallet {
 // leaves the directory — no filters, no counts — and is listed at the bottom.
 const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
+// Wallets built inside the Zcash ecosystem, listed first (titles lower-cased, letters and digits only).
+const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "zallet", "zingocli", "ywallet", "zenith"];
+
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
   "compatible",
@@ -225,8 +228,14 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
   // NU7-compatible wallets first, then transparent-only, In Progress, Not Ready and
   // Not verified; the rating orders wallets within each group.
+  // Wallets built by teams of the Zcash ecosystem come first, in this order; everything else follows.
+  const ecosystemRank = (w: { title: string }) => {
+    const at = ECOSYSTEM_WALLETS.indexOf(w.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+    return at < 0 ? ECOSYSTEM_WALLETS.length : at;
+  };
   const sortedWallets = [...filteredWallets].sort(
     (a, b) =>
+      ecosystemRank(a) - ecosystemRank(b) ||
       nu7Rank(a) - nu7Rank(b) ||
       (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
