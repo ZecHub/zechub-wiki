@@ -134,11 +134,23 @@ describe("Wallet filtering keyboard access", () => {
       await user.tab({ shift: true });
 
       // NU7 compatibility is the final filter group.
+      const compatibleInfo = within(dialog).getByRole("button", {
+        name: "About Compatible",
+      });
+
+      expect(compatibleInfo).toHaveFocus();
+
+      await user.tab({ shift: true });
+
       expect(
         within(dialog).getByRole("checkbox", {
           name: "Compatible",
         })
       ).toHaveFocus();
+
+      await user.tab();
+
+      expect(compatibleInfo).toHaveFocus();
 
       await user.tab();
 

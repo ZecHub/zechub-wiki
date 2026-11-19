@@ -62,6 +62,45 @@ describe("FilterToggle info dialog", () => {
     );
   });
 
+  it("opens an info dialog for a filter item without toggling it", async () => {
+    const user = userEvent.setup();
+    const toggleFilter = jest.fn();
+
+    render(
+      <FilterToggle
+        filters={filters}
+        activeFilters={[]}
+        toggleFilter={toggleFilter}
+        handleToggleFilter={jest.fn()}
+        itemDescriptions={{
+          Features: {
+            "Automatic Shielding": "**Automatic Shielding** is an item description.",
+          },
+        }}
+      />,
+    );
+
+    const info = screen.getByRole("button", {
+      name: "About Automatic Shielding",
+    });
+    await user.click(info);
+
+    expect(toggleFilter).not.toHaveBeenCalled();
+    const dialog = await screen.findByRole("dialog", {
+      name: "About Automatic Shielding",
+    });
+    expect(within(dialog).getByTestId("markdown")).toHaveTextContent(
+      "**Automatic Shielding** is an item description.",
+    );
+
+    await user.keyboard("{Escape}");
+
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+    await waitFor(() => expect(info).toHaveFocus());
+  });
+
   it("renders markdown in the dialog", async () => {
     const user = userEvent.setup();
 
