@@ -4989,15 +4989,11 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           n.properties = { ...(n.properties || {}), dataFrame: "true" };
           // The device screens use clean dark-background captures instead of the upstream light-backdrop ones.
           const alt = String(n.properties.alt || "");
-          // The Ledger guide's screenshots live in the content repo; the site's CSP does not allow GitHub raw images, so they are mirrored.
-          const mirrored = /\/ledger-zec-[a-z0-9-]+\.png$/i.exec(String(n.properties.src || ""));
           const local = /^ledger device screens: verify zcash addr/i.test(alt)
             ? "/content-images/ledger-device-verify-addresses.webp"
             : /^ledger device review screens for moving/i.test(alt)
               ? "/content-images/ledger-device-review-shielding.webp"
-              : mirrored
-                ? `/content-images/${mirrored[0].slice(1).replace(/\.png$/i, ".webp")}`
-                : "";
+              : "";
           if (local) {
             n.properties.src = local;
             delete n.properties.srcSet;

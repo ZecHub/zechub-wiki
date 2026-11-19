@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "check:dictionaries": "tsx scripts/check-dictionary-keys.mjs",
+    "mirror:images": "node scripts/mirror-content-images.mjs",
     "predev": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs",
     "dev": "node --max-old-space-size=4096 --experimental-require-module node_modules/next/dist/bin/next dev --turbo",
     "prebuild": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs && tsx scripts/generate-llms-txt.mjs && tsx scripts/generate-search-index.mjs",
