@@ -63,20 +63,21 @@ export default async function Page(props: {
     (w: { title: string }) => !hiddenWallets.has(w.title.toLowerCase().replace(/[^a-z0-9]/g, "")),
   );
   // Entries kept on the wiki only (not in the content repo's wallet list).
-  // Maya Protocol: cross-chain DEX that sends ZEC to transparent (t1/t3) and unified Orchard (u1)
-  // addresses; Sapling (zs) addresses are not supported.
+  // Maya Protocol: cross-chain DEX that sends ZEC to transparent (t1/t3), Sapling (zs) and unified
+  // Orchard (u1) addresses. NU7: its vault payouts since activation are signed under NU7's consensus
+  // branch ID 0x77190AD9 (checked 19 Nov 2026).
   const extraEntries = [
     {
       title: "Maya Protocol",
       url: "https://www.mayaprotocol.com",
       imageUrl: "/Logo/maya-protocol.png",
       devices: ["Web"],
-      pools: ["Orchard", "Transparent"],
+      pools: ["Orchard", "Sapling", "Transparent"],
       features: ["Shielded", "Transparent", "Swaps"],
       operatingSystem: [] as string[],
       walletSupport: [] as string[],
       syncSpeed: "",
-      nu7: "",
+      nu7: "Compatible",
     },
   ].filter((e) => !parsed.some((w: { title: string }) => w.title.toLowerCase().replace(/[^a-z0-9]/g, "") === e.title.toLowerCase().replace(/[^a-z0-9]/g, "")));
   const walletsParsed = [...parsed, ...extraEntries];
