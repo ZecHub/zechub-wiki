@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "Навигация",
-    "explore": "Обзор"
+    "explore": "Обзор",
+    "continueReading": {
+      "heading": "Продолжить чтение",
+      "previous": "Назад",
+      "next": "Далее"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

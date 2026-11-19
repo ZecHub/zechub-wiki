@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "ناوبری",
-    "explore": "کاوش"
+    "explore": "کاوش",
+    "continueReading": {
+      "heading": "ادامه مطالعه",
+      "previous": "قبلی",
+      "next": "بعدی"
+    }
   },
   "meta": {
     "title": "ویکی ZecHub",

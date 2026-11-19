@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "Navigasi",
-    "explore": "Jelajahi"
+    "explore": "Jelajahi",
+    "continueReading": {
+      "heading": "Lanjutkan membaca",
+      "previous": "Sebelumnya",
+      "next": "Berikutnya"
+    }
   },
   "meta": {
     "title": "Wiki ZecHub",

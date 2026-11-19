@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "التنقّل",
-    "explore": "استكشاف"
+    "explore": "استكشاف",
+    "continueReading": {
+      "heading": "تابع القراءة",
+      "previous": "السابق",
+      "next": "التالي"
+    }
   },
   "meta": {
     "title": "ويكي ZecHub",

@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "ナビゲーション",
-    "explore": "探索"
+    "explore": "探索",
+    "continueReading": {
+      "heading": "続けて読む",
+      "previous": "前へ",
+      "next": "次へ"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

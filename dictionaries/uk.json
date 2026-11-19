@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "Навігація",
-    "explore": "Дослідити"
+    "explore": "Дослідити",
+    "continueReading": {
+      "heading": "Продовжити читання",
+      "previous": "Назад",
+      "next": "Далі"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

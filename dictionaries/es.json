@@ -1294,7 +1294,12 @@
   },
   "sideMenu": {
     "navigation": "Navegación",
-    "explore": "Explorar"
+    "explore": "Explorar",
+    "continueReading": {
+      "heading": "Continúa leyendo",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    }
   },
   "meta": {
     "title": "Wiki de ZecHub",
