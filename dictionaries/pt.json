@@ -1343,5 +1343,163 @@
       "title": "Tutoriais",
       "sub": "Assista e acompanhe"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "A wiki da comunidade para aprender, usar e desenvolver com o Zcash.",
+      "openSource": "Código aberto",
+      "communityDriven": "Impulsionado pela comunidade",
+      "educationHub": "Centro educacional do Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Aprender",
+        "description": "O que é o Zcash, como funciona sua privacidade e por onde começar.",
+        "links": {
+          "first": "Guia para novos usuários",
+          "second": "O que é o Zcash?",
+          "third": "Atualizações da rede"
+        }
+      },
+      "wallet": {
+        "title": "Escolha uma carteira",
+        "description": "Uma carteira permite que você receba e gaste ZEC de forma privada.",
+        "links": {
+          "first": "Todas as carteiras",
+          "second": "Carteiras móveis",
+          "third": "Carteiras de hardware"
+        }
+      },
+      "use": {
+        "title": "Use ZEC",
+        "description": "Obtenha ZEC, envie-o e encontre lugares que o aceitam.",
+        "links": {
+          "first": "Comprar ZEC",
+          "second": "Transações",
+          "third": "Lugares para gastar ZEC"
+        }
+      },
+      "build": {
+        "title": "Desenvolver",
+        "description": "Recursos para desenvolvedores, ferramentas e formas de contribuir com a wiki.",
+        "links": {
+          "first": "Desenvolvedores",
+          "second": "Zcash Devtool",
+          "third": "Contribuir"
+        }
+      }
+    },
+    "start": {
+      "title": "Comece aqui",
+      "subtitle": "É novo no Zcash? Comece por estes quatro."
+    },
+    "videos": {
+      "title": "Assistir",
+      "pinnedDescription": "Um caminho curto, em ordem, para novos usuários.",
+      "latestDescription": "As novidades mais recentes do canal ZecHub.",
+      "allVideos": "Todos os vídeos",
+      "previous": "Vídeos anteriores",
+      "next": "Próximos vídeos",
+      "play": "Reproduzir {title}",
+      "step": "Etapa {number}"
+    },
+    "explore": {
+      "title": "Mais para explorar",
+      "subtitle": "Guias, pesquisa, ferramentas e a comunidade mais ampla do Zcash."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Aprofunde-se",
+        "subtitle": "Tutoriais, guias e pesquisa para quando você quiser mais detalhes."
+      },
+      "tools": {
+        "title": "Ferramentas para experimentar",
+        "subtitle": "Ferramentas interativas e diretórios criados em torno do Zcash."
+      },
+      "community": {
+        "title": "Comunidade e organizações",
+        "subtitle": "As pessoas e grupos por trás do ecossistema Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutoriais",
+        "description": "Tutoriais em vídeo passo a passo"
+      },
+      "guides": {
+        "title": "Guias",
+        "description": "Nós, ferramentas, DeFi e mais"
+      },
+      "tech": {
+        "title": "Tecnologia do Zcash",
+        "description": "zk-SNARKs e o protocolo"
+      },
+      "research": {
+        "title": "Pesquisa",
+        "description": "Artigos e pesquisas sobre o Zcash"
+      },
+      "privacy": {
+        "title": "Ferramentas de privacidade",
+        "description": "Ferramentas para ajudar a proteger sua privacidade"
+      },
+      "glossary": {
+        "title": "Glossário e FAQs",
+        "description": "Respostas rápidas e definições"
+      },
+      "visualizer": {
+        "description": "Ferramentas interativas para entender a tecnologia de privacidade do Zcash."
+      },
+      "map": {
+        "description": "Mapa mantido pela comunidade de comerciantes e caixas eletrônicos que aceitam Zcash."
+      },
+      "pay": {
+        "description": "Um diretório gratuito de lugares onde você pode pagar com ZEC."
+      },
+      "organizations": {
+        "title": "Organizações",
+        "description": "ZODL, Zcash Foundation, ZCG e outras"
+      },
+      "community": {
+        "title": "Comunidade",
+        "description": "Links, blogs, projetos, embaixadores"
+      },
+      "ambassadors": {
+        "title": "Embaixadores globais",
+        "description": "Líderes comunitários promovendo a educação sobre o Zcash no mundo todo."
+      },
+      "hackathon": {
+        "title": "Arquivo de hackathons",
+        "description": "Projetos enviados para o Hackathon ZecHub de 2026."
+      }
+    },
+    "involved": {
+      "title": "Participe",
+      "subtitle": "Entre na DAO, conheça a comunidade e ajude a construir a wiki.",
+      "dao": {
+        "description": "Como o ZecHub toma decisões e as propostas abertas para votação.",
+        "meet": "Conheça a DAO",
+        "proposals": "Ver propostas"
+      },
+      "community": {
+        "title": "Entre na comunidade",
+        "description": "Converse com outros usuários do Zcash e acompanhe o que o ZecHub está fazendo.",
+        "discord": "Entrar no Discord"
+      },
+      "contribute": {
+        "title": "Ajude a construir o ZecHub",
+        "description": "O ZecHub é impulsionado pela comunidade. Adicione conteúdo ou assuma uma recompensa.",
+        "action": "Contribuir",
+        "support": "Apoie o projeto"
+      }
+    },
+    "stats": {
+      "circulation": "Oferta em circulação",
+      "shielded": "Oferta blindada",
+      "blocks": "Altura do bloco",
+      "maxSupply": "{percentage}% do máximo de 21M",
+      "maxSupplyAria": "{percentage}% da oferta máxima de 21 milhões",
+      "shieldedShare": "{percentage}% da oferta em circulação",
+      "latestBlock": "Bloco mais recente na mainnet do Zcash"
+    }
   }
 }

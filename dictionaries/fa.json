@@ -1343,5 +1343,163 @@
       "title": "آموزش‌ها",
       "sub": "تماشا کنید و همراه شوید"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "ویکی کامیونیتی برای یادگیری، استفاده و ساخت با Zcash.",
+      "openSource": "متن‌باز",
+      "communityDriven": "با هدایت کامیونیتی",
+      "educationHub": "مرکز آموزشی Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "یادگیری",
+        "description": "Zcash چیست، حریم خصوصی آن چگونه کار می‌کند و از کجا شروع کنید.",
+        "links": {
+          "first": "راهنمای کاربر جدید",
+          "second": "Zcash چیست؟",
+          "third": "ارتقاهای شبکه"
+        }
+      },
+      "wallet": {
+        "title": "یک کیف‌پول انتخاب کنید",
+        "description": "کیف‌پول به شما امکان می‌دهد ZEC را به‌صورت خصوصی دریافت و خرج کنید.",
+        "links": {
+          "first": "همه کیف‌پول‌ها",
+          "second": "کیف‌پول‌های موبایلی",
+          "third": "کیف‌پول‌های سخت‌افزاری"
+        }
+      },
+      "use": {
+        "title": "استفاده از ZEC",
+        "description": "ZEC تهیه کنید، آن را ارسال کنید و مکان‌های پذیرنده آن را بیابید.",
+        "links": {
+          "first": "خرید ZEC",
+          "second": "تراکنش‌ها",
+          "third": "مکان‌های خرج کردن ZEC"
+        }
+      },
+      "build": {
+        "title": "ساخت",
+        "description": "منابع توسعه‌دهندگان، ابزارها و راه‌های مشارکت در ویکی.",
+        "links": {
+          "first": "توسعه‌دهندگان",
+          "second": "Zcash Devtool",
+          "third": "مشارکت"
+        }
+      }
+    },
+    "start": {
+      "title": "از اینجا شروع کنید",
+      "subtitle": "تازه با Zcash آشنا شده‌اید؟ با این چهار مورد شروع کنید."
+    },
+    "videos": {
+      "title": "تماشا",
+      "pinnedDescription": "مسیر کوتاهی برای تازه‌واردان، به‌ترتیب.",
+      "latestDescription": "تازه‌ترین‌ها از کانال ZecHub.",
+      "allVideos": "همه ویدیوها",
+      "previous": "ویدیوهای قبلی",
+      "next": "ویدیوهای بعدی",
+      "play": "پخش {title}",
+      "step": "گام {number}"
+    },
+    "explore": {
+      "title": "بیشتر برای کاوش",
+      "subtitle": "راهنماها، پژوهش، ابزارها و کامیونیتی گسترده‌تر Zcash."
+    },
+    "groups": {
+      "deeper": {
+        "title": "عمیق‌تر شوید",
+        "subtitle": "آموزش‌ها، راهنماها و پژوهش برای زمانی که جزئیات بیشتری می‌خواهید."
+      },
+      "tools": {
+        "title": "ابزارهایی برای آزمودن",
+        "subtitle": "ابزارهای تعاملی و فهرست‌هایی ساخته‌شده پیرامون Zcash."
+      },
+      "community": {
+        "title": "کامیونیتی و سازمان‌ها",
+        "subtitle": "افراد و گروه‌های پشت اکوسیستم Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "آموزش‌ها",
+        "description": "آموزش‌های ویدیویی گام‌به‌گام"
+      },
+      "guides": {
+        "title": "راهنماها",
+        "description": "نودها، ابزارها، DeFi و بیشتر"
+      },
+      "tech": {
+        "title": "فناوری Zcash",
+        "description": "zk-SNARKs و پروتکل"
+      },
+      "research": {
+        "title": "پژوهش",
+        "description": "مقاله‌ها و پژوهش‌های درباره Zcash"
+      },
+      "privacy": {
+        "title": "ابزارهای حریم خصوصی",
+        "description": "ابزارهایی برای کمک به محافظت از حریم خصوصی شما"
+      },
+      "glossary": {
+        "title": "واژه‌نامه و پرسش‌های متداول",
+        "description": "پاسخ‌ها و تعریف‌های سریع"
+      },
+      "visualizer": {
+        "description": "ابزارهای تعاملی برای درک فناوری حریم خصوصی Zcash."
+      },
+      "map": {
+        "description": "نقشه‌ای که کامیونیتی از پذیرندگان و دستگاه‌های خودپرداز پذیرنده Zcash نگهداری می‌کند."
+      },
+      "pay": {
+        "description": "فهرستی رایگان از مکان‌هایی که می‌توانید با ZEC پرداخت کنید."
+      },
+      "organizations": {
+        "title": "سازمان‌ها",
+        "description": "ZODL، Zcash Foundation، ZCG و دیگران"
+      },
+      "community": {
+        "title": "کامیونیتی",
+        "description": "پیوندها، وبلاگ‌ها، پروژه‌ها، سفیران"
+      },
+      "ambassadors": {
+        "title": "سفیران جهانی",
+        "description": "رهبران کامیونیتی که آموزش Zcash را در سراسر جهان ترویج می‌کنند."
+      },
+      "hackathon": {
+        "title": "بایگانی هکاتون",
+        "description": "پروژه‌های ارسال‌شده به هکاتون 2026 ZecHub."
+      }
+    },
+    "involved": {
+      "title": "مشارکت کنید",
+      "subtitle": "به DAO بپیوندید، با کامیونیتی آشنا شوید و به ساخت ویکی کمک کنید.",
+      "dao": {
+        "description": "نحوه تصمیم‌گیری ZecHub و پیشنهادهای باز برای رأی‌گیری.",
+        "meet": "با DAO آشنا شوید",
+        "proposals": "مشاهده پیشنهادها"
+      },
+      "community": {
+        "title": "به کامیونیتی بپیوندید",
+        "description": "با دیگر کاربران Zcash گفتگو کنید و فعالیت‌های ZecHub را دنبال کنید.",
+        "discord": "پیوستن به Discord"
+      },
+      "contribute": {
+        "title": "به ساخت ZecHub کمک کنید",
+        "description": "ZecHub توسط کامیونیتی هدایت می‌شود. محتوا اضافه کنید یا یک بونتی را انجام دهید.",
+        "action": "مشارکت",
+        "support": "از پروژه حمایت کنید"
+      }
+    },
+    "stats": {
+      "circulation": "عرضه در گردش",
+      "shielded": "عرضه محافظت‌شده",
+      "blocks": "ارتفاع بلوک",
+      "maxSupply": "{percentage}% از حداکثر 21M",
+      "maxSupplyAria": "{percentage}% از حداکثر عرضه 21 میلیون",
+      "shieldedShare": "{percentage}% از عرضه در گردش",
+      "latestBlock": "آخرین بلوک در شبکه اصلی Zcash"
+    }
   }
 }

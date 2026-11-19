@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Stats = { circulation: number; shielded: number; blocks: number };
 
@@ -35,12 +36,18 @@ function useCountUp(target: number, active: boolean, ms = 1400) {
   return value;
 }
 
-const fmt = (n: number) =>
-  Math.round(n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+const fmt = (n: number, locale: string) =>
+  Math.round(n).toLocaleString(locale, { maximumFractionDigits: 0 });
+const pct = (n: number, locale: string) =>
+  n.toLocaleString(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const interpolate = (template: string, percentage: string) =>
+  template.replace("{percentage}", percentage);
 
 // Three live numbers about the chain. If the feed is unavailable the whole
 // strip is hidden, so the home never shows broken or stale-looking values.
 export default function ZcashStats({ className = "" }: { className?: string }) {
+  const { t, locale } = useLanguage();
+  const copy = t?.homeLanding?.stats;
   const [stats, setStats] = useState<Stats | null>(null);
   const [visible, setVisible] = useState(false);
   const box = useRef<HTMLDivElement>(null);
@@ -114,9 +121,9 @@ export default function ZcashStats({ className = "" }: { className?: string }) {
       className={`grid grid-cols-1 divide-y divide-slate-200 dark:divide-slate-700/60 md:grid-cols-3 md:divide-x md:divide-y-0 ${className}`}
     >
       <div className="p-6">
-        <p className={label}>Circulating supply</p>
+        <p className={label}>{copy?.circulation ?? "Circulating supply"}</p>
         <p className={value}>
-          {fmt(circulation)}{" "}
+          {fmt(circulation, locale)}{" "}
           <span className="text-base font-medium text-slate-700 dark:text-slate-200">
             ZEC
           </span>
@@ -124,37 +131,37 @@ export default function ZcashStats({ className = "" }: { className?: string }) {
         <div
           className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700"
           role="img"
-          aria-label={`${supplyPct.toFixed(1)}% of the 21 million maximum supply`}
+          aria-label={interpolate(copy?.maxSupplyAria ?? "{percentage}% of the 21 million maximum supply", pct(supplyPct, locale))}
         >
           <div
             className="h-full rounded-full bg-brand transition-[width] duration-[1400ms] ease-out motion-reduce:transition-none"
             style={{ width: visible ? `${supplyPct}%` : "0%" }}
           />
         </div>
-        <p className={sub}>{supplyPct.toFixed(1)}% of the 21M maximum</p>
+        <p className={sub}>{interpolate(copy?.maxSupply ?? "{percentage}% of the 21M maximum", pct(supplyPct, locale))}</p>
       </div>
 
       <div className="p-6">
-        <p className={label}>Shielded supply</p>
+        <p className={label}>{copy?.shielded ?? "Shielded supply"}</p>
         <p className={value}>
-          {fmt(shielded)}{" "}
+          {fmt(shielded, locale)}{" "}
           <span className="text-base font-medium text-slate-700 dark:text-slate-200">
             ZEC
           </span>
         </p>
-        <p className={sub}>{shieldedPct.toFixed(1)}% of circulating supply</p>
+        <p className={sub}>{interpolate(copy?.shieldedShare ?? "{percentage}% of circulating supply", pct(shieldedPct, locale))}</p>
       </div>
 
       <div className="p-6">
         <p className={`${label} flex items-center gap-2`}>
-          Block height
+          {copy?.blocks ?? "Block height"}
           <span className="relative flex h-2 w-2" aria-hidden="true">
             <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 motion-safe:animate-ping" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
           </span>
         </p>
-        <p className={value}>{fmt(blocks)}</p>
-        <p className={sub}>Latest block on the Zcash mainnet</p>
+        <p className={value}>{fmt(blocks, locale)}</p>
+        <p className={sub}>{copy?.latestBlock ?? "Latest block on the Zcash mainnet"}</p>
       </div>
     </div>
   );
