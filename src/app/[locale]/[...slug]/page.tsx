@@ -4989,11 +4989,15 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           n.properties = { ...(n.properties || {}), dataFrame: "true" };
           // The device screens use clean dark-background captures instead of the upstream light-backdrop ones.
           const alt = String(n.properties.alt || "");
+          // The Ledger guide's screenshots live in the content repo; the site's CSP does not allow GitHub raw images, so they are mirrored.
+          const mirrored = /\/ledger-zec-[a-z0-9-]+\.png$/i.exec(String(n.properties.src || ""));
           const local = /^ledger device screens: verify zcash addr/i.test(alt)
             ? "/content-images/ledger-device-verify-addresses.webp"
             : /^ledger device review screens for moving/i.test(alt)
               ? "/content-images/ledger-device-review-shielding.webp"
-              : "";
+              : mirrored
+                ? `/content-images/${mirrored[0].slice(1).replace(/\.png$/i, ".webp")}`
+                : "";
           if (local) {
             n.properties.src = local;
             delete n.properties.srcSet;
@@ -5007,7 +5011,8 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       for (let k = 0; k < rows.length; k++) {
         const t = isEl(rows[k], "p") ? textOf(rows[k]).trim() : "";
         if (/^\d+\.\s+\S/.test(t) && t.length < 80 && (rows[k].children || []).some((c: any) => isEl(c, "strong"))) {
-          rows[k] = el("h3", {}, [txt(t)]);
+          const stepM = /^(\d+)\.\s+(.+)$/.exec(t);
+          rows[k] = el("h3", stepM ? { dataStep: stepM[1] } : {}, [txt(stepM ? stepM[2] : t)]);
         }
       }
       const desktop = rows.findIndex((x) => isEl(x, "p") && /^desktop only/i.test(textOf(x).trim()));
