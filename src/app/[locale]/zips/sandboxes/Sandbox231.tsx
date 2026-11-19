@@ -14,6 +14,7 @@ import {
   fmtBytes,
   fmtZats,
 } from "./shared";
+import { MARGINAL_FEE_ZATOSHIS } from "@/lib/zip317";
 
 const BUCKETS = [0, 256, 512, 1024, 2048] as const;
 function bucketize(b: number): number {
@@ -38,10 +39,10 @@ export default function Sandbox231() {
   const savedBytes = todayDailyBytes - z231DailyBytes;
   const savedPct = todayDailyBytes > 0 ? (savedBytes / todayDailyBytes) * 100 : 0;
 
-  // Memo fee: ZIP 317 marginal_fee = 5,000 zats per logical action.
+  // Memo fee: ZIP 317 marginal_fee = 1,000 zats per logical action (ZIP 2009).
   // Each 256B of memo bundle = +1 logical action under the draft.
   const todayMemoFee = 0;
-  const z231MemoFee = padded === 0 ? 0 : Math.ceil(padded / 256) * 5000;
+  const z231MemoFee = padded === 0 ? 0 : Math.ceil(padded / 256) * MARGINAL_FEE_ZATOSHIS;
 
   return (
     <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
@@ -54,7 +55,7 @@ export default function Sandbox231() {
           { value: "~8,000", caption: "tx/day (14d avg)" },
           { value: "512 B", caption: "fixed memo per output" },
           { value: "~70%", caption: "tx with no user memo" },
-          { value: "5,000 zats", caption: "per logical action (ZIP 317)" },
+          { value: "1,000 zats", caption: "per logical action (ZIP 317 rev. 2)" },
         ]}
       />
 
@@ -150,7 +151,7 @@ export default function Sandbox231() {
                   <strong>Bucket padding:</strong> ZIP 231 memo bundles are padded to {"{0, 256, 512, 1024, 2048}"} B buckets to preserve indistinguishability. Cost is computed against the next-larger bucket, not the raw size.
                 </>,
                 <>
-                  <strong>Fee model:</strong> 5,000 zats per logical action (ZIP 317). Each 256 B of memo = +1 logical action under the draft proposal.
+                  <strong>Fee model:</strong> 1,000 zats per logical action (ZIP 317 revision 2, ZIP 2009; 5,000 before Mainnet block 3,590,000). Each 256 B of memo = +1 logical action under the draft proposal.
                 </>,
                 <>
                   <strong>No-memo baseline:</strong> 70% of mainnet shielded txs carry no user memo (anchored to wallet-side telemetry from major wallets, 14-day window).

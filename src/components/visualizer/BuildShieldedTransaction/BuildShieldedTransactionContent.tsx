@@ -877,10 +877,11 @@ export const OutputDescriptionStage = () => {
       bg: "bg-blue-500/5",
       activeBorder: "border-blue-500/40",
       fields: [
-        { k: "value",      v: "0.2999 ZEC", vc: "text-blue-300" },
-        { k: "to",         v: "self",       vc: "text-blue-300" },
-        { k: "commitment", v: "cm₂ = 0x…",  vc: "text-blue-300" },
-        { k: "fee",        v: "0.0001 ZEC", vc: "text-zinc-400" },
+        { k: "value",      v: "0.29998 ZEC", vc: "text-blue-300" },
+        { k: "to",         v: "self",        vc: "text-blue-300" },
+        { k: "commitment", v: "cm₂ = 0x…",   vc: "text-blue-300" },
+        // 2 logical actions × 1,000 zats (ZIP 317 revision 2, ZIP 2009).
+        { k: "fee",        v: "0.00002 ZEC", vc: "text-zinc-400" },
       ],
     },
   };

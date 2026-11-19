@@ -61,7 +61,8 @@ test("a spend is recognised by its nullifier", async ({ page }) => {
 
   await scanToTip(page);
   await expect(page.getByText("Spent in block 105")).toBeVisible();
-  await expect(balance(page)).toHaveText("0.2999 ZEC");
+  // 0.5 - 0.2 paid - 0.00002 fee (2 actions × 1,000 zats, ZIP 2009).
+  await expect(balance(page)).toHaveText("0.29998 ZEC");
 });
 
 test("a birthday after the payment misses it, and an earlier one finds it", async ({
