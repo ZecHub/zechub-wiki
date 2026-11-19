@@ -26,8 +26,7 @@ interface Wallet {
 const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
 // Wallets built inside the Zcash ecosystem, listed first (titles lower-cased, letters and digits only).
-// Ledger sits at the end of this group: its Zcash app is the hardware option closest to the ecosystem wallets.
-const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "vizor", "zallet", "zingocli", "ywallet", "zenith", "ledger"];
+const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "vizor", "zallet", "zingocli", "ywallet", "zenith"];
 
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
@@ -244,10 +243,21 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   // Three groups: wallets built in the Zcash ecosystem, other software wallets, and hardware wallets.
   const isHardwareOnly = (w: { devices?: string[] }) => !!w.devices?.length && w.devices.every((d) => /hardware/i.test(d));
   const groupOf = (w: { title: string; devices?: string[] }) => (ecosystemRank(w) < ECOSYSTEM_WALLETS.length ? 0 : isHardwareOnly(w) ? 2 : 1);
+  const hardwareRank = (w: { title: string }) => {
+    const at = ["ledger", "keystone", "trezor"].indexOf(w.title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+    return at < 0 ? 99 : at;
+  };
   const walletGroups = [
     { title: "Zcash wallets", note: "Built by teams of the Zcash ecosystem.", wallets: sortedWallets.filter((w) => groupOf(w) === 0) },
     { title: "Software wallets", note: "Mobile, desktop and web wallets from other teams.", wallets: sortedWallets.filter((w) => groupOf(w) === 1) },
-    { title: "Hardware wallets", note: "Devices that keep your keys offline.", wallets: sortedWallets.filter((w) => groupOf(w) === 2) },
+    {
+      title: "Hardware wallets",
+      note: "Devices that keep your keys offline.",
+      // Ledger first: it has a dedicated Zcash app with shielded support.
+      wallets: sortedWallets
+        .filter((w) => groupOf(w) === 2)
+        .sort((a, b) => hardwareRank(a) - hardwareRank(b)),
+    },
   ].filter((g) => g.wallets.length > 0);
 
   return (
