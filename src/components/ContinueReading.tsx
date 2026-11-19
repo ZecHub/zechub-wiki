@@ -22,7 +22,7 @@ export default function ContinueReading({ folder, slug, roots, titles, enTitles,
   const card = (e: TrailEntry, caption: string, align: "start" | "end") => (
     <Link
       href={`${e.href}#content`}
-      className={`group block rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm transition-colors hover:border-brand/60 hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-slate-700 dark:bg-white/5 dark:hover:border-brand/60 dark:hover:bg-white/10 ${
+      className={`group block h-full rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm transition-colors hover:border-brand/60 hover:bg-brand/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-slate-700 dark:bg-white/5 dark:hover:border-brand/60 dark:hover:bg-white/10 ${
         align === "end" ? "text-end" : ""
       }`}
     >
@@ -43,21 +43,20 @@ export default function ContinueReading({ folder, slug, roots, titles, enTitles,
         {strings?.heading ?? "Continue reading"}
       </h2>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {prev ? <div>{card(prev, strings?.previous ?? "Previous", "start")}</div> : <div className="hidden md:block" />}
-        {next ? <div>{card(next, strings?.next ?? "Next", "end")}</div> : null}
+        {prev ? <div className="h-full">{card(prev, strings?.previous ?? "Previous", "start")}</div> : <div className="hidden md:block" />}
+        {next ? <div className="h-full">{card(next, strings?.next ?? "Next", "end")}</div> : null}
         {step ? (
-          <div>
+          <div className="h-full">
             <Link
               href={`${step.entry.href}#content`}
-              className="group block rounded-2xl border border-brand/40 bg-brand/5 p-4 shadow-sm transition-colors hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-brand/40 dark:bg-brand/10 dark:hover:bg-brand/15"
+              className="group block h-full rounded-2xl border border-brand/40 bg-brand/5 p-4 shadow-sm transition-colors hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-brand/40 dark:bg-brand/10 dark:hover:bg-brand/15"
             >
               <span className="block text-end text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
-                {strings?.nextStep ?? "Next step"} →
+                {strings?.nextStep ?? "Next step"} · {step.group} →
               </span>
               <span className="mt-1 block text-end text-base font-medium text-brand group-hover:underline dark:text-brand-soft">
-                {step.group}
+                {label(step.entry)}
               </span>
-              <span className="mt-0.5 block text-end text-sm text-slate-600 dark:text-slate-300">{label(step.entry)}</span>
             </Link>
           </div>
         ) : null}
