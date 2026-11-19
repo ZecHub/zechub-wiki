@@ -26,7 +26,8 @@ interface Wallet {
 const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
 // Wallets built inside the Zcash ecosystem, listed first (titles lower-cased, letters and digits only).
-const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "vizor", "zallet", "zingocli", "ywallet", "zenith"];
+// Ledger sits at the end of this group: its Zcash app is the hardware option closest to the ecosystem wallets.
+const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "vizor", "zallet", "zingocli", "ywallet", "zenith", "ledger"];
 
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
@@ -240,6 +241,15 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
 
+  // Three groups: wallets built in the Zcash ecosystem, other software wallets, and hardware wallets.
+  const isHardwareOnly = (w: { devices?: string[] }) => !!w.devices?.length && w.devices.every((d) => /hardware/i.test(d));
+  const groupOf = (w: { title: string; devices?: string[] }) => (ecosystemRank(w) < ECOSYSTEM_WALLETS.length ? 0 : isHardwareOnly(w) ? 2 : 1);
+  const walletGroups = [
+    { title: "Zcash wallets", note: "Built by teams of the Zcash ecosystem.", wallets: sortedWallets.filter((w) => groupOf(w) === 0) },
+    { title: "Software wallets", note: "Mobile, desktop and web wallets from other teams.", wallets: sortedWallets.filter((w) => groupOf(w) === 1) },
+    { title: "Hardware wallets", note: "Devices that keep your keys offline.", wallets: sortedWallets.filter((w) => groupOf(w) === 2) },
+  ].filter((g) => g.wallets.length > 0);
+
   return (
     <>
       <div className="wl-root">
@@ -317,29 +327,37 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               </span>
             </div>
 
+            {walletGroups.map((group) => (
+              <div key={group.title} className="mb-10">
+                <h2 className="mb-1 mt-0 text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
+                  {group.title} <span className="text-sm font-normal text-slate-500 dark:text-slate-400">({group.wallets.length})</span>
+                </h2>
+                <p className="mb-4 mt-0 text-sm text-slate-500 dark:text-slate-400">{group.note}</p>
             <div className="wl-wallet-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedWallets.map((wallet) => (
-                <WalletItem
-                  key={wallet.title}
-                  title={wallet.title}
-                  link={wallet.url}
-                  logo={wallet.imageUrl}
-                  tags={[
-                    { category: "Devices", values: wallet.devices },
-                    { category: "Pools", values: wallet.pools },
-                    { category: "Features", values: wallet.features },
-                  ]}
-                  likes={likes[wallet.title] || 0}
-                  syncSpeed={wallet.syncSpeed}
-                  nu7={wallet.nu7}
-                  stage={wallet.stage}
-                  onLike={() => handleLike(wallet.title)}
-                  onDislike={() => handleDislike(wallet.title)}
-                  error={error[wallet.title]}
-                  success={success[wallet.title]}
-                />
-              ))}
-            </div>
+                {group.wallets.map((wallet) => (
+                  <WalletItem
+                    key={wallet.title}
+                    title={wallet.title}
+                    link={wallet.url}
+                    logo={wallet.imageUrl}
+                    tags={[
+                      { category: "Devices", values: wallet.devices },
+                      { category: "Pools", values: wallet.pools },
+                      { category: "Features", values: wallet.features },
+                    ]}
+                    likes={likes[wallet.title] || 0}
+                    syncSpeed={wallet.syncSpeed}
+                    nu7={wallet.nu7}
+                    stage={wallet.stage}
+                    onLike={() => handleLike(wallet.title)}
+                    onDislike={() => handleDislike(wallet.title)}
+                    error={error[wallet.title]}
+                    success={success[wallet.title]}
+                  />
+                ))}
+              </div>
+              </div>
+            ))}
 
             {filteredDeprecated.length > 0 && (
               <details open className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60">
