@@ -4,9 +4,19 @@ test.use({ ...devices["Pixel 7"] });
 
 test("language sheet remains interactive inside the mobile navigation drawer", async ({ page }) => {
   await page.goto("/");
-  await page.waitForLoadState("networkidle");
-  await page.getByRole("button", { name: "Open menu" }).click();
+  await page.waitForFunction(() => {
+    const button = document.querySelector('[aria-label="Open menu"]');
+    return button && Object.keys(button).some((key) => key.startsWith("__react"));
+  });
+  await page.waitForLoadState("networkidle", { timeout: 10_000 }).catch(() => {});
+  await page.waitForTimeout(500); // let the responsive header settle after hydration
   const drawer = page.getByRole("dialog").first();
+  await page.getByRole("button", { name: "Open menu" }).click();
+  if (!(await drawer.isVisible())) {
+    // A late responsive-header remount can replace the trigger mid-click.
+    await page.getByRole("button", { name: "Open menu" }).click();
+  }
+  await expect(drawer).toBeVisible();
   await drawer.evaluate((element) => { element.scrollTop = element.scrollHeight; });
   await drawer.getByRole("button", { name: "Select language" }).click();
 
