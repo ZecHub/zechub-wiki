@@ -522,7 +522,13 @@
     "activeCount": "{count} सक्रिय",
     "savedReview": "हमने आपकी समीक्षा सहेज ली!",
     "errorGettingLikes": "लाइक्स प्राप्त करने में त्रुटि:",
-    "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:"
+    "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:",
+    "betaTitle": "बीटा वॉलेट",
+    "betaNote": "परीक्षण संस्करण। खामियों की संभावना रहेगी, छोटी रकम का उपयोग करें।",
+    "transparentOnlyTitle": "केवल ट्रांसपेरेंट वॉलेट",
+    "transparentOnlyNote": "ये वॉलेट केवल ट्रांसपेरेंट ZEC का समर्थन करते हैं, जो लेनदेन का विवरण नहीं छिपाता।",
+    "nymMixnetTitle": "Nym Mixnet समर्थन",
+    "nymMixnetNote": "वे वॉलेट जो Nym mixnet के माध्यम से Zcash ट्रैफ़िक रूट करने का समर्थन करते हैं।"
   },
   "guides": {
     "title": "मार्गदर्शिकाएँ",
@@ -1342,6 +1348,164 @@
     "tutorials": {
       "title": "ट्यूटोरियल",
       "sub": "देखें और साथ चलें"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Zcash सीखने, उपयोग करने और उसके साथ निर्माण करने के लिए सामुदायिक विकि।",
+      "openSource": "ओपन सोर्स",
+      "communityDriven": "समुदाय-संचालित",
+      "educationHub": "Zcash के लिए शिक्षा केंद्र"
+    },
+    "featured": {
+      "learn": {
+        "title": "सीखें",
+        "description": "Zcash क्या है, इसकी गोपनीयता कैसे काम करती है और कहाँ से शुरू करें।",
+        "links": {
+          "first": "नए उपयोगकर्ता मार्गदर्शिका",
+          "second": "Zcash क्या है?",
+          "third": "नेटवर्क अपग्रेड"
+        }
+      },
+      "wallet": {
+        "title": "वॉलेट चुनें",
+        "description": "एक वॉलेट आपको निजी रूप से ZEC प्राप्त करने और खर्च करने देता है।",
+        "links": {
+          "first": "सभी वॉलेट",
+          "second": "मोबाइल वॉलेट",
+          "third": "हार्डवेयर वॉलेट"
+        }
+      },
+      "use": {
+        "title": "ZEC का उपयोग",
+        "description": "ZEC प्राप्त करें, भेजें और इसे स्वीकार करने वाली जगहें खोजें।",
+        "links": {
+          "first": "ZEC खरीदना",
+          "second": "लेनदेन",
+          "third": "ZEC खर्च करने की जगहें"
+        }
+      },
+      "build": {
+        "title": "निर्माण करें",
+        "description": "डेवलपर संसाधन, उपकरण और विकि में योगदान के तरीके।",
+        "links": {
+          "first": "डेवलपर",
+          "second": "Zcash Devtool",
+          "third": "योगदान करें"
+        }
+      }
+    },
+    "start": {
+      "title": "यहाँ से शुरू करें",
+      "subtitle": "Zcash में नए हैं? इन चार से शुरू करें।"
+    },
+    "videos": {
+      "title": "देखें",
+      "pinnedDescription": "नए लोगों के लिए क्रमवार एक संक्षिप्त मार्ग।",
+      "latestDescription": "ZecHub चैनल से नवीनतम।",
+      "allVideos": "सभी वीडियो",
+      "previous": "पिछले वीडियो",
+      "next": "अगले वीडियो",
+      "play": "{title} चलाएँ",
+      "step": "चरण {number}"
+    },
+    "explore": {
+      "title": "अन्वेषण के लिए अधिक",
+      "subtitle": "मार्गदर्शिकाएँ, शोध, उपकरण और व्यापक Zcash समुदाय।"
+    },
+    "groups": {
+      "deeper": {
+        "title": "और गहराई में जाएँ",
+        "subtitle": "जब आपको अधिक विवरण चाहिए, तब के लिए ट्यूटोरियल, मार्गदर्शिकाएँ और शोध।"
+      },
+      "tools": {
+        "title": "आजमाने के लिए उपकरण",
+        "subtitle": "Zcash के लिए बनाए गए इंटरैक्टिव उपकरण और निर्देशिकाएँ।"
+      },
+      "community": {
+        "title": "समुदाय और संगठन",
+        "subtitle": "Zcash पारिस्थितिकी तंत्र के पीछे के लोग और समूह।"
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "ट्यूटोरियल",
+        "description": "चरण-दर-चरण वीडियो ट्यूटोरियल"
+      },
+      "guides": {
+        "title": "मार्गदर्शिकाएँ",
+        "description": "नोड, उपकरण, DeFi और अधिक"
+      },
+      "tech": {
+        "title": "Zcash टेक",
+        "description": "zk-SNARKs और प्रोटोकॉल"
+      },
+      "research": {
+        "title": "शोध",
+        "description": "Zcash पर लेख और शोध"
+      },
+      "privacy": {
+        "title": "गोपनीयता उपकरण",
+        "description": "आपकी गोपनीयता की सुरक्षा में सहायक उपकरण"
+      },
+      "glossary": {
+        "title": "शब्दावली और FAQs",
+        "description": "त्वरित उत्तर और परिभाषाएँ"
+      },
+      "visualizer": {
+        "description": "Zcash गोपनीयता तकनीक को समझने के लिए इंटरैक्टिव उपकरण।"
+      },
+      "map": {
+        "description": "Zcash स्वीकार करने वाले व्यापारियों और ATMs का समुदाय-संचालित मानचित्र।"
+      },
+      "pay": {
+        "description": "ZEC से भुगतान करने के स्थानों की एक निःशुल्क निर्देशिका।"
+      },
+      "organizations": {
+        "title": "संगठन",
+        "description": "ZODL, Zcash Foundation, ZCG और अन्य"
+      },
+      "community": {
+        "title": "समुदाय",
+        "description": "लिंक, ब्लॉग, प्रोजेक्ट, राजदूत"
+      },
+      "ambassadors": {
+        "title": "वैश्विक राजदूत",
+        "description": "विश्वभर में Zcash शिक्षा को बढ़ावा देने वाले सामुदायिक नेता।"
+      },
+      "hackathon": {
+        "title": "हैकथॉन संग्रह",
+        "description": "2026 ZecHub Hackathon में प्रस्तुत प्रोजेक्ट।"
+      }
+    },
+    "involved": {
+      "title": "शामिल हों",
+      "subtitle": "DAO से जुड़ें, समुदाय से मिलें और विकी बनाने में सहायता करें।",
+      "dao": {
+        "description": "ZecHub कैसे निर्णय लेता है और मतदान के लिए खुले प्रस्ताव।",
+        "meet": "DAO परिचय",
+        "proposals": "प्रस्ताव देखें"
+      },
+      "community": {
+        "title": "समुदाय से जुड़ें",
+        "description": "अन्य Zcash उपयोगकर्ताओं से बात करें और ZecHub की गतिविधियों का अनुसरण करें।",
+        "discord": "Discord से जुड़ें"
+      },
+      "contribute": {
+        "title": "ZecHub बनाने में सहायता करें",
+        "description": "ZecHub समुदाय द्वारा संचालित है। सामग्री जोड़ें या कोई बाउंटी लें।",
+        "action": "योगदान करें",
+        "support": "प्रोजेक्ट का समर्थन करें"
+      }
+    },
+    "stats": {
+      "circulation": "परिसंचारी आपूर्ति",
+      "shielded": "शील्डेड आपूर्ति",
+      "blocks": "ब्लॉक ऊँचाई",
+      "maxSupply": "21M अधिकतम का {percentage}%",
+      "maxSupplyAria": "कुल 21 मिलियन अधिकतम आपूर्ति का {percentage}%",
+      "shieldedShare": "प्रचलनशील आपूर्ति का {percentage}%",
+      "latestBlock": "Zcash मेननेट का नवीनतम ब्लॉक"
     }
   }
 }

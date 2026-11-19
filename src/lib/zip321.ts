@@ -10,6 +10,8 @@
  * - Strict 512-byte UTF-8 memo length limit.
  * - Rejection of memos attached to transparent addresses (t1, t3, tm).
  * - Single-recipient and multi-recipient (indexed) payment request generation and parsing.
+ * - RFC 3986 percent-encoding of values (a space is "%20"; "+" is a literal plus sign).
+ * - Parsing rejects repeated parameters, malformed indexes and unsupported `req-` parameters.
  */
 
 export const MAX_ZEC_SUPPLY = 21_000_000;
@@ -234,6 +236,39 @@ export function validateZip321Payment(payment: Zip321PaymentItem): {
 }
 
 /**
+ * Query-string builder for ZIP 321 parameters.
+ *
+ * ZIP 321 values are `qchar` strings: RFC 3986 percent-encoding, where "+" is a
+ * literal plus sign. URLSearchParams uses form encoding instead and writes a
+ * space as "+", so a label like "Coffee shop" reached wallets that follow the
+ * ZIP (e.g. librustzcash's zip321 crate) as "Coffee+shop". encodeURIComponent
+ * writes a space as "%20" and leaves only characters that are valid `qchar`.
+ */
+class Zip321Query {
+  private readonly parts: string[] = [];
+
+  append(name: string, value: string): void {
+    this.parts.push(`${name}=${encodeURIComponent(value)}`);
+  }
+
+  toString(): string {
+    return this.parts.join("&");
+  }
+}
+
+/** ZIP 321 `paramindex`: "." followed by 1-9999 without leading zeros. */
+const PARAM_INDEX = /^[1-9]\d{0,3}$/;
+
+/** Decodes a percent-encoded ZIP 321 value. "+" stays a literal plus sign. */
+function decodeQchars(value: string, name: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    throw new Error(`Invalid percent-encoding in parameter '${name}'`);
+  }
+}
+
+/**
  * Builds a ZIP-321 compliant URI from an array of payment items.
  * Supports single-recipient and multi-recipient requests.
  */
@@ -253,7 +288,7 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
   // If single recipient: standard allows zcash:<address>?amount=... format or query-only format
   if (payments.length === 1) {
     const p = payments[0];
-    const params = new URLSearchParams();
+    const params = new Zip321Query();
 
     if (p.amount !== undefined && p.amount !== null && p.amount !== "") {
       params.append("amount", formatZecAmount(p.amount));
@@ -272,8 +307,8 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
     return qs ? `zcash:${p.address}?${qs}` : `zcash:${p.address}`;
   }
 
-  // Multi-recipient: index parameters (primary without suffix or with .0, subsequent with .1, .2, etc.)
-  const params = new URLSearchParams();
+  // Multi-recipient: index parameters (primary without suffix, subsequent with .1, .2, etc.)
+  const params = new Zip321Query();
 
   payments.forEach((p, i) => {
     const idx = i === 0 ? "" : `.${i}`;
@@ -309,18 +344,35 @@ export function parseZip321Uri(uri: string): Zip321PaymentItem[] {
   const withoutScheme = uri.slice(6);
   const [pathPart, queryPart] = withoutScheme.split("?");
 
-  const params = new URLSearchParams(queryPart || "");
   const paymentsMap = new Map<string, Partial<Zip321PaymentItem>>();
+  // "<name>.<index>" pairs already seen; ZIP 321 forbids repeating one.
+  const seen = new Set<string>();
 
   // Path address is recipient 0 if present
   if (pathPart) {
-    paymentsMap.set("0", { address: decodeURIComponent(pathPart) });
+    paymentsMap.set("0", { address: decodeQchars(pathPart, "address") });
+    seen.add("address.0");
   }
 
-  for (const [key, value] of params.entries()) {
+  for (const pair of (queryPart || "").split("&")) {
+    if (!pair) continue;
+    const eq = pair.indexOf("=");
+    const key = eq === -1 ? pair : pair.slice(0, eq);
+    const rawValue = eq === -1 ? "" : pair.slice(eq + 1);
+
     const dotIndex = key.indexOf(".");
     const paramName = dotIndex === -1 ? key : key.slice(0, dotIndex);
     const indexStr = dotIndex === -1 ? "0" : key.slice(dotIndex + 1);
+
+    if (dotIndex !== -1 && !PARAM_INDEX.test(indexStr)) {
+      throw new Error(`Invalid parameter index in '${key}'`);
+    }
+    if (seen.has(`${paramName}.${indexStr}`)) {
+      throw new Error(`Duplicate parameter '${key}'`);
+    }
+    seen.add(`${paramName}.${indexStr}`);
+
+    const value = decodeQchars(rawValue, key);
 
     if (!paymentsMap.has(indexStr)) {
       paymentsMap.set(indexStr, {});
@@ -337,6 +389,9 @@ export function parseZip321Uri(uri: string): Zip321PaymentItem[] {
       item.message = value;
     } else if (paramName === "memo") {
       item.memo = decodeZip321Memo(value);
+    } else if (paramName.startsWith("req-")) {
+      // ZIP 321: a wallet must reject a URI with a required parameter it doesn't support.
+      throw new Error(`Unsupported required parameter '${key}'`);
     }
   }
 

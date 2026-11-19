@@ -461,6 +461,20 @@ describe("LanguageSwitcher on a phone", () => {
       .toEqual(["es", "ja"]);
   });
 
+  it("opts the portaled sheet into pointer events when a parent modal disables body hits", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    document.body.style.pointerEvents = "none"; // Radix mobile nav's modal lock.
+    try {
+      const portal = screen.getByRole("dialog", { name: "Language" }).parentElement;
+      expect(portal).toHaveClass("pointer-events-auto");
+      expect(portal).not.toBe(document.body);
+    } finally {
+      document.body.style.pointerEvents = "";
+    }
+  });
+
   it("selects inside the sheet and closes it with the close button", async () => {
     const user = userEvent.setup();
     renderPicker();

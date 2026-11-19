@@ -522,7 +522,13 @@
     "activeCount": "{count} ń ṣiṣẹ́",
     "savedReview": "A ti pa àtúnyẹ̀wò rẹ mọ́!",
     "errorGettingLikes": "Àṣìṣe tí ó ń gba àwọn ìfẹ́:",
-    "errorUpdatingRating": "Àkọsílẹ̀ àtúnṣe àṣìṣe:"
+    "errorUpdatingRating": "Àkọsílẹ̀ àtúnṣe àṣìṣe:",
+    "betaTitle": "Àwọn wàléètì beta",
+    "betaNote": "Àwọn ẹ̀dà ìdánwò. Retí àìpé, kí o sì lo àwọn iye kékeré.",
+    "transparentOnlyTitle": "Àwọn wàléètì ìfarahàn nìkan",
+    "transparentOnlyNote": "Àwọn wàléètì wọ̀nyí ń gba ZEC ìfarahàn nìkan, èyí tí kò fi àwọn àlàyé ìdúnnàdúró pamọ́.",
+    "nymMixnetTitle": "Ìtìlẹ́yìn Nym Mixnet",
+    "nymMixnetNote": "Àwọn wàléètì tó ń gba ìtòjọ́ ìrìnàjò Zcash nípasẹ̀ Nym mixnet."
   },
   "guides": {
     "title": "Àwọn ìwé atọ́nà",
@@ -1336,6 +1342,164 @@
     "tutorials": {
       "title": "Àwọn ẹ̀kọ́",
       "sub": "Wo ó, kí o sì tẹ̀lé e"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Wiki àwùjọ fún kíkọ́ ẹ̀kọ́ nípa Zcash, lílo rẹ̀ àti kíkọ́ ohun tuntun pẹ̀lú rẹ̀.",
+      "openSource": "Orísun ṣíṣí",
+      "communityDriven": "Àwùjọ ló ń darí rẹ̀",
+      "educationHub": "Ibùdó ẹ̀kọ́ fún Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Kọ́ ẹ̀kọ́",
+        "description": "Kí ni Zcash, báwo ni ìpamọ́ rẹ̀ ṣe ń ṣiṣẹ́, àti ibo ni o ti lè bẹ̀rẹ̀.",
+        "links": {
+          "first": "Ìtọ́sọ́nà fún olùlò tuntun",
+          "second": "Kí ni Zcash?",
+          "third": "Àwọn àtúnṣe nẹ́tíwọ́ọ̀kì"
+        }
+      },
+      "wallet": {
+        "title": "Yan àpamọ́ owó kan",
+        "description": "Àpamọ́ owó jẹ́ kí o gba ZEC kí o sì ná a ní ìkọ̀kọ̀.",
+        "links": {
+          "first": "Gbogbo àwọn àpamọ́ owó",
+          "second": "Àwọn àpamọ́ owó alágbèéká",
+          "third": "Àwọn àpamọ́ owó ẹ̀rọ"
+        }
+      },
+      "use": {
+        "title": "Lo ZEC",
+        "description": "Gba ZEC, fi ránṣẹ́, kí o sì wá àwọn ibi tí wọ́n ti ń gbà á.",
+        "links": {
+          "first": "Rírà ZEC",
+          "second": "Àwọn ìdúnàádúrà",
+          "third": "Àwọn ibi láti ná ZEC"
+        }
+      },
+      "build": {
+        "title": "Kọ́ nǹkan",
+        "description": "Àwọn ohun àmúṣọrọ̀ àti irinṣẹ́ fún olùgbéejáde, àti àwọn ọ̀nà láti ṣètìlẹ́yìn fún wiki náà.",
+        "links": {
+          "first": "Àwọn Olùgbéejáde",
+          "second": "Zcash Devtool",
+          "third": "Ṣètìlẹyìn"
+        }
+      }
+    },
+    "start": {
+      "title": "Bẹ̀rẹ̀ Níbí",
+      "subtitle": "Ṣé o ṣẹ̀ṣẹ̀ mọ Zcash? Bẹ̀rẹ̀ pẹ̀lú àwọn mẹ́rin wọ̀nyí."
+    },
+    "videos": {
+      "title": "Wo fídíò",
+      "pinnedDescription": "Ọ̀nà kúkúrú fún àwọn olùbẹ̀rẹ̀, ní ìtẹ̀léra.",
+      "latestDescription": "Àwọn ohun tó ṣẹ̀ṣẹ̀ jáde lórí ikanni ZecHub.",
+      "allVideos": "Gbogbo àwọn fídíò",
+      "previous": "Àwọn fídíò tó ṣáájú",
+      "next": "Àwọn fídíò tó tẹ̀lé",
+      "play": "Mu {title} ṣiṣẹ́",
+      "step": "Ìgbésẹ̀ {number}"
+    },
+    "explore": {
+      "title": "Ṣàwárí sí i",
+      "subtitle": "Àwọn ìwé atọ́sọ́nà, ìwádìí, irinṣẹ́ àti àwùjọ Zcash tó gbòòrò."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Kọ́ sí i ní ìjìnlẹ̀",
+        "subtitle": "Àwọn ẹ̀kọ́, ìwé atọ́sọ́nà àti ìwádìí fún ìgbà tí o bá fẹ́ àlàyé sí i."
+      },
+      "tools": {
+        "title": "Àwọn irinṣẹ́ láti dán wò",
+        "subtitle": "Àwọn irinṣẹ́ ìbánisọ̀rọ̀ àti àkójọ ojúlé tí a kọ́ ní àyíká Zcash."
+      },
+      "community": {
+        "title": "Àwùjọ àti àwọn àjọ",
+        "subtitle": "Àwọn ènìyàn àti ẹgbẹ́ tó ń ṣe àtìlẹ́yìn fún àyíká Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Àwọn ẹ̀kọ́",
+        "description": "Àwọn ẹ̀kọ́ fídíò ní ìgbésẹ̀-ní-ìgbésẹ̀"
+      },
+      "guides": {
+        "title": "Àwọn ìwé atọ́nà",
+        "description": "Àwọn node, irinṣẹ́, DeFi àti bẹ́ẹ̀ bẹ́ẹ̀ lọ"
+      },
+      "tech": {
+        "title": "Ìmọ̀-ẹ̀rọ Zcash",
+        "description": "zk-SNARKs àti ìlànà náà"
+      },
+      "research": {
+        "title": "Ìwádìí",
+        "description": "Àwọn àpilẹ̀kọ àti ìwádìí nípa Zcash"
+      },
+      "privacy": {
+        "title": "Àwọn irinṣẹ Ìpamọ́",
+        "description": "Àwọn irinṣẹ́ tó ń ràn ọ́ lọ́wọ́ láti dáàbò bo ìpamọ́ rẹ"
+      },
+      "glossary": {
+        "title": "Àkójọ ọ̀rọ̀ àti FAQs",
+        "description": "Àwọn ìdáhùn kíákíá àti ìtumọ̀ ọ̀rọ̀"
+      },
+      "visualizer": {
+        "description": "Àwọn irinṣẹ́ ìbánisọ̀rọ̀ láti lóye ìmọ̀ ẹ̀rọ ìpamọ́ Zcash."
+      },
+      "map": {
+        "description": "Máàpù àwọn oníṣòwò àti ATM tí wọ́n ń gba Zcash, tí àwùjọ ń tọ́jú."
+      },
+      "pay": {
+        "description": "Àkójọ ibi tí o ti lè sanwó pẹ̀lú ZEC láìsan owó."
+      },
+      "organizations": {
+        "title": "Àwọn àjọ",
+        "description": "ZODL, Zcash Foundation, ZCG àti àwọn mìíràn"
+      },
+      "community": {
+        "title": "Àwùjọ",
+        "description": "Àwọn ìjápọ̀, búlọọ̀gì, iṣẹ́ àkànṣe àti aṣojú"
+      },
+      "ambassadors": {
+        "title": "Àwọn Aṣojú Àgbáyé Zcash",
+        "description": "Àwọn aṣáájú àwùjọ tó ń gbé ẹ̀kọ́ nípa Zcash lárugẹ kárí ayé."
+      },
+      "hackathon": {
+        "title": "Àpamọ́ ZecHub Hackathon",
+        "description": "Àwọn iṣẹ́ àkànṣe tí a fi sílẹ̀ fún ZecHub Hackathon ti 2026."
+      }
+    },
+    "involved": {
+      "title": "Kópa",
+      "subtitle": "Darapọ̀ mọ́ DAO, bá àwùjọ pàdé, kí o sì ran wa lọ́wọ́ láti kọ́ wiki náà.",
+      "dao": {
+        "description": "Bí ZecHub ṣe ń ṣe ìpinnu, àti àwọn àbá tí ìdìbò ṣí sílẹ̀ fún.",
+        "meet": "Mọ DAO",
+        "proposals": "Wo àwọn àbá"
+      },
+      "community": {
+        "title": "Darapọ̀ mọ́ àwùjọ",
+        "description": "Bá àwọn olùlò Zcash mìíràn sọ̀rọ̀, kí o sì máa tọ́pa ohun tí ZecHub ń ṣe.",
+        "discord": "Darapọ̀ mọ́ Discord"
+      },
+      "contribute": {
+        "title": "Ran wa lọ́wọ́ láti kọ́ ZecHub",
+        "description": "Àwùjọ ló ń darí ZecHub. Fi àkóónú kún un tàbí gba iṣẹ́ tó ní ẹ̀bùn.",
+        "action": "Ṣètìlẹyìn",
+        "support": "Ṣe àtìlẹ́yìn fún iṣẹ́ àkànṣe náà"
+      }
+    },
+    "stats": {
+      "circulation": "Iye owó tó wà ní ìyíká",
+      "shielded": "Iye owó tí a fi ààbò bo",
+      "blocks": "Gíga bulọọki",
+      "maxSupply": "{percentage}% nínú iye tó pọ̀ jù lọ, 21M",
+      "maxSupplyAria": "{percentage}% nínú iye owó tó pọ̀ jù lọ, 21 mílíọ̀nù",
+      "shieldedShare": "{percentage}% nínú iye owó tó wà ní ìyíká",
+      "latestBlock": "Bulọọki tó ṣẹ̀ṣẹ̀ dé lórí mainnet Zcash"
     }
   }
 }

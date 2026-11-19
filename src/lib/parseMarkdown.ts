@@ -13,6 +13,9 @@ export function parseMarkdown(md: string) {
     let imageUrl = '';
     let syncSpeed = '';
     let nu7 = '';
+    let nymMixnet = '';
+    let sourceCode = '';
+    let source = '';
 
     // Deprecated wallets are listed separately.
     // Stage (e.g. Beta) is shown as a badge.
@@ -62,6 +65,18 @@ export function parseMarkdown(md: string) {
         const value = line.split(': ')[1];
         if (value) nu7 = value.trim();
       }
+      else if (line.startsWith('- Nym Mixnet:')) {
+        const value = line.split(': ')[1];
+        if (value) nymMixnet = value.trim();
+      }
+      else if (line.startsWith('- Source Code:')) {
+        const value = line.split(': ')[1];
+        if (value) sourceCode = value.trim();
+      }
+      else if (line.startsWith('- Source:')) {
+        const value = line.split(': ')[1];
+        if (value) source = value.trim();
+      }
       else if (line.startsWith('- Status:')) {
         const at = line.indexOf(': ');
         if (at > -1) {
@@ -91,6 +106,9 @@ export function parseMarkdown(md: string) {
       walletSupport: [...new Set(walletSupport)],
       syncSpeed,
       nu7,
+      nymMixnet,
+      sourceCode,
+      source,
       status,
       statusReason,
       stage,

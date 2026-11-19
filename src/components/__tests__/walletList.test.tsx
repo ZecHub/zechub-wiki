@@ -89,7 +89,172 @@ describe("WalletList", () => {
     render(<WalletList allWallets={wallets} />);
 
     expect(screen.getByText("NU7: Compatible")).toBeInTheDocument();
-    expect(screen.getByText("Beta")).toBeInTheDocument();
+    expect(screen.getAllByText("Beta").length).toBeGreaterThan(0);
+  });
+
+  it("groups only beta wallets separately and leaves Nym Mixnet as a filter", () => {
+    const list = parseMarkdown(`
+## [Regular](https://regular.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+
+---
+## [Preview](https://preview.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+- Stage: Beta
+
+---
+## [Clear](https://clear.example)
+- Devices: Mobile
+- Pools: Transparent
+- NU7: Compatible
+
+---
+## [Private](https://private.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+- Nym Mixnet: Supported
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const beta = screen
+      .getByText("Beta wallets (1)")
+      .closest("section") as HTMLElement;
+
+    expect(within(beta).getByText("Preview")).toBeInTheDocument();
+    expect(within(beta).queryByText("Regular")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Transparent-only wallets/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Nym Mixnet support/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Clear" })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Private" })
+    ).toBeInTheDocument();
+  });
+
+  it("filters by Nym Mixnet support", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [Regular](https://regular.example)
+- Devices: Mobile
+- Pools: Ironwood
+
+---
+## [Private](https://private.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Nym Mixnet: Supported
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const supported = await within(sidebar).findByRole("checkbox", {
+      name: "Supported",
+    });
+
+    await user.click(supported);
+
+    expect(
+      screen.queryByRole("heading", { name: "Regular" })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getAllByRole("heading", { name: "Private" }).length
+    ).toBeGreaterThan(0);
+  });
+
+  it("labels open and closed source wallets and filters by source", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [Open](https://open.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source Code: https://github.com/example/open
+- Source: Open Source
+
+---
+## [Closed](https://closed.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source Code: https://github.com/example/closed
+- Source: Closed Source
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const openCard = screen
+      .getByRole("heading", { name: "Open" })
+      .closest(".wallet-item") as HTMLElement;
+    const closedCard = screen
+      .getByRole("heading", { name: "Closed" })
+      .closest(".wallet-item") as HTMLElement;
+
+    expect(
+      within(openCard).getByText("Open Source")
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/example/open"
+    );
+    expect(within(closedCard).getByText("Closed Source")).toBeInTheDocument();
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const openSource = await within(sidebar).findByRole("checkbox", {
+      name: "Open Source",
+    });
+
+    await user.click(openSource);
+
+    expect(
+      screen.getByRole("heading", { name: "Open" })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Closed" })
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows explicitly open-source wallets without a repository URL in the source filter", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [OpenWithoutUrl](https://open.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source: Open Source
+
+---
+## [Closed](https://closed.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source: Closed Source
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const openCard = screen
+      .getByRole("heading", { name: "OpenWithoutUrl" })
+      .closest(".wallet-item") as HTMLElement;
+    expect(within(openCard).getByText("Open Source")).toBeInTheDocument();
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    await user.click(
+      await within(sidebar).findByRole("checkbox", { name: "Open Source" })
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "OpenWithoutUrl" })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Closed" })
+    ).not.toBeInTheDocument();
   });
 
   it("orders NU7-compatible wallets first, whatever their position in the file", () => {
@@ -107,7 +272,7 @@ describe("WalletList", () => {
 
 ## [Transp](https://c.example)
 - Devices: Mobile
-- NU7: Compatible for transparent zec
+- NU7: Compatible for Transparent ZEC
 
 ---
 
@@ -120,11 +285,38 @@ describe("WalletList", () => {
 ## [Busy](https://e.example)
 - Devices: Mobile
 - NU7: In Progress
+
+---
+
+## [Unverified](https://f.example)
+- Devices: Mobile
+- NU7: Not Verified
 `);
     render(<WalletList allWallets={list} />);
 
-    // Wallet names are level 3 headings under the group titles (Zcash / Software / Hardware wallets).
-    const titles = screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent);
-    expect(titles).toEqual(["Early", "Transp", "Busy", "Late", "NoStatus"]);
+    const titles = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(titles).toEqual([
+      "Early",
+      "Transp",
+      "Busy",
+      "Late",
+      "Unverified",
+      "NoStatus",
+    ]);
+  });
+
+  it("filters by NU7 status", async () => {
+    const user = userEvent.setup();
+    render(<WalletList allWallets={wallets} />);
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const compatible = await within(sidebar).findByRole("checkbox", {
+      name: "Compatible",
+    });
+
+    await user.click(compatible);
+
+    expect(screen.getByText("Alive")).toBeInTheDocument();
+    expect(screen.queryByText("Gone")).not.toBeInTheDocument();
   });
 });
