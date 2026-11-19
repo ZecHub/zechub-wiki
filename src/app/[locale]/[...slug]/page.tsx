@@ -6743,7 +6743,7 @@ export default async function Page(props: {
             akashz: slug[0] === "guides" && slug[1] === "akash-network-zebra",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
-            numberedSteps: (slug[0] === "start-here" && slug[1] === "new-user-guide") || (slug[0] === "using-zcash" && slug[1] === "metamask-snap") || (slug[0] === "contribute" && slug[1] === "zecweekly-newsletter"),
+            numberedSteps: (slug[0] === "start-here" && slug[1] === "new-user-guide") || (slug[0] === "using-zcash" && slug[1] === "metamask-snap") || (slug[0] === "contribute" && slug[1] === "zecweekly-newsletter") || slug[0] === "research",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
