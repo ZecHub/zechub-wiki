@@ -1,5 +1,6 @@
 // Feature tags come from one shared list so cards stay comparable:
-// Mainnet, Testnet, Blocks & transactions, Address lookup, Mempool,
+// Mainnet, Testnet, Blocks & transactions, Address lookup,
+// TEX address lookup (ZIP 320), Mempool,
 // Shielded pool data, Unified Address decoder, Viewing key tools,
 // Memo decryption, Payment disclosure, Broadcast transaction,
 // Cross-chain swaps, Reorg history, Network nodes, Mining data,
@@ -49,11 +50,13 @@ export const blockchainExplorers = [
     credit: "ZecBlock API powers ZecHub's dashboard metrics, Halving Meter and Block Time tool.",
     badge: 'Zcash only',
     description:
-      'Zcash block explorer and privacy analytics, formerly cipherscan.app. Blocks, transactions, addresses and mempool, plus shielded pool and Ironwood data, privacy analytics, developer tools and an API. Ask ZecBlock (beta) answers questions from indexed public chain data.',
+      'Zcash block explorer and privacy analytics, formerly cipherscan.app. Blocks, transactions, addresses and mempool, plus shielded pool and Ironwood data, privacy analytics, developer tools and an API. Searching a TEX address (tex1, ZIP 320) shows the history of its matching t1 address. Ask ZecBlock (beta) answers questions from indexed public chain data.',
     features: [
       'Mainnet',
       'Testnet',
       'Blocks & transactions',
+      'Address lookup',
+      'TEX address lookup (ZIP 320)',
       'Shielded pool data',
       'Memo decryption',
       'Broadcast transaction',
