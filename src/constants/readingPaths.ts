@@ -50,7 +50,7 @@ export const EXTRA_ITEMS: Record<string, { href: string; label: string }> = {
   "__payment-processors": { href: "/payment-processors", label: "Payment Processors" },
 };
 
-export type TrailEntry = { item: string; href: string; extraLabel?: string };
+export type TrailEntry = { item: string; href: string };
 
 // Slug of a menu item ("site/guides/Foo_Bar" -> "foo-bar"); fixed entries keep their "__" key.
 export const itemSlug = (item: string) =>
@@ -68,9 +68,10 @@ export function readingNeighbors(
   const bySlug = new Map(items.map((item) => [itemSlug(item), item]));
   const trail: TrailEntry[] = [];
   for (const slug of group.slugs) {
-    const extra = EXTRA_ITEMS[slug];
-    if (extra) trail.push({ item: slug, href: extra.href, extraLabel: extra.label });
-    else if (bySlug.has(slug)) {
+    // Fixed entries (Wallets, Custodial Exchanges, Payment Processors) are standalone pages with no Continue reading
+    // cards, so a trail that led into one would dead-end. They stay in the side menu but are skipped here.
+    if (EXTRA_ITEMS[slug]) continue;
+    if (bySlug.has(slug)) {
       const item = bySlug.get(slug)!;
       trail.push({ item, href: `/${transformGithubFilePathToWikiLink(item)}` });
     }

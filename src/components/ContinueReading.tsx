@@ -18,7 +18,7 @@ export default function ContinueReading({ folder, slug, roots, titles, enTitles,
   const { prev, next } = readingNeighbors(folder, items, slug);
   if (!prev && !next) return null;
 
-  const label = (e: TrailEntry) => e.extraLabel ?? menuLabelFor(e.item, titles, enTitles);
+  const label = (e: TrailEntry) => menuLabelFor(e.item, titles, enTitles);
   const card = (e: TrailEntry, caption: string, align: "start" | "end") => (
     <Link
       href={`${e.href}#content`}
