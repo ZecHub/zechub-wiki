@@ -26,7 +26,7 @@ interface Wallet {
 const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
 // Wallets built inside the Zcash ecosystem, listed first (titles lower-cased, letters and digits only).
-const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "zallet", "zingocli", "ywallet", "zenith", "vizor"];
+const ECOSYSTEM_WALLETS = ["zodl", "zkool", "zingo", "vizor", "zallet", "zingocli", "ywallet", "zenith"];
 
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
