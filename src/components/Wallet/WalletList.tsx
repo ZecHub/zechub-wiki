@@ -260,7 +260,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   // the rating orders wallets within each group.
   const sortedWallets = [...filteredWallets].sort(
     (a, b) =>
-      ecosystemRank(a) - ecosystemRank(b) ||
       nu7Rank(a) - nu7Rank(b) ||
       (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
@@ -371,12 +370,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               </span>
             </div>
 
-            {walletGroups.map((group) => (
-              <div key={group.title} className="mb-10">
-                <h2 className="mb-1 mt-0 text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
-                  {group.title} <span className="text-sm font-normal text-slate-500 dark:text-slate-400">({group.wallets.length})</span>
-                </h2>
-                <p className="mb-4 mt-0 text-sm text-slate-500 dark:text-slate-400">{group.note}</p>
             <div className="wl-wallet-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {productionWallets.map((wallet) => renderWalletCard(wallet))}
             </div>
