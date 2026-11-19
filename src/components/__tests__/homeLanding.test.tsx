@@ -32,7 +32,8 @@ test("the homepage uses translated section, card, link, and CTA copy without cha
     involved: { ...en.homeLanding.involved, contribute: { ...en.homeLanding.involved.contribute, support: "Soutenir le projet" } },
   } } };
   render(<Home />);
-  expect(screen.getByText("Apprendre Zcash ensemble")).toBeInTheDocument();
+  expect(document.querySelector("#hero p")).toHaveTextContent("Apprendre Zcash ensemble");
+  expect(screen.getByText("Zcash", { selector: "#hero .text-brand" })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: "Choisir un portefeuille" })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: "Approfondir" })).toBeInTheDocument();
   expect(screen.getByRole("link", { name: "Tous les portefeuilles" })).toHaveAttribute("href", "/wallets");

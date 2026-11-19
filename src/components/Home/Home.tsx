@@ -401,6 +401,14 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
   );
 }
 
+// Keep the brand highlight from the English hero without assuming where a
+// translator places the product name in the sentence.
+function brandTagline(tagline: string): ReactNode {
+  const brand = tagline.indexOf("Zcash");
+  if (brand < 0) return tagline;
+  return <>{tagline.slice(0, brand)}<span className="font-medium text-brand">Zcash</span>{tagline.slice(brand + "Zcash".length)}</>;
+}
+
 const Home = () => {
   const { t } = useLanguage();
   const { dark } = useDarkModeContext();
@@ -440,7 +448,7 @@ const Home = () => {
           />
           <h1 className="sr-only">ZecHub</h1>
           <p className="mx-auto max-w-xl text-lg text-slate-700 dark:text-slate-200 md:text-xl">
-            {h?.hero?.tagline ?? "The community wiki for learning, using and building with Zcash."}
+            {brandTagline(h?.hero?.tagline ?? "The community wiki for learning, using and building with Zcash.")}
           </p>
           {variant === "filled" ? (
             <ul className="mt-8 flex flex-wrap justify-center gap-2">

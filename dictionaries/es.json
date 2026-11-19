@@ -1450,7 +1450,7 @@
         "description": "Herramientas interactivas para entender la tecnología de privacidad de Zcash."
       },
       "map": {
-        "description": "Mapa gestionado por la Community de comercios y cajeros automáticos que aceptan Zcash."
+        "description": "Mapa de comercios y cajeros automáticos que aceptan Zcash, mantenido por la comunidad."
       },
       "pay": {
         "description": "Un directorio gratuito de lugares donde puedes pagar con ZEC."
@@ -1465,7 +1465,7 @@
       },
       "ambassadors": {
         "title": "Embajadores globales",
-        "description": "Líderes de la Community que promueven la educación sobre Zcash en todo el mundo."
+        "description": "Líderes de la comunidad que promueven la educación sobre Zcash en todo el mundo."
       },
       "hackathon": {
         "title": "Archivo de hackatones",
@@ -1474,7 +1474,7 @@
     },
     "involved": {
       "title": "Participa",
-      "subtitle": "Únete a la DAO, conoce a la Community y ayuda a construir la wiki.",
+      "subtitle": "Únete a la DAO, conoce a la comunidad y ayuda a construir la wiki.",
       "dao": {
         "description": "Cómo toma decisiones ZecHub y las propuestas abiertas a votación.",
         "meet": "Conoce a la DAO",
@@ -1487,7 +1487,7 @@
       },
       "contribute": {
         "title": "Ayuda a construir ZecHub",
-        "description": "ZecHub está impulsado por la Community. Añade contenido o acepta una recompensa.",
+        "description": "ZecHub está impulsado por la comunidad. Añade contenido o participa en una recompensa.",
         "action": "Contribuir",
         "support": "Apoya el proyecto"
       }
