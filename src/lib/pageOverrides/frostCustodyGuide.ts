@@ -8,6 +8,26 @@
 // The TL;DR is dropped (the sections below say the same), "When should you use it" opens the page as the decision
 // table, and the projects section is a table (cards on phones) instead of mixed subheadings.
 // If the page no longer has this shape, the original markdown is returned untouched.
+// A three column comparison table is wider than a phone, so on small screens it becomes one card per row.
+function comparisonCards(section: string): string {
+  const lines = section.split("\n");
+  const start = lines.findIndex((l) => l.trim().startsWith("|"));
+  if (start < 0) return section;
+  let end = start;
+  while (end < lines.length && lines[end].trim().startsWith("|")) end++;
+  const rows = lines.slice(start, end).map((l) => l.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim()));
+  if (rows.length < 3 || rows[0].length !== 3) return section;
+  const [head, , ...body] = rows;
+  const card = (r: string[]) =>
+    `<div className="${CARD}">\n\n**${r[0]}**\n\n${head[1]}: ${r[1]}\n\n${head[2]}: ${r[2]}\n\n</div>`;
+  const table = lines.slice(start, end).join("\n");
+  const block = `<div className="hidden md:block">\n\n${table}\n\n</div>\n\n<div className="md:hidden my-4 space-y-3">\n\n${body.map(card).join("\n\n")}\n\n</div>`;
+  return [...lines.slice(0, start), block, ...lines.slice(end)].join("\n");
+}
+
+const CARD =
+  "rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2";
+
 export function rewriteFrostCustodyGuide(original: string): string {
   if (!/^# FROST & Threshold Custody/im.test(original)) return original;
 
@@ -124,7 +144,7 @@ ${s("What is FROST in plain language?")}
 
 ## How it differs from transparent multisig
 
-${s("How does it differ from transparent multisig?")}
+${comparisonCards(s("How does it differ from transparent multisig?"))}
 
 ## How a signing session works
 

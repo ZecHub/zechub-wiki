@@ -101,6 +101,8 @@ import { rewriteZakuraNodeGuide } from "@/lib/pageOverrides/zakuraNodeGuide";
 import { rewriteShieldedAssetsGuide } from "@/lib/pageOverrides/shieldedAssetsGuide";
 import { rewritePepperSyncGuide } from "@/lib/pageOverrides/pepperSyncGuide";
 import { rewriteNu62Guide } from "@/lib/pageOverrides/nu62Guide";
+import { rewriteNu7Guide } from "@/lib/pageOverrides/nu7Guide";
+import { rewriteOverwinterGuide } from "@/lib/pageOverrides/overwinterGuide";
 import { rewriteNu61Guide } from "@/lib/pageOverrides/nu61Guide";
 import { rewriteNu6Guide } from "@/lib/pageOverrides/nu6Guide";
 import { rewriteNu5Guide } from "@/lib/pageOverrides/nu5Guide";
@@ -5443,7 +5445,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               if (m.type === "element" && m.tagName === "ul") {
                 m.properties = { ...(m.properties || {}), dataVariant: variant };
                 if (variant === "related") {
-                  // "[Wallets](/wallets) — description" → drop the dash so the
+                  // "[Wallets](/wallets) — description" (or ": description") → drop the dash or colon so the
                   // description reads as a card subtitle.
                   for (const li of m.children || []) {
                     if (li.type !== "element" || li.tagName !== "li") continue;
@@ -5451,7 +5453,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
                       (c: any, k: number, a: any[]) =>
                         k > 0 && a[k - 1].type === "element" && a[k - 1].tagName === "a" && c.type === "text",
                     );
-                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–-]\s*/, "");
+                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–:-]\s*/, "");
                     // A bare link to this wiki gets the one-line description the other entries have.
                     const kidsLi = (li.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
                     if (kidsLi.length === 1 && kidsLi[0].type === "element" && kidsLi[0].tagName === "a" && /^https?:\/\/(www\.)?zechub\.wiki\/?$/i.test(String(kidsLi[0].properties?.href || "")) && /^zechub wiki$/i.test(textOf(kidsLi[0]).trim())) {
@@ -6298,6 +6300,12 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zcash-tech/nu6-1" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu61Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/nu7" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu7Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/overwinter" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteOverwinterGuide(processedMarkdown);
   }
   if (slug.join("/") === "zcash-tech/nu6-2" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu62Guide(processedMarkdown);
