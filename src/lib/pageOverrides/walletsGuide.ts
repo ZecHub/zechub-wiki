@@ -7,10 +7,10 @@ const INTRO = `# Wallets
 
 ## TL;DR
 
-- Pick a wallet that lists **Sapling** or **Ironwood** under Pools. Those are the shielded pools, so your balance and payments stay private.
+- Pick a wallet that lists **Sapling** or **Ironwood** under Pools. Those are the shielded pools that accept new funds, so your balance and payments stay private. **Orchard** is shielded too, but since the Ironwood upgrade it takes no new funds; existing Orchard funds can still be moved out, for example to Ironwood.
 - A wallet that lists only **Transparent** works like Bitcoin: everything is public on the blockchain.
 - Each entry shows the devices it runs on, what it supports, which pools it can use, and whether it is ready for Ironwood.
-- Wallets marked **Deprecated** (Ywallet, zcashd) no longer follow the network. Do not use them for new funds.
+- Wallets marked **Deprecated** (Ywallet, eZcash, zcashd, Zend) no longer follow the network. Do not use them for new funds.
 
 ## How to choose
 
