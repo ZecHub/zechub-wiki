@@ -1343,5 +1343,163 @@
       "title": "Nkuzi",
       "sub": "Lelee ma soro"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Wiki obodo maka ịmụ banyere Zcash, iji ya eme ihe na iji ya wuo ihe.",
+      "openSource": "Koodu mepere emepe",
+      "communityDriven": "Obodo na-eduzi",
+      "educationHub": "Ebe agụmakwụkwọ maka Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Mụta",
+        "description": "Ihe Zcash bụ, otu nzuzo ya si arụ ọrụ, na ebe ị ga-amalite.",
+        "links": {
+          "first": "Ntuziaka maka ndị ọrụ ọhụrụ",
+          "second": "Gịnị bụ Zcash?",
+          "third": "Nkwalite netwọk"
+        }
+      },
+      "wallet": {
+        "title": "Họrọ obere akpa ego",
+        "description": "Obere akpa ego na-enye gị ohere ịnata na imefu ZEC na nzuzo.",
+        "links": {
+          "first": "Akpa ego niile",
+          "second": "Akpa ego ekwentị",
+          "third": "Akpa ego ngwaike"
+        }
+      },
+      "use": {
+        "title": "Jiri ZEC",
+        "description": "Nweta ZEC, zipụ ya, chọtakwa ebe ndị na-anabata ya.",
+        "links": {
+          "first": "Ịzụta ZEC",
+          "second": "Azụmahịa",
+          "third": "Ebe ị ga-emefu ZEC"
+        }
+      },
+      "build": {
+        "title": "Wuo ihe",
+        "description": "Akụrụngwa na ngwá ọrụ maka ndị mmepe, na ụzọ isi nye aka na wiki.",
+        "links": {
+          "first": "Ndị mmepe",
+          "second": "Zcash Devtool",
+          "third": "Na-enye aka"
+        }
+      }
+    },
+    "start": {
+      "title": "Malite Ebe a",
+      "subtitle": "Ị dị ọhụrụ na Zcash? Malite na ihe anọ ndị a."
+    },
+    "videos": {
+      "title": "Lelee",
+      "pinnedDescription": "Ụzọ dị mkpirikpi ndị ọhụrụ ga-eso n'usoro.",
+      "latestDescription": "Ihe kacha ọhụrụ sitere na chanel ZecHub.",
+      "allVideos": "Vidiyo niile",
+      "previous": "Vidiyo ndị gara aga",
+      "next": "Vidiyo ndị na-esote",
+      "play": "Kpọọ {title}",
+      "step": "Nzọụkwụ {number}"
+    },
+    "explore": {
+      "title": "Ihe ndị ọzọ ị ga-enyocha",
+      "subtitle": "Akwụkwọ ntuziaka, nnyocha, ngwá ọrụ na obodo Zcash sara mbara."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Mụtakwuo nke ọma",
+        "subtitle": "Nkuzi, akwụkwọ ntuziaka na nnyocha mgbe ịchọrọ nkọwa ndị ọzọ."
+      },
+      "tools": {
+        "title": "Ngwá ọrụ ị ga-anwale",
+        "subtitle": "Ngwá ọrụ mmekọrịta na akwụkwọ ndekọ aha e wuru maka Zcash."
+      },
+      "community": {
+        "title": "Obodo na òtù dị iche iche",
+        "subtitle": "Ndị mmadụ na otu ndị na-akwado ekosistem Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Nkuzi",
+        "description": "Nkuzi vidiyo nke nzọụkwụ site na nzọụkwụ"
+      },
+      "guides": {
+        "title": "Akwụkwọ ntuziaka",
+        "description": "Noodu, ngwá ọrụ, DeFi na ihe ndị ọzọ"
+      },
+      "tech": {
+        "title": "Teknụzụ Zcash",
+        "description": "zk-SNARKs na protokol"
+      },
+      "research": {
+        "title": "Nnyocha",
+        "description": "Edemede na nnyocha banyere Zcash"
+      },
+      "privacy": {
+        "title": "Ngwaọrụ Nzuzo",
+        "description": "Ngwá ọrụ ga-enyere gị aka ichekwa nzuzo gị"
+      },
+      "glossary": {
+        "title": "Glossary & Ajụjụ Ndị A Na-ajụkarị",
+        "description": "Azịza na nkọwa okwu ndị dị mkpirikpi"
+      },
+      "visualizer": {
+        "description": "Ngwá ọrụ mmekọrịta iji ghọta teknụzụ nzuzo Zcash."
+      },
+      "map": {
+        "description": "Maapụ ndị ahịa na ATM na-anabata Zcash nke obodo na-elekọta."
+      },
+      "pay": {
+        "description": "Akwụkwọ ndekọ aha n'efu nke ebe ị nwere ike iji ZEC kwụọ ụgwọ."
+      },
+      "organizations": {
+        "title": "Òtù dị iche iche",
+        "description": "ZODL, Zcash Foundation, ZCG na ndị ọzọ"
+      },
+      "community": {
+        "title": "Obodo",
+        "description": "Njikọ, blọọgụ, ọrụ na ndị nnọchi anya"
+      },
+      "ambassadors": {
+        "title": "Ndị nnọchi anya zuru ụwa ọnụ",
+        "description": "Ndị isi obodo na-akwalite agụmakwụkwọ Zcash n'ụwa niile."
+      },
+      "hackathon": {
+        "title": "Ebe Nchekwa Hackathon",
+        "description": "Ọrụ ndị e nyefere na ZecHub Hackathon nke afọ 2026."
+      }
+    },
+    "involved": {
+      "title": "Tinye aka",
+      "subtitle": "Soro DAO, zute ndị obodo ma nyere aka wuo wiki.",
+      "dao": {
+        "description": "Otu ZecHub si eme mkpebi, na atụmatụ ndị a na-eme ntuli aka na ha.",
+        "meet": "Mata DAO",
+        "proposals": "Lee atụmatụ"
+      },
+      "community": {
+        "title": "Soro obodo",
+        "description": "Soro ndị ọrụ Zcash ndị ọzọ kparịta ụka ma mara ihe ZecHub na-eme.",
+        "discord": "Soro Discord"
+      },
+      "contribute": {
+        "title": "Nyere aka wuo ZecHub",
+        "description": "Obodo na-eduzi ZecHub. Tinye ọdịnaya ma ọ bụ rụọ ọrụ maka ụgwọ ọrụ.",
+        "action": "Na-enye aka",
+        "support": "Kwado ọrụ a"
+      }
+    },
+    "stats": {
+      "circulation": "Ọnụọgụ ego dị na mgbasa",
+      "shielded": "Ọnụọgụ ego echedoro",
+      "blocks": "Ogologo blọk",
+      "maxSupply": "{percentage}% nke oke 21M",
+      "maxSupplyAria": "{percentage}% nke oke ọnụọgụ ego nde 21",
+      "shieldedShare": "{percentage}% nke ego dị na mgbasa",
+      "latestBlock": "Blọk kachasị ọhụrụ na netwọk isi Zcash"
+    }
   }
 }

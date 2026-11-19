@@ -1343,5 +1343,163 @@
       "title": "الدروس",
       "sub": "شاهد وتابع"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "ويكي المجتمع لتعلّم Zcash واستخدامه والبناء عليه.",
+      "openSource": "مفتوح المصدر",
+      "communityDriven": "بقيادة المجتمع",
+      "educationHub": "مركز تعليمي لـ Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "تعلّم",
+        "description": "ما هو Zcash، وكيف تعمل خصوصيته، ومن أين تبدأ.",
+        "links": {
+          "first": "دليل المستخدم الجديد",
+          "second": "ما هو Zcash؟",
+          "third": "ترقيات الشبكة"
+        }
+      },
+      "wallet": {
+        "title": "اختر محفظة",
+        "description": "تتيح لك المحفظة تلقي ZEC وإنفاقه بخصوصية.",
+        "links": {
+          "first": "جميع المحافظ",
+          "second": "محافظ الهاتف المحمول",
+          "third": "محافظ الأجهزة"
+        }
+      },
+      "use": {
+        "title": "استخدم ZEC",
+        "description": "احصل على ZEC، وأرسله، واعثر على الأماكن التي تقبله.",
+        "links": {
+          "first": "شراء ZEC",
+          "second": "المعاملات",
+          "third": "أماكن لإنفاق ZEC"
+        }
+      },
+      "build": {
+        "title": "ابنِ",
+        "description": "موارد للمطورين وأدوات وطرق للمساهمة في الويكي.",
+        "links": {
+          "first": "المطورون",
+          "second": "Zcash Devtool",
+          "third": "ساهم"
+        }
+      }
+    },
+    "start": {
+      "title": "ابدأ من هنا",
+      "subtitle": "هل أنت جديد على Zcash؟ ابدأ بهذه الأربعة."
+    },
+    "videos": {
+      "title": "شاهد",
+      "pinnedDescription": "مسار قصير للقادمين الجدد، بالترتيب.",
+      "latestDescription": "أحدث ما في قناة ZecHub.",
+      "allVideos": "جميع الفيديوهات",
+      "previous": "الفيديوهات السابقة",
+      "next": "الفيديوهات التالية",
+      "play": "شغّل {title}",
+      "step": "الخطوة {number}"
+    },
+    "explore": {
+      "title": "المزيد لاستكشافه",
+      "subtitle": "أدلة وأبحاث وأدوات ومجتمع Zcash الأوسع."
+    },
+    "groups": {
+      "deeper": {
+        "title": "تعمّق أكثر",
+        "subtitle": "دروس وأدلة وأبحاث عندما تريد مزيدًا من التفاصيل."
+      },
+      "tools": {
+        "title": "أدوات للتجربة",
+        "subtitle": "أدوات تفاعلية وأدلة مبنية حول Zcash."
+      },
+      "community": {
+        "title": "المجتمع والمنظمات",
+        "subtitle": "الأشخاص والمجموعات الذين يقفون وراء منظومة Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "دروس تعليمية",
+        "description": "دروس فيديو خطوة بخطوة"
+      },
+      "guides": {
+        "title": "أدلة",
+        "description": "العُقد والأدوات وDeFi والمزيد"
+      },
+      "tech": {
+        "title": "تقنية Zcash",
+        "description": "zk-SNARKs والبروتوكول"
+      },
+      "research": {
+        "title": "الأبحاث",
+        "description": "مقالات وأبحاث حول Zcash"
+      },
+      "privacy": {
+        "title": "أدوات الخصوصية",
+        "description": "أدوات تساعدك على حماية خصوصيتك"
+      },
+      "glossary": {
+        "title": "المسرد والأسئلة الشائعة",
+        "description": "إجابات وتعريفات سريعة"
+      },
+      "visualizer": {
+        "description": "أدوات تفاعلية لفهم تقنية خصوصية Zcash."
+      },
+      "map": {
+        "description": "خريطة يديرها المجتمع للتجّار وأجهزة الصراف الآلي التي تقبل Zcash."
+      },
+      "pay": {
+        "description": "دليل مجاني للأماكن التي يمكنك الدفع فيها باستخدام ZEC."
+      },
+      "organizations": {
+        "title": "المنظمات",
+        "description": "ZODL وZcash Foundation وZCG وغيرها"
+      },
+      "community": {
+        "title": "المجتمع",
+        "description": "روابط ومدونات ومشاريع وسفراء"
+      },
+      "ambassadors": {
+        "title": "السفراء العالميون",
+        "description": "قادة مجتمع يروّجون لتعليم Zcash حول العالم."
+      },
+      "hackathon": {
+        "title": "أرشيف الهاكاثون",
+        "description": "المشاريع المقدّمة إلى ZecHub Hackathon لعام 2026."
+      }
+    },
+    "involved": {
+      "title": "شارك",
+      "subtitle": "انضم إلى DAO، وتعرّف إلى المجتمع، وساهم في بناء الويكي.",
+      "dao": {
+        "description": "كيف يتخذ ZecHub قراراته، والمقترحات المفتوحة للتصويت.",
+        "meet": "تعرّف إلى DAO",
+        "proposals": "عرض المقترحات"
+      },
+      "community": {
+        "title": "انضم إلى المجتمع",
+        "description": "تحدث مع مستخدمي Zcash الآخرين وتابع ما يفعله ZecHub.",
+        "discord": "انضم إلى Discord"
+      },
+      "contribute": {
+        "title": "ساعد في بناء ZecHub",
+        "description": "يقود المجتمع ZecHub. أضف محتوى أو أنجز مكافأة.",
+        "action": "ساهم",
+        "support": "ادعم المشروع"
+      }
+    },
+    "stats": {
+      "circulation": "المعروض المتداول",
+      "shielded": "المعروض المحمي",
+      "blocks": "ارتفاع الكتلة",
+      "maxSupply": "{percentage}% من الحد الأقصى البالغ 21 مليونًا",
+      "maxSupplyAria": "{percentage}% من الحد الأقصى للمعروض البالغ 21 مليونًا",
+      "shieldedShare": "{percentage}% من المعروض المتداول",
+      "latestBlock": "أحدث كتلة على شبكة Zcash الرئيسية"
+    }
   }
 }

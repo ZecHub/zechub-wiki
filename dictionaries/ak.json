@@ -1343,5 +1343,163 @@
       "title": "Nkyerɛkyerɛ a wɔde ma",
       "sub": "Hwɛ na di akyi"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Mpɔtam hɔ wiki a wɔde sua Zcash ho ade, de di dwuma na wɔde yɛ nneɛma.",
+      "openSource": "Kɔd a ɛda hɔ ma obiara",
+      "communityDriven": "Mpɔtam hɔfo na wɔdi anim",
+      "educationHub": "Zcash nhomasua beae"
+    },
+    "featured": {
+      "learn": {
+        "title": "Sua",
+        "description": "Nea Zcash yɛ, sɛnea ne kokoamsɛm ho nhyehyɛe yɛ adwuma, ne baabi a wobɛfi ase.",
+        "links": {
+          "first": "Akwankyerɛ ma wɔn a wɔafi ase foforo",
+          "second": "Dɛn ne Zcash?",
+          "third": "Netwɛk no nkɔso foforo"
+        }
+      },
+      "wallet": {
+        "title": "Paw sika kotoku",
+        "description": "Sika kotoku ma wutumi gye ZEC na wode di dwuma wɔ kokoam.",
+        "links": {
+          "first": "Sika kotoku nyinaa",
+          "second": "Fon so sika kotoku",
+          "third": "Mfiridwuma sika kotoku"
+        }
+      },
+      "use": {
+        "title": "Fa ZEC di dwuma",
+        "description": "Nya ZEC, soma, na hwehwɛ mmeae a wogye tom.",
+        "links": {
+          "first": "ZEC a wobɛtɔ",
+          "second": "Nkitahodi ahorow",
+          "third": "Mmeae a wubetumi de ZEC atɔ nneɛma"
+        }
+      },
+      "build": {
+        "title": "Yɛ nneɛma",
+        "description": "Nneɛma, nnwinnade ne akwan a developers betumi afa so aboa wiki no.",
+        "links": {
+          "first": "Wɔn a wɔyɛ nneɛma",
+          "second": "Zcash Devtool",
+          "third": "Boa"
+        }
+      }
+    },
+    "start": {
+      "title": "Fi ase wɔ Ha",
+      "subtitle": "Woafi ase wɔ Zcash mu foforo? Fi saa nneɛma anan yi so."
+    },
+    "videos": {
+      "title": "Hwɛ",
+      "pinnedDescription": "Ɔkwan tiawa a wɔn a wɔafi ase foforo betumi adi so nnidiso nnidiso.",
+      "latestDescription": "Video foforo a ɛwɔ ZecHub channel no so.",
+      "allVideos": "Video ahorow nyinaa",
+      "previous": "Video ahorow a atwam",
+      "next": "Video ahorow a edi hɔ",
+      "play": "Bɔ {title}",
+      "step": "Anamɔn {number}"
+    },
+    "explore": {
+      "title": "Hwehwɛ pii mu",
+      "subtitle": "Akwankyerɛ, nhwehwɛmu, nnwinnade ne Zcash mpɔtam hɔfo a wɔwɔ baabiara."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Sua no mu dɔ",
+        "subtitle": "Nkyerɛkyerɛ, akwankyerɛ ne nhwehwɛmu ma bere a wopɛ nsɛm a ɛkɔ akyiri."
+      },
+      "tools": {
+        "title": "Nnwinnade a wobɛsɔ ahwɛ",
+        "subtitle": "Nnwinnade a wubetumi de adi dwuma ne din ahorow a wɔayɛ afa Zcash ho."
+      },
+      "community": {
+        "title": "Mpɔtam hɔfo ne ahyehyɛde ahorow",
+        "subtitle": "Nnipa ne akuw a wɔboa Zcash abɔdeɛ mu nhyehyɛe no."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Nkyerɛkyerɛ a wɔde ma",
+        "description": "Video nkyerɛkyerɛ a ɛkyerɛ anamɔn biara"
+      },
+      "guides": {
+        "title": "Akwankyerɛfo",
+        "description": "Nodes, nnwinnade, DeFi ne nea ɛkeka ho"
+      },
+      "tech": {
+        "title": "Zcash Mfiridwuma ho nimdeɛ",
+        "description": "zk-SNARKs ne protocol no"
+      },
+      "research": {
+        "title": "Hwehwɛ mu",
+        "description": "Nsɛm a wɔakyerɛw ne nhwehwɛmu a ɛfa Zcash ho"
+      },
+      "privacy": {
+        "title": "Nnwinnade a Wɔde Siesie Kokoam Nsɛm",
+        "description": "Nnwinnade a ɛboa ma wokora wo kokoamsɛm so"
+      },
+      "glossary": {
+        "title": "Nsɛmfua Nkyerɛase & FAQs",
+        "description": "Mmuae tiawa ne nsɛmfua nkyerɛase"
+      },
+      "visualizer": {
+        "description": "Nnwinnade a wubetumi de ate Zcash kokoamsɛm mfiridwuma ase."
+      },
+      "map": {
+        "description": "Asase mfonini a mpɔtam hɔfo hwɛ so a ɛkyerɛ aguadifo ne ATMs a wogye Zcash."
+      },
+      "pay": {
+        "description": "Mmeae a wubetumi de ZEC atua ka ho din a wubetumi ahwɛ kwa."
+      },
+      "organizations": {
+        "title": "Ahyehyɛde ahorow",
+        "description": "ZODL, Zcash Foundation, ZCG ne afoforo"
+      },
+      "community": {
+        "title": "Mpɔtam hɔfo",
+        "description": "Nkitahodi, blogs, nnwuma, ambassadors"
+      },
+      "ambassadors": {
+        "title": "Wiase Nyinaa Aban Nnanmusini",
+        "description": "Mpɔtam hɔ akannifo a wɔhyɛ Zcash ho nhomasua ho nkuran wɔ wiase nyinaa."
+      },
+      "hackathon": {
+        "title": "Hackathon Nneɛma a Wɔakora So",
+        "description": "Nnwuma a wɔde kɔɔ 2026 ZecHub Hackathon no ase."
+      }
+    },
+    "involved": {
+      "title": "Fa wo ho hyɛ mu",
+      "subtitle": "Kɔka DAO no ho, hu mpɔtam hɔfo na boa ma wɔnyɛ wiki no.",
+      "dao": {
+        "description": "Sɛnea ZecHub si gyinae, ne nsusuwii a wɔretow aba wɔ so.",
+        "meet": "Hu DAO no",
+        "proposals": "Hwɛ nsusuwii ahorow"
+      },
+      "community": {
+        "title": "Kɔka mpɔtam hɔfo ho",
+        "description": "Wo ne Zcash dwumadini afoforo nkasa na di nea ZecHub reyɛ no akyi.",
+        "discord": "Kɔka Discord ho"
+      },
+      "contribute": {
+        "title": "Boa ma wɔnyɛ ZecHub",
+        "description": "Mpɔtam hɔfo na wɔdi ZecHub anim. Fa nsɛm ka ho anaa gye bounty adwuma bi.",
+        "action": "Boa",
+        "support": "Boa adwuma no"
+      }
+    },
+    "stats": {
+      "circulation": "Sika dodow a ɛredi akɔneaba",
+      "shielded": "Sika dodow a wɔabɔ ho ban",
+      "blocks": "Block no sorokɔ",
+      "maxSupply": "{percentage}% wɔ 21M dodow a ɛsen biara no mu",
+      "maxSupplyAria": "{percentage}% wɔ sika dodow ɔpepem 21 a ɛsen biara no mu",
+      "shieldedShare": "{percentage}% wɔ dodow a ɛredi akɔneaba no mu",
+      "latestBlock": "Block a aba foforo paa wɔ Zcash mainnet no so"
+    }
   }
 }

@@ -1343,5 +1343,163 @@
       "title": "Tutorial",
       "sub": "Tonton dan ikuti"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Wiki komunitas untuk mempelajari, menggunakan, dan membangun dengan Zcash.",
+      "openSource": "Sumber terbuka",
+      "communityDriven": "Didorong oleh komunitas",
+      "educationHub": "Pusat edukasi untuk Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Pelajari",
+        "description": "Apa itu Zcash, cara kerja privasinya, dan dari mana harus memulai.",
+        "links": {
+          "first": "Panduan pengguna baru",
+          "second": "Apa itu Zcash?",
+          "third": "Peningkatan jaringan"
+        }
+      },
+      "wallet": {
+        "title": "Pilih dompet",
+        "description": "Dompet memungkinkan Anda menerima dan membelanjakan ZEC secara privat.",
+        "links": {
+          "first": "Semua dompet",
+          "second": "Dompet seluler",
+          "third": "Dompet hardware"
+        }
+      },
+      "use": {
+        "title": "Gunakan ZEC",
+        "description": "Dapatkan ZEC, kirimkan, dan temukan tempat yang menerimanya.",
+        "links": {
+          "first": "Membeli ZEC",
+          "second": "Transaksi",
+          "third": "Tempat membelanjakan ZEC"
+        }
+      },
+      "build": {
+        "title": "Bangun",
+        "description": "Sumber daya developer, alat, dan cara berkontribusi pada wiki.",
+        "links": {
+          "first": "Developer",
+          "second": "Zcash Devtool",
+          "third": "Berkontribusi"
+        }
+      }
+    },
+    "start": {
+      "title": "Mulai di Sini",
+      "subtitle": "Baru mengenal Zcash? Mulailah dengan empat hal ini."
+    },
+    "videos": {
+      "title": "Tonton",
+      "pinnedDescription": "Jalur singkat bagi pendatang baru, secara berurutan.",
+      "latestDescription": "Terbaru dari kanal ZecHub.",
+      "allVideos": "Semua video",
+      "previous": "Video sebelumnya",
+      "next": "Video berikutnya",
+      "play": "Putar {title}",
+      "step": "Langkah {number}"
+    },
+    "explore": {
+      "title": "Jelajahi Lebih Banyak",
+      "subtitle": "Panduan, riset, alat, dan komunitas Zcash yang lebih luas."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Pelajari Lebih Dalam",
+        "subtitle": "Tutorial, panduan, dan riset saat Anda menginginkan perincian lebih lanjut."
+      },
+      "tools": {
+        "title": "Alat untuk Dicoba",
+        "subtitle": "Alat interaktif dan direktori yang dibangun seputar Zcash."
+      },
+      "community": {
+        "title": "Komunitas & Organisasi",
+        "subtitle": "Orang dan kelompok di balik ekosistem Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutorial",
+        "description": "Tutorial video langkah demi langkah"
+      },
+      "guides": {
+        "title": "Panduan",
+        "description": "Node, alat, DeFi, dan lainnya"
+      },
+      "tech": {
+        "title": "Teknologi Zcash",
+        "description": "zk-SNARKs dan protokol"
+      },
+      "research": {
+        "title": "Riset",
+        "description": "Artikel dan riset tentang Zcash"
+      },
+      "privacy": {
+        "title": "Tools Privasi",
+        "description": "Alat untuk membantu melindungi privasi Anda"
+      },
+      "glossary": {
+        "title": "Glosarium & FAQ",
+        "description": "Jawaban dan definisi singkat"
+      },
+      "visualizer": {
+        "description": "Alat interaktif untuk memahami teknologi privasi Zcash."
+      },
+      "map": {
+        "description": "Peta yang dikelola komunitas berisi pedagang dan ATM yang menerima Zcash."
+      },
+      "pay": {
+        "description": "Direktori gratis tempat Anda dapat membayar dengan ZEC."
+      },
+      "organizations": {
+        "title": "Organisasi",
+        "description": "ZODL, Zcash Foundation, ZCG, dan lainnya"
+      },
+      "community": {
+        "title": "Komunitas",
+        "description": "Tautan, blog, proyek, duta"
+      },
+      "ambassadors": {
+        "title": "Duta Global",
+        "description": "Pemimpin komunitas yang mempromosikan edukasi Zcash di seluruh dunia."
+      },
+      "hackathon": {
+        "title": "Arsip Hackathon",
+        "description": "Proyek yang dikirimkan ke Hackathon ZecHub 2026."
+      }
+    },
+    "involved": {
+      "title": "Terlibat",
+      "subtitle": "Bergabung dengan DAO, temui komunitas, dan bantu membangun wiki.",
+      "dao": {
+        "description": "Cara ZecHub mengambil keputusan serta proposal yang terbuka untuk pemungutan suara.",
+        "meet": "Temui DAO",
+        "proposals": "Lihat proposal"
+      },
+      "community": {
+        "title": "Bergabung dengan komunitas",
+        "description": "Berbincang dengan pengguna Zcash lainnya dan ikuti kegiatan ZecHub.",
+        "discord": "Bergabung di Discord"
+      },
+      "contribute": {
+        "title": "Bantu membangun ZecHub",
+        "description": "ZecHub digerakkan oleh komunitas. Tambahkan konten atau ambil bounty.",
+        "action": "Berkontribusi",
+        "support": "Dukung proyek"
+      }
+    },
+    "stats": {
+      "circulation": "Pasokan beredar",
+      "shielded": "Pasokan terlindungi",
+      "blocks": "Tinggi blok",
+      "maxSupply": "{percentage}% dari maksimum 21M",
+      "maxSupplyAria": "{percentage}% dari pasokan maksimum 21 juta",
+      "shieldedShare": "{percentage}% dari pasokan beredar",
+      "latestBlock": "Blok terbaru di mainnet Zcash"
+    }
   }
 }

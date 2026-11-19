@@ -1343,5 +1343,163 @@
       "title": "Öğreticiler",
       "sub": "İzleyin ve takip edin"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Zcash'i öğrenmek, kullanmak ve onunla geliştirmek için topluluk vikisi.",
+      "openSource": "Açık kaynak",
+      "communityDriven": "Topluluk odaklı",
+      "educationHub": "Zcash eğitim merkezi"
+    },
+    "featured": {
+      "learn": {
+        "title": "Öğren",
+        "description": "Zcash'in ne olduğu, gizliliğinin nasıl çalıştığı ve nereden başlanacağı.",
+        "links": {
+          "first": "Yeni kullanıcı rehberi",
+          "second": "Zcash nedir?",
+          "third": "Ağ yükseltmeleri"
+        }
+      },
+      "wallet": {
+        "title": "Cüzdan seçin",
+        "description": "Bir cüzdan, ZEC almanızı ve gizli olarak harcamanızı sağlar.",
+        "links": {
+          "first": "Tüm cüzdanlar",
+          "second": "Mobil cüzdanlar",
+          "third": "Donanım cüzdanları"
+        }
+      },
+      "use": {
+        "title": "ZEC kullanın",
+        "description": "ZEC edinin, gönderin ve ZEC kabul eden yerleri bulun.",
+        "links": {
+          "first": "ZEC satın alma",
+          "second": "İşlemler",
+          "third": "ZEC harcanabilecek yerler"
+        }
+      },
+      "build": {
+        "title": "Geliştirin",
+        "description": "Geliştirici kaynakları, araçlar ve wikiye katkıda bulunma yolları.",
+        "links": {
+          "first": "Geliştiriciler",
+          "second": "Zcash Devtool",
+          "third": "Katkıda bulunun"
+        }
+      }
+    },
+    "start": {
+      "title": "Buradan Başlayın",
+      "subtitle": "Zcash'e yeni misiniz? Bu dört başlıkla başlayın."
+    },
+    "videos": {
+      "title": "İzle",
+      "pinnedDescription": "Yeni başlayanlar için sırayla kısa bir yol.",
+      "latestDescription": "ZecHub kanalından en yeniler.",
+      "allVideos": "Tüm videolar",
+      "previous": "Önceki videolar",
+      "next": "Sonraki videolar",
+      "play": "{title} oynat",
+      "step": "Adım {number}"
+    },
+    "explore": {
+      "title": "Keşfedilecek Daha Fazlası",
+      "subtitle": "Rehberler, araştırmalar, araçlar ve daha geniş Zcash topluluğu."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Daha Derine İn",
+        "subtitle": "Daha fazla ayrıntı istediğinizde başvurabileceğiniz eğitimler, rehberler ve araştırmalar."
+      },
+      "tools": {
+        "title": "Denenecek Araçlar",
+        "subtitle": "Zcash etrafında oluşturulmuş etkileşimli araçlar ve dizinler."
+      },
+      "community": {
+        "title": "Topluluk ve Kuruluşlar",
+        "subtitle": "Zcash ekosisteminin arkasındaki kişiler ve gruplar."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Eğitimler",
+        "description": "Adım adım video eğitimleri"
+      },
+      "guides": {
+        "title": "Rehberler",
+        "description": "Düğümler, araçlar, DeFi ve daha fazlası"
+      },
+      "tech": {
+        "title": "Zcash Teknolojisi",
+        "description": "zk-SNARKs ve protokol"
+      },
+      "research": {
+        "title": "Araştırma",
+        "description": "Zcash hakkında makaleler ve araştırmalar"
+      },
+      "privacy": {
+        "title": "Gizlilik Araçları",
+        "description": "Gizliliğinizi korumanıza yardımcı araçlar"
+      },
+      "glossary": {
+        "title": "Sözlük ve SSS",
+        "description": "Hızlı yanıtlar ve tanımlar"
+      },
+      "visualizer": {
+        "description": "Zcash gizlilik teknolojisini anlamaya yönelik etkileşimli araçlar."
+      },
+      "map": {
+        "description": "Zcash kabul eden işletmelerin ve ATM'lerin topluluk tarafından sürdürülen haritası."
+      },
+      "pay": {
+        "description": "ZEC ile nerede ödeme yapabileceğinize dair ücretsiz bir dizin."
+      },
+      "organizations": {
+        "title": "Kuruluşlar",
+        "description": "ZODL, Zcash Foundation, ZCG ve diğerleri"
+      },
+      "community": {
+        "title": "Topluluk",
+        "description": "Bağlantılar, bloglar, projeler, elçiler"
+      },
+      "ambassadors": {
+        "title": "Küresel Elçiler",
+        "description": "Dünya genelinde Zcash eğitimini teşvik eden topluluk liderleri."
+      },
+      "hackathon": {
+        "title": "Hackathon Arşivi",
+        "description": "2026 ZecHub Hackathon'una sunulan projeler."
+      }
+    },
+    "involved": {
+      "title": "Katkıda Bulunun",
+      "subtitle": "DAO'ya katılın, toplulukla tanışın ve wiki'nin oluşturulmasına yardım edin.",
+      "dao": {
+        "description": "ZecHub'ın nasıl karar verdiği ve oylamaya açık öneriler.",
+        "meet": "DAO ile tanışın",
+        "proposals": "Önerileri görüntüleyin"
+      },
+      "community": {
+        "title": "Topluluğa katılın",
+        "description": "Diğer Zcash kullanıcılarıyla konuşun ve ZecHub'ın neler yaptığını takip edin.",
+        "discord": "Discord'a katılın"
+      },
+      "contribute": {
+        "title": "ZecHub'ın oluşturulmasına yardım edin",
+        "description": "ZecHub, topluluk odaklıdır. İçerik ekleyin veya bir ödül görevi üstlenin.",
+        "action": "Katkıda bulunun",
+        "support": "Projeyi destekleyin"
+      }
+    },
+    "stats": {
+      "circulation": "Dolaşımdaki arz",
+      "shielded": "Korumalı arz",
+      "blocks": "Blok yüksekliği",
+      "maxSupply": "21M maksimumun %{percentage}'i",
+      "maxSupplyAria": "21 milyonluk maksimum arzın %{percentage}'i",
+      "shieldedShare": "Dolaşımdaki arzın %{percentage}'i",
+      "latestBlock": "Zcash ana ağındaki en son blok"
+    }
   }
 }

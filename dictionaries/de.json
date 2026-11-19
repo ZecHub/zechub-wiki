@@ -1343,5 +1343,163 @@
       "title": "Anleitungen",
       "sub": "Ansehen und mitmachen"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Das Community-Wiki zum Lernen, Nutzen und Entwickeln mit Zcash.",
+      "openSource": "Open Source",
+      "communityDriven": "Community-getrieben",
+      "educationHub": "Bildungsplattform für Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Lernen",
+        "description": "Was Zcash ist, wie sein Datenschutz funktioniert und wo du anfangen kannst.",
+        "links": {
+          "first": "Leitfaden für neue Nutzer",
+          "second": "Was ist Zcash?",
+          "third": "Netzwerk-Upgrades"
+        }
+      },
+      "wallet": {
+        "title": "Eine Wallet auswählen",
+        "description": "Mit einer Wallet kannst du ZEC privat empfangen und ausgeben.",
+        "links": {
+          "first": "Alle Wallets",
+          "second": "Mobile Wallets",
+          "third": "Hardware-Wallets"
+        }
+      },
+      "use": {
+        "title": "ZEC nutzen",
+        "description": "ZEC erhalten, senden und Orte finden, die es akzeptieren.",
+        "links": {
+          "first": "ZEC kaufen",
+          "second": "Transaktionen",
+          "third": "Orte, an denen du ZEC ausgeben kannst"
+        }
+      },
+      "build": {
+        "title": "Entwickeln",
+        "description": "Entwicklerressourcen, Tools und Möglichkeiten, zum Wiki beizutragen.",
+        "links": {
+          "first": "Entwickler",
+          "second": "Zcash Devtool",
+          "third": "Beitragen"
+        }
+      }
+    },
+    "start": {
+      "title": "Hier starten",
+      "subtitle": "Neu bei Zcash? Beginne mit diesen vier."
+    },
+    "videos": {
+      "title": "Ansehen",
+      "pinnedDescription": "Ein kurzer Einstiegspfad für Neulinge, der Reihe nach.",
+      "latestDescription": "Das Neueste vom ZecHub-Kanal.",
+      "allVideos": "Alle Videos",
+      "previous": "Vorherige Videos",
+      "next": "Nächste Videos",
+      "play": "{title} abspielen",
+      "step": "Schritt {number}"
+    },
+    "explore": {
+      "title": "Mehr entdecken",
+      "subtitle": "Leitfäden, Forschung, Tools und die gesamte Zcash-Community."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Tiefer einsteigen",
+        "subtitle": "Tutorials, Leitfäden und Forschung für mehr Details."
+      },
+      "tools": {
+        "title": "Tools zum Ausprobieren",
+        "subtitle": "Interaktive Tools und Verzeichnisse rund um Zcash."
+      },
+      "community": {
+        "title": "Community & Organisationen",
+        "subtitle": "Die Menschen und Gruppen hinter dem Zcash-Ökosystem."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutorials",
+        "description": "Schritt-für-Schritt-Videoanleitungen"
+      },
+      "guides": {
+        "title": "Leitfäden",
+        "description": "Knoten, Tools, DeFi und mehr"
+      },
+      "tech": {
+        "title": "Zcash-Technik",
+        "description": "zk-SNARKs und das Protokoll"
+      },
+      "research": {
+        "title": "Forschung",
+        "description": "Artikel und Forschung zu Zcash"
+      },
+      "privacy": {
+        "title": "Datenschutz-Tools",
+        "description": "Tools zum Schutz deiner Privatsphäre"
+      },
+      "glossary": {
+        "title": "Glossar & FAQs",
+        "description": "Schnelle Antworten und Definitionen"
+      },
+      "visualizer": {
+        "description": "Interaktive Tools zum Verständnis der Zcash-Datenschutztechnologie."
+      },
+      "map": {
+        "description": "Von der Community gepflegte Karte von Händlern und Geldautomaten, die Zcash akzeptieren."
+      },
+      "pay": {
+        "description": "Ein kostenloses Verzeichnis, wo du mit ZEC bezahlen kannst."
+      },
+      "organizations": {
+        "title": "Organisationen",
+        "description": "ZODL, Zcash Foundation, ZCG und andere"
+      },
+      "community": {
+        "title": "Community",
+        "description": "Links, Blogs, Projekte, Botschafter"
+      },
+      "ambassadors": {
+        "title": "Globale Botschafter",
+        "description": "Community-Leader, die weltweit Zcash-Bildung fördern."
+      },
+      "hackathon": {
+        "title": "Hackathon-Archiv",
+        "description": "Beim ZecHub Hackathon 2026 eingereichte Projekte."
+      }
+    },
+    "involved": {
+      "title": "Mitmachen",
+      "subtitle": "Tritt der DAO bei, lerne die Community kennen und hilf beim Aufbau des Wikis.",
+      "dao": {
+        "description": "Wie ZecHub Entscheidungen trifft und welche Vorschläge zur Abstimmung stehen.",
+        "meet": "Die DAO kennenlernen",
+        "proposals": "Vorschläge ansehen"
+      },
+      "community": {
+        "title": "Der Community beitreten",
+        "description": "Tausche dich mit anderen Zcash-Nutzern aus und verfolge, was ZecHub macht.",
+        "discord": "Discord beitreten"
+      },
+      "contribute": {
+        "title": "Hilf beim Aufbau von ZecHub",
+        "description": "ZecHub wird von der Community getragen. Füge Inhalte hinzu oder übernimm eine Prämie.",
+        "action": "Beitragen",
+        "support": "Projekt unterstützen"
+      }
+    },
+    "stats": {
+      "circulation": "Umlaufmenge",
+      "shielded": "Abgeschirmte Menge",
+      "blocks": "Blockhöhe",
+      "maxSupply": "{percentage}% des Maximums von 21 Mio.",
+      "maxSupplyAria": "{percentage} % des maximalen Angebots von 21 Millionen",
+      "shieldedShare": "{percentage} % des umlaufenden Angebots",
+      "latestBlock": "Neuester Block im Zcash-Mainnet"
+    }
   }
 }

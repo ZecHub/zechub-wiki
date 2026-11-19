@@ -1343,5 +1343,163 @@
       "title": "チュートリアル",
       "sub": "視聴して手順に従う"
     }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Zcashについて学び、利用し、構築するためのコミュニティWikiです。",
+      "openSource": "オープンソース",
+      "communityDriven": "コミュニティ主導",
+      "educationHub": "Zcashの教育ハブ"
+    },
+    "featured": {
+      "learn": {
+        "title": "学ぶ",
+        "description": "Zcashとは何か、プライバシーの仕組み、始め方を学びます。",
+        "links": {
+          "first": "新規ユーザーガイド",
+          "second": "Zcashとは？",
+          "third": "ネットワークアップグレード"
+        }
+      },
+      "wallet": {
+        "title": "ウォレットを選ぶ",
+        "description": "ウォレットを使うと、ZECをプライベートに受け取り、送金できます。",
+        "links": {
+          "first": "すべてのウォレット",
+          "second": "モバイルウォレット",
+          "third": "ハードウェアウォレット"
+        }
+      },
+      "use": {
+        "title": "ZECを使う",
+        "description": "ZECを入手し、送金し、利用できる場所を見つけましょう。",
+        "links": {
+          "first": "ZECの購入",
+          "second": "トランザクション",
+          "third": "ZECを使える場所"
+        }
+      },
+      "build": {
+        "title": "構築する",
+        "description": "開発者向けリソース、ツール、Wikiへの貢献方法。",
+        "links": {
+          "first": "開発者",
+          "second": "Zcash Devtool",
+          "third": "貢献する"
+        }
+      }
+    },
+    "start": {
+      "title": "ここから始める",
+      "subtitle": "Zcashは初めてですか？まずはこの4つから始めましょう。"
+    },
+    "videos": {
+      "title": "見る",
+      "pinnedDescription": "初心者向けの短い手順を順番に紹介します。",
+      "latestDescription": "ZecHubチャンネルの最新情報。",
+      "allVideos": "すべての動画",
+      "previous": "前の動画",
+      "next": "次の動画",
+      "play": "{title}を再生",
+      "step": "ステップ{number}"
+    },
+    "explore": {
+      "title": "さらに探索する",
+      "subtitle": "ガイド、リサーチ、ツール、そして幅広いZcashコミュニティ。"
+    },
+    "groups": {
+      "deeper": {
+        "title": "さらに深く学ぶ",
+        "subtitle": "より詳しく知りたいときのチュートリアル、ガイド、リサーチ。"
+      },
+      "tools": {
+        "title": "試してみるツール",
+        "subtitle": "Zcashを中心に構築されたインタラクティブなツールとディレクトリ。"
+      },
+      "community": {
+        "title": "コミュニティと組織",
+        "subtitle": "Zcashエコシステムを支える人々とグループ。"
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "チュートリアル",
+        "description": "手順ごとの動画チュートリアル"
+      },
+      "guides": {
+        "title": "ガイド",
+        "description": "ノード、ツール、DeFiなど"
+      },
+      "tech": {
+        "title": "Zcash 技術",
+        "description": "zk-SNARKsとプロトコル"
+      },
+      "research": {
+        "title": "リサーチ",
+        "description": "Zcashに関する記事とリサーチ"
+      },
+      "privacy": {
+        "title": "プライバシーツール",
+        "description": "プライバシーを保護するためのツール"
+      },
+      "glossary": {
+        "title": "用語集とFAQ",
+        "description": "簡単な回答と定義"
+      },
+      "visualizer": {
+        "description": "Zcashのプライバシー技術を理解するためのインタラクティブツール。"
+      },
+      "map": {
+        "description": "Zcashを受け入れる加盟店とATMのコミュニティ管理マップ。"
+      },
+      "pay": {
+        "description": "ZECで支払える場所の無料ディレクトリ。"
+      },
+      "organizations": {
+        "title": "組織",
+        "description": "ZODL、Zcash Foundation、ZCGなど"
+      },
+      "community": {
+        "title": "コミュニティ",
+        "description": "リンク、ブログ、プロジェクト、アンバサダー"
+      },
+      "ambassadors": {
+        "title": "グローバルアンバサダー",
+        "description": "世界中でZcash教育を推進するコミュニティリーダー。"
+      },
+      "hackathon": {
+        "title": "ハッカソンアーカイブ",
+        "description": "2026年ZecHubハッカソンに提出されたプロジェクト。"
+      }
+    },
+    "involved": {
+      "title": "参加する",
+      "subtitle": "DAOに参加し、コミュニティと交流してウィキの構築を支援しましょう。",
+      "dao": {
+        "description": "ZecHubの意思決定の方法と、投票受付中の提案。",
+        "meet": "DAOを知る",
+        "proposals": "提案を見る"
+      },
+      "community": {
+        "title": "コミュニティに参加する",
+        "description": "ほかのZcashユーザーと交流し、ZecHubの活動をフォローしましょう。",
+        "discord": "Discordに参加する"
+      },
+      "contribute": {
+        "title": "ZecHubの構築を支援する",
+        "description": "ZecHubはコミュニティ主導です。コンテンツを追加するか、報奨金に取り組みましょう。",
+        "action": "貢献する",
+        "support": "プロジェクトを支援する"
+      }
+    },
+    "stats": {
+      "circulation": "流通供給量",
+      "shielded": "シールドされた供給量",
+      "blocks": "ブロック高",
+      "maxSupply": "最大21Mのうち{percentage}%",
+      "maxSupplyAria": "最大供給量2,100万のうち{percentage}%",
+      "shieldedShare": "流通供給量の{percentage}%",
+      "latestBlock": "Zcashメインネットの最新ブロック"
+    }
   }
 }
