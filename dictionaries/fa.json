@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "ادامه مطالعه",
       "previous": "قبلی",
-      "next": "بعدی"
+      "next": "بعدی",
+      "nextStep": "گام بعدی"
     }
   },
   "meta": {

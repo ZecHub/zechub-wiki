@@ -1228,7 +1228,8 @@
     "continueReading": {
       "heading": "Continue reading",
       "previous": "Previous",
-      "next": "Next"
+      "next": "Next",
+      "nextStep": "Next step"
     }
   },
   "meta": {

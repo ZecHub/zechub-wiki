@@ -156,7 +156,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
               return null;
             return (
               <Fragment key={i}>
-              {groups && (i === 0 || groupOf(item) !== groupOf(root[i - 1])) && (
+              {groups && (i === 0 || groupOf(item) !== groupOf(root[i - 1])) && !(i === 0 && groups[groupOf(item)]?.hideTitle) && (
                 <li
                   className={`px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400 ${
                     i === 0 ? "pt-1" : "mt-3 border-t border-slate-200 pt-3 dark:border-white/10"

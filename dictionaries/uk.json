@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "Продовжити читання",
       "previous": "Назад",
-      "next": "Далі"
+      "next": "Далі",
+      "nextStep": "Наступний крок"
     }
   },
   "meta": {

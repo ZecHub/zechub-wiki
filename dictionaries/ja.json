@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "続けて読む",
       "previous": "前へ",
-      "next": "次へ"
+      "next": "次へ",
+      "nextStep": "次のステップ"
     }
   },
   "meta": {

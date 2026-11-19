@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "Continue lendo",
       "previous": "Anterior",
-      "next": "Próxima"
+      "next": "Próxima",
+      "nextStep": "Próximo passo"
     }
   },
   "meta": {

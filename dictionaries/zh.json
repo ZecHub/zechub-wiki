@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "继续阅读",
       "previous": "上一页",
-      "next": "下一页"
+      "next": "下一页",
+      "nextStep": "下一步"
     }
   },
   "meta": {

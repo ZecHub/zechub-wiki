@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "आगे पढ़ें",
       "previous": "पिछला",
-      "next": "अगला"
+      "next": "अगला",
+      "nextStep": "अगला चरण"
     }
   },
   "meta": {

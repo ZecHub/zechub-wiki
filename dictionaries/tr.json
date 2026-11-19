@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "Okumaya devam edin",
       "previous": "Önceki",
-      "next": "Sonraki"
+      "next": "Sonraki",
+      "nextStep": "Sonraki adım"
     }
   },
   "meta": {

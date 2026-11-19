@@ -8,15 +8,15 @@ type Props = {
   roots: string[];
   titles?: Record<string, string>;
   enTitles?: Record<string, string>;
-  strings?: { heading?: string; previous?: string; next?: string };
+  strings?: { heading?: string; previous?: string; next?: string; nextStep?: string };
 };
 
 // "Continue reading" cards at the end of a page that belongs to an ordered group of the side menu
 // (see src/constants/readingPaths.ts). Renders nothing for every other page.
 export default function ContinueReading({ folder, slug, roots, titles, enTitles, strings }: Props) {
   const items = roots.filter((r) => typeof r === "string" && r.endsWith(".md")).map((r) => r.slice(0, -3));
-  const { prev, next } = readingNeighbors(folder, items, slug);
-  if (!prev && !next) return null;
+  const { prev, next, step } = readingNeighbors(folder, items, slug);
+  if (!prev && !next && !step) return null;
 
   const label = (e: TrailEntry) => menuLabelFor(e.item, titles, enTitles);
   const card = (e: TrailEntry, caption: string, align: "start" | "end") => (
@@ -45,6 +45,22 @@ export default function ContinueReading({ folder, slug, roots, titles, enTitles,
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {prev ? <div>{card(prev, strings?.previous ?? "Previous", "start")}</div> : <div className="hidden md:block" />}
         {next ? <div>{card(next, strings?.next ?? "Next", "end")}</div> : null}
+        {step ? (
+          <div>
+            <Link
+              href={`${step.entry.href}#content`}
+              className="group block rounded-2xl border border-brand/40 bg-brand/5 p-4 shadow-sm transition-colors hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-brand/40 dark:bg-brand/10 dark:hover:bg-brand/15"
+            >
+              <span className="block text-end text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                {strings?.nextStep ?? "Next step"} →
+              </span>
+              <span className="mt-1 block text-end text-base font-medium text-brand group-hover:underline dark:text-brand-soft">
+                {step.group}
+              </span>
+              <span className="mt-0.5 block text-end text-sm text-slate-600 dark:text-slate-300">{label(step.entry)}</span>
+            </Link>
+          </div>
+        ) : null}
       </div>
     </nav>
   );

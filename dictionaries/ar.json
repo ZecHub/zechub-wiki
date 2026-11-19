@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "تابع القراءة",
       "previous": "السابق",
-      "next": "التالي"
+      "next": "التالي",
+      "nextStep": "الخطوة التالية"
     }
   },
   "meta": {

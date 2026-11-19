@@ -5,17 +5,32 @@
 //   does not suggest an order that does not exist. Cards never cross from one group to the next.
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 
-export type ReadingGroup = { title: string; slugs: string[]; sequence?: boolean };
+// `nextStep` (ordered groups only) is a hand-picked "what to read next": the group that follows, and the page to start it with.
+// It is shown only on the last page of the trail, where "Next" has nowhere to go. `hideTitle` drops the group label in the
+// side menu when it would repeat the tab name.
+export type ReadingGroup = {
+  title: string;
+  slugs: string[];
+  sequence?: boolean;
+  hideTitle?: boolean;
+  nextStep?: { group: string; slug: string };
+};
 
 export const READING_GROUPS: Record<string, ReadingGroup[]> = {
   guides: [
-    { title: "Getting started", sequence: true, slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"] },
+    {
+      title: "Getting started",
+      sequence: true,
+      nextStep: { group: "Wallets and hardware", slug: "keystone-zashi" },
+      slugs: ["using-zec-privately", "my-first-zcash-workbook", "zero-knowledge-vs-decoys"],
+    },
     { title: "Wallets and hardware", slugs: ["ledger-shielded-zec", "keystone-zashi", "brave-wallet-guide", "zkool-multisig", "ywallet-frost-demo"] },
     { title: "Privacy", slugs: ["nym-mixnet-wallet-setup", "nym-vpn", "mining-and-staking-privacy", "viewing-key-transaction-export"] },
     { title: "Payments and DeFi", slugs: ["btcpayserver-zcash-plugin", "zgo-payment-processor", "using-zec-in-defi", "avalanche-redbridge", "maya-protocol", "shapeshift-zcash"] },
     {
       title: "Run a node",
       sequence: true,
+      nextStep: { group: "Developer tools", slug: "zcash-devtool" },
       slugs: ["raspberry-pi-4-full-node", "raspberry-pi-4-zebra-node", "raspberry-pi5-zebra-lightwalletd-zingo", "hardened-zebrad", "migration-guide-zcashd-to-zebrad-zallet", "zcash-node-rpc-and-indexing", "zcash-stack", "verifying-zcash-releases"],
     },
     { title: "Deploy on Akash", sequence: true, slugs: ["akash-network-zebra", "akash-network-zcashd", "akash-network-zakura", "thus-spoke-zakura-akash"] },
@@ -24,15 +39,15 @@ export const READING_GROUPS: Record<string, ReadingGroup[]> = {
     { title: "Media", slugs: ["free2z-live", "free2z-livestreaming"] },
   ],
   "start-here": [
-    { title: "Begin here", sequence: true, slugs: ["using-this-wiki", "what-is-zec-and-zcash", "new-user-guide", "who-can-see-your-zcash-payment"] },
+    { title: "Begin here", sequence: true, hideTitle: true, nextStep: { group: "Understand Zcash", slug: "zec-use-cases" }, slugs: ["using-this-wiki", "what-is-zec-and-zcash", "new-user-guide", "who-can-see-your-zcash-payment"] },
     { title: "Understand Zcash", slugs: ["zec-use-cases", "zcash-monetary-policy", "how-zcash-is-organized", "network-upgrades", "development-fund"] },
     { title: "ZecHub and resources", slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
   ],
   "using-zcash": [
-    { title: "Get started", sequence: true, slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
+    { title: "Get started", sequence: true, nextStep: { group: "Understand", slug: "transactions" }, slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
     { title: "Swaps and exchanges", slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
     { title: "Pay and get paid", slugs: ["__payment-processors", "payment-request-uris", "mobile-top-ups", "creators-and-tips", "zimppy", "metamask-snap"] },
-    { title: "Understand", sequence: true, slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
+    { title: "Understand", sequence: true, nextStep: { group: "Pay and get paid", slug: "payment-request-uris" }, slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
     { title: "Mining", slugs: ["zcash-mining-guide", "zcash-mining-pools"] },
     { title: "Tools", slugs: ["zallet-quick-reference-guide", "zecmap", "testnet", "shielded-newsletter"] },
   ],
@@ -62,7 +77,7 @@ export function readingNeighbors(
   folder: string,
   items: string[],
   currentSlug: string,
-): { prev?: TrailEntry; next?: TrailEntry } {
+): { prev?: TrailEntry; next?: TrailEntry; step?: { group: string; entry: TrailEntry } } {
   const group = READING_GROUPS[folder]?.find((g) => g.sequence && g.slugs.includes(currentSlug));
   if (!group) return {};
   const bySlug = new Map(items.map((item) => [itemSlug(item), item]));
@@ -78,5 +93,11 @@ export function readingNeighbors(
   }
   const at = trail.findIndex((e) => itemSlug(e.item) === currentSlug);
   if (at < 0) return {};
-  return { prev: trail[at - 1], next: trail[at + 1] };
+  const next = trail[at + 1];
+  let step: { group: string; entry: TrailEntry } | undefined;
+  if (!next && group.nextStep) {
+    const target = bySlug.get(group.nextStep.slug);
+    if (target) step = { group: group.nextStep.group, entry: { item: target, href: `/${transformGithubFilePathToWikiLink(target)}` } };
+  }
+  return { prev: trail[at - 1], next, step };
 }

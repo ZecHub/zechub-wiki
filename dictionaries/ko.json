@@ -1298,7 +1298,8 @@
     "continueReading": {
       "heading": "계속 읽기",
       "previous": "이전",
-      "next": "다음"
+      "next": "다음",
+      "nextStep": "다음 단계"
     }
   },
   "meta": {
