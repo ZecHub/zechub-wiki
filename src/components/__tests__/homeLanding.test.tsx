@@ -1,4 +1,6 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import Home from "../Home/Home";
 import VideoStrip from "../Home/VideoStrip";
 import ZcashStats from "../Home/ZcashStats";
@@ -71,4 +73,35 @@ test("stats use locale-aware numbers and translated percentage captions/aria lab
   } finally {
     global.fetch = originalFetch;
   }
+});
+
+test("all shipped homepage dictionaries have matching keys and placeholders", () => {
+  const flatten = (value: object, prefix = ""): Record<string, string> =>
+    Object.fromEntries(Object.entries(value).flatMap(([key, child]) => {
+      const path = prefix ? `${prefix}.${key}` : key;
+      return typeof child === "string" ? [[path, child]] : Object.entries(flatten(child as object, path));
+    }));
+  const reference = flatten(en.homeLanding);
+  const locales = "it fr es de pt ar zh hi ru ja ko tr uk sw yo ig ak ee id el fa".split(" ");
+  for (const locale of locales) {
+    const dictionary = JSON.parse(readFileSync(join(process.cwd(), "dictionaries", `${locale}.json`), "utf8"));
+    const actual = flatten(dictionary.homeLanding);
+    expect(Object.keys(actual).sort()).toEqual(Object.keys(reference).sort());
+    for (const [key, english] of Object.entries(reference)) {
+      expect(actual[key]).not.toBe("");
+      expect(actual[key].match(/\{\w+\}/g)?.sort() ?? []).toEqual(english.match(/\{\w+\}/g)?.sort() ?? []);
+    }
+  }
+});
+
+test.each([
+  ["ko", "items.tech.description"], ["tr", "items.tech.description"],
+  ["el", "featured.wallet.links.third"], ["pt", "featured.use.title"],
+  ["ak", "hero.openSource"], ["ak", "items.ambassadors.title"],
+  ["ig", "items.tech.title"], ["sw", "items.tech.title"], ["yo", "items.tech.title"],
+])("%s translates the homepage label %s", (locale, dottedKey) => {
+  const localized = JSON.parse(readFileSync(join(process.cwd(), "dictionaries", `${locale}.json`), "utf8"));
+  const get = (value: Record<string, unknown>, path: string): unknown =>
+    path.split(".").reduce<unknown>((current, part) => (current as Record<string, unknown>)[part], value);
+  expect(get(localized.homeLanding, dottedKey)).not.toBe(get(en.homeLanding, dottedKey));
 });

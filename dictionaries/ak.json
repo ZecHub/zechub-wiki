@@ -1347,7 +1347,7 @@
   "homeLanding": {
     "hero": {
       "tagline": "Mpɔtam hɔ wiki a wɔde sua Zcash ho ade, de di dwuma na wɔde yɛ nneɛma.",
-      "openSource": "Open source",
+      "openSource": "Kɔd a ɛda hɔ ma obiara",
       "communityDriven": "Mpɔtam hɔfo na wɔdi anim",
       "educationHub": "Zcash nhomasua beae"
     },
@@ -1464,7 +1464,7 @@
         "description": "Nkitahodi, blogs, nnwuma, ambassadors"
       },
       "ambassadors": {
-        "title": "Global Ambassadors",
+        "title": "Wiase Nyinaa Aban Nnanmusini",
         "description": "Mpɔtam hɔ akannifo a wɔhyɛ Zcash ho nhomasua ho nkuran wɔ wiase nyinaa."
       },
       "hackathon": {
