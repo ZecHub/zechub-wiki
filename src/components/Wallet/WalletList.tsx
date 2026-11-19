@@ -40,13 +40,6 @@ const sourceStatus = (w: Wallet) => {
 
 const isBeta = (w: Wallet) => w.stage?.trim().toLowerCase() === "beta";
 
-const isTransparentOnly = (w: Wallet) =>
-  w.pools.length > 0 &&
-  w.pools.every((pool) => {
-    const value = pool.trim().toLowerCase();
-    return value === "transparent" || value === "transparent only";
-  });
-
 // NU7 compatibility sorting order.
 const NU7_ORDER = [
   "compatible",
@@ -118,16 +111,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const betaTitle = t?.wallets?.betaTitle ?? "Beta wallets";
   const betaNote =
     t?.wallets?.betaNote ?? "Test releases. Expect rough edges and use small amounts.";
-  const transparentOnlyTitle =
-    t?.wallets?.transparentOnlyTitle ?? "Transparent-only wallets";
-  const transparentOnlyNote =
-    t?.wallets?.transparentOnlyNote ??
-    "These wallets only support transparent ZEC, which does not hide transaction details.";
-  const nymMixnetTitle =
-    t?.wallets?.nymMixnetTitle ?? "Nym Mixnet support";
-  const nymMixnetNote =
-    t?.wallets?.nymMixnetNote ??
-    "Wallets that support routing Zcash traffic through the Nym mixnet.";
 
   const handleToggleFilter = () => setIsFilterVisible((v) => !v);
   const showWalletsLabel = (count: number) =>
@@ -273,22 +256,16 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   // lists deprecated wallets that don't match; the section hides when none do.
   const filteredDeprecated = deprecatedWallets.filter(matchesFilters);
 
-  // NU7-compatible wallets first, then transparent-only, In Progress, Not Ready and
-  // Not verified; the rating orders wallets within each group.
+  // NU7-compatible wallets first, then In Progress, Not Ready and Not verified;
+  // the rating orders wallets within each group.
   const sortedWallets = [...filteredWallets].sort(
     (a, b) =>
       nu7Rank(a) - nu7Rank(b) ||
       (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
 
-  const productionWallets = sortedWallets.filter(
-    (wallet) => !isBeta(wallet) && !isTransparentOnly(wallet),
-  );
+  const productionWallets = sortedWallets.filter((wallet) => !isBeta(wallet));
   const betaWallets = sortedWallets.filter(isBeta);
-  const transparentOnlyWallets = sortedWallets.filter(
-    (wallet) => !isBeta(wallet) && isTransparentOnly(wallet),
-  );
-  const nymMixnetWallets = sortedWallets.filter((wallet) => Boolean(wallet.nymMixnet));
 
   const renderWalletCard = (wallet: Wallet, deprecated?: string) => (
     <WalletItem
@@ -407,34 +384,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {betaWallets.map((wallet) => renderWalletCard(wallet))}
-                </div>
-              </section>
-            )}
-
-            {transparentOnlyWallets.length > 0 && (
-              <section className="mt-10">
-                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
-                  {transparentOnlyTitle} ({transparentOnlyWallets.length})
-                </h3>
-                <p className="mt-1 mb-4 text-sm text-slate-500 dark:text-slate-400">
-                  {transparentOnlyNote}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {transparentOnlyWallets.map((wallet) => renderWalletCard(wallet))}
-                </div>
-              </section>
-            )}
-
-            {nymMixnetWallets.length > 0 && (
-              <section className="mt-10">
-                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-200">
-                  {nymMixnetTitle} ({nymMixnetWallets.length})
-                </h3>
-                <p className="mt-1 mb-4 text-sm text-slate-500 dark:text-slate-400">
-                  {nymMixnetNote}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {nymMixnetWallets.map((wallet) => renderWalletCard(wallet))}
                 </div>
               </section>
             )}

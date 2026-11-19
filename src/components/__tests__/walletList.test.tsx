@@ -92,7 +92,7 @@ describe("WalletList", () => {
     expect(screen.getAllByText("Beta").length).toBeGreaterThan(0);
   });
 
-  it("groups beta, transparent-only and Nym Mixnet wallets", async () => {
+  it("groups only beta wallets separately and leaves Nym Mixnet as a filter", () => {
     const list = parseMarkdown(`
 ## [Regular](https://regular.example)
 - Devices: Mobile
@@ -125,18 +125,21 @@ describe("WalletList", () => {
     const beta = screen
       .getByText("Beta wallets (1)")
       .closest("section") as HTMLElement;
-    const transparent = screen
-      .getByText("Transparent-only wallets (1)")
-      .closest("section") as HTMLElement;
-    const nym = screen
-      .getByText("Nym Mixnet support (1)")
-      .closest("section") as HTMLElement;
 
     expect(within(beta).getByText("Preview")).toBeInTheDocument();
-    expect(within(transparent).getByText("Clear")).toBeInTheDocument();
-    expect(within(nym).getByText("Private")).toBeInTheDocument();
     expect(within(beta).queryByText("Regular")).not.toBeInTheDocument();
-    expect(within(transparent).queryByText("Regular")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Transparent-only wallets/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Nym Mixnet support/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Clear" })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Private" })
+    ).toBeInTheDocument();
   });
 
   it("filters by Nym Mixnet support", async () => {
