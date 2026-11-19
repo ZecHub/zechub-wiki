@@ -2,20 +2,12 @@ import { test, expect, devices } from "@playwright/test";
 
 test.use({ ...devices["Pixel 7"] });
 
-test("language sheet remains interactive inside the mobile navigation drawer", async ({ page }) => {
+test("language sheet remains interactive inside the mobile navigation drawer", async ({ page, browserName }) => {
+  test.skip(browserName !== "chromium", "The touch swipe uses Chromium's CDP input API");
   await page.goto("/");
-  await page.waitForFunction(() => {
-    const button = document.querySelector('[aria-label="Open menu"]');
-    return button && Object.keys(button).some((key) => key.startsWith("__react"));
-  });
-  await page.waitForLoadState("networkidle", { timeout: 10_000 }).catch(() => {});
-  await page.waitForTimeout(500); // let the responsive header settle after hydration
   const drawer = page.getByRole("dialog").first();
-  await page.getByRole("button", { name: "Open menu" }).click();
-  if (!(await drawer.isVisible())) {
-    // A late responsive-header remount can replace the trigger mid-click.
-    await page.getByRole("button", { name: "Open menu" }).click();
-  }
+  // The SSR fallback lacks this hook; wait for the interactive mounted trigger.
+  await page.locator("[data-nav-menu-button]").click();
   await expect(drawer).toBeVisible();
   await drawer.evaluate((element) => { element.scrollTop = element.scrollHeight; });
   await drawer.getByRole("button", { name: "Select language" }).click();
@@ -42,6 +34,10 @@ test("language sheet remains interactive inside the mobile navigation drawer", a
   }
   await client.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
   await expect.poll(() => list.evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+  await search.press("Escape");
+  await expect(sheet).toHaveCount(0);
+  await expect(drawer).toBeVisible();
+  await drawer.getByRole("button", { name: "Select language" }).click();
   await sheet.getByRole("option", { name: /Italiano/ }).tap();
   await expect(page).toHaveURL(/\/it(?:\/|$)/);
 });

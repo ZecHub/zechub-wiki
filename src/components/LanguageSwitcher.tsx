@@ -6,6 +6,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { useFocusScopeBranch } from '@radix-ui/react-focus-scope';
+import { DismissableLayer } from '@radix-ui/react-dismissable-layer';
 import { Globe, Search, X } from 'lucide-react';
 import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
 import { useRouter, usePathname } from '@/i18n/navigation';
@@ -425,7 +426,11 @@ export function LanguageSwitcher() {
         // Radix's mobile navigation dialog sets body { pointer-events: none }.
         // The picker is portaled to body, outside that dialog, so it must opt
         // back into hit testing or taps pass through to the page underneath.
-        <div ref={setPortalNode} className="notranslate pointer-events-auto" translate="no">{panelBody}</div>,
+        // As the top Radix layer, Escape dismisses only this sheet, not the
+        // navigation drawer beneath it.
+        <DismissableLayer asChild onDismiss={() => close(false)}>
+          <div ref={setPortalNode} className="notranslate pointer-events-auto" translate="no">{panelBody}</div>
+        </DismissableLayer>,
         document.body,
       ) : panelBody)}
     </div>
