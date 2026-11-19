@@ -102,6 +102,8 @@ import { rewriteZakuraNodeGuide } from "@/lib/pageOverrides/zakuraNodeGuide";
 import { rewriteShieldedAssetsGuide } from "@/lib/pageOverrides/shieldedAssetsGuide";
 import { rewritePepperSyncGuide } from "@/lib/pageOverrides/pepperSyncGuide";
 import { rewriteNu62Guide } from "@/lib/pageOverrides/nu62Guide";
+import { rewriteNu7Guide } from "@/lib/pageOverrides/nu7Guide";
+import { rewriteOverwinterGuide } from "@/lib/pageOverrides/overwinterGuide";
 import { rewriteNu61Guide } from "@/lib/pageOverrides/nu61Guide";
 import { rewriteNu6Guide } from "@/lib/pageOverrides/nu6Guide";
 import { rewriteNu5Guide } from "@/lib/pageOverrides/nu5Guide";
@@ -6299,6 +6301,12 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "zcash-tech/nu6-1" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu61Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/nu7" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu7Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/overwinter" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteOverwinterGuide(processedMarkdown);
   }
   if (slug.join("/") === "zcash-tech/nu6-2" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu62Guide(processedMarkdown);
