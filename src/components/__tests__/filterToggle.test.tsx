@@ -2,6 +2,13 @@ import React from "react";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import FilterToggle from "@/components/FilterToggle";
+import en from "../../../dictionaries/en.json";
+import es from "../../../dictionaries/es.json";
+
+let mockLanguage: any = { t: { wallets: en.wallets } };
+jest.mock("@/context/LanguageContext", () => ({
+  useLanguage: () => mockLanguage,
+}));
 
 jest.mock("react-markdown", () => ({
   __esModule: true,
@@ -16,6 +23,10 @@ const filters = {
   Pools: new Set(["Orchard"]),
   Source: new Set(["Open Source"]),
 };
+
+beforeEach(() => {
+  mockLanguage = { t: { wallets: en.wallets } };
+});
 
 describe("FilterToggle info dialog", () => {
   it("renders an info control for each category and keeps filter clicks working", async () => {
@@ -65,6 +76,23 @@ describe("FilterToggle info dialog", () => {
   it("opens an info dialog for a filter item without toggling it", async () => {
     const user = userEvent.setup();
     const toggleFilter = jest.fn();
+    mockLanguage = {
+      t: {
+        wallets: {
+          ...en.wallets,
+          filterInfo: {
+            ...en.wallets.filterInfo,
+            items: {
+              ...en.wallets.filterInfo.items,
+              Features: {
+                "Automatic Shielding":
+                  "**Automatic Shielding** is an item description.",
+              },
+            },
+          },
+        },
+      },
+    };
 
     render(
       <FilterToggle
@@ -72,11 +100,6 @@ describe("FilterToggle info dialog", () => {
         activeFilters={[]}
         toggleFilter={toggleFilter}
         handleToggleFilter={jest.fn()}
-        itemDescriptions={{
-          Features: {
-            "Automatic Shielding": "**Automatic Shielding** is an item description.",
-          },
-        }}
       />,
     );
 
@@ -101,7 +124,7 @@ describe("FilterToggle info dialog", () => {
     await waitFor(() => expect(info).toHaveFocus());
   });
 
-  it("renders markdown in the dialog", async () => {
+  it("uses the English item definition from the dictionary", async () => {
     const user = userEvent.setup();
 
     render(
@@ -110,10 +133,71 @@ describe("FilterToggle info dialog", () => {
         activeFilters={[]}
         toggleFilter={jest.fn()}
         handleToggleFilter={jest.fn()}
-        descriptions={{
-          Features:
-            "**Shielded by default** with a [guide](https://example.com).\n\n- First point\n- Second point",
-        }}
+      />,
+    );
+
+    await user.click(
+      screen.getByRole("button", { name: "About Orchard" }),
+    );
+
+    const dialog = await screen.findByRole("dialog", { name: "About Orchard" });
+    expect(within(dialog).getByTestId("markdown")).toHaveTextContent(
+      "**Orchard** is Zcash's shielded pool introduced in NU5.",
+    );
+  });
+
+  it("uses localized titles and definitions for the active locale", async () => {
+    const user = userEvent.setup();
+    mockLanguage = { t: { wallets: es.wallets } };
+
+    render(
+      <FilterToggle
+        filters={filters}
+        activeFilters={[]}
+        toggleFilter={jest.fn()}
+        handleToggleFilter={jest.fn()}
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", { name: "Acerca del filtro Features" }),
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("button", { name: "Acerca de Orchard" }),
+    );
+
+    const dialog = await screen.findByRole("dialog", {
+      name: "Acerca de Orchard",
+    });
+    expect(within(dialog).getByTestId("markdown")).toHaveTextContent(
+      "**Orchard** es el pool blindado de Zcash introducido en NU5.",
+    );
+  });
+
+  it("renders markdown in the dialog", async () => {
+    const user = userEvent.setup();
+    mockLanguage = {
+      t: {
+        wallets: {
+          ...en.wallets,
+          filterInfo: {
+            ...en.wallets.filterInfo,
+            categories: {
+              Features:
+                "**Shielded by default** with a [guide](https://example.com).\n\n- First point\n- Second point",
+            },
+          },
+        },
+      },
+    };
+
+    render(
+      <FilterToggle
+        filters={filters}
+        activeFilters={[]}
+        toggleFilter={jest.fn()}
+        handleToggleFilter={jest.fn()}
       />,
     );
 

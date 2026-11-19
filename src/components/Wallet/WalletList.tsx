@@ -3,10 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import WalletItem from "@/components/Wallet/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
-import {
-  walletFilterInfo,
-  walletFilterItemInfo,
-} from "@/lib/walletFilterInfo";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface Wallet {
@@ -362,8 +358,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 activeFilters={activeFilters}
                 toggleFilter={toggleFilter}
                 handleToggleFilter={handleToggleFilter}
-                descriptions={walletFilterInfo}
-                itemDescriptions={walletFilterItemInfo}
               />
             </div>
           </aside>
@@ -467,8 +461,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   activeFilters={activeFilters}
                   toggleFilter={toggleFilter}
                   handleToggleFilter={handleToggleFilter}
-                  descriptions={walletFilterInfo}
-                  itemDescriptions={walletFilterItemInfo}
                 />
               </div>
             </DialogPanel>

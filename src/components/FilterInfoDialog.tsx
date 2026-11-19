@@ -10,12 +10,14 @@ interface FilterInfoDialogProps {
   title: string;
   markdown: string;
   onClose: () => void;
+  closeLabel?: string;
 }
 
 const FilterInfoDialog: React.FC<FilterInfoDialogProps> = ({
   title,
   markdown,
   onClose,
+  closeLabel = "Close",
 }) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -35,7 +37,7 @@ const FilterInfoDialog: React.FC<FilterInfoDialogProps> = ({
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            aria-label="Close filter information"
+            aria-label={closeLabel}
             className="-mr-1 -mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
           >
             <X className="h-4 w-4" aria-hidden="true" />

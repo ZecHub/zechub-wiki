@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Portefeuilles transparents uniquement",
     "transparentOnlyNote": "Ces portefeuilles ne prennent en charge que le ZEC transparent, qui ne masque pas les détails des transactions.",
     "nymMixnetTitle": "Prise en charge de Nym Mixnet",
-    "nymMixnetNote": "Portefeuilles qui prennent en charge le routage du trafic Zcash via le mixnet Nym."
+    "nymMixnetNote": "Portefeuilles qui prennent en charge le routage du trafic Zcash via le mixnet Nym.",
+    "filterInfo": {
+      "categoryTitle": "À propos du filtre {category}",
+      "itemTitle": "À propos de {value}",
+      "categoryFallback": "Utilisez **{category}** pour limiter la liste des portefeuilles à ceux qui correspondent aux options de cette catégorie. Sélectionner une option applique le filtre ; la sélectionner à nouveau le retire.",
+      "itemFallback": "**{value}** est l’une des options du filtre **{category}**. La sélectionner limite la liste des portefeuilles à ceux qui incluent cette valeur ; sélectionnez-la à nouveau pour retirer le filtre.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** signifie que le portefeuille s’exécute comme une application sur un téléphone ou une tablette. Les portefeuilles mobiles se synchronisent généralement via un serveur lightwallet au lieu de stocker toute la blockchain, ce qui les rend pratiques pour les paiements du quotidien.",
+          "Desktop": "**Desktop** signifie que le portefeuille s’exécute comme une application sur un ordinateur. Selon le portefeuille, il peut synchroniser un nœud complet ou se connecter à un serveur lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** est le pool protégé de Zcash introduit dans NU5. Il prend en charge les transactions protégées avec la conception du pool Orchard et est utilisé par les portefeuilles qui proposent les fonctionnalités protégées les plus récentes.",
+          "Transparent": "**Transparent** signifie que le portefeuille prend en charge le ZEC transparent, dont les transactions sont visibles sur la blockchain publique. Les adresses transparentes commencent par `t` et ne masquent ni l’expéditeur, ni le destinataire, ni le montant."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** est un format d’adresse Zcash qui peut contenir des récepteurs protégés et transparents dans une seule adresse. Les portefeuilles compatibles peuvent choisir le récepteur adapté au paiement tout en restant compatibles avec différents types d’adresses."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** signifie que le portefeuille déplace automatiquement les ZEC transparents vers un pool protégé. Cela réduit la durée pendant laquelle les fonds restent visibles sur la blockchain publique, mais ne remplace pas vos propres pratiques de confidentialité."
+        },
+        "Source": {
+          "Open Source": "**Open Source** signifie que le code source du portefeuille est accessible publiquement pour être examiné et réutilisé. La fiche du portefeuille renvoie au dépôt lorsqu’un dépôt est indiqué.",
+          "Closed Source": "**Closed Source** signifie que le code source du portefeuille n’est pas publié pour un examen public. Vous pouvez néanmoins consulter le site du portefeuille et des avis indépendants avant de l’utiliser."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Guides",

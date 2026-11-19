@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Carteras solo transparentes",
     "transparentOnlyNote": "Estas carteras solo admiten ZEC transparente, que no oculta los detalles de las transacciones.",
     "nymMixnetTitle": "Compatibilidad con Nym Mixnet",
-    "nymMixnetNote": "Carteras que permiten enrutar el tráfico de Zcash a través de la Nym Mixnet."
+    "nymMixnetNote": "Carteras que permiten enrutar el tráfico de Zcash a través de la Nym Mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Acerca del filtro {category}",
+      "itemTitle": "Acerca de {value}",
+      "categoryFallback": "Usa **{category}** para limitar la lista de carteras a las que coinciden con las opciones de esta categoría. Al seleccionar una opción se aplica el filtro y, al seleccionarla de nuevo, se elimina.",
+      "itemFallback": "**{value}** es una de las opciones del filtro **{category}**. Al seleccionarla, la lista de carteras se limita a las que incluyen este valor; vuelve a seleccionarla para quitar el filtro.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** significa que la cartera se ejecuta como una aplicación en un teléfono o tableta. Las carteras móviles suelen sincronizarse mediante un servidor lightwallet en lugar de almacenar toda la cadena de bloques, lo que las hace prácticas para pagos cotidianos.",
+          "Desktop": "**Desktop** significa que la cartera se ejecuta como una aplicación en una computadora. Según la cartera, puede sincronizar un nodo completo o conectarse a un servidor lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** es el pool blindado de Zcash introducido en NU5. Admite transacciones blindadas con el diseño del pool Orchard y lo usan las carteras que ofrecen las funciones blindadas más recientes.",
+          "Transparent": "**Transparent** significa que la cartera admite ZEC transparente, cuyas transacciones son visibles en la cadena de bloques pública. Las direcciones transparentes empiezan por `t` y no ocultan el remitente, el destinatario ni el importe."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** es un formato de dirección de Zcash que puede contener receptores blindados y transparentes en una sola dirección. Las carteras compatibles pueden usar el receptor que mejor se adapte al pago sin perder compatibilidad con distintos tipos de dirección."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** significa que la cartera mueve ZEC transparente a un pool blindado automáticamente. Esto reduce el tiempo que los fondos permanecen visibles en la cadena de bloques pública, pero no sustituye tus propias prácticas de privacidad."
+        },
+        "Source": {
+          "Open Source": "**Open Source** significa que el código fuente de la cartera está disponible públicamente para revisarlo y reutilizarlo. La tarjeta de la cartera enlaza al repositorio cuando se indica uno.",
+          "Closed Source": "**Closed Source** significa que el código fuente de la cartera no se publica para revisión pública. Aun así, puedes consultar el sitio web de la cartera y reseñas independientes antes de usarla."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Guías",

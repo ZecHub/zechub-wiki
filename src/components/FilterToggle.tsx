@@ -3,11 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Info } from "lucide-react";
 import FilterInfoDialog from "@/components/FilterInfoDialog";
-import type {
-  WalletFilterCategory,
-  WalletFilterDescriptions,
-  WalletFilterItemDescriptions,
-} from "@/lib/walletFilterInfo";
+import type { WalletFilterCategory } from "@/lib/walletFilterInfo";
+import { useLanguage } from "@/context/LanguageContext";
 
 export type WalletFilterGroups = Partial<
   Record<WalletFilterCategory, Set<string>>
@@ -18,8 +15,6 @@ interface FilterToggleProps {
   activeFilters: string[];
   toggleFilter: (filterCategory: string, filterValue: string) => void;
   handleToggleFilter: () => void;
-  descriptions?: WalletFilterDescriptions;
-  itemDescriptions?: WalletFilterItemDescriptions;
 }
 
 interface OpenFilterInfo {
@@ -31,22 +26,31 @@ interface OpenFilterInfo {
 const infoButtonClass =
   "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-200 hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:text-slate-500 dark:hover:bg-white/10 dark:hover:text-slate-200 dark:focus-visible:ring-offset-slate-900";
 
-const fallbackDescription = (category: WalletFilterCategory) =>
-  `Use **${category}** to narrow the wallet list to wallets that match the options in this category. Selecting an option applies the filter, and selecting it again removes it.`;
+const fallbackCategoryTitle = "About the {category} filter";
+const fallbackItemTitle = "About {value}";
+const fallbackCategoryDescription =
+  "Use **{category}** to narrow the wallet list to wallets that match the options in this category. Selecting an option applies the filter, and selecting it again removes it.";
+const fallbackItemDescription =
+  "**{value}** is one of the **{category}** filter options. Selecting it narrows the wallet list to wallets that include this value; select it again to remove the filter.";
 
-const fallbackItemDescription = (
-  category: WalletFilterCategory,
-  value: string,
-) =>
-  `**${value}** is one of the **${category}** filter options. Selecting it narrows the wallet list to wallets that include this value; select it again to remove the filter.`;
+const interpolate = (template: string, values: Record<string, string>) =>
+  template.replace(/\{(\w+)\}/g, (match, key: string) => values[key] ?? match);
 
 const FilterToggle: React.FC<FilterToggleProps> = ({
   filters,
   activeFilters,
   toggleFilter,
-  descriptions = {},
-  itemDescriptions = {},
+  handleToggleFilter,
 }) => {
+  const { t } = useLanguage();
+  const filterInfo = t?.wallets?.filterInfo ?? {};
+  const categoryTitleTemplate =
+    filterInfo.categoryTitle ?? fallbackCategoryTitle;
+  const itemTitleTemplate = filterInfo.itemTitle ?? fallbackItemTitle;
+  const categoryFallback =
+    filterInfo.categoryFallback ?? fallbackCategoryDescription;
+  const itemFallback = filterInfo.itemFallback ?? fallbackItemDescription;
+
   const [openInfo, setOpenInfo] = useState<OpenFilterInfo | null>(null);
   const infoButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const lastOpenKey = useRef<string | null>(null);
@@ -98,7 +102,8 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
           if (!values || values.size === 0) return null;
 
           const categoryInfo =
-            descriptions[category] ?? fallbackDescription(category);
+            filterInfo.categories?.[category] ??
+            interpolate(categoryFallback, { category });
 
           return (
             <div key={category} className="mt-7 first:mt-0">
@@ -108,7 +113,7 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
                 </h4>
                 {renderInfoButton(
                   `category:${category}`,
-                  `About the ${category} filter`,
+                  interpolate(categoryTitleTemplate, { category }),
                   categoryInfo,
                 )}
               </div>
@@ -139,9 +144,9 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
                     </label>
                     {renderInfoButton(
                       `item:${category}:${value}`,
-                      `About ${value}`,
-                      itemDescriptions[category]?.[value] ??
-                        fallbackItemDescription(category, value),
+                      interpolate(itemTitleTemplate, { value }),
+                      filterInfo.items?.[category]?.[value] ??
+                        interpolate(itemFallback, { category, value }),
                     )}
                   </div>
                 ))}
@@ -156,6 +161,7 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
           title={openInfo.title}
           markdown={openInfo.markdown}
           onClose={() => setOpenInfo(null)}
+          closeLabel={t?.wallets?.close ?? "Close"}
         />
       )}
     </>

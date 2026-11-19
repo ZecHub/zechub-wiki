@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Portafogli solo trasparenti",
     "transparentOnlyNote": "Questi portafogli supportano solo ZEC trasparente, che non nasconde i dettagli delle transazioni.",
     "nymMixnetTitle": "Supporto Nym Mixnet",
-    "nymMixnetNote": "Portafogli che supportano l'instradamento del traffico Zcash attraverso la Nym Mixnet."
+    "nymMixnetNote": "Portafogli che supportano l'instradamento del traffico Zcash attraverso la Nym Mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Informazioni sul filtro {category}",
+      "itemTitle": "Informazioni su {value}",
+      "categoryFallback": "Usa **{category}** per limitare l'elenco dei portafogli a quelli che corrispondono alle opzioni di questa categoria. Selezionare un'opzione applica il filtro, selezionarla di nuovo lo rimuove.",
+      "itemFallback": "**{value}** è una delle opzioni del filtro **{category}**. Selezionarla limita l'elenco dei portafogli a quelli che includono questo valore; selezionala di nuovo per rimuovere il filtro.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** significa che il portafoglio funziona come un'app su un telefono o un tablet. I portafogli mobile di solito si sincronizzano tramite un server lightwallet invece di memorizzare l'intera blockchain, il che li rende pratici per i pagamenti quotidiani.",
+          "Desktop": "**Desktop** significa che il portafoglio funziona come un'applicazione su un computer. A seconda del portafoglio, può sincronizzare un nodo completo o connettersi a un server lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** è il pool schermato di Zcash introdotto con NU5. Supporta transazioni schermate con il design del pool Orchard ed è usato dai portafogli che offrono le funzionalità schermate più recenti.",
+          "Transparent": "**Transparent** significa che il portafoglio supporta ZEC trasparenti, le cui transazioni sono visibili sulla blockchain pubblica. Gli indirizzi trasparenti iniziano con `t` e non nascondono mittente, destinatario o importo."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** è un formato di indirizzo Zcash che può contenere destinatari schermati e trasparenti in un unico indirizzo. I portafogli compatibili possono usare il destinatario adatto al pagamento mantenendo la compatibilità con diversi tipi di indirizzo."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** significa che il portafoglio sposta automaticamente ZEC trasparenti in un pool schermato. Questo riduce il tempo in cui i fondi restano visibili sulla blockchain pubblica, ma non sostituisce le tue pratiche di privacy."
+        },
+        "Source": {
+          "Open Source": "**Open Source** significa che il codice sorgente del portafoglio è disponibile pubblicamente per la revisione e il riutilizzo. La scheda del portafoglio collega al repository quando ne è indicato uno.",
+          "Closed Source": "**Closed Source** significa che il codice sorgente del portafoglio non è pubblicato per la revisione pubblica. Puoi comunque controllare il sito del portafoglio e recensioni indipendenti prima di usarlo."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Guide",
