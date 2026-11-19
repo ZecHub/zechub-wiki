@@ -5,6 +5,7 @@ import {
   type KeyboardEvent, type CSSProperties,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { useFocusScopeBranch } from '@radix-ui/react-focus-scope';
 import { Globe, Search, X } from 'lucide-react';
 import { useLanguage, LANGUAGES, type Language } from '@/context/LanguageContext';
 import { useRouter, usePathname } from '@/i18n/navigation';
@@ -59,6 +60,11 @@ export function LanguageSwitcher() {
   const searchRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
+  // The picker is portaled outside Radix's mobile navigation dialog, but is
+  // still part of its focus scope. Without a branch the dialog steals focus
+  // back from the search input on every tap (and prevents keyboard input).
+  useFocusScopeBranch(portalNode);
   // Phones (below the site's `imd` breakpoint, 725px; its `sm` is 300px) get a bottom sheet rendered into <body>: inside the sticky header a
   // `fixed` element is positioned against the header (its backdrop filter
   // makes it the containing block), which clipped the sheet off-screen.
@@ -416,7 +422,10 @@ export function LanguageSwitcher() {
 
       {isOpen && (isPhone ? createPortal(
         // React events bubble through the portal to the wrapper's key handler.
-        <div className="notranslate" translate="no">{panelBody}</div>,
+        // Radix's mobile navigation dialog sets body { pointer-events: none }.
+        // The picker is portaled to body, outside that dialog, so it must opt
+        // back into hit testing or taps pass through to the page underneath.
+        <div ref={setPortalNode} className="notranslate pointer-events-auto" translate="no">{panelBody}</div>,
         document.body,
       ) : panelBody)}
     </div>
