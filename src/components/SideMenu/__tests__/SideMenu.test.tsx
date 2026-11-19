@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import SideMenu from "../SideMenu";
 import { getSideMenuLabel } from "@/lib/sideMenuLabel";
 
+jest.mock("@/lib/authAndFetch", () => ({}));
 jest.mock("next/navigation", () => ({ usePathname: () => "/ar/guides/Long_Title" }));
 jest.mock("@/context/LanguageContext", () => ({ useLanguage: () => ({ t: {} }) }));
 jest.mock("@/i18n/navigation", () => ({
