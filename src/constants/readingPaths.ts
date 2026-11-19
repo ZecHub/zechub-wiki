@@ -40,8 +40,8 @@ export const READING_GROUPS: Record<string, ReadingGroup[]> = {
   ],
   "start-here": [
     { title: "Begin here", sequence: true, hideTitle: true, nextStep: { group: "Understand Zcash", slug: "zec-use-cases" }, slugs: ["using-this-wiki", "what-is-zec-and-zcash", "new-user-guide", "who-can-see-your-zcash-payment"] },
-    { title: "Understand Zcash", slugs: ["zec-use-cases", "zcash-monetary-policy", "how-zcash-is-organized", "network-upgrades", "development-fund"] },
-    { title: "ZecHub and resources", slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
+    { title: "Understand Zcash", sequence: true, nextStep: { group: "ZecHub and resources", slug: "what-is-zechub" }, slugs: ["zec-use-cases", "zcash-monetary-policy", "how-zcash-is-organized", "network-upgrades", "development-fund"] },
+    { title: "ZecHub and resources", sequence: true, slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
   ],
   "using-zcash": [
     { title: "Get started", sequence: true, nextStep: { group: "Understand", slug: "transactions" }, slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
