@@ -576,7 +576,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
     if (opts.numberedSteps && Array.isArray(tree.children)) {
       // Guides whose sections are written "1. Title", "2. Title": show the number as the blue step badge used by the other guides.
       for (const x of tree.children as any[]) {
-        if (!x || x.type !== "element" || x.tagName !== "h2") continue;
+        if (!x || x.type !== "element" || (x.tagName !== "h2" && x.tagName !== "h3")) continue;
         const m = /^(\d+)\.\s+(.+?)\s*#?$/.exec(textOf(x).trim());
         if (!m) continue;
         x.properties = { ...(x.properties || {}), dataStep: m[1] };
@@ -6743,7 +6743,7 @@ export default async function Page(props: {
             akashz: slug[0] === "guides" && slug[1] === "akash-network-zebra",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
-            numberedSteps: (slug[0] === "start-here" && slug[1] === "new-user-guide") || (slug[0] === "using-zcash" && slug[1] === "metamask-snap"),
+            numberedSteps: (slug[0] === "start-here" && slug[1] === "new-user-guide") || (slug[0] === "using-zcash" && slug[1] === "metamask-snap") || (slug[0] === "contribute" && slug[1] === "zecweekly-newsletter"),
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
