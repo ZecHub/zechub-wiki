@@ -44,18 +44,18 @@ export const READING_GROUPS: Record<string, ReadingGroup[]> = {
     { title: "ZecHub and resources", sequence: true, slugs: ["what-is-zechub", "zcash-resources", "developer-resources"] },
   ],
   "using-zcash": [
-    { title: "Get started", sequence: true, nextStep: { group: "Understand", slug: "transactions" }, slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
-    { title: "Swaps and exchanges", slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
-    { title: "Pay and get paid", slugs: ["__payment-processors", "payment-request-uris", "mobile-top-ups", "creators-and-tips", "zimppy", "metamask-snap"] },
-    { title: "Understand", sequence: true, nextStep: { group: "Pay and get paid", slug: "payment-request-uris" }, slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
-    { title: "Mining", slugs: ["zcash-mining-guide", "zcash-mining-pools"] },
-    { title: "Tools", slugs: ["zallet-quick-reference-guide", "zecmap", "testnet", "shielded-newsletter"] },
+    { title: "Get started", sequence: true, nextStep: { group: "Swaps and exchanges", slug: "centralized-swaps" }, slugs: ["buying-zec", "__wallets", "__custodial-exchanges", "faucets", "recovering-funds"] },
+    { title: "Swaps and exchanges", sequence: true, nextStep: { group: "Pay and get paid", slug: "payment-request-uris" }, slugs: ["centralized-swaps", "non-custodial-exchanges", "dex", "encifher-swaps", "solana-zec-to-shielded", "solswap"] },
+    { title: "Pay and get paid", sequence: true, nextStep: { group: "Understand", slug: "transactions" }, slugs: ["__payment-processors", "payment-request-uris", "mobile-top-ups", "creators-and-tips", "zimppy", "metamask-snap"] },
+    { title: "Understand", sequence: true, nextStep: { group: "Mining", slug: "zcash-mining-guide" }, slugs: ["transactions", "shielded-pools", "unified-addresses", "transparent-exchange-addresses", "memos"] },
+    { title: "Mining", sequence: true, nextStep: { group: "Tools", slug: "zallet-quick-reference-guide" }, slugs: ["zcash-mining-guide", "zcash-mining-pools"] },
+    { title: "Tools", sequence: true, slugs: ["zallet-quick-reference-guide", "zecmap", "testnet", "shielded-newsletter"] },
   ],
   "zcash-community": [
-    { title: "Community", slugs: ["community-links", "community-projects", "community-blogs", "zcash-global-ambassadors", "cypherpunk-zero-nft"] },
-    { title: "Governance and security", slugs: ["zcash-governance", "zcap", "zcash-ecosystem-security"] },
-    { title: "Calls and events", slugs: ["arborist-calls", "zcash-engineering-office-hours", "zcon-archive", "zcon-vozes"] },
-    { title: "Media", slugs: ["zcash-media", "zcash-podcasts"] },
+    { title: "Community", sequence: true, nextStep: { group: "Governance and security", slug: "zcash-governance" }, slugs: ["community-links", "community-projects", "community-blogs", "zcash-global-ambassadors", "cypherpunk-zero-nft"] },
+    { title: "Governance and security", sequence: true, nextStep: { group: "Calls and events", slug: "arborist-calls" }, slugs: ["zcash-governance", "zcap", "zcash-ecosystem-security"] },
+    { title: "Calls and events", sequence: true, nextStep: { group: "Media", slug: "zcash-media" }, slugs: ["arborist-calls", "zcash-engineering-office-hours", "zcon-archive", "zcon-vozes"] },
+    { title: "Media", sequence: true, slugs: ["zcash-media", "zcash-podcasts"] },
   ],
 };
 
