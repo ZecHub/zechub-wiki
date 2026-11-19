@@ -123,7 +123,8 @@ describe("WalletList", () => {
 `);
     render(<WalletList allWallets={list} />);
 
-    const titles = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    // Wallet names are level 3 headings under the group titles (Zcash / Software / Hardware wallets).
+    const titles = screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent);
     expect(titles).toEqual(["Early", "Transp", "Busy", "Late", "NoStatus"]);
   });
 });
