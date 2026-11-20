@@ -252,6 +252,164 @@
     "overview": "Overview",
     "shop": "Shop"
   },
+  "homeLanding": {
+    "hero": {
+      "tagline": "The community wiki for learning, using and building with Zcash.",
+      "openSource": "Open source",
+      "communityDriven": "Community-driven",
+      "educationHub": "Education hub for Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Learn",
+        "description": "What Zcash is, how its privacy works, and where to start.",
+        "links": {
+          "first": "New user guide",
+          "second": "What is Zcash?",
+          "third": "Network upgrades"
+        }
+      },
+      "wallet": {
+        "title": "Pick a wallet",
+        "description": "A wallet lets you receive and spend ZEC privately.",
+        "links": {
+          "first": "All wallets",
+          "second": "Mobile wallets",
+          "third": "Hardware wallets"
+        }
+      },
+      "use": {
+        "title": "Use ZEC",
+        "description": "Get ZEC, send it, and find places that accept it.",
+        "links": {
+          "first": "Buying ZEC",
+          "second": "Transactions",
+          "third": "Places to spend ZEC"
+        }
+      },
+      "build": {
+        "title": "Build",
+        "description": "Developer resources, tools and ways to contribute to the wiki.",
+        "links": {
+          "first": "Developers",
+          "second": "Zcash Devtool",
+          "third": "Contribute"
+        }
+      }
+    },
+    "start": {
+      "title": "Start Here",
+      "subtitle": "New to Zcash? Begin with these four."
+    },
+    "videos": {
+      "title": "Watch",
+      "pinnedDescription": "A short path for newcomers, in order.",
+      "latestDescription": "The latest from the ZecHub channel.",
+      "allVideos": "All videos",
+      "previous": "Previous videos",
+      "next": "Next videos",
+      "play": "Play {title}",
+      "step": "Step {number}"
+    },
+    "explore": {
+      "title": "More to Explore",
+      "subtitle": "Guides, research, tools and the wider Zcash community."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Go Deeper",
+        "subtitle": "Tutorials, guides and research for when you want more detail."
+      },
+      "tools": {
+        "title": "Tools to Try",
+        "subtitle": "Interactive tools and directories built around Zcash."
+      },
+      "community": {
+        "title": "Community & Organizations",
+        "subtitle": "The people and groups behind the Zcash ecosystem."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutorials",
+        "description": "Step-by-step video tutorials"
+      },
+      "guides": {
+        "title": "Guides",
+        "description": "Nodes, tools, DeFi and more"
+      },
+      "tech": {
+        "title": "Zcash Tech",
+        "description": "zk-SNARKs and the protocol"
+      },
+      "research": {
+        "title": "Research",
+        "description": "Articles and research on Zcash"
+      },
+      "privacy": {
+        "title": "Privacy Tools",
+        "description": "Tools to help protect your privacy"
+      },
+      "glossary": {
+        "title": "Glossary & FAQs",
+        "description": "Quick answers and definitions"
+      },
+      "visualizer": {
+        "description": "Interactive tools to understand Zcash privacy technology."
+      },
+      "map": {
+        "description": "Community-maintained map of merchants and ATMs that accept Zcash."
+      },
+      "pay": {
+        "description": "A free directory of where you can pay with ZEC."
+      },
+      "organizations": {
+        "title": "Organizations",
+        "description": "ZODL, Zcash Foundation, ZCG and others"
+      },
+      "community": {
+        "title": "Community",
+        "description": "Links, blogs, projects, ambassadors"
+      },
+      "ambassadors": {
+        "title": "Global Ambassadors",
+        "description": "Community leaders promoting Zcash education worldwide."
+      },
+      "hackathon": {
+        "title": "Hackathon Archive",
+        "description": "Projects submitted to the 2026 ZecHub Hackathon."
+      }
+    },
+    "involved": {
+      "title": "Get Involved",
+      "subtitle": "Join the DAO, meet the community and help build the wiki.",
+      "dao": {
+        "description": "How ZecHub makes decisions, and the proposals open for a vote.",
+        "meet": "Meet the DAO",
+        "proposals": "See proposals"
+      },
+      "community": {
+        "title": "Join the community",
+        "description": "Talk with other Zcash users and follow what ZecHub is doing.",
+        "discord": "Join Discord"
+      },
+      "contribute": {
+        "title": "Help build ZecHub",
+        "description": "ZecHub is community-driven. Add content or pick up a bounty.",
+        "action": "Contribute",
+        "support": "Support the project"
+      }
+    },
+    "stats": {
+      "circulation": "Circulating supply",
+      "shielded": "Shielded supply",
+      "blocks": "Block height",
+      "maxSupply": "{percentage}% of the 21M maximum",
+      "maxSupplyAria": "{percentage}% of the 21 million maximum supply",
+      "shieldedShare": "{percentage}% of circulating supply",
+      "latestBlock": "Latest block on the Zcash mainnet"
+    }
+  },
   "home": {
     "heroTitle": "Welcome to ZecHub",
     "heroSubtitle": "An open source education hub for Zcash",
@@ -452,7 +610,13 @@
     "activeCount": "{count} active",
     "savedReview": "We saved your review!",
     "errorGettingLikes": "Error getting likes:",
-    "errorUpdatingRating": "Error updating rating:"
+    "errorUpdatingRating": "Error updating rating:",
+    "betaTitle": "Beta wallets",
+    "betaNote": "Test releases. Expect rough edges and use small amounts.",
+    "transparentOnlyTitle": "Transparent-only wallets",
+    "transparentOnlyNote": "These wallets only support transparent ZEC, which does not hide transaction details.",
+    "nymMixnetTitle": "Nym Mixnet support",
+    "nymMixnetNote": "Wallets that support routing Zcash traffic through the Nym mixnet."
   },
   "guides": {
     "title": "Guides",

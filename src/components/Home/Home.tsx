@@ -31,13 +31,10 @@ import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { socialNav } from "@/constants/navigation";
 
-type HomeProps = {
-  text: string;
-};
-
 // Artwork lives in /public/explore/{dark,light}/. A plain string is the same
 // file name in both folders; use {dark, light} when the names differ, and a
 // leading "/" for a full path (needed when a file sits in the other folder).
+type HomeLanding = typeof import("../../../dictionaries/en.json")["homeLanding"];
 type Art = string | { dark: string; light: string };
 
 type Item = {
@@ -75,99 +72,99 @@ type Group = {
    --------------------------------------------------------------------------- */
 
 // 1. Essentials for newcomers, in the order most people need them.
-const featured: Feature[] = [
+const featured = (h?: HomeLanding): Feature[] => [
   {
-    title: "Learn",
-    description: "What Zcash is, how its privacy works, and where to start.",
+    title: h?.featured?.learn?.title ?? "Learn",
+    description: h?.featured?.learn?.description ?? "What Zcash is, how its privacy works, and where to start.",
     icon: GraduationCap,
     art: "start-here.png",
     links: [
-      { label: "New user guide", href: "/start-here/new-user-guide" },
-      { label: "What is Zcash?", href: "/start-here/what-is-zec-and-zcash" },
-      { label: "Network upgrades", href: "/start-here/network-upgrades" },
+      { label: h?.featured?.learn?.links?.first ?? "New user guide", href: "/start-here/new-user-guide" },
+      { label: h?.featured?.learn?.links?.second ?? "What is Zcash?", href: "/start-here/what-is-zec-and-zcash" },
+      { label: h?.featured?.learn?.links?.third ?? "Network upgrades", href: "/start-here/network-upgrades" },
     ],
   },
   {
-    title: "Pick a wallet",
-    description: "A wallet lets you receive and spend ZEC privately.",
+    title: h?.featured?.wallet?.title ?? "Pick a wallet",
+    description: h?.featured?.wallet?.description ?? "A wallet lets you receive and spend ZEC privately.",
     icon: Wallet,
     art: "pick-a-wallet.png",
     links: [
-      { label: "All wallets", href: "/wallets" },
-      { label: "Mobile wallets", href: "/mobile-wallets" },
-      { label: "Hardware wallets", href: "/hardware-wallets" },
+      { label: h?.featured?.wallet?.links?.first ?? "All wallets", href: "/wallets" },
+      { label: h?.featured?.wallet?.links?.second ?? "Mobile wallets", href: "/mobile-wallets" },
+      { label: h?.featured?.wallet?.links?.third ?? "Hardware wallets", href: "/hardware-wallets" },
     ],
   },
   {
-    title: "Use ZEC",
-    description: "Get ZEC, send it, and find places that accept it.",
+    title: h?.featured?.use?.title ?? "Use ZEC",
+    description: h?.featured?.use?.description ?? "Get ZEC, send it, and find places that accept it.",
     icon: Coins,
     art: "what-is-zcash.png",
     links: [
-      { label: "Buying ZEC", href: "/using-zcash/buying-zec" },
-      { label: "Transactions", href: "/using-zcash/transactions" },
+      { label: h?.featured?.use?.links?.first ?? "Buying ZEC", href: "/using-zcash/buying-zec" },
+      { label: h?.featured?.use?.links?.second ?? "Transactions", href: "/using-zcash/transactions" },
       {
-        label: "Places to spend ZEC",
+        label: h?.featured?.use?.links?.third ?? "Places to spend ZEC",
         href: "/using-zcash/spend-zcash/top-10-places-to-spend-zec",
       },
     ],
   },
   {
-    title: "Build",
-    description: "Developer resources, tools and ways to contribute to the wiki.",
+    title: h?.featured?.build?.title ?? "Build",
+    description: h?.featured?.build?.description ?? "Developer resources, tools and ways to contribute to the wiki.",
     icon: Code,
     links: [
-      { label: "Developers", href: "/developers" },
-      { label: "Zcash Devtool", href: "/guides/zcash-devtool" },
-      { label: "Contribute", href: "/contribute/help-build-zechub" },
+      { label: h?.featured?.build?.links?.first ?? "Developers", href: "/developers" },
+      { label: h?.featured?.build?.links?.second ?? "Zcash Devtool", href: "/guides/zcash-devtool" },
+      { label: h?.featured?.build?.links?.third ?? "Contribute", href: "/contribute/help-build-zechub" },
     ],
   },
 ];
 
 // 2. The rest of the wiki, grouped.
-const groups: Group[] = [
+const groups = (h?: HomeLanding): Group[] => [
   {
-    title: "Go Deeper",
-    subtitle: "Tutorials, guides and research for when you want more detail.",
+    title: h?.groups?.deeper?.title ?? "Go Deeper",
+    subtitle: h?.groups?.deeper?.subtitle ?? "Tutorials, guides and research for when you want more detail.",
     items: [
       {
-        title: "Tutorials",
-        description: "Step-by-step video tutorials",
+        title: h?.items?.tutorials?.title ?? "Tutorials",
+        description: h?.items?.tutorials?.description ?? "Step-by-step video tutorials",
         href: "/zechub-tutorial",
         icon: Play,
         art: "tutorials.png",
       },
       {
-        title: "Guides",
-        description: "Nodes, tools, DeFi and more",
+        title: h?.items?.guides?.title ?? "Guides",
+        description: h?.items?.guides?.description ?? "Nodes, tools, DeFi and more",
         href: "/guides/raspberry-pi-4-full-node",
         icon: BookOpen,
         art: "guides.png",
       },
       {
-        title: "Zcash Tech",
-        description: "zk-SNARKs and the protocol",
+        title: h?.items?.tech?.title ?? "Zcash Tech",
+        description: h?.items?.tech?.description ?? "zk-SNARKs and the protocol",
         href: "/zcash-tech/zk-snarks",
         icon: Cpu,
         art: "zcash-tech.png",
       },
       {
-        title: "Research",
-        description: "Articles and research on Zcash",
+        title: h?.items?.research?.title ?? "Research",
+        description: h?.items?.research?.description ?? "Articles and research on Zcash",
         href: "/research",
         icon: FlaskConical,
         art: "research.png",
       },
       {
-        title: "Privacy Tools",
-        description: "Tools to help protect your privacy",
+        title: h?.items?.privacy?.title ?? "Privacy Tools",
+        description: h?.items?.privacy?.description ?? "Tools to help protect your privacy",
         href: "/privacy-tools/2fa-hardware-devices",
         icon: Shield,
         art: "privacy-tools.png",
       },
       {
-        title: "Glossary & FAQs",
-        description: "Quick answers and definitions",
+        title: h?.items?.glossary?.title ?? "Glossary & FAQs",
+        description: h?.items?.glossary?.description ?? "Quick answers and definitions",
         href: "/glossary-and-faqs/faq",
         icon: Info,
         art: "glossary-faq.png",
@@ -175,20 +172,19 @@ const groups: Group[] = [
     ],
   },
   {
-    title: "Tools to Try",
-    subtitle: "Interactive tools and directories built around Zcash.",
+    title: h?.groups?.tools?.title ?? "Tools to Try",
+    subtitle: h?.groups?.tools?.subtitle ?? "Interactive tools and directories built around Zcash.",
     items: [
       {
         title: "ZecHub Visualizer",
-        description: "Interactive tools to understand Zcash privacy technology.",
+        description: h?.items?.visualizer?.description ?? "Interactive tools to understand Zcash privacy technology.",
         href: "/visualizer",
         icon: Eye,
         art: "research.png",
       },
       {
         title: "ZecMap",
-        description:
-          "Community-maintained map of merchants and ATMs that accept Zcash.",
+        description: h?.items?.map?.description ?? "Community-maintained map of merchants and ATMs that accept Zcash.",
         href: "https://zecmap.com",
         icon: MapIcon,
         art: "start-here.png",
@@ -196,7 +192,7 @@ const groups: Group[] = [
       },
       {
         title: "Pay with Zcash",
-        description: "A free directory of where you can pay with ZEC.",
+        description: h?.items?.pay?.description ?? "A free directory of where you can pay with ZEC.",
         href: "https://paywithz.cash",
         icon: CreditCard,
         art: "pay-with-zcash.png",
@@ -205,33 +201,33 @@ const groups: Group[] = [
     ],
   },
   {
-    title: "Community & Organizations",
-    subtitle: "The people and groups behind the Zcash ecosystem.",
+    title: h?.groups?.community?.title ?? "Community & Organizations",
+    subtitle: h?.groups?.community?.subtitle ?? "The people and groups behind the Zcash ecosystem.",
     items: [
       {
-        title: "Organizations",
-        description: "ZODL, Zcash Foundation, ZCG and others",
+        title: h?.items?.organizations?.title ?? "Organizations",
+        description: h?.items?.organizations?.description ?? "ZODL, Zcash Foundation, ZCG and others",
         href: "/zcash-organizations/electric-coin-company",
         icon: Building2,
         art: "zcash-organizations.png",
       },
       {
-        title: "Community",
-        description: "Links, blogs, projects, ambassadors",
+        title: h?.items?.community?.title ?? "Community",
+        description: h?.items?.community?.description ?? "Links, blogs, projects, ambassadors",
         href: "/zcash-community/community-links",
         icon: Users,
         art: "zcash-community.png",
       },
       {
-        title: "Global Ambassadors",
-        description: "Community leaders promoting Zcash education worldwide.",
+        title: h?.items?.ambassadors?.title ?? "Global Ambassadors",
+        description: h?.items?.ambassadors?.description ?? "Community leaders promoting Zcash education worldwide.",
         href: "/zcash-global-ambassadors",
         icon: Globe,
         art: "zga.png",
       },
       {
-        title: "Hackathon Archive",
-        description: "Projects submitted to the 2026 ZecHub Hackathon.",
+        title: h?.items?.hackathon?.title ?? "Hackathon Archive",
+        description: h?.items?.hackathon?.description ?? "Projects submitted to the 2026 ZecHub Hackathon.",
         href: "/hackathon",
         icon: Trophy,
         // the files are named the other way round: _w is the white art (for dark)
@@ -405,9 +401,18 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
   );
 }
 
-const Home = (_props: HomeProps) => {
+// Keep the brand highlight from the English hero without assuming where a
+// translator places the product name in the sentence.
+function brandTagline(tagline: string): ReactNode {
+  const brand = tagline.indexOf("Zcash");
+  if (brand < 0) return tagline;
+  return <>{tagline.slice(0, brand)}<span className="font-medium text-brand">Zcash</span>{tagline.slice(brand + "Zcash".length)}</>;
+}
+
+const Home = () => {
   const { t } = useLanguage();
   const { dark } = useDarkModeContext();
+  const h = t?.homeLanding;
   const [variant, setVariant] = useState<"filled" | "outline">("filled");
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("cards") === "outline") {
@@ -443,12 +448,15 @@ const Home = (_props: HomeProps) => {
           />
           <h1 className="sr-only">ZecHub</h1>
           <p className="mx-auto max-w-xl text-lg text-slate-700 dark:text-slate-200 md:text-xl">
-            The community wiki for learning, using and building with{" "}
-            <span className="font-medium text-brand">Zcash</span>.
+            {brandTagline(h?.hero?.tagline ?? "The community wiki for learning, using and building with Zcash.")}
           </p>
           {variant === "filled" ? (
             <ul className="mt-8 flex flex-wrap justify-center gap-2">
-              {["Open source", "Community-driven", "Education hub for Zcash"].map(
+              {[
+                h?.hero?.openSource ?? "Open source",
+                h?.hero?.communityDriven ?? "Community-driven",
+                h?.hero?.educationHub ?? "Education hub for Zcash",
+              ].map(
                 (chip) => (
                   <li
                     key={chip}
@@ -471,11 +479,11 @@ const Home = (_props: HomeProps) => {
       {/* 1. Essentials for newcomers */}
       <section id="start" className={`${wrap} py-16 md:py-20`}>
         <SectionHeader
-          title="Start Here"
-          subtitle="New to Zcash? Begin with these four."
+          title={h?.start?.title ?? "Start Here"}
+          subtitle={h?.start?.subtitle ?? "New to Zcash? Begin with these four."}
         />
         <div className="grid gap-4 imd:grid-cols-2 lg:grid-cols-4">
-          {featured.map((feature) => (
+          {featured(h).map((feature) => (
             <div
               key={feature.title}
               className={`group relative flex flex-col overflow-hidden p-6 ${styles.base}`}
@@ -536,12 +544,12 @@ const Home = (_props: HomeProps) => {
       >
         <div className={wrap}>
           <SectionHeader
-            title="More to Explore"
-            subtitle="Guides, research, tools and the wider Zcash community."
+            title={h?.explore?.title ?? "More to Explore"}
+            subtitle={h?.explore?.subtitle ?? "Guides, research, tools and the wider Zcash community."}
           />
 
           <div className="space-y-12">
-            {groups.map((group) => (
+            {groups(h).map((group) => (
               <div key={group.title}>
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
@@ -580,8 +588,8 @@ const Home = (_props: HomeProps) => {
 
       <section id="community" className={`${wrap} pb-24 pt-16 md:pt-20`}>
         <SectionHeader
-          title="Get Involved"
-          subtitle="Join the DAO, meet the community and help build the wiki."
+          title={h?.involved?.title ?? "Get Involved"}
+          subtitle={h?.involved?.subtitle ?? "Join the DAO, meet the community and help build the wiki."}
         />
         <div
           className={`grid gap-8 p-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-slate-200 md:p-0 dark:md:divide-slate-700/60 ${styles.base}`}
@@ -592,14 +600,14 @@ const Home = (_props: HomeProps) => {
               ZecHub DAO
             </h2>
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-              How ZecHub makes decisions, and the proposals open for a vote.
+              {h?.involved?.dao?.description ?? "How ZecHub makes decisions, and the proposals open for a vote."}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
               <Link href="/dao" className={`${ctaButton} px-5`}>
-                Meet the DAO
+                {h?.involved?.dao?.meet ?? "Meet the DAO"}
               </Link>
               <Link href="/proposals" className={quietLink}>
-                See proposals
+                {h?.involved?.dao?.proposals ?? "See proposals"}
               </Link>
             </div>
           </div>
@@ -607,10 +615,10 @@ const Home = (_props: HomeProps) => {
           <div className="flex flex-col md:p-8">
             <IconBadge icon={Users} />
             <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Join the community
+              {h?.involved?.community?.title ?? "Join the community"}
             </h2>
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-              Talk with other Zcash users and follow what ZecHub is doing.
+              {h?.involved?.community?.description ?? "Talk with other Zcash users and follow what ZecHub is doing."}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
               <a
@@ -619,7 +627,7 @@ const Home = (_props: HomeProps) => {
                 rel="noopener noreferrer"
                 className={`${ctaButton} px-5`}
               >
-                Join Discord
+                {h?.involved?.community?.discord ?? "Join Discord"}
               </a>
               <div className="flex items-center gap-1">
                 {socialNav
@@ -647,17 +655,17 @@ const Home = (_props: HomeProps) => {
           <div className="flex flex-col md:p-8">
             <IconBadge icon={Code} />
             <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
-              Help build ZecHub
+              {h?.involved?.contribute?.title ?? "Help build ZecHub"}
             </h2>
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
-              ZecHub is community-driven. Add content or pick up a bounty.
+              {h?.involved?.contribute?.description ?? "ZecHub is community-driven. Add content or pick up a bounty."}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
               <Link href="/contribute/help-build-zechub" className={`${ctaButton} px-5`}>
-                Contribute
+                {h?.involved?.contribute?.action ?? "Contribute"}
               </Link>
               <Link href="/donation" className={quietLink}>
-                Support the project
+                {h?.involved?.contribute?.support ?? "Support the project"}
               </Link>
             </div>
           </div>
