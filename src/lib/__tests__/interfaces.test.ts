@@ -66,6 +66,7 @@ describe("interfaces registry", () => {
     expect(isInterfaceId("reader")).toBe(true);
     expect(isInterfaceId("classic")).toBe(true);
     expect(isInterfaceId("desktop")).toBe(true);
+    expect(isInterfaceId("text")).toBe(true);
     expect(isInterfaceId("nope")).toBe(false);
     expect(isInterfaceId(null)).toBe(false);
     expect(isInterfaceId(1)).toBe(false);
@@ -83,6 +84,8 @@ describe("interfaces registry", () => {
     expect(root.getAttribute(DATA_ATTRIBUTE)).toBe("reader");
     applyInterface("desktop", root);
     expect(root.getAttribute(DATA_ATTRIBUTE)).toBe("desktop");
+    applyInterface("text", root);
+    expect(root.getAttribute(DATA_ATTRIBUTE)).toBe("text");
     applyInterface("classic", root);
     expect(root.hasAttribute(DATA_ATTRIBUTE)).toBe(false);
     applyInterface("reader", root);
@@ -145,7 +148,15 @@ describe("interface stylesheets", () => {
   it.each(styleInterfaces.map((i) => i.id))("%s never sets colours (colour themes own them)", (id) => {
     const css = readFileSync(join(DIR, `${id}.css`), "utf8");
     for (const [, body] of rules(css)) {
-      expect(body).not.toMatch(/(^|[;\s])(color|background|background-color|border-color|fill|stroke|outline-color)\s*:/);
+      // "inherit" and "currentColor" only pass along the theme's own colour.
+      const colourProps = /^(color|background|background-color|border-color|fill|stroke|outline-color)$/;
+      for (const decl of body.split(";")) {
+        const at = decl.indexOf(":");
+        if (at < 0) continue;
+        const prop = decl.slice(0, at).trim();
+        const value = decl.slice(at + 1).replace(/!important/, "").trim();
+        if (colourProps.test(prop)) expect(value).toMatch(/^(inherit|currentColor)$/);
+      }
       expect(body).not.toMatch(/--color-[\w-]+\s*:/);
     }
   });

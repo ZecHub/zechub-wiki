@@ -40,6 +40,12 @@ export const INTERFACES: readonly InterfaceOption[] = [
     sampleFont: "var(--font-reader), Georgia, serif",
   },
   {
+    id: "text",
+    name: "Text",
+    hint: "Plain text, keyboard first, no images",
+    sampleFont: "ui-monospace, 'Courier New', monospace",
+  },
+  {
     id: "desktop",
     name: "Desktop",
     hint: "The full wiki as a Mac-style desktop",
