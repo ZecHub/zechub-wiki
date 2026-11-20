@@ -9,6 +9,9 @@
 // A real-PostgreSQL race harness verified the behaviour; this pins the order.
 
 // The handler is plain JS (allowJs is off), so it is required rather than imported.
+// No imports here, so this export keeps the file a module (its top-level names stay out of the global scope).
+export {};
+
 type Handler = (req: unknown, res: unknown) => Promise<void>;
 const handler: Handler = require("@/pages/api/wallet-likes").default;
 
