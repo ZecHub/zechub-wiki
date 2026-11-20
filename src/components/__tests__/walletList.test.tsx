@@ -1,8 +1,16 @@
 import React from "react";
 import { render, screen, waitFor, within } from "@testing-library/react";
-import WalletList from "@/components/Wallet/WalletList";
 import userEvent from "@testing-library/user-event";
+import WalletList from "@/components/Wallet/WalletList";
 import { parseMarkdown } from "@/lib/parseMarkdown";
+
+jest.mock("react-markdown", () => ({
+  __esModule: true,
+  default: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="markdown">{children}</div>
+  ),
+}));
+jest.mock("remark-gfm", () => ({ __esModule: true, default: () => {} }));
 
 jest.mock("@/context/LanguageContext", () => ({
   useLanguage: () => ({ t: {} }),

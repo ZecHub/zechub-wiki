@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Gakotoku siwo me kɔkɔe ko",
     "transparentOnlyNote": "Gakotoku siawo wɔ dɔ kple ZEC si me kɔkɔe ko, si me ɖea asitsatsa ƒe nyawo ɖe go o.",
     "nymMixnetTitle": "Nym Mixnet ƒe kpekpeɖeŋu",
-    "nymMixnetNote": "Gakotoku siwo wɔ dɔ kple Zcash ƒe mɔfiafia to Nym mixnet dzi."
+    "nymMixnetNote": "Gakotoku siwo wɔ dɔ kple Zcash ƒe mɔfiafia to Nym mixnet dzi.",
+    "filterInfo": {
+      "categoryTitle": "{category} tsitsi nu me tɔ ƒe nya",
+      "itemTitle": "{value} Ŋuti nya",
+      "categoryFallback": "Zã **{category}** tsia gakotokuwo ƒe ŋkɔxɔme ɖe gakotoku siwo sɔ kple tiatia siwo le ŋutinya sia me dzi. Ne ètia tiatia aɖe la, etsina nu me; ne ègatia la, etsɔe ɖa.",
+      "itemFallback": "**{value}** nye **{category}** tsitsi nu me tɔ ƒe tiatia ɖeka. Ne ètiae la, eƒe gakotoku siwo me ŋuɖoɖo sia le ko lae fia; gatia nɛ ake hafi ɖe tsitsi nu me tɔ ɖa.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** fia be gakotoku la dɔwɔna le asitelefon alo tablet dzi. Asitelefon dzi gakotokuwo zãa lightwallet server tsɔtsɔe hena blockchain blibo dzi, eyata wɔsɔ ɖe gbe sia gbe fe gaɖuɖu nu.",
+          "Desktop": "**Desktop** fia be gakotoku la dɔwɔna le kɔmpiuta dzi. Ɖe gakotoku la nu la, ate ŋu asɔ node blibo alo akpɔ lightwallet server gbɔ."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** nye Zcash ƒe ta si wotsɔ akpoxɔnu wɔe si woɖe gbe le NU5 me. Ewɔa dɔ le shielded transactions siwo zãa Orchard ta ƒe ɖoɖo nu, eye gakotoku siwo tsɔa shielded nɔnɔme yeyewo vɛ zãa e.",
+          "Transparent": "**Transparent** fia be gakotoku la xɔa ZEC si me kɔkɔe, eye woate ŋu akpɔ eƒe transactions le dukɔ blockchain dzi. Adrɛs siwo me kɔkɔe dzea egɔme kple `t` eye wometsɔa amesi tsɔe ɖa, amesi xɔe, alo ga home ɣla o."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** nye Zcash adrɛs ƒe ɖoɖo si ate ŋu anya shielded kple transparent receivers le adrɛs ɖeka me. Gakotoku siwo wɔa dɔ le eŋu ate ŋu azã receiver si sɔ ɖe gaɖuɖu la nu eye wòanɔ agbɔsɔsɔ me kple adrɛs ƒomevi vovovowo."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** fia be gakotoku la tsɔa ZEC si me kɔkɔe yia ta si wotsɔ akpoxɔnu wɔe me ɖe eɖokui si. Esia wɔnɛ be ga medaa adi le dukɔ blockchain dzi ɣeaɖewoɣi o, gake medea ame ŋutɔ ƒe nɔnɔme siwo nèzãna ɖe ameŋunyatakakawo ŋu ɖo o."
+        },
+        "Source": {
+          "Open Source": "**Open Source** fia be gakotoku la ƒe source code le gaglãa me na amesiame akpɔe eye wòazãe ake. Gakotoku card la tsɔa repository ƒe kadodo fia ne wɔŋlɔ repository aɖe ɖo.",
+          "Closed Source": "**Closed Source** fia be wometa gakotoku la ƒe source code ɖe go na dukɔ ƒe dzikpɔkpɔ o. Gake àte ŋu akpɔ gakotoku la ƒe nyatakakadzraɖoƒe kple ʋɔnudɔdrɔ̃ siwo nye ŋutɔŋutɔ hafi azãe."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Mɔfialawo",
