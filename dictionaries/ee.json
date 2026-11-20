@@ -1300,7 +1300,13 @@
   },
   "sideMenu": {
     "navigation": "Tɔdziʋuɖoɖo",
-    "explore": "Tsa le eme"
+    "explore": "Tsa le eme",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub ƒe Wiki",
