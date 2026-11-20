@@ -7,6 +7,9 @@
 // to the wallets listed in site/Using_Zcash/Wallets.md, checked before any
 // database work, and the tally read drops unlisted rows.
 
+// No imports here, so this export keeps the file a module (its top-level names stay out of the global scope).
+export {};
+
 type Handler = (req: unknown, res: unknown) => Promise<void>;
 
 const queries: string[] = [];
