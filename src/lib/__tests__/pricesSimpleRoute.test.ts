@@ -11,7 +11,7 @@ function get(query: string) {
 
 function mockUpstream() {
   const fetchMock = jest.fn(
-    async () =>
+    async (_input: RequestInfo | URL, _init?: RequestInit) =>
       new Response(JSON.stringify({ Zcash: { usd: 30 } }), { status: 200 }),
   );
   (global as unknown as { fetch: jest.Mock }).fetch = fetchMock;
