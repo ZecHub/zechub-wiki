@@ -12,9 +12,12 @@ const keys = [
 ];
 
 describe("isKnownContentPath", () => {
-  it("treats a section root as browsable", () => {
+  it("treats a known section root as browsable and rejects unknown top-level paths", () => {
     expect(isKnownContentPath(["zcash-tech"], keys)).toBe(true);
-    expect(isKnownContentPath(["anything-at-all"], keys)).toBe(true);
+    expect(isKnownContentPath(["guides"], keys)).toBe(true);
+    expect(isKnownContentPath(["using-zcash"], keys)).toBe(true);
+    expect(isKnownContentPath(["anything-at-all"], keys)).toBe(false);
+    expect(isKnownContentPath(["qwerty-nonsense"], keys)).toBe(false);
   });
 
   it("recognises a nested folder that files live under", () => {
@@ -81,6 +84,7 @@ describe("isKnownContentPath", () => {
     expect(isKnownContentPath(["zcash-tech", "light-wallet-node"], [])).toBe(
       true,
     );
+    expect(isKnownContentPath(["anything-at-all"], [])).toBe(true);
   });
 
   it("returns false for an empty slug", () => {
