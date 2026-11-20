@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Pochi za uwazi pekee",
     "transparentOnlyNote": "Pochi hizi zinaunga mkono ZEC ya uwazi pekee, ambayo haifichi maelezo ya miamala.",
     "nymMixnetTitle": "Usaidizi wa Nym Mixnet",
-    "nymMixnetNote": "Pochi zinazounga mkono uelekezaji wa trafiki ya Zcash kupitia Nym mixnet."
+    "nymMixnetNote": "Pochi zinazounga mkono uelekezaji wa trafiki ya Zcash kupitia Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Kuhusu kichujio cha {category}",
+      "itemTitle": "Kuhusu {value}",
+      "categoryFallback": "Tumia **{category}** kupunguza orodha ya pochi hadi zile zinazolingana na chaguo katika kundi hili. Kuchagua chaguo huweka kichujio, na kuchagua tena hukiondoa.",
+      "itemFallback": "**{value}** ni mojawapo ya chaguo za kichujio cha **{category}**. Kukichagua hupunguza orodha ya pochi hadi zile zinazojumuisha thamani hii; chagua tena ili kuondoa kichujio.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** inamaanisha kuwa wallet inaendeshwa kama programu kwenye simu au kompyuta kibao. Wallets za simu kwa kawaida husawazisha kupitia seva ya lightwallet badala ya kuhifadhi blockchain yote, hivyo ni rahisi kwa malipo ya kila siku.",
+          "Desktop": "**Desktop** inamaanisha kuwa wallet inaendeshwa kama programu kwenye kompyuta. Kulingana na wallet, inaweza kusawazisha node kamili au kuunganisha kwenye seva ya lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** ni dimbwi la Zcash lililolindwa lililoanzishwa katika NU5. Linasaidia miamala iliyolindwa kwa muundo wa dimbwi la Orchard na hutumiwa na wallets zinazotoa vipengele vipya vya ulinzi.",
+          "Transparent": "**Transparent** inamaanisha kuwa wallet inasaidia ZEC ya uwazi, ambayo miamala yake inaonekana kwenye blockchain ya umma. Anwani za uwazi huanza na `t` na hazifichi mtumaji, mpokeaji, au kiasi."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** ni muundo wa anwani wa Zcash unaoweza kuwa na vipokeaji vilivyolindwa na vya uwazi katika anwani moja. Wallets zinazouauni zinaweza kutumia kipokeaji kinachofaa malipo huku zikibaki zinazoendana na aina mbalimbali za anwani."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** inamaanisha kuwa wallet huhamisha ZEC ya uwazi kwenda kwenye dimbwi lililolindwa kiotomatiki. Hii hupunguza muda ambao fedha zinaonekana kwenye blockchain ya umma, lakini haichukui nafasi ya mbinu zako mwenyewe za faragha."
+        },
+        "Source": {
+          "Open Source": "**Open Source** inamaanisha kuwa msimbo wa chanzo wa wallet unapatikana hadharani kwa ukaguzi na matumizi tena. Kadi ya wallet huunganisha kwenye hazina ya msimbo ikiwa imeorodheshwa.",
+          "Closed Source": "**Closed Source** inamaanisha kuwa msimbo wa chanzo wa wallet haujachapishwa kwa ukaguzi wa umma. Bado unaweza kuangalia tovuti ya wallet na hakiki huru kabla ya kuitumia."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Miongozo",

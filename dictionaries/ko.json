@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "투명 전용 지갑",
     "transparentOnlyNote": "이 지갑은 투명 ZEC만 지원하며 거래 세부 정보를 숨기지 않습니다.",
     "nymMixnetTitle": "Nym Mixnet 지원",
-    "nymMixnetNote": "Zcash 트래픽을 Nym mixnet을 통해 라우팅할 수 있는 지갑."
+    "nymMixnetNote": "Zcash 트래픽을 Nym mixnet을 통해 라우팅할 수 있는 지갑.",
+    "filterInfo": {
+      "categoryTitle": "{category} 필터 정보",
+      "itemTitle": "{value} 정보",
+      "categoryFallback": "**{category}** 필터를 사용하면 이 카테고리의 옵션과 일치하는 지갑만 표시할 수 있습니다. 옵션을 선택하면 필터가 적용되고, 다시 선택하면 해제됩니다.",
+      "itemFallback": "**{value}** 은(는) **{category}** 필터 옵션 중 하나입니다. 선택하면 이 값을 포함하는 지갑만 표시되며, 다시 선택하면 필터가 해제됩니다.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** 은 지갑이 휴대폰이나 태블릿의 앱으로 실행된다는 뜻입니다. 모바일 지갑은 보통 전체 블록체인을 저장하지 않고 lightwallet 서버를 통해 동기화하므로 일상 결제에 편리합니다.",
+          "Desktop": "**Desktop** 은 지갑이 컴퓨터의 애플리케이션으로 실행된다는 뜻입니다. 지갑에 따라 전체 노드를 동기화하거나 lightwallet 서버에 연결할 수 있습니다."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** 는 NU5에서 도입된 Zcash의 Shielded 풀입니다. Orchard 풀 설계를 사용하는 Shielded 트랜잭션을 지원하며, 최신 Shielded 기능을 제공하는 지갑에서 사용됩니다.",
+          "Transparent": "**Transparent** 는 지갑이 투명 ZEC를 지원한다는 뜻이며, 해당 거래는 공개 블록체인에서 볼 수 있습니다. 투명 주소는 `t`로 시작하며 보낸 사람, 받는 사람, 금액을 숨기지 않습니다."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** 는 Shielded 수신자와 투명 수신자를 하나의 주소에 담을 수 있는 Zcash 주소 형식입니다. 이를 지원하는 지갑은 다양한 주소 유형과 호환성을 유지하면서 결제에 맞는 수신자를 사용할 수 있습니다."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** 은 지갑이 투명 ZEC를 자동으로 Shielded 풀로 옮긴다는 뜻입니다. 이렇게 하면 자금이 공개 블록체인에 보이는 시간이 줄어들지만, 개인의 프라이버시 관행을 대신하지는 않습니다."
+        },
+        "Source": {
+          "Open Source": "**Open Source** 는 지갑의 소스 코드가 공개되어 누구나 검토하고 재사용할 수 있다는 뜻입니다. 지갑 카드에는 저장소가 등록된 경우 해당 링크가 표시됩니다.",
+          "Closed Source": "**Closed Source** 는 지갑의 소스 코드가 공개 검토용으로 게시되지 않았다는 뜻입니다. 사용하기 전에 지갑 웹사이트와 독립적인 리뷰를 확인할 수는 있습니다."
+        }
+      }
+    }
   },
   "guides": {
     "title": "가이드",

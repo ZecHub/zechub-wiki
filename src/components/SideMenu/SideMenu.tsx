@@ -42,7 +42,7 @@ const NavItem = ({
       <Link
         href={`${href}#content`}
         aria-current={active ? "page" : undefined}
-        className={`-ml-px block border-l-2 px-3 py-1.5 text-[13.5px] leading-snug transition-colors ${
+        className={`-ml-px block min-w-0 [overflow-wrap:anywhere] border-l-2 px-3 py-1.5 text-[13.5px] leading-snug transition-colors ${
           active
             ? "border-brand font-medium text-brand dark:text-brand-soft"
             : "border-transparent text-slate-600 hover:border-slate-400 hover:text-slate-900 dark:text-slate-300 dark:hover:border-white/40 dark:hover:text-white"
@@ -126,7 +126,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   );
 
   return (
-    <div className="relative flex flex-wrap items-center lg:items-start order-1 justify-between lg:flex-col">
+    <div className="relative min-w-0 w-full flex flex-wrap items-center lg:items-start order-1 justify-between lg:flex-col">
       <button onClick={toggleMenu} className="lg:hidden flex cursor-pointer">
         <BurgerMenuIcon size={24} />{" "}
         <h3 className="ms-2 font-bold">{t?.sideMenu?.navigation ?? "Navigation"}</h3>
