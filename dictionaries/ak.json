@@ -1326,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation a wɔde fa kwan so",
-    "explore": "Hwehwɛ mu"
+    "explore": "Hwehwɛ mu",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki a ɛwɔ hɔ",

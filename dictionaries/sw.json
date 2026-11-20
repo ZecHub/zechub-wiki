@@ -1326,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Urambazaji",
-    "explore": "Kuchunguza"
+    "explore": "Kuchunguza",
+    "continueReading": {
+      "heading": "Endelea kusoma",
+      "previous": "Iliyotangulia",
+      "next": "Inayofuata",
+      "nextStep": "Hatua inayofuata"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

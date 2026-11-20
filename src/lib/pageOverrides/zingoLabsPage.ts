@@ -23,10 +23,10 @@ const PAGE = `# Zingo Labs
 
 | | |
 |---|---|
-| Products | Zingo wallet (mobile and desktop), Zingolib, Zaino, zingo-cli |
-| Other projects | Z3 stack work, ZeWIF, ZExCavator, Chasqui, zcash-local-net |
-| Funding | Zcash Community Grants and other ecosystem funding |
-| Works with | Zcash Foundation, Shielded Labs, Blockchain Commons, Nym |
+| **Products** | Zingo wallet (mobile and desktop), Zingolib, Zaino, zingo-cli |
+| **Other projects** | Z3 stack work, ZeWIF, ZExCavator, Chasqui, zcash-local-net |
+| **Funding** | Zcash Community Grants and other ecosystem funding |
+| **Works with** | Zcash Foundation, Shielded Labs, Blockchain Commons, Nym |
 
 ## Zingo wallet
 

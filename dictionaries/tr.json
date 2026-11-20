@@ -1326,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Gezinme",
-    "explore": "Keşfet"
+    "explore": "Keşfet",
+    "continueReading": {
+      "heading": "Okumaya devam edin",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "nextStep": "Sonraki adım"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

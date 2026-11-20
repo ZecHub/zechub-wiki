@@ -1326,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation",
-    "explore": "Entdecken"
+    "explore": "Entdecken",
+    "continueReading": {
+      "heading": "Weiterlesen",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "nextStep": "Nächster Schritt"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

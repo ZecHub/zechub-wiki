@@ -14,7 +14,7 @@ const GLANCE = `| | |
 | **Development funding** | 20% of the block subsidy, split 8% to Zcash Community Grants and 12% to the Deferred Dev Fund Lockbox ([ZIP 1015](https://zips.z.cash/zip-1015), [ZIP 2001](https://zips.z.cash/zip-2001)) |
 | **Supply accounting** | Coinbase must balance exactly, so no ZEC can be burned by under-claiming ([ZIP 236](https://zips.z.cash/zip-0236)) |
 | **Endorsed by** | Electric Coin Company and Zcash Foundation |
-| **Funding today** | The NU6.1 model (ZIP 1016) replaced this split on November 24, 2025 |`;
+| **Superseded by** | The NU6.1 model (ZIP 1016), on November 24, 2025 |`;
 
 const TODAY = `## Where funding stands today
 

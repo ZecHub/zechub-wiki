@@ -20,12 +20,12 @@ const PAGE = `# Zcash Labs
 
 | | |
 |---|---|
-| Type | Independent organization, not affiliated with the Zcash Foundation or [ZODL](/zcash-organizations/zodl) |
-| Announced | The website went public on 6 August 2026 and the forum announcement followed on 12 August |
-| Team | Not named in the announcement. It was posted by a forum user, thowar2 |
-| Offers | Consulting, technical integration, infrastructure, initial grants and co-marketing |
-| Funding model | Its own capital up front, then a request to ZEC holders to cover the cost plus 20% |
-| First project | ZcashToCash, a peer-to-peer service for turning ZEC into fiat |
+| **Type** | Independent organization, not affiliated with the Zcash Foundation or [ZODL](/zcash-organizations/zodl) |
+| **Announced** | The website went public on 6 August 2026 and the forum announcement followed on 12 August |
+| **Team** | Not named in the announcement. It was posted by a forum user, thowar2 |
+| **Offers** | Consulting, technical integration, infrastructure, initial grants and co-marketing |
+| **Funding model** | Its own capital up front, then a request to ZEC holders to cover the cost plus 20% |
+| **First project** | ZcashToCash, a peer-to-peer service for turning ZEC into fiat |
 
 ## What it does
 

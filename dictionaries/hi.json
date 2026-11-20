@@ -1326,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "नेविगेशन",
-    "explore": "अन्वेषण करें"
+    "explore": "अन्वेषण करें",
+    "continueReading": {
+      "heading": "आगे पढ़ें",
+      "previous": "पिछला",
+      "next": "अगला",
+      "nextStep": "अगला चरण"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",
