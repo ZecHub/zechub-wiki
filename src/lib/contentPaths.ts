@@ -7,11 +7,12 @@
  * answers HTTP 200 with an empty placeholder instead of a 404.
  *
  * The menu-titles manifest lists every content file, so a URL is known if it
- * matches a file or any folder above one. That keeps two cases on their
- * current path: real folders such as /guides/frostdemo, and articles that the
- * route already fails to render for unrelated reasons (several nested ones
- * land on the browse view today). Only URLs the manifest has never heard of
- * are treated as missing.
+ * matches a file or any folder above one. When the English manifest is loaded,
+ * it decides whether any route (articles, nested folders, or section landings)
+ * is known content. That allows known section landings to keep rendering even
+ * when directory listings fail during an upstream GitHub outage or rate limit.
+ *
+ * Only URLs the manifest has never heard of are treated as missing.
  */
 
 /** Manifest keys are Title_Case_With_Underscores, URLs are kebab-case. */
@@ -24,10 +25,6 @@ export function isKnownContentPath(
 ): boolean {
   if (slug.length === 0) return false;
 
-  // A section root is browsable on the strength of its folder listing, which
-  // the caller has already checked.
-  if (slug.length === 1) return true;
-
   // An empty manifest means the fetch failed, not that the content vanished.
   // Falling back to the old behaviour keeps an outage from turning the wiki
   // into 404s.
@@ -37,6 +34,7 @@ export function isKnownContentPath(
 
   return manifestKeys.some((key) => {
     const parts = key
+      .replace(/^site\//i, "")
       .replace(/\.mdx?$/i, "")
       .split("/")
       .filter(Boolean);
