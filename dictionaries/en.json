@@ -616,7 +616,33 @@
     "transparentOnlyTitle": "Transparent-only wallets",
     "transparentOnlyNote": "These wallets only support transparent ZEC, which does not hide transaction details.",
     "nymMixnetTitle": "Nym Mixnet support",
-    "nymMixnetNote": "Wallets that support routing Zcash traffic through the Nym mixnet."
+    "nymMixnetNote": "Wallets that support routing Zcash traffic through the Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "About the {category} filter",
+      "itemTitle": "About {value}",
+      "categoryFallback": "Use **{category}** to narrow the wallet list to wallets that match the options in this category. Selecting an option applies the filter, and selecting it again removes it.",
+      "itemFallback": "**{value}** is one of the **{category}** filter options. Selecting it narrows the wallet list to wallets that include this value; select it again to remove the filter.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** means the wallet runs as an app on a phone or tablet. Mobile wallets usually sync through a lightwallet server instead of storing the full blockchain, which makes them convenient for everyday payments.",
+          "Desktop": "**Desktop** means the wallet runs as an application on a computer. Depending on the wallet, it may sync a full node or connect to a lightwallet server."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** is Zcash's shielded pool introduced in NU5. It supports shielded transactions with the Orchard pool design and is used by wallets that offer the latest shielded features.",
+          "Transparent": "**Transparent** means the wallet supports transparent ZEC, whose transactions are visible on the public blockchain. Transparent addresses start with `t` and do not hide the sender, receiver, or amount."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** is a Zcash address format that can contain shielded and transparent receivers in one address. Wallets that support it can use the receiver that fits the payment while remaining compatible with different address types."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** means the wallet moves transparent ZEC into a shielded pool automatically. This reduces how often funds remain visible on the public blockchain, but it does not replace your own privacy practices."
+        },
+        "Source": {
+          "Open Source": "**Open Source** means the wallet's source code is publicly available for review and reuse. The wallet card links to the repository when one is listed.",
+          "Closed Source": "**Closed Source** means the wallet's source code is not published for public review. You can still check the wallet's website and independent reviews before using it."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Guides",
@@ -1388,7 +1414,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation",
-    "explore": "Explore"
+    "explore": "Explore",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

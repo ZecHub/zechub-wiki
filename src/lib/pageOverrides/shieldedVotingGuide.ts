@@ -9,7 +9,7 @@ const GLANCE = JSON.stringify([
   { label: "What it is", text: "A private, stake-weighted poll of shielded ZEC holders" },
   { label: "Weight", text: "One Ironwood ZEC at the snapshot block equals one vote" },
   { label: "Built by", text: "Valar Group, on a separate voting chain" },
-  { label: "Latest poll", text: "NU7 scope poll, results published in September 2026" },
+  { label: "NU7 poll", text: "NU7 scope poll, results published in September 2026" },
 ]);
 
 const RESULTS = `## Results of the NU7 poll

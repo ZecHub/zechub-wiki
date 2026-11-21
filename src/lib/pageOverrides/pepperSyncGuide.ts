@@ -21,7 +21,7 @@ export function rewritePepperSyncGuide(original: string): string {
     { label: "Scanning", text: "Non-linear: block ranges carry a priority, highest first" },
     { label: "Spend before sync", text: "Yes, for notes that have already been scanned" },
     { label: "Pause and resume", text: "Yes. Sync can be paused, resumed or stopped" },
-    { label: "Crate version", text: "0.7.0, published October 27, 2026, MIT license", href: "https://docs.rs/pepper-sync" },
+    { label: "Crate", text: "pepper-sync on docs.rs, MIT license", href: "https://docs.rs/pepper-sync" },
   ]);
   const fig = (url: string, alt: string) =>
     `<div className="my-5 mx-auto max-w-[420px]"><img src="${url}" alt="${alt}" className="h-auto w-full rounded-lg border border-slate-200 dark:border-slate-700" /></div>`;

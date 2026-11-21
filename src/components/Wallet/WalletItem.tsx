@@ -179,14 +179,14 @@ const WalletItem: React.FC<WalletItemProps> = ({
         </div>
 
         <div className="mt-4 min-w-0">
-          <h2 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
+          <h3 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
             {title}
             {syncSpeed && (
               <span className="ml-2 inline-block align-middle">
                 <Image src={syncSpeed} width={24} height={24} alt="Sync" />
               </span>
             )}
-          </h2>
+          </h3>
           {note ? (
             <p className="m-0 mt-1 text-[13px] font-medium text-brand dark:text-brand-soft">{note}</p>
           ) : null}

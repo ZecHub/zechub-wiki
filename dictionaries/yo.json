@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Àwọn wàléètì ìfarahàn nìkan",
     "transparentOnlyNote": "Àwọn wàléètì wọ̀nyí ń gba ZEC ìfarahàn nìkan, èyí tí kò fi àwọn àlàyé ìdúnnàdúró pamọ́.",
     "nymMixnetTitle": "Ìtìlẹ́yìn Nym Mixnet",
-    "nymMixnetNote": "Àwọn wàléètì tó ń gba ìtòjọ́ ìrìnàjò Zcash nípasẹ̀ Nym mixnet."
+    "nymMixnetNote": "Àwọn wàléètì tó ń gba ìtòjọ́ ìrìnàjò Zcash nípasẹ̀ Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Nípa àlẹmọ {category}",
+      "itemTitle": "Nípa {value}",
+      "categoryFallback": "Lo **{category}** láti dín àkójọ àwọn wàléètì kù sí àwọn tó bá àwọn àṣàyàn inú ẹ̀ka yìí mu. Yíyan àṣàyàn kan á fi àlẹmọ náà sílẹ̀, yíyan rẹ̀ lẹ́ẹ̀kan sí á sì yọ ọ́ kúrò.",
+      "itemFallback": "**{value}** jẹ́ ọ̀kan nínú àwọn àṣàyàn àlẹmọ **{category}**. Yíyan rẹ̀ á dín àkójọ àwọn wàléètì kù sí àwọn tó ní iye yìí; yan ún lẹ́ẹ̀kan sí láti yọ àlẹmọ náà kúrò.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** túmọ̀ sí pé wàléètì náà ń ṣiṣẹ́ gẹ́gẹ́ bí áàpù lórí fọ́nù tàbí tábùlẹ́tì. Àwọn wàléètì alágbèéká sábà máa ń ṣe ìsopọ̀ nípasẹ̀ sèfà lightwallet dípò kí wọ́n tọ́jú gbogbo blockchain, èyí sì jẹ́ kí wọ́n rọrùn fún ìsanwó ojoojúmọ́.",
+          "Desktop": "**Desktop** túmọ̀ sí pé wàléètì náà ń ṣiṣẹ́ gẹ́gẹ́ bí áàpù lórí kọ̀m̀pútà. Gbàrà tí wàléètì náà bá yẹ, ó lè ṣe ìsopọ̀ pẹ̀lú node kíkún tàbí ó lè sopọ̀ mọ́ sèfà lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** ni àdúrà omi ààbò Zcash tí wọ́n ṣàgbékalẹ̀ ní NU5. Ó ń gbé àwọn ìṣòwò ààbò jáde pẹ̀lú àpẹẹrẹ àdúrà Orchard, àwọn wàléètì tó ń pèsè àwọn ẹ̀yà ààbò tuntun sì ń lò ó.",
+          "Transparent": "**Transparent** túmọ̀ sí pé wàléètì náà ń gba ZEC tó ṣe kedere, tí àwọn ìṣòwò rẹ̀ ń hàn lórí blockchain gbogbo ènìyàn. Àwọn adírẹ́sì tó ṣe kedere bẹ̀rẹ̀ pẹ̀lú `t` wọn kì í sì fi olùránṣẹ́, olùgbà, tàbí iye pamọ́."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** jẹ́ ọ̀nà adírẹ́sì Zcash tí ó lè ní àwọn olùgbà tí wọ́n fi ààbò bo àti àwọn tó ṣe kedere nínú adírẹ́sì kan. Àwọn wàléètì tó ń gba á lè lo olùgbà tó bá ìsanwó mu láìpadà ìbámu pẹ̀lú onírúurú adírẹ́sì."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** túmọ̀ sí pé wàléètì náà ń gbé ZEC tó ṣe kedere lọ sínú àdúrà omi ààbò fúnra rẹ̀. Èyí máa ń dín àkókò tí owó ń hàn lórí blockchain gbogbo ènìyàn kù, ṣùgbọ́n kò rọ́pò àwọn ọ̀nà ìpamọ́ tìrẹ."
+        },
+        "Source": {
+          "Open Source": "**Open Source** túmọ̀ sí pé kóòdù orísun wàléètì náà wà ní gbangba fún àyẹ̀wò àti ìlò padà. Káàdì wàléètì náà máa ń so mọ́ ibi ìpamọ́ kóòdù tí wọ́n bá tọ́ka sí.",
+          "Closed Source": "**Closed Source** túmọ̀ sí pé wọ́n kò tẹ kóòdù orísun wàléètì náà jáde fún àyẹ̀wò gbogbo ènìyàn. Síbẹ̀, o lè yẹ ojú-ìwé wàléètì náà àti àwọn àtúnyèwò olómìnira kí o tó lò ó."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Àwọn ìwé atọ́nà",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Ìtọ́sọ́nà",
-    "explore": "Ṣàwárí"
+    "explore": "Ṣàwárí",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "仅透明钱包",
     "transparentOnlyNote": "这些钱包仅支持透明 ZEC，无法隐藏交易详情。",
     "nymMixnetTitle": "Nym Mixnet 支持",
-    "nymMixnetNote": "支持通过 Nym mixnet 路由 Zcash 流量的钱包。"
+    "nymMixnetNote": "支持通过 Nym mixnet 路由 Zcash 流量的钱包。",
+    "filterInfo": {
+      "categoryTitle": "关于 {category} 筛选",
+      "itemTitle": "关于 {value}",
+      "categoryFallback": "使用 **{category}** 可以将钱包列表缩小到符合此类别选项的钱包。选择某个选项会应用筛选，再次选择则会取消筛选。",
+      "itemFallback": "**{value}** 是 **{category}** 筛选选项之一。选择后，钱包列表只会显示包含该值的钱包；再次选择即可取消筛选。",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** 表示钱包以手机或平板电脑应用的形式运行。移动钱包通常通过 lightwallet 服务器同步，而不是存储整个区块链，因此适合日常支付。",
+          "Desktop": "**Desktop** 表示钱包以计算机应用程序的形式运行。根据钱包不同，它可能会同步完整节点，或连接到 lightwallet 服务器。"
+        },
+        "Pools": {
+          "Orchard": "**Orchard** 是 NU5 引入的 Zcash 屏蔽池。它支持采用 Orchard 池设计的屏蔽交易，并被提供最新屏蔽功能的钱包使用。",
+          "Transparent": "**Transparent** 表示钱包支持透明 ZEC，其交易在公共区块链上可见。透明地址以 `t` 开头，不会隐藏发送方、接收方或金额。"
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** 是一种 Zcash 地址格式，可以在一个地址中包含屏蔽和透明接收方。支持该格式的钱包可以选择适合支付的接收方，同时保持与不同地址类型的兼容性。"
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** 表示钱包会自动将透明 ZEC 转入屏蔽池。这会减少资金在公共区块链上可见的时间，但不能替代你自己的隐私做法。"
+        },
+        "Source": {
+          "Open Source": "**Open Source** 表示钱包的源代码公开可用，可供审查和复用。如果钱包卡片列出了代码仓库，就会链接到该仓库。",
+          "Closed Source": "**Closed Source** 表示钱包的源代码未公开发布以供审查。你仍然可以在使用前查看钱包网站和独立评测。"
+        }
+      }
+    }
   },
   "guides": {
     "title": "指南",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "导航",
-    "explore": "探索"
+    "explore": "探索",
+    "continueReading": {
+      "heading": "继续阅读",
+      "previous": "上一页",
+      "next": "下一页",
+      "nextStep": "下一步"
+    }
   },
   "meta": {
     "title": "ZecHub 维基",

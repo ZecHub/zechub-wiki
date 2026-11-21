@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Sikakorabea a ɛda adi pefee nkutoo",
     "transparentOnlyNote": "Sikakorabea yi boa ZEC a ɛda adi pefee nkutoo, a ɛnkata adwuma nkyerɛkyerɛmu.",
     "nymMixnetTitle": "Nym Mixnet mmoa",
-    "nymMixnetNote": "Sikakorabea a ɛboa ma wɔfa Zcash nkitahodi fa Nym mixnet so."
+    "nymMixnetNote": "Sikakorabea a ɛboa ma wɔfa Zcash nkitahodi fa Nym mixnet so.",
+    "filterInfo": {
+      "categoryTitle": "{category} nzɛm nneɛma mu ho nsɛm",
+      "itemTitle": "{value} ho nsɛm",
+      "categoryFallback": "Fa **{category}** na yiyi sikakorabea ahorow mu kɔ siw nea ɛne nkyekyɛmu yi mu ayɛsɛm hyia. Sɛ wopaw ayɛsɛm bi a, wode nzɛm no bɛyɛ adwuma, na sɛ wopaw bio a, wobeyi no.",
+      "itemFallback": "**{value}** yɛ **{category}** nzɛm nneɛma mu ayɛsɛm no mu biako. Sɛ wopaw a, wobeyi sikakorabea ahorow mu kɔ siw nea ɛwɔ saa bo yi; paw bio na wobeyi nzɛm no.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** kyerɛ sɛ sikakorabea no yɛ app a ɛwɔ fon so anaa tablet so. Mobile sikakorabea ahorow taa de lightwallet server na ɛsɛn, na ɛnyɛ blockchain nyinaa na ɛkora, enti ɛyɛ mmerɛw ma da biara sika ntua.",
+          "Desktop": "**Desktop** kyerɛ sɛ sikakorabea no yɛ application a ɛwɔ komputa so. Sɛnea sikakorabea no te no, ebetumi asɛn node a edi mũ anaa ɛnkɔ lightwallet server so."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** yɛ Zcash shielded pool a wɔde bae wɔ NU5 mu. Ɛboa shielded transactions a ɛfa Orchard pool nhyehyɛe so, na sikakorabea ahorow a ɛde shielded features foforo ba no de di dwuma.",
+          "Transparent": "**Transparent** kyerɛ sɛ sikakorabea no gye ZEC a ɛda adi pefee, na ne transactions da adi wɔ ɔman blockchain so. Address ahorow a ɛda adi pefee fi `t` ase na ɛnkata ɔsomafo, ɔfata, anaa sika dodow."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** yɛ Zcash address kwan a ebetumi anya shielded ne transparent receivers wɔ address baako mu. Sikakorabea ahorow a ɛboa no betumi de receiver a ɛfata sika ntua no adi dwuma na ɛda so bom yɛ adwuma ne address types ahorow."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** kyerɛ sɛ sikakorabea no de ZEC a ɛda adi pefee kɔ shielded pool mu ankasa. Eyi te sika a ɛda adi wɔ ɔman blockchain so no so kakra, nanso ɛnsesa wo ankasa privacy kwan."
+        },
+        "Source": {
+          "Open Source": "**Open Source** kyerɛ sɛ sikakorabea no source code da adi pefee ma obiara hwɛ na ɔde di dwuma. Sikakorabea card no bɔ repository link bere a wɔakyerɛ repository bi.",
+          "Closed Source": "**Closed Source** kyerɛ sɛ wɔamfa sikakorabea no source code adi pefee mma ɔman nhwɛ. Nanso, wobetumi ahwɛ sikakorabea no website ne independent reviews ansa na wode bedi dwuma."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Akwankyerɛfo",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation a wɔde fa kwan so",
-    "explore": "Hwehwɛ mu"
+    "explore": "Hwehwɛ mu",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki a ɛwɔ hɔ",

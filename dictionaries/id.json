@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Dompet hanya transparan",
     "transparentOnlyNote": "Dompet ini hanya mendukung ZEC transparan, yang tidak menyembunyikan detail transaksi.",
     "nymMixnetTitle": "Dukungan Nym Mixnet",
-    "nymMixnetNote": "Dompet yang mendukung perutean lalu lintas Zcash melalui Nym mixnet."
+    "nymMixnetNote": "Dompet yang mendukung perutean lalu lintas Zcash melalui Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Tentang filter {category}",
+      "itemTitle": "Tentang {value}",
+      "categoryFallback": "Gunakan **{category}** untuk mempersempit daftar dompet menjadi dompet yang cocok dengan opsi di kategori ini. Memilih opsi akan menerapkan filter, dan memilihnya lagi akan menghapus filter.",
+      "itemFallback": "**{value}** adalah salah satu opsi filter **{category}**. Memilihnya mempersempit daftar dompet menjadi dompet yang menyertakan nilai ini; pilih lagi untuk menghapus filter.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** berarti dompet berjalan sebagai aplikasi di ponsel atau tablet. Dompet mobile biasanya menyinkronkan melalui server lightwallet alih-alih menyimpan seluruh blockchain, sehingga praktis untuk pembayaran sehari-hari.",
+          "Desktop": "**Desktop** berarti dompet berjalan sebagai aplikasi di komputer. Bergantung pada dompetnya, dompet dapat menyinkronkan node penuh atau terhubung ke server lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** adalah pool terlindungi Zcash yang diperkenalkan pada NU5. Pool ini mendukung transaksi terlindungi dengan desain pool Orchard dan digunakan oleh dompet yang menawarkan fitur terlindungi terbaru.",
+          "Transparent": "**Transparent** berarti dompet mendukung ZEC transparan, yang transaksinya terlihat di blockchain publik. Alamat transparan dimulai dengan `t` dan tidak menyembunyikan pengirim, penerima, atau jumlah."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** adalah format alamat Zcash yang dapat berisi penerima terlindungi dan transparan dalam satu alamat. Dompet yang mendukungnya dapat memakai penerima yang sesuai untuk pembayaran sambil tetap kompatibel dengan berbagai jenis alamat."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** berarti dompet memindahkan ZEC transparan ke pool terlindungi secara otomatis. Ini mengurangi waktu dana terlihat di blockchain publik, tetapi tidak menggantikan praktik privasi Anda sendiri."
+        },
+        "Source": {
+          "Open Source": "**Open Source** berarti kode sumber dompet tersedia untuk umum agar dapat ditinjau dan digunakan kembali. Kartu dompet menautkan ke repositori jika ada repositori yang tercantum.",
+          "Closed Source": "**Closed Source** berarti kode sumber dompet tidak dipublikasikan untuk ditinjau publik. Anda tetap dapat memeriksa situs web dompet dan ulasan independen sebelum menggunakannya."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Panduan",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Navigasi",
-    "explore": "Jelajahi"
+    "explore": "Jelajahi",
+    "continueReading": {
+      "heading": "Lanjutkan membaca",
+      "previous": "Sebelumnya",
+      "next": "Berikutnya",
+      "nextStep": "Langkah berikutnya"
+    }
   },
   "meta": {
     "title": "Wiki ZecHub",

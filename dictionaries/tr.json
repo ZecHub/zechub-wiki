@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Yalnızca şeffaf cüzdanlar",
     "transparentOnlyNote": "Bu cüzdanlar yalnızca şeffaf ZEC’i destekler; işlem ayrıntılarını gizlemez.",
     "nymMixnetTitle": "Nym Mixnet desteği",
-    "nymMixnetNote": "Zcash trafiğini Nym mixnet üzerinden yönlendirmeyi destekleyen cüzdanlar."
+    "nymMixnetNote": "Zcash trafiğini Nym mixnet üzerinden yönlendirmeyi destekleyen cüzdanlar.",
+    "filterInfo": {
+      "categoryTitle": "{category} filtresi hakkında",
+      "itemTitle": "{value} hakkında",
+      "categoryFallback": "**{category}** filtresini kullanarak cüzdan listesini bu kategorideki seçeneklerle eşleşenlerle sınırlayın. Bir seçenek seçildiğinde filtre uygulanır, tekrar seçildiğinde kaldırılır.",
+      "itemFallback": "**{value}**, **{category}** filtresinin seçeneklerinden biridir. Seçildiğinde cüzdan listesi bu değeri içerenlerle sınırlanır; filtreyi kaldırmak için tekrar seçin.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile**, cüzdanın telefon veya tablette uygulama olarak çalıştığı anlamına gelir. Mobil cüzdanlar genellikle tüm blockchain'i saklamak yerine bir lightwallet sunucusu üzerinden senkronize olur, bu da onları günlük ödemeler için pratik kılar.",
+          "Desktop": "**Desktop**, cüzdanın bilgisayarda uygulama olarak çalıştığı anlamına gelir. Cüzdana bağlı olarak tam bir düğümü senkronize edebilir veya bir lightwallet sunucusuna bağlanabilir."
+        },
+        "Pools": {
+          "Orchard": "**Orchard**, NU5 ile sunulan Zcash korumalı havuzudur. Orchard havuzu tasarımıyla korumalı işlemleri destekler ve en yeni korumalı özellikleri sunan cüzdanlar tarafından kullanılır.",
+          "Transparent": "**Transparent**, cüzdanın işlemleri herkese açık blockchain'de görülebilen şeffaf ZEC'i desteklediği anlamına gelir. Şeffaf adresler `t` ile başlar ve göndereni, alıcıyı veya tutarı gizlemez."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address**, korumalı ve şeffaf alıcıları tek bir adreste barındırabilen bir Zcash adres biçimidir. Bunu destekleyen cüzdanlar, farklı adres türleriyle uyumluluğu korurken ödemeye uygun alıcıyı kullanabilir."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding**, cüzdanın şeffaf ZEC'i otomatik olarak korumalı bir havuza taşıdığı anlamına gelir. Bu, fonların herkese açık blockchain'de görünür kaldığı süreyi azaltır, ancak kendi gizlilik uygulamalarınızın yerini almaz."
+        },
+        "Source": {
+          "Open Source": "**Open Source**, cüzdanın kaynak kodunun incelenmek ve yeniden kullanılmak üzere herkese açık olduğu anlamına gelir. Cüzdan kartı, listelenmişse depoya bağlantı verir.",
+          "Closed Source": "**Closed Source**, cüzdanın kaynak kodunun herkese açık inceleme için yayımlanmadığı anlamına gelir. Yine de kullanmadan önce cüzdanın web sitesini ve bağımsız incelemeleri kontrol edebilirsiniz."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Rehberler",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Gezinme",
-    "explore": "Keşfet"
+    "explore": "Keşfet",
+    "continueReading": {
+      "heading": "Okumaya devam edin",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "nextStep": "Sonraki adım"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

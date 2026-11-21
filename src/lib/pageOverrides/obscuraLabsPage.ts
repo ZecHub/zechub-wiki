@@ -15,11 +15,11 @@ const PAGE = `# Obscura Labs
 
 | | |
 |---|---|
-| Registered in | Nigeria |
-| Founder | Chidi Olisa, who also leads the Zcash Nigeria community |
-| Focus | Infrastructure and practical adoption in Africa and other emerging markets |
-| Announced | 22 June 2026, on the Zcash Community Forum |
-| Stage | Early. A small team of part-time contributors is planned |
+| **Registered in** | Nigeria |
+| **Founder** | Chidi Olisa, who also leads the Zcash Nigeria community |
+| **Focus** | Infrastructure and practical adoption in Africa and other emerging markets |
+| **Announced** | 22 June 2026, on the Zcash Community Forum |
+| **Stage** | Early. A small team of part-time contributors is planned |
 
 ## Why it exists
 
