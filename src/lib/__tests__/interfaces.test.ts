@@ -145,7 +145,15 @@ describe("interface stylesheets", () => {
     }
   });
 
-  it.each(styleInterfaces.map((i) => i.id))("%s never sets colours (colour themes own them)", (id) => {
+  /* The one exception, asked for by ZecHub: Text paints the page itself pure
+     white (light) or pure black (dark), like a terminal. Nothing else. */
+  const TERMINAL_PAGE = (id: string, prop: string, value: string): boolean =>
+    id === "text" &&
+    ((prop === "--color-page" && value === "#ffffff") ||
+      (prop === "--color-surface" && value === "#000000") ||
+      (prop === "background-color" && /^#(ffffff|000000)$/.test(value)));
+
+  it.each(styleInterfaces.map((i) => i.id))("%s never sets colours (colour themes own them), apart from the Text page", (id) => {
     const css = readFileSync(join(DIR, `${id}.css`), "utf8");
     for (const [, body] of rules(css)) {
       // "inherit" and "currentColor" only pass along the theme's own colour.
@@ -155,9 +163,14 @@ describe("interface stylesheets", () => {
         if (at < 0) continue;
         const prop = decl.slice(0, at).trim();
         const value = decl.slice(at + 1).replace(/!important/, "").trim();
-        if (colourProps.test(prop)) expect(value).toMatch(/^(inherit|currentColor)$/);
+        if (colourProps.test(prop) && !TERMINAL_PAGE(id, prop, value)) {
+          expect(value).toMatch(/^(inherit|currentColor)$/);
+        }
       }
-      expect(body).not.toMatch(/--color-[\w-]+\s*:/);
+      const tokens = [...body.matchAll(/(--color-[\w-]+)\s*:\s*([^;]+)/g)];
+      for (const [, token, value] of tokens) {
+        expect(TERMINAL_PAGE(id, token, value.trim())).toBe(true);
+      }
     }
   });
 

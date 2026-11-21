@@ -2,14 +2,26 @@
    One monospace font, no pictures, video or decoration, a single readable
    column, Markdown-style heading marks and keyboard shortcuts (see
    src/components/TextInterfaceKeys.tsx). Like every interface it never sets
-   colours, so it works with every colour theme in light and dark mode.
-   Every rule is scoped to data-interface. */
+   colours, with one exception asked for by ZecHub: the page itself is pure
+   white in light mode and pure black in dark mode, like a terminal, whatever
+   colour theme is picked. Every rule is scoped to data-interface. */
 
 :root[data-interface="text"] {
   /* Square corners: --radius drives rounded-md, -lg and -xl. */
   --radius: 0;
   --radius-2xl: 0;
   scroll-behavior: auto;
+  /* Terminal page: pure white (light) and pure black (dark). */
+  --color-page: #ffffff;
+  --color-surface: #000000;
+}
+
+:root[data-interface="text"] body {
+  background-color: #ffffff !important;
+}
+
+:root[data-interface="text"].dark body {
+  background-color: #000000 !important;
 }
 
 /* One font everywhere: the monospace font the site already loads. */
@@ -62,9 +74,9 @@
   background-image: none !important;
 }
 
-/* No drifting glow behind the page: keep the plain base colour only. */
-:root[data-interface="text"] [data-backdrop] > :not(:first-child) {
-  display: none;
+/* No backdrop behind the page: just the plain white or black page. */
+:root[data-interface="text"] [data-backdrop] {
+  display: none !important;
 }
 
 /* Article: one column of about 80 characters, plain sizes. */

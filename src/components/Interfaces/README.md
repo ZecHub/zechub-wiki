@@ -11,7 +11,7 @@ An interface is a whole look for the wiki: type, spacing, shapes, motion. Visito
 
 ## Rules
 
-- **No colours.** Use the colour theme tokens (`--color-brand`, `--color-page`, `--color-surface`, ...) and never set them. That keeps your interface working with every colour theme.
+- **No colours.** Use the colour theme tokens (`--color-brand`, `--color-page`, `--color-surface`, ...) and never set them. That keeps your interface working with every colour theme. (One exception, asked for by ZecHub: Text paints the page pure white in light mode and pure black in dark mode, like a terminal. The test allows only that.)
 - **Light and dark.** Check both modes. Dark mode is the `.dark` class on `<html>`.
 - **Only stable hooks.** Target elements, the `.mdx-article` article wrapper, `[data-backdrop]` (the page background), and theme variables such as `--font-heading`, `--font-body`, `--font-reader` and `--radius`. Avoid long chains of utility classes; they change often.
 - **Fonts.** Load new fonts with `next/font` in `src/app/[locale]/layout.tsx` (`preload: false`, a CSS `variable`), never from a third-party URL: the site makes no third-party requests on page load.
@@ -23,5 +23,5 @@ An interface is a whole look for the wiki: type, spacing, shapes, motion. Visito
 |---|---|---|
 | `classic` | Classic | Nothing: the standard ZecHub look (no attribute is set). |
 | `reader` | Reader | Serif headings and article text, about 68 characters a line, flatter corners, no background glow, less motion. Navigation stays sans. |
-| `text` | Text | One monospace font, no images, video or decoration, a single 80-character column, Markdown-style `#` heading marks and keyboard shortcuts (`j`/`k` headings, `/` search, `t` top, `h` home, `?` key list). The keys live in `src/components/TextInterfaceKeys.tsx`, run only while Text is active, ignore typing and dialogs, and can be turned off from the key list (WCAG 2.1.4). YouTube placeholders become a one-line `[Play video: title]` button. |
+| `text` | Text | Pure white (light) or pure black (dark) page, like a terminal, whatever the colour theme. One monospace font, no images, video or decoration, a single 80-character column, Markdown-style `#` heading marks and keyboard shortcuts (`j`/`k` headings, `/` search, `t` top, `h` home, `?` key list). The keys live in `src/components/TextInterfaceKeys.tsx`, run only while Text is active, ignore typing and dialogs, and can be turned off from the key list (WCAG 2.1.4). YouTube placeholders become a one-line `[Play video: title]` button. |
 | `desktop` | Desktop | The full Mac-style desktop wiki, embedded from `embedUrl` over the current page. Set `NEXT_PUBLIC_DESKTOP_INTERFACE_URL` to its deployment URL. |
