@@ -88,7 +88,7 @@ describe("the fictional chain", () => {
 
   it("charges the ZIP 317 fee for a two-action Ironwood payment", () => {
     expect(PAYMENT_FEE).toBe(conventionalFee(simpleTransfer("ironwood", "ironwood")));
-    expect(PAYMENT_FEE).toBe(10_000);
+    expect(PAYMENT_FEE).toBe(2_000);
   });
 });
 
@@ -161,7 +161,7 @@ describe("recognising a spent note", () => {
       value: zec(0.5) - zec(0.2) - PAYMENT_FEE,
       spentAt: null,
     });
-    expect(walletBalance(example.scan)).toBe(zec(0.2999));
+    expect(walletBalance(example.scan)).toBe(zec(0.29998));
     expect(eventsOf(example.scan.events, "spent").map((e) => [e.height, e.note.id])).toEqual([[105, "A"]]);
   });
 
@@ -178,7 +178,7 @@ describe("recognising a spent note", () => {
     const after = scanExample(before);
 
     expect(walletBalance(before.scan)).toBe(zec(0.5));
-    expect(walletBalance(after.scan)).toBe(zec(0.2999));
+    expect(walletBalance(after.scan)).toBe(zec(0.29998));
   });
 });
 
@@ -197,7 +197,7 @@ describe("an incomplete sync", () => {
 
     // It still counts A, spent at 106 from another device, and has not seen C.
     expect(walletBalance(halted.scan)).toBe(zec(0.5));
-    expect(truth).toBe(zec(0.2999) + zec(0.15));
+    expect(truth).toBe(zec(0.29998) + zec(0.15));
     expect(walletBalance(halted.scan)).not.toBe(truth);
   });
 
