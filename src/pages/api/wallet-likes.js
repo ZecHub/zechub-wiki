@@ -1,6 +1,7 @@
 // pages/api/wallet-likes.js
 import { Client } from 'pg';
 import crypto from 'crypto';
+import { getKnownWalletTitles, MAX_WALLET_TITLE_LENGTH } from '../../lib/walletTitles';
 
 const dailyLimit4WalletVotes = 5;
 
@@ -24,6 +25,24 @@ export default async function handler(req, res) {
     const { title, delta } = req.body;
     if (typeof title !== 'string' || typeof delta !== 'number') {
       return res.status(400).json({ message: "Invalid request body" });
+    }
+
+    // Only the wallets listed on /wallets can be voted for (see
+    // src/lib/walletTitles.ts). Checked before any database work, so an
+    // arbitrary title can no longer add rows. The tally read (delta 0, sent
+    // with title "") skips this and is filtered below instead.
+    let knownTitles = null;
+    if (delta !== 0) {
+      if (title.length === 0 || title.length > MAX_WALLET_TITLE_LENGTH) {
+        return res.status(400).json({ message: "Unknown wallet" });
+      }
+      knownTitles = await getKnownWalletTitles();
+      if (!knownTitles) {
+        return res.status(503).json({ message: "Voting is temporarily unavailable" });
+      }
+      if (!knownTitles.has(title)) {
+        return res.status(400).json({ message: "Unknown wallet" });
+      }
     }
 
     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -70,7 +89,12 @@ export default async function handler(req, res) {
     try {
       if (delta === 0) {
         const resLikes = await client.query('SELECT title, likes FROM wallet_likes');
+        // Rows stored before the allow-list existed (probe titles, "", a
+        // 200-char string) stay in the table but are no longer sent to every
+        // visitor. If the list can't be read, return the tally unfiltered as before.
+        const listed = await getKnownWalletTitles();
         const likesData = resLikes.rows.reduce((acc, row) => {
+          if (listed && !listed.has(row.title)) return acc;
           acc[row.title] = row.likes;
           return acc;
         }, {});
