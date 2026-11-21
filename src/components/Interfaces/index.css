@@ -1,3 +1,4 @@
 /* One import per interface. Each file scopes its rules to
    :root[data-interface="<id>"]; see README.md in this folder. */
 @import "./reader.css";
+@import "./text.css";
