@@ -1,4 +1,5 @@
 import { useInMobile } from "@/hooks/useInMobile";
+import { coingeckoNameFor } from "@/lib/chart/coingeckoNames";
 import { useEffect, useState } from "react";
 import {
   MetricCard,
@@ -44,23 +45,8 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         return;
       }
 
-      if (selectedCoin === "Atom") {
-        name = "Cosmos Hub";
-      } else if (selectedCoin === "Tia") {
-        name = "Celestia";
-      } else if (selectedCoin === "Osmo") {
-        name = "Osmosis";
-      } else if (selectedCoin === "stOsmo") {
-        name = "Stride Staked Osmo";
-      } else if (selectedCoin === "stTia") {
-        name = "Stride Staked TIA";
-      } else if (selectedCoin === "stAtom") {
-        name = "Stride Staked Atom";
-      } else if (selectedCoin === "Um") {
-        name = "Penumbra";
-      } else if (selectedCoin === "Ntrn") {
-        name = "Neutron";
-      }
+      // One list shared with the /api/prices/simple allow-list.
+      name = coingeckoNameFor(selectedCoin);
 
       try {
         setLoading(true);
