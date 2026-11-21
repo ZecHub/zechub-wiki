@@ -71,6 +71,12 @@ const EDITS: Array<[RegExp, string]> = [
   [/^> Last checked: October 27, 2026, on each organization's own donate page\. (Addresses change)/m, "> $1"],
   [/Each provider's own live currency list was checked on 29 July 2026 and Zcash is gone from both\./, "Each provider's own live currency list did not include Zcash when it was reviewed."],
   [/\| Active \(v0\.5\.0-rc3, Jul 2026\) \|/, "| Active |"],
+  // Zcash Community Grants: the third halving moved when NU7 shortened block times. ZIP 1016 gives the new end height
+  // as A + 3 * (4,406,400 - A) with A = 3,543,405, the NU7 activation height, which is 6,132,390.
+  [
+    /runs until Zcash's third halving at block 4,406,400 under the current block spacing\./,
+    "runs until Zcash's third halving. NU7 shortened block times, so ZIP 1016 moves that height from 4,406,400 to 6,132,390, still around November 2028.",
+  ],
   // Mining guide: do not name a "latest" version.
   [
     /Download lolMiner from GitHub \(latest version, e\.g\., 1\.88\)\./,
