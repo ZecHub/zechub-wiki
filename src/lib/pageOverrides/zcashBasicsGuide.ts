@@ -58,7 +58,7 @@ const BODY = [
   "",
   "---",
   "",
-  "## Related Pages",
+  "## Related pages",
   "",
   "- [New User Guide](/start-here/new-user-guide) - step-by-step onboarding for new ZEC holders",
   "- [Wallets](/using-zcash/wallets) - choose a shielded wallet to hold your ZEC",

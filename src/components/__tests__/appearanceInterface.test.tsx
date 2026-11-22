@@ -54,6 +54,19 @@ describe("Appearance menu: Interface section", () => {
     expect(desktop).toHaveAttribute("aria-pressed", "true");
   });
 
+  it("applies and saves Text", async () => {
+    render(<ColorThemePicker withMode />);
+    await user.click(screen.getByRole("button", { name: "Appearance" }));
+    const dialog = screen.getByRole("dialog", { name: "Appearance" });
+
+    const text = within(dialog).getByRole("button", { name: /^Text/ });
+    await user.click(text);
+
+    expect(document.documentElement.getAttribute("data-interface")).toBe("text");
+    expect(localStorage.getItem(INTERFACE_KEY)).toBe("text");
+    expect(text).toHaveAttribute("aria-pressed", "true");
+  });
+
   it("keeps the colour theme when the interface changes", async () => {
     render(<ColorThemePicker withMode />);
     await user.click(screen.getByRole("button", { name: "Appearance" }));

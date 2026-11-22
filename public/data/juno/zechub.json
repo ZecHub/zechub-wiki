@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 24,
-    "proposal_count": 194,
+    "proposal_count": 195,
     "config": {
       "name": "ZecHub",
       "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
@@ -7976,9 +7976,9 @@
           },
           "total_power": "24",
           "msgs": [],
-          "status": "open",
+          "status": "executed",
           "votes": {
-            "yes": "5",
+            "yes": "7",
             "no": "2",
             "abstain": "2"
           },
@@ -7986,6 +7986,43 @@
         },
         "source": "lcd",
         "createdAt": "2026-11-20T18:39:29Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 195,
+        "proposal": {
+          "title": "Zcash Shielded Activity Checker for Community Research",
+          "description": "## Background\n\nCrackdevs requests **US$1,500** to help ZecHub contributors verify shielded-activity figures before publishing a chart, article or lesson. In June 2026, a question in the ZecHub Discord about Orchard coverage prompted ZecLedger’s author to revisit how he classified transactions. An editor checking a figure needs to know which transactions support it and how a reader can reproduce the count. [Author’s account](https://vancube2.medium.com/zcash-privacy-in-2026-4ae84968576b)\n\n## Why?\n\nOur working prototype matched transaction IDs from two public datasets to Zcash block data.\n\n- **Bitquery.** In a 580-transaction sample, 16 rows showed a nonzero value in at least one of the four shielded fields we checked. On chain, 277 transactions touched Sapling, Orchard or Ironwood. An analyst relying on those four fields would miss 261 transactions already present in the export. [Schema and sample](https://www.bitquery.io/datastore/datasets/zcash)\n- **ZecLedger.** Five published subtotals in the 500-row archive added up to 10 fully shielded transactions. Across those same rows, we found 37 transactions with a shielded component and zero transparent inputs or outputs. Both counts exclude the same 105 mining rewards. [Archived sample](https://github.com/vancube2/zecledger/blob/3f18a7883234ad910423983cb243d68774e62c75/research_data_500tx_verified.json)\n\nTwo independently operated public servers agreed on the transaction details behind both comparisons. Reviewers can run `python verify.py` to reproduce the saved results offline. The README includes commands for repeating the checks against either server. [Tested prototype and instructions](https://github.com/Crackdevs/zcash-shielded-activity-checker/tree/12db1b0b9761c318d0b18e172a177757d079d5d1)\n\n## Proposal\n\nThe prototype checks those two archived datasets. The grant will turn it into an MIT-licensed command-line tool that contributors can run on their own CSV or Parquet exports. A contributor selects the transaction ID and block height columns and receives a copy that preserves every original row and column. The checker adds the verified block hash and shielded pools, flags duplicates and mismatches, and identifies rows it could not verify. A JSON summary counts each verified transaction once.\n\nThis gives an editor a figure they can publish alongside the rows and method behind it. The tool uses public block data and requires no wallet or API key.\n\n## Action\n\nA **Yes** vote approves a four-week project for **US$1,500**, payable in ZEC upon acceptance of the two milestones. We request **US$0 upfront**.\n\n1. **Week 2 · Reusable checker · US$900.** A reviewer can run the tool on fresh CSV and Parquet files, confirm that all original rows and columns are preserved, and verify that it flags a deliberate duplicate, a wrong block height and a row with unavailable data.\n\n2. **Week 4 · Public release and contributor guide · US$600.** We will publish a tagged release and a worked example that lets a reviewer reproduce both archived comparisons on a clean installation in under 30 minutes. We will also announce a range of 100 consecutive post-upgrade blocks before testing it, check that range against two public servers, and publish the block hashes, source-file checksums and machine-readable PASS/FAIL results.",
+          "proposer": "juno1hnkgqu2fy97xsxstsh3ndz59srqaa28nwynuqs",
+          "start_height": 43886212,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1795484518944604852"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "24",
+          "msgs": [],
+          "status": "open",
+          "votes": {
+            "yes": "0",
+            "no": "2",
+            "abstain": "0"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd",
+        "createdAt": "2026-11-24T01:41:58Z"
       }
     ]
   },

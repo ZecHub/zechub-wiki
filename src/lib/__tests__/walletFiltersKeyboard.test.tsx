@@ -4,6 +4,14 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WalletList from "@/components/Wallet/WalletList";
 
+jest.mock("react-markdown", () => ({
+  __esModule: true,
+  default: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="markdown">{children}</div>
+  ),
+}));
+jest.mock("remark-gfm", () => ({ __esModule: true, default: () => {} }));
+
 jest.mock("@/context/LanguageContext", () => ({
   useLanguage: () => ({ t: {} }),
 }));
@@ -126,11 +134,23 @@ describe("Wallet filtering keyboard access", () => {
       await user.tab({ shift: true });
 
       // NU7 compatibility is the final filter group.
+      const compatibleInfo = within(dialog).getByRole("button", {
+        name: "About Compatible",
+      });
+
+      expect(compatibleInfo).toHaveFocus();
+
+      await user.tab({ shift: true });
+
       expect(
         within(dialog).getByRole("checkbox", {
           name: "Compatible",
         })
       ).toHaveFocus();
+
+      await user.tab();
+
+      expect(compatibleInfo).toHaveFocus();
 
       await user.tab();
 
@@ -141,6 +161,14 @@ describe("Wallet filtering keyboard access", () => {
       expect(
         within(dialog).getByRole("button", {
           name: /^Show \d+ wallets?$/,
+        })
+      ).toHaveFocus();
+
+      await user.tab();
+
+      expect(
+        within(dialog).getByRole("button", {
+          name: "About the Devices filter",
         })
       ).toHaveFocus();
 
@@ -181,6 +209,52 @@ describe("Wallet filtering keyboard access", () => {
           name: "Pocket wallet",
         })
       ).not.toBeInTheDocument();
+    }
+  );
+
+  it(
+    "opens filter information above the mobile filter drawer and closes only the info dialog",
+    async () => {
+      const user = userEvent.setup();
+
+      renderMobile();
+
+      await user.click(
+        screen.getByRole("button", { name: /^Filters/ })
+      );
+
+      const drawer = await screen.findByRole("dialog", {
+        name: "Filters",
+      });
+
+      const info = within(drawer).getByRole("button", {
+        name: "About the Devices filter",
+      });
+
+      await user.click(info);
+
+      const infoDialog = await screen.findByRole("dialog", {
+        name: "About the Devices filter",
+      });
+
+      expect(
+        within(infoDialog).getByText(/narrow the wallet list/)
+      ).toBeInTheDocument();
+
+      await user.keyboard("{Escape}");
+
+      await waitFor(() =>
+        expect(
+          screen.queryByRole("dialog", {
+            name: "About the Devices filter",
+          })
+        ).not.toBeInTheDocument()
+      );
+
+      expect(
+        screen.getByRole("dialog", { name: "Filters" })
+      ).toBeInTheDocument();
+      await waitFor(() => expect(info).toHaveFocus());
     }
   );
 

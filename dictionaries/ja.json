@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "透明のみのウォレット",
     "transparentOnlyNote": "これらのウォレットは透明ZECのみに対応しており、取引の詳細は隠されません。",
     "nymMixnetTitle": "Nym Mixnet対応",
-    "nymMixnetNote": "Zcashの通信をNym mixnet経由でルーティングできるウォレット。"
+    "nymMixnetNote": "Zcashの通信をNym mixnet経由でルーティングできるウォレット。",
+    "filterInfo": {
+      "categoryTitle": "{category}フィルターについて",
+      "itemTitle": "{value}について",
+      "categoryFallback": "**{category}** を使うと、このカテゴリのオプションに一致するウォレットだけに一覧を絞り込めます。オプションを選ぶとフィルターが適用され、もう一度選ぶと解除されます。",
+      "itemFallback": "**{value}** は **{category}** フィルターのオプションの一つです。選ぶと、この値を含むウォレットだけに一覧が絞り込まれます。もう一度選ぶとフィルターが解除されます。",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** は、ウォレットがスマートフォンやタブレットのアプリとして動作することを意味します。モバイルウォレットは通常、ブロックチェーン全体を保存せず lightwallet サーバー経由で同期するため、日常の支払いに便利です。",
+          "Desktop": "**Desktop** は、ウォレットがコンピューター上のアプリケーションとして動作することを意味します。ウォレットによってはフルノードを同期する場合もあれば、lightwallet サーバーに接続する場合もあります。"
+        },
+        "Pools": {
+          "Orchard": "**Orchard** は NU5 で導入された Zcash のシールドプールです。Orchard プールの設計によるシールドトランザクションをサポートし、最新のシールド機能を提供するウォレットで使われています。",
+          "Transparent": "**Transparent** は、ウォレットが透明な ZEC に対応していることを意味し、その取引は公開ブロックチェーン上で見えます。透明アドレスは `t` で始まり、送信者、受信者、金額を隠しません。"
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** は、シールドされた受信者と透明な受信者を 1 つのアドレスに含められる Zcash のアドレス形式です。対応ウォレットは、さまざまなアドレスタイプとの互換性を保ちながら、支払いに適した受信者を使えます。"
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** は、ウォレットが透明な ZEC を自動的にシールドプールへ移すことを意味します。これにより資金が公開ブロックチェーン上に見える時間を減らせますが、自分自身のプライバシー対策の代わりにはなりません。"
+        },
+        "Source": {
+          "Open Source": "**Open Source** は、ウォレットのソースコードが公開され、誰でも確認・再利用できることを意味します。ウォレットカードには、リポジトリが登録されていればそのリンクが表示されます。",
+          "Closed Source": "**Closed Source** は、ウォレットのソースコードが一般公開されていないことを意味します。使用する前に、ウォレットのウェブサイトや独立したレビューを確認することはできます。"
+        }
+      }
+    }
   },
   "guides": {
     "title": "ガイド",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "ナビゲーション",
-    "explore": "探索"
+    "explore": "探索",
+    "continueReading": {
+      "heading": "続けて読む",
+      "previous": "前へ",
+      "next": "次へ",
+      "nextStep": "次のステップ"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

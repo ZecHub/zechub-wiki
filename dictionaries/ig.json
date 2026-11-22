@@ -528,7 +528,33 @@
     "transparentOnlyTitle": "Akpa ego na-ahụ anya naanị",
     "transparentOnlyNote": "Akpa ego ndị a na-akwado naanị ZEC na-ahụ anya, nke na-adịghị ezochi nkọwa azụmahịa.",
     "nymMixnetTitle": "Nkwado Nym Mixnet",
-    "nymMixnetNote": "Akpa ego ndị na-akwado ibufe okporo ụzọ Zcash site na Nym mixnet."
+    "nymMixnetNote": "Akpa ego ndị na-akwado ibufe okporo ụzọ Zcash site na Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Banyere nzacha {category}",
+      "itemTitle": "Banyere {value}",
+      "categoryFallback": "Jiri **{category}** belata ndepụta akpa ego ka ọ bụrụ naanị ndị dabara na nhọrọ dị n'ụdị a. Ịhọrọ nhọrọ na-etinye nzacha ahụ, na ịhọrọ ya ọzọ na-ewepụ ya.",
+      "itemFallback": "**{value}** bụ otu n'ime nhọrọ nzacha **{category}**. Ịhọrọ ya na-ebelata ndepụta akpa ego ka ọ bụrụ naanị ndị nwere uru a; họrọ ya ọzọ iwepụ nzacha ahụ.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** pụtara na akpa ego na-arụ ọrụ dịka ngwa na ekwentị ma ọ bụ tabulẹtị. Akpa ego ndị na-agagharị agagharị na-ejikarị sava lightwallet emekọrịta ihe kama ichekwa blockchain dum, nke na-eme ka ha dị mma maka ịkwụ ụgwọ kwa ụbọchị.",
+          "Desktop": "**Desktop** pụtara na akpa ego na-arụ ọrụ dịka ngwa na kọmputa. Dabere na akpa ego ahụ, ọ nwere ike ịmekọrịta node zuru oke ma ọ bụ jikọọ na sava lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** bụ ọdọ mmiri e chebere nke Zcash ewepụtara na NU5. Ọ na-akwado azụmahịa e chebere site n'ụdị ọdọ mmiri Orchard, akpa ego ndị na-enye njirimara nchekwa ọhụrụ na-ejikwa ya.",
+          "Transparent": "**Transparent** pụtara na akpa ego na-akwado ZEC pụtara ìhè, nke azụmahịa ya na-ahụ na blockchain ọha. Adreesị pụtara ìhè na-amalite na `t` anaghị ezobe onye zitere, onye natara, ma ọ bụ ego ole."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** bụ ụdị adreesị Zcash nke nwere ike ịnwe ndị natara e chebere na ndị pụtara ìhè n'otu adreesị. Akpa ego na-akwado ya nwere ike iji onye natara dabara na ịkwụ ụgwọ ahụ ma nọgide na-adabara n'ụdị adreesị dị iche iche."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** pụtara na akpa ego na-ebufe ZEC pụtara ìhè n'ọdọ mmiri e chebere na-akpaghị aka. Nke a na-ebelata oge ego na-anọ na-ahụ na blockchain ọha, mana ọ naghị dochie usoro nzuzo gị."
+        },
+        "Source": {
+          "Open Source": "**Open Source** pụtara na koodu isi mmalite nke akpa ego dị n'ihu ọha maka nyocha na ijigharị ya. Kaadị akpa ego na-ejikọ na ebe nchekwa koodu ma ọ bụrụ na edepụtara ya.",
+          "Closed Source": "**Closed Source** pụtara na ebipụtaghị koodu isi mmalite nke akpa ego maka nyocha ọha. Ị ka nwere ike ile webụsaịtị akpa ego na nyocha ndị nweere onwe ha anya tupu i jiri ya."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Akwụkwọ ntuziaka",
@@ -1300,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Ntugharị",
-    "explore": "Nyochaa"
+    "explore": "Nyochaa",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",
