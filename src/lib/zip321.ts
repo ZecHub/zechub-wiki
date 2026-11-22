@@ -288,6 +288,7 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
   // If single recipient: standard allows zcash:<address>?amount=... format or query-only format
   if (payments.length === 1) {
     const p = payments[0];
+    const address = p.address.trim();
     const params = new Zip321Query();
 
     if (p.amount !== undefined && p.amount !== null && p.amount !== "") {
@@ -304,7 +305,7 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
     }
 
     const qs = params.toString();
-    return qs ? `zcash:${p.address}?${qs}` : `zcash:${p.address}`;
+    return qs ? `zcash:${address}?${qs}` : `zcash:${address}`;
   }
 
   // Multi-recipient: index parameters (primary without suffix, subsequent with .1, .2, etc.)
@@ -313,7 +314,7 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
   payments.forEach((p, i) => {
     const idx = i === 0 ? "" : `.${i}`;
 
-    params.append(`address${idx}`, p.address);
+    params.append(`address${idx}`, p.address.trim());
 
     if (p.amount !== undefined && p.amount !== null && p.amount !== "") {
       params.append(`amount${idx}`, formatZecAmount(p.amount));
