@@ -414,7 +414,11 @@ describe("ZIP-321 recipient addresses pasted with surrounding whitespace", () =>
   const first = "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC";
   const second = "t3VzFdEkhttkgfp2hkEvihnc8v5K8p8q35B";
 
-  it.each([" ", "\t", " "])("leaves %j out of a single-recipient URI", (space) => {
+  it.each([
+    ["space", " "],
+    ["tab", "\t"],
+    ["no-break space", "\u00a0"],
+  ])("leaves a %s out of a single-recipient URI", (_name, space) => {
     expect(buildZip321Uri([{ address: `${space}${first}${space}`, amount: "1" }])).toBe(
       `zcash:${first}?amount=1`,
     );
