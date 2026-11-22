@@ -40,6 +40,8 @@ const RequestSchema = z.object({
 });
 
 const REQUEST_TIMEOUT_MS = 60_000;
+const MAX_OUTPUT_TOKENS = 800;
+const MAX_HISTORY_CHARS = 6_000;
 
 const SYSTEM_PROMPT_WITH_DOCS = `You are the ZecHub AI assistant — an expert on Zcash and the ZecHub wiki.
 Answer the user's question using ONLY the documentation sections provided below.
@@ -175,8 +177,28 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // history is forwarded to OpenAI as well, so scan it like message and keep only
+  // the most recent turns within a size budget.
+  const trimmedHistory: typeof history = [];
+  let historyChars = 0;
+  for (let i = history.length - 1; i >= 0; i--) {
+    const turn = history[i];
+    const sensitiveTurn = containsSensitiveData(turn.content);
+    if (sensitiveTurn) {
+      return NextResponse.json(
+        {
+          error: `Your conversation history appears to contain a ${sensitiveTurn}. Please remove it and try again.`,
+        },
+        { status: 400 }
+      );
+    }
+    historyChars += turn.content.length;
+    if (historyChars > MAX_HISTORY_CHARS) break;
+    trimmedHistory.unshift(turn);
+  }
+
   const requestStart = Date.now();
-  console.log(`[/api/ai] → request | page=${pageUrl ?? "none"} | historyTurns=${history.length}`);
+  console.log(`[/api/ai] → request | page=${pageUrl ?? "none"} | historyTurns=${trimmedHistory.length}`);
 
   try {
     const answer = await withTimeout(
@@ -209,7 +231,7 @@ export async function POST(req: NextRequest) {
         const messages: { role: "system" | "user" | "assistant"; content: string }[] = [
           { role: "system", content: systemPrompt },
           { role: "user", content: contextInjection },
-          ...history.map((h: ChatMessage) => ({
+          ...trimmedHistory.map((h: ChatMessage) => ({
             role: h.role as "user" | "assistant",
             content: h.content,
           })),
@@ -218,10 +240,24 @@ export async function POST(req: NextRequest) {
 
         const llmStart = Date.now();
         const openai = getOpenAIClient();
-        const response = await openai.responses.create({
-          model: CHAT_MODEL,
-          input: messages,
-        });
+        // Cap the output and cancel the upstream call on the deadline, otherwise a
+        // timed-out request is still billed to completion.
+        const response = await (async () => {
+          const abortController = new AbortController();
+          const abortTimer = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT_MS);
+          try {
+            return await openai.responses.create(
+              {
+                model: CHAT_MODEL,
+                input: messages,
+                max_output_tokens: MAX_OUTPUT_TOKENS,
+              },
+              { signal: abortController.signal }
+            );
+          } finally {
+            clearTimeout(abortTimer);
+          }
+        })();
         console.log(`[/api/ai] OpenAI ok — ${Date.now() - llmStart}ms | model=${CHAT_MODEL}`);
 
         return response.output_text ?? "";
@@ -233,7 +269,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ answer });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "An unexpected error occurred.";
-    const isTimeout = msg === "Request timed out";
+    const isTimeout = msg === "Request timed out" || (err instanceof Error && err.name === "AbortError");
     console.error(`[/api/ai] ✗ error — total=${Date.now() - requestStart}ms | ${msg}`);
     return NextResponse.json(
       { error: isTimeout ? "The request took too long. Try again." : "Failed to get answer." },
