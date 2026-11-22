@@ -60,7 +60,14 @@ jest.mock("googleapis", () => ({
   },
 }));
 
-import { getZCGrantsData } from "@/app/[locale]/actions/google-sheets.action";
+// Loaded in beforeAll, not with a top-level import: imports are hoisted above
+// `const cacheRecs`, and the action calls unstable_cache at module load, so a
+// static import reaches the mock while cacheRecs is still uninitialized.
+let getZCGrantsData: typeof import("@/app/[locale]/actions/google-sheets.action").getZCGrantsData;
+
+beforeAll(async () => {
+  ({ getZCGrantsData } = await import("@/app/[locale]/actions/google-sheets.action"));
+});
 
 describe("getZCGrantsData caching and quota protection", () => {
   const sampleSheetResponse = {
