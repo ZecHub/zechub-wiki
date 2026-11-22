@@ -1,5 +1,4 @@
 import { isKnownContentPath } from "../contentPaths";
-import { getRootCached } from "../authAndFetch";
 
 jest.mock("next/cache", () => ({
   unstable_cache: (fn: (...args: unknown[]) => unknown) => {
@@ -7,9 +6,9 @@ jest.mock("next/cache", () => ({
   },
 }));
 
-// Mock Octokit for authAndFetch
+// authAndFetch lazily imports the `octokit` package (not `@octokit/rest`).
 const mockGetContent = jest.fn();
-jest.mock("@octokit/rest", () => ({
+jest.mock("octokit", () => ({
   Octokit: jest.fn().mockImplementation(() => ({
     rest: {
       repos: {
@@ -18,6 +17,18 @@ jest.mock("@octokit/rest", () => ({
     },
   })),
 }));
+
+// authAndFetch reads OWNER/REPO/BRANCH at module load, so they must be set
+// before it is imported — otherwise assertRepoConfig() short-circuits to []
+// and the rate-limit test below passes without ever reaching GitHub.
+let getRootCached: typeof import("../authAndFetch").getRootCached;
+beforeAll(async () => {
+  process.env.OWNER = "ZecHub";
+  process.env.REPO = "zechub";
+  process.env.BRANCH = "main";
+  delete process.env.NEXT_PHASE; // runtime, not a build
+  ({ getRootCached } = await import("../authAndFetch"));
+});
 
 describe("Manifest outage resilience & scanner protection", () => {
   const sampleManifestKeys = [
@@ -32,9 +43,6 @@ describe("Manifest outage resilience & scanner protection", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    process.env.OWNER = "ZecHub";
-    process.env.REPO = "zechub";
-    process.env.BRANCH = "main";
   });
 
   describe("isKnownContentPath decisions", () => {
@@ -103,13 +111,14 @@ describe("Manifest outage resilience & scanner protection", () => {
   });
 
   describe("getRootCached rate-limit resilience", () => {
-    it("degrades to [] on 403/429 rate limit instead of throwing a 500", async () => {
-      const rateLimitError = new Error("API rate limit exceeded");
-      (rateLimitError as any).status = 403;
+    it.each([403, 429])("degrades to [] on a %i rate limit instead of throwing a 500", async (status) => {
+      const rateLimitError = Object.assign(new Error("API rate limit exceeded"), { status });
       mockGetContent.mockRejectedValue(rateLimitError);
 
       const roots = await getRootCached("/site/using-zcash");
       expect(roots).toEqual([]);
+      // Guards against a vacuous pass: the listing must actually have been attempted.
+      expect(mockGetContent).toHaveBeenCalledTimes(1);
     });
   });
 });

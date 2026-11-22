@@ -6210,7 +6210,13 @@ export default async function Page(props: {
       markdown = md;
     }
   } catch (e) {
-    // Listing failures degrade gracefully rather than throwing a 500.
+    // Section listings already degrade above (getRootCached + the manifest
+    // fallback), so they never reach here. The research index and series
+    // views still rethrow: falling through would render the generic browse
+    // view of every Research file, or — with the manifest also down — 404 a
+    // real series during an outage. The route error boundary is the honest
+    // answer for those. Optional thumbnail failures are handled above.
+    if (isResearchIndex || isResearchSeries) throw e;
     console.error("Failed to fetch and parse .md file: ", e);
     markdown = null;
     roots = [];
