@@ -1,6 +1,14 @@
+import { TextDecoder, TextEncoder } from "util";
 import { fireEvent, render, screen } from "@testing-library/react";
 import NewsLetter from "../NewsLetter/NewsLetter";
 import QRCodeComponent from "../QRComponent/QRCodeComponent";
+
+if (typeof globalThis.TextEncoder === "undefined") {
+  globalThis.TextEncoder = TextEncoder as typeof globalThis.TextEncoder;
+}
+if (typeof globalThis.TextDecoder === "undefined") {
+  globalThis.TextDecoder = TextDecoder as typeof globalThis.TextDecoder;
+}
 
 jest.mock("@/context/LanguageContext", () => ({
   useLanguage: () => ({ t: {} }),
