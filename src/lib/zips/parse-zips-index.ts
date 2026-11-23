@@ -12,6 +12,14 @@ const STATUS_KEYWORDS: ZipStatus[] = [
   "Obsolete",
 ];
 
+/**
+ * Consensus ZIPs deployed in NU7 (activated on Mainnet at block 3,543,405 on
+ * 2026-11-06), per ZIP 259 ("Deployment of the NU7 Network Upgrade").
+ * Used once zips.z.cash replaced #nu7-candidate-zips with
+ * #settled-mainnet-network-upgrade referencing zip-0259.
+ */
+const SETTLED_NU7_ZIPS = [207, 214, 218, 235, 237, 259, 2003, 2008] as const;
+
 export function parseZipsIndex(html: string): Zip[] {
   const $ = cheerio.load(html);
 
@@ -36,13 +44,19 @@ export function parseZipsIndex(html: string): Zip[] {
       $(cells[1]).find("a").first().text().trim() ||
       $(cells[1]).text().trim();
 
-    const status = pickLatestStatus($(cells[2]).text());
+    const statusText = $(cells[2]).text();
+    const status = pickLatestStatus(statusText);
+    const isNu7 =
+      nu7Numbers.has(num) ||
+      (status !== "Withdrawn" &&
+        status !== "Obsolete" &&
+        /\bNU7\b/.test(statusText));
 
     zips.set(num, {
       num,
       title,
       status,
-      tags: inferTags(title, nu7Numbers.has(num)),
+      tags: inferTags(title, isNu7),
       summary: null,
     });
   });
@@ -69,8 +83,13 @@ function pickLatestStatus(cell: string): ZipStatus {
 }
 
 /**
- * The NU7 candidates live in <section id="nu7-candidate-zips"> as a flat
- * list of `<a href="zip-NNNN">` links.
+ * Extract NU7 ZIP numbers from the upstream zips.z.cash index.
+ *
+ * Before NU7 activated, upstream listed candidates under `#nu7-candidate-zips`.
+ * After NU7 settled on Mainnet (block 3,543,405, 2026-11-06), upstream replaced
+ * that section with `#settled-mainnet-network-upgrade` pointing to ZIP 259
+ * (and a separate list of non-consensus Proposed ZIPs explicitly "not part of
+ * NU7", which must NOT be tagged as NU7).
  */
 function extractNu7Section($: cheerio.CheerioAPI): Set<number> {
   const nums = new Set<number>();
@@ -79,6 +98,14 @@ function extractNu7Section($: cheerio.CheerioAPI): Set<number> {
     const m = href.match(/zip-(\d+)/);
     if (m) nums.add(parseInt(m[1], 10));
   });
+  if (nums.size > 0) return nums;
+
+  const settled = $("#settled-mainnet-network-upgrade");
+  if (settled.length > 0 && /\bNU7\b/.test(settled.text())) {
+    for (const num of SETTLED_NU7_ZIPS) {
+      nums.add(num);
+    }
+  }
   return nums;
 }
 

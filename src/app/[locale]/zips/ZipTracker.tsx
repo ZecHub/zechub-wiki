@@ -299,12 +299,11 @@ export default function ZipTracker({
                 <span className="font-mono text-[11px] font-semibold bg-[#F4B728] text-zinc-900 px-2.5 py-1 rounded-sm align-middle mr-3 tracking-wider">
                   NU7
                 </span>
-                Candidate ZIPs for the next network upgrade
+                ZIPs deployed in the NU7 network upgrade
               </div>
               <div className="text-[13px] text-zinc-400 mt-2 max-w-[540px] leading-relaxed">
-                These ZIPs are under consideration for deployment in NU7. Final
-                inclusion will be defined by draft-arya-deploy-nu7. No decision
-                has been made yet.
+                NU7 activated on Mainnet at block 3,543,405 on November 6, 2026,
+                as specified in ZIP 259.
               </div>
             </div>
           </div>
@@ -410,7 +409,7 @@ export default function ZipTracker({
           label="Category"
           options={[
             { id: "all", label: "All categories" },
-            { id: "nu7", label: "NU7 candidate" },
+            { id: "nu7", label: "NU7" },
             { id: "consensus", label: "Consensus" },
             { id: "wallet", label: "Wallet" },
             { id: "network", label: "Network" },
@@ -918,7 +917,7 @@ function SandboxModal({
             <div className="min-w-0">
               <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400 font-semibold mb-0.5">
                 {zip
-                  ? `ZIP ${fmtZipNum(zip.num)} · NU7 candidate · ${zip.status}`
+                  ? `ZIP ${fmtZipNum(zip.num)} · ${zip.tags.includes("nu7") ? "NU7 · " : ""}${zip.status}`
                   : ""}
               </div>
               <div
