@@ -6,6 +6,7 @@ import { parseCommunityProjects } from "@/lib/parseCommunityProjects";
 import { attachImages } from "@/lib/communityProjectImages";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
+import { getFileContentCached } from "@/lib/authAndFetch";
 
 type Dictionary = {
   pages?: {
@@ -47,12 +48,18 @@ export async function generateMetadata({
   });
 }
 
-async function getMarkdown() {
-  const res = await fetch(
-    "https://raw.githubusercontent.com/ZecHub/zechub/main/site/Zcash_Community/Community_Projects.md",
-    { next: { revalidate: 3600 } }
-  );
-  return res.text();
+// Read through the repo's cached, rate-limit-degrading reader instead of a raw
+// fetch. A raw fetch here had no status check (a GitHub 404/429/500 body was
+// parsed as content, silently emptying the list) and no error handling (a
+// network or rate-limit failure threw, 500ing the page for every visitor). The
+// cached reader returns the content, or null on failure, so an upstream outage
+// degrades to an empty list rather than a crash — matching the payment-
+// processors and wallets pages.
+async function getMarkdown(): Promise<string> {
+  const md = await getFileContentCached(
+    "site/Zcash_Community/Community_Projects.md",
+  ).catch(() => null);
+  return md ?? "";
 }
 
 export default async function Page() {
