@@ -94,7 +94,7 @@ These adapters wrap the global script API into clean components. Below are **rea
 import { ZcashPaymentURINextJs } from "../tools/zcash-payment-widget/adapters/nextjs";
 
 const API_BASE_URL =
-  process.env.NODE_DEV === "production"
+  process.env.NODE_ENV === "production"
     ? `https://zechub.wiki/api`
     : `http://localhost:3000/api`;
 
