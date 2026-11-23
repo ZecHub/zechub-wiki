@@ -32,19 +32,18 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
       });
     }
 
-    const grant = grouped.get(key);
+    const grant = grouped.get(key)!;
+    const rowStatus = normalizeStatus(row["Grant Status"] ?? "");
 
-    if (grant && grant.status) {
-      if (grant.status === "Cancelled") {
-        grant.status = "Cancelled";
-      } else if (grant.status === "Open") {
-        grant.status = "Open";
-      } else {
-        grant.status === "Completed";
-      }
+    if (grant.status === "Cancelled" || rowStatus === "Cancelled") {
+      grant.status = "Cancelled";
+    } else if (grant.status === "Open" || rowStatus === "Open") {
+      grant.status = "Open";
+    } else {
+      grant.status = "Completed";
     }
 
-    grant!.milestones.push({
+    grant.milestones.push({
       label: row.Milestone,
       numericOrder: extractNumericMilestone(row.Milestone),
       amountUSD: parseMoney(row["Amount (USD)"]),
@@ -59,6 +58,7 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
   // Compute summaries
   for (const grant of grouped.values()) {
     grant.milestones.sort((a, b) => {
+      if (a.numericOrder === null && b.numericOrder === null) return 0;
       if (a.numericOrder === null) return 1;
       if (b.numericOrder === null) return -1;
 
