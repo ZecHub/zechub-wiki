@@ -61,6 +61,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zecmarket":                               "/content-images/zecmarket.webp",
   "Zecsite":                                 "/content-images/zecsite.webp",
   "ZEC-OS":                                  "/content-images/zec-os.webp",
+  "zipreader":                              "/content-images/zipreader.webp",
 
   // ── Identity, Names, and User Experience ─────────────────────────
   "ZcashNames":                              "/content-images/zcashnames.webp",
