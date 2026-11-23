@@ -76,10 +76,10 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   // ── Developer, Testing, and Infrastructure ────────────────────────
   "Ziggurat":                                "/content-images/ziggurat.webp",
   "ZecDev":                                  "/content-images/zecdev.webp",
+  "Applied Zcash":                           "/content-images/appliedzcash.webp",
   "Zebra Coverage-Guided Fuzzing Infrastructure": "/content-images/zebra.webp",
   "FROST":                                   "/content-images/frost.webp",
   "MonteZcret Benchmark":                    "/content-images/montezcret-benchmark.webp",
-  "Applied Zcash":                           "/content-images/appliedzcash.webp",
 
   // ── Wider Applications Utilizing Zcash ───────────────────────────
   "aftok":                                   "/content-images/aftok.webp",
