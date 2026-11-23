@@ -13,9 +13,12 @@ export function detectZcashNetwork(addr: string): ZcashNetwork {
     return "testnet";
   }
 
-  // Mainnet
+  // Mainnet. Transparent mainnet addresses are P2PKH ("t1") or P2SH ("t3");
+  // omitting "t3" made valid multisig/script addresses fall through to
+  // "unknown", which the payment tools render as "Testnet".
   if (
     addr.startsWith("t1") ||
+    addr.startsWith("t3") ||
     addr.startsWith("zs1") ||
     addr.startsWith("u1") ||
     addr.startsWith("tex1")
