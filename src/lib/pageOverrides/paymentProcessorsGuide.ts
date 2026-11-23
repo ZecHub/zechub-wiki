@@ -96,7 +96,9 @@ export function rewritePaymentProcessorsGuide(original: string): string {
       .trim();
     // Remember the heading logo for the card and the heading tile; wordmarks are not used (no square mark yet).
     const src = /src="([^"]+)"/.exec(h[3])?.[1] ?? "";
-    const card = cards.find((c) => c.name === h[1]);
+    // The table can add a note to a name ("Plisio — payments suspended"); the card still links to this heading.
+    const card = cards.find((c) => c.name === h[1]) ?? cards.find((c) => c.name.startsWith(`${h[1]} `));
+    if (card) card.anchor = slug(h[1]);
     if (card && src && !/wordmark/i.test(src)) card.logo = src;
     sections.push(`## [${h[1]}](${h[2]})\n\n${desc ? `*${desc}*\n\n` : ""}${body}`);
   }
