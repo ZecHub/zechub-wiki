@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ALLOWED_COINGECKO_NAMES } from "@/lib/chart/coingeckoNames";
 
 // Same-origin proxy for CoinGecko's simple/price endpoint. Keeps the API key
 // server-side (out of the browser) and stops the visitor's browser from
@@ -9,10 +10,12 @@ import { NextRequest, NextResponse } from "next/server";
 // force many distinct upstream calls and burn the CoinGecko key/rate limit):
 //   - VALUE allow-lists, not just param names: ids is locked to the coins the
 //     app actually queries (only `zcash`); vs_currencies to usd/btc; booleans
-//     to true/false; free-form `names` is length/charset-bounded.
+//     to true/false; `names` to the coins the Metric card shows
+//     (src/lib/chart/coingeckoNames.ts).
 //   - A process-local memo keyed by the CANONICAL query (params sorted) with a
 //     60s TTL, an in-flight promise per key to coalesce concurrent misses, a
-//     hard key cap as a backstop, and last-good served on upstream failure.
+//     key cap sized to the whole allowed key space, and last-good served on
+//     upstream failure.
 const CG_BASE = "https://api.coingecko.com/api/v3/simple/price";
 const ALLOWED_IDS = new Set(["zcash"]); // the only coin queried by id in-app
 const ALLOWED_VS = new Set(["usd", "btc"]);
@@ -24,7 +27,11 @@ const BOOL_PARAMS = [
 ];
 const CACHE_CONTROL = "public, s-maxage=60, stale-while-revalidate=300";
 const MEMO_TTL_MS = 60_000;
-const MEMO_MAX_KEYS = 24; // backstop; legit app usage is a handful of shapes
+// Must cover the whole allowed key space, or an attacker cycling through more
+// valid shapes than the cap evicts every entry before reuse and each request
+// misses again. Space: ids (absent|zcash) × names (absent + ≤15 allowed) ×
+// vs_currencies (3) × booleans (2^3) = 2 × 16 × 3 × 8 = 768. Entries are small.
+const MEMO_MAX_KEYS = 1024;
 
 type Entry = { at: number; data: unknown };
 const memo = new Map<string, Entry>();
@@ -55,11 +62,13 @@ export async function GET(req: NextRequest) {
 
   const namesRaw = sp.get("names");
   if (namesRaw != null) {
-    const names = namesRaw.trim().toLowerCase();
-    // one/few coin names — bounded length + safe charset (letters/digits/space/.,-)
-    if (!names || names.length > 80 || !/^[a-z0-9 ,.\-]+$/.test(names))
+    // Value allow-list like ids: a free-form name gave an unbounded key space,
+    // and every new name was a guaranteed upstream call (the memo and the edge
+    // cache are both keyed by it).
+    const names = [...new Set(csv(namesRaw))];
+    if (!names.length || names.some((n) => !ALLOWED_COINGECKO_NAMES.has(n)))
       return bad("invalid names");
-    out.set("names", names);
+    out.set("names", names.sort().join(","));
   }
 
   const vsRaw = sp.get("vs_currencies");
@@ -74,7 +83,8 @@ export async function GET(req: NextRequest) {
     const v = sp.get(key);
     if (v == null) continue;
     if (!BOOL.has(v)) return bad(`invalid ${key}`);
-    out.set(key, v);
+    // "false" is CoinGecko's default: drop it so it shares a key with absent.
+    if (v === "true") out.set(key, v);
   }
 
   if (!out.has("vs_currencies")) out.set("vs_currencies", "usd");
