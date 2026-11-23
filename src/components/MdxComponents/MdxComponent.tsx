@@ -1,5 +1,3 @@
-import { existsSync } from "node:fs";
-import path from "node:path";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
@@ -36,26 +34,10 @@ import FaqItem from "./FaqItem";
 import FaqGlance from "./FaqGlance";
 import OrgLinks from "./OrgLinks";
 import DvpnDiagram from "./DvpnDiagram";
+import { mirroredContentImage } from "@/lib/mirroredContentImage";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
-const GITHUB_SITE_IMAGE = /^https:\/\/raw\.githubusercontent\.com\/ZecHub\/zechub\/main\/site\/(.+)\.(png|jpe?g)$/i;
-
-// "…/site/Zcash_Tech/assets/x.png" -> "/content-images/zcash-tech-assets-x.webp", only when that mirrored file exists.
-// scripts/mirror-content-images.mjs creates these copies and must use the same naming rule.
-function mirroredContentImage(src?: string): string {
-  const m = GITHUB_SITE_IMAGE.exec(String(src || ""));
-  if (!m) return "";
-  let p = m[1];
-  try {
-    p = decodeURIComponent(p);
-  } catch {
-    /* keep the raw path */
-  }
-  const name = `${p.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.webp`;
-  return existsSync(path.join(process.cwd(), "public", "content-images", name)) ? `/content-images/${name}` : "";
-}
-
 const youTubeId = (src: string): string | null => {
   if (!/(?:youtube(?:-nocookie)?\.com|youtu\.be)/i.test(src)) return null;
   const path = src.match(

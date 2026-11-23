@@ -1,5 +1,6 @@
 import { BookOpen, ShieldCheck } from "lucide-react";
 import MdxContainer from "@/components/MdxContainer";
+import { mirroredContentImage } from "@/lib/mirroredContentImage";
 import { rewriteMetamaskSnap } from "@/lib/pageOverrides/metamaskSnap";
 import { rewriteMerchantGuide } from "@/lib/pageOverrides/merchantGuide";
 import { rewriteNonprofitGuide } from "@/lib/pageOverrides/nonprofitGuide";
@@ -5998,7 +5999,7 @@ export default async function Page(props: {
                 filePath.replace(/\.md$/i, ""),
               );
               indexDynamicCovers[wikiSlug] = {
-                src: imgSrc,
+                src: mirroredContentImage(imgSrc) || imgSrc,
                 alt: "Article thumbnail",
               };
             }
@@ -6121,7 +6122,7 @@ export default async function Page(props: {
                 filePath.replace(/\.md$/i, ""),
               );
               dynamicCovers[wikiSlug] = {
-                src: imgSrc,
+                src: mirroredContentImage(imgSrc) || imgSrc,
                 alt: "Article thumbnail",
               };
             }

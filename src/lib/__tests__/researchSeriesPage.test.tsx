@@ -88,6 +88,37 @@ it("passes successful thumbnail extraction to the series grid", async () => {
   });
 });
 
+it("gives a series card the local copy of a GitHub image the CSP would block", async () => {
+  const file = "site/Research/zcash-formal-verification-series/article-1/article-1-the-orchard-bug.md";
+  const slug = "research/zcash-formal-verification-series/article-1/article-1-the-orchard-bug";
+  listing.mockResolvedValue([file]);
+  body.mockResolvedValue("# The Orchard Bug\n![x](image-1.png)");
+  image.mockReturnValue(
+    "https://raw.githubusercontent.com/ZecHub/zechub/main/site/Research/zcash-formal-verification-series/article-1/image-1.png",
+  );
+  wikiLink.mockReturnValue(slug);
+  const page = await Page({ params: params() });
+  expect(findGrid(page)?.props.dynamicCovers).toEqual({
+    [slug]: {
+      src: "/content-images/research-zcash-formal-verification-series-article-1-image-1.webp",
+      alt: "Article thumbnail",
+    },
+  });
+});
+
+it("gives a research index card the local copy of a GitHub image the CSP would block", async () => {
+  const article = "site/Research/What_25_Second_Blocks_Actually_Change.md";
+  const slug = "research/what-25-second-blocks-actually-change";
+  rootListing.mockResolvedValue([article]);
+  body.mockResolvedValue("# ZIP 218\n![x](../Zcash_Tech/assets/nu7-block-timing.png)");
+  image.mockReturnValue("https://raw.githubusercontent.com/ZecHub/zechub/main/site/Zcash_Tech/assets/nu7-block-timing.png");
+  wikiLink.mockReturnValue(slug);
+  const page = await Page({ params: Promise.resolve({ locale: "en", slug: ["research"] }) });
+  expect(findGrid(page)?.props.dynamicCovers).toEqual({
+    [slug]: { src: "/content-images/zcash-tech-assets-nu7-block-timing.webp", alt: "Article thumbnail" },
+  });
+});
+
 it("renders the research index without fetching unused series trees", async () => {
   const article = "site/Research/Intro.md";
   rootListing.mockResolvedValue([article]);
