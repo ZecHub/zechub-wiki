@@ -30380,5 +30380,38 @@
     "ironwood_filter": 595,
     "transactions": 678,
     "transactions_filter": 677
+  },
+  {
+    "height": 3601152,
+    "sapling": 90,
+    "sapling_filter": 90,
+    "orchard": 8,
+    "orchard_filter": 8,
+    "ironwood": 680,
+    "ironwood_filter": 680,
+    "transactions": 769,
+    "transactions_filter": 769
+  },
+  {
+    "height": 3602304,
+    "sapling": 62,
+    "sapling_filter": 62,
+    "orchard": 15,
+    "orchard_filter": 15,
+    "ironwood": 657,
+    "ironwood_filter": 657,
+    "transactions": 719,
+    "transactions_filter": 719
+  },
+  {
+    "height": 3603456,
+    "sapling": 100,
+    "sapling_filter": 100,
+    "orchard": 14,
+    "orchard_filter": 14,
+    "ironwood": 769,
+    "ironwood_filter": 769,
+    "transactions": 870,
+    "transactions_filter": 870
   }
 ]
