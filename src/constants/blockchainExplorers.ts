@@ -180,6 +180,26 @@ export const blockchainExplorers = [
     thumbnailImageDark: '/explorer/zec-os-dark.png',
   },
   {
+    title: 'AtlasZEC',
+    badge: 'Zcash only',
+    description:
+      'A privacy-focused Zcash blockchain explorer powered directly by a Zebra full node. Look up blocks, transactions and transparent addresses, watch the mempool live, and track shielded versus transparent ZEC supply, plus mining and market data. Mainnet. Includes tools to verify a withdrawal and run a privacy check, and raw developer JSON.',
+    features: [
+      'Mainnet',
+      'Blocks & transactions',
+      'Address lookup',
+      'Mempool',
+      'Shielded pool data',
+      'Mining data',
+      'Charts & analytics',
+      'Market data',
+    ],
+    url: 'https://www.atlaszec.com/',
+    thumbnailImage: '/explorer/atlaszec.png',
+    thumbnailImageLight: '/explorer/atlaszec-light.png',
+    thumbnailImageDark: '/explorer/atlaszec-dark.png',
+  },
+  {
     title: 'Zexplorer',
     badge: 'In development',
     badgeTone: 'warning' as const,
