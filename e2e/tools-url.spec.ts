@@ -57,6 +57,19 @@ test("back and forward walk through the tools", async ({ page }) => {
   await expect(heading(page)).toHaveText("Payment Request Builder");
 });
 
+test("the fee calculator can be linked to and prices a payment", async ({ page }) => {
+  await page.goto(`${BASE}/tools?tool=fee-calculator`);
+  await expect(heading(page)).toHaveText("Fee Calculator");
+
+  // Orchard to Orchard: two padded Actions, 2,000 zats at ZIP 2009's rate.
+  await expect(page.getByTestId("fee-zats")).toHaveText("2,000");
+  await page.getByLabel("5,000 zats").check();
+  await expect(page.getByTestId("fee-zats")).toHaveText("10,000");
+
+  await page.getByLabel("Recipient in").selectOption("sapling");
+  await expect(page.getByTestId("fee-zats")).toHaveText("20,000");
+});
+
 test("an unknown slug falls back to the first tool", async ({ page }) => {
   await page.goto(`${BASE}/tools?tool=not-a-real-tool`);
   await expect(heading(page)).toHaveText("ZEC ↔ Zats");
