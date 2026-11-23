@@ -163,7 +163,7 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
     const modal = overlay().querySelector(".zwg-modal")!;
     expect(modal.classList.contains("zwg-dark")).toBe(true);
     expect(modal.querySelector(".zwg-x")!.getAttribute("aria-label")).toBe("Close");
-    expect(modal.querySelector(".zwg-amt-val b")!.textContent).toBe("1.500");
+    expect(modal.querySelector(".zwg-amt-val b")!.textContent).toBe("1.5");
     expect(modal.querySelector(".zwg-amt-val small")!.textContent).toBe("ZEC");
     expect(modal.querySelector(".zwg-amt")!.textContent).toContain("≈ $3.00 USD");
     expect(modal.querySelector(".zwg-fld-txt")!.textContent).toBe(address);
@@ -193,4 +193,34 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
     inst.open();
     expect(overlay().querySelector(".zwg-memo")).toBeNull();
   });
+
+  it.each([
+    { amount: "0.0001", expected: "0.0001" },
+    { amount: "0.00005432", expected: "0.00005432" },
+    { amount: 0.0001, expected: "0.0001" },
+  ])(
+    "displays the exact canonical formattedAmount ($expected ZEC) across modal, URI input, copy button, and wallet link",
+    async ({ amount, expected }) => {
+      const address =
+        "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
+      const inst = await render({ address, amount });
+      inst.open();
+
+      const modal = overlay().querySelector(".zwg-modal")!;
+      const expectedUri = `zcash:${address}?amount=${expected}`;
+      const copyButtons = modal.querySelectorAll<HTMLElement>(".zwg-copy");
+
+      expect(modal.querySelector(".zwg-amt-val b")!.textContent).toBe(expected);
+      expect(modal.querySelector<HTMLInputElement>(".zwg-fld-inp")!.value).toBe(
+        expectedUri,
+      );
+      expect(copyButtons[1].dataset.c).toBe(expectedUri);
+      expect(modal.querySelector(".zwg-link")!.getAttribute("href")).toBe(
+        expectedUri,
+      );
+
+      inst.close();
+      inst.destroy();
+    },
+  );
 });

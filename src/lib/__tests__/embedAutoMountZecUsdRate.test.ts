@@ -117,12 +117,12 @@ describe("embed auto-mount: zecUsdRate reference", () => {
     };
     inst.open();
 
-    const amtVal = w.document.querySelector(".zwg-amt-val")!.textContent!;
+    const amtVal = w.document.querySelector(".zwg-amt-val b")!.textContent!;
     // amount 2 * rate 50 = $100.00, per the widget's own usdValue calc.
     expect(w.document.querySelector(".zwg-amt")!.textContent).toContain(
       "$100.00 USD",
     );
-    expect(amtVal).toContain("2.000");
+    expect(amtVal).toBe("2");
   });
 
   it("5. falls back to the price-feed endpoint when data-zec-usd-rate is not supplied", async () => {
