@@ -100,7 +100,7 @@
     "Zcash Tech": "Tecnología de Zcash",
     "Privacy Tools": "Herramientas de privacidad",
     "Glossary & FAQ's": "Glosario y preguntas frecuentes",
-    "Use Zcash": "Usar Zcash",
+    "Use Zcash": "Cómo usar Zcash",
     "Block Explorers": "Exploradores de bloques",
     "Ecosystem": "Ecosistema",
     "Raspberry Pi Zcashd Node": "Nodo Zcashd de Raspberry Pi",
@@ -232,7 +232,7 @@
     "dashboard": "Panel",
     "more": "Más",
     "usingZcash": {
-      "label": "Usar Zcash",
+      "label": "Cómo usar Zcash",
       "buyingZec": "Comprar ZEC",
       "faucets": "Faucets",
       "wallets": "Carteras",
