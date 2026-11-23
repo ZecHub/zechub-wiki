@@ -5815,5 +5815,40 @@
     "orchard": 9,
     "ironwood": 1029,
     "timestamp": "11/15/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 58,
+    "orchard": 15,
+    "ironwood": 1046,
+    "timestamp": "11/17/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 77,
+    "orchard": 7,
+    "ironwood": 3151,
+    "timestamp": "11/18/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 67,
+    "orchard": 20,
+    "ironwood": 910,
+    "timestamp": "11/21/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 90,
+    "orchard": 7,
+    "ironwood": 692,
+    "timestamp": "11/22/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 91,
+    "orchard": 17,
+    "ironwood": 824,
+    "timestamp": "11/23/2026"
   }
 ]

@@ -16,10 +16,10 @@ const PAGE = `# Sovright
 
 | | |
 |---|---|
-| Type | Non-profit, described as the successor to the non-profit side of the old ECC structure |
-| Leadership | Michelle Lai (executive chairman) and Kristi Põldsam (product development), as named by The Block. Zaki Manian, a former Bootstrap board member, is also named |
-| Products | Argos, for recovering funds from old wallets, and the Sovright Mining Pool |
-| Focus | Zcash infrastructure, mining and ecosystem support, now widening to secure communications, resilient networks and private compute |
+| **Type** | Non-profit, described as the successor to the non-profit side of the old ECC structure |
+| **Leadership** | Michelle Lai (executive chairman) and Kristi Põldsam (product development), as named by The Block. Zaki Manian, a former Bootstrap board member, is also named |
+| **Products** | Argos, for recovering funds from old wallets, and the Sovright Mining Pool |
+| **Focus** | Zcash infrastructure, mining and ecosystem support, now widening to secure communications, resilient networks and private compute |
 
 ## Background
 

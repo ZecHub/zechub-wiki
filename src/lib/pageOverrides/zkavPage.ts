@@ -20,11 +20,11 @@ The **Zero-Knowledge Audiovisual Club (ZK AV Club)** is a global group of volunt
 
 | | |
 |---|---|
-| What it is | A volunteer-driven community media group focused on Zcash and privacy |
-| Main programs | Foundry livestream series, skill-sharing workshops, Recording Station, archiving |
-| Languages | Workshops held in English, Spanish and Portuguese |
-| Funding | Zcash Community Grants, with community crowdfunding for individual events. The Zcash Foundation and ZecHub are thanked for their support |
-| Approach | Local people tell their own stories, with consent as a rule for every recording |
+| **What it is** | A volunteer-driven community media group focused on Zcash and privacy |
+| **Main programs** | Foundry livestream series, skill-sharing workshops, Recording Station, archiving |
+| **Languages** | Workshops held in English, Spanish and Portuguese |
+| **Funding** | Zcash Community Grants, with community crowdfunding for individual events. The Zcash Foundation and ZecHub are thanked for their support |
+| **Approach** | Local people tell their own stories, with consent as a rule for every recording |
 
 ## Mission
 

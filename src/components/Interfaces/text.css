@@ -1,0 +1,176 @@
+/* Text interface: the wiki as plain text.
+   One monospace font, no pictures, video or decoration, a single readable
+   column, Markdown-style heading marks and keyboard shortcuts (see
+   src/components/TextInterfaceKeys.tsx). Like every interface it never sets
+   colours, with one exception asked for by ZecHub: the page itself is pure
+   white in light mode and pure black in dark mode, like a terminal, whatever
+   colour theme is picked. Every rule is scoped to data-interface. */
+
+:root[data-interface="text"] {
+  /* Square corners: --radius drives rounded-md, -lg and -xl. */
+  --radius: 0;
+  --radius-2xl: 0;
+  scroll-behavior: auto;
+  /* Terminal page: pure white (light) and pure black (dark). */
+  --color-page: #ffffff;
+  --color-surface: #000000;
+}
+
+:root[data-interface="text"] body {
+  background-color: #ffffff !important;
+}
+
+:root[data-interface="text"].dark body {
+  background-color: #000000 !important;
+}
+
+/* One font everywhere: the monospace font the site already loads. */
+:root[data-interface="text"] body,
+:root[data-interface="text"] body * {
+  font-family: var(--font-heading), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  letter-spacing: normal;
+}
+
+/* Text only: no pictures, video, embeds or canvas drawings. Lazy images that
+   are hidden are never downloaded. Captions stay. A YouTube player the
+   visitor started on purpose (see below) still shows. */
+:root[data-interface="text"] :is(img, picture, video, canvas),
+:root[data-interface="text"] iframe:not([src*="youtube-nocookie.com"]) {
+  display: none !important;
+}
+
+/* YouTube placeholders become one line of text: [Play video: title]. */
+:root[data-interface="text"] button[aria-label^="Play video:"] {
+  aspect-ratio: auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-width: 80ch;
+  padding: 0.25em 1ch !important;
+  border: 1px solid currentColor !important;
+  color: inherit !important;
+  justify-content: flex-start !important;
+}
+
+:root[data-interface="text"] button[aria-label^="Play video:"] > * {
+  display: none !important;
+}
+
+:root[data-interface="text"] button[aria-label^="Play video:"]::after {
+  content: "[" attr(aria-label) "]";
+}
+
+/* No decoration: flat boxes, no shadows or gradients. (The header keeps its
+   blur, which keeps it readable over the page as it scrolls.) */
+:root[data-interface="text"] body * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Gradient text is see-through text over a gradient and would vanish without
+   it, so only gradients behind boxes are removed. */
+:root[data-interface="text"] body *:not([class*="bg-clip-text"]) {
+  background-image: none !important;
+}
+
+/* No backdrop behind the page: just the plain white or black page. */
+:root[data-interface="text"] [data-backdrop] {
+  display: none !important;
+}
+
+/* Article: one column of about 80 characters, plain sizes. */
+:root[data-interface="text"] .mdx-article {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+:root[data-interface="text"] .mdx-article :is(p, ul, ol, blockquote, pre, table, h1, h2, h3, h4) {
+  max-width: 80ch;
+}
+
+/* Headings read like Markdown: # for h1, ## for h2 and so on. The marks are
+   decoration, so screen readers skip them. */
+:root[data-interface="text"] :is(main, .mdx-article) :is(h1, h2, h3, h4) {
+  font-weight: 700;
+  scroll-margin-top: 6rem;
+}
+
+:root[data-interface="text"] .mdx-article h1::before {
+  content: "# ";
+  content: "# " / "";
+  opacity: 0.55;
+}
+
+:root[data-interface="text"] .mdx-article h2::before {
+  content: "## ";
+  content: "## " / "";
+  opacity: 0.55;
+}
+
+:root[data-interface="text"] .mdx-article h3::before {
+  content: "### ";
+  content: "### " / "";
+  opacity: 0.55;
+}
+
+:root[data-interface="text"] .mdx-article h4::before {
+  content: "#### ";
+  content: "#### " / "";
+  opacity: 0.55;
+}
+
+/* Links look like links, as in a text browser. */
+:root[data-interface="text"] .mdx-article a {
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em;
+}
+
+/* Rules and quotes drawn with plain lines. */
+:root[data-interface="text"] .mdx-article hr {
+  border: 0;
+  border-top: 1px dashed currentColor;
+  opacity: 0.5;
+}
+
+:root[data-interface="text"] .mdx-article blockquote {
+  border-left: 2px solid currentColor;
+  padding-left: 1ch;
+}
+
+/* A clear focus ring for keyboard use. */
+:root[data-interface="text"] :focus-visible {
+  outline: 2px solid currentColor !important;
+  outline-offset: 2px !important;
+}
+
+/* No motion: animations and transitions finish at once. Loading spinners and
+   skeletons keep moving, since they show that something is happening. */
+:root[data-interface="text"] *:not(.animate-spin, .animate-pulse),
+:root[data-interface="text"] *:not(.animate-spin, .animate-pulse)::before,
+:root[data-interface="text"] *:not(.animate-spin, .animate-pulse)::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* The logo is a picture, so home links show the name as text instead. The
+   header logo stays in the page, visually hidden, so its alt text still names
+   the link for screen readers. */
+:root[data-interface="text"] header a:has(> img)::after,
+:root[data-interface="text"] a[aria-label="ZecHub home"]::after {
+  content: "ZecHub";
+  content: "ZecHub" / "";
+  font-weight: 700;
+}
+
+:root[data-interface="text"] header a:has(> img) > img {
+  display: block !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}

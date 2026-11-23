@@ -50,6 +50,12 @@ import { rewriteGovernanceGuide } from "@/lib/pageOverrides/governanceGuide";
 import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteTransactionsGuide } from "@/lib/pageOverrides/transactionsGuide";
 import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
+import { rewriteUsingThisWikiPage } from "@/lib/pageOverrides/usingThisWikiPage";
+import ContinueReading from "@/components/ContinueReading";
+import { rewriteWhoCanSeePaymentPage } from "@/lib/pageOverrides/whoCanSeePaymentPage";
+import { rewriteZcashResourcesPage } from "@/lib/pageOverrides/zcashResourcesPage";
+import { rewriteZecUseCasesPage } from "@/lib/pageOverrides/zecUseCasesPage";
+import { rewriteHowZcashIsOrganizedPage } from "@/lib/pageOverrides/howZcashIsOrganizedPage";
 import { rewriteZcgPage, rewriteFpfPage, rewriteSovrightPage } from "@/lib/pageOverrides/orgPagesGuide";
 import { rewriteRetroactiveGrantsPage } from "@/lib/pageOverrides/retroactiveGrantsPage";
 import { rewriteEccPage } from "@/lib/pageOverrides/electricCoinCompanyPage";
@@ -63,6 +69,7 @@ import { rewriteZodlPage } from "@/lib/pageOverrides/zodlPage";
 import { rewriteZingoLabsPage } from "@/lib/pageOverrides/zingoLabsPage";
 import { rewriteZcashLabsPage } from "@/lib/pageOverrides/zcashLabsPage";
 import { rewriteZcashFoundationPage } from "@/lib/pageOverrides/zcashFoundationPage";
+import { rewriteArboristCallsPage } from "@/lib/pageOverrides/arboristCallsPage";
 import { rewriteZcgPageFull } from "@/lib/pageOverrides/zcgPageFull";
 import { rewritePiZebraGuide } from "@/lib/pageOverrides/piZebraGuide";
 import { rewriteDevelopmentFundGuide } from "@/lib/pageOverrides/developmentFundGuide";
@@ -95,6 +102,8 @@ import { rewriteZakuraNodeGuide } from "@/lib/pageOverrides/zakuraNodeGuide";
 import { rewriteShieldedAssetsGuide } from "@/lib/pageOverrides/shieldedAssetsGuide";
 import { rewritePepperSyncGuide } from "@/lib/pageOverrides/pepperSyncGuide";
 import { rewriteNu62Guide } from "@/lib/pageOverrides/nu62Guide";
+import { rewriteNu7Guide } from "@/lib/pageOverrides/nu7Guide";
+import { rewriteOverwinterGuide } from "@/lib/pageOverrides/overwinterGuide";
 import { rewriteNu61Guide } from "@/lib/pageOverrides/nu61Guide";
 import { rewriteNu6Guide } from "@/lib/pageOverrides/nu6Guide";
 import { rewriteNu5Guide } from "@/lib/pageOverrides/nu5Guide";
@@ -139,7 +148,7 @@ import {
 import { buildBreadcrumbs } from "@/lib/breadcrumbs";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
-import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
+import { bulletizeLinkParagraphs, normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
 import { getLiveHero } from "@/lib/liveHero";
 import {
@@ -280,7 +289,7 @@ function rehypePruneShortJumpNav() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; ucNoJump?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; whz?: boolean; pproc?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; ledger?: boolean; brave?: boolean; explorers?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; ucNoJump?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean; akash?: boolean; akashBtn?: boolean; akashz?: boolean; mig?: boolean; mstake?: boolean; wb?: boolean; nym?: boolean; nymvpn?: boolean; defi?: boolean; vrel?: boolean; vkx?: boolean; vaddr?: boolean; vnet?: boolean; yfrost?: boolean; dtool?: boolean; zips?: boolean; nrpc?: boolean; zenith?: boolean; whz?: boolean; pproc?: boolean; zkdecoy?: boolean; zgo?: boolean; z3zaino?: boolean; zkool?: boolean; btcpay?: boolean; maya?: boolean; redbridge?: boolean; shapeshift?: boolean; free2z?: boolean; usezec?: boolean; keystone?: boolean; ledger?: boolean; brave?: boolean; explorers?: boolean; numberedSteps?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -562,6 +571,16 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           k--;
         }
         rows.splice(to, 0, moved);
+      }
+    }
+    if (opts.numberedSteps && Array.isArray(tree.children)) {
+      // Guides whose sections are written "1. Title", "2. Title": show the number as the blue step badge used by the other guides.
+      for (const x of tree.children as any[]) {
+        if (!x || x.type !== "element" || (x.tagName !== "h2" && x.tagName !== "h3")) continue;
+        const m = /^(\d+)\.\s+(.+?)\s*#?$/.exec(textOf(x).trim());
+        if (!m) continue;
+        x.properties = { ...(x.properties || {}), dataStep: m[1] };
+        x.children = [{ type: "text", value: m[2] }];
       }
     }
     if (opts.sol && Array.isArray(tree.children)) {
@@ -4988,7 +5007,8 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       for (let k = 0; k < rows.length; k++) {
         const t = isEl(rows[k], "p") ? textOf(rows[k]).trim() : "";
         if (/^\d+\.\s+\S/.test(t) && t.length < 80 && (rows[k].children || []).some((c: any) => isEl(c, "strong"))) {
-          rows[k] = el("h3", {}, [txt(t)]);
+          const stepM = /^(\d+)\.\s+(.+)$/.exec(t);
+          rows[k] = el("h3", stepM ? { dataStep: stepM[1] } : {}, [txt(stepM ? stepM[2] : t)]);
         }
       }
       const desktop = rows.findIndex((x) => isEl(x, "p") && /^desktop only/i.test(textOf(x).trim()));
@@ -5437,7 +5457,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               if (m.type === "element" && m.tagName === "ul") {
                 m.properties = { ...(m.properties || {}), dataVariant: variant };
                 if (variant === "related") {
-                  // "[Wallets](/wallets) — description" → drop the dash so the
+                  // "[Wallets](/wallets) — description" (or ": description") → drop the dash or colon so the
                   // description reads as a card subtitle.
                   for (const li of m.children || []) {
                     if (li.type !== "element" || li.tagName !== "li") continue;
@@ -5445,7 +5465,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
                       (c: any, k: number, a: any[]) =>
                         k > 0 && a[k - 1].type === "element" && a[k - 1].tagName === "a" && c.type === "text",
                     );
-                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–-]\s*/, "");
+                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–:-]\s*/, "");
                     // A bare link to this wiki gets the one-line description the other entries have.
                     const kidsLi = (li.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()));
                     if (kidsLi.length === 1 && kidsLi[0].type === "element" && kidsLi[0].tagName === "a" && /^https?:\/\/(www\.)?zechub\.wiki\/?$/i.test(String(kidsLi[0].properties?.href || "")) && /^zechub wiki$/i.test(textOf(kidsLi[0]).trim())) {
@@ -6293,6 +6313,12 @@ export default async function Page(props: {
   if (slug.join("/") === "zcash-tech/nu6-1" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu61Guide(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-tech/nu7" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteNu7Guide(processedMarkdown);
+  }
+  if (slug.join("/") === "zcash-tech/overwinter" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteOverwinterGuide(processedMarkdown);
+  }
   if (slug.join("/") === "zcash-tech/nu6-2" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNu62Guide(processedMarkdown);
   }
@@ -6404,6 +6430,9 @@ export default async function Page(props: {
   if (slug.join("/") === "zcash-organizations/zcash-foundation" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZcashFoundationPage(processedMarkdown);
   }
+  if (slug.join("/") === "zcash-community/arborist-calls" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteArboristCallsPage(processedMarkdown);
+  }
   if (slug.join("/") === "zcash-organizations/zcash-labs" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteZcashLabsPage(processedMarkdown);
   }
@@ -6442,6 +6471,21 @@ export default async function Page(props: {
   }
   if (slug.join("/") === "start-here/new-user-guide" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteNewUserGuide(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/how-zcash-is-organized" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteHowZcashIsOrganizedPage(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/zec-use-cases" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZecUseCasesPage(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/zcash-resources" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteZcashResourcesPage(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/who-can-see-your-zcash-payment" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteWhoCanSeePaymentPage(processedMarkdown);
+  }
+  if (slug.join("/") === "start-here/using-this-wiki" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteUsingThisWikiPage(processedMarkdown);
   }
   if (slug.join("/") === "contribute/help-build-zechub" && locale === routing.defaultLocale && processedMarkdown) {
     processedMarkdown = rewriteHelpBuildGuide(processedMarkdown);
@@ -6638,7 +6682,7 @@ export default async function Page(props: {
     );
   }
 
-  const mdxSource = normalizeMdx(stripFrontmatter(processedMarkdown));
+  const mdxSource = normalizeMdx(bulletizeLinkParagraphs(stripFrontmatter(processedMarkdown)));
   const mdxCompileOptions: NonNullable<React.ComponentProps<typeof MDXRemote>["options"]>["mdxOptions"] = {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
@@ -6700,6 +6744,7 @@ export default async function Page(props: {
             akashz: slug[0] === "guides" && slug[1] === "akash-network-zebra",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
+            numberedSteps: (slug[0] === "start-here" && slug[1] === "new-user-guide") || (slug[0] === "using-zcash" && slug[1] === "metamask-snap") || (slug[0] === "contribute" && slug[1] === "zecweekly-newsletter") || slug[0] === "research",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
@@ -6828,6 +6873,16 @@ export default async function Page(props: {
             components={MdxComponents}
             options={{ blockJS: true, mdxOptions: mdxCompileOptions }}
           />
+          {showSideMenu && slug.length === 2 ? (
+            <ContinueReading
+              folder={slug[0]}
+              slug={(slug[slug.length - 1] ?? "").toLowerCase()}
+              roots={roots}
+              titles={menuTitles}
+              enTitles={enMenuTitles}
+              strings={dict?.sideMenu?.continueReading}
+            />
+          ) : null}
           <MdxReady />
         </Suspense>
       </MdxContainer>

@@ -20,6 +20,9 @@ interface WalletItemProps {
   syncSpeed: string;
   nu7?: string;
   stage?: string;
+  nymMixnet?: string;
+  sourceCode?: string;
+  source?: string;
   // Set (possibly to "") only for a deprecated wallet: the reason it is listed
   // as no longer supporting Zcash. Replaces the NU7 badge.
   deprecated?: string;
@@ -92,6 +95,9 @@ const WalletItem: React.FC<WalletItemProps> = ({
   syncSpeed,
   nu7,
   stage,
+  nymMixnet,
+  sourceCode,
+  source,
   deprecated,
   likes,
   onLike,
@@ -105,6 +111,11 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const key = title.toLowerCase().replace(/[^a-z0-9]/g, "");
   const logoOverride = walletLogoOverrides[key];
   const note = walletNotes[key];
+  const sourceUrl = sourceCode?.trim() ?? "";
+  const hasSource = /^https?:\/\//i.test(sourceUrl);
+  const sourceLabel = source?.trim().toLowerCase();
+  const isOpenSource =
+    sourceLabel === "open source" || (!sourceLabel && hasSource);
 
   const handleLike = () => {
     onLike();
@@ -168,14 +179,14 @@ const WalletItem: React.FC<WalletItemProps> = ({
         </div>
 
         <div className="mt-4 min-w-0">
-          <h2 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
+          <h3 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
             {title}
             {syncSpeed && (
               <span className="ml-2 inline-block align-middle">
                 <Image src={syncSpeed} width={24} height={24} alt="Sync" />
               </span>
             )}
-          </h2>
+          </h3>
           {note ? (
             <p className="m-0 mt-1 text-[13px] font-medium text-brand dark:text-brand-soft">{note}</p>
           ) : null}
@@ -215,6 +226,44 @@ const WalletItem: React.FC<WalletItemProps> = ({
             )}
           </div>
         )}
+
+        <div className="mt-2 flex flex-wrap gap-2">
+          {nymMixnet && (
+            <span
+              title="Nym mixnet support"
+              className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300"
+            >
+              Nym: {nymMixnet}
+            </span>
+          )}
+          {isOpenSource ? (
+            hasSource ? (
+              <a
+                href={sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open source repository"
+                className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
+              >
+                Open Source
+              </a>
+            ) : (
+              <span
+                title="Open source"
+                className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+              >
+                Open Source
+              </span>
+            )
+          ) : (
+            <span
+              title="Closed source"
+              className="inline-flex items-center rounded-full bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-700 dark:text-slate-300"
+            >
+              Closed Source
+            </span>
+          )}
+        </div>
 
         {/* Labelled sections: Devices, Pools, Features */}
         <div className="mt-4 divide-y divide-slate-200 border-t border-slate-200 dark:divide-white/10 dark:border-white/10">
@@ -269,6 +318,16 @@ const WalletItem: React.FC<WalletItemProps> = ({
                     </Link>
                   );
                 })}
+                {featuresOpen && hasSource && (
+                  <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[13px] text-emerald-700 transition hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:hover:bg-emerald-900/60"
+                  >
+                    Source Code
+                  </a>
+                )}
               </div>
             </div>
           )}

@@ -15,7 +15,7 @@ const GLANCE = `| | |
 | **Consensus branch id** | c2d6d0b4 |
 | **Main changes** | Orchard pool on Halo 2 ([ZIP 224](https://zips.z.cash/zip-0224)), Unified Addresses ([ZIP 316](https://zips.z.cash/zip-0316)), version 5 transactions ([ZIP 225](https://zips.z.cash/zip-0225)) |
 | **Trusted setup** | None for Orchard |
-| **Today** | Orchard has been spend-only since Ironwood (NU6.3, July 28, 2026) |`;
+| **Since Ironwood** | Orchard is spend-only (NU6.3, July 28, 2026) |`;
 
 const LATER = `## What happened to Orchard later
 

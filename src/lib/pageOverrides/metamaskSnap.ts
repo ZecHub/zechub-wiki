@@ -109,7 +109,7 @@ MetaMask does not list ZEC directly, so check **WebZjs** for your updated balanc
 ## 7. Check your address components
 
 1. Open the **Receive** section. Your Unified Address is shown by default.
-2. Copy it and paste it into the search bar of the [Zcash Block Explorer](https://zcashblockexplorer.com).
+2. Copy it and paste it into the search bar of [ZecBlock](https://zecblock.com).
 3. The explorer lists every component of the Unified Address: the **Orchard**, **Sapling** and **Transparent** addresses.
 
 ${shot(components, "Unified Address components in the block explorer")}
@@ -119,6 +119,6 @@ ${shot(components, "Unified Address components in the block explorer")}
 - Shielded proofs can take a little time. WebAssembly runs the computation in your browser.
 - Recovery is simple: install MetaMask and the Snap, then import your existing seed phrase.
 - The Snap defaults to shielded ZEC. Transparent addresses are not its focus.
-- Use [zcashblockexplorer.com](https://zcashblockexplorer.com) to confirm transactions.
+- Use [zecblock.com](https://zecblock.com) to confirm transactions.
 `;
 }

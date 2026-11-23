@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Video = { id: string; title: string; published?: string };
 
@@ -25,9 +26,9 @@ const SHOWN = 8;
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
 
-const fmtDate = (iso?: string) =>
+const fmtDate = (iso: string | undefined, locale: string) =>
   iso
-    ? new Date(iso).toLocaleDateString("en-US", {
+    ? new Date(iso).toLocaleDateString(locale, {
         month: "short",
         day: "numeric",
         year: "numeric",
@@ -43,6 +44,8 @@ function VideoCard({
   index: number;
   className?: string;
 }) {
+  const { t, locale } = useLanguage();
+  const copy = t?.homeLanding?.videos;
   const [playing, setPlaying] = useState(false);
   return (
     <div className={`overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800/60 ${className}`}>
@@ -59,7 +62,7 @@ function VideoCard({
           <button
             type="button"
             onClick={() => setPlaying(true)}
-            aria-label={`Play ${video.title}`}
+            aria-label={(copy?.play ?? "Play {title}").replace("{title}", video.title)}
             className={`group absolute inset-0 ${focusRing}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -86,14 +89,14 @@ function VideoCard({
       </div>
       <div className="p-4">
         <p className="mb-1 text-xs font-medium uppercase tracking-wide text-brand">
-          Step {index + 1}
+          {(copy?.step ?? "Step {number}").replace("{number}", (index + 1).toLocaleString(locale))}
         </p>
         <h4 className="line-clamp-2 text-base font-semibold text-slate-900 dark:text-slate-100">
           {video.title}
         </h4>
         {video.published ? (
           <p className="mt-1 text-sm text-slate-700 dark:text-slate-200">
-            {fmtDate(video.published)}
+            {fmtDate(video.published, locale)}
           </p>
         ) : null}
       </div>
@@ -104,6 +107,8 @@ function VideoCard({
 // "Watch": a swipeable row of tutorials (the PINNED list, or the newest uploads
 // if it is empty). Hidden when there is nothing to show.
 export default function VideoStrip() {
+  const { t } = useLanguage();
+  const copy = t?.homeLanding?.videos;
   const [videos, setVideos] = useState<Video[]>(PINNED);
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -151,12 +156,12 @@ export default function VideoStrip() {
       <div className="mb-6 flex items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl">
-            Watch
+            {copy?.title ?? "Watch"}
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-200">
             {PINNED.length > 0
-              ? "A short path for newcomers, in order."
-              : "The latest from the ZecHub channel."}
+              ? copy?.pinnedDescription ?? "A short path for newcomers, in order."
+              : copy?.latestDescription ?? "The latest from the ZecHub channel."}
           </p>
         </div>
         <div className="flex shrink-0 items-center gap-3">
@@ -166,13 +171,13 @@ export default function VideoStrip() {
             rel="noopener noreferrer"
             className={`hidden items-center gap-1 rounded text-sm font-medium text-brand hover:underline imd:inline-flex ${focusRing}`}
           >
-            All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            {copy?.allVideos ?? "All videos"} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <button
             type="button"
             onClick={() => scrollBy(-1)}
             disabled={!canPrev}
-            aria-label="Previous videos"
+            aria-label={copy?.previous ?? "Previous videos"}
             className={arrow}
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -181,7 +186,7 @@ export default function VideoStrip() {
             type="button"
             onClick={() => scrollBy(1)}
             disabled={!canNext}
-            aria-label="Next videos"
+            aria-label={copy?.next ?? "Next videos"}
             className={arrow}
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />
@@ -208,7 +213,7 @@ export default function VideoStrip() {
         rel="noopener noreferrer"
         className={`mt-4 inline-flex items-center gap-1 rounded text-sm font-medium text-brand hover:underline imd:hidden ${focusRing}`}
       >
-        All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+        {copy?.allVideos ?? "All videos"} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
       </a>
     </div>
   );

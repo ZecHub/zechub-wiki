@@ -140,7 +140,39 @@
     "Hash Function": "Hash Function",
     "Zcash Keys": "Zcash Keys",
     "Metamask Snap": "Metamask Snap",
-    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "Sovright": "Sovright",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "کاوش کامل",
@@ -490,7 +522,39 @@
     "activeCount": "{count} فعال",
     "savedReview": "نظر شما ذخیره شد!",
     "errorGettingLikes": "خطا در دریافت پسندها:",
-    "errorUpdatingRating": "خطا در به‌روزرسانی امتیاز:"
+    "errorUpdatingRating": "خطا در به‌روزرسانی امتیاز:",
+    "betaTitle": "کیف‌پول‌های بتا",
+    "betaNote": "نسخه‌های آزمایشی. انتظار نقص داشته باشید و از مبالغ کم استفاده کنید.",
+    "transparentOnlyTitle": "کیف‌پول‌های فقط شفاف",
+    "transparentOnlyNote": "این کیف‌پول‌ها فقط از ZEC شفاف پشتیبانی می‌کنند که جزئیات تراکنش را پنهان نمی‌کند.",
+    "nymMixnetTitle": "پشتیبانی از Nym Mixnet",
+    "nymMixnetNote": "کیف‌پول‌هایی که مسیریابی ترافیک Zcash را از طریق Nym mixnet پشتیبانی می‌کنند.",
+    "filterInfo": {
+      "categoryTitle": "درباره فیلتر {category}",
+      "itemTitle": "درباره {value}",
+      "categoryFallback": "از **{category}** استفاده کنید تا فهرست کیف‌پول‌ها را به کیف‌پول‌هایی محدود کنید که با گزینه‌های این دسته مطابقت دارند. انتخاب یک گزینه فیلتر را اعمال می‌کند و انتخاب دوباره آن را حذف می‌کند.",
+      "itemFallback": "**{value}** یکی از گزینه‌های فیلتر **{category}** است. انتخاب آن فهرست کیف‌پول‌ها را به کیف‌پول‌هایی محدود می‌کند که این مقدار را دارند؛ برای حذف فیلتر دوباره آن را انتخاب کنید.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** یعنی کیف‌پول به‌صورت برنامه روی گوشی یا تبلت اجرا می‌شود. کیف‌پول‌های موبایل معمولاً به‌جای ذخیره کل بلاک‌چین از طریق سرور lightwallet همگام‌سازی می‌شوند، بنابراین برای پرداخت‌های روزمره مناسب‌اند.",
+          "Desktop": "**Desktop** یعنی کیف‌پول به‌صورت برنامه روی رایانه اجرا می‌شود. بسته به کیف‌پول، ممکن است یک نود کامل را همگام‌سازی کند یا به سرور lightwallet متصل شود."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** استخر محافظت‌شده Zcash است که در NU5 معرفی شد. از تراکنش‌های محافظت‌شده با طراحی استخر Orchard پشتیبانی می‌کند و کیف‌پول‌هایی که جدیدترین ویژگی‌های محافظت‌شده را ارائه می‌دهند از آن استفاده می‌کنند.",
+          "Transparent": "**Transparent** یعنی کیف‌پول از ZEC شفاف پشتیبانی می‌کند که تراکنش‌هایش روی بلاک‌چین عمومی دیده می‌شوند. آدرس‌های شفاف با `t` شروع می‌شوند و فرستنده، گیرنده یا مقدار را پنهان نمی‌کنند."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** قالبی از آدرس Zcash است که می‌تواند گیرنده‌های محافظت‌شده و شفاف را در یک آدرس داشته باشد. کیف‌پول‌های پشتیبان می‌توانند گیرنده مناسب پرداخت را انتخاب کنند و در عین حال با انواع مختلف آدرس سازگار بمانند."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** یعنی کیف‌پول به‌طور خودکار ZEC شفاف را به استخر محافظت‌شده منتقل می‌کند. این کار مدت زمانی را که دارایی‌ها روی بلاک‌چین عمومی دیده می‌شوند کاهش می‌دهد، اما جایگزین روش‌های حریم خصوصی خودتان نمی‌شود."
+        },
+        "Source": {
+          "Open Source": "**Open Source** یعنی کد منبع کیف‌پول به‌صورت عمومی برای بررسی و استفاده مجدد در دسترس است. کارت کیف‌پول در صورت وجود، به مخزن کد پیوند می‌دهد.",
+          "Closed Source": "**Closed Source** یعنی کد منبع کیف‌پول برای بررسی عمومی منتشر نشده است. با این حال می‌توانید پیش از استفاده، وب‌سایت کیف‌پول و بررسی‌های مستقل را ببینید."
+        }
+      }
+    }
   },
   "guides": {
     "title": "راهنماها",
@@ -1262,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "ناوبری",
-    "explore": "کاوش"
+    "explore": "کاوش",
+    "continueReading": {
+      "heading": "ادامه مطالعه",
+      "previous": "قبلی",
+      "next": "بعدی",
+      "nextStep": "گام بعدی"
+    }
   },
   "meta": {
     "title": "ویکی ZecHub",
@@ -1304,6 +1374,164 @@
     "tutorials": {
       "title": "آموزش‌ها",
       "sub": "تماشا کنید و همراه شوید"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "ویکی کامیونیتی برای یادگیری، استفاده و ساخت با Zcash.",
+      "openSource": "متن‌باز",
+      "communityDriven": "با هدایت کامیونیتی",
+      "educationHub": "مرکز آموزشی Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "یادگیری",
+        "description": "Zcash چیست، حریم خصوصی آن چگونه کار می‌کند و از کجا شروع کنید.",
+        "links": {
+          "first": "راهنمای کاربر جدید",
+          "second": "Zcash چیست؟",
+          "third": "ارتقاهای شبکه"
+        }
+      },
+      "wallet": {
+        "title": "یک کیف‌پول انتخاب کنید",
+        "description": "کیف‌پول به شما امکان می‌دهد ZEC را به‌صورت خصوصی دریافت و خرج کنید.",
+        "links": {
+          "first": "همه کیف‌پول‌ها",
+          "second": "کیف‌پول‌های موبایلی",
+          "third": "کیف‌پول‌های سخت‌افزاری"
+        }
+      },
+      "use": {
+        "title": "استفاده از ZEC",
+        "description": "ZEC تهیه کنید، آن را ارسال کنید و مکان‌های پذیرنده آن را بیابید.",
+        "links": {
+          "first": "خرید ZEC",
+          "second": "تراکنش‌ها",
+          "third": "مکان‌های خرج کردن ZEC"
+        }
+      },
+      "build": {
+        "title": "ساخت",
+        "description": "منابع توسعه‌دهندگان، ابزارها و راه‌های مشارکت در ویکی.",
+        "links": {
+          "first": "توسعه‌دهندگان",
+          "second": "Zcash Devtool",
+          "third": "مشارکت"
+        }
+      }
+    },
+    "start": {
+      "title": "از اینجا شروع کنید",
+      "subtitle": "تازه با Zcash آشنا شده‌اید؟ با این چهار مورد شروع کنید."
+    },
+    "videos": {
+      "title": "تماشا",
+      "pinnedDescription": "مسیر کوتاهی برای تازه‌واردان، به‌ترتیب.",
+      "latestDescription": "تازه‌ترین‌ها از کانال ZecHub.",
+      "allVideos": "همه ویدیوها",
+      "previous": "ویدیوهای قبلی",
+      "next": "ویدیوهای بعدی",
+      "play": "پخش {title}",
+      "step": "گام {number}"
+    },
+    "explore": {
+      "title": "بیشتر برای کاوش",
+      "subtitle": "راهنماها، پژوهش، ابزارها و کامیونیتی گسترده‌تر Zcash."
+    },
+    "groups": {
+      "deeper": {
+        "title": "عمیق‌تر شوید",
+        "subtitle": "آموزش‌ها، راهنماها و پژوهش برای زمانی که جزئیات بیشتری می‌خواهید."
+      },
+      "tools": {
+        "title": "ابزارهایی برای آزمودن",
+        "subtitle": "ابزارهای تعاملی و فهرست‌هایی ساخته‌شده پیرامون Zcash."
+      },
+      "community": {
+        "title": "کامیونیتی و سازمان‌ها",
+        "subtitle": "افراد و گروه‌های پشت اکوسیستم Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "آموزش‌ها",
+        "description": "آموزش‌های ویدیویی گام‌به‌گام"
+      },
+      "guides": {
+        "title": "راهنماها",
+        "description": "نودها، ابزارها، DeFi و بیشتر"
+      },
+      "tech": {
+        "title": "فناوری Zcash",
+        "description": "zk-SNARKs و پروتکل"
+      },
+      "research": {
+        "title": "پژوهش",
+        "description": "مقاله‌ها و پژوهش‌های درباره Zcash"
+      },
+      "privacy": {
+        "title": "ابزارهای حریم خصوصی",
+        "description": "ابزارهایی برای کمک به محافظت از حریم خصوصی شما"
+      },
+      "glossary": {
+        "title": "واژه‌نامه و پرسش‌های متداول",
+        "description": "پاسخ‌ها و تعریف‌های سریع"
+      },
+      "visualizer": {
+        "description": "ابزارهای تعاملی برای درک فناوری حریم خصوصی Zcash."
+      },
+      "map": {
+        "description": "نقشه‌ای که کامیونیتی از پذیرندگان و دستگاه‌های خودپرداز پذیرنده Zcash نگهداری می‌کند."
+      },
+      "pay": {
+        "description": "فهرستی رایگان از مکان‌هایی که می‌توانید با ZEC پرداخت کنید."
+      },
+      "organizations": {
+        "title": "سازمان‌ها",
+        "description": "ZODL، Zcash Foundation، ZCG و دیگران"
+      },
+      "community": {
+        "title": "کامیونیتی",
+        "description": "پیوندها، وبلاگ‌ها، پروژه‌ها، سفیران"
+      },
+      "ambassadors": {
+        "title": "سفیران جهانی",
+        "description": "رهبران کامیونیتی که آموزش Zcash را در سراسر جهان ترویج می‌کنند."
+      },
+      "hackathon": {
+        "title": "بایگانی هکاتون",
+        "description": "پروژه‌های ارسال‌شده به هکاتون 2026 ZecHub."
+      }
+    },
+    "involved": {
+      "title": "مشارکت کنید",
+      "subtitle": "به DAO بپیوندید، با کامیونیتی آشنا شوید و به ساخت ویکی کمک کنید.",
+      "dao": {
+        "description": "نحوه تصمیم‌گیری ZecHub و پیشنهادهای باز برای رأی‌گیری.",
+        "meet": "با DAO آشنا شوید",
+        "proposals": "مشاهده پیشنهادها"
+      },
+      "community": {
+        "title": "به کامیونیتی بپیوندید",
+        "description": "با دیگر کاربران Zcash گفتگو کنید و فعالیت‌های ZecHub را دنبال کنید.",
+        "discord": "پیوستن به Discord"
+      },
+      "contribute": {
+        "title": "به ساخت ZecHub کمک کنید",
+        "description": "ZecHub توسط کامیونیتی هدایت می‌شود. محتوا اضافه کنید یا یک بونتی را انجام دهید.",
+        "action": "مشارکت",
+        "support": "از پروژه حمایت کنید"
+      }
+    },
+    "stats": {
+      "circulation": "عرضه در گردش",
+      "shielded": "عرضه محافظت‌شده",
+      "blocks": "ارتفاع بلوک",
+      "maxSupply": "{percentage}% از حداکثر 21M",
+      "maxSupplyAria": "{percentage}% از حداکثر عرضه 21 میلیون",
+      "shieldedShare": "{percentage}% از عرضه در گردش",
+      "latestBlock": "آخرین بلوک در شبکه اصلی Zcash"
     }
   }
 }

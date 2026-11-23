@@ -16,11 +16,11 @@ const PAGE = `# Shielded Labs
 
 | | |
 |---|---|
-| Based in | Switzerland, founded as a Swiss association |
-| Funding | Donations from Zcash holders and supporters |
-| Dev Fund | Operates independently of the Development Fund and of block rewards |
-| Relationship to others | Not part of the Electric Coin Company, the Zcash Foundation or Zcash Community Grants |
-| Focus | Protocol research and engineering, rather than consumer products |
+| **Based in** | Switzerland, founded as a Swiss association |
+| **Funding** | Donations from Zcash holders and supporters |
+| **Dev Fund** | Operates independently of the Development Fund and of block rewards |
+| **Relationship to others** | Not part of the Electric Coin Company, the Zcash Foundation or Zcash Community Grants |
+| **Focus** | Protocol research and engineering, rather than consumer products |
 
 ## Projects
 

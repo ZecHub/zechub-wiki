@@ -144,7 +144,35 @@
     "Hash Function": "Hash Function",
     "Zcash Keys": "Zcash Keys",
     "Metamask Snap": "Metamask Snap",
-    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",
@@ -494,7 +522,39 @@
     "activeCount": "已启用 {count} 个",
     "savedReview": "我们已保存你的评价！",
     "errorGettingLikes": "获取点赞时出错：",
-    "errorUpdatingRating": "更新评分时出错："
+    "errorUpdatingRating": "更新评分时出错：",
+    "betaTitle": "测试版钱包",
+    "betaNote": "测试版本。可能不够完善，请使用小额资金。",
+    "transparentOnlyTitle": "仅透明钱包",
+    "transparentOnlyNote": "这些钱包仅支持透明 ZEC，无法隐藏交易详情。",
+    "nymMixnetTitle": "Nym Mixnet 支持",
+    "nymMixnetNote": "支持通过 Nym mixnet 路由 Zcash 流量的钱包。",
+    "filterInfo": {
+      "categoryTitle": "关于 {category} 筛选",
+      "itemTitle": "关于 {value}",
+      "categoryFallback": "使用 **{category}** 可以将钱包列表缩小到符合此类别选项的钱包。选择某个选项会应用筛选，再次选择则会取消筛选。",
+      "itemFallback": "**{value}** 是 **{category}** 筛选选项之一。选择后，钱包列表只会显示包含该值的钱包；再次选择即可取消筛选。",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** 表示钱包以手机或平板电脑应用的形式运行。移动钱包通常通过 lightwallet 服务器同步，而不是存储整个区块链，因此适合日常支付。",
+          "Desktop": "**Desktop** 表示钱包以计算机应用程序的形式运行。根据钱包不同，它可能会同步完整节点，或连接到 lightwallet 服务器。"
+        },
+        "Pools": {
+          "Orchard": "**Orchard** 是 NU5 引入的 Zcash 屏蔽池。它支持采用 Orchard 池设计的屏蔽交易，并被提供最新屏蔽功能的钱包使用。",
+          "Transparent": "**Transparent** 表示钱包支持透明 ZEC，其交易在公共区块链上可见。透明地址以 `t` 开头，不会隐藏发送方、接收方或金额。"
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** 是一种 Zcash 地址格式，可以在一个地址中包含屏蔽和透明接收方。支持该格式的钱包可以选择适合支付的接收方，同时保持与不同地址类型的兼容性。"
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** 表示钱包会自动将透明 ZEC 转入屏蔽池。这会减少资金在公共区块链上可见的时间，但不能替代你自己的隐私做法。"
+        },
+        "Source": {
+          "Open Source": "**Open Source** 表示钱包的源代码公开可用，可供审查和复用。如果钱包卡片列出了代码仓库，就会链接到该仓库。",
+          "Closed Source": "**Closed Source** 表示钱包的源代码未公开发布以供审查。你仍然可以在使用前查看钱包网站和独立评测。"
+        }
+      }
+    }
   },
   "guides": {
     "title": "指南",
@@ -1266,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "导航",
-    "explore": "探索"
+    "explore": "探索",
+    "continueReading": {
+      "heading": "继续阅读",
+      "previous": "上一页",
+      "next": "下一页",
+      "nextStep": "下一步"
+    }
   },
   "meta": {
     "title": "ZecHub 维基",
@@ -1308,6 +1374,164 @@
     "tutorials": {
       "title": "教程",
       "sub": "观看并跟随操作"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "用于学习、使用和构建 Zcash 的社区 wiki。",
+      "openSource": "开源",
+      "communityDriven": "社区驱动",
+      "educationHub": "Zcash 教育中心"
+    },
+    "featured": {
+      "learn": {
+        "title": "学习",
+        "description": "了解 Zcash 是什么、其隐私如何运作，以及从何处开始。",
+        "links": {
+          "first": "新用户指南",
+          "second": "什么是 Zcash？",
+          "third": "网络升级"
+        }
+      },
+      "wallet": {
+        "title": "选择一个钱包",
+        "description": "钱包让您能够私密地接收和使用 ZEC。",
+        "links": {
+          "first": "所有钱包",
+          "second": "移动钱包",
+          "third": "硬件钱包"
+        }
+      },
+      "use": {
+        "title": "使用 ZEC",
+        "description": "获取 ZEC、发送 ZEC，并找到接受它的场所。",
+        "links": {
+          "first": "购买 ZEC",
+          "second": "交易",
+          "third": "可使用 ZEC 消费的场所"
+        }
+      },
+      "build": {
+        "title": "构建",
+        "description": "开发者资源、工具以及为 wiki 作出贡献的方式。",
+        "links": {
+          "first": "开发者",
+          "second": "Zcash Devtool",
+          "third": "贡献"
+        }
+      }
+    },
+    "start": {
+      "title": "从这里开始",
+      "subtitle": "初次接触 Zcash？从这 4 项开始。"
+    },
+    "videos": {
+      "title": "观看",
+      "pinnedDescription": "按顺序为新用户提供的简短路径。",
+      "latestDescription": "ZecHub 频道的最新内容。",
+      "allVideos": "所有视频",
+      "previous": "上一组视频",
+      "next": "下一组视频",
+      "play": "播放 {title}",
+      "step": "第 {number} 步"
+    },
+    "explore": {
+      "title": "更多探索内容",
+      "subtitle": "指南、研究、工具以及更广泛的 Zcash 社区。"
+    },
+    "groups": {
+      "deeper": {
+        "title": "深入了解",
+        "subtitle": "当您需要更多细节时，可查看教程、指南和研究。"
+      },
+      "tools": {
+        "title": "尝试使用的工具",
+        "subtitle": "围绕 Zcash 构建的交互式工具和目录。"
+      },
+      "community": {
+        "title": "社区与组织",
+        "subtitle": "Zcash 生态系统背后的个人和团体。"
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "教程",
+        "description": "分步视频教程"
+      },
+      "guides": {
+        "title": "指南",
+        "description": "节点、工具、DeFi 等更多内容"
+      },
+      "tech": {
+        "title": "Zcash 技术",
+        "description": "zk-SNARKs 和协议"
+      },
+      "research": {
+        "title": "研究",
+        "description": "关于 Zcash 的文章和研究"
+      },
+      "privacy": {
+        "title": "隐私工具",
+        "description": "帮助保护您隐私的工具"
+      },
+      "glossary": {
+        "title": "术语表与常见问题",
+        "description": "快速解答和定义"
+      },
+      "visualizer": {
+        "description": "用于了解 Zcash 隐私技术的交互式工具。"
+      },
+      "map": {
+        "description": "由社区维护的接受 Zcash 的商家和 ATM 地图。"
+      },
+      "pay": {
+        "description": "可使用 ZEC 支付地点的免费目录。"
+      },
+      "organizations": {
+        "title": "组织",
+        "description": "ZODL、Zcash Foundation、ZCG 等"
+      },
+      "community": {
+        "title": "社区",
+        "description": "链接、博客、项目、大使"
+      },
+      "ambassadors": {
+        "title": "全球大使",
+        "description": "在全球推广 Zcash 教育的社区领袖。"
+      },
+      "hackathon": {
+        "title": "Hackathon 存档",
+        "description": "提交至 2026 ZecHub Hackathon 的项目。"
+      }
+    },
+    "involved": {
+      "title": "参与其中",
+      "subtitle": "加入 DAO，结识社区成员并帮助建设 wiki。",
+      "dao": {
+        "description": "ZecHub 如何做出决策，以及正在开放投票的提案。",
+        "meet": "了解 DAO",
+        "proposals": "查看提案"
+      },
+      "community": {
+        "title": "加入社区",
+        "description": "与其他 Zcash 用户交流，并关注 ZecHub 的动态。",
+        "discord": "加入 Discord"
+      },
+      "contribute": {
+        "title": "帮助建设 ZecHub",
+        "description": "ZecHub 由社区驱动。添加内容或领取赏金任务。",
+        "action": "贡献",
+        "support": "支持该项目"
+      }
+    },
+    "stats": {
+      "circulation": "流通供应量",
+      "shielded": "屏蔽供应量",
+      "blocks": "区块高度",
+      "maxSupply": "占 2100 万最大供应量的 {percentage}%",
+      "maxSupplyAria": "2100 万最大供应量的 {percentage}%",
+      "shieldedShare": "流通供应量的 {percentage}%",
+      "latestBlock": "Zcash 主网上的最新区块"
     }
   }
 }

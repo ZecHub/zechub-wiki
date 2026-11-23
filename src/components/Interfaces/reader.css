@@ -1,0 +1,58 @@
+/* Reader interface: a calm look for long guides.
+   Serif type for headings and article text, a comfortable line length,
+   flatter shapes, no decorative glow and less motion.
+   Like every interface it never sets colours, so it works with every colour
+   theme in light and dark mode. Every rule is scoped to data-interface. */
+
+:root[data-interface="reader"] {
+  /* Flatter corners: --radius drives rounded-md, -lg and -xl. */
+  --radius: 0.375rem;
+  --radius-2xl: 0.625rem;
+  scroll-behavior: auto;
+}
+
+/* Headings everywhere: serif instead of the monospace heading font. */
+:root[data-interface="reader"] :is(h1, h2, h3, h4) {
+  font-family: var(--font-reader), "Iowan Old Style", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+/* Navigation, labels and other interface text that use the heading font:
+   plain sans, so the page chrome stays quiet next to the serif content. */
+:root[data-interface="reader"] [class*="font-[family-name:var(--font-heading)]"]:not(h1, h2, h3, h4) {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Article text: serif, a little larger, about 68 characters a line. */
+:root[data-interface="reader"] .mdx-article {
+  font-family: var(--font-reader), "Iowan Old Style", Georgia, serif;
+  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
+  line-height: 1.75;
+}
+
+:root[data-interface="reader"] .mdx-article :is(p, ul, ol, blockquote, h1, h2, h3, h4) {
+  max-width: 68ch;
+}
+
+/* Interface parts inside an article stay sans: breadcrumbs, buttons, tables,
+   cards and captions. Code keeps its monospace font. */
+:root[data-interface="reader"] .mdx-article :is(nav, table, button, input, select, figcaption, .not-prose) {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* No drifting glow behind the page: keep the plain base colour only. */
+:root[data-interface="reader"] [data-backdrop] > :not(:first-child) {
+  display: none;
+}
+
+/* Less motion: animations and transitions finish at once. Loading spinners
+   and skeletons keep moving, since they show that something is happening. */
+:root[data-interface="reader"] *:not(.animate-spin, .animate-pulse),
+:root[data-interface="reader"] *:not(.animate-spin, .animate-pulse)::before,
+:root[data-interface="reader"] *:not(.animate-spin, .animate-pulse)::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}

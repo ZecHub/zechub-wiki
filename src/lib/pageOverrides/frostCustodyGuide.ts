@@ -2,10 +2,32 @@
 // ZecHub repo; what changes is the order and shape: the "how a signing session works" steps and the
 // threshold table now come right after the comparison with transparent multisig, the five trade-offs
 // become a compact list, and the "see the technical page" blockquote moves into Related pages.
-// Removed: the ZecHub Hackathon 2026 FROST track claim and the ZecVault and Steward entries, which could not be confirmed (the wiki's Community Projects page calls ZecVault a goal-based savings wallet). frost.zfnd.org checked live Nov 2026 (the ZF FROST Book); Zkool's FROST multisig checked in its docs.
+// Removed: the ZecHub Hackathon 2026 FROST track claim and the ZecVault and Steward entries, which could not be confirmed (the wiki's Community Projects page calls ZecVault a goal-based savings wallet).
 // Fixes: the standard is no longer a draft (RFC 9591, June 2024), and the relative links
 // (FROST.md, Viewing_Keys.md, /guides/Ywallet_FROST_Demo) are replaced with the real page paths.
+// The TL;DR is dropped (the sections below say the same), "When should you use it" opens the page as the decision
+// table, and the projects section is a table (cards on phones) instead of mixed subheadings.
 // If the page no longer has this shape, the original markdown is returned untouched.
+// A three column comparison table is wider than a phone, so on small screens it becomes one card per row.
+function comparisonCards(section: string): string {
+  const lines = section.split("\n");
+  const start = lines.findIndex((l) => l.trim().startsWith("|"));
+  if (start < 0) return section;
+  let end = start;
+  while (end < lines.length && lines[end].trim().startsWith("|")) end++;
+  const rows = lines.slice(start, end).map((l) => l.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim()));
+  if (rows.length < 3 || rows[0].length !== 3) return section;
+  const [head, , ...body] = rows;
+  const card = (r: string[]) =>
+    `<div className="${CARD}">\n\n**${r[0]}**\n\n${head[1]}: ${r[1]}\n\n${head[2]}: ${r[2]}\n\n</div>`;
+  const table = lines.slice(start, end).join("\n");
+  const block = `<div className="hidden md:block">\n\n${table}\n\n</div>\n\n<div className="md:hidden my-4 space-y-3">\n\n${body.map(card).join("\n\n")}\n\n</div>`;
+  return [...lines.slice(0, start), block, ...lines.slice(end)].join("\n");
+}
+
+const CARD =
+  "rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2";
+
 export function rewriteFrostCustodyGuide(original: string): string {
   if (!/^# FROST & Threshold Custody/im.test(original)) return original;
 
@@ -55,18 +77,45 @@ export function rewriteFrostCustodyGuide(original: string): string {
       "FROST is a published standard ([RFC 9591](https://www.rfc-editor.org/rfc/rfc9591.html), June 2024), but wallet integrations are limited.",
     );
 
-  const building = s("Who is building with FROST on Zcash?")
-    .replace("/guides/Ywallet_FROST_Demo", "/guides/ywallet-frost-demo")
-    .replace(/### ZecHub Hackathon 2026[\s\S]*?(?=### Coinbase)/, "")
-    .replace(
-      /The Zcash Foundation has shipped a working FROST implementation and a demo site\. This is the reference implementation used for testing and development\./,
-      "The Zcash Foundation maintains the ZF FROST libraries, Rust implementations of RFC 9591 with documentation in the [ZF FROST Book](https://frost.zfnd.org).",
-    )
-    .replace(
-      "### Ywallet FROST Demo",
-      "### Zkool\n\nZkool, the maintained successor to Ywallet, supports multi-signature shielded accounts built on FROST, with distributed key generation and no centralized coordinator. See its [documentation](https://hhanh00.github.io/zkool2) and the [Zkool multisig guide](/guides/zkool-multisig).\n\n### Ywallet FROST Demo",
-    )
-    .replace("### Coinbase", "### Coinbase (outside Zcash)");
+  const CARD =
+    "rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm dark:border-slate-700 dark:bg-white/5 [&_p]:!my-0 [&_p+p]:!mt-2";
+  const PROJECTS: Array<[name: string, what: string, use: string]> = [
+    [
+      "[ZF FROST libraries](https://frost.zfnd.org)",
+      "Rust implementations of [RFC 9591](https://www.rfc-editor.org/rfc/rfc9591.html) maintained by the Zcash Foundation, documented in the ZF FROST Book",
+      "Reference implementation for building and testing",
+    ],
+    [
+      "[Zkool](https://hhanh00.github.io/zkool2)",
+      "Multi-signature shielded accounts built on FROST, with distributed key generation and no centralized coordinator. The maintained successor to Ywallet. See the [Zkool multisig guide](/guides/zkool-multisig)",
+      "Hands-on multisig with a wallet",
+    ],
+    [
+      "[Ywallet FROST demo](/guides/ywallet-frost-demo)",
+      "An early FROST integration. Ywallet is no longer maintained and will not be updated for Ironwood",
+      "Background reading only",
+    ],
+    [
+      "Coinbase (outside Zcash)",
+      "A production FROST implementation for their threshold signing systems, for Bitcoin, with the preprocessing stage removed and the aggregator role shared among all participants",
+      "Evidence that the model works at production scale",
+    ],
+  ];
+  const building = [
+    "<div className=\"hidden md:block\">",
+    "",
+    "| Project | What it is | Use it for |",
+    "| --- | --- | --- |",
+    ...PROJECTS.map(([n, w, u]) => `| **${n}** | ${w}. | ${u} |`),
+    "",
+    "</div>",
+    "",
+    "<div className=\"md:hidden my-4 space-y-3\">",
+    "",
+    PROJECTS.map(([n, w, u]) => `<div className="${CARD}">\n\n**${n}**\n\n${w}.\n\n*${u}.*\n\n</div>`).join("\n\n"),
+    "",
+    "</div>",
+  ].join("\n");
 
   const related = `- [FROST, technical deep dive](/zcash-tech/frost): the protocol itself (DKG, signing rounds, security proofs).
 - [Ywallet FROST Demo guide](/guides/ywallet-frost-demo): background only, Ywallet is no longer maintained.
@@ -85,21 +134,17 @@ ${edit}
 
 ${lead}
 
-## In short
+## When should you use threshold custody?
 
-${s("TL;DR")}
+${s("When should you use threshold custody?")}
 
 ## What is FROST in plain language?
 
 ${s("What is FROST in plain language?")}
 
-## When should you use threshold custody?
-
-${s("When should you use threshold custody?")}
-
 ## How it differs from transparent multisig
 
-${s("How does it differ from transparent multisig?")}
+${comparisonCards(s("How does it differ from transparent multisig?"))}
 
 ## How a signing session works
 

@@ -144,7 +144,35 @@
     "Hash Function": "Hash Function",
     "Zcash Keys": "Zcash Keys",
     "Metamask Snap": "Metamask Snap",
-    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -494,7 +522,39 @@
     "activeCount": "{count} etkin",
     "savedReview": "İncelemenizi kaydettik!",
     "errorGettingLikes": "Hata beğeniler alınırken:",
-    "errorUpdatingRating": "Hata puan güncellenirken:"
+    "errorUpdatingRating": "Hata puan güncellenirken:",
+    "betaTitle": "Beta cüzdanlar",
+    "betaNote": "Test sürümleri. Aksaklıklar olabilir, küçük miktarlar kullanın.",
+    "transparentOnlyTitle": "Yalnızca şeffaf cüzdanlar",
+    "transparentOnlyNote": "Bu cüzdanlar yalnızca şeffaf ZEC’i destekler; işlem ayrıntılarını gizlemez.",
+    "nymMixnetTitle": "Nym Mixnet desteği",
+    "nymMixnetNote": "Zcash trafiğini Nym mixnet üzerinden yönlendirmeyi destekleyen cüzdanlar.",
+    "filterInfo": {
+      "categoryTitle": "{category} filtresi hakkında",
+      "itemTitle": "{value} hakkında",
+      "categoryFallback": "**{category}** filtresini kullanarak cüzdan listesini bu kategorideki seçeneklerle eşleşenlerle sınırlayın. Bir seçenek seçildiğinde filtre uygulanır, tekrar seçildiğinde kaldırılır.",
+      "itemFallback": "**{value}**, **{category}** filtresinin seçeneklerinden biridir. Seçildiğinde cüzdan listesi bu değeri içerenlerle sınırlanır; filtreyi kaldırmak için tekrar seçin.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile**, cüzdanın telefon veya tablette uygulama olarak çalıştığı anlamına gelir. Mobil cüzdanlar genellikle tüm blockchain'i saklamak yerine bir lightwallet sunucusu üzerinden senkronize olur, bu da onları günlük ödemeler için pratik kılar.",
+          "Desktop": "**Desktop**, cüzdanın bilgisayarda uygulama olarak çalıştığı anlamına gelir. Cüzdana bağlı olarak tam bir düğümü senkronize edebilir veya bir lightwallet sunucusuna bağlanabilir."
+        },
+        "Pools": {
+          "Orchard": "**Orchard**, NU5 ile sunulan Zcash korumalı havuzudur. Orchard havuzu tasarımıyla korumalı işlemleri destekler ve en yeni korumalı özellikleri sunan cüzdanlar tarafından kullanılır.",
+          "Transparent": "**Transparent**, cüzdanın işlemleri herkese açık blockchain'de görülebilen şeffaf ZEC'i desteklediği anlamına gelir. Şeffaf adresler `t` ile başlar ve göndereni, alıcıyı veya tutarı gizlemez."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address**, korumalı ve şeffaf alıcıları tek bir adreste barındırabilen bir Zcash adres biçimidir. Bunu destekleyen cüzdanlar, farklı adres türleriyle uyumluluğu korurken ödemeye uygun alıcıyı kullanabilir."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding**, cüzdanın şeffaf ZEC'i otomatik olarak korumalı bir havuza taşıdığı anlamına gelir. Bu, fonların herkese açık blockchain'de görünür kaldığı süreyi azaltır, ancak kendi gizlilik uygulamalarınızın yerini almaz."
+        },
+        "Source": {
+          "Open Source": "**Open Source**, cüzdanın kaynak kodunun incelenmek ve yeniden kullanılmak üzere herkese açık olduğu anlamına gelir. Cüzdan kartı, listelenmişse depoya bağlantı verir.",
+          "Closed Source": "**Closed Source**, cüzdanın kaynak kodunun herkese açık inceleme için yayımlanmadığı anlamına gelir. Yine de kullanmadan önce cüzdanın web sitesini ve bağımsız incelemeleri kontrol edebilirsiniz."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Rehberler",
@@ -1266,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Gezinme",
-    "explore": "Keşfet"
+    "explore": "Keşfet",
+    "continueReading": {
+      "heading": "Okumaya devam edin",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "nextStep": "Sonraki adım"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",
@@ -1308,6 +1374,164 @@
     "tutorials": {
       "title": "Öğreticiler",
       "sub": "İzleyin ve takip edin"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Zcash'i öğrenmek, kullanmak ve onunla geliştirmek için topluluk vikisi.",
+      "openSource": "Açık kaynak",
+      "communityDriven": "Topluluk odaklı",
+      "educationHub": "Zcash eğitim merkezi"
+    },
+    "featured": {
+      "learn": {
+        "title": "Öğren",
+        "description": "Zcash'in ne olduğu, gizliliğinin nasıl çalıştığı ve nereden başlanacağı.",
+        "links": {
+          "first": "Yeni kullanıcı rehberi",
+          "second": "Zcash nedir?",
+          "third": "Ağ yükseltmeleri"
+        }
+      },
+      "wallet": {
+        "title": "Cüzdan seçin",
+        "description": "Bir cüzdan, ZEC almanızı ve gizli olarak harcamanızı sağlar.",
+        "links": {
+          "first": "Tüm cüzdanlar",
+          "second": "Mobil cüzdanlar",
+          "third": "Donanım cüzdanları"
+        }
+      },
+      "use": {
+        "title": "ZEC kullanın",
+        "description": "ZEC edinin, gönderin ve ZEC kabul eden yerleri bulun.",
+        "links": {
+          "first": "ZEC satın alma",
+          "second": "İşlemler",
+          "third": "ZEC harcanabilecek yerler"
+        }
+      },
+      "build": {
+        "title": "Geliştirin",
+        "description": "Geliştirici kaynakları, araçlar ve wikiye katkıda bulunma yolları.",
+        "links": {
+          "first": "Geliştiriciler",
+          "second": "Zcash Devtool",
+          "third": "Katkıda bulunun"
+        }
+      }
+    },
+    "start": {
+      "title": "Buradan Başlayın",
+      "subtitle": "Zcash'e yeni misiniz? Bu dört başlıkla başlayın."
+    },
+    "videos": {
+      "title": "İzle",
+      "pinnedDescription": "Yeni başlayanlar için sırayla kısa bir yol.",
+      "latestDescription": "ZecHub kanalından en yeniler.",
+      "allVideos": "Tüm videolar",
+      "previous": "Önceki videolar",
+      "next": "Sonraki videolar",
+      "play": "{title} oynat",
+      "step": "Adım {number}"
+    },
+    "explore": {
+      "title": "Keşfedilecek Daha Fazlası",
+      "subtitle": "Rehberler, araştırmalar, araçlar ve daha geniş Zcash topluluğu."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Daha Derine İn",
+        "subtitle": "Daha fazla ayrıntı istediğinizde başvurabileceğiniz eğitimler, rehberler ve araştırmalar."
+      },
+      "tools": {
+        "title": "Denenecek Araçlar",
+        "subtitle": "Zcash etrafında oluşturulmuş etkileşimli araçlar ve dizinler."
+      },
+      "community": {
+        "title": "Topluluk ve Kuruluşlar",
+        "subtitle": "Zcash ekosisteminin arkasındaki kişiler ve gruplar."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Eğitimler",
+        "description": "Adım adım video eğitimleri"
+      },
+      "guides": {
+        "title": "Rehberler",
+        "description": "Düğümler, araçlar, DeFi ve daha fazlası"
+      },
+      "tech": {
+        "title": "Zcash Teknolojisi",
+        "description": "zk-SNARKs ve protokol"
+      },
+      "research": {
+        "title": "Araştırma",
+        "description": "Zcash hakkında makaleler ve araştırmalar"
+      },
+      "privacy": {
+        "title": "Gizlilik Araçları",
+        "description": "Gizliliğinizi korumanıza yardımcı araçlar"
+      },
+      "glossary": {
+        "title": "Sözlük ve SSS",
+        "description": "Hızlı yanıtlar ve tanımlar"
+      },
+      "visualizer": {
+        "description": "Zcash gizlilik teknolojisini anlamaya yönelik etkileşimli araçlar."
+      },
+      "map": {
+        "description": "Zcash kabul eden işletmelerin ve ATM'lerin topluluk tarafından sürdürülen haritası."
+      },
+      "pay": {
+        "description": "ZEC ile nerede ödeme yapabileceğinize dair ücretsiz bir dizin."
+      },
+      "organizations": {
+        "title": "Kuruluşlar",
+        "description": "ZODL, Zcash Foundation, ZCG ve diğerleri"
+      },
+      "community": {
+        "title": "Topluluk",
+        "description": "Bağlantılar, bloglar, projeler, elçiler"
+      },
+      "ambassadors": {
+        "title": "Küresel Elçiler",
+        "description": "Dünya genelinde Zcash eğitimini teşvik eden topluluk liderleri."
+      },
+      "hackathon": {
+        "title": "Hackathon Arşivi",
+        "description": "2026 ZecHub Hackathon'una sunulan projeler."
+      }
+    },
+    "involved": {
+      "title": "Katkıda Bulunun",
+      "subtitle": "DAO'ya katılın, toplulukla tanışın ve wiki'nin oluşturulmasına yardım edin.",
+      "dao": {
+        "description": "ZecHub'ın nasıl karar verdiği ve oylamaya açık öneriler.",
+        "meet": "DAO ile tanışın",
+        "proposals": "Önerileri görüntüleyin"
+      },
+      "community": {
+        "title": "Topluluğa katılın",
+        "description": "Diğer Zcash kullanıcılarıyla konuşun ve ZecHub'ın neler yaptığını takip edin.",
+        "discord": "Discord'a katılın"
+      },
+      "contribute": {
+        "title": "ZecHub'ın oluşturulmasına yardım edin",
+        "description": "ZecHub, topluluk odaklıdır. İçerik ekleyin veya bir ödül görevi üstlenin.",
+        "action": "Katkıda bulunun",
+        "support": "Projeyi destekleyin"
+      }
+    },
+    "stats": {
+      "circulation": "Dolaşımdaki arz",
+      "shielded": "Korumalı arz",
+      "blocks": "Blok yüksekliği",
+      "maxSupply": "21M maksimumun %{percentage}'i",
+      "maxSupplyAria": "21 milyonluk maksimum arzın %{percentage}'i",
+      "shieldedShare": "Dolaşımdaki arzın %{percentage}'i",
+      "latestBlock": "Zcash ana ağındaki en son blok"
     }
   }
 }
