@@ -54,6 +54,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zcash.Space":                             "/content-images/zcash-space.webp",
   "ZecMap":                                  "/content-images/zecmap.webp",
   "ZECping":                                 "/content-images/zecping.webp",
+  "zecping":                                 "/content-images/zecping.webp", // protected-term spelling in Community_Projects.md
   "ZecStats":                                "/content-images/zecstats.webp",
   "ZecZcash":                                "/content-images/zeczcash.webp",
   "zecprice":                                "/content-images/zecprice.webp",
