@@ -68,6 +68,18 @@ export default function GovernanceSection() {
           </Link>
         ))}
       </div>
+
+      <div className="text-center">
+        <Link
+          href="/governance-howto"
+          className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:bg-brand/20 dark:text-brand-soft"
+        >
+          Read the governance guide
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
     </section>
   );
 }
