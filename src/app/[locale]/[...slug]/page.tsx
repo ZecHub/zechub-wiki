@@ -124,7 +124,7 @@ import { rewritePaymentProcessorsGuide, PROCESSORS_MARKER, type ProcessorCardDat
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
-import { isKnownContentPath } from "@/lib/contentPaths";
+import { isKnownContentPath, isServableContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -5954,8 +5954,9 @@ export default async function Page(props: {
   // If the English manifest is loaded and this path is not known content,
   // short-circuit to notFound() before any directory or file fetches.
   // This protects the shared GITHUB_TOKEN from scanner-induced rate-limit
-  // exhaustion: garbage paths 404 with zero API calls.
-  if (manifestPaths.length > 0 && !isKnownContentPath(slug, manifestPaths)) {
+  // exhaustion: garbage paths 404 with zero API calls. A page in a known
+  // folder still proceeds, since the manifest omits a few live files.
+  if (manifestPaths.length > 0 && !isServableContentPath(slug, manifestPaths)) {
     return notFound();
   }
 

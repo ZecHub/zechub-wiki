@@ -45,3 +45,21 @@ export function isKnownContentPath(
     return false;
   });
 }
+
+/**
+ * Could this URL be served without guessing? Like isKnownContentPath, but a
+ * page whose parent folder is known also passes.
+ *
+ * The manifest omits a few live files. Glossary_and_FAQs/Gallery/
+ * Infographics.md is one: it sits in a folder beside the manifest's
+ * Gallery.md, so its exact path is unknown while its parent is. Requiring the
+ * parent rather than the page keeps those pages rendering and still rejects
+ * made-up folders, which are what cost GitHub listings.
+ */
+export function isServableContentPath(
+  slug: readonly string[],
+  manifestKeys: readonly string[],
+): boolean {
+  if (isKnownContentPath(slug, manifestKeys)) return true;
+  return slug.length > 1 && isKnownContentPath(slug.slice(0, -1), manifestKeys);
+}
