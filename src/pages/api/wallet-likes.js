@@ -1,8 +1,41 @@
 // pages/api/wallet-likes.js
-import { Client } from 'pg';
+import { Pool } from 'pg';
 import crypto from 'crypto';
 
 const dailyLimit4WalletVotes = 5;
+
+// Upper bound on a wallet title. Real wallet names are short; anything longer is
+// junk and would otherwise be inserted verbatim into three tables.
+const MAX_TITLE_LENGTH = 64;
+
+// A title is accepted only when it is a short, single-line, control-char-free
+// string. This bounds the size of inserted rows and blocks log/term injection,
+// without coupling this endpoint to the (content-repo-sourced) wallet list.
+const isValidTitle = (title) =>
+  typeof title === 'string' &&
+  title.length >= 1 &&
+  title.length <= MAX_TITLE_LENGTH &&
+  // eslint-disable-next-line no-control-regex
+  !/[\u0000-\u001F\u007F]/.test(title);
+
+// A single shared connection pool, created lazily and reused across invocations
+// (including warm serverless instances). The previous code opened a brand-new
+// client per request with no pool, so a burst of requests could exhaust the
+// database's connection slots and take ratings down site-wide.
+let pool;
+function getPool() {
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.POSTGRES_URL,
+      max: 3,
+      idleTimeoutMillis: 10_000,
+      connectionTimeoutMillis: 5_000,
+    });
+    // Without a handler an unexpected idle-client error crashes the process.
+    pool.on('error', (err) => console.error('[wallet-likes] idle pool client error:', err));
+  }
+  return pool;
+}
 
 // Function to hash text using SHA-1
 const hashSHA1 = (text) => {
@@ -22,7 +55,7 @@ const titleLockKey = (title) =>
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { title, delta } = req.body;
-    if (typeof title !== 'string' || typeof delta !== 'number') {
+    if (!isValidTitle(title) || (delta !== 0 && delta !== 1 && delta !== -1)) {
       return res.status(400).json({ message: "Invalid request body" });
     }
 
@@ -56,26 +89,34 @@ export default async function handler(req, res) {
       return unavailable();
     }
 
-    const client = new Client({
-      connectionString: process.env.POSTGRES_URL,
-    });
+    const pool = getPool();
 
+    // Read path: no transaction needed, so use the pool directly.
+    if (delta === 0) {
+      try {
+        const resLikes = await pool.query('SELECT title, likes FROM wallet_likes');
+        const likesData = resLikes.rows.reduce((acc, row) => {
+          acc[row.title] = row.likes;
+          return acc;
+        }, {});
+        return res.status(200).json(likesData);
+      } catch (error) {
+        console.error('Error reading likes:', error);
+        return unavailable();
+      }
+    }
+
+    // Vote path: hold one pooled client for the serialized transaction.
+    let client;
     try {
-      await client.connect();
+      client = await pool.connect();
     } catch (error) {
       console.error('Error connecting to the ratings database:', error);
       return unavailable();
     }
 
     try {
-      if (delta === 0) {
-        const resLikes = await client.query('SELECT title, likes FROM wallet_likes');
-        const likesData = resLikes.rows.reduce((acc, row) => {
-          acc[row.title] = row.likes;
-          return acc;
-        }, {});
-        return res.status(200).json(likesData);
-      } else {
+      {
         const today = new Date().toISOString().split('T')[0];
 
         await client.query('BEGIN');
@@ -142,11 +183,15 @@ export default async function handler(req, res) {
         return res.status(200).json({ message: "Like updated successfully", likes: newLikes });
       }
     } catch (error) {
-      await client.query('ROLLBACK');
+      try {
+        await client.query('ROLLBACK');
+      } catch (rollbackError) {
+        console.error('Error rolling back:', rollbackError);
+      }
       console.error('Error updating likes:', error);
       return res.status(500).json({ message: "Internal server error" });
     } finally {
-      await client.end();
+      client.release();
     }
   } else {
     res.setHeader('Allow', ['POST']);
