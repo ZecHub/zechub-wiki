@@ -48,17 +48,57 @@ function notFound() {
 // their HTML pages rendered fine. The manifest already holds the exact path,
 // so consult it first and keep the slug resolver as the fallback for anything
 // the manifest doesn't name.
-async function manifestContentPath(slugArray: string[]): Promise<string | null> {
-  try {
-    const titles = await getMenuTitlesCached("en");
-    const want = ("/" + slugArray.join("/")).toLowerCase();
-    for (const key of Object.keys(titles ?? {})) {
-      if (keyToWikiPath(key).toLowerCase() === want) return `/site/${key}`;
-    }
-  } catch {
-    // Manifest unavailable — fall back to slug resolution, as before.
+function manifestContentPath(
+  slugArray: string[],
+  manifestKeys: readonly string[],
+): string | null {
+  const want = ("/" + slugArray.join("/")).toLowerCase();
+  for (const key of manifestKeys) {
+    if (keyToWikiPath(key).toLowerCase() === want) return `/site/${key}`;
   }
   return null;
+}
+
+// English menu-titles manifest keys, or [] when it cannot be loaded.
+async function englishManifestKeys(): Promise<string[]> {
+  try {
+    return Object.keys((await getMenuTitlesCached("en")) ?? {});
+  } catch {
+    return [];
+  }
+}
+
+/** Manifest keys are Title_Case_With_Underscores, URLs are kebab-case. */
+const norm = (segment: string): string =>
+  segment.toLowerCase().replace(/[-_ ]/g, "");
+
+// Can `folder` (a slug without its page segment) hold content, judging by the
+// manifest? Unknown FOLDERS are what cost quota: a raw-read miss falls back to
+// a contents-API listing of the page's folder, cached per folder name, so every
+// made-up folder is a fresh metered call. A folder is accepted when it is a
+// prefix of some manifest path, the page's own stem included: real pages the
+// manifest omits sit under such a prefix (Glossary_and_FAQs/Gallery/
+// Infographics.md lives beside the manifest's Glossary_and_FAQs/Gallery.md),
+// and the accepted set stays bounded by the manifest instead of by whatever a
+// client sends. The site root and a manifest outage (no keys) keep the old
+// behaviour.
+function isKnownFolder(
+  folder: readonly string[],
+  manifestKeys: readonly string[],
+): boolean {
+  if (folder.length === 0 || manifestKeys.length === 0) return true;
+  const target = folder.map(norm).join("/");
+  return manifestKeys.some((key) => {
+    const parts = key
+      .replace(/^site\//i, "")
+      .replace(/\.mdx?$/i, "")
+      .split("/")
+      .filter(Boolean);
+    return (
+      parts.length >= folder.length &&
+      parts.slice(0, folder.length).map(norm).join("/") === target
+    );
+  });
 }
 
 // Minimal YAML scalar: double-quoted, with backslashes and quotes escaped.
@@ -123,11 +163,21 @@ export async function GET(req: NextRequest) {
   }
   if (slugArray.length === 0) return notFound();
 
+  // A path under a folder the English manifest has never heard of is a miss:
+  // answer it before touching GitHub. Otherwise it fell through to
+  // resolveContentPath, whose raw-read miss triggers a contents-API listing of
+  // that nonexistent folder, metered against the shared GITHUB_TOKEN. Misses
+  // are cached per folder name, so a scanner varying the folder pays one
+  // listing per name, and normal traffic already uses ~3,560 of the 5,000/hour
+  // budget (see listDirAtRefCached).
+  const manifestKeys = await englishManifestKeys();
+  if (!isKnownFolder(slugArray.slice(0, -1), manifestKeys)) return notFound();
+
   // resolveContentPath (not getDynamicRoute) so research-series articles resolve
   // to the same one-folder-deeper, case-preserving path the HTML page renders
   // from — otherwise their `.md` URL 404s while the page serves 200.
   const contentPath =
-    (await manifestContentPath(slugArray)) ?? resolveContentPath(slugArray);
+    manifestContentPath(slugArray, manifestKeys) ?? resolveContentPath(slugArray);
   const markdown = await getLocalizedFileContentCached(contentPath, locale).catch(
     () => null,
   );
