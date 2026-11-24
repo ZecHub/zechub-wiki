@@ -7,6 +7,14 @@ import { attachImages } from "@/lib/communityProjectImages";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
+const ZIPREADER_PROJECT = {
+  title: "zipreader",
+  description:
+    "Unofficial explorer for Zcash Improvement Proposals with rendered ZIPs, open pull requests, implementations, and network upgrade timelines.",
+  url: "https://zipreader.org/",
+  category: "Developer, Testing, and Infrastructure",
+};
+
 type Dictionary = {
   pages?: {
     zcashCommunity?: {
@@ -57,7 +65,12 @@ async function getMarkdown() {
 
 export default async function Page() {
   const md = await getMarkdown();
-  const projects = attachImages(parseCommunityProjects(md));
+  const parsedProjects = parseCommunityProjects(md);
+  const projects = attachImages(
+    parsedProjects.some((project) => project.url === ZIPREADER_PROJECT.url)
+      ? parsedProjects
+      : [...parsedProjects, ZIPREADER_PROJECT],
+  );
 
   return <Client projects={projects} />;
 }
