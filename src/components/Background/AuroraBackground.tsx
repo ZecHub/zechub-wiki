@@ -37,6 +37,7 @@ export default function AuroraBackground() {
     <div
       ref={ref}
       aria-hidden="true"
+      data-backdrop="aurora"
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
       style={{ ["--scroll" as string]: "0" }}
     >

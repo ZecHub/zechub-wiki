@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 96" role="img" aria-labelledby="title desc">
+  <title id="title">zipreader</title>
+  <desc id="desc">zipreader logo</desc>
+  <text x="8" y="68" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace" font-size="44" font-weight="600" letter-spacing="-3">
+    <tspan fill="#64748b">zip</tspan><tspan fill="#86d5ff">reader</tspan>
+  </text>
+</svg>

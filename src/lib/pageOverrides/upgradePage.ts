@@ -29,20 +29,40 @@ export function rewriteUpgradePage(original: string, title: string, glance: stri
   const quizAt = rest.search(/^## Test your understanding\s*$/m);
   const resAt = rest.search(/^### Resources\s*$/m);
   const seeAt = rest.search(/^### See also\s*$/m);
-  const serAt = rest.search(/^---\s*\n+Series:/m);
-  if ([faqAt, quizAt, resAt, seeAt, serAt].some((i) => i < 0) || !(faqAt < quizAt && quizAt < resAt && resAt < seeAt && seeAt < serAt)) return original;
+  // The Series line may follow a rule directly, or a Related Pages table (newer source pages).
+  const serAt = rest.search(/^Series:/m);
+  // "See also" is optional (NU7 has only Resources and a Related Pages table).
+  const nextAfterRes = seeAt >= 0 ? seeAt : serAt;
+  if ([faqAt, quizAt, resAt, serAt].some((i) => i < 0) || !(faqAt < quizAt && quizAt < resAt && resAt < nextAfterRes && nextAfterRes <= serAt)) return original;
 
-  const body = rest.slice(0, faqAt).trim();
+  // The "TL;DR" block is dropped: the At a glance table and the sections below carry the same points.
+  const body = rest.slice(0, faqAt).replace(/^## TL;DR\s*\n[\s\S]*?(?=^## )/m, "").trim();
   const faqRaw = rest.slice(faqAt, quizAt).replace(/^## FAQ\s*/, "").trim();
   const quizRaw = rest.slice(quizAt, resAt).replace(/^## Test your understanding\s*/, "").trim();
   const toList = (s: string) => s.split("\n").map((l) => l.trim()).filter(Boolean).map((l) => `- ${l}`).join("\n");
-  const resources = toList(rest.slice(resAt, seeAt).replace(/^### Resources\s*/, ""));
-  const seeAlso = toList(rest.slice(seeAt, serAt).replace(/^### See also\s*/, ""));
+  // Resources end at the first rule or heading; anything after that is kept as written (see below).
+  const resSlice = rest.slice(resAt, nextAfterRes).replace(/^### Resources\s*/, "");
+  const resCut = resSlice.search(/^(---\s*$|## )/m);
+  const resources = toList(resCut < 0 ? resSlice : resSlice.slice(0, resCut));
+  const resTail = resCut < 0 ? "" : resSlice.slice(resCut);
+  // "See also" ends at the first horizontal rule; whatever sits between it and the Series line (a Related Pages
+  // table on most pages) is kept as written instead of being turned into list items. Without a "See also" section
+  // the same applies to what follows Resources.
+  const tail = rest.slice(nextAfterRes, serAt);
+  const ruleAt = tail.search(/^---\s*$/m);
+  const seeBlock = seeAt >= 0 ? (ruleAt < 0 ? tail : tail.slice(0, ruleAt)).replace(/^### See also\s*/, "") : "";
+  const seeAlso = toList(seeBlock);
+  const related =
+    seeAt >= 0
+      ? ruleAt < 0
+        ? ""
+        : tail.slice(ruleAt).replace(/^---\s*/, "").trim()
+      : resTail.replace(/^\s*---\s*/, "").trim();
   const series = rest.slice(serAt).match(/Series:[^\n]*/)?.[0] ?? "";
 
   const faq = faqRaw
     .split(/\n\s*\n/)
-    .map((p) => p.trim())
+    .map((p) => p.trim().replace(/^\*\*([^*]+\?)\*\*\s+/, "$1 "))
     .filter(Boolean)
     .map((p) => {
       const i = p.indexOf("? ");
@@ -51,9 +71,15 @@ export function rewriteUpgradePage(original: string, title: string, glance: stri
     });
   if (faq.some((f) => f === null) || faq.length < 3) return original;
 
-  const quizQ = quizRaw.split("<details>")[0].trim();
-  const quizA = quizRaw.match(/<\/summary>\s*([\s\S]*?)\s*<\/details>/)?.[1]?.trim();
-  if (!quizQ || !quizA) return original;
+  // The quiz is either one question with a <details> answer, or a numbered list followed by an "Answers:" line.
+  let quizQ = quizRaw.split("<details>")[0].trim();
+  let quizA = quizRaw.match(/<\/summary>\s*([\s\S]*?)\s*<\/details>/)?.[1]?.trim();
+  let quizBlock = quizQ && quizA ? `**${quizQ}**\n\n${quizA}` : "";
+  if (!quizBlock) {
+    const m = quizRaw.match(/^([\s\S]*?)\n\s*Answers?:\s*([\s\S]+)$/);
+    if (m && /^\s*1\. /m.test(m[1])) quizBlock = `${m[1].trim()}\n\n**Answers:** ${m[2].trim()}`;
+  }
+  if (!quizBlock) return original;
 
   return `${fm}
 ${edit}
@@ -82,19 +108,13 @@ ${faq.join("\n\n")}
 
 ## Check your understanding
 
-**${quizQ}**
-
-${quizA}
+${quizBlock}
 
 ## Resources
 
 ${resources}
 
-## See also
-
-${seeAlso}
-
----
+${seeAlso ? `## See also\n\n${seeAlso}\n\n` : ""}${related ? related + "\n\n" : ""}---
 
 ${series}
 `;

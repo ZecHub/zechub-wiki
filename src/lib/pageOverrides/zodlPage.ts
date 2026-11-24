@@ -23,12 +23,12 @@ const PAGE = `# ZODL
 
 | | |
 |---|---|
-| Type | A company, not a non-profit |
-| Founder | Josh Swihart, former CEO of ECC |
-| Team | The former ECC team |
-| Product | The Zodl wallet, formerly Zashi |
-| Funding | A seed round of more than USD 25 million, reported in March 2026 |
-| Other work | Core Zcash protocol software, including its part in [Ironwood](/zcash-tech/ironwood) |
+| **Type** | A company, not a non-profit |
+| **Founder** | Josh Swihart, former CEO of ECC |
+| **Team** | The former ECC team |
+| **Product** | The Zodl wallet, formerly Zashi |
+| **Funding** | A seed round of more than USD 25 million, reported in March 2026 |
+| **Other work** | Core Zcash protocol software, including its part in [Ironwood](/zcash-tech/ironwood) |
 
 ## Background
 

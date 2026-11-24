@@ -21,6 +21,14 @@ const NU7 = [
   "",
 ].join("\n");
 
+const ZIPREADER = [
+  "",
+  "## ZIP Reader",
+  "",
+  "[zipreader](https://zipreader.org/) is an unofficial explorer for Zcash Improvement Proposals. It provides rendered ZIPs, open pull requests, implementation references, and network upgrade timelines.",
+  "",
+].join("\n");
+
 export function rewriteZipListGuide(original: string): string {
   if (!/^# What is ZIP\s*$/im.test(original)) return original;
   let text = original;
@@ -29,5 +37,5 @@ export function rewriteZipListGuide(original: string): string {
   text = text.replace(/```markdown[\s\S]*?```/, "The current list of ZIP editors is published on [zips.z.cash](https://zips.z.cash).");
   text = text.replace("> Draft: [Deployment of the NU6.3 Network Upgrade]", "> Final: [Deployment of the NU6.3 Network Upgrade]");
   if (!text.includes("## NU6.3 (Ironwood) ZIPs")) return original;
-  return text.trimEnd() + "\n" + NU7;
+  return text.trimEnd() + "\n" + ZIPREADER + NU7;
 }

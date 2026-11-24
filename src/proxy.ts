@@ -1,8 +1,17 @@
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
+import { DESKTOP_INTERFACE_URL } from "./lib/interfaces";
 
 const intlMiddleware = createMiddleware({ ...routing, alternateLinks: false });
+
+const DESKTOP_ORIGIN = (() => {
+  try {
+    return new URL(DESKTOP_INTERFACE_URL).origin;
+  } catch {
+    return "https://zechub-wiki-workspace.vercel.app";
+  }
+})();
 
 function buildCsp(nonce: string, isEmbed: boolean): string {
   const isDev = process.env.NODE_ENV === "development";
@@ -30,7 +39,7 @@ function buildCsp(nonce: string, isEmbed: boolean): string {
     "img-src 'self' data: blob: https://i.ytimg.com https://i.postimg.cc https://*.basemaps.cartocdn.com https://img.shields.io https://upload.wikimedia.org https://ipfs.daodao.zone",
     "font-src 'self' data:",
     "connect-src 'self' https://raw.githubusercontent.com",
-    "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
+    `frame-src 'self' ${DESKTOP_ORIGIN} https://www.youtube-nocookie.com https://www.youtube.com`,
     "media-src 'self' https://free2z.cash https://cdn.jsdelivr.net",
     "worker-src 'self' blob:",
     "manifest-src 'self'",

@@ -144,7 +144,35 @@
     "Hash Function": "Hash Function",
     "Zcash Keys": "Zcash Keys",
     "Metamask Snap": "Metamask Snap",
-    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "Полное исследование",
@@ -494,7 +522,39 @@
     "activeCount": "активно: {count}",
     "savedReview": "Мы сохранили ваш отзыв!",
     "errorGettingLikes": "Ошибка при получении лайков:",
-    "errorUpdatingRating": "Ошибка при обновлении рейтинга:"
+    "errorUpdatingRating": "Ошибка при обновлении рейтинга:",
+    "betaTitle": "Бета-кошельки",
+    "betaNote": "Тестовые версии. Возможны недоработки; используйте небольшие суммы.",
+    "transparentOnlyTitle": "Только прозрачные кошельки",
+    "transparentOnlyNote": "Эти кошельки поддерживают только прозрачный ZEC, который не скрывает детали транзакций.",
+    "nymMixnetTitle": "Поддержка Nym Mixnet",
+    "nymMixnetNote": "Кошельки, поддерживающие маршрутизацию трафика Zcash через Nym Mixnet.",
+    "filterInfo": {
+      "categoryTitle": "О фильтре «{category}»",
+      "itemTitle": "О {value}",
+      "categoryFallback": "Используйте **{category}**, чтобы сузить список кошельков до тех, которые соответствуют вариантам этой категории. Выбор варианта применяет фильтр, повторный выбор снимает его.",
+      "itemFallback": "**{value}** — один из вариантов фильтра **{category}**. Его выбор сужает список кошельков до тех, которые содержат это значение; выберите его снова, чтобы снять фильтр.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** означает, что кошелёк работает как приложение на телефоне или планшете. Мобильные кошельки обычно синхронизируются через сервер lightwallet, а не хранят весь блокчейн, поэтому они удобны для повседневных платежей.",
+          "Desktop": "**Desktop** означает, что кошелёк работает как приложение на компьютере. В зависимости от кошелька он может синхронизировать полный узел или подключаться к серверу lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** — это защищённый пул Zcash, появившийся в NU5. Он поддерживает защищённые транзакции с дизайном пула Orchard и используется кошельками, которые предлагают новейшие функции защиты.",
+          "Transparent": "**Transparent** означает, что кошелёк поддерживает прозрачные ZEC, транзакции которых видны в публичном блокчейне. Прозрачные адреса начинаются с `t` и не скрывают отправителя, получателя или сумму."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** — это формат адреса Zcash, который может содержать защищённые и прозрачные получатели в одном адресе. Поддерживающие кошельки могут выбирать подходящий получатель для платежа, сохраняя совместимость с разными типами адресов."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** означает, что кошелёк автоматически перемещает прозрачные ZEC в защищённый пул. Это уменьшает время, в течение которого средства видны в публичном блокчейне, но не заменяет ваши собственные практики конфиденциальности."
+        },
+        "Source": {
+          "Open Source": "**Open Source** означает, что исходный код кошелька доступен публично для проверки и повторного использования. В карточке кошелька есть ссылка на репозиторий, если он указан.",
+          "Closed Source": "**Closed Source** означает, что исходный код кошелька не опубликован для публичной проверки. Вы всё равно можете изучить сайт кошелька и независимые обзоры перед использованием."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Руководства",
@@ -841,7 +901,9 @@
         "zalletBook": "Книга о Zallet",
         "zalletBookDesc": "Введение в Zallet, full-node кошелек Zcash, написанный на Rust и разработанный как замена кошельку zcashd.",
         "developerResources": "Ресурсы для разработчиков",
-        "developerResourcesDesc": "Ссылки на дополнительную техническую документацию по Zcash."
+        "developerResourcesDesc": "Ссылки на дополнительную техническую документацию по Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Кодирование адресов",
@@ -1017,6 +1079,7 @@
       "zcashDiscordCommunity": "Сообщество Zcash в Discord",
       "githubRepositories": "Репозитории GitHub",
       "zcashImprovementProposals": "Предложения по улучшению Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Нужна помощь?",
       "zcashCommunityForum": "Форум сообщества Zcash",
       "githubIssues": "Проблемы GitHub",
@@ -1266,7 +1329,13 @@
   },
   "sideMenu": {
     "navigation": "Навигация",
-    "explore": "Обзор"
+    "explore": "Обзор",
+    "continueReading": {
+      "heading": "Продолжить чтение",
+      "previous": "Назад",
+      "next": "Далее",
+      "nextStep": "Следующий шаг"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",
@@ -1308,6 +1377,164 @@
     "tutorials": {
       "title": "Учебные материалы",
       "sub": "Смотрите и повторяйте"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Вики сообщества для изучения, использования и разработки с Zcash.",
+      "openSource": "Открытый исходный код",
+      "communityDriven": "Развивается сообществом",
+      "educationHub": "Образовательный центр Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Изучить",
+        "description": "Что такое Zcash, как работает его конфиденциальность и с чего начать.",
+        "links": {
+          "first": "Руководство для новых пользователей",
+          "second": "Что такое Zcash?",
+          "third": "Обновления сети"
+        }
+      },
+      "wallet": {
+        "title": "Выберите кошелёк",
+        "description": "Кошелёк позволяет получать и тратить ZEC конфиденциально.",
+        "links": {
+          "first": "Все кошельки",
+          "second": "Мобильные кошельки",
+          "third": "Аппаратные кошельки"
+        }
+      },
+      "use": {
+        "title": "Использовать ZEC",
+        "description": "Получайте ZEC, отправляйте его и находите места, где его принимают.",
+        "links": {
+          "first": "Покупка ZEC",
+          "second": "Транзакции",
+          "third": "Где потратить ZEC"
+        }
+      },
+      "build": {
+        "title": "Разрабатывать",
+        "description": "Ресурсы для разработчиков, инструменты и способы внести вклад в вики.",
+        "links": {
+          "first": "Разработчики",
+          "second": "Zcash Devtool",
+          "third": "Внести вклад"
+        }
+      }
+    },
+    "start": {
+      "title": "Начните здесь",
+      "subtitle": "Впервые знакомитесь с Zcash? Начните с этих четырёх материалов."
+    },
+    "videos": {
+      "title": "Смотреть",
+      "pinnedDescription": "Краткий путь для новичков по порядку.",
+      "latestDescription": "Последние материалы с канала ZecHub.",
+      "allVideos": "Все видео",
+      "previous": "Предыдущие видео",
+      "next": "Следующие видео",
+      "play": "Воспроизвести {title}",
+      "step": "Шаг {number}"
+    },
+    "explore": {
+      "title": "Ещё больше для изучения",
+      "subtitle": "Руководства, исследования, инструменты и широкое сообщество Zcash."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Узнать больше",
+        "subtitle": "Учебные материалы, руководства и исследования для более глубокого изучения."
+      },
+      "tools": {
+        "title": "Инструменты для пробы",
+        "subtitle": "Интерактивные инструменты и каталоги, созданные вокруг Zcash."
+      },
+      "community": {
+        "title": "Сообщество и организации",
+        "subtitle": "Люди и группы, стоящие за экосистемой Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Учебные материалы",
+        "description": "Пошаговые видеоуроки"
+      },
+      "guides": {
+        "title": "Руководства",
+        "description": "Узлы, инструменты, DeFi и другое"
+      },
+      "tech": {
+        "title": "Технологии Zcash",
+        "description": "zk-SNARKs и протокол"
+      },
+      "research": {
+        "title": "Исследования",
+        "description": "Статьи и исследования о Zcash"
+      },
+      "privacy": {
+        "title": "Инструменты конфиденциальности",
+        "description": "Инструменты для защиты вашей конфиденциальности"
+      },
+      "glossary": {
+        "title": "Глоссарий и FAQ",
+        "description": "Краткие ответы и определения"
+      },
+      "visualizer": {
+        "description": "Интерактивные инструменты для понимания технологии конфиденциальности Zcash."
+      },
+      "map": {
+        "description": "Поддерживаемая сообществом карта продавцов и банкоматов, принимающих Zcash."
+      },
+      "pay": {
+        "description": "Бесплатный каталог мест, где можно расплатиться ZEC."
+      },
+      "organizations": {
+        "title": "Организации",
+        "description": "ZODL, Zcash Foundation, ZCG и другие"
+      },
+      "community": {
+        "title": "Сообщество",
+        "description": "Ссылки, блоги, проекты, амбассадоры"
+      },
+      "ambassadors": {
+        "title": "Глобальные амбассадоры",
+        "description": "Лидеры сообщества, продвигающие образование о Zcash по всему миру."
+      },
+      "hackathon": {
+        "title": "Архив хакатонов",
+        "description": "Проекты, представленные на хакатон ZecHub 2026 года."
+      }
+    },
+    "involved": {
+      "title": "Принять участие",
+      "subtitle": "Присоединяйтесь к DAO, знакомьтесь с сообществом и помогайте развивать вики.",
+      "dao": {
+        "description": "Как ZecHub принимает решения и какие предложения открыты для голосования.",
+        "meet": "Познакомиться с DAO",
+        "proposals": "Посмотреть предложения"
+      },
+      "community": {
+        "title": "Присоединиться к сообществу",
+        "description": "Общайтесь с другими пользователями Zcash и следите за деятельностью ZecHub.",
+        "discord": "Присоединиться к Discord"
+      },
+      "contribute": {
+        "title": "Помочь развивать ZecHub",
+        "description": "ZecHub развивается сообществом. Добавьте контент или возьмите награду.",
+        "action": "Внести вклад",
+        "support": "Поддержать проект"
+      }
+    },
+    "stats": {
+      "circulation": "Объём в обращении",
+      "shielded": "Экранированный объём",
+      "blocks": "Высота блока",
+      "maxSupply": "{percentage}% от максимума в 21 млн",
+      "maxSupplyAria": "{percentage}% от максимального объёма в 21 миллион",
+      "shieldedShare": "{percentage}% от объёма в обращении",
+      "latestBlock": "Последний блок в основной сети Zcash"
     }
   }
 }

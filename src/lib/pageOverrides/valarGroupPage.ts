@@ -19,10 +19,10 @@ const PAGE = `# Valar Group
 
 | | |
 |---|---|
-| Led by | Dev Ojha, co-founder of Osmosis |
-| Focus | Private coinholder governance, full-node software, wallet sync and network scaling |
-| Main projects | Shielded Vote, Zakura, Private Information Retrieval (PIR) |
-| Works with | Project Tachyon, ZODL, the Zcash Foundation and Shielded Labs |
+| **Led by** | Dev Ojha, co-founder of Osmosis |
+| **Focus** | Private coinholder governance, full-node software, wallet sync and network scaling |
+| **Main projects** | Shielded Vote, Zakura, Private Information Retrieval (PIR) |
+| **Works with** | Project Tachyon, ZODL, the Zcash Foundation and Shielded Labs |
 
 Valar Group acts as an independent contributor and does not own the protocol. Protocol changes still go through ZIPs, implementation, review and community signaling. Its role is to design, build and publish the systems that make those processes practical.
 

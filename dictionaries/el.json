@@ -144,7 +144,35 @@
     "Hash Function": "Hash Function",
     "Zcash Keys": "Zcash Keys",
     "Metamask Snap": "Metamask Snap",
-    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "Πλήρης εξερεύνηση",
@@ -494,7 +522,39 @@
     "activeCount": "{count} ενεργά",
     "savedReview": "Αποθηκεύσαμε την αξιολόγησή σου!",
     "errorGettingLikes": "Σφάλμα κατά την ανάκτηση των likes:",
-    "errorUpdatingRating": "Σφάλμα κατά την ενημέρωση της βαθμολογίας:"
+    "errorUpdatingRating": "Σφάλμα κατά την ενημέρωση της βαθμολογίας:",
+    "betaTitle": "Πορτοφόλια beta",
+    "betaNote": "Δοκιμαστικές εκδόσεις. Περιμένετε ατέλειες και χρησιμοποιήστε μικρά ποσά.",
+    "transparentOnlyTitle": "Πορτοφόλια μόνο διαφανών συναλλαγών",
+    "transparentOnlyNote": "Αυτά τα πορτοφόλια υποστηρίζουν μόνο διαφανές ZEC, το οποίο δεν κρύβει τα στοιχεία των συναλλαγών.",
+    "nymMixnetTitle": "Υποστήριξη Nym Mixnet",
+    "nymMixnetNote": "Πορτοφόλια που υποστηρίζουν δρομολόγηση της κίνησης Zcash μέσω του Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Σχετικά με το φίλτρο {category}",
+      "itemTitle": "Σχετικά με {value}",
+      "categoryFallback": "Χρησιμοποίησε **{category}** για να περιορίσεις τη λίστα πορτοφολιών σε όσα ταιριάζουν με τις επιλογές αυτής της κατηγορίας. Η επιλογή μιας επιλογής εφαρμόζει το φίλτρο και η εκ νέου επιλογή το αφαιρεί.",
+      "itemFallback": "Το **{value}** είναι μία από τις επιλογές του φίλτρου **{category}**. Η επιλογή του περιορίζει τη λίστα πορτοφολιών σε όσα περιλαμβάνουν αυτή την τιμή· επίλεξέ το ξανά για να αφαιρέσεις το φίλτρο.",
+      "items": {
+        "Devices": {
+          "Mobile": "Το **Mobile** σημαίνει ότι το πορτοφόλι λειτουργεί ως εφαρμογή σε τηλέφωνο ή tablet. Τα mobile πορτοφόλια συνήθως συγχρονίζονται μέσω διακομιστή lightwallet αντί να αποθηκεύουν ολόκληρο το blockchain, γι' αυτό είναι πρακτικά για καθημερινές πληρωμές.",
+          "Desktop": "Το **Desktop** σημαίνει ότι το πορτοφόλι λειτουργεί ως εφαρμογή σε υπολογιστή. Ανάλογα με το πορτοφόλι, μπορεί να συγχρονίζει πλήρη κόμβο ή να συνδέεται σε διακομιστή lightwallet."
+        },
+        "Pools": {
+          "Orchard": "Το **Orchard** είναι το θωρακισμένο pool του Zcash που εισήχθη στο NU5. Υποστηρίζει θωρακισμένες συναλλαγές με τον σχεδιασμό του pool Orchard και χρησιμοποιείται από πορτοφόλια που προσφέρουν τις πιο πρόσφατες θωρακισμένες λειτουργίες.",
+          "Transparent": "Το **Transparent** σημαίνει ότι το πορτοφόλι υποστηρίζει διαφανή ZEC, των οποίων οι συναλλαγές είναι ορατές στο δημόσιο blockchain. Οι διαφανείς διευθύνσεις ξεκινούν με `t` και δεν κρύβουν αποστολέα, παραλήπτη ή ποσό."
+        },
+        "Wallet Support": {
+          "Unified Address": "Το **Unified Address** είναι μορφή διεύθυνσης Zcash που μπορεί να περιέχει θωρακισμένους και διαφανείς παραλήπτες σε μία διεύθυνση. Τα πορτοφόλια που το υποστηρίζουν μπορούν να χρησιμοποιούν τον κατάλληλο παραλήπτη για την πληρωμή διατηρώντας συμβατότητα με διαφορετικούς τύπους διεύθυνσης."
+        },
+        "Features": {
+          "Automatic Shielding": "Το **Automatic Shielding** σημαίνει ότι το πορτοφόλι μεταφέρει αυτόματα διαφανή ZEC σε θωρακισμένο pool. Αυτό μειώνει τον χρόνο που τα κεφάλαια παραμένουν ορατά στο δημόσιο blockchain, αλλά δεν αντικαθιστά τις δικές σας πρακτικές ιδιωτικότητας."
+        },
+        "Source": {
+          "Open Source": "Το **Open Source** σημαίνει ότι ο πηγαίος κώδικας του πορτοφολιού είναι διαθέσιμος δημόσια για έλεγχο και επαναχρησιμοποίηση. Η κάρτα του πορτοφολιού συνδέεται με το αποθετήριο όταν αναφέρεται κάποιο.",
+          "Closed Source": "Το **Closed Source** σημαίνει ότι ο πηγαίος κώδικας του πορτοφολιού δεν δημοσιεύεται για δημόσιο έλεγχο. Μπορείτε ωστόσο να ελέγξετε τον ιστότοπο του πορτοφολιού και ανεξάρτητες αξιολογήσεις πριν το χρησιμοποιήσετε."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Οδηγοί",
@@ -841,7 +901,9 @@
         "zalletBook": "Το βιβλίο του Zallet",
         "zalletBookDesc": "Εισαγωγή στο Zallet, ένα πορτοφόλι Zcash πλήρους κόμβου γραμμένο σε Rust και σχεδιασμένο ως αντικατάσταση του πορτοφολιού zcashd.",
         "developerResources": "Πόροι για προγραμματιστές",
-        "developerResourcesDesc": "Σύνδεσμοι προς περαιτέρω τεχνική τεκμηρίωση του Zcash."
+        "developerResourcesDesc": "Σύνδεσμοι προς περαιτέρω τεχνική τεκμηρίωση του Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Κωδικοποίηση διευθύνσεων",
@@ -1017,6 +1079,7 @@
       "zcashDiscordCommunity": "Κοινότητα Zcash στο Discord",
       "githubRepositories": "Αποθετήρια GitHub",
       "zcashImprovementProposals": "Προτάσεις βελτίωσης Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Χρειάζεσαι βοήθεια;",
       "zcashCommunityForum": "Φόρουμ κοινότητας Zcash",
       "githubIssues": "Ζητήματα GitHub",
@@ -1266,7 +1329,13 @@
   },
   "sideMenu": {
     "navigation": "Πλοήγηση",
-    "explore": "Εξερεύνηση"
+    "explore": "Εξερεύνηση",
+    "continueReading": {
+      "heading": "Συνεχίστε την ανάγνωση",
+      "previous": "Προηγούμενο",
+      "next": "Επόμενο",
+      "nextStep": "Επόμενο βήμα"
+    }
   },
   "meta": {
     "title": "Wiki ZecHub",
@@ -1308,6 +1377,164 @@
     "tutorials": {
       "title": "Tutorials",
       "sub": "Δες και ακολούθησε"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Το wiki της κοινότητας για να μάθεις, να χρησιμοποιείς και να δημιουργείς με το Zcash.",
+      "openSource": "Ανοιχτού κώδικα",
+      "communityDriven": "Με γνώμονα την κοινότητα",
+      "educationHub": "Κέντρο εκπαίδευσης για το Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Μάθε",
+        "description": "Τι είναι το Zcash, πώς λειτουργεί η ιδιωτικότητά του και από πού να ξεκινήσεις.",
+        "links": {
+          "first": "Οδηγός νέου χρήστη",
+          "second": "Τι είναι το Zcash;",
+          "third": "Αναβαθμίσεις δικτύου"
+        }
+      },
+      "wallet": {
+        "title": "Επίλεξε ένα πορτοφόλι",
+        "description": "Ένα πορτοφόλι σού επιτρέπει να λαμβάνεις και να ξοδεύεις ZEC ιδιωτικά.",
+        "links": {
+          "first": "Όλα τα πορτοφόλια",
+          "second": "Πορτοφόλια για κινητά",
+          "third": "Πορτοφόλια υλικού"
+        }
+      },
+      "use": {
+        "title": "Χρησιμοποίησε ZEC",
+        "description": "Απόκτησε ZEC, στείλε το και βρες μέρη που το δέχονται.",
+        "links": {
+          "first": "Αγορά ZEC",
+          "second": "Συναλλαγές",
+          "third": "Μέρη για να ξοδέψεις ZEC"
+        }
+      },
+      "build": {
+        "title": "Δημιούργησε",
+        "description": "Πόροι για προγραμματιστές, εργαλεία και τρόποι συνεισφοράς στο wiki.",
+        "links": {
+          "first": "Προγραμματιστές",
+          "second": "Zcash Devtool",
+          "third": "Συνεισφορά"
+        }
+      }
+    },
+    "start": {
+      "title": "Ξεκίνα εδώ",
+      "subtitle": "Είσαι νέος στο Zcash; Ξεκίνα με αυτά τα τέσσερα."
+    },
+    "videos": {
+      "title": "Παρακολούθησε",
+      "pinnedDescription": "Μια σύντομη διαδρομή για νέους χρήστες, με τη σωστή σειρά.",
+      "latestDescription": "Τα πιο πρόσφατα από το κανάλι του ZecHub.",
+      "allVideos": "Όλα τα βίντεο",
+      "previous": "Προηγούμενα βίντεο",
+      "next": "Επόμενα βίντεο",
+      "play": "Αναπαραγωγή {title}",
+      "step": "Βήμα {number}"
+    },
+    "explore": {
+      "title": "Περισσότερα για εξερεύνηση",
+      "subtitle": "Οδηγοί, έρευνα, εργαλεία και η ευρύτερη κοινότητα του Zcash."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Εμβάθυνε",
+        "subtitle": "Tutorials, οδηγοί και έρευνα για όταν θέλεις περισσότερες λεπτομέρειες."
+      },
+      "tools": {
+        "title": "Εργαλεία για δοκιμή",
+        "subtitle": "Διαδραστικά εργαλεία και κατάλογοι που έχουν δημιουργηθεί γύρω από το Zcash."
+      },
+      "community": {
+        "title": "Κοινότητα και οργανισμοί",
+        "subtitle": "Οι άνθρωποι και οι ομάδες πίσω από το οικοσύστημα του Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutorials",
+        "description": "Βίντεο με οδηγίες βήμα προς βήμα"
+      },
+      "guides": {
+        "title": "Οδηγοί",
+        "description": "Κόμβοι, εργαλεία, DeFi και άλλα"
+      },
+      "tech": {
+        "title": "Τεχνολογία Zcash",
+        "description": "zk-SNARKs και το πρωτόκολλο"
+      },
+      "research": {
+        "title": "Έρευνα",
+        "description": "Άρθρα και έρευνα για το Zcash"
+      },
+      "privacy": {
+        "title": "Εργαλεία ιδιωτικότητας",
+        "description": "Εργαλεία για να βοηθήσουν στην προστασία της ιδιωτικότητάς σου"
+      },
+      "glossary": {
+        "title": "Γλωσσάρι και συχνές ερωτήσεις",
+        "description": "Γρήγορες απαντήσεις και ορισμοί"
+      },
+      "visualizer": {
+        "description": "Διαδραστικά εργαλεία για να κατανοήσεις την τεχνολογία ιδιωτικότητας του Zcash."
+      },
+      "map": {
+        "description": "Χάρτης που συντηρείται από την κοινότητα με εμπόρους και ΑΤΜ που δέχονται Zcash."
+      },
+      "pay": {
+        "description": "Ένας δωρεάν κατάλογος με μέρη όπου μπορείς να πληρώσεις με ZEC."
+      },
+      "organizations": {
+        "title": "Οργανισμοί",
+        "description": "ZODL, Zcash Foundation, ZCG και άλλοι"
+      },
+      "community": {
+        "title": "Κοινότητα",
+        "description": "Σύνδεσμοι, ιστολόγια, έργα, πρεσβευτές"
+      },
+      "ambassadors": {
+        "title": "Παγκόσμιοι πρεσβευτές",
+        "description": "Ηγέτες της κοινότητας που προωθούν την εκπαίδευση για το Zcash παγκοσμίως."
+      },
+      "hackathon": {
+        "title": "Αρχείο Hackathon",
+        "description": "Έργα που υποβλήθηκαν στο Hackathon του ZecHub το 2026."
+      }
+    },
+    "involved": {
+      "title": "Συμμετοχή",
+      "subtitle": "Μπες στο DAO, γνώρισε την κοινότητα και βοήθησε να χτιστεί το wiki.",
+      "dao": {
+        "description": "Πώς λαμβάνει αποφάσεις το ZecHub και οι προτάσεις που είναι ανοιχτές για ψηφοφορία.",
+        "meet": "Γνώρισε το DAO",
+        "proposals": "Δες προτάσεις"
+      },
+      "community": {
+        "title": "Έλα στην κοινότητα",
+        "description": "Μίλησε με άλλους χρήστες του Zcash και παρακολούθησε τι κάνει το ZecHub.",
+        "discord": "Μπες στο Discord"
+      },
+      "contribute": {
+        "title": "Βοήθησε να χτιστεί το ZecHub",
+        "description": "Το ZecHub καθοδηγείται από την κοινότητα. Πρόσθεσε περιεχόμενο ή ανέλαβε μια αμοιβή.",
+        "action": "Συνεισφορά",
+        "support": "Στήριξε το έργο"
+      }
+    },
+    "stats": {
+      "circulation": "Κυκλοφορούσα προσφορά",
+      "shielded": "Θωρακισμένη προσφορά",
+      "blocks": "Ύψος μπλοκ",
+      "maxSupply": "{percentage}% του μέγιστου των 21M",
+      "maxSupplyAria": "{percentage}% της μέγιστης προσφοράς των 21 εκατομμυρίων",
+      "shieldedShare": "{percentage}% της κυκλοφορούσας προσφοράς",
+      "latestBlock": "Τελευταίο μπλοκ στο mainnet του Zcash"
     }
   }
 }

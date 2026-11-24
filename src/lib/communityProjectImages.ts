@@ -78,6 +78,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zebra Coverage-Guided Fuzzing Infrastructure": "/content-images/zebra.webp",
   "FROST":                                   "/content-images/frost.webp",
   "MonteZcret Benchmark":                    "/content-images/montezcret-benchmark.webp",
+  "zipreader":                               "/content-images/zipreader.svg",
   "AppliedZcash":                            "/content-images/appliedzcash.webp",
 
   // ── Wider Applications Utilizing Zcash ───────────────────────────

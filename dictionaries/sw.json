@@ -144,7 +144,35 @@
     "Hash Function": "Hash Function",
     "Zcash Keys": "Zcash Keys",
     "Metamask Snap": "Metamask Snap",
-    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)"
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "Kuchunguza Kamili",
@@ -494,7 +522,39 @@
     "activeCount": "{count} vinafanya kazi",
     "savedReview": "Tumehifadhi maoni yako!",
     "errorGettingLikes": "Kosa kupata anapenda:",
-    "errorUpdatingRating": "Kosa updating rating:"
+    "errorUpdatingRating": "Kosa updating rating:",
+    "betaTitle": "Pochi za beta",
+    "betaNote": "Matoleo ya majaribio. Tarajia kasoro na tumia kiasi kidogo.",
+    "transparentOnlyTitle": "Pochi za uwazi pekee",
+    "transparentOnlyNote": "Pochi hizi zinaunga mkono ZEC ya uwazi pekee, ambayo haifichi maelezo ya miamala.",
+    "nymMixnetTitle": "Usaidizi wa Nym Mixnet",
+    "nymMixnetNote": "Pochi zinazounga mkono uelekezaji wa trafiki ya Zcash kupitia Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "Kuhusu kichujio cha {category}",
+      "itemTitle": "Kuhusu {value}",
+      "categoryFallback": "Tumia **{category}** kupunguza orodha ya pochi hadi zile zinazolingana na chaguo katika kundi hili. Kuchagua chaguo huweka kichujio, na kuchagua tena hukiondoa.",
+      "itemFallback": "**{value}** ni mojawapo ya chaguo za kichujio cha **{category}**. Kukichagua hupunguza orodha ya pochi hadi zile zinazojumuisha thamani hii; chagua tena ili kuondoa kichujio.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** inamaanisha kuwa wallet inaendeshwa kama programu kwenye simu au kompyuta kibao. Wallets za simu kwa kawaida husawazisha kupitia seva ya lightwallet badala ya kuhifadhi blockchain yote, hivyo ni rahisi kwa malipo ya kila siku.",
+          "Desktop": "**Desktop** inamaanisha kuwa wallet inaendeshwa kama programu kwenye kompyuta. Kulingana na wallet, inaweza kusawazisha node kamili au kuunganisha kwenye seva ya lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** ni dimbwi la Zcash lililolindwa lililoanzishwa katika NU5. Linasaidia miamala iliyolindwa kwa muundo wa dimbwi la Orchard na hutumiwa na wallets zinazotoa vipengele vipya vya ulinzi.",
+          "Transparent": "**Transparent** inamaanisha kuwa wallet inasaidia ZEC ya uwazi, ambayo miamala yake inaonekana kwenye blockchain ya umma. Anwani za uwazi huanza na `t` na hazifichi mtumaji, mpokeaji, au kiasi."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** ni muundo wa anwani wa Zcash unaoweza kuwa na vipokeaji vilivyolindwa na vya uwazi katika anwani moja. Wallets zinazouauni zinaweza kutumia kipokeaji kinachofaa malipo huku zikibaki zinazoendana na aina mbalimbali za anwani."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** inamaanisha kuwa wallet huhamisha ZEC ya uwazi kwenda kwenye dimbwi lililolindwa kiotomatiki. Hii hupunguza muda ambao fedha zinaonekana kwenye blockchain ya umma, lakini haichukui nafasi ya mbinu zako mwenyewe za faragha."
+        },
+        "Source": {
+          "Open Source": "**Open Source** inamaanisha kuwa msimbo wa chanzo wa wallet unapatikana hadharani kwa ukaguzi na matumizi tena. Kadi ya wallet huunganisha kwenye hazina ya msimbo ikiwa imeorodheshwa.",
+          "Closed Source": "**Closed Source** inamaanisha kuwa msimbo wa chanzo wa wallet haujachapishwa kwa ukaguzi wa umma. Bado unaweza kuangalia tovuti ya wallet na hakiki huru kabla ya kuitumia."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Miongozo",
@@ -841,7 +901,9 @@
         "zalletBook": "Kitabu cha Zallet",
         "zalletBookDesc": "Utangulizi wa Zallet, full-node Zcash mkoba imeandikwa katika kutu na iliyoundwa kama badala ya mkoba zcashd.",
         "developerResources": "Watengenezaji Resources",
-        "developerResourcesDesc": "Links kwa Zcash zaidi Technical Documentation."
+        "developerResourcesDesc": "Links kwa Zcash zaidi Technical Documentation.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Kuingiza Anwani",
@@ -1017,6 +1079,7 @@
       "zcashDiscordCommunity": "Jumuiya ya Zcash Discord",
       "githubRepositories": "GitHub Repositories",
       "zcashImprovementProposals": "Mapendekezo ya Uboreshaji wa Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Unahitaji Msaada?",
       "zcashCommunityForum": "Zcash Jamii Forum",
       "githubIssues": "GitHub Matatizo",
@@ -1266,7 +1329,13 @@
   },
   "sideMenu": {
     "navigation": "Urambazaji",
-    "explore": "Kuchunguza"
+    "explore": "Kuchunguza",
+    "continueReading": {
+      "heading": "Endelea kusoma",
+      "previous": "Iliyotangulia",
+      "next": "Inayofuata",
+      "nextStep": "Hatua inayofuata"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",
@@ -1308,6 +1377,164 @@
     "tutorials": {
       "title": "Mafunzo",
       "sub": "Tazama na ufuate"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Wiki ya jumuiya ya kujifunza, kutumia na kujenga kwa kutumia Zcash.",
+      "openSource": "Chanzo huria",
+      "communityDriven": "Inaendeshwa na jumuiya",
+      "educationHub": "Kitovu cha elimu kuhusu Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Jifunze",
+        "description": "Zcash ni nini, jinsi faragha yake inavyofanya kazi na pa kuanzia.",
+        "links": {
+          "first": "Mwongozo wa mtumiaji mpya",
+          "second": "Zcash ni nini?",
+          "third": "Maboresho ya mtandao"
+        }
+      },
+      "wallet": {
+        "title": "Chagua pochi",
+        "description": "Pochi hukuwezesha kupokea na kutumia ZEC kwa faragha.",
+        "links": {
+          "first": "Pochi zote",
+          "second": "Pochi za simu",
+          "third": "Pochi za vifaa"
+        }
+      },
+      "use": {
+        "title": "Tumia ZEC",
+        "description": "Pata ZEC, itume na utafute maeneo yanayoikubali.",
+        "links": {
+          "first": "Kununua ZEC",
+          "second": "Shughuli",
+          "third": "Maeneo ya kutumia ZEC"
+        }
+      },
+      "build": {
+        "title": "Jenga",
+        "description": "Rasilimali na zana za watengenezaji, pamoja na njia za kuchangia wiki.",
+        "links": {
+          "first": "Watengenezaji",
+          "second": "Zcash Devtool",
+          "third": "Kuchangia"
+        }
+      }
+    },
+    "start": {
+      "title": "Anza Hapa",
+      "subtitle": "Je, wewe ni mgeni kwenye Zcash? Anza na hivi vinne."
+    },
+    "videos": {
+      "title": "Tazama",
+      "pinnedDescription": "Mfululizo mfupi uliopangwa kwa wanaoanza.",
+      "latestDescription": "Video za hivi karibuni kutoka kwenye chaneli ya ZecHub.",
+      "allVideos": "Video zote",
+      "previous": "Video zilizotangulia",
+      "next": "Video zinazofuata",
+      "play": "Cheza {title}",
+      "step": "Hatua ya {number}"
+    },
+    "explore": {
+      "title": "Chunguza Zaidi",
+      "subtitle": "Miongozo, utafiti, zana na jumuiya pana ya Zcash."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Jifunze kwa Kina",
+        "subtitle": "Mafunzo, miongozo na utafiti kwa wanaotaka maelezo zaidi."
+      },
+      "tools": {
+        "title": "Zana za Kujaribu",
+        "subtitle": "Zana shirikishi na orodha zinazohusu Zcash."
+      },
+      "community": {
+        "title": "Jumuiya na Mashirika",
+        "subtitle": "Watu na vikundi vinavyojenga mfumo wa ikolojia wa Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Mafunzo",
+        "description": "Mafunzo ya video ya hatua kwa hatua"
+      },
+      "guides": {
+        "title": "Miongozo",
+        "description": "Nodi, zana, DeFi na mengineyo"
+      },
+      "tech": {
+        "title": "Teknolojia ya Zcash",
+        "description": "zk-SNARKs na itifaki"
+      },
+      "research": {
+        "title": "Utafiti",
+        "description": "Makala na utafiti kuhusu Zcash"
+      },
+      "privacy": {
+        "title": "Vifaa vya Faragha",
+        "description": "Zana za kukusaidia kulinda faragha yako"
+      },
+      "glossary": {
+        "title": "Faharasa na Maswali Yanayoulizwa Mara kwa Mara",
+        "description": "Majibu na ufafanuzi wa haraka"
+      },
+      "visualizer": {
+        "description": "Zana shirikishi za kuelewa teknolojia ya faragha ya Zcash."
+      },
+      "map": {
+        "description": "Ramani inayodumishwa na jumuiya ya wafanyabiashara na ATM zinazokubali Zcash."
+      },
+      "pay": {
+        "description": "Orodha isiyolipishwa ya maeneo unayoweza kulipa kwa ZEC."
+      },
+      "organizations": {
+        "title": "Mashirika",
+        "description": "ZODL, Zcash Foundation, ZCG na wengine"
+      },
+      "community": {
+        "title": "Jumuiya",
+        "description": "Viungo, blogu, miradi na mabalozi"
+      },
+      "ambassadors": {
+        "title": "Mabalozi wa Kimataifa",
+        "description": "Viongozi wa jumuiya wanaoeneza elimu kuhusu Zcash duniani kote."
+      },
+      "hackathon": {
+        "title": "Kumbukumbu ya Hackathon",
+        "description": "Miradi iliyowasilishwa kwenye ZecHub Hackathon ya 2026."
+      }
+    },
+    "involved": {
+      "title": "Shiriki",
+      "subtitle": "Jiunge na DAO, kutana na jumuiya na usaidie kujenga wiki.",
+      "dao": {
+        "description": "Jinsi ZecHub inavyofanya maamuzi na mapendekezo yanayopigiwa kura kwa sasa.",
+        "meet": "Ifahamu DAO",
+        "proposals": "Tazama mapendekezo"
+      },
+      "community": {
+        "title": "Jiunge na jumuiya",
+        "description": "Zungumza na watumiaji wengine wa Zcash na fuatilia shughuli za ZecHub.",
+        "discord": "Jiunge na Discord"
+      },
+      "contribute": {
+        "title": "Saidia kujenga ZecHub",
+        "description": "ZecHub inaendeshwa na jumuiya. Ongeza maudhui au chukua kazi yenye zawadi.",
+        "action": "Kuchangia",
+        "support": "Saidia mradi"
+      }
+    },
+    "stats": {
+      "circulation": "Ugavi ulioko kwenye mzunguko",
+      "shielded": "Ugavi uliofichwa",
+      "blocks": "Kimo cha bloku",
+      "maxSupply": "{percentage}% ya kiwango cha juu cha 21M",
+      "maxSupplyAria": "{percentage}% ya ugavi wa juu wa milioni 21",
+      "shieldedShare": "{percentage}% ya ugavi ulioko kwenye mzunguko",
+      "latestBlock": "Bloku ya hivi karibuni kwenye mtandao mkuu wa Zcash"
     }
   }
 }

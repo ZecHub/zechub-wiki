@@ -372,7 +372,7 @@ const getTranslatedLabel = (
   );
 };
 const ROW =
-  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/5 dark:hover:text-white";
+  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/12 dark:hover:text-white dark:focus-visible:bg-white/12";
 // Keeps an open panel inside the viewport: on narrow windows a dropdown that
 // starts at its trigger can run past the screen edge. Shifts it back in, and
 // flips a nested flyout to the other side when there is no room on its side.
@@ -486,7 +486,7 @@ const FlyoutLinkItem = ({
       </div>
     );
   }
-  // Has nested children — render with flyout opening to the left
+  // Has nested children: expand them inline under the row. A flyout outside the panel is clipped by its overflow.
   return (
     <div
       ref={itemRef}
@@ -531,12 +531,12 @@ const FlyoutLinkItem = ({
           )}
           {label}
         </span>
-        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-50 rtl:rotate-0" />
+        <ChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-75 rtl:rotate-0" />
       </button>
       {flyoutOpen && (
         <div
           ref={flyoutRef}
-          className="absolute end-full top-0 z-[60] min-w-[250px] rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-xl dark:border-white/10 dark:bg-slate-900"
+          className="mb-1 ms-5 mt-0.5 flex flex-col border-s border-slate-300 ps-1.5 dark:border-white/25"
           onPointerEnter={(e) => isMouse(e) && openFlyout()}
           onPointerLeave={(e) => isMouse(e) && closeFlyout()}
         >
@@ -595,7 +595,7 @@ const GroupedLinks = ({
     />
   );
   const heading = (title: string) => (
-    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand dark:border-white/10">
+    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand dark:border-white/20 dark:text-brand-soft">
       {t.menuLabels?.[title] || title}
     </p>
   );
