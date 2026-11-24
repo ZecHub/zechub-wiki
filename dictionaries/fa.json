@@ -901,7 +901,9 @@
         "zalletBook": "کتاب Zallet",
         "zalletBookDesc": "معرفی Zallet، یک کیف‌پول فول‌نود Zcash که با Rust نوشته شده و به‌عنوان جایگزین کیف‌پول zcashd طراحی شده است.",
         "developerResources": "منابع توسعه‌دهندگان",
-        "developerResourcesDesc": "پیوندهایی به مستندات فنی بیشتر Zcash."
+        "developerResourcesDesc": "پیوندهایی به مستندات فنی بیشتر Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "رمزگذاری آدرس",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "کامیونیتی Discord در Zcash",
       "githubRepositories": "مخزن‌های GitHub",
       "zcashImprovementProposals": "پیشنهادهای بهبود Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "به کمک نیاز دارید؟",
       "zcashCommunityForum": "انجمن کامیونیتی Zcash",
       "githubIssues": "Issueهای GitHub",

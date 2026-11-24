@@ -901,7 +901,9 @@
         "zalletBook": "Ìwé Zallet",
         "zalletBookDesc": "Ifilọlẹ si Zallet, apamọwọ Zcash ti o ni kikun ti a kọ ni Rust ati ti a ṣe apẹrẹ bi rirọpo fun apamọwọ zcashd.",
         "developerResources": "Àwọn Ìpèsè fún Olùgbéejáde",
-        "developerResourcesDesc": "Àwọn ìjápọ̀ sí Zcash àti Àkọsílẹ̀ Ìmòye mìíràn."
+        "developerResourcesDesc": "Àwọn ìjápọ̀ sí Zcash àti Àkọsílẹ̀ Ìmòye mìíràn.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Àkọsílẹ̀ Adiresi",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Ìgbìmọ̀ Zcash Discord",
       "githubRepositories": "Àwọn Àpamọ́ GitHub",
       "zcashImprovementProposals": "Àwọn Àbá fún Àtúnṣe Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Ṣé O Nílò Ìrànlọ́wọ́?",
       "zcashCommunityForum": "Àjọ Ìjọ Zcash",
       "githubIssues": "Àwọn Ìṣòro GitHub",

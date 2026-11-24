@@ -293,6 +293,15 @@ export default function DeveloperPage() {
         "Find additional links to Zcash technical documentation and developer resources.",
       url: "https://github.com/ZecHub/zechub/blob/main/site/Start_Here/Developer_Resources.md",
     },
+    {
+      title:
+        t?.pages?.developers?.introLinks?.appliedZcash ??
+        "AppliedZcash",
+      description:
+        t?.pages?.developers?.introLinks?.appliedZcashDesc ??
+        "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos.",
+      url: "https://appliedzcash.com/",
+    },
   ];
 
   const sdks: Resource[] = [

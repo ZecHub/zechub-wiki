@@ -901,7 +901,9 @@
         "zalletBook": "Zallet पुस्तक",
         "zalletBookDesc": "Zallet का परिचय, जो Rust में लिखा गया एक फुल-नोड Zcash वॉलेट है और zcashd वॉलेट के विकल्प के रूप में डिज़ाइन किया गया है।",
         "developerResources": "डेवलपर संसाधन",
-        "developerResourcesDesc": "Zcash के आगे के तकनीकी दस्तावेज़ों के लिंक।"
+        "developerResourcesDesc": "Zcash के आगे के तकनीकी दस्तावेज़ों के लिंक।",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "एड्रेस एन्कोडिंग",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Zcash Discord समुदाय",
       "githubRepositories": "GitHub रिपॉज़िटरी",
       "zcashImprovementProposals": "Zcash सुधार प्रस्ताव",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "मदद चाहिए?",
       "zcashCommunityForum": "Zcash सामुदायिक फ़ोरम",
       "githubIssues": "GitHub इश्यू",
