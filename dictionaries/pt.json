@@ -901,7 +901,9 @@
         "zalletBook": "O livro da Zallet",
         "zalletBookDesc": "Introdução à Zallet, uma carteira Zcash de nó integral escrita em Rust e projetada como substituta da carteira zcashd.",
         "developerResources": "Recursos para desenvolvedores",
-        "developerResourcesDesc": "Links para mais documentação técnica do Zcash."
+        "developerResourcesDesc": "Links para mais documentação técnica do Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Codificação de endereços",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Comunidade Zcash no Discord",
       "githubRepositories": "Repositórios no GitHub",
       "zcashImprovementProposals": "Propostas de melhoria do Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Precisa de ajuda?",
       "zcashCommunityForum": "Fórum da comunidade Zcash",
       "githubIssues": "Issues no GitHub",

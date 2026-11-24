@@ -901,7 +901,9 @@
         "zalletBook": "Akwụkwọ Zallet",
         "zalletBookDesc": "Okwu Mmalite na Zallet, obere akpa Zcash zuru oke nke edere na Rust ma hazie dị ka onye nnọchi maka obere akpa zcashd.",
         "developerResources": "Akụrụngwa Onye Mmepụta",
-        "developerResourcesDesc": "Njikọ na Zcash na akwụkwọ ndị ọzọ gbasara teknụzụ."
+        "developerResourcesDesc": "Njikọ na Zcash na akwụkwọ ndị ọzọ gbasara teknụzụ.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Adreesị Encoding",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Obodo Zcash Discord",
       "githubRepositories": "Ebe nchekwa GitHub",
       "zcashImprovementProposals": "Nkwupụta Mmezi Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Enyemaka Ọ̀ Dị Gị Mkpa?",
       "zcashCommunityForum": "Nzukọ Obodo Zcash",
       "githubIssues": "Okwu GitHub",

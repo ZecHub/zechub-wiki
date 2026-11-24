@@ -901,7 +901,9 @@
         "zalletBook": "Книга Zallet",
         "zalletBookDesc": "Вступ до Zallet, повновузлового гаманця Zcash, написаного на Rust і створеного як заміна гаманця zcashd.",
         "developerResources": "Ресурси для розробників",
-        "developerResourcesDesc": "Посилання на додаткову технічну документацію Zcash."
+        "developerResourcesDesc": "Посилання на додаткову технічну документацію Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Кодування адрес",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Спільнота Zcash у Discord",
       "githubRepositories": "Репозиторії GitHub",
       "zcashImprovementProposals": "Пропозиції щодо вдосконалення Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Потрібна допомога?",
       "zcashCommunityForum": "Форум спільноти Zcash",
       "githubIssues": "Питання GitHub",

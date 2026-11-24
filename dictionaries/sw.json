@@ -901,7 +901,9 @@
         "zalletBook": "Kitabu cha Zallet",
         "zalletBookDesc": "Utangulizi wa Zallet, full-node Zcash mkoba imeandikwa katika kutu na iliyoundwa kama badala ya mkoba zcashd.",
         "developerResources": "Watengenezaji Resources",
-        "developerResourcesDesc": "Links kwa Zcash zaidi Technical Documentation."
+        "developerResourcesDesc": "Links kwa Zcash zaidi Technical Documentation.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Kuingiza Anwani",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Jumuiya ya Zcash Discord",
       "githubRepositories": "GitHub Repositories",
       "zcashImprovementProposals": "Mapendekezo ya Uboreshaji wa Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Unahitaji Msaada?",
       "zcashCommunityForum": "Zcash Jamii Forum",
       "githubIssues": "GitHub Matatizo",

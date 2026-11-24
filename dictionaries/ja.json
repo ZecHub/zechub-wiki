@@ -901,7 +901,9 @@
         "zalletBook": "The Zallet Book",
         "zalletBookDesc": "Rustで書かれ、zcashdウォレットの代替として設計されたフルノードZcashウォレット、Zalletの紹介。",
         "developerResources": "開発者向けリソース",
-        "developerResourcesDesc": "Zcashのさらなる技術文書へのリンク。"
+        "developerResourcesDesc": "Zcashのさらなる技術文書へのリンク。",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "アドレスエンコーディング",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Zcash Discordコミュニティ",
       "githubRepositories": "GitHubリポジトリ",
       "zcashImprovementProposals": "Zcash改善提案",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "ヘルプが必要ですか？",
       "zcashCommunityForum": "Zcashコミュニティフォーラム",
       "githubIssues": "GitHub Issues",

@@ -79,6 +79,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "FROST":                                   "/content-images/frost.webp",
   "MonteZcret Benchmark":                    "/content-images/montezcret-benchmark.webp",
   "zipreader":                               "/content-images/zipreader.svg",
+  "AppliedZcash":                            "/content-images/appliedzcash.webp",
 
   // ── Wider Applications Utilizing Zcash ───────────────────────────
   "aftok":                                   "/content-images/aftok.webp",
