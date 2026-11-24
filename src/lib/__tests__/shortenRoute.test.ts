@@ -16,6 +16,20 @@ function postRequest(
   });
 }
 
+function getRequest(shortId: string) {
+  const req = new NextRequest(
+    `http://localhost/api/payment-request-uri/shorten/${shortId}`,
+  );
+  const ctx = { params: Promise.resolve({ shortId }) };
+  return { req, ctx } as const;
+}
+
+function shortIdFromUrl(shortUrl: string): string {
+  const marker = "/payment-request-uri/shorten/";
+  const idx = shortUrl.indexOf(marker);
+  return idx === -1 ? "" : shortUrl.slice(idx + marker.length);
+}
+
 describe("POST /api/payment-request-uri/shorten", () => {
   beforeEach(() => {
     jest.resetModules();
@@ -29,7 +43,14 @@ describe("POST /api/payment-request-uri/shorten", () => {
     expect(res.headers.get("Access-Control-Allow-Origin")).not.toBeNull();
     const data = await res.json();
     expect(typeof data.shortUrl).toBe("string");
-    expect(data.shortUrl).toContain("/api/payment-request-uri/shorten/");
+    expect(data.shortUrl).toContain("/payment-request-uri/shorten/");
+  });
+
+  it("does not duplicate the /api segment in the short url", async () => {
+    const { POST } = await import("@/app/api/payment-request-uri/shorten/route");
+    const res = await POST(postRequest(JSON.stringify({ uri: "zcash:t1abc" })));
+    const { shortUrl } = await res.json();
+    expect(shortUrl).not.toContain("/api/api/");
   });
 
   it("rejects malformed JSON as 400", async () => {
@@ -72,28 +93,78 @@ describe("POST /api/payment-request-uri/shorten", () => {
     expect(res.status).toBe(413);
   });
 
-  it("caps the in-memory store at MAX_STORE_ENTRIES with FIFO eviction", async () => {
-    const { POST, urlStore, MAX_STORE_ENTRIES } = await import(
-      "@/app/api/payment-request-uri/shorten/route"
+  it("caps the in-memory fallback store with FIFO eviction", async () => {
+    const { storeUri, __clearMemoryStore, __memoryStoreSize, MAX_STORE_ENTRIES } =
+      await import("@/app/api/payment-request-uri/shorten/store");
+
+    __clearMemoryStore();
+
+    for (let i = 0; i < MAX_STORE_ENTRIES; i++) {
+      await storeUri(`seed-${i}`, `zcash:seed-${i}`);
+    }
+    expect(__memoryStoreSize()).toBe(MAX_STORE_ENTRIES);
+
+    await storeUri("overflow", "zcash:overflow");
+
+    // The store stays capped; the oldest entry is evicted, not the new one.
+    expect(__memoryStoreSize()).toBe(MAX_STORE_ENTRIES);
+  }, 20000);
+});
+
+describe("GET /api/payment-request-uri/shorten/[shortId]", () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
+  it("round-trips: a created link resolves with a 302 to the stored uri", async () => {
+    const { POST } = await import("@/app/api/payment-request-uri/shorten/route");
+    const { GET } = await import(
+      "@/app/api/payment-request-uri/shorten/[shortId]/route"
     );
 
-    urlStore.clear();
+    const uri = "zcash:t1abc?amount=1.5&memo=hello";
+    const createRes = await POST(postRequest(JSON.stringify({ uri })));
+    expect(createRes.status).toBe(200);
+    const { shortUrl } = await createRes.json();
+    const shortId = shortIdFromUrl(shortUrl);
+    expect(shortId.length).toBeGreaterThan(0);
 
-    // Fill to exactly the cap.
-    for (let i = 0; i < MAX_STORE_ENTRIES; i++) {
-      const res = await POST(postRequest(JSON.stringify({ uri: `zcash:seed-${i}` })));
-      expect(res.status).toBe(200);
-    }
-    expect(urlStore.size).toBe(MAX_STORE_ENTRIES);
+    const { req, ctx } = getRequest(shortId);
+    const resolveRes = await GET(req, ctx);
 
-    const oldestKeyBeforeOverflow = urlStore.keys().next().value;
-    expect(oldestKeyBeforeOverflow).toBeDefined();
+    expect(resolveRes.status).toBe(302);
+    expect(resolveRes.headers.get("location")).toBe(uri);
+  });
 
-    // One more insert should evict exactly the oldest entry, not grow the store.
-    const res = await POST(postRequest(JSON.stringify({ uri: "zcash:overflow" })));
-    expect(res.status).toBe(200);
+  it("returns 404 for an unknown short id", async () => {
+    const { GET } = await import(
+      "@/app/api/payment-request-uri/shorten/[shortId]/route"
+    );
+    const { req, ctx } = getRequest("does-not-exist");
+    const res = await GET(req, ctx);
+    expect(res.status).toBe(404);
+  });
 
-    expect(urlStore.size).toBe(MAX_STORE_ENTRIES);
-    expect(urlStore.has(oldestKeyBeforeOverflow as string)).toBe(false);
-  }, 20000);
+  it("returns 404 for a malformed short id", async () => {
+    const { GET } = await import(
+      "@/app/api/payment-request-uri/shorten/[shortId]/route"
+    );
+    const { req, ctx } = getRequest("bad id with spaces");
+    const res = await GET(req, ctx);
+    expect(res.status).toBe(404);
+  });
+
+  it("returns 404 when the stored value is not a zcash uri", async () => {
+    const { storeUri } = await import(
+      "@/app/api/payment-request-uri/shorten/store"
+    );
+    const { GET } = await import(
+      "@/app/api/payment-request-uri/shorten/[shortId]/route"
+    );
+
+    await storeUri("evilredirect", "https://evil.example.com");
+    const { req, ctx } = getRequest("evilredirect");
+    const res = await GET(req, ctx);
+    expect(res.status).toBe(404);
+  });
 });

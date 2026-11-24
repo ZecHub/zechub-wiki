@@ -12,7 +12,6 @@ jest.mock("recharts", () => ({
 
 // flowbite-react pulls in an ESM-only dependency that Jest does not transform;
 // the chart container only needs its loading spinner.
-jest.mock("flowbite-react", () => ({ Spinner: () => null }));
 
 // Latest values from public/data/zcash/*_supply.json (09/21/2026).
 const poolSupply: Record<string, { supply: number; close: string }[]> = {

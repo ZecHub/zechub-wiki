@@ -1,5 +1,7 @@
+
 /**
- * Unit tests for the wallet-directory parser (site/Using_Zcash/Wallets.md).
+ * Unit tests for the wallet-directory parser
+ * (site/Using_Zcash/Wallets.md).
  */
 
 import { parseMarkdown } from "../parseMarkdown";
@@ -9,7 +11,10 @@ const md = `
 ![logo](/img/a.webp "Active")
 - Devices: Mobile
 - Pools: Transparent | Sapling | Orchard | Ironwood
-- Ironwood: Ready
+- NU7: Compatible
+- Nym Mixnet: Supported
+- Source Code: https://github.com/example/active
+- Source: Open Source
 - Stage: Beta
 
 ---
@@ -27,21 +32,63 @@ const md = `
 describe("parseMarkdown", () => {
   const [active, gone, bare] = parseMarkdown(md);
 
-  it("reads the Stage line and leaves Status empty on an active wallet", () => {
+  it("reads NU7 compatibility and the release stage", () => {
     expect(active.stage).toBe("Beta");
     expect(active.status).toBe("");
     expect(active.statusReason).toBe("");
-    expect(active.ironwood).toBe("Ready");
-    expect(active.pools).toEqual(["Transparent", "Sapling", "Orchard", "Ironwood"]);
+    expect(active.nu7).toBe("Compatible");
+    expect(active.nymMixnet).toBe("Supported");
+    expect(active.sourceCode).toBe(
+      "https://github.com/example/active"
+    );
+    expect(active.source).toBe("Open Source");
+    expect(active.pools).toEqual([
+      "Transparent",
+      "Sapling",
+      "Orchard",
+      "Ironwood",
+    ]);
   });
 
-  it("keeps the whole reason, including ': ' and ' | ', after the status", () => {
+  it("keeps the complete deprecation reason", () => {
     expect(gone.status).toBe("Deprecated");
-    expect(gone.statusReason).toBe("End-of-life: halted before NU6.3 | use Zallet");
+    expect(gone.statusReason).toBe(
+      "End-of-life: halted before NU6.3 | use Zallet"
+    );
   });
 
   it("accepts a status with no reason", () => {
     expect(bare.status).toBe("Deprecated");
     expect(bare.statusReason).toBe("");
+  });
+
+  it("reads the explicit source label independently of the source URL", () => {
+    const [closed] = parseMarkdown(`
+## [Closed](https://closed.example)
+- Source Code: https://github.com/example/closed
+- Source: Closed Source
+    `);
+
+    expect(closed.sourceCode).toBe("https://github.com/example/closed");
+    expect(closed.source).toBe("Closed Source");
+  });
+
+  it("reads all NU7 compatibility values", () => {
+    const statuses = [
+      "Compatible",
+      "Compatible for Transparent ZEC",
+      "In Progress",
+      "Not Ready",
+      "Not Verified",
+    ];
+
+    statuses.forEach((status) => {
+      const result = parseMarkdown(`
+## [Test](https://example.com)
+- NU7: ${status}
+      `);
+
+      expect(result[0].nu7).toBe(status);
+    });
   });
 });

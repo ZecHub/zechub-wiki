@@ -1,8 +1,16 @@
 import React from "react";
 import { render, screen, waitFor, within } from "@testing-library/react";
-import WalletList from "@/components/Wallet/WalletList";
 import userEvent from "@testing-library/user-event";
+import WalletList from "@/components/Wallet/WalletList";
 import { parseMarkdown } from "@/lib/parseMarkdown";
+
+jest.mock("react-markdown", () => ({
+  __esModule: true,
+  default: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="markdown">{children}</div>
+  ),
+}));
+jest.mock("remark-gfm", () => ({ __esModule: true, default: () => {} }));
 
 jest.mock("@/context/LanguageContext", () => ({
   useLanguage: () => ({ t: {} }),
@@ -23,7 +31,7 @@ const wallets = parseMarkdown(`
 ## [Alive](https://alive.example)
 - Devices: Mobile
 - Pools: Orchard | Ironwood
-- Ironwood: Ready
+- NU7: Compatible
 - Stage: Beta
 
 ---
@@ -50,7 +58,7 @@ describe("WalletList", () => {
     expect(within(section).getByText("Gone")).toBeInTheDocument();
     expect(within(section).getByText("End-of-life, no NU6.3 support")).toBeInTheDocument();
     expect(within(section).queryByText("Alive")).not.toBeInTheDocument();
-    expect(within(section).queryByText(/^Ironwood /)).not.toBeInTheDocument();
+    expect(within(section).queryByText(/^NU7: /)).not.toBeInTheDocument();
   });
 
   it("applies the filters to the deprecated section too, hiding it when nothing matches", async () => {
@@ -85,14 +93,179 @@ describe("WalletList", () => {
     expect(within(sidebar).queryByText("Desktop")).not.toBeInTheDocument();
   });
 
-  it("shows the Ironwood badge and the release stage on an active wallet", () => {
+  it("shows the NU7 badge and the release stage on an active wallet", () => {
     render(<WalletList allWallets={wallets} />);
 
-    expect(screen.getByText("Ironwood Ready")).toBeInTheDocument();
-    expect(screen.getByText("Beta")).toBeInTheDocument();
+    expect(screen.getByText("NU7: Compatible")).toBeInTheDocument();
+    expect(screen.getAllByText("Beta").length).toBeGreaterThan(0);
   });
 
-  it("orders Ironwood-ready wallets first, whatever their position in the file", () => {
+  it("groups only beta wallets separately and leaves Nym Mixnet as a filter", () => {
+    const list = parseMarkdown(`
+## [Regular](https://regular.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+
+---
+## [Preview](https://preview.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+- Stage: Beta
+
+---
+## [Clear](https://clear.example)
+- Devices: Mobile
+- Pools: Transparent
+- NU7: Compatible
+
+---
+## [Private](https://private.example)
+- Devices: Mobile
+- Pools: Ironwood
+- NU7: Compatible
+- Nym Mixnet: Supported
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const beta = screen
+      .getByText("Beta wallets (1)")
+      .closest("section") as HTMLElement;
+
+    expect(within(beta).getByText("Preview")).toBeInTheDocument();
+    expect(within(beta).queryByText("Regular")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Transparent-only wallets/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Nym Mixnet support/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Clear" })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Private" })
+    ).toBeInTheDocument();
+  });
+
+  it("filters by Nym Mixnet support", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [Regular](https://regular.example)
+- Devices: Mobile
+- Pools: Ironwood
+
+---
+## [Private](https://private.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Nym Mixnet: Supported
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const supported = await within(sidebar).findByRole("checkbox", {
+      name: "Supported",
+    });
+
+    await user.click(supported);
+
+    expect(
+      screen.queryByRole("heading", { name: "Regular" })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getAllByRole("heading", { name: "Private" }).length
+    ).toBeGreaterThan(0);
+  });
+
+  it("labels open and closed source wallets and filters by source", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [Open](https://open.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source Code: https://github.com/example/open
+- Source: Open Source
+
+---
+## [Closed](https://closed.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source Code: https://github.com/example/closed
+- Source: Closed Source
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const openCard = screen
+      .getByRole("heading", { name: "Open" })
+      .closest(".wallet-item") as HTMLElement;
+    const closedCard = screen
+      .getByRole("heading", { name: "Closed" })
+      .closest(".wallet-item") as HTMLElement;
+
+    expect(
+      within(openCard).getByText("Open Source")
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/example/open"
+    );
+    expect(within(closedCard).getByText("Closed Source")).toBeInTheDocument();
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const openSource = await within(sidebar).findByRole("checkbox", {
+      name: "Open Source",
+    });
+
+    await user.click(openSource);
+
+    expect(
+      screen.getByRole("heading", { name: "Open" })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Closed" })
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows explicitly open-source wallets without a repository URL in the source filter", async () => {
+    const user = userEvent.setup();
+    const list = parseMarkdown(`
+## [OpenWithoutUrl](https://open.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source: Open Source
+
+---
+## [Closed](https://closed.example)
+- Devices: Mobile
+- Pools: Ironwood
+- Source: Closed Source
+`);
+
+    render(<WalletList allWallets={list} />);
+
+    const openCard = screen
+      .getByRole("heading", { name: "OpenWithoutUrl" })
+      .closest(".wallet-item") as HTMLElement;
+    expect(within(openCard).getByText("Open Source")).toBeInTheDocument();
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    await user.click(
+      await within(sidebar).findByRole("checkbox", { name: "Open Source" })
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "OpenWithoutUrl" })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Closed" })
+    ).not.toBeInTheDocument();
+  });
+
+  it("orders NU7-compatible wallets first, whatever their position in the file", () => {
     const list = parseMarkdown(`
 ## [NoStatus](https://a.example)
 - Devices: Mobile
@@ -101,29 +274,57 @@ describe("WalletList", () => {
 
 ## [Late](https://b.example)
 - Devices: Mobile
-- Ironwood: Not Ready
+- NU7: Not Ready
 
 ---
 
 ## [Transp](https://c.example)
 - Devices: Mobile
-- Ironwood: Transparent only
+- NU7: Compatible for Transparent ZEC
 
 ---
 
 ## [Early](https://d.example)
 - Devices: Mobile
-- Ironwood: Ready
+- NU7: Compatible
 
 ---
 
 ## [Busy](https://e.example)
 - Devices: Mobile
-- Ironwood: In Progress
+- NU7: In Progress
+
+---
+
+## [Unverified](https://f.example)
+- Devices: Mobile
+- NU7: Not Verified
 `);
     render(<WalletList allWallets={list} />);
 
-    const titles = screen.getAllByRole("heading", { level: 5 }).map((h) => h.textContent);
-    expect(titles).toEqual(["Early", "Busy", "Late", "Transp", "NoStatus"]);
+    const titles = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
+    expect(titles).toEqual([
+      "Early",
+      "Transp",
+      "Busy",
+      "Late",
+      "Unverified",
+      "NoStatus",
+    ]);
+  });
+
+  it("filters by NU7 status", async () => {
+    const user = userEvent.setup();
+    render(<WalletList allWallets={wallets} />);
+
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const compatible = await within(sidebar).findByRole("checkbox", {
+      name: "Compatible",
+    });
+
+    await user.click(compatible);
+
+    expect(screen.getByText("Alive")).toBeInTheDocument();
+    expect(screen.queryByText("Gone")).not.toBeInTheDocument();
   });
 });

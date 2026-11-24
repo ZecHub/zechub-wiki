@@ -116,7 +116,7 @@ const DonationComp = () => {
                 min-w-[110px]
                 ${
                   isActive
-                    ? "bg-[#1984c7] text-white shadow-md"
+                    ? "bg-brand text-on-brand shadow-md"
                     : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }
               `}
@@ -137,7 +137,7 @@ const DonationComp = () => {
       {/* QR + Address card */}
       <div className="w-full max-w-[520px] flex flex-col items-center gap-5">
         <div className="relative w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-8 flex flex-col items-center">
-          <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#1984c7] flex items-center justify-center shadow-md">
+          <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-brand flex items-center justify-center shadow-md">
             <BsQrCodeScan color="white" size={18} />
           </div>
 
@@ -182,7 +182,7 @@ const DonationComp = () => {
               type="button"
               onClick={copy}
               disabled={!getDonationAddress() || isCopying || imgFade}
-              className="shrink-0 w-12 rounded-xl bg-[#1984c7] hover:bg-[#1573b0] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-sm"
+              className="shrink-0 w-12 rounded-xl bg-brand hover:bg-[#1573b0] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-sm"
               title="Copy address"
               aria-label="Copy address"
             >

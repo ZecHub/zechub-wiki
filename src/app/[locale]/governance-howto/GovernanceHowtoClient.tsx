@@ -97,11 +97,9 @@ export default function GovernanceHowtoClient() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">{g?.viewOpenProposals ?? "View Open Proposals"}</h3>
                   <p className="text-slate-600 dark:text-slate-300 mb-3">{g?.viewOpenProposalsDesc ?? "Check out current proposals and voting opportunities"}</p>
-                  <button className="cursor-pointer border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 text-slate-900 dark:text-white">
-                    <Link href="https://vote.zechub.xyz" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                      <MdHowToVote className="h-4 w-4 mr-2" /> {g?.visitVotingPortal ?? "Visit Voting Portal"}
-                    </Link>
-                  </button>        
+                  <Link href="https://vote.zechub.xyz" target="_blank" rel="noopener noreferrer" className="inline-flex items-center cursor-pointer border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 text-slate-900 dark:text-white">
+                    <MdHowToVote className="h-4 w-4 mr-2" /> {g?.visitVotingPortal ?? "Visit Voting Portal"}
+                  </Link>
                 </div>
               </div>
             </ListCardsContent>
@@ -156,7 +154,7 @@ export default function GovernanceHowtoClient() {
                       <p className="text-blue-800 dark:text-blue-300 mb-2">
                         {g?.getFeedbackDesc ?? "Share your draft in the ZecHub #proposals channel on Discord for early feedback"}
                       </p>
-                      <Link href="https://discord.gg/zechub" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                      <Link href="https://discord.gg/zcash" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
                         {g?.joinDiscord ?? "Join Discord"} <FaDiscord className="ml-1" />
                       </Link>
                     </div>
@@ -202,7 +200,7 @@ export default function GovernanceHowtoClient() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">{g?.postInDiscord ?? "Post in Discord"}</h3>
                   <p className="text-slate-600 dark:text-slate-300 mb-3">{g?.postInDiscordDesc ?? "Share your final proposal in #proposals and tag @core-team"}</p>
-                  <Link href="https://discord.gg/zechub" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                  <Link href="https://discord.gg/zcash" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
                     <FaDiscord className="mr-2" /> {g?.openDiscord ?? "Open Discord"}
                   </Link>
                 </div>
@@ -212,11 +210,9 @@ export default function GovernanceHowtoClient() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">{g?.submitOnPortal ?? "Submit on Voting Portal"}</h3>
                   <p className="text-slate-600 dark:text-slate-300">{g?.submitOnPortalDesc ?? "Use the official ZecHub voting site to create your proposal"}</p>
-                  <button className="cursor-pointer border py-2 px-3 rounded-md hover:bg-purple-300 dark:hover:bg-purple-700 text-slate-900 dark:text-white mt-3">
-                    <Link href="https://vote.zechub.xyz" target="_blank" className="flex items-center">
-                      {g?.submitNow ?? "Submit Now"} <FaExternalLinkAlt className="ml-2" />
-                    </Link>
-                  </button>
+                  <Link href="https://vote.zechub.xyz" target="_blank" className="inline-flex items-center cursor-pointer border py-2 px-3 rounded-md hover:bg-purple-300 dark:hover:bg-purple-700 text-slate-900 dark:text-white mt-3">
+                    {g?.submitNow ?? "Submit Now"} <FaExternalLinkAlt className="ml-2" />
+                  </Link>
                   <p className="text-xs text-muted-foreground mt-3">
                     {g?.loginNote ?? "⚠️ You need to login with either Keplr or Keplr Mobile"}
                   </p>

@@ -58,6 +58,34 @@ describe("ZIP-321 Amount Boundaries & Formatting", () => {
     );
   });
 
+  it.each([
+    0.123456789,
+    1.0000000000000002,
+    1.5e-8,
+    "1.5e-8",
+    "1.234567891e0",
+    "1.000000009e0",
+  ])("rejects excess precision without rounding %s", (amount) => {
+    expect(() => formatZecAmount(amount)).toThrow(/maximum 8 decimal places/i);
+    const payment = { address: "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC", amount };
+    expect(validateZip321Payment(payment).valid).toBe(false);
+    expect(() => buildZip321Uri([payment])).toThrow(/maximum 8 decimal places/i);
+  });
+
+  it.each([
+    ["1.2345678e-1", "0.12345678"],
+    ["12.345678e-2", "0.12345678"],
+    ["1.23456789e1", "12.3456789"],
+    ["2.1e7", "21000000"],
+    ["1E+2", "100"],
+    ["1000e-11", "0.00000001"],
+    [".1e-7", "0.00000001"],
+    ["+1e-8", "0.00000001"],
+    [0.29, "0.29"],
+  ] as const)("expands valid amounts exactly: %s", (amount, expected) => {
+    expect(formatZecAmount(amount)).toBe(expected);
+  });
+
   it("rejects zero and negative amounts", () => {
     expect(() => formatZecAmount(0)).toThrow(/greater than zero/i);
     expect(() => formatZecAmount("0")).toThrow(/greater than zero/i);
@@ -281,5 +309,103 @@ describe("ZIP-321 URI Generation & Parsing (Single and Multi-recipient)", () => 
         { address: sapling2, amount: "1.0" },
       ]),
     ).toThrow(/Recipient 1: Invalid amount/i);
+  });
+});
+
+describe("ZIP-321 value encoding and strict parsing", () => {
+  const sapling1 =
+    "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
+  const sapling2 =
+    "zs1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqp9h7z8";
+  const transparent1 = "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC";
+
+  it("percent-encodes spaces as %20, never '+', in label and message", () => {
+    const uri = buildZip321Uri([
+      {
+        address: transparent1,
+        amount: "0.5",
+        label: "Coffee shop",
+        message: "Thank you for your purchase",
+      },
+    ]);
+
+    expect(uri).toBe(
+      `zcash:${transparent1}?amount=0.5&label=Coffee%20shop&message=Thank%20you%20for%20your%20purchase`,
+    );
+    expect(uri).not.toContain("+");
+  });
+
+  it("encodes a literal '+' as %2B and keeps it through a round trip", () => {
+    const uri = buildZip321Uri([
+      { address: sapling1, amount: "1", message: "1+1 = 2 & more" },
+    ]);
+
+    expect(uri).toContain("message=1%2B1%20%3D%202%20%26%20more");
+    expect(parseZip321Uri(uri)[0].message).toBe("1+1 = 2 & more");
+  });
+
+  it("encodes indexed labels in multi-recipient requests the same way", () => {
+    const uri = buildZip321Uri([
+      { address: sapling1, amount: "1", label: "Main shop" },
+      { address: sapling2, amount: "2", label: "Second shop" },
+    ]);
+
+    expect(uri).toContain("label=Main%20shop");
+    expect(uri).toContain("label.1=Second%20shop");
+    expect(uri).not.toContain("+");
+  });
+
+  it("reads '+' in a URI as a plus sign and %20 as a space", () => {
+    const parsed = parseZip321Uri(
+      `zcash:${transparent1}?amount=1&label=A+B&message=Thank%20you%20for%20your%20purchase`,
+    );
+
+    expect(parsed[0].label).toBe("A+B");
+    expect(parsed[0].message).toBe("Thank you for your purchase");
+  });
+
+  it("rejects a parameter repeated for the same payment", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:${transparent1}?amount=1&amount=100`),
+    ).toThrow(/Duplicate parameter 'amount'/);
+    expect(() =>
+      parseZip321Uri(`zcash:${transparent1}?address=${sapling1}&amount=1`),
+    ).toThrow(/Duplicate parameter 'address'/);
+    expect(() =>
+      parseZip321Uri(
+        `zcash:?address=${transparent1}&address.1=${sapling1}&address.1=${sapling2}`,
+      ),
+    ).toThrow(/Duplicate parameter 'address\.1'/);
+  });
+
+  it("rejects malformed parameter indexes", () => {
+    for (const index of ["0", "01", "10000", "1a", ""]) {
+      expect(() =>
+        parseZip321Uri(
+          `zcash:?address=${transparent1}&address.${index}=${sapling1}`,
+        ),
+      ).toThrow(/Invalid parameter index/);
+    }
+    const parsed = parseZip321Uri(
+      `zcash:?address=${transparent1}&address.9999=${sapling1}`,
+    );
+    expect(parsed.map((p) => p.address)).toEqual([transparent1, sapling1]);
+  });
+
+  it("rejects unsupported req- parameters but ignores other unknown ones", () => {
+    expect(() =>
+      parseZip321Uri(
+        `zcash:?address=${transparent1}&amount=123.45&req-unknown=x`,
+      ),
+    ).toThrow(/Unsupported required parameter 'req-unknown'/);
+    expect(
+      parseZip321Uri(`zcash:${transparent1}?amount=1&unknown=x`)[0].amount,
+    ).toBe("1");
+  });
+
+  it("rejects malformed percent-encoding", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:${transparent1}?amount=1&label=50%`),
+    ).toThrow(/Invalid percent-encoding in parameter 'label'/);
   });
 });

@@ -91,14 +91,14 @@ export default function Faucet() {
   }
 
   const busy = state === "submitting" || state === "pending";
-  const color = state === "confirmed" ? "text-emerald-400" : state === "failed" ? "text-red-400" : "text-[#F4B728]";
+  const color = state === "confirmed" ? "text-emerald-400" : state === "failed" ? "text-red-400" : "text-brand dark:text-brand-soft";
   return <form onSubmit={claim} className="space-y-5">
-    <div className="rounded-xl bg-[#F4B728]/5 border border-[#F4B728]/10 px-4 py-3 text-sm text-zinc-500 dark:text-[#7a8a9e]">Request Zcash testnet funds from <span className="font-mono text-[#F4B728]">fauzec.com</span>. This tool never uses mainnet funds.</div>
+    <div className="rounded-xl bg-brand/5 border border-brand/10 px-4 py-3 text-sm text-zinc-500 dark:text-[#7a8a9e]">Request Zcash testnet funds from <span className="font-mono text-brand dark:text-brand-soft">fauzec.com</span>. This tool never uses mainnet funds.</div>
     <div>
       <label htmlFor="faucet-address" className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">Testnet Sapling or Unified Address</label>
-      <input id="faucet-address" type="text" value={address} onChange={(event) => setAddress(event.target.value)} placeholder="ztestsapling1… or utest1…" disabled={busy} className="w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040] focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15 rounded-xl px-4 py-3.5 text-[13px] font-mono outline-none transition-all text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]" />
+      <input id="faucet-address" type="text" value={address} onChange={(event) => setAddress(event.target.value)} placeholder="ztestsapling1… or utest1…" disabled={busy} className="w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040] focus:border-brand focus:ring-2 focus:ring-brand/15 rounded-xl px-4 py-3.5 text-[13px] font-mono outline-none transition-all text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]" />
     </div>
-    <button type="submit" disabled={busy || !wasmReady || !address.trim()} className="w-full rounded-xl bg-gradient-to-r from-[#F4B728] to-[#d9a520] px-4 py-3 text-sm font-bold text-[#151e29] transition-opacity disabled:cursor-not-allowed disabled:opacity-40">{state === "submitting" ? "Submitting claim…" : state === "pending" ? "Claim pending…" : "Request testnet ZEC"}</button>
+    <button type="submit" disabled={busy || !wasmReady || !address.trim()} className="w-full rounded-xl bg-gradient-to-r from-brand to-brand-hover px-4 py-3 text-sm font-bold text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40">{state === "submitting" ? "Submitting claim…" : state === "pending" ? "Claim pending…" : "Request testnet ZEC"}</button>
     {notice && <p className={`text-sm leading-relaxed ${color}`}>{notice}</p>}
     {requestId && <p className="text-[11px] font-mono break-all text-zinc-400 dark:text-[#5a6a7e]">Request ID: {requestId}</p>}
   </form>;

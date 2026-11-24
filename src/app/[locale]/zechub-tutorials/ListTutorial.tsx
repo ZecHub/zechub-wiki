@@ -39,9 +39,9 @@ const ListTutorial = ({ folder, roots }: MenuProps) => {
       <div className="flex justify-end md:justify-center w-auto order-2 md:order-3">
         <Link
           href="/explore"
-          className="flex items-center rounded-full font-bold px-4 py-2 hover:bg-[#1984c7]"
+          className="flex items-center rounded-full font-bold px-4 py-2 hover:bg-brand"
           style={{
-            background: "#1984c7",
+            background: "var(--color-brand)",
             fontWeight: "600",
             borderRadius: "0.4rem",
             color: "white",

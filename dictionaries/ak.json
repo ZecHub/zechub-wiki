@@ -49,7 +49,7 @@
     "Recovering Funds": "Sika a Wɔbɛsan Agye",
     "Research": "Hwehwɛ mu",
     "Send Money Privately": "Send Sika wɔ Kokoam",
-    "Shielded Labs": "Labs a Wɔabɔ ho Ban",
+    "Shielded Labs": "Shielded Labs",
     "Shielded Pools": "Atare a Wɔabɔ ho Ban",
     "Sitemap": "Sitemap a Wɔde Di Dwuma",
     "Start Here": "Fi ase wɔ Ha",
@@ -128,7 +128,51 @@
     "CoinHolder Directed Retroactive Grants": "CoinHolder Mmoa a Wɔde Ma a Wɔkyerɛ Kwan a Ɛfa Bere a Atwam Ho",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "Hwehwɛ Nhwehwɛmu a Edi Mu",
@@ -166,7 +210,11 @@
     "searchTryDifferent": "Sɔ nsɛmmisa ntiantiaa, nsɛmfua a ɛne ne ho di nsɛ, anaa nsɛmfua ahorow hwɛ.",
     "searchSuggested": "Nkratafa a wɔahyɛ ho nyansa",
     "searchResultsLabel": "Nsunsuansoɔ",
-    "skipToContent": "Twa kɔ emu nsɛm no so"
+    "skipToContent": "Twa kɔ emu nsɛm no so",
+    "languageSearch": "Hwehwɛ kasa horow mu",
+    "languageSuggested": "Wɔde nyansahyɛ mae",
+    "languageAll": "Kasa ahorow nyinaa",
+    "languageNone": "Kasa biara nni hɔ a wɔanhu"
   },
   "navigation": {
     "wallets": "Sika kotoku",
@@ -278,7 +326,7 @@
     "heroTitle": "Yɛma wo akwaaba ba ZecHub",
     "heroSubtitle": "Nhomasua beae a wɔabue ano ma Zcash",
     "heroDescription": "Sua Zcash kokoam mfiridwuma ho ade, hwehwɛ nkitahodi mfoniniyɛfo, na boa ma abɔde a nkwa wom nhyehyɛe no",
-    "description": "ZecHub yɛ nkyerɛkyerɛ beaeɛ a mpɔtam hɔfoɔ di so ma Zcash cryptocurrency (ZEC). Zcash yɛ dijitaal sika a ɛma censorship resistant, ahobammɔ & kokoam sikatua. Zcash Blockchain no de zk-snarks a ɛkɔ anim kɛse a ‘wotumi di ho adanse’ a enhia Trusted Setup di dwuma wɔ NU5 network upgrade akyi wɔ 2022 mu.",
+    "description": "ZecHub yɛ nwomasua beaeɛ a mpɔtam hɔfoɔ di so ma Zcash (ZEC), digyital sika a wɔde ahyɛ amansin nsa a wɔasi ama sikatua a ɛko tia nhwehwɛmu, ahobanbɔ ne ankorankoro tua. Zcash de nimdeɛ a ɛnyɛ hwee cryptography a ɛkɔ anim di dwuma de ma nnwuma a wobetumi ahwɛ sɛ ɛyɛ nokware a wɔrenna sikasɛm ho nsɛm a ɛho hia adi. Wɔ afe 2026 mu no ɔde Ironwood shielded pool bae, a wɔde akontabuo adanseɛ a wɔde mfiri ahwɛ mu dii dwuma wɔ ɔkwan a ɛfata so sɛ ɛma awerɛhyɛmu sɛ ɛbɛkari pɛ. Dwumadie Tachyon reyɛ awoɔ ntoatoasoɔ a ɛdi hɔ a wɔabɔ ho ban protocol a wɔahyɛ ho nyansa a wɔayɛ sɛ ɛbɛma ankorankoro sikatua a wɔtumi tua no scalability atu mpɔn kɛseɛ, atew validator state nkɔsoɔ so na ama Zcash akɔ anim akɔ post-quantum secure privacy koraa.",
     "featuredSection": "Nneɛma a Wɔde Ayɛ a Wɔada no Adi",
     "latestUpdates": "Nsɛm a Wɔayɛ no Foforo a Ɛyɛ Foforo",
     "getInvolved": "Fa Wo Ho Hyehyɛ Mu",
@@ -474,7 +522,39 @@
     "activeCount": "{count} a ɛyɛ adwuma",
     "savedReview": "Yɛde wo nsusuwii no siee!",
     "errorGettingLikes": "Mfomso a ɛbae wɔ likes a wonya mu:",
-    "errorUpdatingRating": "Mfomso a ɛwɔ update rating mu:"
+    "errorUpdatingRating": "Mfomso a ɛwɔ update rating mu:",
+    "betaTitle": "Sikakorabea beta",
+    "betaNote": "Nsɔhwɛ awo. Hwɛ sɛ biribiara nyɛ pɛ, na fa sika kakra.",
+    "transparentOnlyTitle": "Sikakorabea a ɛda adi pefee nkutoo",
+    "transparentOnlyNote": "Sikakorabea yi boa ZEC a ɛda adi pefee nkutoo, a ɛnkata adwuma nkyerɛkyerɛmu.",
+    "nymMixnetTitle": "Nym Mixnet mmoa",
+    "nymMixnetNote": "Sikakorabea a ɛboa ma wɔfa Zcash nkitahodi fa Nym mixnet so.",
+    "filterInfo": {
+      "categoryTitle": "{category} nzɛm nneɛma mu ho nsɛm",
+      "itemTitle": "{value} ho nsɛm",
+      "categoryFallback": "Fa **{category}** na yiyi sikakorabea ahorow mu kɔ siw nea ɛne nkyekyɛmu yi mu ayɛsɛm hyia. Sɛ wopaw ayɛsɛm bi a, wode nzɛm no bɛyɛ adwuma, na sɛ wopaw bio a, wobeyi no.",
+      "itemFallback": "**{value}** yɛ **{category}** nzɛm nneɛma mu ayɛsɛm no mu biako. Sɛ wopaw a, wobeyi sikakorabea ahorow mu kɔ siw nea ɛwɔ saa bo yi; paw bio na wobeyi nzɛm no.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** kyerɛ sɛ sikakorabea no yɛ app a ɛwɔ fon so anaa tablet so. Mobile sikakorabea ahorow taa de lightwallet server na ɛsɛn, na ɛnyɛ blockchain nyinaa na ɛkora, enti ɛyɛ mmerɛw ma da biara sika ntua.",
+          "Desktop": "**Desktop** kyerɛ sɛ sikakorabea no yɛ application a ɛwɔ komputa so. Sɛnea sikakorabea no te no, ebetumi asɛn node a edi mũ anaa ɛnkɔ lightwallet server so."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** yɛ Zcash shielded pool a wɔde bae wɔ NU5 mu. Ɛboa shielded transactions a ɛfa Orchard pool nhyehyɛe so, na sikakorabea ahorow a ɛde shielded features foforo ba no de di dwuma.",
+          "Transparent": "**Transparent** kyerɛ sɛ sikakorabea no gye ZEC a ɛda adi pefee, na ne transactions da adi wɔ ɔman blockchain so. Address ahorow a ɛda adi pefee fi `t` ase na ɛnkata ɔsomafo, ɔfata, anaa sika dodow."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** yɛ Zcash address kwan a ebetumi anya shielded ne transparent receivers wɔ address baako mu. Sikakorabea ahorow a ɛboa no betumi de receiver a ɛfata sika ntua no adi dwuma na ɛda so bom yɛ adwuma ne address types ahorow."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** kyerɛ sɛ sikakorabea no de ZEC a ɛda adi pefee kɔ shielded pool mu ankasa. Eyi te sika a ɛda adi wɔ ɔman blockchain so no so kakra, nanso ɛnsesa wo ankasa privacy kwan."
+        },
+        "Source": {
+          "Open Source": "**Open Source** kyerɛ sɛ sikakorabea no source code da adi pefee ma obiara hwɛ na ɔde di dwuma. Sikakorabea card no bɔ repository link bere a wɔakyerɛ repository bi.",
+          "Closed Source": "**Closed Source** kyerɛ sɛ wɔamfa sikakorabea no source code adi pefee mma ɔman nhwɛ. Nanso, wobetumi ahwɛ sikakorabea no website ne independent reviews ansa na wode bedi dwuma."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Akwankyerɛfo",
@@ -723,7 +803,7 @@
         },
         "whereSubmit": {
           "question": "Ɛhe na yɛde nnwuma ahorow kɔma?",
-          "answer": "Kyɛ wo video demo wɔ Zcash Global Discord mu na fa adekorabea anaa demo link biara a ɛfa ho ka ho."
+          "answer": "Kyɛ wo video demo wɔ Zcash Discord mu na fa adekorabea anaa demo link biara a ɛfa ho ka ho."
         },
         "winnersSelected": {
           "question": "Ɔkwan bɛn so na wɔpaw nkonimdifo?",
@@ -758,7 +838,7 @@
         },
         "share": {
           "title": "Kyɛfa wɔ Akasakasa mu",
-          "description": "Fa wo video demo to Zcash Global Discord no mu a wo repo ne demo links ka ho ansa na July 15, 2026 (UTC) adu."
+          "description": "Fa wo video demo to Zcash Discord no mu a wo repo ne demo links ka ho ansa na July 15, 2026 (UTC) adu."
         }
       },
       "deadlineLabel": "Awieeɛ da:",
@@ -777,7 +857,7 @@
       "buildsCount": "{count} kyekye",
       "viewProject": "Hwɛ adwuma no",
       "needHelpTitle": "Wohia mmoa?",
-      "needHelpDesc": "Zcash Global Discord yɛ beae a eye sen biara ma nsɛmmisa a wɔde si dan, infra afotu, ne hackathon nkɔmmɔbɔ.",
+      "needHelpDesc": "Zcash Discord yɛ beae a eye sen biara ma nsɛmmisa a wɔde si dan, infra afotu, ne hackathon nkɔmmɔbɔ.",
       "joinDiscord": "Kɔka Discord ho",
       "supportDonation": "Fa ntoboa boa",
       "popup": {
@@ -985,12 +1065,12 @@
       "configure": "Hyehyɛ",
       "runZainod": "Mmirikatu zainod",
       "installingZingoCli": "Zingo CLI a wɔde bɛhyɛ mu",
-      "zingoCliInfo": "yɛ ahyɛdeɛ-kwan lightwalletd-proxy afɛfoɔ a wɔasi wɔ Rust mu. Mprempren, nea wɔayi no adi no yɛ bere tiaa mu de — akwankyerɛ yi fa nea wɔboaboa ano fi fibea ho.",
-      "buildZingoCli": "Yɛ Zingo CLI",
+      "zingoCliInfo": "yɛ ahyɛdeɛ-kwan hann sika kotokuo ma Zcash. v7 kyekye Nym mixnet akwantuo no default na ɛbɔ nym-proxy wɔ binary no nkyɛn. Saa akwankyerɛ yi fa nneɛma a wɔboaboa ano fi fibea ho.",
+      "buildZingoCli": "Yɛ Zingo CLI (v7)",
       "running": "Retu mmirika",
-      "startZingoCliDefault": "Fi ase Zingo CLI (Default) .",
-      "startZingoCliCustom": "Fi ase Zingo CLI (Apɛde) .",
-      "zingoSyncWarning": "⚠ Eyi bɛyɛ sync a edi mũ wɔ run a edi kan no mu, te sɛ lightwalletd.",
+      "startZingoCliDefault": "Fi ase Zingo CLI (Default, offline)",
+      "startZingoCliCustom": "Fi ase Zingo CLI (intanɛt so denam mpɔtam hɔ indexer so)",
+      "zingoSyncWarning": "⚠ Nhyiamu foforɔ bi nni intanɛt so kɔsi sɛ wobɛma pene (--online, --remember-online, anaa --server). Wɔasiesie Nym proxy no afi --nym-proxy, $ZINGO_NYM_PROXY, binary a ɛwɔ zingo-cli nkyɛn, anaa PATH. Sync kɔ so wɔ nkɔnsɔnkɔnsɔn no ano akyi default. First online run yɛ sync a edi mũ. Sɛ wobɛkyekyere a mixnet nni mu (offline-only): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Anamɔn a Edi Hɔ & Nneɛma a Wɔde Yɛ Adwuma",
       "readyToBuild": "Woasiesie Wo ho sɛ Wobɛkyekye?",
       "officialDocumentation": "Ɔmanfoɔ Nwoma",
@@ -1131,7 +1211,7 @@
       "formalVerificationSeriesDescription": "Ntoatoaso a ɛwɔ afa atọ a ɛkyerɛ formal verification fi ne fapem mu, fa wo fa Orchard soundness mfomsoɔ a ɛbae wɔ 2026 mu, na ɛkyerɛ sɛnea Ironwood de akontaabu mu adanse a kɔmputa ahwɛ mu bua ho.",
       "newSeriesBadge": "Ntoatoaso Foforo"
     },
-    "browseSidebar": "Browse nsɛm no denam sidebar a ɛwɔ benkum so 👈 no so",
+    "browseSidebar": "Bue Navigation na hwehwɛ nsɛm a ɛwɔ ɔfã yi mu.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Wiase Nyinaa Aban Nnanmusini",
       "description": "Zcash Global Ambassadors yɛ mpɔtam akannifoɔ a wɔatu wɔn ho ama sɛ wɔbɛhyɛ cryptocurrency a wɔde wɔn adwene si kokoamsɛm so ne nkyerɛkyerɛ ho nkuran wɔ wiase nyinaa. Ɔmanpanyin adwuma biara twe adwene si so sɛ wɔbɛma nkurɔfo ate ase na wɔde wɔn ho ahyɛ mu wɔ wɔn mantam mu.",
@@ -1246,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation a wɔde fa kwan so",
-    "explore": "Hwehwɛ mu"
+    "explore": "Hwehwɛ mu",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki a ɛwɔ hɔ",
@@ -1288,6 +1374,164 @@
     "tutorials": {
       "title": "Nkyerɛkyerɛ a wɔde ma",
       "sub": "Hwɛ na di akyi"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Mpɔtam hɔ wiki a wɔde sua Zcash ho ade, de di dwuma na wɔde yɛ nneɛma.",
+      "openSource": "Kɔd a ɛda hɔ ma obiara",
+      "communityDriven": "Mpɔtam hɔfo na wɔdi anim",
+      "educationHub": "Zcash nhomasua beae"
+    },
+    "featured": {
+      "learn": {
+        "title": "Sua",
+        "description": "Nea Zcash yɛ, sɛnea ne kokoamsɛm ho nhyehyɛe yɛ adwuma, ne baabi a wobɛfi ase.",
+        "links": {
+          "first": "Akwankyerɛ ma wɔn a wɔafi ase foforo",
+          "second": "Dɛn ne Zcash?",
+          "third": "Netwɛk no nkɔso foforo"
+        }
+      },
+      "wallet": {
+        "title": "Paw sika kotoku",
+        "description": "Sika kotoku ma wutumi gye ZEC na wode di dwuma wɔ kokoam.",
+        "links": {
+          "first": "Sika kotoku nyinaa",
+          "second": "Fon so sika kotoku",
+          "third": "Mfiridwuma sika kotoku"
+        }
+      },
+      "use": {
+        "title": "Fa ZEC di dwuma",
+        "description": "Nya ZEC, soma, na hwehwɛ mmeae a wogye tom.",
+        "links": {
+          "first": "ZEC a wobɛtɔ",
+          "second": "Nkitahodi ahorow",
+          "third": "Mmeae a wubetumi de ZEC atɔ nneɛma"
+        }
+      },
+      "build": {
+        "title": "Yɛ nneɛma",
+        "description": "Nneɛma, nnwinnade ne akwan a developers betumi afa so aboa wiki no.",
+        "links": {
+          "first": "Wɔn a wɔyɛ nneɛma",
+          "second": "Zcash Devtool",
+          "third": "Boa"
+        }
+      }
+    },
+    "start": {
+      "title": "Fi ase wɔ Ha",
+      "subtitle": "Woafi ase wɔ Zcash mu foforo? Fi saa nneɛma anan yi so."
+    },
+    "videos": {
+      "title": "Hwɛ",
+      "pinnedDescription": "Ɔkwan tiawa a wɔn a wɔafi ase foforo betumi adi so nnidiso nnidiso.",
+      "latestDescription": "Video foforo a ɛwɔ ZecHub channel no so.",
+      "allVideos": "Video ahorow nyinaa",
+      "previous": "Video ahorow a atwam",
+      "next": "Video ahorow a edi hɔ",
+      "play": "Bɔ {title}",
+      "step": "Anamɔn {number}"
+    },
+    "explore": {
+      "title": "Hwehwɛ pii mu",
+      "subtitle": "Akwankyerɛ, nhwehwɛmu, nnwinnade ne Zcash mpɔtam hɔfo a wɔwɔ baabiara."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Sua no mu dɔ",
+        "subtitle": "Nkyerɛkyerɛ, akwankyerɛ ne nhwehwɛmu ma bere a wopɛ nsɛm a ɛkɔ akyiri."
+      },
+      "tools": {
+        "title": "Nnwinnade a wobɛsɔ ahwɛ",
+        "subtitle": "Nnwinnade a wubetumi de adi dwuma ne din ahorow a wɔayɛ afa Zcash ho."
+      },
+      "community": {
+        "title": "Mpɔtam hɔfo ne ahyehyɛde ahorow",
+        "subtitle": "Nnipa ne akuw a wɔboa Zcash abɔdeɛ mu nhyehyɛe no."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Nkyerɛkyerɛ a wɔde ma",
+        "description": "Video nkyerɛkyerɛ a ɛkyerɛ anamɔn biara"
+      },
+      "guides": {
+        "title": "Akwankyerɛfo",
+        "description": "Nodes, nnwinnade, DeFi ne nea ɛkeka ho"
+      },
+      "tech": {
+        "title": "Zcash Mfiridwuma ho nimdeɛ",
+        "description": "zk-SNARKs ne protocol no"
+      },
+      "research": {
+        "title": "Hwehwɛ mu",
+        "description": "Nsɛm a wɔakyerɛw ne nhwehwɛmu a ɛfa Zcash ho"
+      },
+      "privacy": {
+        "title": "Nnwinnade a Wɔde Siesie Kokoam Nsɛm",
+        "description": "Nnwinnade a ɛboa ma wokora wo kokoamsɛm so"
+      },
+      "glossary": {
+        "title": "Nsɛmfua Nkyerɛase & FAQs",
+        "description": "Mmuae tiawa ne nsɛmfua nkyerɛase"
+      },
+      "visualizer": {
+        "description": "Nnwinnade a wubetumi de ate Zcash kokoamsɛm mfiridwuma ase."
+      },
+      "map": {
+        "description": "Asase mfonini a mpɔtam hɔfo hwɛ so a ɛkyerɛ aguadifo ne ATMs a wogye Zcash."
+      },
+      "pay": {
+        "description": "Mmeae a wubetumi de ZEC atua ka ho din a wubetumi ahwɛ kwa."
+      },
+      "organizations": {
+        "title": "Ahyehyɛde ahorow",
+        "description": "ZODL, Zcash Foundation, ZCG ne afoforo"
+      },
+      "community": {
+        "title": "Mpɔtam hɔfo",
+        "description": "Nkitahodi, blogs, nnwuma, ambassadors"
+      },
+      "ambassadors": {
+        "title": "Wiase Nyinaa Aban Nnanmusini",
+        "description": "Mpɔtam hɔ akannifo a wɔhyɛ Zcash ho nhomasua ho nkuran wɔ wiase nyinaa."
+      },
+      "hackathon": {
+        "title": "Hackathon Nneɛma a Wɔakora So",
+        "description": "Nnwuma a wɔde kɔɔ 2026 ZecHub Hackathon no ase."
+      }
+    },
+    "involved": {
+      "title": "Fa wo ho hyɛ mu",
+      "subtitle": "Kɔka DAO no ho, hu mpɔtam hɔfo na boa ma wɔnyɛ wiki no.",
+      "dao": {
+        "description": "Sɛnea ZecHub si gyinae, ne nsusuwii a wɔretow aba wɔ so.",
+        "meet": "Hu DAO no",
+        "proposals": "Hwɛ nsusuwii ahorow"
+      },
+      "community": {
+        "title": "Kɔka mpɔtam hɔfo ho",
+        "description": "Wo ne Zcash dwumadini afoforo nkasa na di nea ZecHub reyɛ no akyi.",
+        "discord": "Kɔka Discord ho"
+      },
+      "contribute": {
+        "title": "Boa ma wɔnyɛ ZecHub",
+        "description": "Mpɔtam hɔfo na wɔdi ZecHub anim. Fa nsɛm ka ho anaa gye bounty adwuma bi.",
+        "action": "Boa",
+        "support": "Boa adwuma no"
+      }
+    },
+    "stats": {
+      "circulation": "Sika dodow a ɛredi akɔneaba",
+      "shielded": "Sika dodow a wɔabɔ ho ban",
+      "blocks": "Block no sorokɔ",
+      "maxSupply": "{percentage}% wɔ 21M dodow a ɛsen biara no mu",
+      "maxSupplyAria": "{percentage}% wɔ sika dodow ɔpepem 21 a ɛsen biara no mu",
+      "shieldedShare": "{percentage}% wɔ dodow a ɛredi akɔneaba no mu",
+      "latestBlock": "Block a aba foforo paa wɔ Zcash mainnet no so"
     }
   }
 }

@@ -41,7 +41,7 @@ export default function Breadcrumbs({
               ) : (
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-foreground"
+                  className="-my-2.5 inline-block py-2.5 transition-colors hover:text-foreground"
                 >
                   {item.label}
                 </Link>

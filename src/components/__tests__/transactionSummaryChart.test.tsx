@@ -19,7 +19,6 @@ jest.mock("recharts", () => ({
 
 // flowbite-react pulls in an ESM-only dependency that Jest does not transform;
 // the chart container only needs its loading spinner.
-jest.mock("flowbite-react", () => ({ Spinner: () => null }));
 
 // Same shape as public/data/zcash/transaction_summary.json. The chart plots
 // every 8,064th block plus the latest sample (25,000 here).

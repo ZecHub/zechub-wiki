@@ -1,7 +1,7 @@
 {
   "menuLabels": {
     "Accept Payments": "Accept Payments",
-    "Akash Network Zebra": "Akash Network Zebra",
+    "Akash Network Zebra": "Zebra on Akash",
     "Arborist Calls": "Arborist Calls",
     "Avalanche RedBridge": "Avalanche RedBridge",
     "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Plugin",
@@ -43,9 +43,9 @@
     "Payment Request URIs": "Payment Request URIs",
     "Podcast": "Podcast",
     "Private Community Treasury": "Private Community Treasury",
-    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node",
-    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Node",
-    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Raspberry Pi 4 Full Node": "Zebra + Zallet on Raspberry Pi 4",
+    "Raspberry pi 4 Zebra Node": "Zebra on Raspberry Pi 4",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Zebra stack on Raspberry Pi 5",
     "Recovering Funds": "Recovering Funds",
     "Research": "Research",
     "Send Money Privately": "Send Money Privately",
@@ -140,7 +140,11 @@
     "searchTryDifferent": "Try shorter queries, synonyms, or different words.",
     "searchSuggested": "Suggested pages",
     "searchResultsLabel": "Results",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "languageSearch": "Search languages",
+    "languageSuggested": "Suggested",
+    "languageAll": "All languages",
+    "languageNone": "No language found"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -247,6 +251,164 @@
     },
     "overview": "Overview",
     "shop": "Shop"
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "The community wiki for learning, using and building with Zcash.",
+      "openSource": "Open source",
+      "communityDriven": "Community-driven",
+      "educationHub": "Education hub for Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Learn",
+        "description": "What Zcash is, how its privacy works, and where to start.",
+        "links": {
+          "first": "New user guide",
+          "second": "What is Zcash?",
+          "third": "Network upgrades"
+        }
+      },
+      "wallet": {
+        "title": "Pick a wallet",
+        "description": "A wallet lets you receive and spend ZEC privately.",
+        "links": {
+          "first": "All wallets",
+          "second": "Mobile wallets",
+          "third": "Hardware wallets"
+        }
+      },
+      "use": {
+        "title": "Use ZEC",
+        "description": "Get ZEC, send it, and find places that accept it.",
+        "links": {
+          "first": "Buying ZEC",
+          "second": "Transactions",
+          "third": "Places to spend ZEC"
+        }
+      },
+      "build": {
+        "title": "Build",
+        "description": "Developer resources, tools and ways to contribute to the wiki.",
+        "links": {
+          "first": "Developers",
+          "second": "Zcash Devtool",
+          "third": "Contribute"
+        }
+      }
+    },
+    "start": {
+      "title": "Start Here",
+      "subtitle": "New to Zcash? Begin with these four."
+    },
+    "videos": {
+      "title": "Watch",
+      "pinnedDescription": "A short path for newcomers, in order.",
+      "latestDescription": "The latest from the ZecHub channel.",
+      "allVideos": "All videos",
+      "previous": "Previous videos",
+      "next": "Next videos",
+      "play": "Play {title}",
+      "step": "Step {number}"
+    },
+    "explore": {
+      "title": "More to Explore",
+      "subtitle": "Guides, research, tools and the wider Zcash community."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Go Deeper",
+        "subtitle": "Tutorials, guides and research for when you want more detail."
+      },
+      "tools": {
+        "title": "Tools to Try",
+        "subtitle": "Interactive tools and directories built around Zcash."
+      },
+      "community": {
+        "title": "Community & Organizations",
+        "subtitle": "The people and groups behind the Zcash ecosystem."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutorials",
+        "description": "Step-by-step video tutorials"
+      },
+      "guides": {
+        "title": "Guides",
+        "description": "Nodes, tools, DeFi and more"
+      },
+      "tech": {
+        "title": "Zcash Tech",
+        "description": "zk-SNARKs and the protocol"
+      },
+      "research": {
+        "title": "Research",
+        "description": "Articles and research on Zcash"
+      },
+      "privacy": {
+        "title": "Privacy Tools",
+        "description": "Tools to help protect your privacy"
+      },
+      "glossary": {
+        "title": "Glossary & FAQs",
+        "description": "Quick answers and definitions"
+      },
+      "visualizer": {
+        "description": "Interactive tools to understand Zcash privacy technology."
+      },
+      "map": {
+        "description": "Community-maintained map of merchants and ATMs that accept Zcash."
+      },
+      "pay": {
+        "description": "A free directory of where you can pay with ZEC."
+      },
+      "organizations": {
+        "title": "Organizations",
+        "description": "ZODL, Zcash Foundation, ZCG and others"
+      },
+      "community": {
+        "title": "Community",
+        "description": "Links, blogs, projects, ambassadors"
+      },
+      "ambassadors": {
+        "title": "Global Ambassadors",
+        "description": "Community leaders promoting Zcash education worldwide."
+      },
+      "hackathon": {
+        "title": "Hackathon Archive",
+        "description": "Projects submitted to the 2026 ZecHub Hackathon."
+      }
+    },
+    "involved": {
+      "title": "Get Involved",
+      "subtitle": "Join the DAO, meet the community and help build the wiki.",
+      "dao": {
+        "description": "How ZecHub makes decisions, and the proposals open for a vote.",
+        "meet": "Meet the DAO",
+        "proposals": "See proposals"
+      },
+      "community": {
+        "title": "Join the community",
+        "description": "Talk with other Zcash users and follow what ZecHub is doing.",
+        "discord": "Join Discord"
+      },
+      "contribute": {
+        "title": "Help build ZecHub",
+        "description": "ZecHub is community-driven. Add content or pick up a bounty.",
+        "action": "Contribute",
+        "support": "Support the project"
+      }
+    },
+    "stats": {
+      "circulation": "Circulating supply",
+      "shielded": "Shielded supply",
+      "blocks": "Block height",
+      "maxSupply": "{percentage}% of the 21M maximum",
+      "maxSupplyAria": "{percentage}% of the 21 million maximum supply",
+      "shieldedShare": "{percentage}% of circulating supply",
+      "latestBlock": "Latest block on the Zcash mainnet"
+    }
   },
   "home": {
     "heroTitle": "Welcome to ZecHub",
@@ -448,7 +610,39 @@
     "activeCount": "{count} active",
     "savedReview": "We saved your review!",
     "errorGettingLikes": "Error getting likes:",
-    "errorUpdatingRating": "Error updating rating:"
+    "errorUpdatingRating": "Error updating rating:",
+    "betaTitle": "Beta wallets",
+    "betaNote": "Test releases. Expect rough edges and use small amounts.",
+    "transparentOnlyTitle": "Transparent-only wallets",
+    "transparentOnlyNote": "These wallets only support transparent ZEC, which does not hide transaction details.",
+    "nymMixnetTitle": "Nym Mixnet support",
+    "nymMixnetNote": "Wallets that support routing Zcash traffic through the Nym mixnet.",
+    "filterInfo": {
+      "categoryTitle": "About the {category} filter",
+      "itemTitle": "About {value}",
+      "categoryFallback": "Use **{category}** to narrow the wallet list to wallets that match the options in this category. Selecting an option applies the filter, and selecting it again removes it.",
+      "itemFallback": "**{value}** is one of the **{category}** filter options. Selecting it narrows the wallet list to wallets that include this value; select it again to remove the filter.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** means the wallet runs as an app on a phone or tablet. Mobile wallets usually sync through a lightwallet server instead of storing the full blockchain, which makes them convenient for everyday payments.",
+          "Desktop": "**Desktop** means the wallet runs as an application on a computer. Depending on the wallet, it may sync a full node or connect to a lightwallet server."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** is Zcash's shielded pool introduced in NU5. It supports shielded transactions with the Orchard pool design and is used by wallets that offer the latest shielded features.",
+          "Transparent": "**Transparent** means the wallet supports transparent ZEC, whose transactions are visible on the public blockchain. Transparent addresses start with `t` and do not hide the sender, receiver, or amount."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** is a Zcash address format that can contain shielded and transparent receivers in one address. Wallets that support it can use the receiver that fits the payment while remaining compatible with different address types."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** means the wallet moves transparent ZEC into a shielded pool automatically. This reduces how often funds remain visible on the public blockchain, but it does not replace your own privacy practices."
+        },
+        "Source": {
+          "Open Source": "**Open Source** means the wallet's source code is publicly available for review and reuse. The wallet card links to the repository when one is listed.",
+          "Closed Source": "**Closed Source** means the wallet's source code is not published for public review. You can still check the wallet's website and independent reviews before using it."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Guides",
@@ -697,7 +891,7 @@
         },
         "whereSubmit": {
           "question": "Where do we submit projects?",
-          "answer": "Share your video demo in the Zcash Global Discord and include any relevant repository or demo links."
+          "answer": "Share your video demo in the Zcash Discord and include any relevant repository or demo links."
         },
         "winnersSelected": {
           "question": "How are winners selected?",
@@ -732,7 +926,7 @@
         },
         "share": {
           "title": "Share in Discord",
-          "description": "Post your video demo in the Zcash Global Discord with your repo and demo links before July 15, 2026 (UTC)."
+          "description": "Post your video demo in the Zcash Discord with your repo and demo links before July 15, 2026 (UTC)."
         }
       },
       "deadlineLabel": "Deadline:",
@@ -751,7 +945,7 @@
       "buildsCount": "{count} builds",
       "viewProject": "View project",
       "needHelpTitle": "Need help?",
-      "needHelpDesc": "The Zcash Global Discord is the best place for build questions, infra tips, and hackathon chatter.",
+      "needHelpDesc": "The Zcash Discord is the best place for build questions, infra tips, and hackathon chatter.",
       "joinDiscord": "Join Discord",
       "supportDonation": "Support with a donation",
       "popup": {
@@ -819,7 +1013,7 @@
         "introToStack": "Intro to the Stack",
         "introToStackDesc": "Understand the architecture and components of the Zcash stack.",
         "zecDev": "ZecDev",
-        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant. See also the",
+        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant.",
         "zcashCommunityWishlist": "Zcash Community Wishlist",
         "introToZingolib": "Intro to Zingolib",
         "introToZingolibDesc": "Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd.",
@@ -1220,7 +1414,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation",
-    "explore": "Explore"
+    "explore": "Explore",
+    "continueReading": {
+      "heading": "Continue reading",
+      "previous": "Previous",
+      "next": "Next",
+      "nextStep": "Next step"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",

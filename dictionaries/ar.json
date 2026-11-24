@@ -3,17 +3,17 @@
     "Accept Payments": "قبول المدفوعات",
     "Akash Network Zebra": "Zebra على شبكة Akash",
     "Arborist Calls": "Arborist Calls",
-    "Avalanche RedBridge": "RedBridge على Avalanche",
+    "Avalanche RedBridge": "Avalanche RedBridge",
     "BTCPayServer Zcash Plugin": "إضافة Zcash لـ BTCPayServer",
-    "Blockchain Explorers": "مستكشفات البلوكشين",
-    "Brand": "العلامة التجارية",
+    "Blockchain Explorers": "مستكشفات سلسلة الكتل",
+    "Brand": "الهوية البصرية",
     "Brave Wallet": "محفظة Brave",
     "Buying ZEC": "شراء ZEC",
     "Community Blogs": "مدونات المجتمع",
     "Community Forum": "منتدى المجتمع",
     "Community Links": "روابط المجتمع",
     "Community Projects": "مشاريع المجتمع",
-    "Contribute": "ساهم",
+    "Contribute": "المساهمة",
     "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
     "DAO": "DAO",
     "Developers": "المطورون",
@@ -21,14 +21,14 @@
     "Donations": "التبرعات",
     "Electric Coin Company": "Electric Coin Company",
     "Exchanges": "منصات التداول",
-    "Extras": "إضافات",
+    "Extras": "مواد إضافية",
     "Faucets": "صنابير",
     "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Live",
-    "Freelance Privacy": "الخصوصية للعمل الحر",
+    "Freelance Privacy": "الخصوصية للعاملين المستقلين",
     "Github": "Github",
     "Governance": "الحوكمة",
-    "Guides": "أدلة",
+    "Guides": "الأدلة",
     "How to Participate": "كيفية المشاركة",
     "Journalist Privacy": "خصوصية الصحفيين",
     "Keeping Records": "حفظ السجلات",
@@ -37,40 +37,40 @@
     "Memos": "المذكرات",
     "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "شحن رصيد الهاتف",
-    "Newsletter": "النشرة البريدية",
+    "Newsletter": "النشرة الإخبارية",
     "Nym VPN": "Nym VPN",
     "Payment Processors": "معالجات الدفع",
     "Payment Request URIs": "معرّفات URI لطلبات الدفع",
     "Podcast": "بودكاست",
-    "Private Community Treasury": "خزانة المجتمع الخاصة",
+    "Private Community Treasury": "خزينة المجتمع الخاصة",
     "Raspberry Pi 4 Full Node": "عقدة كاملة على Raspberry Pi 4",
     "Raspberry pi 4 Zebra Node": "عقدة Zebra على Raspberry pi 4",
     "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
     "Recovering Funds": "استرداد الأموال",
     "Research": "الأبحاث",
-    "Send Money Privately": "إرسال الأموال بشكل خاص",
+    "Send Money Privately": "إرسال الأموال بخصوصية",
     "Shielded Labs": "Shielded Labs",
-    "Shielded Pools": "المجموعات المحمية",
+    "Shielded Pools": "المجمّعات المحمية",
     "Sitemap": "خريطة الموقع",
-    "Start Here": "ابدأ من هنا",
+    "Start Here": "ابدأ هنا",
     "Store": "المتجر",
     "Testnet": "Testnet",
     "Tools": "الأدوات",
     "Transactions": "المعاملات",
-    "Transparent Exchange Addresses": "عناوين التداول الشفافة",
-    "Tutorials": "دروس تعليمية",
+    "Transparent Exchange Addresses": "عناوين منصات التداول الشفافة",
+    "Tutorials": "الدروس",
     "Twitter": "Twitter",
     "Use Cases": "حالات الاستخدام",
-    "Using ZEC Privately": "استخدام ZEC بشكل خاص",
+    "Using ZEC Privately": "استخدام ZEC بخصوصية",
     "Using ZEC in DeFi": "استخدام ZEC في DeFi",
     "Using Zcash": "استخدام Zcash",
     "Visual Identity": "الهوية البصرية",
-    "Visualizer": "أداة التصور",
-    "Visualizing Zcash Addresses": "تصور عناوين Zcash",
-    "Visualizing the Zcash Network": "تصور شبكة Zcash",
+    "Visualizer": "أداة العرض المرئي",
+    "Visualizing Zcash Addresses": "عرض عناوين Zcash بشكل مرئي",
+    "Visualizing the Zcash Network": "عرض شبكة Zcash بشكل مرئي",
     "Wallets": "المحافظ",
     "Youtube": "Youtube",
-    "Ywallet FROST Demo": "عرض Ywallet FROST",
+    "Ywallet FROST Demo": "عرض تجريبي لـ Ywallet FROST",
     "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIPs والمنح",
     "ZKAV Club": "ZKAV Club",
@@ -78,24 +78,24 @@
     "Zcash Community": "مجتمع Zcash",
     "Zcash Community Grants": "Zcash Community Grants",
     "Zcash Devtool": "Zcash Devtool",
-    "Zcash Ecosystem Security": "أمن منظومة Zcash",
+    "Zcash Ecosystem Security": "أمن النظام البيئي لـ Zcash",
     "Zcash Foundation": "Zcash Foundation",
     "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "حوكمة Zcash",
     "Zcash Improvement Proposals": "مقترحات تحسين Zcash",
     "Zcash Login": "Zcash Login",
-    "Zcash Media": "إعلام Zcash",
+    "Zcash Media": "وسائل إعلام Zcash",
     "Zcash Organizations": "منظمات Zcash",
     "Zcash Podcasts": "بودكاست Zcash",
     "Zcon Archive": "أرشيف Zcon",
     "Zcon Vozes Archive": "أرشيف Zcon Vozes",
     "Zenith Installation": "تثبيت Zenith",
-    "Zero-Knowledge vs Decoys": "إثباتات المعرفة الصفرية مقابل الطعوم",
+    "Zero-Knowledge vs Decoys": "المعرفة الصفرية مقابل التمويه",
     "Zgo Payment Processor": "معالج الدفع Zgo",
     "Zingo Labs": "Zingo Labs",
-    "Zingolib and Zaino Tutorial": "دليل Zingolib و Zaino",
-    "Zkool Multisig": "تعدد التواقيع في Zkool",
-    "Custodial Exchanges": "منصات تداول وصائية",
+    "Zingolib and Zaino Tutorial": "درس Zingolib و Zaino",
+    "Zkool Multisig": "التوقيع المتعدد في Zkool",
+    "Custodial Exchanges": "منصات التداول الوصائية",
     "Zcash Use Cases": "حالات استخدام Zcash",
     "Zcash Tech": "تقنيات Zcash",
     "Privacy Tools": "أدوات الخصوصية",
@@ -126,12 +126,56 @@
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "شبكة Akash Zcashd",
     "CoinHolder Directed Retroactive Grants": "منح بأثر رجعي موجهة من CoinHolder",
-    "Community Building": "Community Building",
+    "Community Building": "بناء المجتمع",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "إعداد محفظة Nym Mixnet",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "لوحة معلومات المنظومة",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "مجمّعات القيمة",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "من يمكنه رؤية دفعتك؟",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "العقد الكاملة",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "ترقيات الشبكة",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "التوقيعات الرقمية الحدّية FROST",
+    "Shielded Assets (ZSAs)": "الأصول المحمية (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
-    "Full Explore": "استكشاف كامل",
+    "Full Explore": "استكشاف شامل",
     "Start Here": "ابدأ هنا",
     "Tutorials": "الدروس",
     "Using Zcash": "استخدام Zcash",
@@ -143,7 +187,7 @@
     "Privacy Tools": "أدوات الخصوصية",
     "Research": "الأبحاث",
     "Glossary & FAQs": "مسرد المصطلحات والأسئلة الشائعة",
-    "Contribute": "ساهم",
+    "Contribute": "المساهمة",
     "For Forks & Maintainers": "للتفريعات والمشرفين",
     "Fork zechub-wiki": "Fork zechub-wiki",
     "Fork zechub": "Fork zechub",
@@ -166,33 +210,37 @@
     "searchTryDifferent": "جرّب استعلامات أقصر أو مرادفات أو كلمات مختلفة.",
     "searchSuggested": "الصفحات المقترحة",
     "searchResultsLabel": "النتائج",
-    "skipToContent": "تخطي إلى المحتوى"
+    "skipToContent": "تخطي إلى المحتوى",
+    "languageSearch": "البحث عن اللغات",
+    "languageSuggested": "مقترحة",
+    "languageAll": "كل اللغات",
+    "languageNone": "لم يتم العثور على لغة"
   },
   "navigation": {
     "wallets": "المحافظ",
     "guides": "الأدلة",
     "tutorials": "الدروس",
     "governance": "الحوكمة",
-    "visualizer": "أداة التصور",
+    "visualizer": "أداة العرض المرئي",
     "dao": "DAO",
-    "newsletter": "النشرة البريدية",
+    "newsletter": "النشرة الإخبارية",
     "donate": "تبرع",
     "explore": "استكشف",
     "developers": "المطورون",
     "community": "المجتمع",
-    "contribute": "ساهم",
-    "dashboard": "لوحة التحكم",
+    "contribute": "المساهمة",
+    "dashboard": "لوحة المعلومات",
     "more": "المزيد",
     "usingZcash": {
       "label": "استخدام Zcash",
       "buyingZec": "شراء ZEC",
-      "faucets": "الحنفيات",
+      "faucets": "صنابير",
       "wallets": "المحافظ",
       "metamaskSnap": "MetaMask Snap",
-      "exchanges": "البورصات",
+      "exchanges": "منصات التداول",
       "blockExplorers": "مستكشفات الكتل",
-      "shieldedPools": "المجمعات المحمية",
-      "transparentExchangeAddresses": "عناوين البورصات الشفافة",
+      "shieldedPools": "المجمّعات المحمية",
+      "transparentExchangeAddresses": "عناوين منصات التداول الشفافة",
       "transactions": "المعاملات",
       "memos": "المذكرات",
       "mobileTopUps": "شحن رصيد الهاتف",
@@ -208,9 +256,9 @@
         "freelancePrivacy": "الخصوصية للعاملين المستقلين",
         "journalistPrivacy": "خصوصية الصحفيين",
         "keepingRecords": "حفظ السجلات",
-        "privateCommunityTreasury": "خزانة مجتمع خاصة",
+        "privateCommunityTreasury": "خزينة المجتمع الخاصة",
         "donations": "التبرعات",
-        "sendMoneyPrivately": "إرسال الأموال بشكل خاص"
+        "sendMoneyPrivately": "إرسال الأموال بخصوصية"
       }
     },
     "zcashCommunity": {
@@ -221,10 +269,10 @@
       "communityForum": "منتدى المجتمع",
       "communityProjects": "مشاريع المجتمع",
       "globalAmbassadors": "سفراء Zcash العالميون",
-      "zcashMedia": "إعلام Zcash",
+      "zcashMedia": "وسائل إعلام Zcash",
       "zcap": "ZCAP",
       "zcashPodcasts": "بودكاست Zcash",
-      "ecosystemSecurity": "أمن نظام Zcash البيئي",
+      "ecosystemSecurity": "أمن النظام البيئي لـ Zcash",
       "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
       "zconArchive": "أرشيف Zcon"
     },
@@ -236,7 +284,7 @@
       "financialPrivacyFoundation": "مؤسسة الخصوصية المالية",
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
-      "brand": "العلامة التجارية",
+      "brand": "الهوية البصرية",
       "zkavClub": "ZKAV Club",
       "coinholderDirectedRetroactiveGrants": "منح بأثر رجعي موجهة من CoinHolder",
       "obscuraLabs": "Obscura Labs",
@@ -252,24 +300,24 @@
       "mayaProtocol": "Maya Protocol",
       "nymVpn": "Nym VPN",
       "usingZecInDefi": "استخدام ZEC في DeFi",
-      "usingZecPrivately": "استخدام ZEC بشكل خاص",
+      "usingZecPrivately": "استخدام ZEC بخصوصية",
       "raspberryPiZcashdNode": "عقدة Raspberry Pi Zcashd",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
       "raspberryPiZebraNode": "عقدة Raspberry Pi Zebra",
-      "akashNetwork": "Akash Network",
+      "akashNetwork": "شبكة Akash",
       "avalancheRedbridge": "Avalanche RedBridge",
-      "zkoolMultisig": "Zkool Multisig",
-      "ywalletFrostDemo": "عرض YWallet FROST",
-      "blockchainExplorers": "مستكشفات البلوكشين",
+      "zkoolMultisig": "التوقيع المتعدد في Zkool",
+      "ywalletFrostDemo": "عرض تجريبي لـ Ywallet FROST",
+      "blockchainExplorers": "مستكشفات سلسلة الكتل",
       "braveWallet": "Brave Wallet",
       "btcPayServerPlugin": "إضافة BTCPayServer",
-      "visualizingZcashNetwork": "تصور شبكة Zcash",
-      "visualizingZcashAddresses": "تصور عناوين Zcash",
+      "visualizingZcashNetwork": "عرض شبكة Zcash بشكل مرئي",
+      "visualizingZcashAddresses": "عرض عناوين Zcash بشكل مرئي",
       "zcashDevtool": "أداة مطور Zcash",
       "zcashImprovementProposals": "مقترحات تحسين Zcash",
-      "zingolibAndZainoTutorial": "دليل Zingolib و Zaino",
+      "zingolibAndZainoTutorial": "درس Zingolib و Zaino",
       "zenithInstallation": "تثبيت Zenith",
-      "zeroKnowledgeVsDecoys": "إثباتات المعرفة الصفرية مقابل أنظمة الطُعم"
+      "zeroKnowledgeVsDecoys": "المعرفة الصفرية مقابل أنظمة التمويه"
     },
     "overview": "نظرة عامة",
     "shop": "المتجر"
@@ -278,7 +326,7 @@
     "heroTitle": "مرحبًا بك في ZecHub",
     "heroSubtitle": "مركز تعليمي مفتوح المصدر لـ Zcash",
     "heroDescription": "تعرّف على تقنية الخصوصية في Zcash، واستكشف أدوات عرض تفاعلية، وساهم في المنظومة",
-    "description": "ZecHub هو المركز التعليمي الذي يقوده المجتمع لعملة Zcash المشفرة (ZEC). Zcash هي عملة رقمية توفّر مدفوعات آمنة وخاصة ومقاومة للرقابة. تستخدم سلسلة كتل Zcash تقنيات zk-snarks متقدمة للغاية وقابلة للتحقق ولا تتطلب Trusted Setup، وذلك بعد ترقية الشبكة NU5 في عام 2022.",
+    "description": "ZecHub هو مركز تعليمي يقوده المجتمع حول Zcash ‏(ZEC)، وهي عملة رقمية لامركزية صُممت لمدفوعات آمنة وخاصة ومقاومة للرقابة. يستخدم Zcash تشفيرًا متقدمًا قائمًا على إثباتات المعرفة الصفرية لتمكين معاملات يمكن التحقق من صحتها دون كشف معلومات مالية حساسة. في عام 2026، قُدِّم مجمع Ironwood المحمي، الذي جرى التحقق منه رسميًا باستخدام براهين رياضية تتحقق منها الآلة، ويضمن سلامة الرصيد. يطوّر Project Tachyon بروتوكولًا مقترحًا من الجيل التالي للمعاملات المحمية، صُمم لتحسين قابلية توسع المدفوعات الخاصة بصورة كبيرة، وتقليل نمو حالة المدققين، ودفع Zcash نحو خصوصية آمنة بالكامل في عصر ما بعد الحوسبة الكمومية.",
     "featuredSection": "موارد مميزة",
     "latestUpdates": "أحدث التحديثات",
     "getInvolved": "شارك معنا",
@@ -286,7 +334,7 @@
     "exploreZcash": "استكشف Zcash",
     "cards": {
       "startHere": {
-        "title": "ابدأ من هنا",
+        "title": "ابدأ هنا",
         "content": "تعرّف على Zcash وحالات استخدام ZEC"
       },
       "pickWallet": {
@@ -301,7 +349,7 @@
     "sections": {
       "whatIsZcash": {
         "title": "ما هو Zcash؟",
-        "description": "هو دفتر أستاذ قائم على blockchain ومفتوح المصدر يتميز بنظام متطور لإثبات المعرفة الصفرية. ويتخصص في تقديم مستوى أعلى من الخصوصية عبر نظام الإثبات الخاص به، مع الحفاظ على سرية البيانات الوصفية للمعاملات. وفي جوهره، يمثل Zcash ملكية خاصة للبيانات تُنقل دون إذن مسبق عند إجراء المعاملات.",
+        "description": "هو دفتر أستاذ قائم على سلسلة الكتل ومفتوح المصدر يتميز بنظام متطور لإثبات المعرفة الصفرية. ويتخصص في تقديم مستوى أعلى من الخصوصية عبر نظام الإثبات الخاص به، مع الحفاظ على سرية البيانات الوصفية للمعاملات. وفي جوهره، يمثل Zcash ملكية خاصة للبيانات تُنقل دون إذن مسبق عند إجراء المعاملات.",
         "mainLink": "ما هو Zcash؟",
         "techLink": "تقنية Zcash"
       },
@@ -344,7 +392,7 @@
     },
     "explore": {
       "startHere": "Start_Here",
-      "tutorials": "دروس تعليمية",
+      "tutorials": "الدروس",
       "usingZcash": "Using_Zcash",
       "guides": "أدلة",
       "zcashTech": "Zcash_Tech",
@@ -459,7 +507,7 @@
     "description": "اختر محفظة تناسب احتياجاتك",
     "desktopWallets": "محافظ سطح المكتب",
     "mobileWallets": "محافظ الهاتف المحمول",
-    "hardwareWallets": "محافظ الأجهزة",
+    "hardwareWallets": "محافظ مادية",
     "webWallets": "محافظ الويب",
     "features": "الميزات",
     "download": "تنزيل",
@@ -474,7 +522,39 @@
     "activeCount": "{count} نشطة",
     "savedReview": "لقد حفظنا مراجعتك!",
     "errorGettingLikes": "خطأ في جلب الإعجابات:",
-    "errorUpdatingRating": "خطأ في تحديث التقييم:"
+    "errorUpdatingRating": "خطأ في تحديث التقييم:",
+    "betaTitle": "محافظ بيتا",
+    "betaNote": "إصدارات اختبارية. توقع بعض العيوب واستخدم مبالغ صغيرة.",
+    "transparentOnlyTitle": "محافظ شفافة فقط",
+    "transparentOnlyNote": "هذه المحافظ تدعم فقط ZEC الشفاف، الذي لا يخفي تفاصيل المعاملات.",
+    "nymMixnetTitle": "دعم Nym Mixnet",
+    "nymMixnetNote": "المحافظ التي تدعم توجيه حركة Zcash عبر Nym Mixnet.",
+    "filterInfo": {
+      "categoryTitle": "حول عامل التصفية {category}",
+      "itemTitle": "حول {value}",
+      "categoryFallback": "استخدم **{category}** لتضييق قائمة المحافظ إلى المحافظ التي تطابق الخيارات في هذه الفئة. يؤدي اختيار خيار إلى تطبيق عامل التصفية، ويؤدي اختياره مرة أخرى إلى إزالته.",
+      "itemFallback": "**{value}** هو أحد خيارات عامل التصفية **{category}**. يؤدي اختياره إلى تضييق قائمة المحافظ إلى المحافظ التي تتضمن هذه القيمة؛ اختره مرة أخرى لإزالة عامل التصفية.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** يعني أن المحفظة تعمل كتطبيق على الهاتف أو الجهاز اللوحي. عادةً ما تتزامن المحافظ المحمولة عبر خادم lightwallet بدلاً من تخزين سلسلة الكتل كاملة، مما يجعلها مناسبة للمدفوعات اليومية.",
+          "Desktop": "**Desktop** يعني أن المحفظة تعمل كتطبيق على الحاسوب. حسب المحفظة، قد تتزامن مع عقدة كاملة أو تتصل بخادم lightwallet."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** هو مجمّع Zcash المحمي الذي أُدخل في NU5. يدعم المعاملات المحمية بتصميم مجمّع Orchard وتستخدمه المحافظ التي توفر أحدث ميزات الحماية.",
+          "Transparent": "**Transparent** يعني أن المحفظة تدعم ZEC الشفاف، ومعاملاته مرئية على سلسلة الكتل العامة. تبدأ العناوين الشفافة بـ `t` ولا تخفي المرسل أو المستلم أو المبلغ."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** هو تنسيق عنوان Zcash يمكنه أن يحتوي على مستقبلات محمية وشفافة في عنوان واحد. يمكن للمحافظ الداعمة استخدام المستقبل المناسب للدفع مع الحفاظ على التوافق مع أنواع العناوين المختلفة."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** يعني أن المحفظة تنقل ZEC الشفاف إلى مجمّع محمي تلقائياً. يقلل ذلك من مدة بقاء الأموال مرئية على سلسلة الكتل العامة، لكنه لا يغني عن ممارساتك الخاصة في الخصوصية."
+        },
+        "Source": {
+          "Open Source": "**Open Source** يعني أن الكود المصدري للمحفظة متاح للعموم للمراجعة وإعادة الاستخدام. تربط بطاقة المحفظة بالمستودع عندما يكون هناك مستودع مذكور.",
+          "Closed Source": "**Closed Source** يعني أن الكود المصدري للمحفظة غير منشور للمراجعة العامة. يمكنك مع ذلك التحقق من موقع المحفظة ومراجعات مستقلة قبل استخدامها."
+        }
+      }
+    }
   },
   "guides": {
     "title": "الأدلة",
@@ -547,11 +627,11 @@
       "subtitle": "ZecHub لا تؤيد أي خدمة بورصات لامركزية بعينها، يُرجى إجراء بحثك الخاص.",
       "centralised": "منصات المبادلة المركزية",
       "centralizedTitle": "إدراج منصة مبادلة مركزية",
-      "custodial": "منصات تداول وصائية",
+      "custodial": "منصات التداول الوصائية",
       "exchanges": {
         "Near-intents": "تبادل سريع بدعم من NEAR. قم بالإيداع والبيع والمبادلة، بما في ذلك TRUMP وMELANIA وBERA وغيرها من العملات الميمية الشائعة",
         "Nativeswap": "تداول أصلي عبر السلاسل بلا حواجز عبر Maya Protocol. تداول مباشرة على السلسلة من دون جسور أو توكنات مغلّفة — واستمتع برسوم منخفضة على مستوى القطاع وتحكّم كامل بأصولك.",
-        "Firo DEX": "مبادلات لامركزية غير قائمة على الثقة باستخدام atomic swaps مع FiroDEX!.",
+        "Firo DEX": "مبادلات لامركزية غير قائمة على الثقة باستخدام المبادلات الذرية مع FiroDEX!.",
         "LeoDEX": "واجهة لمبادلة العملات الرقمية عبر السلاسل لـ Maya Protocol وThorchain وChainFlip وRango. BTC وETH وRUNE وDASH وLTC والمزيد",
         "Bison Wallet": "تداول العملات الرقمية من نظير إلى نظير. بلا رسوم تداول. بلا KYC.",
         "THORSwap": "DEX عبر السلاسل مدعوم من THORChain، يتيح مبادلات أصلية بين Bitcoin وEthereum وغيرها من الأصول الرئيسية من دون توكنات مغلّفة.",
@@ -565,7 +645,7 @@
     },
     "usingZcash": {
       "blockchainExplorers": {
-        "title": "مستكشفات البلوكشين"
+        "title": "مستكشفات سلسلة الكتل"
       }
     },
     "dashboard": {
@@ -691,7 +771,7 @@
       "prizesTitle": "الجوائز",
       "prizePoolTitle": "مجموع جوائز 25 ZEC",
       "prizePoolDesc": "ابنِ وقدّم ونافس على مجموع الجوائز المجتمعي.",
-      "devToolsEyebrow": "ابدأ من هنا",
+      "devToolsEyebrow": "ابدأ هنا",
       "devToolsTitle": "أدوات التطوير والوثائق",
       "devTools": {
         "quickStart": {
@@ -723,7 +803,7 @@
         },
         "whereSubmit": {
           "question": "أين نرسل المشاريع؟",
-          "answer": "شارك عرض الفيديو التوضيحي في Zcash Global Discord وأدرج أي روابط ذات صلة للمستودع أو العرض التوضيحي."
+          "answer": "شارك عرض الفيديو التوضيحي في Zcash Discord وأدرج أي روابط ذات صلة للمستودع أو العرض التوضيحي."
         },
         "winnersSelected": {
           "question": "كيف يتم اختيار الفائزين؟",
@@ -758,7 +838,7 @@
         },
         "share": {
           "title": "شارك في Discord",
-          "description": "انشر عرض الفيديو التوضيحي في Zcash Global Discord مع روابط المستودع والعرض التوضيحي قبل 15 يوليو 2026 (UTC)."
+          "description": "انشر عرض الفيديو التوضيحي في Zcash Discord مع روابط المستودع والعرض التوضيحي قبل 15 يوليو 2026 (UTC)."
         }
       },
       "deadlineLabel": "الموعد النهائي:",
@@ -777,7 +857,7 @@
       "buildsCount": "{count} مشاريع",
       "viewProject": "عرض المشروع",
       "needHelpTitle": "هل تحتاج إلى مساعدة؟",
-      "needHelpDesc": "يُعد Zcash Global Discord أفضل مكان لأسئلة البناء ونصائح البنية التحتية وأحاديث الهاكاثون.",
+      "needHelpDesc": "يُعد Zcash Discord أفضل مكان لأسئلة البناء ونصائح البنية التحتية وأحاديث الهاكاثون.",
       "joinDiscord": "انضم إلى Discord",
       "supportDonation": "ادعم بتبرع",
       "popup": {
@@ -817,7 +897,7 @@
         "introToZebra": "مقدمة إلى Zebra",
         "introToZebraDesc": "فهم كيف يدعم Zebra شبكة Zcash من خلال تنفيذ معياري وآمن قائم على Rust",
         "introToLightwalletd": "مقدمة إلى Lightwalletd",
-        "introToLightwalletdDesc": "فهم مشروع lightwalletd — وهو خادم قابل للتوسع مكتوب بلغة Go ويخدم بيانات البلوكشين المدمجة بكفاءة إلى عملاء Zcash الخفيفين عبر gRPC.",
+        "introToLightwalletdDesc": "فهم مشروع lightwalletd — وهو خادم قابل للتوسع مكتوب بلغة Go ويخدم بيانات سلسلة الكتل المدمجة بكفاءة إلى عملاء Zcash الخفيفين عبر gRPC.",
         "zalletBook": "كتاب Zallet",
         "zalletBookDesc": "مقدمة إلى Zallet، وهي محفظة Zcash لعقدة كاملة مكتوبة بلغة Rust ومصممة كبديل لمحفظة zcashd.",
         "developerResources": "موارد المطورين",
@@ -985,12 +1065,12 @@
       "configure": "إعداد",
       "runZainod": "تشغيل zainod",
       "installingZingoCli": "تثبيت Zingo CLI",
-      "zingoCliInfo": "هو عميل وكيل lightwalletd بسطر الأوامر ومبني بلغة Rust. الإصدارات الحالية مؤقتة — ويغطي هذا الدليل التجميع من المصدر.",
-      "buildZingoCli": "بناء Zingo CLI",
+      "zingoCliInfo": "هو محفظة خفيفة لسطر الأوامر لـ Zcash. يبني الإصدار v7 نقل Nym mixnet افتراضيًا ويتضمن nym-proxy بجانب الملف التنفيذي. يغطي هذا الدليل التجميع من المصدر.",
+      "buildZingoCli": "بناء Zingo CLI ‏(v7)",
       "running": "التشغيل",
-      "startZingoCliDefault": "بدء Zingo CLI (افتراضي)",
-      "startZingoCliCustom": "بدء Zingo CLI (مخصص)",
-      "zingoSyncWarning": "⚠ سيؤدي هذا إلى تنفيذ مزامنة كاملة عند التشغيل الأول، على غرار lightwalletd.",
+      "startZingoCliDefault": "بدء Zingo CLI ‏(افتراضيًا، دون اتصال)",
+      "startZingoCliCustom": "بدء Zingo CLI ‏(عبر الإنترنت باستخدام مفهرس محلي)",
+      "zingoSyncWarning": "⚠ تكون الجلسة الجديدة دون اتصال إلى أن تمنح الموافقة (--online أو --remember-online أو --server). يُحدَّد وكيل Nym من --nym-proxy أو $ZINGO_NYM_PROXY أو الملف التنفيذي الموجود بجانب zingo-cli أو PATH. تستمر المزامنة بعد قمة السلسلة افتراضيًا. يجري أول تشغيل عبر الإنترنت مزامنة كاملة. للبناء دون mixnet ‏(دون اتصال فقط): شغّل makers run-cli --nakednet --build-only.",
       "nextStepsResources": "الخطوات التالية والموارد",
       "readyToBuild": "هل أنت جاهز للبناء؟",
       "officialDocumentation": "الوثائق الرسمية",
@@ -1080,7 +1160,7 @@
       },
       "links": {
         "Homepage": "الصفحة الرئيسية",
-        "Dashboard": "لوحة التحكم",
+        "Dashboard": "لوحة المعلومات",
         "Donation": "التبرع",
         "Contribute": "المساهمة",
         "DAO": "DAO",
@@ -1131,7 +1211,7 @@
       "formalVerificationSeriesDescription": "سلسلة من ثلاثة أجزاء تشرح التحقق الرسمي من المبادئ الأولى، وتستعرض خلل سلامة Orchard لعام 2026، وتبيّن كيف عالجه Ironwood ببرهان رياضي تم التحقق منه آليًا.",
       "newSeriesBadge": "سلسلة جديدة"
     },
-    "browseSidebar": "تصفّح المقالات باستخدام الشريط الجانبي على اليسار 👈",
+    "browseSidebar": "افتح التنقل لتصفح المقالات في هذا القسم.",
     "zcashGlobalAmbassadors": {
       "title": "سفراء Zcash العالميون",
       "description": "سفراء Zcash العالميون هم قادة مجتمعيون يكرّسون جهودهم لتعزيز اعتماد العملات الرقمية التي تركز على الخصوصية ونشر التوعية بها حول العالم. ويركّز كل مشروع سفير على بناء الوعي وتعزيز التفاعل داخل منطقته.",
@@ -1246,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "التنقّل",
-    "explore": "استكشاف"
+    "explore": "استكشاف",
+    "continueReading": {
+      "heading": "تابع القراءة",
+      "previous": "السابق",
+      "next": "التالي",
+      "nextStep": "الخطوة التالية"
+    }
   },
   "meta": {
     "title": "ويكي ZecHub",
@@ -1288,6 +1374,164 @@
     "tutorials": {
       "title": "الدروس",
       "sub": "شاهد وتابع"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "ويكي المجتمع لتعلّم Zcash واستخدامه والبناء عليه.",
+      "openSource": "مفتوح المصدر",
+      "communityDriven": "بقيادة المجتمع",
+      "educationHub": "مركز تعليمي لـ Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "تعلّم",
+        "description": "ما هو Zcash، وكيف تعمل خصوصيته، ومن أين تبدأ.",
+        "links": {
+          "first": "دليل المستخدم الجديد",
+          "second": "ما هو Zcash؟",
+          "third": "ترقيات الشبكة"
+        }
+      },
+      "wallet": {
+        "title": "اختر محفظة",
+        "description": "تتيح لك المحفظة تلقي ZEC وإنفاقه بخصوصية.",
+        "links": {
+          "first": "جميع المحافظ",
+          "second": "محافظ الهاتف المحمول",
+          "third": "محافظ مادية"
+        }
+      },
+      "use": {
+        "title": "استخدم ZEC",
+        "description": "احصل على ZEC، وأرسله، واعثر على الأماكن التي تقبله.",
+        "links": {
+          "first": "شراء ZEC",
+          "second": "المعاملات",
+          "third": "أماكن لإنفاق ZEC"
+        }
+      },
+      "build": {
+        "title": "ابنِ",
+        "description": "موارد للمطورين وأدوات وطرق للمساهمة في الويكي.",
+        "links": {
+          "first": "المطورون",
+          "second": "Zcash Devtool",
+          "third": "ساهم"
+        }
+      }
+    },
+    "start": {
+      "title": "ابدأ هنا",
+      "subtitle": "هل أنت جديد على Zcash؟ ابدأ بهذه الأربعة."
+    },
+    "videos": {
+      "title": "شاهد",
+      "pinnedDescription": "مسار قصير للقادمين الجدد، بالترتيب.",
+      "latestDescription": "أحدث ما في قناة ZecHub.",
+      "allVideos": "جميع الفيديوهات",
+      "previous": "الفيديوهات السابقة",
+      "next": "الفيديوهات التالية",
+      "play": "شغّل {title}",
+      "step": "الخطوة {number}"
+    },
+    "explore": {
+      "title": "المزيد لاستكشافه",
+      "subtitle": "أدلة وأبحاث وأدوات ومجتمع Zcash الأوسع."
+    },
+    "groups": {
+      "deeper": {
+        "title": "تعمّق أكثر",
+        "subtitle": "دروس وأدلة وأبحاث عندما تريد مزيدًا من التفاصيل."
+      },
+      "tools": {
+        "title": "أدوات للتجربة",
+        "subtitle": "أدوات تفاعلية وأدلة مبنية حول Zcash."
+      },
+      "community": {
+        "title": "المجتمع والمنظمات",
+        "subtitle": "الأشخاص والمجموعات الذين يقفون وراء منظومة Zcash."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "الدروس",
+        "description": "دروس فيديو خطوة بخطوة"
+      },
+      "guides": {
+        "title": "أدلة",
+        "description": "العُقد والأدوات وDeFi والمزيد"
+      },
+      "tech": {
+        "title": "تقنية Zcash",
+        "description": "zk-SNARKs والبروتوكول"
+      },
+      "research": {
+        "title": "الأبحاث",
+        "description": "مقالات وأبحاث حول Zcash"
+      },
+      "privacy": {
+        "title": "أدوات الخصوصية",
+        "description": "أدوات تساعدك على حماية خصوصيتك"
+      },
+      "glossary": {
+        "title": "المسرد والأسئلة الشائعة",
+        "description": "إجابات وتعريفات سريعة"
+      },
+      "visualizer": {
+        "description": "أدوات تفاعلية لفهم تقنية خصوصية Zcash."
+      },
+      "map": {
+        "description": "خريطة يديرها المجتمع للتجّار وأجهزة الصراف الآلي التي تقبل Zcash."
+      },
+      "pay": {
+        "description": "دليل مجاني للأماكن التي يمكنك الدفع فيها باستخدام ZEC."
+      },
+      "organizations": {
+        "title": "المنظمات",
+        "description": "ZODL وZcash Foundation وZCG وغيرها"
+      },
+      "community": {
+        "title": "المجتمع",
+        "description": "روابط ومدونات ومشاريع وسفراء"
+      },
+      "ambassadors": {
+        "title": "السفراء العالميون",
+        "description": "قادة مجتمع يروّجون لتعليم Zcash حول العالم."
+      },
+      "hackathon": {
+        "title": "أرشيف الهاكاثون",
+        "description": "المشاريع المقدّمة إلى ZecHub Hackathon لعام 2026."
+      }
+    },
+    "involved": {
+      "title": "شارك",
+      "subtitle": "انضم إلى DAO، وتعرّف إلى المجتمع، وساهم في بناء الويكي.",
+      "dao": {
+        "description": "كيف يتخذ ZecHub قراراته، والمقترحات المفتوحة للتصويت.",
+        "meet": "تعرّف إلى DAO",
+        "proposals": "عرض المقترحات"
+      },
+      "community": {
+        "title": "انضم إلى المجتمع",
+        "description": "تحدث مع مستخدمي Zcash الآخرين وتابع ما يفعله ZecHub.",
+        "discord": "انضم إلى Discord"
+      },
+      "contribute": {
+        "title": "ساعد في بناء ZecHub",
+        "description": "يقود المجتمع ZecHub. أضف محتوى أو أنجز مكافأة.",
+        "action": "ساهم",
+        "support": "ادعم المشروع"
+      }
+    },
+    "stats": {
+      "circulation": "المعروض المتداول",
+      "shielded": "المعروض المحمي",
+      "blocks": "ارتفاع الكتلة",
+      "maxSupply": "{percentage}% من الحد الأقصى البالغ 21 مليونًا",
+      "maxSupplyAria": "{percentage}% من الحد الأقصى للمعروض البالغ 21 مليونًا",
+      "shieldedShare": "{percentage}% من المعروض المتداول",
+      "latestBlock": "أحدث كتلة على شبكة Zcash الرئيسية"
     }
   }
 }

@@ -11,5 +11,5 @@ export const metadata: Metadata = genMetadata({
 });
 
 export default async function Page() {
-  redirect("/wallets");
+  redirect("/wallets?device=Desktop");
 }

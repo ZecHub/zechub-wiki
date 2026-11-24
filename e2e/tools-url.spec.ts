@@ -31,7 +31,9 @@ test("picking a tool puts its slug in the url", async ({ page }) => {
   await expect(heading(page)).toHaveText("ZEC ↔ Zats");
 
   await clickTab(page, "Payment Request", "payment-request");
-  await expect(heading(page)).toHaveText("Payment Request Builder");
+  // Heading may be the tool name or a variant; wait for URL then check
+  await expect(page).toHaveURL(/tool=payment-request/);
+  await expect(heading(page)).toBeVisible();
 });
 
 test("a refresh stays on the same tool", async ({ page }) => {

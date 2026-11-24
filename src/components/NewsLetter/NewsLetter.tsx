@@ -5,17 +5,227 @@ import QRCodeComponent from "@/components/QRComponent/QRCodeComponent";
 import { useLanguage } from "@/context/LanguageContext";
 
 const NewsLetter: React.FC = () => {
-  const { t } = useLanguage(); const s = t?.components?.newsletter ?? {};
-  const [category, setCategory] = useState("Ecosystem News"); const [address, setAddress] = useState(""); const [unsubAddress, setUnsubAddress] = useState(""); const [showUnsub, setShowUnsub] = useState(false);
-  const [subscription, setSubscription] = useState<{ memo: string; amount: number } | null>(null); const [unsubscription, setUnsubscription] = useState<{ memo: string; amount: number } | null>(null);
-  const subRef = useRef<HTMLCanvasElement>(null); const unsubRef = useRef<HTMLCanvasElement>(null); const valid = /^u|^z/.test(address.trim()); const validUnsub = /^u|^z/.test(unsubAddress.trim());
-  const download = (canvas: HTMLCanvasElement | null, filename: string) => { if (!canvas) return; const link = document.createElement("a"); link.href = canvas.toDataURL("image/png"); link.download = filename; link.click(); };
-  return <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6 dark:bg-slate-900"><h1 className="mb-4 text-center text-3xl font-bold">{s.title ?? "ZecHub Shielded Newsletter"}</h1><p className="mb-4 text-center text-gray-700 dark:text-gray-300">{s.subtitle ?? "Subscribe to updates by entering your Unified Address."}</p><p className="mb-8 text-center text-gray-600 dark:text-gray-400"><strong>{s.feeLine ?? "A one-time 0.05 ZEC subscription fee"}</strong> {s.feeLineRest ?? "is required to cover transaction costs."}</p>
-    <div className="space-x-2 md:space-x-4"><button onClick={() => setCategory("Ecosystem News")} className={`rounded-lg px-4 py-2 font-semibold ${category === "Ecosystem News" ? "bg-[#1984c7] text-white" : "bg-gray-200 dark:bg-gray-700"}`}>📰 {s.categoryEcosystem ?? "Ecosystem News"}</button><button onClick={() => setCategory("Network Stats")} className={`rounded-lg px-4 py-2 font-semibold ${category === "Network Stats" ? "bg-[#1984c7] text-white" : "bg-gray-200 dark:bg-gray-700"}`}>📊 {s.categoryStats ?? "Network Stats"}</button></div>
-    <input value={address} onChange={(e) => setAddress(e.target.value)} placeholder={s.addressPlaceholder ?? "Enter your Zcash Unified Address"} className={`mt-6 w-full max-w-md rounded-lg border bg-white px-4 py-2 text-black dark:bg-gray-800 dark:text-white ${valid ? "border-green-500" : "border-red-500"}`} />{address && !valid && <p className="mt-2 text-sm text-red-500">{s.invalidAddressInline ?? 'Invalid address. Must start with "u" or "z".'}</p>}
-    <button disabled={!valid} onClick={() => setSubscription({ memo: `Subscription: ${category} | Address: ${address.trim()}`, amount: 0.05 })} className="mt-4 rounded-lg bg-purple-600 px-6 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:bg-gray-300">{s.subscribe ?? "Subscribe"}</button>{subscription && <div className="mt-6 text-center"><QRCodeComponent canvasRef={subRef} amount={subscription.amount} memo={subscription.memo} /><p className="mt-2 text-sm text-gray-600 dark:text-gray-400"><strong>{s.doNotEditMemo ?? "Do not edit the memo generated in your wallet."}</strong></p><button onClick={() => download(subRef.current, "subscription_qr.png")} className="mt-2 rounded-lg bg-blue-600 px-4 py-2 text-white">{s.downloadQR ?? "Download QR Code"}</button></div>}
-    <div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-6 text-center md:grid-cols-3"><Info title={s.box1Title ?? "What is This Service?"}>{s.box1Desc ?? "Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos."}</Info><Info title={s.box2Title ?? "How It Works"}>{s.box2DescPre ?? "We send newsletters once per week to multiple recipients in one shielded transaction using the"} <strong>z_sendmany</strong> {s.box2DescPost ?? "RPC method."}</Info><Info title={s.box3Title ?? "How to Receive Updates"}>{s.box3DescPre ?? "Enter your"} <strong>{s.box3DescBold ?? "shielded Zcash address"}</strong>. {s.box3DescPost ?? "Weekly updates delivered on-chain. No email required."}</Info></div>
-    <button onClick={() => setShowUnsub(!showUnsub)} className="mt-16 rounded-lg bg-red-600 px-6 py-3 font-semibold text-white">{showUnsub ? (s.cancelUnsubscribe ?? "Cancel Unsubscribe") : (s.unsubscribe ?? "Unsubscribe")}</button>{showUnsub && <div className="mt-6 text-center"><input value={unsubAddress} onChange={(e) => setUnsubAddress(e.target.value)} placeholder={s.unsubscribePlaceholder ?? "Enter your Unified Address to unsubscribe"} className="w-full max-w-md rounded-lg border bg-white px-4 py-2 dark:bg-gray-800" /><button disabled={!validUnsub} onClick={() => setUnsubscription({ memo: `UNSUBSCRIBE | Address: ${unsubAddress.trim()}`, amount: 0.0001 })} className="mt-4 rounded-lg bg-red-600 px-6 py-2 font-semibold text-white disabled:opacity-50">{s.confirmUnsubscribe ?? "Confirm Unsubscribe"}</button>{unsubscription && <div className="mt-6"><QRCodeComponent canvasRef={unsubRef} amount={unsubscription.amount} memo={unsubscription.memo} /><button onClick={() => download(unsubRef.current, "unsubscribe_qr.png")} className="mt-2 rounded-lg bg-blue-600 px-4 py-2 text-white">{s.downloadQR ?? "Download QR Code"}</button></div>}</div>}</div>;
+  const { t } = useLanguage();
+  const s = t?.components?.newsletter ?? {};
+  const [loading, setLoading] = useState(false);
+  const [unifiedAddress, setUnifiedAddress] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Ecosystem News");
+  const [isValidAddress, setIsValidAddress] = useState(false);
+  const subscriptionQrRef = useRef<HTMLCanvasElement>(null);
+  const unsubscribeQrRef = useRef<HTMLCanvasElement>(null);
+
+  // Subscription Data
+  const [subscriptionData, setSubscriptionData] = useState<{ memo: string; amount: number } | null>(null);
+
+  // Unsubscribe State
+  const [showUnsubscribe, setShowUnsubscribe] = useState(false);
+  const [unsubscribeAddress, setUnsubscribeAddress] = useState("");
+  const [isValidUnsubAddress, setIsValidUnsubAddress] = useState(false);
+  const [unsubscribeData, setUnsubscribeData] = useState<{ memo: string; amount: number } | null>(null);
+
+  // Validate Subscription Address
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const address = e.target.value.trim();
+    setUnifiedAddress(address);
+    setIsValidAddress(/^u|^z/.test(address));
+  };
+
+  // Validate Unsubscription Address
+  const handleUnsubscribeAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const address = e.target.value.trim();
+    setUnsubscribeAddress(address);
+    setIsValidUnsubAddress(/^u|^z/.test(address));
+  };
+
+  // Subscribe Function
+  const handleSubmit = () => {
+    if (!isValidAddress) {
+      alert(s.invalidAddressAlert ?? "Please enter a valid shielded Zcash address.");
+      return;
+    }
+    const memoText = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
+    // Subscription fee is 0.05 ZEC
+    setSubscriptionData({
+      memo: memoText,
+      amount: 0.05,
+    });
+  };
+
+  // Unsubscribe Function
+  const handleUnsubscribe = () => {
+    if (!isValidUnsubAddress) {
+      alert(s.invalidAddressAlert ?? "Please enter a valid shielded Zcash address.");
+      return;
+    }
+    const memoText = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
+    // Unsubscription fee is 0.0001 ZEC
+    setUnsubscribeData({
+      memo: memoText,
+      amount: 0.0001,
+    });
+  };
+
+  // Function to Download QR Code
+  const downloadQRCode = (canvas: HTMLCanvasElement | null, filename: string) => {
+    if (canvas) {
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = filename;
+      link.click();
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-900 p-6">
+      <h1 className="text-3xl font-bold mb-4 text-center">{s.title ?? "ZecHub Shielded Newsletter"}</h1>
+      <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
+        {s.subtitle ?? "Subscribe to updates by entering your Unified Address."}
+      </p>
+      <p className="text-gray-600 dark:text-gray-400 text-center mb-8">
+        <strong>{s.feeLine ?? "A one-time 0.05 ZEC subscription fee"}</strong> {s.feeLineRest ?? "is required to cover transaction costs."}
+      </p>
+      {/* Category Selection Buttons */}
+      <div className="space-y-4 md:space-x-4 space-x-2">
+        <button
+          onClick={() => setSelectedCategory("Ecosystem News")}
+          className={`cursor-pointer md:px-6 px-4 py-2 font-semibold rounded-lg ${
+            selectedCategory !== "Ecosystem News"
+              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
+              : "bg-brand text-on-brand"
+          }`}
+        >
+          📰 {s.categoryEcosystem ?? "Ecosystem News"}
+        </button>
+        <button
+          onClick={() => setSelectedCategory("Network Stats")}
+          className={`cursor-pointer md:px-6 px-4 py-2 font-semibold rounded-lg ${
+            selectedCategory !== "Network Stats"
+              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
+              : "bg-brand text-on-brand"
+          }`}
+        >
+          📊 {s.categoryStats ?? "Network Stats"}
+        </button>
+      </div>
+
+      {/* Address Input */}
+      <input
+        type="text"
+        placeholder={s.addressPlaceholder ?? "Enter your Zcash Unified Address"}
+        value={unifiedAddress}
+        onChange={handleAddressChange}
+        className={`w-full max-w-md mt-6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white dark:bg-gray-800 text-black dark:text-white ${
+          isValidAddress ? "focus:ring-green-500 border-green-500" : "focus:ring-red-500 border-red-500"
+        }`}
+      />
+      {unifiedAddress && !isValidAddress && (
+        <p className="text-red-500 mt-2 text-sm">
+          {s.invalidAddressInline ?? 'Invalid address. Must start with "u" or "z".'}
+        </p>
+      )}
+
+      {/* Subscribe Button */}
+      <button
+        onClick={handleSubmit}
+        className={`mt-4 px-6 py-2 font-semibold rounded-lg ${
+          isValidAddress
+            ? "cursor-pointer bg-purple-600 text-white hover:bg-purple-700"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}
+        disabled={!isValidAddress || loading}
+      >
+        {loading ? (s.generating ?? "Generating...") : (s.subscribe ?? "Subscribe")}
+      </button>
+
+      {/* QR Code Display for Subscription */}
+      {subscriptionData && (
+        <div className="mt-6 text-center">
+          <QRCodeComponent
+            canvasRef={subscriptionQrRef}
+            amount={subscriptionData.amount}
+            memo={subscriptionData.memo}
+          />
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+            <strong>{s.doNotEditMemo ?? "Do not edit the memo generated in your wallet."}</strong>
+          </p>
+          <button
+            onClick={() => downloadQRCode(subscriptionQrRef.current, "subscription_qr.png")}
+            className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            {s.downloadQR ?? "Download QR Code"}
+          </button>
+        </div>
+      )}
+
+      {/* Information Boxes */}
+      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-brand">{s.box1Title ?? "What is This Service?"}</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            {s.box1Desc ?? "Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos."}
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-brand">{s.box2Title ?? "How It Works"}</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            {s.box2DescPre ?? "We send newsletters once per week to multiple recipients in one shielded transaction using the"}{" "}
+            <strong>z_sendmany</strong> {s.box2DescPost ?? "RPC method."}
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-brand">{s.box3Title ?? "How to Receive Updates"}</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            {s.box3DescPre ?? "Enter your"} <strong>{s.box3DescBold ?? "shielded Zcash address"}</strong>. {s.box3DescPost ?? "Weekly updates delivered on-chain. No email required."}
+          </p>
+        </div>
+      </div>
+
+      {/* Unsubscribe Section (without fee info) */}
+      <div className="mt-16">
+        <button
+          onClick={() => setShowUnsubscribe(!showUnsubscribe)}
+          className="cursor-pointer px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+        >
+          {showUnsubscribe ? (s.cancelUnsubscribe ?? "Cancel Unsubscribe") : (s.unsubscribe ?? "Unsubscribe")}
+        </button>
+      </div>
+
+      {showUnsubscribe && (
+        <div className="mt-6 text-center">
+          <input
+            type="text"
+            placeholder={s.unsubscribePlaceholder ?? "Enter your Unified Address to unsubscribe"}
+            value={unsubscribeAddress}
+            onChange={handleUnsubscribeAddressChange}
+            className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-black dark:text-white"
+          />
+          <button
+            onClick={handleUnsubscribe}
+            className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:cursor-not-allowed cursor-pointer"
+            disabled={!isValidUnsubAddress}
+          >
+            {s.confirmUnsubscribe ?? "Confirm Unsubscribe"}
+          </button>
+          {unsubscribeData && (
+            <div className="mt-6">
+              <QRCodeComponent
+                canvasRef={unsubscribeQrRef}
+                amount={unsubscribeData.amount}
+                memo={unsubscribeData.memo}
+              />
+              <button
+                onClick={() => downloadQRCode(unsubscribeQrRef.current, "unsubscribe_qr.png")}
+                className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                {s.downloadQR ?? "Download QR Code"}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
 function Info({ title, children }: { title: string; children: React.ReactNode }) { return <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800"><h2 className="mb-2 text-xl font-bold text-[#1984c7]">{title}</h2><p className="text-gray-700 dark:text-gray-300">{children}</p></div>; }

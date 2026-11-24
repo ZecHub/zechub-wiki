@@ -7,11 +7,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // next-mdx-remote is loaded natively from node_modules during SSR, so it gets
+  // its own copy of React and crashes with "Cannot read properties of null
+  // (reading 'useState')". Bundling it with the app shares Next's React.
+  transpilePackages: ["next-mdx-remote"],
   allowedDevOrigins: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     // Add the exact origin from your error, or your LAN IP for phone testing
     // 'http://192.168.1.42:3000',
+    // Extra dev hosts (e.g. a Tailscale name) come from .env.local so they stay
+    // out of git: DEV_ORIGINS=my-mac.example.ts.net,other-host
+    ...(process.env.DEV_ORIGINS ?? "")
+      .split(",")
+      .map((o) => o.trim())
+      .filter(Boolean),
   ],
   // Images are self-hosted under /content-images/ and public/ (same-origin).
   // The only remote host kept is Wikimedia — a privacy-respecting source we
@@ -20,12 +30,36 @@ const nextConfig = {
   // they're allow-listed in the CSP img-src instead.) Everything else is
   // same-origin, so a stray external <Image> still fails loudly in review.
   images: {
+    // 75 is the default; 80 is used by the home gallery.
+    qualities: [75, 80],
     remotePatterns: [
       { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
     ],
   },
   async redirects() {
     return [
+      {
+        // Replaced by the Zebra + Zallet guide (the old steps no longer match how Zebra is configured).
+        source: "/guides/raspberry-pi-4-zebra-node",
+        destination: "/guides/raspberry-pi-4-full-node",
+        permanent: false,
+      },
+      {
+        source: "/:locale/guides/raspberry-pi-4-zebra-node",
+        destination: "/:locale/guides/raspberry-pi-4-full-node",
+        permanent: false,
+      },
+      {
+        // Merged into the Free2Z Live guide.
+        source: "/guides/free2z-livestreaming",
+        destination: "/guides/free2z-live",
+        permanent: true,
+      },
+      {
+        source: "/:locale/guides/free2z-livestreaming",
+        destination: "/:locale/guides/free2z-live",
+        permanent: true,
+      },
       {
         // The card page used to live at the collapsed slug `centralizedswaps`,
         // which differed from the slug the [...slug] catch-all derives from
@@ -129,30 +163,9 @@ const nextConfig = {
     //     still runs. Treat XSS via a sanitizer/nonce as separate follow-up work.
     //   * Preview deploys inject the vercel.live toolbar (violates script/connect/
     //     frame) — monitor a PRODUCTION deploy, or filter those out.
-    // To ENFORCE: rename the header to "Content-Security-Policy" (+ /embed carve-out).
-    const cspReportOnly = [
-      "default-src 'self'",
-      "base-uri 'self'",
-      "object-src 'none'",
-      "form-action 'self'",
-      "frame-ancestors 'self'",
-      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://i.ytimg.com https://i.postimg.cc https://*.basemaps.cartocdn.com https://img.shields.io https://upload.wikimedia.org https://ipfs.daodao.zone",
-      "font-src 'self' data:",
-      // raw.githubusercontent: the Namada protocol-parameters page fetches JSON
-      // client-side (candidate to proxy same-origin later).
-      "connect-src 'self' https://raw.githubusercontent.com",
-      "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
-      // free2z / jsdelivr: hackathon submission demo videos (user-initiated).
-      "media-src 'self' https://free2z.cash https://cdn.jsdelivr.net",
-      "worker-src 'self' blob:",
-      "manifest-src 'self'",
-      "report-uri /api/csp-report",
-      "report-to csp-endpoint",
-    ].join("; ");
+    // Enforcing nonce-based CSP is set in src/proxy.ts.
 
-    const baseline = [
+        const baseline = [
       // Send only the ORIGIN (scheme+host, never the path) to cross-origin
       // destinations, and nothing on an HTTPS->HTTP downgrade. We do NOT use
       // no-referrer: YouTube's embed player refuses to play (PlayabilityStatus
@@ -175,10 +188,8 @@ const nextConfig = {
         key: "Strict-Transport-Security",
         value: "max-age=63072000; includeSubDomains; preload",
       },
-      // Report-only CSP (policy built above). Blocks nothing yet — reports
-      // violations to the console and to /api/csp-report so we can watch a
-      // preview before flipping to the enforcing "Content-Security-Policy".
-      { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
+      // Enforcing nonce-based CSP is set in src/proxy.ts (per-request nonce).
+      // Do not also set it here — a static header would override or conflict.
       // Declares the endpoint named by the report-to directive (Reporting API).
       { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
     ];
@@ -187,7 +198,8 @@ const nextConfig = {
       {
         // Clickjacking protection everywhere EXCEPT the embeddable widget under
         // /embed (and its locale-prefixed form /xx/embed), which is designed to
-        // be framed by third-party sites.
+        // be framed by third-party sites. CSP frame-ancestors for /embed is
+        // handled in src/proxy.ts.
         source: "/((?!(?:[a-z]{2}/)?embed(?:/|$)).*)",
         headers: [{ key: "X-Frame-Options", value: "DENY" }],
       },

@@ -1,22 +1,9 @@
-
 import { config } from "@/app/[locale]/tools/zcash-payment-widget/config";
 import { readBoundedJsonBody } from "@/lib/apiRequestGuards";
-import { nanoid } from "nanoid";
 import { NextRequest, NextResponse } from "next/server";
+import { generateShortId, storeUri } from "./store";
 
 const MAX_URI_LENGTH = 4096;
-export const MAX_STORE_ENTRIES = 10_000;
-
-// TODO: Using memory store (can be changed to db)
-export const urlStore = new Map<string, string>(); // shortId => full URI
-
-function storeUri(shortId: string, uri: string) {
-  if (urlStore.size >= MAX_STORE_ENTRIES) {
-    const oldestKey = urlStore.keys().next().value;
-    if (oldestKey !== undefined) urlStore.delete(oldestKey);
-  }
-  urlStore.set(shortId, uri);
-}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": `${config.env.ACCESS_CONTROL_ALLOW_ORIGIN}`,
@@ -56,11 +43,13 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const shortId = nanoid(8);
-  storeUri(shortId, uri);
+  const shortId = generateShortId();
+  await storeUri(shortId, uri);
 
-  const url = config.env.NEXT_PUBLIC_WIDGET_API_BASE_URL;
-  const shortUrl = `${url}/api/payment-request-uri/shorten/${shortId}`;
+  // NEXT_PUBLIC_WIDGET_API_BASE_URL already includes the "/api" segment
+  // (e.g. "http://localhost:3000/api"), so the path is appended directly.
+  const base = config.env.NEXT_PUBLIC_WIDGET_API_BASE_URL;
+  const shortUrl = `${base}/payment-request-uri/shorten/${shortId}`;
 
   return jsonWithCors({ shortUrl }, 200);
 }

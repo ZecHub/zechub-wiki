@@ -1,22 +1,8 @@
-import MdxContainer from "@/components/MdxContainer";
-import SideMenu from "@/components/SideMenu/SideMenu";
-import { getLocalizedFileContentCached, getRootCached, getMenuTitlesCached } from "@/lib/authAndFetch";
+import WikiPage from "../../[...slug]/page";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
-import { normalizeMdx } from "@/lib/normalizeMdx";
-import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
 import { Metadata } from "next";
-import DynamicComponent from "next/dynamic";
-import { serialize } from "next-mdx-remote/serialize";
-import { stripFrontmatter } from "@/lib/stripFrontmatter";
-
-const MdxComponent = DynamicComponent(
-  () => import("@/components/MdxRenderer"),
-  {
-    loading: () => <span className="text-center text-3xl">Loading...</span>,
-  }
-);
 
 export async function generateMetadata({
   params,
@@ -41,30 +27,13 @@ export async function generateMetadata({
 export default async function Page(props: {
   params: Promise<{ locale: string }>;
 }) {
+  // Rendered by the shared wiki page so it gets the same layout and patterns as the other guides;
+  // this file only keeps the page-specific SEO metadata above.
   const { locale } = await props.params;
-  const url = `/site/Using_Zcash/Shielded_Pools.md`;
-  const urlRoot = `/site/using-zcash`;
-  const [markdown, roots, menuTitles, enMenuTitles] = await Promise.all([
-    getLocalizedFileContentCached(url, locale || "en"),
-    getRootCached(urlRoot),
-    getMenuTitlesCached(locale || "en"),
-    getMenuTitlesCached("en"),
-  ]);
-  const content = markdown ? markdown : "No Data or Wrong file";
-
-  const mdxSource = await serialize(normalizeMdx(stripFrontmatter(String(content))), {
-    mdxOptions: { rehypePlugins: [rehypeJsxYouTubeFacade] },
-  });
-
   return (
-    <MdxContainer
-      hasSideMenu={true}
-      sideMenu={<SideMenu folder={urlRoot} roots={roots} titles={menuTitles} enTitles={enMenuTitles} />}
-      roots={roots}
-      heroImage={{ src: getBanner(`using-zcash`) }}
-    >
-      <MdxComponent source={mdxSource} />
-    </MdxContainer>
+    <WikiPage
+      params={Promise.resolve({ locale: locale || "en", slug: ["using-zcash", "shielded-pools"] })}
+    />
   );
 }
 

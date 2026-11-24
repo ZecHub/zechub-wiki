@@ -38,6 +38,8 @@ export const LANGUAGES: Language[] = [
   { code: 'ak',  label: 'Twi (Akan)', nativeLabel: 'Twi',        flag: '🇬🇭' },
   { code: 'ee',  label: 'Ewe',        nativeLabel: 'Eʋegbe',     flag: '🇬🇭' },
   { code: 'id',  label: 'Indonesian', nativeLabel: 'Bahasa Indonesia', flag: '🇮🇩' },
+  { code: 'el',  label: 'Greek',      nativeLabel: 'Ελληνικά',   flag: '🇬🇷' },
+  { code: 'fa',  label: 'Persian',    nativeLabel: 'فارسی',      flag: '🇮🇷', dir: 'rtl' },
 ];
 
 export type Locale = string;

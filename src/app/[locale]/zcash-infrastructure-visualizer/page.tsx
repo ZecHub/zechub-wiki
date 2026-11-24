@@ -16,7 +16,7 @@ export async function generateMetadata({
   return genMetadata({
     title: "Zcash Infrastructure & Node Visualizer | ZecHub",
     description:
-      "Explore the architecture of the Zcash network, full nodes (zcashd, Zebra), lightwalletd servers, wallet clients, and mining nodes.",
+      "Explore the architecture of the Zcash network, full nodes (Zebra, Zakura), lightwalletd servers, wallet clients, and mining nodes.",
     url: `https://zechub.wiki${localePrefix}/zcash-infrastructure-visualizer`,
     image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
     locale,

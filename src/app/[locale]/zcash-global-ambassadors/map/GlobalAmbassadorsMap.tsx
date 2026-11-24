@@ -1,3 +1,5 @@
+import { useLanguage } from "@/context/LanguageContext";
+import { Globe2, Map as MapIcon } from "lucide-react";
 import Head from "next/head";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -8,10 +10,8 @@ import {
 } from "./constants";
 import { FilterBar } from "./filter-bar";
 import Globe from "./Globe";
-import { Globe2, Map as MapIcon } from "lucide-react";
 import { PinDetails } from "./pin-details";
 import { StatsBar } from "./stats-bar";
-import { useLanguage } from "@/context/LanguageContext";
 import "./style.css";
 
 type ViewMode = "globe" | "map";
@@ -125,15 +125,18 @@ export default function GlobalAmbassadorsMap() {
         attributionControl: false,
       });
 
+      const cartoKey = process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY;
+      const tileParams = cartoKey ? `?key=${cartoKey}` : "";
+
       // Dark styled tiles via CartoDB dark matter
       L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
+        `https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png${tileParams}`,
         { maxZoom: 19 },
       ).addTo(map);
 
       // Country name label to top (separate layer, lighter)
       L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png",
+        `https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png${tileParams}`,
         { maxZoom: 19, opacity: 0.5 },
       ).addTo(map);
 
@@ -340,11 +343,10 @@ export default function GlobalAmbassadorsMap() {
                   lineHeight: 1.6,
                 }}
               >
-                {(amb?.mapSubtitle ??
-                  "Community-led Zcash advocacy across {count} active communities.").replace(
-                  "{count}",
-                  String(ambassadors.length),
-                )}
+                {(
+                  amb?.mapSubtitle ??
+                  "Community-led Zcash advocacy across {count} active communities."
+                ).replace("{count}", String(ambassadors.length))}
               </p>
             </div>
 
@@ -368,9 +370,17 @@ export default function GlobalAmbassadorsMap() {
                   <button
                     key={mode}
                     onClick={() => setViewMode(mode)}
-                    title={mode === "globe" ? (amb?.globeView ?? "Globe view") : (amb?.mapView ?? "Map view")}
+                    title={
+                      mode === "globe"
+                        ? (amb?.globeView ?? "Globe view")
+                        : (amb?.mapView ?? "Map view")
+                    }
                     aria-pressed={isActive}
-                    aria-label={mode === "globe" ? (amb?.globeView ?? "Globe view") : (amb?.mapView ?? "Map view")}
+                    aria-label={
+                      mode === "globe"
+                        ? (amb?.globeView ?? "Globe view")
+                        : (amb?.mapView ?? "Map view")
+                    }
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -440,10 +450,24 @@ export default function GlobalAmbassadorsMap() {
                 background: "#070C10",
               }}
             >
-              <p style={{ fontSize: 14, fontWeight: 600, margin: 0, color: "#E6EDF5" }}>
+              <p
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  margin: 0,
+                  color: "#E6EDF5",
+                }}
+              >
                 {amb?.mapTitle ?? "Interactive map"}
               </p>
-              <p style={{ fontSize: 12, margin: 0, maxWidth: "44ch", color: "#8B9EB7" }}>
+              <p
+                style={{
+                  fontSize: 12,
+                  margin: 0,
+                  maxWidth: "44ch",
+                  color: "#8B9EB7",
+                }}
+              >
                 {amb?.mapConsentText ??
                   "Loads map tiles from a third party (CARTO). Click to load."}
               </p>

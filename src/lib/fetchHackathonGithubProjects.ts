@@ -19,13 +19,13 @@ const YEAR_DIR = /^\d{4}$/;
 // Server-only. GITHUB_TOKEN is optional, but without it GitHub allows just 60
 // requests/hour/IP, which a shared deploy IP burns through quickly and every
 // call then fails with 403.
-function githubHeaders(): Record<string, string> {
+function githubHeaders(withToken = true): Record<string, string> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "User-Agent": "ZecHub-Wiki (hackathon; +https://zechub.wiki/hackathon)",
   };
   const token = process.env.GITHUB_TOKEN;
-  if (token) headers.Authorization = `Bearer ${token}`;
+  if (token && withToken) headers.Authorization = `Bearer ${token}`;
   return headers;
 }
 
@@ -33,10 +33,16 @@ async function fetchDirectoryContents(
   repoPath: string
 ): Promise<GhContentItem[]> {
   const url = `https://api.github.com/repos/ZecHub/zechub/contents/${repoPath}?ref=main`;
-  const res = await fetch(url, {
-    headers: githubHeaders(),
-    next: { revalidate: 3600 },
-  });
+  const request = (withToken: boolean) =>
+    fetch(url, {
+      headers: githubHeaders(withToken),
+      next: { revalidate: 3600 },
+    });
+
+  let res = await request(true);
+  // An expired or revoked GITHUB_TOKEN answers 401 even for public repos.
+  // ZecHub/zechub is public, so retry anonymously instead of failing the page.
+  if (res.status === 401) res = await request(false);
 
   if (!res.ok) {
     const hint =

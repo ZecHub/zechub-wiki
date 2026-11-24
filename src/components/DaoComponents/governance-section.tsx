@@ -2,7 +2,25 @@
 
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+
+const platforms = [
+  {
+    name: "DAO DAO",
+    alt: "DAODAO",
+    img: "/daodao.jpg",
+    href: "https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals",
+    host: "daodao.zone",
+  },
+  {
+    name: "Snapshot",
+    alt: "Ethereum DAO",
+    img: "/snapshot.jpg",
+    href: "https://snapshot.org/#/zechubdao.eth",
+    host: "snapshot.org",
+  },
+];
 
 export default function GovernanceSection() {
   const { t } = useLanguage();
@@ -13,41 +31,54 @@ export default function GovernanceSection() {
     "All DAO proposals are public and transparent. Anyone can create a proposal to vote on. In support of community transparency, ZecHub DAO posts all governance proposals in the Zcash Community Forum ZecHub Governance thread.";
 
   return (
-    <section className="space-y-6">
-      <h2 className="text-3xl font-bold dark:text-amber-400 flex items-center gap-3">
-        <span className="w-1 h-10 bg-gradient-to-b from-amber-400 to-yellow-300 rounded"></span>
-        {heading}
-      </h2>
-      <p className="dark:text-slate-300 leading-relaxed">{description}</p>
+    <section className="space-y-6 border-t border-slate-200 pt-10 dark:border-white/10">
+      <div className="text-center">
+        <h2 className="m-0 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white">
+          {heading}
+        </h2>
+        <p className="m-0 mx-auto mt-3 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300">{description}</p>
+      </div>
 
-      <div className="flex justify-center items-center text-center space-x-4 mb-12">
-        <div>
+      <div className="!mt-6 mx-auto grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
+        {platforms.map((p) => (
           <Link
-            href="https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals"
+            key={p.name}
+            href={p.href}
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Vote on ${p.name}`}
+            className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3 no-underline transition-colors hover:border-brand/50 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/50"
           >
-            <Image
-              className="rounded-full border-4 border-slate-400 dark:border-black hover:scale-125"
-              src={"/daodao.jpg"}
-              alt="DAODAO"
-              width={80}
-              height={80}
-            />
+            <span className="flex min-w-0 items-center gap-3">
+              <Image
+                className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-slate-200 dark:ring-white/15"
+                src={p.img}
+                alt=""
+                width={40}
+                height={40}
+              />
+              <span className="min-w-0">
+                <span className="block text-base font-semibold leading-tight text-slate-900 dark:text-white">{p.name}</span>
+                <span className="block truncate text-xs text-slate-500 dark:text-slate-400">{p.host}</span>
+              </span>
+            </span>
+            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors group-hover:border-brand group-hover:text-brand dark:border-white/15 dark:text-slate-400">
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </span>
           </Link>
-          <h1 className="font-bold">DAO DAO</h1>
-        </div>
-        <div>
-          <Link href="https://snapshot.org/#/zechubdao.eth" target="_blank">
-            <Image
-              className="rounded-full border-4 border-slate-400 dark:border-black hover:scale-125"
-              src={"/snapshot.jpg"}
-              alt="Ethereum DAO"
-              width={80}
-              height={80}
-            />
-          </Link>
-          <h1 className="font-bold">Snapshot</h1>
-        </div>
+        ))}
+      </div>
+
+      <div className="text-center">
+        <Link
+          href="/governance-howto"
+          className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:bg-brand/20 dark:text-brand-soft"
+        >
+          Read the governance guide
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
       </div>
     </section>
   );

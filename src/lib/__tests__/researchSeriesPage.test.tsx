@@ -16,6 +16,7 @@ jest.mock("@/components/MdxContainer", () => ({ __esModule: true, default: () =>
 jest.mock("@/components/Research/ResearchIndexGrid", () => ({ __esModule: true, default: () => null }));
 jest.mock("@/components/SideMenu/SideMenu", () => ({ __esModule: true, default: () => null }));
 jest.mock("@/i18n/navigation", () => ({ Link: () => null }));
+jest.mock("@/i18n/routing", () => ({ routing: { defaultLocale: "en", locales: ["en"] } }));
 jest.mock("@/lib/helpers", () => ({
   getDynamicRoute: () => "",
   getBanner: () => "",
@@ -24,6 +25,9 @@ jest.mock("@/lib/helpers", () => ({
 }));
 jest.mock("@/lib/localeCoverage", () => ({}));
 jest.mock("next-mdx-remote/serialize", () => ({}));
+jest.mock("next-mdx-remote/rsc", () => ({ MDXRemote: () => null }));
+jest.mock("@/components/MdxReady", () => ({ __esModule: true, default: () => null }));
+jest.mock("@/components/MdxComponents/MdxComponent", () => ({ __esModule: true, default: {} }));
 jest.mock("remark-gfm", () => ({}));
 jest.mock("rehype-raw", () => ({}));
 jest.mock("unist-util-visit", () => ({}));

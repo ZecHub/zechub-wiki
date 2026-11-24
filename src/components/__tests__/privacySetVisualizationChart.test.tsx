@@ -18,7 +18,6 @@ jest.mock("recharts", () => ({
 
 // flowbite-react pulls in an ESM-only dependency that Jest does not transform;
 // the chart container only needs its loading spinner.
-jest.mock("flowbite-react", () => ({ Spinner: () => null }));
 
 // Daily samples from public/data/zcash/transaction_summary.json are keyed by
 // block height. Mainnet year boundaries (first block of the year, UTC):

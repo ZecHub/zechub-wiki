@@ -1,10 +1,70 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import LiteYouTube from "@/components/LiteYouTube";
-import { youTubeId } from "@/lib/youtube";
 import type { MDXComponents } from "mdx/types";
+import { ArrowUpRight } from "lucide-react";
+import RecommendedWallets from "./RecommendedWallets";
+import RecommendedExchanges from "./RecommendedExchanges";
+import ExchangeVideoCard from "./ExchangeVideoCard";
+import GuideActions from "./GuideActions";
+import FaucetCard, { FaucetList } from "./FaucetCard";
+import { RecoveryNav, GuideCallout } from "./RecoveryBlocks";
+import { PointList, PointItem } from "./GuidePoints";
+import LinkButton from "./LinkButton";
+import HashLink from "./HashLink";
+import { AddressGrid, AddressSpecimen } from "./AddressSpecimen";
+import { CommunityGrid, CommunityGroup, CommunityCard, StatGrid, StatCard, OrgCard, MemberCard, TimelineList, TimelineItem } from "./CommunityBlocks";
+import JumpNav from "./JumpNav";
+import SecurityFeed from "./SecurityFeed";
+import VideoCarousel from "./VideoCarousel";
+import VideoSlider from "./VideoSlider";
+import VideoShowcase from "./VideoShowcase";
+import ScrollableTable from "./ScrollableTable";
+import { ProcessorCard, ProcessorGrid, ProcessorLogo } from "./ProcessorCard";
+import PodcastShow from "./PodcastShow";
+import { ZconEdition, ChipNav } from "./ZconEdition";
+import ExchangeLinkCard from "./ExchangeLinkCard";
+import VideoBlock from "./VideoBlock";
+import CodeBlock from "./CodeBlock";
+import Gallery from "@/components/Gallery/Gallery";
+import LibraryTools from "./LibraryTools";
+import FaqItem from "./FaqItem";
+import FaqGlance from "./FaqGlance";
+import OrgLinks from "./OrgLinks";
+import DvpnDiagram from "./DvpnDiagram";
+
+// Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
+// Requires a YouTube host first (no over-match of unrelated iframes).
+const GITHUB_SITE_IMAGE = /^https:\/\/raw\.githubusercontent\.com\/ZecHub\/zechub\/main\/site\/(.+)\.(png|jpe?g)$/i;
+
+// "…/site/Zcash_Tech/assets/x.png" -> "/content-images/zcash-tech-assets-x.webp", only when that mirrored file exists.
+// scripts/mirror-content-images.mjs creates these copies and must use the same naming rule.
+function mirroredContentImage(src?: string): string {
+  const m = GITHUB_SITE_IMAGE.exec(String(src || ""));
+  if (!m) return "";
+  let p = m[1];
+  try {
+    p = decodeURIComponent(p);
+  } catch {
+    /* keep the raw path */
+  }
+  const name = `${p.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.webp`;
+  return existsSync(path.join(process.cwd(), "public", "content-images", name)) ? `/content-images/${name}` : "";
+}
+
+const youTubeId = (src: string): string | null => {
+  if (!/(?:youtube(?:-nocookie)?\.com|youtu\.be)/i.test(src)) return null;
+  const path = src.match(
+    /(?:\/embed\/|\/v\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/i,
+  );
+  if (path) return path[1];
+  const q = src.match(/[?&]v=([A-Za-z0-9_-]{6,})/i); // watch?v= (v anywhere)
+  return q ? q[1] : null;
+};
 
 // Strong slugify for TOC links (handles parentheses, +, etc.)
 const slugify = (text: string): string => {
@@ -28,38 +88,73 @@ const getHeadingText = (children: React.ReactNode): string => {
     .join("");
 };
 
+// Reading-text link: brand colour, thin solid underline that firms up on hover.
+const LINK =
+  "font-medium text-brand underline decoration-brand/40 underline-offset-[3px] transition-colors hover:decoration-brand dark:text-brand-soft dark:decoration-brand-soft/40 dark:hover:decoration-brand-soft";
+
+// Same look as the "Explore" button / home page call-to-action buttons.
+const BUTTON =
+  "inline-flex items-center justify-center gap-2 rounded-lg border border-brand bg-brand px-5 py-2.5 text-center text-[15px] font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
+
 const MdxComponents = {
+  exchangevideo: ExchangeVideoCard,
+  exchangelink: ExchangeLinkCard,
+  exchangegrid: ({ children }: { children?: React.ReactNode }) => (
+    <div className="my-6 grid max-w-3xl gap-4 imd:grid-cols-2">{children}</div>
+  ),
+  guideactions: GuideActions,
+  faucetcard: FaucetCard,
+  faucetlist: FaucetList,
+  recoverynav: RecoveryNav,
+  linkbutton: LinkButton,
+  addressgrid: AddressGrid,
+  addressspecimen: AddressSpecimen,
+  communitygrid: CommunityGrid,
+  communitygroup: CommunityGroup,
+  communitycard: CommunityCard,
+  orgcard: OrgCard,
+  membercard: MemberCard,
+  securityfeed: SecurityFeed,
+  videocarousel: VideoCarousel,
+  videoslider: VideoSlider,
+  videoshowcase: VideoShowcase,
+  processorgrid: ProcessorGrid,
+  processorcard: ProcessorCard,
+  processorlogo: ProcessorLogo,
+  podcastshow: PodcastShow,
+  zconedition: ZconEdition,
+  chipnav: ChipNav,
+  timelinelist: TimelineList,
+  timelineitem: TimelineItem,
+  statgrid: StatGrid,
+  statcard: StatCard,
+  pointlist: PointList,
+  pointitem: PointItem,
+  jumpnav: JumpNav,
+  guidecallout: GuideCallout,
+  videoblock: VideoBlock,
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
     let href = props.href || "";
     if (href.startsWith("#")) {
       const normalized = "#" + slugify(href.slice(1));
-      const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        const targetId = normalized.slice(1);
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      };
       return (
-        <a
-          href={normalized}
-          className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 hover:underline scroll-mt-20 [overflow-wrap:anywhere]"
-          onClick={handleClick}
-          {...props}
+        <HashLink
+          normalized={normalized}
+          className={`${LINK} scroll-mt-20`}
+          {...(props as Omit<HTMLProps<HTMLAnchorElement>, "ref">)}
         />
       );
     }
+
     const resolved = href.startsWith("/site")
       ? transformGithubFilePathToWikiLink(href)
       : href;
     // Protocol-relative URLs ("//host/...") start with "/" but are external;
     // only single-leading-slash app paths are internal.
     const isInternal = resolved.startsWith("/") && !resolved.startsWith("//");
-    // A bare URL as link text has no break opportunity, so on a phone it
-    // pushed the page wider than the screen; let it wrap when it must.
-    const className =
-      "font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed [overflow-wrap:anywhere]";
+    const isButton = (props as Record<string, unknown>)["data-button"] === "true";
+    const className = isButton ? BUTTON : LINK;
     // Internal links use the locale-aware next-intl Link so navigation stays
     // within the active locale (e.g. /it/...). External links open in a new tab.
     if (isInternal) {
@@ -72,6 +167,7 @@ const MdxComponents = {
     return (
       <a href={resolved} target="_blank" rel="noreferrer" className={className}>
         {props.children}
+        {isButton ? <ArrowUpRight aria-hidden="true" className="h-[18px] w-[18px]" /> : null}
       </a>
     );
   },
@@ -80,20 +176,116 @@ const MdxComponents = {
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h1 id={id} className="text-4xl font-bold my-6 scroll-mt-20" {...props} />;
+    return <h1 id={id} className="text-3xl md:text-4xl font-semibold tracking-tight mt-2 mb-6 scroll-mt-20 text-slate-900 dark:text-white" {...props} />;
   },
-  h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
-    const text = getHeadingText(props.children).trim();
+  h2: ({ children, ...rest }: HTMLProps<HTMLHeadingElement>): JSX.Element => {
+    const text = getHeadingText(children).trim();
     const id = slugify(text);
-    return <h2 id={id} className="text-3xl font-bold my-6 scroll-mt-20" {...props} />;
+    const eyebrow = (rest as Record<string, unknown>)["data-eyebrow"];
+    if (eyebrow === "tldr" || eyebrow === "warn") {
+      // Summary label (e.g. "TL;DR"): small uppercase eyebrow above its callout.
+      return (
+        <h2
+          id={id}
+          className={`mb-2 mt-8 scroll-mt-20 text-xs font-semibold uppercase tracking-[0.14em] ${eyebrow === "warn" ? "text-amber-600 dark:text-amber-400" : "text-brand dark:text-brand-soft"}`}
+        >
+          {children}
+        </h2>
+      );
+    }
+    const step = (rest as Record<string, unknown>)["data-step"];
+    if (step) {
+      // Numbered step of a guide: number badge + title.
+      return (
+        <h2
+          id={id}
+          className="group mt-12 mb-4 flex scroll-mt-20 items-center gap-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white"
+        >
+          <span
+            aria-hidden="true"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/50 bg-brand/10 text-base font-semibold text-brand dark:text-brand-soft"
+          >
+            {String(step)}
+          </span>
+          <span>{children}</span>
+        </h2>
+      );
+    }
+    return (
+      <h2
+        id={id}
+        className="group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"
+        {...rest}
+      >
+        {children}
+        <a
+          href={`#${id}`}
+          aria-label="Link to this section"
+          className="ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"
+        >
+          #
+        </a>
+      </h2>
+    );
   },
   h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h3 id={id} className="text-2xl font-bold my-5 scroll-mt-20" {...props} />;
+    const step = (props as Record<string, unknown>)["data-step"];
+    if (step) {
+      // Numbered step inside a guide section: number badge + title.
+      return (
+        <h3
+          id={id}
+          className="mt-10 mb-3 flex scroll-mt-20 items-center gap-3 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:text-white"
+        >
+          <span
+            aria-hidden="true"
+            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand/50 bg-brand/10 text-sm font-semibold text-brand dark:text-brand-soft"
+          >
+            {String(step)}
+          </span>
+          <span>{props.children}</span>
+        </h3>
+      );
+    }
+    const pill = (props as Record<string, unknown>)["data-pill"];
+    if (pill) {
+      // Pool heading with a small status pill.
+      const tone = String((props as Record<string, unknown>)["data-tone"] ?? "slate");
+      const toneCls =
+        tone === "brand"
+          ? "border-brand/50 bg-brand/10 text-brand dark:text-brand-soft"
+          : tone === "amber"
+            ? "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-400"
+            : tone === "green"
+              ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+              : "border-slate-300 bg-slate-100 text-slate-600 dark:border-white/15 dark:bg-white/5 dark:text-slate-300";
+      return (
+        <h3
+          id={id}
+          className="mt-10 mb-3 flex scroll-mt-20 flex-wrap items-center gap-3 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:text-white"
+        >
+          <span>{props.children}</span>
+          <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${toneCls}`}>{String(pill)}</span>
+        </h3>
+      );
+    }
+    if ((props as Record<string, unknown>)["data-rule"]) {
+      // Subsection separated from the previous one by a hairline.
+      return (
+        <h3
+          id={id}
+          className="mt-12 mb-3 scroll-mt-20 border-t border-slate-200 pt-8 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:border-white/10 dark:text-white"
+        >
+          {props.children}
+        </h3>
+      );
+    }
+    return <h3 id={id} className="mt-9 mb-3 scroll-mt-20 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:text-white" {...props} />;
   },
 
-  // Code blocks — your exact tan styling
+  // Code: neutral surface in both themes; no decorative badge.
   code: (props: HTMLProps<HTMLElement> & { className?: string }): JSX.Element => {
     const isBlockCode = props.className?.includes("language-") ?? false;
     if (isBlockCode) {
@@ -101,72 +293,86 @@ const MdxComponents = {
         <code
           className={`font-mono text-sm bg-transparent !bg-transparent !p-0 !m-0 block w-full ${props.className || ""}`}
           style={{ backgroundColor: "transparent" }}
+          dir="ltr"
           {...props}
         />
       );
     }
     return (
       <code
+        className="rounded-md border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[0.875em] text-slate-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
         // Isolates inline code such as H(hA, hB) inside right-to-left prose.
         dir="ltr"
-        className="font-mono text-sm"
         {...props}
       />
     );
   },
 
-  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => (
-    <div className="relative group my-6">
-      <div className="absolute -top-3 left-4 z-10 px-3 py-1 
-        bg-amber-50 dark:bg-amber-950 
-        text-amber-800 dark:text-amber-300 
-        text-xs font-mono tracking-widest rounded border border-amber-200 dark:border-amber-800 shadow-sm">
-        Code-highlight
-      </div>
-      <pre
-        // Code reads left to right in every locale. Inheriting dir="rtl" on
-        // Arabic pages right-aligned each line and moved trailing
-        // punctuation to the front ("...hA = 559aead08264").
-        dir="ltr"
-        className="bg-amber-50 dark:bg-amber-950 !bg-amber-50 dark:!bg-amber-950 text-neutral-900 dark:text-neutral-100 p-5 pt-8 rounded-2xl overflow-x-auto border border-amber-200 dark:border-amber-900 font-mono text-sm leading-relaxed shadow-xl"
-        {...props}
-      />
-    </div>
-  ),
+  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => <CodeBlock {...props} />,
 
-  // === UPDATED: Beautiful amber-themed tables (matches your tan code blocks) ===
+  // Tables: quiet header, hairline rows, brand-tinted hover.
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
-    <div className="overflow-x-auto my-6">
-      <table 
-        className="min-w-full border-collapse text-sm bg-white dark:bg-neutral-900 rounded-xl overflow-hidden shadow-sm" 
-        {...props} 
-      />
-    </div>
+    <ScrollableTable>
+      <table className="min-w-full border-collapse text-sm" {...props} />
+    </ScrollableTable>
   ),
   thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
-    <thead className="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-100" {...props} />
-  ),
-  tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
-    <tr className="border-b border-amber-200 dark:border-amber-900 hover:bg-amber-50 dark:hover:bg-neutral-800" {...props} />
-  ),
-  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <th className="px-6 py-4 text-start font-semibold" {...props} />
-  ),
-  td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <td className="px-6 py-4" {...props} />
-  ),
-  // =====================================================================
-
-  // Everything else
-  img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
-    // Images are self-hosted under /content-images/ (same-origin) — serve as-is.
-    <img
-      src={props.src || ""}
-      alt={props.alt || "Image"}
-      className="rounded-lg my-4"
-      loading="lazy"
+    <thead
+      className="bg-slate-100 text-left text-xs uppercase tracking-wider text-slate-600 dark:bg-white/5 dark:text-slate-300"
+      {...props}
     />
   ),
+  tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
+    <tr
+      className="border-b border-slate-200 last:border-b-0 hover:bg-brand/5 dark:border-white/10"
+      {...props}
+    />
+  ),
+  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
+    <th className="px-4 py-3 font-semibold" {...props} />
+  ),
+  td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
+    <td className="px-4 py-3 align-top leading-relaxed" {...props} />
+  ),
+
+  blockquote: (props: HTMLProps<HTMLQuoteElement>): JSX.Element => (
+    <blockquote
+      className="my-6 rounded-r-lg border-l-4 border-brand bg-brand/5 px-5 py-3 text-slate-700 dark:bg-brand/10 dark:text-slate-200 [&>p]:my-2"
+      {...props}
+    />
+  ),
+  hr: (): JSX.Element => (
+    <hr className="my-10 border-0 border-t border-slate-200 dark:border-white/10" />
+  ),
+
+  // Everything else
+  img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
+    // "Obtaining Zcash" embeds a screenshot of wallet cards; show the curated
+    // native list instead (until the markdown itself is updated).
+    if (String(props.src || "").includes("8b7618f5-dec6-4e6b-9804-db75be5c1e2f")) {
+      return <RecommendedWallets />;
+    }
+    // Same for the screenshot grid of decentralized exchanges.
+    if (String(props.src || "").includes("bfe2e9cf-2def-4593-b790-152e14b23da3")) {
+      return <RecommendedExchanges />;
+    }
+    return (
+    // Images are self-hosted under /content-images/ (same-origin). The site's CSP does not allow GitHub raw images, so a
+    // content-repo image that has been mirrored there (named after its path under site/) is served from the mirror.
+    <img
+      src={mirroredContentImage(props.src) || props.src || ""}
+      alt={props.alt || "Image"}
+      className={`my-5 rounded-xl border ${
+        (props as Record<string, unknown>)["data-frame"]
+          ? `mx-auto h-auto w-auto border-brand/60 shadow-md shadow-brand/10 ring-1 ring-brand/20 ${
+              (props as Record<string, unknown>)["data-frame"] === "compact" ? "max-h-[480px] max-w-[min(100%,560px)]" : "max-w-full"
+            }`
+          : "border-slate-200 dark:border-white/10"
+      }`}
+      loading="lazy"
+    />
+    );
+  },
   // Raw <iframe> in content markdown: route YouTube through the click-to-load
   // facade so a page doesn't contact Google on render; other iframes pass through.
   iframe: (props: HTMLProps<HTMLIFrameElement>): JSX.Element => {
@@ -183,12 +389,88 @@ const MdxComponents = {
     }
     // Non-YouTube iframes: sandbox without allow-scripts so an injected
     // <iframe> can't execute script (srcdoc is already stripped upstream).
-    return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
+    // Raw HTML attributes arrive lowercase (frameborder, allowfullscreen); React wants camelCase.
+    const { frameborder, allowfullscreen, ...rest } = props as HTMLProps<HTMLIFrameElement> & {
+      frameborder?: string;
+      allowfullscreen?: string | boolean;
+    };
+    return (
+      <iframe
+        {...rest}
+        frameBorder={frameborder ?? rest.frameBorder}
+        allowFullScreen={allowfullscreen !== undefined ? allowfullscreen !== "false" : rest.allowFullScreen}
+        sandbox="allow-same-origin allow-popups allow-forms"
+      />
+    );
   },
-  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc ps-6 my-4" {...props} />,
-  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal ps-6 my-4" {...props} />,
+  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => {
+    const variant = (props as Record<string, unknown>)["data-variant"];
+    const { children } = props;
+    // Summary and warning lists: one quiet callout style, a thin accent bar
+    // and ordinary bullets (no icons, no boxes).
+    if (variant === "tldr" || variant === "warn") {
+      const accent = variant === "warn" ? "border-amber-500/70" : "border-brand";
+      return (
+        <ul
+          className={`mb-6 mt-0 max-w-3xl list-disc space-y-1.5 rounded-r-lg border-l-2 ${accent} bg-slate-50 py-3.5 pl-9 pr-5 text-[15px] leading-relaxed marker:text-slate-400 dark:bg-white/[0.03] dark:marker:text-slate-500`}
+        >
+          {children}
+        </ul>
+      );
+    }
+    // Related pages: plain two-column list of links with a muted description.
+    if (variant === "related") {
+      return (
+        <ul className="my-6 grid list-none gap-x-8 gap-y-4 pl-0 imd:grid-cols-2 [&>li]:border-t [&>li]:border-slate-200 [&>li]:pt-3 [&>li]:text-sm [&>li]:text-slate-600 dark:[&>li]:border-white/10 dark:[&>li]:text-slate-400 [&>li>a]:block [&>li>a]:font-semibold [&>li>a]:no-underline hover:[&>li>a]:underline">
+          {children}
+        </ul>
+      );
+    }
+    return (
+      <ul
+        className="my-5 list-disc space-y-2 pl-6 marker:text-slate-400 dark:marker:text-slate-500"
+        {...props}
+      />
+    );
+  },
+  ol: (props: React.ComponentProps<"ol">): JSX.Element => (
+    <ol
+      className="my-5 list-decimal space-y-2 pl-6 marker:font-medium marker:text-slate-500 dark:marker:text-slate-400"
+      {...props}
+    />
+  ),
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
-  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
+  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => {
+    const rec = props as Record<string, unknown>;
+    if (rec["data-link-title"] === "true") {
+      // A paragraph that is only a link: treated as an entry title
+      // (e.g. an exchange name) so it reads as a heading, not a stray link.
+      return (
+        <p className="mt-7 mb-1 text-base font-semibold [&>a]:no-underline [&>a]:hover:underline">
+          {props.children}
+        </p>
+      );
+    }
+    if (rec["data-button-row"] === "true") {
+      return <p className="mt-8 mb-3">{props.children}</p>;
+    }
+    if (rec["data-lead"] === "true") {
+      // Introductory sentence of a guide: slightly larger and muted.
+      return <p className="my-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">{props.children}</p>;
+    }
+    return <p className="my-5" {...props} />;
+  },
+
+  Gallery,
+  LibraryTools,
+  FaqItem,
+  PointList,
+  PointItem,
+  FaqGlance,
+  OrgLinks,
+  LinkButton,
+  VideoCarousel,
+  DvpnDiagram,
 } as MDXComponents;
 
 export default MdxComponents;

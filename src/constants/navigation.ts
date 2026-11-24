@@ -1,8 +1,8 @@
 import { IconType } from "react-icons";
+import ZakuraIcon from "@/components/UI/ZakuraIcon";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 
-import { FcAbout as Info } from "react-icons/fc";
 import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
 import { LuFileKey as FileKey } from "react-icons/lu";
 import { GrGroup as Group } from "react-icons/gr";
@@ -16,8 +16,29 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem, BookOpenText, KeyRound, GraduationCap, Users } from "lucide-react";
-import { FcVoicePresentation } from "react-icons/fc";
+import {
+  Wrench,
+  Map,
+  Gem,
+  KeyRound,
+  LayoutDashboard,
+  SlidersHorizontal,
+  Network,
+  Layers,
+  Eye,
+  FileText,
+  BookOpen,
+  ShieldCheck,
+  Info,
+  Presentation,
+  GraduationCap,
+  Users,
+  Building2,
+  Activity,
+  Cpu,
+  ShieldCheck as PrivacyShield,
+  FlaskConical,
+} from "lucide-react";
 import { FaUserAstronaut } from "react-icons/fa";
 
 import {
@@ -38,7 +59,103 @@ export type NavigationItem = {
   links?: Array<NavigationItem>;
 };
 
+// Organizations now live inside the Ecosystem menu (nested), see below.
+const organizationLinks: Array<NavigationItem> = [
+  {
+    name: "ZODL",
+    path: "/zcash-organizations/ZODL",
+  },
+  {
+    name: "Electric Coin Company",
+    path: "/zcash-organizations/electric-coin-company",
+  },
+  {
+    name: "Zcash Foundation",
+    path: "/zcash-organizations/zcash-foundation",
+  },
+  {
+    name: "Zcash Community Grants",
+    path: "/zcash-organizations/zcash-community-grants",
+  },
+  {
+    name: "Financial Privacy Foundation",
+    path: "/zcash-organizations/financial-privacy-foundation",
+  },
+  {
+    name: "Shielded Labs",
+    path: "/zcash-organizations/shielded-labs",
+  },
+  {
+    name: "Valar Group",
+    path: "/zcash-organizations/valar-group",
+  },
+  {
+    name: "Zcash Labs",
+    path: "/zcash-organizations/zcash-labs",
+  },
+  {
+    name: "CoinHolder Directed Retroactive Grants",
+    path: "/zcash-organizations/coinholder-directed-retroactive-grants",
+  },
+  {
+    name: "Sovright",
+    path: "/zcash-organizations/sovright",
+  },
+  {
+    name: "Obscura Labs",
+    path: "/zcash-organizations/obscura-labs",
+  },
+  {
+    name: "Zingo Labs",
+    path: "/zcash-organizations/zingo-labs",
+  },
+  {
+    name: "Brand",
+    path: "/zcash-organizations/brand",
+    icon: BrandIcon,
+  },
+  {
+    name: "ZKAV Club",
+    path: "/zcash-organizations/zkav",
+    icon: "zkav-club.png",
+  },
+];
+
 export const navigations: Array<NavigationItem> = [
+  {
+    name: "Learn Zcash",
+    label: "Learn Zcash",
+    links: [
+      { name: "Zcash Basics", path: "/start-here/what-is-zec-and-zcash", icon: Info },
+      { name: "Who Can See Your Payment?", path: "/start-here/who-can-see-your-zcash-payment", icon: Eye },
+      { name: "New User Guide", path: "/start-here/new-user-guide", icon: Users },
+      { name: "Monetary Policy", path: "/start-here/zcash-monetary-policy", icon: Gem },
+      { name: "How Zcash Is Organized", path: "/start-here/how-zcash-is-organized", icon: Building2 },
+      { name: "Zcash Evolution", path: "/zcash-evolution", icon: Activity },
+      { name: "Ironwood", path: "/zcash-tech/ironwood", icon: ShieldCheck },
+      { name: "Crosslink Protocol", path: "/zcash-tech/crosslink-protocol", icon: SlidersHorizontal },
+      { name: "Project Tachyon", path: "/zcash-tech/project-tachyon", icon: Cpu },
+      { name: "Zcash Library", path: "/glossary-and-faqs/zcash-library", icon: BookOpen },
+      { name: "FAQ", path: "/glossary-and-faqs/faq", icon: Info },
+      { name: "Zcash Tech", path: "/zcash-tech", icon: Cpu },
+      { name: "Full Nodes", path: "/zcash-tech/full-nodes", icon: Network },
+      { name: "Privacy Tools", path: "/privacy-tools", icon: PrivacyShield },
+      { name: "Visualizer", path: "/visualizer", icon: BsPlay },
+      { name: "Research", path: "/research", icon: FlaskConical },
+      { name: "Visualizing the Zcash Network", path: "/guides/visualizing-the-zcash-network", icon: Network },
+      { name: "Visualizing Zcash Addresses", path: "/guides/visualizing-zcash-addresses", icon: Map },
+      { name: "Zero to Zero Knowledge", path: "/zero-to-zero-knowledge/zero-to-zero-knowledge", icon: GraduationCap },
+      { name: "Shielded Pools", path: "/using-zcash/shielded-pools", icon: Layers },
+      { name: "Zero-Knowledge vs Decoys", path: "/guides/zero-knowledge-vs-decoys", icon: Eye },
+      { name: "My First Zcash Workbook", path: "/guides/my-first-zcash-workbook", icon: BookOpen },
+      {
+        name: "Browse all Learn Zcash",
+        label: "Browse all articles",
+        path: "/start-here/using-this-wiki",
+        icon: BookOpen,
+      },
+    ],
+  },
   {
     name: "Using Zcash",
     label: "Use Zcash",
@@ -157,10 +274,6 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/memos",
       },
       {
-        name: "Shielded Pools",
-        path: "/using-zcash/shielded-pools",
-      },
-      {
         name: "Transparent Exchange Addresses",
         path: "/using-zcash/transparent-exchange-addresses",
       },
@@ -182,12 +295,25 @@ export const navigations: Array<NavigationItem> = [
         name: "Testnet",
         path: "/using-zcash/testnet",
       },
+      {
+        name: "Browse all Use Zcash",
+        label: "Browse all articles",
+        path: "/using-zcash/centralized-swaps",
+        icon: BookOpen,
+      },
     ],
   },
   {
     name: "Zcash Community",
     label: "Ecosystem",
     links: [
+      {
+        name: "Zcash Organizations",
+        label: "Organizations",
+        path: "/zcash-organizations",
+        icon: Building2,
+        links: organizationLinks,
+      },
       {
         name: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
@@ -228,11 +354,6 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-community/zcash-media",
       },
       {
-        name: "Zero to Zero Knowledge",
-        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
-        icon: GraduationCap,
-      },
-      {
         name: "ZCAP",
         path: "/zcash-community/zcap",
       },
@@ -255,11 +376,17 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zcon Vozes Archive",
         path: "/zcash-community/zcon-vozes",
-        icon: FcVoicePresentation,
+        icon: Presentation,
       },
       {
 	name: "Zcash Engineering Office Hours",
 	path: "/zcash-community/zcash-engineering-office-hours",
+      },
+      {
+        name: "Browse all Ecosystem",
+        label: "Browse all articles",
+        path: "/zcash-community/zcash-global-ambassadors",
+        icon: BookOpen,
       },
     ],
   },
@@ -281,11 +408,7 @@ export const navigations: Array<NavigationItem> = [
         icon: AudioVideo,
       },
       {
-        name: "Free2Z Livestreaming",
-        path: "/guides/free2z-livestreaming",
-      },
-      {
-        name: "Keystone Zashi",
+        name: "Keystone Zodl (Zashi)",
         path: "/guides/keystone-zashi",
       },
       {
@@ -311,7 +434,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Raspberry Pi 4 Full Node",
-        label: "Raspberry Pi Zcashd Node",
+        label: "Zebra + Zallet on Raspberry Pi 4",
         path: "/guides/raspberry-pi-4-full-node",
       },
       {
@@ -319,21 +442,22 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/raspberry-pi5-zebra-lightwalletd-zingo",
       },
       {
-        name: "Raspberry pi 4 Zebra Node",
-        label: "Raspberry Pi Zebra Node",
-        path: "/guides/raspberry-pi-4-zebra-node",
-      },
-      {
         name: "Hardened Zebrad",
         path: "/guides/hardened-zebrad",
       },
       {
-        name: "Akash Network Zcashd",
-        path: "/guides/akash-network-zcashd",
-      },
-      {
         name: "Akash Network Zebra",
         path: "/guides/akash-network-zebra",
+      },
+      {
+        name: "Zakura Node",
+        path: "/zcash-tech/zakura-node",
+        icon: ZakuraIcon,
+      },
+      {
+        name: "Zakura on Akash",
+        path: "/guides/akash-network-zakura",
+        icon: ZakuraIcon,
       },
       {
         name: "Avalanche RedBridge",
@@ -348,10 +472,6 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/ywallet-frost-demo",
       },
       {
-        name: "Blockchain Explorers",
-        path: "/guides/blockchain-explorers",
-      },
-      {
         name: "Brave Wallet Guide",
         path: "/guides/brave-wallet-guide",
       },
@@ -362,10 +482,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Migration Guide Zcashd To Zebrad Zallet",
         path: "/guides/migration-guide-zcashd-to-zebrad-zallet",
-      },
-      {
-        name: "My First Zcash Workbook",
-        path: "/guides/my-first-zcash-workbook",
       },
       {
         name: "Verifying Zcash Releases",
@@ -380,20 +496,8 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/btcpayserver-zcash-plugin",
       },
       {
-        name: "Visualizing the Zcash Network",
-        path: "/guides/visualizing-the-zcash-network",
-      },
-      {
-        name: "Visualizing Zcash Addresses",
-        path: "/guides/visualizing-zcash-addresses",
-      },
-      {
         name: "Zcash Devtool",
         path: "/guides/zcash-devtool",
-      },
-      {
-        name: "Zcash Improvement Proposals",
-        path: "/guides/zcash-improvement-proposals",
       },
       {
         name: "Zingolib and Zaino Tutorial",
@@ -404,74 +508,40 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/zenith-installation",
       },
       {
-        name: "Zero-Knowledge vs Decoys",
-        label: "Zero Knowledge vs Decoy Systems",
-        path: "/guides/zero-knowledge-vs-decoys",
+        name: "Browse all Guides",
+        label: "Browse all articles",
+        path: "/guides/zcash-stack",
+        icon: BookOpen,
       },
     ],
   },
   {
-    name: "Zcash Organizations",
-    label: "Organizations",
+    name: "Data",
+    label: "Network",
+    icon: LayoutDashboard,
     links: [
+      { name: "Ecosystem Dashboard", path: "/dashboard", icon: LayoutDashboard },
+      { name: "Chain State Explorer", path: "/chain-stats", icon: Activity },
       {
-        name: "ZODL",
-        path: "/zcash-organizations/ZODL",
+        name: "Protocol Parameters",
+        path: "/protocol-parameters",
+        icon: SlidersHorizontal,
       },
       {
-        name: "Electric Coin Company",
-        path: "/zcash-organizations/electric-coin-company",
+        name: "Network & Infrastructure",
+        path: "/zcash-infrastructure-visualizer",
+        icon: Network,
       },
-      {
-        name: "Zcash Foundation",
-        path: "/zcash-organizations/zcash-foundation",
-      },
-      {
-        name: "Zcash Community Grants",
-        path: "/zcash-organizations/zcash-community-grants",
-      },
-      {
-        name: "Financial Privacy Foundation",
-        path: "/zcash-organizations/financial-privacy-foundation",
-      },
-      {
-        name: "Shielded Labs",
-        path: "/zcash-organizations/shielded-labs",
-      },
-      {
-        name: "Valar Group",
-        path: "/zcash-organizations/valar-group",
-      },
-      {
-        name: "Zcash Labs",
-        path: "/zcash-organizations/zcash-labs",
-      },
-      {
-        name: "CoinHolder Directed Retroactive Grants",
-        path: "/zcash-organizations/coinholder-directed-retroactive-grants",
-      },
-      {
-        name: "Sovright",
-        path: "/zcash-organizations/sovright",
-      },
-      {
-        name: "Obscura Labs",
-        path: "/zcash-organizations/obscura-labs",
-      },
-      {
-        name: "Zingo Labs",
-        path: "/zcash-organizations/zingo-labs",
-      },
-      {
-        name: "Brand",
-        path: "/zcash-organizations/brand",
-        icon: BrandIcon,
-      },
-      {
-        name: "ZKAV Club",
-        path: "/zcash-organizations/zkav",
-        icon: "zkav-club.png",
-      },
+      { name: "Value Pools", path: "/zcash-pool-visualizer", icon: Layers },
+      { name: "Network Upgrades", path: "/start-here/network-upgrades", icon: Cpu },
+      { name: "Zcash Improvement Proposals", path: "/guides/zcash-improvement-proposals", icon: FileText },
+      { name: "zk-SNARKs", path: "/zcash-tech/zk-snarks" },
+      { name: "Halo", path: "/zcash-tech/halo" },
+      { name: "Unified Addresses", path: "/zcash-tech/unified-addresses" },
+      { name: "Viewing Keys", path: "/zcash-tech/viewing-keys" },
+      { name: "FROST Threshold Signatures", path: "/zcash-tech/frost" },
+      { name: "Shielded Assets (ZSAs)", path: "/zcash-tech/zcash-shielded-assets" },
+      { name: "Post-Quantum Security", path: "/zcash-tech/post-quantum-security", icon: ShieldCheck },
     ],
   },
   {
@@ -510,11 +580,6 @@ export const navigations: Array<NavigationItem> = [
     icon: SiHomeassistant,
   },
   {
-    name: "Visualizer",
-    path: "/visualizer",
-    icon: BsPlay,
-  },
-  {
     name: "Sitemap",
     path: "/sitemap",
     icon: Map,
@@ -524,22 +589,17 @@ export const navigations: Array<NavigationItem> = [
     path: "/visual-identity",
     icon: Gem,
   },
-  {
-    name: "Research",
-    path: "/research",
-    icon: BookOpenText,
-  },
 ];
 
 export const socialNav = [
   { name: "Discord", url: "https://discord.gg/zcash", icon: Discord },
   {
-    name: "Youtube",
+    name: "YouTube",
     url: "https://www.youtube.com/channel/UC3-KM00kjCUheRzO5cq3PAA",
     icon: Youtube,
   },
-  { name: "Twitter", url: "https://x.com/zechub", icon: Twitter },
-  { name: "Github", url: "https://github.com/ZecHub/zechub", icon: Github },
+  { name: "X", url: "https://x.com/zechub", icon: Twitter },
+  { name: "GitHub", url: "https://github.com/ZecHub/zechub", icon: Github },
 ];
 
 export const socialMedia = [
@@ -553,3 +613,155 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
+// Desktop dropdown grouping. Purely presentational: the flat `links` arrays
+// above stay the single source of truth (mobile menu, search and translations
+// keep using them). Names must match `name` in `navigations`. Any link not
+// listed here is shown under a trailing "More" group, so nothing disappears
+// when a new page is added to `navigations`.
+export type MenuSection = { title: string; items: string[] };
+
+export const menuSections: Record<string, MenuSection[]> = {
+  "Learn Zcash": [
+    {
+      title: "Start here",
+      items: [
+        "Zcash Basics",
+        "Who Can See Your Payment?",
+        "New User Guide",
+        "Zero to Zero Knowledge",
+        "My First Zcash Workbook",
+      ],
+    },
+    {
+      title: "How Zcash works",
+      items: ["Zcash Tech", "Full Nodes", "Shielded Pools", "Zero-Knowledge vs Decoys", "Monetary Policy", "How Zcash Is Organized"],
+    },
+    {
+      title: "Go deeper",
+      items: ["Zcash Evolution", "Ironwood", "Crosslink Protocol", "Project Tachyon", "Research"],
+    },
+    { title: "Visualize", items: ["Visualizer", "Visualizing the Zcash Network", "Visualizing Zcash Addresses"] },
+    { title: "Reference", items: ["Zcash Library", "FAQ", "Privacy Tools"] },
+    { title: "More", items: ["Browse all Learn Zcash"] },
+  ],
+  "Using Zcash": [
+    {
+      title: "Get started",
+      items: ["Buying ZEC", "Wallets", "Exchanges", "Faucets", "Recovering Funds"],
+    },
+    {
+      title: "Spend & pay",
+      items: [
+        "Use Cases",
+        "Spend Zcash",
+        "Payment Processors",
+        "Mobile Top Ups",
+        "Payment Request URIs",
+      ],
+    },
+    {
+      title: "Understand",
+      items: ["Transactions", "Memos", "Transparent Exchange Addresses", "Blockchain Explorers"],
+    },
+    {
+      title: "Tools",
+      items: ["Tools", "MetaMask Snap", "Zallet Quick Reference Guide", "Testnet"],
+    },
+    { title: "More", items: ["Browse all Use Zcash"] },
+  ],
+  "Zcash Community": [
+    {
+      title: "Community",
+      items: [
+        "Community Links",
+        "Community Forum",
+        "Community Blogs",
+        "Community Projects",
+        "Zcash Global Ambassadors",
+        "Community Building",
+        "Cypherpunk Zero NFT",
+      ],
+    },
+    {
+      title: "Media & events",
+      items: [
+        "Zcash Media",
+        "Zcash Podcasts",
+        "Arborist Calls",
+        "Zcash Engineering Office Hours",
+        "Zcon Archive",
+        "Zcon Vozes Archive",
+      ],
+    },
+    {
+      title: "Organizations & governance",
+      items: ["Zcash Organizations", "Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
+    },
+    { title: "More", items: ["Browse all Ecosystem"] },
+  ],
+  Data: [
+    {
+      title: "Live data",
+      items: ["Ecosystem Dashboard", "Chain State Explorer", "Network & Infrastructure", "Value Pools"],
+    },
+    {
+      title: "Protocol",
+      items: ["Network Upgrades", "Protocol Parameters", "Zcash Improvement Proposals", "Post-Quantum Security"],
+    },
+    {
+      title: "Cryptography",
+      items: ["zk-SNARKs", "Halo", "FROST Threshold Signatures"],
+    },
+    {
+      title: "Addresses & assets",
+      items: ["Unified Addresses", "Viewing Keys", "Shielded Assets (ZSAs)"],
+    },
+  ],
+  // Guides are step-by-step walkthroughs only: concepts live in Learn Zcash and
+  // reference material in Network, so each page has exactly one home.
+  Guides: [
+    {
+      title: "Run a node",
+      items: [
+        "Raspberry Pi 4 Full Node",
+        "Raspberry pi5 Zebra Lightwalletd Zingo",
+        "Hardened Zebrad",
+        "Akash Network Zebra",
+        "Zakura Node",
+        "Zakura on Akash",
+      ],
+    },
+    {
+      title: "Upgrade & verify",
+      items: ["Migration Guide Zcashd To Zebrad Zallet", "Verifying Zcash Releases"],
+    },
+    {
+      title: "Wallets & signing",
+      items: [
+        "Keystone Zodl (Zashi)",
+        "Brave Wallet Guide",
+        "Zkool Multisig",
+        "Ywallet FROST Demo",
+        "Viewing Key Transaction Export",
+      ],
+    },
+    {
+      title: "Privacy & networks",
+      items: ["Using ZEC Privately", "Nym VPN", "Nym Mixnet Wallet Setup"],
+    },
+    {
+      title: "Payments & creators",
+      items: ["Zgo Payment Processor", "BTCPayServer Zcash Plugin", "Free2z Live", "ZKAV Club"],
+    },
+    {
+      title: "DeFi & swaps",
+      items: ["Using ZEC in DeFi", "Maya Protocol", "Avalanche RedBridge", "ShapeShift Zcash"],
+    },
+    {
+      title: "Developer tools",
+      items: ["Zcash Devtool", "Zingolib and Zaino Tutorial", "Zenith Installation"],
+    },
+    { title: "More", items: ["Browse all Guides"] },
+  ],
+};

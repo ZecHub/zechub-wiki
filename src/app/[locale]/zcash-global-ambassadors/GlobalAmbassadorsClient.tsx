@@ -2,109 +2,97 @@
 
 import ambassadorProjects from "./ambassador_list_v2.json";
 import { useLanguage } from "@/context/LanguageContext";
-import { LuExternalLink, LuTwitter } from "react-icons/lu";
+import { LuExternalLink, LuGlobe, LuInstagram, LuSend } from "react-icons/lu";
+import { socialIcons } from "@/components/UI/SvgIcons";
 import GlobalAmbassadorsMap from "./map/GlobalAmbassadorsMap";
 
-// ── Banner ─────────────────────────────────────────────────────────────────
-function AmbassadorBanner({
-  src,
-  alt,
-  flag,
-}: {
-  src: string;
-  alt: string;
-  flag: string;
-}) {
-  return (
-    <div
-      className="relative w-full overflow-hidden rounded-t-2xl bg-muted group-hover:scale-[1.02] transition-transform duration-300"
-      style={{ aspectRatio: "16 / 7" }}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt={alt}
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).style.display = "none";
-        }}
-      />
-      {/* Flag badge — top-right corner */}
-      <span
-        className="absolute top-2 right-3 text-3xl leading-none select-none drop-shadow"
-        role="img"
-        aria-label={alt}
-      >
-        {flag}
-      </span>
-    </div>
-  );
-}
+// ── Card ───────────────────────────────────────────────────────────────────
+const BTN_GHOST =
+  "inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3.5 py-1.5 text-sm font-semibold text-slate-700 no-underline transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-slate-200 dark:hover:bg-white/10";
 
-// ── Card (now with modern pop-out effect) ───────────────────────────────────
 function AmbassadorCard({
   project,
   description,
-  followLabel,
-  projectSiteLabel,
 }: {
   project: (typeof ambassadorProjects)[number];
   description: string;
-  followLabel: string;
-  projectSiteLabel: string;
 }) {
+  const extra = project as { language?: string; instagram?: string; website?: string; telegram?: string };
+  const language = extra.language;
+  const instagram = extra.instagram;
+  const telegram = extra.telegram;
+  const website = extra.website ?? project.projectSite ?? undefined;
   return (
-    <div className="group flex flex-col bg-white dark:bg-slate-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-      <AmbassadorBanner
-        src={project.image}
-        alt={`${project.name} banner`}
-        flag={project.flag}
-      />
-
-      <div className="flex flex-col flex-1 p-5 gap-3">
-        {/* Title */}
-        <div className="flex items-center gap-2">
-          <span className="text-xl" role="img" aria-hidden>
-            {project.flag}
-          </span>
-          <h3 className="font-semibold text-lg text-foreground leading-tight">
+    <article className="flex h-full flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
+      <div className="flex items-center gap-4">
+        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full bg-slate-900 ring-2 ring-brand/50">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image}
+            alt={`${project.name} logo`}
+            width={80}
+            height={80}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
+            }}
+          />
+        </div>
+        <div className="min-w-0">
+          <h3 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
             {project.name}
           </h3>
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-muted-foreground flex-1 leading-relaxed">
-          {description}
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap gap-2 pt-1">
-          {project.twitter && (
-            <a
-              href={project.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md border border-border hover:bg-accent transition-colors text-foreground"
-            >
-              <LuTwitter className="w-3.5 h-3.5" />
-              {followLabel}
-            </a>
-          )}
-
-          {project.projectSite && (
-            <a
-              href={project.projectSite}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-            >
-              <LuExternalLink className="w-3.5 h-3.5" />
-              {projectSiteLabel}
-            </a>
-          )}
+          <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+            <span className="rounded-full bg-slate-200 px-2.5 py-0.5 text-[13px] text-slate-700 dark:bg-white/10 dark:text-slate-200">
+              <span role="img" aria-hidden className="mr-1">
+                {project.flag}
+              </span>
+              {language ?? "Community"}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+
+      <p className="m-0 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+        {description}
+      </p>
+
+      <div className="flex flex-wrap gap-2">
+        {project.twitter && (
+          <a href={project.twitter} target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>
+            <span className="inline-flex [&>svg]:!h-3.5 [&>svg]:!w-3.5" aria-hidden="true">
+              {socialIcons.x}
+            </span>
+            {/bsky\.app/.test(project.twitter) ? "Bluesky" : "X"}
+          </a>
+        )}
+        {instagram && (
+          <a href={instagram} target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>
+            <LuInstagram className="h-3.5 w-3.5" aria-hidden="true" />
+            Instagram
+          </a>
+        )}
+        {telegram && (
+          <a href={telegram} target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>
+            <LuSend className="h-3.5 w-3.5" aria-hidden="true" />
+            Telegram
+          </a>
+        )}
+        {website && (
+          <a href={website} target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>
+            <LuGlobe className="h-3.5 w-3.5" aria-hidden="true" />
+            Website
+          </a>
+        )}
+        {project.blog && project.blog !== website && (
+          <a href={project.blog} target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>
+            <LuExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            Blog
+          </a>
+        )}
+      </div>
+    </article>
   );
 }
 
@@ -120,105 +108,58 @@ export default function GlobalAmbassadorsClient() {
   const activeHeading =
     t?.pages?.zcashGlobalAmbassadors?.activeProjectsHeading ??
     "Active Global Ambassador Projects";
-  const projectSitesHeading =
-    t?.pages?.zcashGlobalAmbassadors?.projectSitesHeading ??
-    "Project Sites & Blogs";
-  const followLabel =
-    t?.pages?.zcashGlobalAmbassadors?.followOnX ?? "Follow on X/BS";
-  const projectSiteLabel =
-    t?.pages?.zcashGlobalAmbassadors?.projectSiteLabel ?? "Project Site";
-  const linkLabel = t?.pages?.zcashGlobalAmbassadors?.linkLabel ?? "Link";
   const footerInfo =
     t?.pages?.zcashGlobalAmbassadors?.footerInfo ??
     "The Zcash Global Ambassadors program supports community-led initiatives to promote privacy-focused technology adoption. Each ambassador project operates independently while contributing to the broader Zcash ecosystem.";
 
-  const projectsWithBlogs = ambassadorProjects.filter((p) => p.blog);
+  // Some communities appear twice on the globe (one pin per country); show them once here.
+  const uniqueProjects = ambassadorProjects.filter(
+    (p, i, all) => all.findIndex((q) => q.name === p.name) === i,
+  );
   const getProjectKey = (project: (typeof ambassadorProjects)[number]) =>
     `${project.name}-${project.geo_query ?? project.countryCode}`;
 
   return (
     <main className="min-h-screen bg-background">
       <GlobalAmbassadorsMap />
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="mx-auto max-w-6xl space-y-12 px-4 py-10 md:py-14">
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold mb-4 text-foreground">{title}</h1>
-          <p className="text-lg text-muted-foreground">{description}</p>
-        </div>
+        <header className="border-b border-slate-200 pb-8 dark:border-white/10">
+          <h1 className="m-0 text-balance text-3xl font-semibold leading-tight tracking-tight text-slate-900 md:text-4xl dark:text-white">
+            {title}
+          </h1>
+          <p className="m-0 mt-4 max-w-3xl text-pretty text-base leading-7 text-slate-600 md:text-lg md:leading-8 dark:text-slate-300">
+            {description}
+          </p>
+        </header>
 
         {/* Cards grid */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-8 text-foreground">
-            {activeHeading}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ambassadorProjects.map((project) => (
+        <section>
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 className="m-0 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white">
+              {activeHeading}
+            </h2>
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {uniqueProjects.map((project) => (
               <AmbassadorCard
                 key={getProjectKey(project)}
                 project={project}
                 description={
+                  (project as { about?: string }).about ??
                   t?.pages?.zcashGlobalAmbassadors?.projects?.[project.name] ??
                   project.description
                 }
-                followLabel={followLabel}
-                projectSiteLabel={projectSiteLabel}
+                
               />
             ))}
           </div>
-        </div>
-
-        {/* Project Sites & Blogs table */}
-        {projectsWithBlogs.length > 0 && (
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-foreground">
-              {projectSitesHeading}
-            </h2>
-            <div className="bg-card border border-border rounded-lg p-6">
-              <div className="space-y-1">
-                {projectsWithBlogs.map((project) => (
-                  <div
-                    key={getProjectKey(project)}
-                    className="flex items-center justify-between py-2.5 border-b border-border last:border-b-0"
-                  >
-                    <span className="font-medium text-foreground flex items-center gap-2">
-                      <span role="img" aria-hidden>
-                        {project.flag}
-                      </span>
-                      {project.name}
-                    </span>
-
-                    <div className="flex items-center gap-2">
-                      {project.projectSite && (
-                        <a
-                          href={project.projectSite}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm border px-2 py-1 rounded hover:bg-accent transition-colors text-primary"
-                        >
-                          {projectSiteLabel}{" "}
-                          <LuExternalLink className="w-3 h-3" />
-                        </a>
-                      )}
-                      <a
-                        href={project.blog!}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm border px-2 py-1 rounded hover:bg-accent transition-colors text-primary"
-                      >
-                        {linkLabel} <LuExternalLink className="w-3 h-3" />
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+        </section>
 
         {/* Footer */}
-        <div className="border-t border-border pt-8 mt-12">
-          <p className="text-sm text-muted-foreground">{footerInfo}</p>
-        </div>
+        <footer className="border-t border-slate-200 pt-8 dark:border-white/10">
+          <p className="m-0 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400">{footerInfo}</p>
+        </footer>
       </div>
     </main>
   );

@@ -56,7 +56,7 @@ const SiteLinks: React.FC = () => {
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5992">
               <Link href="/guides/raspberry-pi-4-full-node">
-                Raspberry Pi Zcashd Node
+                Zebra + Zallet on Raspberry Pi 4
               </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-6010">

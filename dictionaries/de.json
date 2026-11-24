@@ -128,7 +128,51 @@
     "CoinHolder Directed Retroactive Grants": "CoinHolder-gerichtete rückwirkende Zuschüsse",
     "Community Building": "Community Building",
     "Zero to Zero Knowledge": "Zero to Zero Knowledge",
-    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup",
+    "Browse all Use Zcash": "Browse all Use Zcash",
+    "More orgs": "More orgs",
+    "Browse all Guides": "Browse all Guides",
+    "Data": "Data",
+    "Network": "Network",
+    "Ecosystem Dashboard": "Ecosystem Dashboard",
+    "Protocol Parameters": "Protocol Parameters",
+    "All Visualizers": "All Visualizers",
+    "Network & Infrastructure": "Network & Infrastructure",
+    "Value Pools": "Value Pools",
+    "zk-SNARK Proofs": "zk-SNARK Proofs",
+    "Consensus": "Consensus",
+    "Hash Function": "Hash Function",
+    "Zcash Keys": "Zcash Keys",
+    "Metamask Snap": "Metamask Snap",
+    "Keystone Zodl (Zashi)": "Keystone Zodl (Zashi)",
+    "Learn Zcash": "Learn Zcash",
+    "Zcash Basics": "Zcash Basics",
+    "Who Can See Your Payment?": "Who Can See Your Payment?",
+    "New User Guide": "New User Guide",
+    "Monetary Policy": "Monetary Policy",
+    "How Zcash Is Organized": "How Zcash Is Organized",
+    "Zcash Evolution": "Zcash Evolution",
+    "Ironwood": "Ironwood",
+    "Crosslink Protocol": "Crosslink Protocol",
+    "Project Tachyon": "Project Tachyon",
+    "Zcash Library": "Zcash Library",
+    "FAQ": "FAQ",
+    "Full Nodes": "Full Nodes",
+    "Zebra + Zallet on Raspberry Pi 4": "Zebra + Zallet on Raspberry Pi 4",
+    "Zakura Node": "Zakura Node",
+    "Zakura on Akash": "Zakura on Akash",
+    "Chain State Explorer": "Chain State Explorer",
+    "Network Upgrades": "Network Upgrades",
+    "zk-SNARKs": "zk-SNARKs",
+    "Halo": "Halo",
+    "Unified Addresses": "Unified Addresses",
+    "Viewing Keys": "Viewing Keys",
+    "FROST Threshold Signatures": "FROST Threshold Signatures",
+    "Shielded Assets (ZSAs)": "Shielded Assets (ZSAs)",
+    "Post-Quantum Security": "Post-Quantum Security",
+    "Browse all Learn Zcash": "Browse all Learn Zcash",
+    "Browse all Ecosystem": "Browse all Ecosystem",
+    "Browse all articles": "Browse all articles"
   },
   "exploreMenu": {
     "Full Explore": "Vollständig erkunden",
@@ -166,7 +210,11 @@
     "searchTryDifferent": "Versuche kürzere Suchanfragen, Synonyme oder andere Wörter.",
     "searchSuggested": "Vorgeschlagene Seiten",
     "searchResultsLabel": "Ergebnisse",
-    "skipToContent": "Zum Inhalt springen"
+    "skipToContent": "Zum Inhalt springen",
+    "languageSearch": "Sprachen suchen",
+    "languageSuggested": "Vorgeschlagen",
+    "languageAll": "Alle Sprachen",
+    "languageNone": "Keine Sprache gefunden"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -278,7 +326,7 @@
     "heroTitle": "Willkommen bei ZecHub",
     "heroSubtitle": "Ein Open-Source-Bildungshub für Zcash",
     "heroDescription": "Lerne die Datenschutztechnologie von Zcash kennen, erkunde interaktive Visualisierungen und trage zum Ökosystem bei",
-    "description": "ZecHub ist der von der Community getragene Bildungshub für die Zcash-Kryptowährung (ZEC). Zcash ist eine digitale Währung, die zensurresistente, sichere und private Zahlungen ermöglicht. Die Zcash-Blockchain nutzt hochentwickelte \"verifizierbare\" zk-snarks, die seit dem NU5-Netzwerkupgrade im Jahr 2022 kein Trusted Setup mehr erfordern.",
+    "description": "ZecHub ist das von der Community getragene Bildungszentrum für Zcash (ZEC), eine dezentrale digitale Währung für zensurresistente, sichere und private Zahlungen. Zcash nutzt fortschrittliche Zero-Knowledge-Kryptografie, um Transaktionen zu ermöglichen, deren Gültigkeit überprüft werden kann, ohne sensible Finanzinformationen offenzulegen. Im Jahr 2026 wurde der Ironwood Shielded Pool eingeführt, der formal mithilfe maschinell geprüfter mathematischer Beweise verifiziert wurde und die Integrität der Guthaben gewährleistet. Project Tachyon entwickelt ein vorgeschlagenes Shielded-Protokoll der nächsten Generation, das die Skalierbarkeit privater Zahlungen drastisch verbessern, das Wachstum des Validator-Zustands verringern und Zcash zu vollständig post-quanten-sicherer Privatsphäre weiterentwickeln soll.",
     "featuredSection": "Ausgewählte Ressourcen",
     "latestUpdates": "Neueste Updates",
     "getInvolved": "Mach mit",
@@ -474,7 +522,39 @@
     "activeCount": "{count} aktiv",
     "savedReview": "Wir haben deine Bewertung gespeichert!",
     "errorGettingLikes": "Fehler beim Abrufen der Likes:",
-    "errorUpdatingRating": "Fehler beim Aktualisieren der Bewertung:"
+    "errorUpdatingRating": "Fehler beim Aktualisieren der Bewertung:",
+    "betaTitle": "Beta-Wallets",
+    "betaNote": "Testversionen. Mit Ecken und Kanten rechnen und kleine Beträge verwenden.",
+    "transparentOnlyTitle": "Nur transparente Wallets",
+    "transparentOnlyNote": "Diese Wallets unterstützen nur transparentes ZEC, das Transaktionsdetails nicht verbirgt.",
+    "nymMixnetTitle": "Nym-Mixnet-Unterstützung",
+    "nymMixnetNote": "Wallets, die das Routing von Zcash-Datenverkehr über das Nym-Mixnet unterstützen.",
+    "filterInfo": {
+      "categoryTitle": "Über den Filter {category}",
+      "itemTitle": "Über {value}",
+      "categoryFallback": "Mit **{category}** kannst du die Wallet-Liste auf Wallets eingrenzen, die zu den Optionen dieser Kategorie passen. Wenn du eine Option auswählst, wird der Filter angewendet; wenn du sie erneut auswählst, wird er entfernt.",
+      "itemFallback": "**{value}** ist eine Option des Filters **{category}**. Wenn du sie auswählst, wird die Wallet-Liste auf Wallets eingegrenzt, die diesen Wert enthalten; wähle sie erneut aus, um den Filter zu entfernen.",
+      "items": {
+        "Devices": {
+          "Mobile": "**Mobile** bedeutet, dass die Wallet als App auf einem Telefon oder Tablet läuft. Mobile Wallets synchronisieren sich meist über einen Lightwallet-Server, statt die gesamte Blockchain zu speichern, und eignen sich daher gut für alltägliche Zahlungen.",
+          "Desktop": "**Desktop** bedeutet, dass die Wallet als Anwendung auf einem Computer läuft. Je nach Wallet kann sie einen vollständigen Knoten synchronisieren oder sich mit einem Lightwallet-Server verbinden."
+        },
+        "Pools": {
+          "Orchard": "**Orchard** ist der Shielded-Pool von Zcash, der mit NU5 eingeführt wurde. Er unterstützt abgeschirmte Transaktionen mit dem Orchard-Pool-Design und wird von Wallets genutzt, die die neuesten Shielded-Funktionen anbieten.",
+          "Transparent": "**Transparent** bedeutet, dass die Wallet transparente ZEC unterstützt, deren Transaktionen auf der öffentlichen Blockchain sichtbar sind. Transparente Adressen beginnen mit `t` und verbergen weder Absender noch Empfänger oder Betrag."
+        },
+        "Wallet Support": {
+          "Unified Address": "**Unified Address** ist ein Zcash-Adressformat, das abgeschirmte und transparente Empfänger in einer Adresse enthalten kann. Wallets mit Unterstützung können den passenden Empfänger für die Zahlung wählen und bleiben mit verschiedenen Adresstypen kompatibel."
+        },
+        "Features": {
+          "Automatic Shielding": "**Automatic Shielding** bedeutet, dass die Wallet transparente ZEC automatisch in einen Shielded-Pool verschiebt. Dadurch bleiben Guthaben seltener auf der öffentlichen Blockchain sichtbar, aber es ersetzt nicht deine eigenen Datenschutzpraktiken."
+        },
+        "Source": {
+          "Open Source": "**Open Source** bedeutet, dass der Quellcode der Wallet öffentlich einsehbar und wiederverwendbar ist. Die Wallet-Karte verlinkt auf das Repository, wenn eines angegeben ist.",
+          "Closed Source": "**Closed Source** bedeutet, dass der Quellcode der Wallet nicht zur öffentlichen Prüfung veröffentlicht wird. Du kannst trotzdem die Website der Wallet und unabhängige Bewertungen prüfen, bevor du sie verwendest."
+        }
+      }
+    }
   },
   "guides": {
     "title": "Anleitungen",
@@ -723,7 +803,7 @@
         },
         "whereSubmit": {
           "question": "Wo reichen wir Projekte ein?",
-          "answer": "Teilt eure Video-Demo im Zcash Global Discord und fügt alle relevanten Repository- oder Demo-Links hinzu."
+          "answer": "Teilt eure Video-Demo im Zcash Discord und fügt alle relevanten Repository- oder Demo-Links hinzu."
         },
         "winnersSelected": {
           "question": "Wie werden die Gewinner ausgewählt?",
@@ -758,7 +838,7 @@
         },
         "share": {
           "title": "In Discord teilen",
-          "description": "Poste deine Video-Demo im Zcash Global Discord zusammen mit deinen Repo- und Demo-Links vor dem 15. Juli 2026 (UTC)."
+          "description": "Poste deine Video-Demo im Zcash Discord zusammen mit deinen Repo- und Demo-Links vor dem 15. Juli 2026 (UTC)."
         }
       },
       "deadlineLabel": "Frist:",
@@ -777,7 +857,7 @@
       "buildsCount": "{count} Builds",
       "viewProject": "Projekt ansehen",
       "needHelpTitle": "Brauchst du Hilfe?",
-      "needHelpDesc": "Der Zcash Global Discord ist der beste Ort für Fragen zum Entwickeln, Infrastruktur-Tipps und Hackathon-Austausch.",
+      "needHelpDesc": "Der Zcash Discord ist der beste Ort für Fragen zum Entwickeln, Infrastruktur-Tipps und Hackathon-Austausch.",
       "joinDiscord": "Discord beitreten",
       "supportDonation": "Mit einer Spende unterstützen",
       "popup": {
@@ -985,12 +1065,12 @@
       "configure": "Konfigurieren",
       "runZainod": "zainod ausführen",
       "installingZingoCli": "Zingo CLI installieren",
-      "zingoCliInfo": "ist ein in Rust gebauter lightwalletd-Proxy-Client für die Befehlszeile. Releases sind derzeit noch vorläufig — diese Anleitung behandelt das Kompilieren aus dem Quellcode.",
-      "buildZingoCli": "Zingo CLI bauen",
+      "zingoCliInfo": "ist eine Kommandozeilen-Light-Wallet für Zcash. v7 erstellt standardmäßig den Nym-Mixnet-Transport und bündelt nym-proxy neben der Binärdatei. Dieser Leitfaden behandelt die Kompilierung aus dem Quellcode.",
+      "buildZingoCli": "Zingo CLI erstellen (v7)",
       "running": "Ausführung",
-      "startZingoCliDefault": "Zingo CLI starten (Standard)",
-      "startZingoCliCustom": "Zingo CLI starten (Benutzerdefiniert)",
-      "zingoSyncWarning": "⚠ Dies führt beim ersten Start eine vollständige Synchronisierung durch, ähnlich wie bei lightwalletd.",
+      "startZingoCliDefault": "Zingo CLI starten (Standard, offline)",
+      "startZingoCliCustom": "Zingo CLI starten (online über lokalen Indexer)",
+      "zingoSyncWarning": "⚠ Eine neue Sitzung ist offline, bis du deine Zustimmung erteilst (--online, --remember-online oder --server). Der Nym-Proxy wird über --nym-proxy, $ZINGO_NYM_PROXY, die Binärdatei neben zingo-cli oder PATH aufgelöst. Die Synchronisierung wird standardmäßig nach dem Chain-Tip fortgesetzt. Der erste Online-Lauf führt eine vollständige Synchronisierung durch. Um ohne das Mixnet zu erstellen (nur offline): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Nächste Schritte & Ressourcen",
       "readyToBuild": "Bereit zum Bauen?",
       "officialDocumentation": "Offizielle Dokumentation",
@@ -1131,7 +1211,7 @@
       "formalVerificationSeriesDescription": "Eine dreiteilige Reihe, die formale Verifikation von Grund auf erklärt, den Orchard-Soundness-Bug von 2026 erläutert und zeigt, wie Ironwood ihn mit einem maschinell geprüften mathematischen Beweis beantwortete.",
       "newSeriesBadge": "Neue Reihe"
     },
-    "browseSidebar": "Durchsuche die Artikel über die linke Seitenleiste 👈",
+    "browseSidebar": "Öffne die Navigation, um die Artikel in diesem Abschnitt zu durchsuchen.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Global Ambassadors",
       "description": "Die Zcash Global Ambassadors sind Community-Leader, die sich weltweit für die Verbreitung und Aufklärung rund um datenschutzorientierte Kryptowährungen einsetzen. Jedes Ambassador-Projekt konzentriert sich darauf, in der jeweiligen Region Bewusstsein, Interesse und Beteiligung zu fördern.",
@@ -1246,7 +1326,13 @@
   },
   "sideMenu": {
     "navigation": "Navigation",
-    "explore": "Entdecken"
+    "explore": "Entdecken",
+    "continueReading": {
+      "heading": "Weiterlesen",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "nextStep": "Nächster Schritt"
+    }
   },
   "meta": {
     "title": "ZecHub Wiki",
@@ -1288,6 +1374,164 @@
     "tutorials": {
       "title": "Anleitungen",
       "sub": "Ansehen und mitmachen"
+    }
+  },
+  "homeLanding": {
+    "hero": {
+      "tagline": "Das Community-Wiki zum Lernen, Nutzen und Entwickeln mit Zcash.",
+      "openSource": "Open Source",
+      "communityDriven": "Community-getrieben",
+      "educationHub": "Bildungsplattform für Zcash"
+    },
+    "featured": {
+      "learn": {
+        "title": "Lernen",
+        "description": "Was Zcash ist, wie sein Datenschutz funktioniert und wo du anfangen kannst.",
+        "links": {
+          "first": "Leitfaden für neue Nutzer",
+          "second": "Was ist Zcash?",
+          "third": "Netzwerk-Upgrades"
+        }
+      },
+      "wallet": {
+        "title": "Eine Wallet auswählen",
+        "description": "Mit einer Wallet kannst du ZEC privat empfangen und ausgeben.",
+        "links": {
+          "first": "Alle Wallets",
+          "second": "Mobile Wallets",
+          "third": "Hardware-Wallets"
+        }
+      },
+      "use": {
+        "title": "ZEC nutzen",
+        "description": "ZEC erhalten, senden und Orte finden, die es akzeptieren.",
+        "links": {
+          "first": "ZEC kaufen",
+          "second": "Transaktionen",
+          "third": "Orte, an denen du ZEC ausgeben kannst"
+        }
+      },
+      "build": {
+        "title": "Entwickeln",
+        "description": "Entwicklerressourcen, Tools und Möglichkeiten, zum Wiki beizutragen.",
+        "links": {
+          "first": "Entwickler",
+          "second": "Zcash Devtool",
+          "third": "Beitragen"
+        }
+      }
+    },
+    "start": {
+      "title": "Hier starten",
+      "subtitle": "Neu bei Zcash? Beginne mit diesen vier."
+    },
+    "videos": {
+      "title": "Ansehen",
+      "pinnedDescription": "Ein kurzer Einstiegspfad für Neulinge, der Reihe nach.",
+      "latestDescription": "Das Neueste vom ZecHub-Kanal.",
+      "allVideos": "Alle Videos",
+      "previous": "Vorherige Videos",
+      "next": "Nächste Videos",
+      "play": "{title} abspielen",
+      "step": "Schritt {number}"
+    },
+    "explore": {
+      "title": "Mehr entdecken",
+      "subtitle": "Leitfäden, Forschung, Tools und die gesamte Zcash-Community."
+    },
+    "groups": {
+      "deeper": {
+        "title": "Tiefer einsteigen",
+        "subtitle": "Tutorials, Leitfäden und Forschung für mehr Details."
+      },
+      "tools": {
+        "title": "Tools zum Ausprobieren",
+        "subtitle": "Interaktive Tools und Verzeichnisse rund um Zcash."
+      },
+      "community": {
+        "title": "Community & Organisationen",
+        "subtitle": "Die Menschen und Gruppen hinter dem Zcash-Ökosystem."
+      }
+    },
+    "items": {
+      "tutorials": {
+        "title": "Tutorials",
+        "description": "Schritt-für-Schritt-Videoanleitungen"
+      },
+      "guides": {
+        "title": "Leitfäden",
+        "description": "Knoten, Tools, DeFi und mehr"
+      },
+      "tech": {
+        "title": "Zcash-Technik",
+        "description": "zk-SNARKs und das Protokoll"
+      },
+      "research": {
+        "title": "Forschung",
+        "description": "Artikel und Forschung zu Zcash"
+      },
+      "privacy": {
+        "title": "Datenschutz-Tools",
+        "description": "Tools zum Schutz deiner Privatsphäre"
+      },
+      "glossary": {
+        "title": "Glossar & FAQs",
+        "description": "Schnelle Antworten und Definitionen"
+      },
+      "visualizer": {
+        "description": "Interaktive Tools zum Verständnis der Zcash-Datenschutztechnologie."
+      },
+      "map": {
+        "description": "Von der Community gepflegte Karte von Händlern und Geldautomaten, die Zcash akzeptieren."
+      },
+      "pay": {
+        "description": "Ein kostenloses Verzeichnis, wo du mit ZEC bezahlen kannst."
+      },
+      "organizations": {
+        "title": "Organisationen",
+        "description": "ZODL, Zcash Foundation, ZCG und andere"
+      },
+      "community": {
+        "title": "Community",
+        "description": "Links, Blogs, Projekte, Botschafter"
+      },
+      "ambassadors": {
+        "title": "Globale Botschafter",
+        "description": "Community-Leader, die weltweit Zcash-Bildung fördern."
+      },
+      "hackathon": {
+        "title": "Hackathon-Archiv",
+        "description": "Beim ZecHub Hackathon 2026 eingereichte Projekte."
+      }
+    },
+    "involved": {
+      "title": "Mitmachen",
+      "subtitle": "Tritt der DAO bei, lerne die Community kennen und hilf beim Aufbau des Wikis.",
+      "dao": {
+        "description": "Wie ZecHub Entscheidungen trifft und welche Vorschläge zur Abstimmung stehen.",
+        "meet": "Die DAO kennenlernen",
+        "proposals": "Vorschläge ansehen"
+      },
+      "community": {
+        "title": "Der Community beitreten",
+        "description": "Tausche dich mit anderen Zcash-Nutzern aus und verfolge, was ZecHub macht.",
+        "discord": "Discord beitreten"
+      },
+      "contribute": {
+        "title": "Hilf beim Aufbau von ZecHub",
+        "description": "ZecHub wird von der Community getragen. Füge Inhalte hinzu oder übernimm eine Prämie.",
+        "action": "Beitragen",
+        "support": "Projekt unterstützen"
+      }
+    },
+    "stats": {
+      "circulation": "Umlaufmenge",
+      "shielded": "Abgeschirmte Menge",
+      "blocks": "Blockhöhe",
+      "maxSupply": "{percentage}% des Maximums von 21 Mio.",
+      "maxSupplyAria": "{percentage} % des maximalen Angebots von 21 Millionen",
+      "shieldedShare": "{percentage} % des umlaufenden Angebots",
+      "latestBlock": "Neuester Block im Zcash-Mainnet"
     }
   }
 }

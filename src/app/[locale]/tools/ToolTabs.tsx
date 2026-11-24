@@ -3,11 +3,13 @@
 import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter";
 import { useSearchParams } from "next/navigation";
 import AddressDecoder from "./AddressDecoder";
+import LinkabilityCheck from "./LinkabilityCheck";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 import Faucet from "./Faucet";
 import BlockTime from "./BlockTime";
 import CrosslinkTools from "./CrosslinkTools";
+import DepositCheck from "./DepositCheck";
 
 // Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
 // Renaming one changes a shareable link, so treat them as part of the API.
@@ -16,8 +18,10 @@ type TabId =
   | "payment-request"
   | "payment-request-widget"
   | "address-decoder"
+  | "linkability"
   | "faucet"
   | "block-time"
+  | "deposit-check"
   | "crosslink";
 
 interface Tab {
@@ -49,7 +53,7 @@ const TABS: Tab[] = [
   {
     id: "payment-request-widget",
     label: "PR Widget",
-    shortLabel: "Payment",
+    shortLabel: "Widget",
     badge: "ZIP-321",
     title: "Payment Request Widget",
     subtitle: "Generate zcash: URIs with QR codes for easy payment requests",
@@ -61,6 +65,14 @@ const TABS: Tab[] = [
     badge: "Unified Address",
     title: "Address Decoder",
     subtitle: "Extract transparent, sapling & orchard receivers from a UA",
+  },
+  {
+    id: "linkability",
+    label: "Linkability",
+    shortLabel: "Linkable",
+    badge: "Am I Linkable",
+    title: "Linkability Check",
+    subtitle: "Could a withdrawal be linked to a recent deposit by amount and timing?",
   },
   {
     id: "faucet",
@@ -77,6 +89,14 @@ const TABS: Tab[] = [
     badge: "CipherScan",
     title: "Block Time",
     subtitle: "Convert a Zcash block height or hash into your local timezone",
+  },
+  {
+    id: "deposit-check",
+    label: "Deposit Check",
+    shortLabel: "Deposit",
+    badge: "Can I Shield",
+    title: "Deposit Check",
+    subtitle: "What exchanges and swaps did with shielded ZEC deposits",
   },
   {
     id: "crosslink",
@@ -132,7 +152,7 @@ export default function ToolTabs() {
     <div>
       {/* Tab bar */}
       <div className="flex w-full flex-col md:flex-row gap-2 md:gap-5">
-      <div className="flex w-full shrink-0 flex-row overflow-x-auto md:w-52 md:flex-col md:overflow-visible bg-zinc-100 dark:bg-[#0f1720] rounded-xl p-1 border border-zinc-200 dark:border-[#1e2d3d] self-start">
+      <div className="flex w-full shrink-0 flex-row overflow-x-auto md:w-52 md:flex-col md:overflow-visible gap-1 rounded-xl border border-slate-200 bg-slate-50/60 p-1 dark:border-white/10 dark:bg-white/[0.03] self-start">
         {TABS.map((tab) => {
           const isActive = active === tab.id;
           return (
@@ -145,8 +165,8 @@ export default function ToolTabs() {
                 transition-all duration-200 ease-out
                 ${
                   isActive
-                    ? "bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] shadow-md shadow-[#F4B728]/15"
-                    : "text-zinc-400 dark:text-[#4a5a6e] hover:text-zinc-600 dark:hover:text-[#7a8a9e]"
+                    ? "border border-brand/50 bg-brand/15 text-brand dark:text-brand-soft"
+                    : "border border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
                 }
               `}
             >
@@ -158,16 +178,16 @@ export default function ToolTabs() {
       </div>
 
       {/* Card */}
-      <div className="min-w-0 flex-1 rounded-2xl border border-zinc-200 dark:border-[#1e2d3d] bg-white dark:bg-[#151e29] overflow-hidden shadow-sm dark:shadow-none">
+      <div className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50/60 dark:border-white/10 dark:bg-white/[0.03] overflow-hidden">
         {/* Card header */}
-        <div className="px-5 pt-5 pb-4 sm:px-7 sm:pt-7 sm:pb-5 border-b border-zinc-100 dark:border-[#1e2d3d]">
-          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.12em] text-[#F4B728] bg-[#F4B728]/10 border border-[#F4B728]/15 px-2 py-1 rounded mb-3">
+        <div className="px-5 pt-5 pb-4 sm:px-7 sm:pt-7 sm:pb-5 border-b border-slate-200 dark:border-white/10">
+          <span className="inline-block text-[11px] font-medium uppercase tracking-[0.1em] text-brand dark:text-brand-soft bg-brand/10 border border-brand/30 px-2 py-1 rounded mb-3">
             {current.badge}
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+          <h2 className="m-0 text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white leading-tight">
             {current.title}
           </h2>
-          <p className="mt-1 text-[13px] sm:text-sm text-zinc-500 dark:text-[#5a6a7e]">
+          <p className="mb-0 mt-1 text-[13px] sm:text-sm text-slate-600 dark:text-slate-400">
             {current.subtitle}
           </p>
         </div>
@@ -178,8 +198,10 @@ export default function ToolTabs() {
           {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
           {active === "address-decoder" && <AddressDecoder />}
+          {active === "linkability" && <LinkabilityCheck />}
           {active === "faucet" && <Faucet />}
           {active === "block-time" && <BlockTime />}
+          {active === "deposit-check" && <DepositCheck />}
           {active === "crosslink" && <CrosslinkTools />}
         </div>
       </div>

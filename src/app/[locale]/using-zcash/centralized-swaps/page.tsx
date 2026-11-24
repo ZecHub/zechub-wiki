@@ -46,5 +46,7 @@ export default async function Page({
     locale,
     cardsToVenues(dexListingConfig),
   );
-  return <Client venues={venues} />;
+  // Services that have shut down: hidden here even if the content repo still lists them.
+  const closed = /letsexchange/i;
+  return <Client venues={venues.filter((v) => !closed.test(v.name) && !closed.test(v.url))} />;
 }
