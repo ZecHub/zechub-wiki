@@ -54,6 +54,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zcash.Space":                             "/content-images/zcash-space.webp",
   "ZecMap":                                  "/content-images/zecmap.webp",
   "ZECping":                                 "/content-images/zecping.webp",
+  "zecping":                                 "/content-images/zecping.webp", // protected-term spelling in Community_Projects.md
   "ZecStats":                                "/content-images/zecstats.webp",
   "ZecZcash":                                "/content-images/zeczcash.webp",
   "zecprice":                                "/content-images/zecprice.webp",
@@ -78,6 +79,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zebra Coverage-Guided Fuzzing Infrastructure": "/content-images/zebra.webp",
   "FROST":                                   "/content-images/frost.webp",
   "MonteZcret Benchmark":                    "/content-images/montezcret-benchmark.webp",
+  "zipreader":                               "/content-images/zipreader.webp",
 
   // ── Wider Applications Utilizing Zcash ───────────────────────────
   "aftok":                                   "/content-images/aftok.webp",
