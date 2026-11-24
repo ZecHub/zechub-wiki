@@ -957,6 +957,9 @@ const ResourcesSection = () => {
             <ResourceLink href="https://zips.z.cash/">
               {qs?.zcashImprovementProposals ?? "Zcash Improvement Proposals"}
             </ResourceLink>
+            <ResourceLink href="https://appliedzcash.com/">
+              {qs?.appliedZcash ?? "Applied Zcash: app patterns"}
+            </ResourceLink>
           </div>
         </div>
         <div>

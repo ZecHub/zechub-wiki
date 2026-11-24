@@ -385,6 +385,12 @@ export default function DeveloperPage() {
       url: "https://zecdev.github.io/",
     },
     {
+      title: "Applied Zcash",
+      description:
+        "A community reference for building apps on Zcash today: patterns made from shielded notes, memos and keys (payment links, watch-only keys, bound notes, wallet-native orders, log in with Zcash), each with its mechanism, cost, spec and a live demo.",
+      url: "https://appliedzcash.com/",
+    },
+    {
       title:
         t?.pages?.developers?.advancedLinks?.zcashIka ?? "zcash-ika",
       description:
