@@ -901,7 +901,9 @@
         "zalletBook": "كتاب Zallet",
         "zalletBookDesc": "مقدمة إلى Zallet، وهي محفظة Zcash لعقدة كاملة مكتوبة بلغة Rust ومصممة كبديل لمحفظة zcashd.",
         "developerResources": "موارد المطورين",
-        "developerResourcesDesc": "روابط إلى مزيد من الوثائق التقنية الخاصة بـ Zcash."
+        "developerResourcesDesc": "روابط إلى مزيد من الوثائق التقنية الخاصة بـ Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "ترميز العناوين",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "مجتمع Zcash على Discord",
       "githubRepositories": "مستودعات GitHub",
       "zcashImprovementProposals": "مقترحات تحسين Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "هل تحتاج إلى مساعدة؟",
       "zcashCommunityForum": "منتدى مجتمع Zcash",
       "githubIssues": "مشكلات GitHub",

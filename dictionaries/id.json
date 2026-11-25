@@ -901,7 +901,9 @@
         "zalletBook": "Buku Zallet",
         "zalletBookDesc": "Pendahuluan Zallet, sebuah dompet Zcash full-node yang ditulis dalam Rust dan dirancang sebagai pengganti dompet zcashd.",
         "developerResources": "Sumber Daya Developer",
-        "developerResourcesDesc": "Tautan ke Dokumentasi Teknis Zcash lebih lanjut."
+        "developerResourcesDesc": "Tautan ke Dokumentasi Teknis Zcash lebih lanjut.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Encoding Alamat",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Komunitas Discord Zcash",
       "githubRepositories": "Repositori GitHub",
       "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Butuh Bantuan?",
       "zcashCommunityForum": "Forum Komunitas Zcash",
       "githubIssues": "GitHub Issues",

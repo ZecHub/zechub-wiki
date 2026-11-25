@@ -901,7 +901,9 @@
         "zalletBook": "Το βιβλίο του Zallet",
         "zalletBookDesc": "Εισαγωγή στο Zallet, ένα πορτοφόλι Zcash πλήρους κόμβου γραμμένο σε Rust και σχεδιασμένο ως αντικατάσταση του πορτοφολιού zcashd.",
         "developerResources": "Πόροι για προγραμματιστές",
-        "developerResourcesDesc": "Σύνδεσμοι προς περαιτέρω τεχνική τεκμηρίωση του Zcash."
+        "developerResourcesDesc": "Σύνδεσμοι προς περαιτέρω τεχνική τεκμηρίωση του Zcash.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Κωδικοποίηση διευθύνσεων",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Κοινότητα Zcash στο Discord",
       "githubRepositories": "Αποθετήρια GitHub",
       "zcashImprovementProposals": "Προτάσεις βελτίωσης Zcash",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Χρειάζεσαι βοήθεια;",
       "zcashCommunityForum": "Φόρουμ κοινότητας Zcash",
       "githubIssues": "Ζητήματα GitHub",

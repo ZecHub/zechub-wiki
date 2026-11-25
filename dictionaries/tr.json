@@ -951,7 +951,9 @@
         "zalletBook": "Zallet Kitabı",
         "zalletBookDesc": "Rust ile yazılmış ve zcashd cüzdanının yerine geçecek şekilde tasarlanmış tam düğüm Zcash cüzdanı Zallet'e giriş.",
         "developerResources": "Geliştirici Kaynakları",
-        "developerResourcesDesc": "Zcash ile ilgili daha fazla Teknik Dokümantasyon bağlantıları."
+        "developerResourcesDesc": "Zcash ile ilgili daha fazla Teknik Dokümantasyon bağlantıları.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Adres Kodlama",
@@ -1127,6 +1129,7 @@
       "zcashDiscordCommunity": "Zcash Discord Topluluğu",
       "githubRepositories": "GitHub Depoları",
       "zcashImprovementProposals": "Zcash İyileştirme Önerileri",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Yardıma mı ihtiyacınız var?",
       "zcashCommunityForum": "Zcash Topluluk Forumu",
       "githubIssues": "GitHub Sorunları",

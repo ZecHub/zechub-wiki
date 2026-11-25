@@ -901,7 +901,9 @@
         "zalletBook": "Zallet 북",
         "zalletBookDesc": "Rust로 작성되었고 zcashd 지갑을 대체하도록 설계된 풀 노드 Zcash 지갑인 Zallet 소개.",
         "developerResources": "개발자 리소스",
-        "developerResourcesDesc": "Zcash의 추가 기술 문서 링크."
+        "developerResourcesDesc": "Zcash의 추가 기술 문서 링크.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "주소 인코딩",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Zcash Discord 커뮤니티",
       "githubRepositories": "GitHub 리포지토리",
       "zcashImprovementProposals": "Zcash 개선 제안서",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "도움이 필요하신가요?",
       "zcashCommunityForum": "Zcash 커뮤니티 포럼",
       "githubIssues": "GitHub 이슈",

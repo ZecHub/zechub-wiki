@@ -901,7 +901,9 @@
         "zalletBook": "Zallet 手册",
         "zalletBookDesc": "介绍 Zallet，这是一款用 Rust 编写的全节点 Zcash 钱包，旨在替代 zcashd 钱包。",
         "developerResources": "开发者资源",
-        "developerResourcesDesc": "链接到更多 Zcash 技术文档。"
+        "developerResourcesDesc": "链接到更多 Zcash 技术文档。",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "地址编码",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Zcash Discord 社区",
       "githubRepositories": "GitHub 仓库",
       "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "需要帮助？",
       "zcashCommunityForum": "Zcash 社区论坛",
       "githubIssues": "GitHub Issues",

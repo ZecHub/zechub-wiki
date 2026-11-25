@@ -901,7 +901,9 @@
         "zalletBook": "Zallet ƒe Agbalẽa",
         "zalletBookDesc": "Zallet, si nye Zcash gakotoku si ƒe node blibo si woŋlɔ ɖe Rust me eye wowɔe be wòanye zcashd gakotokua teƒe ƒe ŋgɔdonya.",
         "developerResources": "Dɔwɔlawo ƒe Dɔwɔnuwo",
-        "developerResourcesDesc": "Links to Zcash further Mɔ̃ɖaŋununya ƒe Nuŋlɔɖiwo."
+        "developerResourcesDesc": "Links to Zcash further Mɔ̃ɖaŋununya ƒe Nuŋlɔɖiwo.",
+        "appliedZcash": "AppliedZcash",
+        "appliedZcashDesc": "Patterns for Zcash developers to build apps from shielded notes, memos, and keys with live demos."
       },
       "fundamentalsLinks": {
         "addressEncoding": "Adrɛs ƒe Encoding",
@@ -1077,6 +1079,7 @@
       "zcashDiscordCommunity": "Zcash Masɔmasɔwo ƒe Habɔbɔ",
       "githubRepositories": "GitHub Nudzraɖoƒewo",
       "zcashImprovementProposals": "Zcash ƒe Ŋgɔyiyi ƒe Aɖaŋuɖoɖowo",
+      "appliedZcash": "AppliedZcash",
       "needHelp": "Èhiã Kpekpeɖeŋua?",
       "zcashCommunityForum": "Zcash Nutome Takpekpe",
       "githubIssues": "GitHub Nyawo",
