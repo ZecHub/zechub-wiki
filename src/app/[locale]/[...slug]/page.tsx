@@ -2242,7 +2242,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         title: "Jump to",
         items: JSON.stringify([
           { label: "Prerequisites", hint: "Wallet and funds", href: "#prerequisites" },
-          { label: "Deploy", hint: "Seven steps", href: "#connect-your-wallet" },
+          { label: "Deploy", hint: "Seven steps", href: "#connect" },
           { label: "Configuration", hint: "Testnet, RPC, metrics", href: "#configuration-options" },
           { label: "Troubleshooting", hint: "Common problems", href: "#troubleshooting" },
           { label: "Costs", hint: "Keep spending in check", href: "#cost-management" },
