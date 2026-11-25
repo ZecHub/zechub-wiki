@@ -8013,10 +8013,10 @@
           },
           "total_power": "24",
           "msgs": [],
-          "status": "open",
+          "status": "rejected",
           "votes": {
             "yes": "0",
-            "no": "3",
+            "no": "4",
             "abstain": "0"
           },
           "allow_revoting": true
