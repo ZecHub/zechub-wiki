@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   LineChart,
   Line,
@@ -13,6 +13,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { topExpiryDeltas } from "@/lib/chart/chainState";
 const DATA_URL = "/data/zcash/chain-state/results.json";
 type Day = {
   day: number;
@@ -248,6 +249,12 @@ export default function ChainStatePage() {
   useEffect(() => {
     if (chartId === "shielded_cb" || chartId === "nsm") setLogScale(false);
   }, [chartId]);
+  // Once per dataset: the histogram is large enough that ranking it on every
+  // render stalled each zoom drag step, legend click and chart switch.
+  const expiryChart = useMemo(
+    () => topExpiryDeltas(data?.expiry?.delta_histogram),
+    [data],
+  );
   if (!data) return <div className="p-4 text-slate-300">Loading chain stats…</div>;
   const days = chartId === "nsm"
     ? (data.per_day || []).filter((d) => d.end >= NU7_HEIGHT)
@@ -361,12 +368,6 @@ export default function ChainStatePage() {
         return out;
       })
     : withSets;
-  const expiryEntries = Object.entries(data.expiry.delta_histogram || {})
-    .map(([delta, count]) => ({ delta: Number(delta), count }))
-    .sort((a, b) => b.count - a.count);
-  const expiryTop = expiryEntries.slice(0, 30);
-  const expiryRest = expiryEntries.slice(30).reduce((sum, e) => sum + e.count, 0);
-  const expiryChart = expiryRest > 0 ? [...expiryTop, { delta: "other", count: expiryRest }] : expiryTop;
   const active = CHARTS.find((c) => c.id === chartId) || CHARTS[0];
   const shieldedCb = data.shielded_coinbases ?? [];
   const poolCounts = shieldedCb.reduce(
