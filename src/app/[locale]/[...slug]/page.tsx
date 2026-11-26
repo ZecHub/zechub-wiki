@@ -164,51 +164,18 @@ import { headers } from "next/headers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import MdxComponents from "@/components/MdxComponents/MdxComponent";
 import MdxReady from "@/components/MdxReady";
-import { visit, SKIP } from "unist-util-visit";
+import { rehypeStripDangerous } from "@/lib/rehypeStripDangerous";
 import { stripFrontmatter } from "@/lib/stripFrontmatter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
 
-// Defense-in-depth: content markdown is rendered via rehypeRaw (raw HTML
-// passthrough) with no allow-list sanitizer, so a malicious content-repo change
-// could otherwise inject executable markup. Strip the direct XSS vectors —
-// <script>/<style> elements, on* event-handler attributes, and javascript: URLs.
-// (A full allow-list sanitizer or nonce-based CSP is the complete fix; this
-// closes the obvious holes without risking removal of legitimate content HTML.)
-function rehypeStripDangerous() {
-  return (tree: any) => {
-    (visit as any)(tree, "element", (node: any, index: number | undefined, parent: any) => {
-      if (
-        (node.tagName === "script" || node.tagName === "style") &&
-        parent &&
-        typeof index === "number"
-      ) {
-        parent.children.splice(index, 1);
-        return [SKIP, index];
-      }
-      const props = node.properties || {};
-      for (const key of Object.keys(props)) {
-        const k = key.toLowerCase();
-        // Event handlers, and attributes that can carry an executable document
-        // (srcdoc) or override a form's action to a script URL (formaction).
-        if (k.startsWith("on") || k === "srcdoc" || k === "formaction") {
-          delete props[key];
-          continue;
-        }
-        // Script-executing URL schemes on any URL-bearing attribute.
-        const v = props[key];
-        if (
-          ["href", "src", "xlinkhref", "action", "poster"].includes(k) &&
-          typeof v === "string" &&
-          /^\s*(javascript|vbscript):/i.test(v)
-        ) {
-          delete props[key];
-        }
-      }
-    });
-  };
-}
+// Defense-in-depth sanitizer for content markdown rendered via rehypeRaw.
+// The implementation lives in @/lib/rehypeStripDangerous so the page uses one
+// hardened version — it also visits MDX nodes (mdxJsxFlowElement /
+// mdxJsxTextElement) and filters their `attributes`, which literal HTML in MDX
+// parses to. The previous inline copy only visited `element` nodes, so those
+// MDX-parsed nodes (and their on*/srcdoc attributes) slipped through.
 
 // Content HTML such as <p><a><p>…</p></a></p> nests a paragraph inside a
 // paragraph, which is invalid HTML and makes React throw a hydration error
