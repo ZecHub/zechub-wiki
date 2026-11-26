@@ -26,6 +26,7 @@ import {
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import ZcashStats from "./ZcashStats";
+import PriceTrend from "@/components/Charts/PriceTrend";
 import VideoStrip from "./VideoStrip";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { useLanguage } from "@/context/LanguageContext";
@@ -428,6 +429,7 @@ const Home = () => {
         id="hero"
         className="relative overflow-hidden border-b border-slate-200 dark:border-slate-800"
       >
+        <PriceTrend background />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand/10 via-transparent to-transparent"
@@ -474,6 +476,7 @@ const Home = () => {
       {/* Live chain numbers (hidden if the feed is unavailable) */}
       <section id="stats" className={`${wrap} pt-10`}>
         <ZcashStats className={`mb-12 ${styles.base}`} />
+        <PriceTrend compact />
       </section>
 
       {/* 1. Essentials for newcomers */}

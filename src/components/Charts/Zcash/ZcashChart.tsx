@@ -7,6 +7,7 @@ import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 import CardContentSupply from "./Supply/CardContentSupply";
 import HeroPopoverTabs from "../HeroPopoverTabs";
 import NetworkUpgradesChart from "./NetworkUpgradesChart";
+import PriceTrend from "../PriceTrend";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -40,6 +41,7 @@ function ZcashChart(props: ZcashChartProps) {
     { value: "mining pools", label: chartT?.miningPools || "Mining Pools" },
     { value: "halving meter", label: chartT?.halvingMeter || "Halving Meter" },
     { value: "network upgrades", label: "Network Upgrades" },
+    { value: "price", label: chartT?.price || "Price" },
   ];
 
   const handleTabChange = (newTab: string) => {
@@ -68,7 +70,7 @@ function ZcashChart(props: ZcashChartProps) {
         />
 
         {/* Supply sub-tabs */}
-        {supplyTab === "shielded" && (
+        {supplyTab === "shielded" && activeTab !== "price" && (
           <CardContentShielded
             {...props}
             activeTab={activeTab}
@@ -80,6 +82,11 @@ function ZcashChart(props: ZcashChartProps) {
 
         {/* New standalone tab */}
         {activeTab === "network upgrades" && <NetworkUpgradesChart />}
+        {activeTab === "price" && (
+          <CardContent>
+            <PriceTrend />
+          </CardContent>
+        )}
       </Card>
     </div>
   );
