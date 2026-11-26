@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
 import { RefObject, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import CardContentShielded from "./Shielded/CardContent";
