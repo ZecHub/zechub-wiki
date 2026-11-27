@@ -476,20 +476,23 @@ const YEAR_START_HEIGHTS: ReadonlyArray<readonly [year: number, height: number]>
   [2026, 3_189_008],
 ];
 
-// 75-second target spacing (post-Blossom) = 1,152 blocks/day.
-const BLOCKS_PER_YEAR = 1_152 * 365;
+// NU7 activated at this mainnet block (ZIP 259). The timestamp is the
+// activation block's header time. ZIP 218 sets the new 25-second target.
+const NU7_ACTIVATION_HEIGHT = 3_543_405;
+const NU7_ACTIVATION_TIME_MS = Date.UTC(2026, 10, 6, 2, 34, 2);
+const NU7_BLOCK_SPACING_MS = 25_000;
 
 /**
- * Calendar year (UTC) in which the block at `height` was mined. Heights past
- * the last table entry are estimated from the 75-second target, so the result
- * keeps advancing instead of lumping every newer block into the last year.
+ * Calendar year (UTC) for a block height. Use known year boundaries through
+ * NU7, then estimate the timestamp from the activation block and target spacing.
  */
 export function blockHeightToYear(height: number): number {
-  const [lastYear, lastStart] = YEAR_START_HEIGHTS[YEAR_START_HEIGHTS.length - 1];
-  if (height >= lastStart) {
-    return lastYear + Math.floor((height - lastStart) / BLOCKS_PER_YEAR);
+  if (height >= NU7_ACTIVATION_HEIGHT) {
+    const estimatedTime = NU7_ACTIVATION_TIME_MS +
+      (height - NU7_ACTIVATION_HEIGHT) * NU7_BLOCK_SPACING_MS;
+    return new Date(estimatedTime).getUTCFullYear();
   }
-  for (let i = YEAR_START_HEIGHTS.length - 2; i >= 0; i--) {
+  for (let i = YEAR_START_HEIGHTS.length - 1; i >= 0; i--) {
     if (height >= YEAR_START_HEIGHTS[i][1]) return YEAR_START_HEIGHTS[i][0];
   }
   return 2016;

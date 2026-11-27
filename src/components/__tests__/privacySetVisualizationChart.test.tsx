@@ -25,7 +25,7 @@ jest.mock("recharts", () => ({
 const transactionSummary = [
   { height: 440064, sapling: 100, orchard: 0, ironwood: 0 }, // Dec 2018
   { height: 3000960, sapling: 300, orchard: 400, ironwood: 0 }, // Jul 2025
-  { height: 3400704, sapling: 500, orchard: 600, ironwood: 2000 }, // Aug 2026
+  { height: 3617280, sapling: 500, orchard: 600, ironwood: 2000 }, // Nov 27, 2026 UTC
 ];
 
 describe("Shielded outputs by year", () => {
@@ -104,8 +104,16 @@ describe("blockHeightToYear", () => {
     expect(blockHeightToYear(3_189_008)).toBe(2026); // 2026-01-01 00:00:46
   });
 
-  it("keeps advancing past the last known year", () => {
+  it("keeps November 2026 blocks in 2026 after NU7", () => {
     expect(blockHeightToYear(3_490_560)).toBe(2026);
-    expect(blockHeightToYear(3_189_008 + 1_152 * 365)).toBe(2027);
+    expect(blockHeightToYear(3_543_404)).toBe(2026);
+    expect(blockHeightToYear(3_543_405)).toBe(2026);
+    expect(blockHeightToYear(3_617_280)).toBe(2026);
+  });
+
+  it("estimates future UTC year boundaries at the 25-second target", () => {
+    expect(blockHeightToYear(3_736_571)).toBe(2026);
+    expect(blockHeightToYear(3_736_572)).toBe(2027);
+    expect(blockHeightToYear(3_736_572 + 3_456 * 365)).toBe(2028);
   });
 });
