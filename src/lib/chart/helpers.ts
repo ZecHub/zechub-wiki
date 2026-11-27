@@ -155,6 +155,9 @@ function parseFlexibleDate(s: string): Date | null {
 
 function extractLatestDateFromArray(arr: unknown[]): Date | null {
   if (!Array.isArray(arr) || arr.length === 0) return null;
+  // Rows dated after today are projections, not data: issuance.json carries the
+  // issuance schedule out to 2031. They must not be shown as "Last updated".
+  const now = Date.now();
   let best: Date | null = null;
   // Prefer the tail of the series (files are chronological)
   const start = Math.max(0, arr.length - 40);
@@ -165,7 +168,7 @@ function extractLatestDateFromArray(arr: unknown[]): Date | null {
       const raw = item[f];
       if (raw == null) continue;
       const d = parseFlexibleDate(String(raw));
-      if (d && (!best || d > best)) best = d;
+      if (d && d.getTime() <= now && (!best || d > best)) best = d;
     }
   }
   return best;
