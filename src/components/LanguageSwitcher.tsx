@@ -201,10 +201,8 @@ export function LanguageSwitcher() {
     setLocale(code);
     setIsOpen(false);
     setQuery('');
-    // usePathname() drops the query string; read it at click time so page
-    // state carried in it (?module=, dashboard tabs) survives the switch. The
-    // router keeps the hash itself.
-    router.replace(`${pathname}${window.location.search}`, {
+    // Keep the current query and section when replacing the locale prefix.
+    router.replace(`${pathname}${window.location.search}${window.location.hash}`, {
       locale: code as (typeof routing.locales)[number],
     });
   };

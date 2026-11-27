@@ -382,11 +382,12 @@ describe("LanguageSwitcher", () => {
     await waitFor(() => expect(trigger()).toHaveFocus());
   });
 
-  it("keeps the query string when switching language", async () => {
-    // Page state such as the visualizer module (?module=) lives in the query
-    // string; usePathname() alone would drop it. The hash is not passed: the
-    // router already carries it over, and adding it again doubles it.
-    window.history.replaceState(null, "", "/dashboard?tab=charts#supply");
+  it.each([
+    ["?tab=charts#supply"],
+    ["#pool%20comparison"],
+    ["?tab=charts"],
+  ])("keeps the URL suffix %s when switching language", async (suffix) => {
+    window.history.replaceState(null, "", `/dashboard${suffix}`);
     try {
       const user = userEvent.setup();
       renderPicker();
@@ -394,7 +395,7 @@ describe("LanguageSwitcher", () => {
 
       await user.click(option(/English/));
 
-      expect(mockReplace).toHaveBeenCalledWith("/dashboard?tab=charts", {
+      expect(mockReplace).toHaveBeenCalledWith(`/dashboard${suffix}`, {
         locale: "en",
       });
     } finally {
