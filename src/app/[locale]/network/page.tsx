@@ -31,8 +31,8 @@ export async function generateMetadata({
 const DESCRIPTIONS: Record<string, string> = {
   "Ecosystem Dashboard":
     "Live ZEC metrics, shielded supply, governance, ZCG grants, YouTube and code activity.",
-  "Protocol Parameters":
-    "Protocol parameters and governance proposals with their current values.",
+  "Zcash Protocol Specification":
+    "Official reference for Zcash consensus rules and network parameters.",
   "All Visualizers":
     "Interactive lessons and quizzes on Zcash technology and the ecosystem.",
   "Network & Infrastructure":
@@ -108,6 +108,7 @@ export default function NetworkPage() {
                   <Link
                     key={link.name}
                     href={link.path ?? "/"}
+                    {...(link.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="group flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-5 no-underline transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
                   >
                     <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand dark:text-brand-soft">

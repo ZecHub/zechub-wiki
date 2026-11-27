@@ -523,9 +523,10 @@ export const navigations: Array<NavigationItem> = [
       { name: "Ecosystem Dashboard", path: "/dashboard", icon: LayoutDashboard },
       { name: "Chain State Explorer", path: "/chain-stats", icon: Activity },
       {
-        name: "Protocol Parameters",
-        path: "/protocol-parameters",
+        name: "Zcash Protocol Specification",
+        path: "https://zips.z.cash/protocol/protocol.pdf",
         icon: SlidersHorizontal,
+        newTab: true,
       },
       {
         name: "Network & Infrastructure",
@@ -707,7 +708,7 @@ export const menuSections: Record<string, MenuSection[]> = {
     },
     {
       title: "Protocol",
-      items: ["Network Upgrades", "Protocol Parameters", "Zcash Improvement Proposals", "Post-Quantum Security"],
+      items: ["Network Upgrades", "Zcash Protocol Specification", "Zcash Improvement Proposals", "Post-Quantum Security"],
     },
     {
       title: "Cryptography",
