@@ -409,3 +409,24 @@ describe("ZIP-321 value encoding and strict parsing", () => {
     ).toThrow(/Invalid percent-encoding in parameter 'label'/);
   });
 });
+
+describe("ZIP-321 recipient addresses pasted with surrounding whitespace", () => {
+  const first = "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC";
+  const second = "t3VzFdEkhttkgfp2hkEvihnc8v5K8p8q35B";
+
+  it.each([
+    ["space", " "],
+    ["tab", "\t"],
+    ["no-break space", "\u00a0"],
+  ])("leaves a %s out of a single-recipient URI", (_name, space) => {
+    expect(buildZip321Uri([{ address: `${space}${first}${space}`, amount: "1" }])).toBe(
+      `zcash:${first}?amount=1`,
+    );
+  });
+
+  it("leaves it out of every address parameter of a multi-recipient URI", () => {
+    expect(buildZip321Uri([{ address: ` ${first}` }, { address: `${second} ` }])).toBe(
+      `zcash:?address=${first}&address.1=${second}`,
+    );
+  });
+});
