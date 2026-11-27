@@ -10,7 +10,6 @@ import {
   TableRow,
 } from "@/components/UI/Table";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { fetchTreasuryFromSheet } from "@/lib/parseTreasurySheet";
 
 // Live ZEC price via the cached same-origin CoinGecko proxy (key stays server-side).
 const ZEC_PRICE_URL = "/api/prices/simple?ids=zcash&vs_currencies=usd";
@@ -222,21 +221,29 @@ export default function SheetTreasuryTab() {
 
   useEffect(() => {
     let cancelled = false;
-    fetchTreasuryFromSheet()
+    const controller = new AbortController();
+    fetch("/api/treasury/zec", { signal: controller.signal })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Treasury request returned ${res.status}`);
+        const { rows } = await res.json();
+        if (!Array.isArray(rows)) throw new Error("Treasury response is missing rows.");
+        return rows;
+      })
       .then((d) => {
         if (!cancelled) {
           setRows(d);
           setError(null);
         }
       })
-      .catch((e: Error) => {
-        if (!cancelled) setError(e.message || "Failed to load treasury");
+      .catch(() => {
+        if (!cancelled) setError("Could not load ZEC treasury data.");
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
     return () => {
       cancelled = true;
+      controller.abort();
     };
   }, []);
 

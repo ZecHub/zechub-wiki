@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 import { render, screen, within } from "@testing-library/react";
 import SheetTreasuryTab from "../Charts/SheetTreasuryTab";
+import { parseTreasuryDashboard } from "@/lib/parseTreasurySheet";
 
 jest.mock("@/i18n/navigation", () => ({ Link: "a" }));
 
@@ -34,8 +35,8 @@ describe("Treasury chart units", () => {
 
   it("shows ZEC balances in the chart and percentages only in the allocation column", async () => {
     global.fetch = jest.fn(async (input) => {
-      if (String(input).startsWith("https://docs.google.com/spreadsheets/")) {
-        return { ok: true, text: async () => JSON.stringify(treasurySheet) };
+      if (input === "/api/treasury/zec") {
+        return { ok: true, json: async () => ({ rows: parseTreasuryDashboard(treasurySheet) }) };
       }
       if (String(input).startsWith("/api/prices/simple?")) {
         return { ok: true, json: async () => ({ zcash: { usd: 521 } }) };
@@ -51,6 +52,21 @@ describe("Treasury chart units", () => {
     expect(screen.queryByText("22.22 ZEC")).not.toBeInTheDocument();
     expect(screen.getByText("55.56%")).toBeInTheDocument();
     expect(screen.getAllByText("22.22%")).toHaveLength(2);
+    expect((global.fetch as jest.Mock).mock.calls.map(([url]) => url)).toEqual([
+      "/api/treasury/zec",
+      expect.stringMatching(/^\/api\/prices\/simple\?/),
+    ]);
+  });
+
+  it("reports a service failure instead of showing a zero balance", async () => {
+    global.fetch = jest.fn(async (input) => input === "/api/treasury/zec"
+      ? { ok: false, status: 502 }
+      : { ok: true, json: async () => ({ zcash: { usd: 521 } }) }
+    ) as jest.Mock;
+    render(<SheetTreasuryTab />);
+
+    expect(await screen.findByText("Could not load ZEC treasury data.")).toBeInTheDocument();
+    expect(screen.queryByText("Treasury overview")).not.toBeInTheDocument();
   });
 });
 
@@ -96,8 +112,8 @@ describe("Treasury live ZEC pricing", () => {
 
   function mockQuote(price: unknown, ok = true) {
     global.fetch = jest.fn(async (input) => {
-      if (String(input).startsWith("https://docs.google.com/spreadsheets/")) {
-        return { ok: true, text: async () => JSON.stringify(pricingSheet) };
+      if (input === "/api/treasury/zec") {
+        return { ok: true, json: async () => ({ rows: parseTreasuryDashboard(pricingSheet) }) };
       }
       if (String(input).startsWith("/api/prices/simple?")) {
         return { ok, status: ok ? 200 : 503, json: async () => ({ zcash: { usd: price } }) };

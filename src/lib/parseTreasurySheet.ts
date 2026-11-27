@@ -5,7 +5,7 @@ interface GvizCell {
 }
 
 interface GvizRow {
-    c: GvizCell[];
+    c: (GvizCell | null)[];
 }
 
 interface GvizTable {
@@ -106,16 +106,19 @@ function parseGvizResponseText(rawText: string): GvizResponse {
     return JSON.parse(jsonStr);
 }
 
-async function fetchTreasuryFromSheet(
-    url: string = getTreasurySheetGvizUrl(),
-): Promise<any[]> {
-    const res = await fetch(url, {
+async function fetchTreasuryFromSheet(): Promise<unknown[]> {
+    const res = await fetch(getTreasurySheetGvizUrl(), {
         headers: { Accept: "application/json,text/plain,*/*" },
+        signal: AbortSignal.timeout(8000),
+        next: { revalidate: 300 },
     });
     if (!res.ok) {
         throw new Error(`Sheet fetch failed: ${res.status} ${res.statusText}`);
     }
     const gviz = parseGvizResponseText(await res.text());
+    if (!Array.isArray(gviz?.table?.rows)) {
+        throw new Error("Treasury sheet response is missing rows.");
+    }
     return parseTreasuryDashboard(gviz);
 }
 
