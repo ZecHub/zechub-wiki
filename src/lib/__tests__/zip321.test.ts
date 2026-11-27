@@ -7,6 +7,7 @@ import {
   encodeZip321Memo,
   formatZecAmount,
   isShieldedAddress,
+  isSproutAddress,
   isTransparentAddress,
   parseZip321Uri,
   validateZip321Payment,
@@ -407,5 +408,63 @@ describe("ZIP-321 value encoding and strict parsing", () => {
     expect(() =>
       parseZip321Uri(`zcash:${transparent1}?amount=1&label=50%`),
     ).toThrow(/Invalid percent-encoding in parameter 'label'/);
+  });
+});
+
+describe("ZIP-321 Sprout addresses and pasted whitespace", () => {
+  // librustzcash zcash_address test vectors (Sprout Mainnet / Testnet).
+  const sproutMain =
+    "zc8E5gYid86n4bo2Usdq1cpr7PpfoJGzttwBHEEgGhGkLUg7SPPVFNB2AkRFXZ7usfphup5426dt1buMmY3fkYeRrQGLa8y";
+  const sproutTest =
+    "ztJ1EWLKcGwF2S4NA17pAJVdco8Sdkz4AQPxt1cLTEfNuyNswJJc2BbBqYrsRZsp31xbVZwhF7c7a2L9jsF3p3ZwRWpqqyS";
+  const saplingTest =
+    "ztestsapling10yy2ex5dcqkclhc7z7yrnjq2z6feyjad56ptwlfgmy77dmaqqrl9gyhprdx59qgmsnyfska2kez";
+  const sapling =
+    "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
+  const transparent = "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC";
+
+  it("recognises Sprout addresses without catching Sapling Testnet", () => {
+    expect(isSproutAddress(sproutMain)).toBe(true);
+    expect(isSproutAddress(sproutTest)).toBe(true);
+    expect(isSproutAddress(` ${sproutMain} `)).toBe(true);
+    expect(isSproutAddress(saplingTest)).toBe(false);
+    expect(isSproutAddress(sapling)).toBe(false);
+    expect(isSproutAddress(transparent)).toBe(false);
+  });
+
+  it("does not treat Sprout as a memo-capable shielded address", () => {
+    expect(isShieldedAddress(sproutMain)).toBe(false);
+    expect(isShieldedAddress(saplingTest)).toBe(true);
+  });
+
+  it("rejects Sprout recipients (ZIP 321: MUST NOT be supported)", () => {
+    const v = validateZip321Payment({ address: sproutMain, amount: "0.01", memo: "hi" });
+    expect(v.valid).toBe(false);
+    expect(v.error).toMatch(/Sprout/);
+    expect(() => buildZip321Uri([{ address: sproutMain, amount: "0.01" }])).toThrow(/Sprout/);
+    expect(() =>
+      buildZip321Uri([
+        { address: sapling, amount: "1" },
+        { address: sproutTest, amount: "1" },
+      ]),
+    ).toThrow(/Recipient 2: Sprout/);
+    expect(() => parseZip321Uri(`zcash:${sproutMain}?amount=1`)).toThrow(/Sprout/);
+  });
+
+  it("builds the URI from the trimmed address, as validation accepts it", () => {
+    expect(buildZip321Uri([{ address: `${sapling} `, amount: "1" }])).toBe(
+      `zcash:${sapling}?amount=1`,
+    );
+    expect(buildZip321Uri([{ address: `\t${transparent}\n` }])).toBe(
+      `zcash:${transparent}`,
+    );
+    const multi = buildZip321Uri([
+      { address: ` ${transparent}`, amount: "1" },
+      { address: `${sapling} `, amount: "2", memo: "x" },
+    ]);
+    expect(multi).toBe(
+      `zcash:?address=${transparent}&amount=1&address.1=${sapling}&amount.1=2&memo.1=eA`,
+    );
+    expect(parseZip321Uri(multi).map((p) => p.address)).toEqual([transparent, sapling]);
   });
 });

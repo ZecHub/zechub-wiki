@@ -12,6 +12,7 @@
  * - Single-recipient and multi-recipient (indexed) payment request generation and parsing.
  * - RFC 3986 percent-encoding of values (a space is "%20"; "+" is a literal plus sign).
  * - Parsing rejects repeated parameters, malformed indexes and unsupported `req-` parameters.
+ * - Rejection of Sprout addresses ("Sprout addresses MUST NOT be supported in payment requests").
  */
 
 export const MAX_ZEC_SUPPLY = 21_000_000;
@@ -42,7 +43,23 @@ export function isTransparentAddress(address: string): boolean {
 }
 
 /**
- * Checks if a Zcash address supports shielded memos (Sapling, Unified, Sprout).
+ * Checks if a Zcash address is a Sprout address ("zc" on Mainnet, "zt" on
+ * Testnet; "ztestsapling" is a Sapling Testnet address, not Sprout).
+ * ZIP 321: "Sprout addresses MUST NOT be supported in payment requests",
+ * because transfers to Sprout have been restricted since Canopy (ZIP 211).
+ */
+export function isSproutAddress(address: string): boolean {
+  if (!address) return false;
+  const trimmed = address.trim();
+  return (
+    trimmed.startsWith("zc") ||
+    (trimmed.startsWith("zt") && !trimmed.startsWith("ztestsapling"))
+  );
+}
+
+/**
+ * Checks if a Zcash address can be paid with a shielded memo in a ZIP 321
+ * request (Sapling or Unified). Sprout is excluded: ZIP 321 does not allow it.
  */
 export function isShieldedAddress(address: string): boolean {
   if (!address) return false;
@@ -51,8 +68,7 @@ export function isShieldedAddress(address: string): boolean {
     trimmed.startsWith("zs") ||
     trimmed.startsWith("u1") ||
     trimmed.startsWith("utest1") ||
-    trimmed.startsWith("ztestsapling") ||
-    trimmed.startsWith("zc")
+    trimmed.startsWith("ztestsapling")
   );
 }
 
@@ -204,6 +220,13 @@ export function validateZip321Payment(payment: Zip321PaymentItem): {
     return { valid: false, error: "Address is required" };
   }
 
+  if (isSproutAddress(payment.address)) {
+    return {
+      valid: false,
+      error: "Sprout addresses are not supported in ZIP 321 payment requests",
+    };
+  }
+
   if (payment.amount !== undefined && payment.amount !== null && payment.amount !== "") {
     try {
       formatZecAmount(payment.amount);
@@ -276,6 +299,14 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
   if (!payments || payments.length === 0) {
     throw new Error("At least one payment item is required");
   }
+
+  // Validation trims addresses, so the URI must use the trimmed address too:
+  // a pasted "u1... " otherwise produced "zcash:u1... ?amount=..." (a raw
+  // space, so not a valid URI) or "address=u1...%20", which wallets reject.
+  payments = payments.map((p) => ({
+    ...p,
+    address: typeof p.address === "string" ? p.address.trim() : p.address,
+  }));
 
   // Validate all payments
   for (let i = 0; i < payments.length; i++) {
