@@ -10,9 +10,26 @@
  * inside a pool spends and outputs pair up so only the larger side counts.
  * Transparent inputs and outputs are measured in bytes and divided by the
  * standard P2PKH sizes below.
+ *
+ * Revision 2 of ZIP 317 (ZIP 2009, https://zips.z.cash/zip-2009) cut
+ * marginal_fee from 5,000 to 1,000 zatoshis per logical action from
+ * FEE_REDUCTION_HEIGHT. grace_actions and the P2PKH sizes did not change.
  */
 
-export const MARGINAL_FEE_ZATOSHIS = 5000;
+/** marginal_fee from revision 2 (ZIP 2009) on. */
+export const MARGINAL_FEE_ZATOSHIS = 1000;
+/** marginal_fee before revision 2. */
+export const LEGACY_MARGINAL_FEE_ZATOSHIS = 5000;
+/**
+ * First block that uses the revision 2 fee. For a wallet the height that
+ * counts is the block the transaction is expected to be mined in; for a node
+ * it is the next block's height.
+ */
+export const FEE_REDUCTION_HEIGHT = {
+  mainnet: 3_590_000,
+  testnet: 4_465_026,
+} as const;
+export type FeeNetwork = keyof typeof FEE_REDUCTION_HEIGHT;
 export const GRACE_ACTIONS = 2;
 export const P2PKH_STANDARD_INPUT_SIZE = 150;
 export const P2PKH_STANDARD_OUTPUT_SIZE = 34;
@@ -88,9 +105,22 @@ export function logicalActions(tx: Zip317Transaction): LogicalActions {
   };
 }
 
-/** The conventional fee in zatoshis. */
-export function conventionalFee(tx: Zip317Transaction): number {
-  return logicalActions(tx).billed * MARGINAL_FEE_ZATOSHIS;
+/** marginal_fee for a transaction mined at `height` on `network`. */
+export function marginalFeeAt(height: number, network: FeeNetwork = "mainnet"): number {
+  return height >= FEE_REDUCTION_HEIGHT[network]
+    ? MARGINAL_FEE_ZATOSHIS
+    : LEGACY_MARGINAL_FEE_ZATOSHIS;
+}
+
+/**
+ * The conventional fee in zatoshis. Uses the current marginal_fee unless a
+ * different one is passed, e.g. `marginalFeeAt(height)` for an older block.
+ */
+export function conventionalFee(
+  tx: Zip317Transaction,
+  marginalFee: number = MARGINAL_FEE_ZATOSHIS,
+): number {
+  return logicalActions(tx).billed * marginalFee;
 }
 
 /**

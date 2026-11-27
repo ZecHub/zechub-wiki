@@ -1,5 +1,7 @@
 import {
+  FEE_REDUCTION_HEIGHT,
   GRACE_ACTIONS,
+  LEGACY_MARGINAL_FEE_ZATOSHIS,
   MARGINAL_FEE_ZATOSHIS,
   MIN_ORCHARD_ACTIONS,
   MIN_SAPLING_OUTPUTS,
@@ -7,15 +9,22 @@ import {
   P2PKH_STANDARD_OUTPUT_SIZE,
   conventionalFee,
   logicalActions,
+  marginalFeeAt,
   simpleTransfer,
 } from "../zip317";
 
 describe("ZIP 317 parameters", () => {
   it("matches the values published in the spec", () => {
-    expect(MARGINAL_FEE_ZATOSHIS).toBe(5000);
+    expect(MARGINAL_FEE_ZATOSHIS).toBe(1000);
+    expect(LEGACY_MARGINAL_FEE_ZATOSHIS).toBe(5000);
     expect(GRACE_ACTIONS).toBe(2);
     expect(P2PKH_STANDARD_INPUT_SIZE).toBe(150);
     expect(P2PKH_STANDARD_OUTPUT_SIZE).toBe(34);
+  });
+
+  it("uses the ZIP 2009 activation heights", () => {
+    expect(FEE_REDUCTION_HEIGHT.mainnet).toBe(3_590_000);
+    expect(FEE_REDUCTION_HEIGHT.testnet).toBe(4_465_026);
   });
 
   it("matches the builders' shielded padding minimums", () => {
@@ -74,22 +83,42 @@ describe("logicalActions", () => {
   });
 });
 
+describe("marginalFeeAt", () => {
+  it("switches to 1,000 zatoshis at the Mainnet fee reduction height", () => {
+    expect(marginalFeeAt(3_589_999)).toBe(5000);
+    expect(marginalFeeAt(3_590_000)).toBe(1000);
+    expect(marginalFeeAt(3_590_001, "mainnet")).toBe(1000);
+  });
+
+  it("uses the Testnet height on Testnet", () => {
+    expect(marginalFeeAt(4_465_025, "testnet")).toBe(5000);
+    expect(marginalFeeAt(4_465_026, "testnet")).toBe(1000);
+    // A height that is past the switch on Mainnet is not on Testnet.
+    expect(marginalFeeAt(4_000_000, "testnet")).toBe(5000);
+  });
+});
+
 describe("conventionalFee", () => {
   it("is marginal_fee times max(grace_actions, logical_actions)", () => {
-    expect(conventionalFee({})).toBe(10_000);
-    expect(conventionalFee({ nActionsOrchard: 2 })).toBe(10_000);
-    expect(conventionalFee({ nActionsOrchard: 10 })).toBe(50_000);
+    expect(conventionalFee({})).toBe(2_000);
+    expect(conventionalFee({ nActionsOrchard: 2 })).toBe(2_000);
+    expect(conventionalFee({ nActionsOrchard: 10 })).toBe(10_000);
   });
 
   it("prices a ten input sweep into one output", () => {
     expect(
       conventionalFee({ txInTotalSize: 10 * 150, txOutTotalSize: 34 }),
-    ).toBe(50_000);
+    ).toBe(10_000);
   });
 
   it("ignores negative and fractional counts", () => {
-    expect(conventionalFee({ nActionsOrchard: -5 })).toBe(10_000);
-    expect(conventionalFee({ nSpendsSapling: 2.9 })).toBe(10_000);
+    expect(conventionalFee({ nActionsOrchard: -5 })).toBe(2_000);
+    expect(conventionalFee({ nSpendsSapling: 2.9 })).toBe(2_000);
+  });
+
+  it("charges the pre-ZIP 2009 fee for a block before the reduction", () => {
+    expect(conventionalFee({}, marginalFeeAt(3_589_999))).toBe(10_000);
+    expect(conventionalFee({ nActionsOrchard: 10 }, LEGACY_MARGINAL_FEE_ZATOSHIS)).toBe(50_000);
   });
 });
 
@@ -97,21 +126,21 @@ describe("simpleTransfer", () => {
   // Logical actions per pair once the builders pad the shielded bundles:
   // Sapling to two outputs, Orchard to two Actions.
   it.each([
-    ["transparent", "transparent", 2, 10_000],
-    ["transparent", "sapling", 3, 15_000],
-    ["transparent", "orchard", 3, 15_000],
-    ["sapling", "transparent", 3, 15_000],
-    ["sapling", "sapling", 2, 10_000],
-    ["sapling", "orchard", 4, 20_000],
-    ["orchard", "transparent", 3, 15_000],
-    ["orchard", "sapling", 4, 20_000],
-    ["orchard", "orchard", 2, 10_000],
+    ["transparent", "transparent", 2, 2_000],
+    ["transparent", "sapling", 3, 3_000],
+    ["transparent", "orchard", 3, 3_000],
+    ["sapling", "transparent", 3, 3_000],
+    ["sapling", "sapling", 2, 2_000],
+    ["sapling", "orchard", 4, 4_000],
+    ["orchard", "transparent", 3, 3_000],
+    ["orchard", "sapling", 4, 4_000],
+    ["orchard", "orchard", 2, 2_000],
     // NU6.3: Ironwood Actions are priced and padded like Orchard's.
-    ["transparent", "ironwood", 3, 15_000],
-    ["ironwood", "transparent", 3, 15_000],
-    ["sapling", "ironwood", 4, 20_000],
-    ["orchard", "ironwood", 4, 20_000],
-    ["ironwood", "ironwood", 2, 10_000],
+    ["transparent", "ironwood", 3, 3_000],
+    ["ironwood", "transparent", 3, 3_000],
+    ["sapling", "ironwood", 4, 4_000],
+    ["orchard", "ironwood", 4, 4_000],
+    ["ironwood", "ironwood", 2, 2_000],
   ] as const)("prices %s to %s as %i logical actions", (from, to, total, fee) => {
     expect(logicalActions(simpleTransfer(from, to)).total).toBe(total);
     expect(conventionalFee(simpleTransfer(from, to))).toBe(fee);

@@ -19,6 +19,7 @@ import {
   ISSUED_NOW_ZEC,
   SNAPSHOT_LABEL,
 } from "./shared";
+import { MARGINAL_FEE_ZATOSHIS } from "@/lib/zip317";
 
 const TOTAL_SUPPLY_ZEC = ISSUED_NOW_ZEC;
 const ZATS_PER_ZEC = 1e8;
@@ -27,7 +28,7 @@ const BURN_FRACTION = 0.6;
 export default function Sandbox235() {
   const [volume, setVolume] = useState(8000); // tx/day
   const [actions, setActions] = useState(2); // actions/tx
-  const [feePerAction, setFeePerAction] = useState(5000); // zats
+  const [feePerAction, setFeePerAction] = useState(MARGINAL_FEE_ZATOSHIS); // zats
 
   const dailyFeesZats = volume * actions * feePerAction;
   const dailyBurnZats = dailyFeesZats * BURN_FRACTION;
@@ -51,7 +52,7 @@ export default function Sandbox235() {
           { value: fmtMillions(TOTAL_SUPPLY_ZEC), caption: "ZEC issued (of 21M cap)" },
           { value: "~8,000", caption: "tx/day (14d avg)" },
           { value: "~2", caption: "logical actions/tx (typical)" },
-          { value: "5,000 zats", caption: "marginal_fee (ZIP 317)" },
+          { value: "1,000 zats", caption: "marginal_fee (ZIP 317 rev. 2)" },
           { value: "60%", caption: "fee fraction burned (ZIP 235)" },
         ]}
       />
@@ -95,7 +96,7 @@ export default function Sandbox235() {
               />
               <Slider
                 label="Avg fee per action"
-                help="Current ZIP 317 marginal_fee is 5,000 zats"
+                help="ZIP 317 marginal_fee is 1,000 zats since Mainnet block 3,590,000 (ZIP 2009); 5,000 before"
                 value={feePerAction}
                 onChange={setFeePerAction}
                 min={1000}
