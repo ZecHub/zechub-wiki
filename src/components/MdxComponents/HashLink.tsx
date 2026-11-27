@@ -19,5 +19,5 @@ export default function HashLink({ normalized, className, ...rest }: HashLinkPro
     }
     rest.onClick?.(e);
   };
-  return <a href={normalized} className={className} {...rest} onClick={handleClick} />;
+  return <a {...rest} href={normalized} className={className} onClick={handleClick} />;
 }
