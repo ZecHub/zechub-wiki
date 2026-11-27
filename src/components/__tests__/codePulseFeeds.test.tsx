@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import CodePulse from "../CodePulse";
 
 jest.mock("recharts", () => ({
@@ -163,4 +163,56 @@ test("Link Health still renders its history after its independent load", async (
   render(<CodePulse />);
   fireEvent.click(screen.getByRole("tab", { name: /link health/i }));
   expect(await screen.findByText("4 pages scanned.")).toBeInTheDocument();
+});
+
+const latestLinkHealth = {
+  generatedAt: "2026-11-23T16:14:09.550Z",
+  filesScanned: 758,
+  serious: 41,
+  totals: { broken: 40, blocked: 282, redirect: 441 },
+  findings: [],
+};
+
+test.each(["malformed", "older"])(
+  "Link Health uses a valid current scan when its history is %s",
+  async (historyState) => {
+    fetchMock.mockImplementation(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/data/radicle/")) return response(radicle);
+      if (url.includes("/data/github/")) return response(github);
+      if (url.includes("/data/link-health/history")) {
+        if (historyState === "malformed") {
+          return { ok: true, json: async () => { throw new SyntaxError("bad JSON"); } };
+        }
+        return response(linkHealth);
+      }
+      return response(latestLinkHealth);
+    });
+
+    render(<CodePulse />);
+    fireEvent.click(screen.getByRole("tab", { name: /link health/i }));
+    expect(await screen.findByText("758 pages scanned.")).toBeInTheDocument();
+    const summary = screen.getByRole("region", { name: "Current link health summary" });
+    expect(within(summary).getByText("41")).toBeInTheDocument();
+    expect(within(summary).getByText("40")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "View the latest GitHub scan report" }))
+      .toHaveAttribute("href", "https://github.com/ZecHub/zechub/issues/1923");
+  },
+);
+
+test("Link Health gives the report link without reporting zero counts when both feeds fail", async () => {
+  fetchMock.mockImplementation(async (input: RequestInfo | URL) => {
+    const url = String(input);
+    if (url.includes("/data/radicle/")) return response(radicle);
+    if (url.includes("/data/github/")) return response(github);
+    return response(null, false);
+  });
+
+  render(<CodePulse />);
+  fireEvent.click(screen.getByRole("tab", { name: /link health/i }));
+  expect(await screen.findByText("No link health data yet.")).toBeInTheDocument();
+  expect(screen.queryByRole("region", { name: "Current link health summary" }))
+    .not.toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "View the latest GitHub scan report" }))
+    .toBeInTheDocument();
 });

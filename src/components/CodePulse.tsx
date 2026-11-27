@@ -122,8 +122,7 @@ function isHistoryEntry(value: unknown): value is HistoryEntry {
   });
 }
 
-interface LinkHealthEntry {
-  date: string;
+interface LinkHealthScan {
   generatedAt: string;
   filesScanned: number;
   serious: number;
@@ -138,6 +137,33 @@ interface LinkHealthEntry {
     error?: number;
     invalid?: number;
   };
+}
+
+interface LinkHealthEntry extends LinkHealthScan {
+  date: string;
+}
+
+const linkHealthReportUrl = "https://github.com/ZecHub/zechub/issues/1923";
+
+function isLinkHealthScan(value: unknown): value is LinkHealthScan {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const scan = value as Record<string, unknown>;
+  return (
+    typeof scan.generatedAt === "string" &&
+    Number.isFinite(Date.parse(scan.generatedAt)) &&
+    typeof scan.filesScanned === "number" &&
+    Number.isFinite(scan.filesScanned) &&
+    typeof scan.serious === "number" &&
+    Number.isFinite(scan.serious) &&
+    !!scan.totals &&
+    typeof scan.totals === "object" &&
+    !Array.isArray(scan.totals) &&
+    Object.values(scan.totals).every(isOptionalFiniteNumber)
+  );
+}
+
+function isLinkHealthEntry(value: unknown): value is LinkHealthEntry {
+  return isLinkHealthScan(value) && "date" in value && typeof value.date === "string";
 }
 
 const numberFormat = new Intl.NumberFormat("en-US");
@@ -198,7 +224,9 @@ export default function CodePulse() {
   const [radicleHistory, setRadicleHistory] = useState<HistoryEntry[]>([]);
   const [githubHistory, setGithubHistory] = useState<HistoryEntry[]>([]);
   const [linkHistory, setLinkHistory] = useState<LinkHealthEntry[]>([]);
-  const [latest, setLatest] = useState<any>(null);
+  const [latest, setLatest] = useState<
+    (LinkHealthScan & { findings: unknown[] }) | null
+  >(null);
   const [loading, setLoading] = useState<Record<View, boolean>>({
     radicle: true,
     github: true,
@@ -241,29 +269,30 @@ export default function CodePulse() {
     };
 
     const loadLinks = async () => {
-      try {
-        const [linkRes, latestRes] = await Promise.all([
-          fetch("/data/link-health/history.json").catch(() => null),
-          fetch("/data/link-health/latest.json").catch(() => null),
-        ]);
+      const fetchReport = async (file: "history" | "latest"): Promise<unknown> => {
+        const response = await fetch(`/data/link-health/${file}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      };
+      const [history, scan] = await Promise.allSettled([
+        fetchReport("history"),
+        fetchReport("latest"),
+      ]);
+      if (!active) return;
 
-        if (active && linkRes?.ok) {
-          const linkData = await linkRes.json();
-          if (active) setLinkHistory(Array.isArray(linkData) ? linkData : []);
-        }
-        if (active && latestRes?.ok) {
-          const latestData = await latestRes.json();
-          if (active) setLatest(latestData);
-        }
-      } catch (error) {
-        if (active) {
-          console.error("Failed to load Code Pulse link health data", error);
-        }
-      } finally {
-        if (active) {
-          setLoading((previous) => ({ ...previous, links: false }));
-        }
+      if (history.status === "fulfilled" && Array.isArray(history.value)) {
+        setLinkHistory(history.value.filter(isLinkHealthEntry));
       }
+      if (scan.status === "fulfilled" && isLinkHealthScan(scan.value)) {
+        const findings =
+          "findings" in scan.value && Array.isArray(scan.value.findings)
+            ? scan.value.findings.filter(
+              (item) => item && typeof item === "object" && !Array.isArray(item),
+            )
+            : [];
+        setLatest({ ...scan.value, findings });
+      }
+      setLoading((previous) => ({ ...previous, links: false }));
     };
 
     void loadFeed("radicle", setRadicleHistory);
@@ -281,8 +310,13 @@ export default function CodePulse() {
   const currentTotals = getTotals(current, view);
   const previousTotals = getTotals(previous, view);
 
-  const linkCurrent = linkHistory.at(-1);
-  const linkPrevious = linkHistory.at(-2);
+  const latestInHistory = linkHistory.at(-1);
+  const useLatestScan =
+    latest &&
+    (!latestInHistory ||
+      Date.parse(latest.generatedAt) > Date.parse(latestInHistory.generatedAt));
+  const linkCurrent = useLatestScan ? latest : latestInHistory;
+  const linkPrevious = useLatestScan ? latestInHistory : linkHistory.at(-2);
 
   const githubRepos = useMemo(() => {
     const names = new Set<string>();
@@ -462,23 +496,23 @@ export default function CodePulse() {
         </div>
       ) : view === "links" ? (
         <>
-          <section
+          {linkCurrent && <section
             aria-label="Current link health summary"
             className="grid grid-cols-2 gap-3 md:grid-cols-4"
           >
             <SummaryCard
               icon={<CircleDot />}
               label="Needing attention"
-              value={linkCurrent?.serious ?? 0}
+              value={linkCurrent.serious}
               delta={delta}
               tone="purple"
             />
             <SummaryCard
               icon={<ExternalLink />}
               label="Broken"
-              value={linkCurrent?.totals?.broken ?? 0}
+              value={linkCurrent.totals.broken ?? 0}
               delta={percentChange(
-                linkCurrent?.totals?.broken ?? 0,
+                linkCurrent.totals.broken ?? 0,
                 linkPrevious?.totals?.broken,
               )}
               tone="orange"
@@ -486,9 +520,9 @@ export default function CodePulse() {
             <SummaryCard
               icon={<Radio />}
               label="Could not verify"
-              value={linkCurrent?.totals?.blocked ?? 0}
+              value={linkCurrent.totals.blocked ?? 0}
               delta={percentChange(
-                linkCurrent?.totals?.blocked ?? 0,
+                linkCurrent.totals.blocked ?? 0,
                 linkPrevious?.totals?.blocked,
               )}
               tone="blue"
@@ -496,16 +530,16 @@ export default function CodePulse() {
             <SummaryCard
               icon={<ArrowUpRight />}
               label="Redirects"
-              value={linkCurrent?.totals?.redirect ?? 0}
+              value={linkCurrent.totals.redirect ?? 0}
               delta={percentChange(
-                linkCurrent?.totals?.redirect ?? 0,
+                linkCurrent.totals.redirect ?? 0,
                 linkPrevious?.totals?.redirect,
               )}
               tone="green"
             />
-          </section>
+          </section>}
 
-          <section className="rounded-3xl border bg-card p-5 md:p-6">
+          {linkTrendData.length > 0 && <section className="rounded-3xl border bg-card p-5 md:p-6">
             <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-muted-foreground">
@@ -602,7 +636,7 @@ export default function CodePulse() {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-          </section>
+          </section>}
 
           <section className="rounded-3xl border bg-card p-5 md:p-6">
             <div className="mb-2">
@@ -616,9 +650,12 @@ export default function CodePulse() {
                 ? `${formatNumber(linkCurrent.filesScanned)} pages scanned.`
                 : "No link health data yet."}
             </p>
+            <a href={linkHealthReportUrl} className="mt-3 inline-block text-sm underline">
+              View the latest GitHub scan report
+            </a>
           </section>
 
-          {latest?.findings?.length > 0 && (
+          {latest && latest.generatedAt === linkCurrent?.generatedAt && latest.findings.length > 0 && (
             <FindingsSection findings={latest.findings} />
           )}
         </>
