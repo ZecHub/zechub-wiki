@@ -27,6 +27,16 @@ import { DATA_URL } from "@/lib/chart/data-url";
 import { getLastUpdatedDate } from "@/lib/chart/helpers";
 import "@/components/Charts/index.css";
 
+const tabLabels = [
+  "Supply",
+  "Difficulty",
+  "Issuance",
+  "Lockbox",
+  "Flows",
+  "Tx Summary",
+  "Privacy Set",
+];
+
 function ZcashEmbedContent() {
   const searchParams = useSearchParams();
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
@@ -35,9 +45,12 @@ function ZcashEmbedContent() {
 
   // Get embed parameters
   const theme = searchParams?.get("theme") || "dark";
+  const hideHeader = searchParams?.get("hideHeader") === "true";
   const hideControls = searchParams?.get("hideControls") === "true";
   const isEmbed = searchParams?.get("embed") === "true";
-  const defaultTab = searchParams?.get("tab") || "supply";
+  const requestedTab = searchParams?.get("tab")?.trim().toLowerCase();
+  const defaultTab = tabLabels.find((label) => label.toLowerCase() === requestedTab)?.toLowerCase()
+    ?? "supply";
   const darkClasses = [
     "bg-slate-900",
     "text-white",
@@ -56,21 +69,8 @@ function ZcashEmbedContent() {
     }
   }
 
-  // Tab labels
-  const tabLabels = [
-    "Supply",
-    "Difficulty",
-    "Issuance",
-    "Lockbox",
-    "Flows",
-    "Tx Summary",
-    "Privacy Set",
-  ];
-
   useEffect(() => {
-    if (defaultTab) {
-      setActiveTab(defaultTab.toLowerCase());
-    }
+    setActiveTab(defaultTab);
   }, [defaultTab]);
 
   useEffect(() => {
@@ -153,25 +153,29 @@ function ZcashEmbedContent() {
     <div style={{ width: "100%", height: "100%" }}>
       {/* Charts Tabs */}
       <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
-        <CardHeader className="mb-4">
-          <CardTitle className="text-xl">Analytics Charts</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            {({ activeTab, setActiveTab }: any) => (
+        {!hideHeader && (
+          <CardHeader className="mb-4">
+            <CardTitle className="text-xl">Analytics Charts</CardTitle>
+          </CardHeader>
+        )}
+        <CardContent className={hideHeader ? "pt-6" : undefined}>
+          <Tabs key={defaultTab} defaultValue={defaultTab} onValueChange={setActiveTab}>
+            {({ activeTab, setActiveTab }) => (
               <>
-                <TabsList>
-                  {tabLabels.map((label) => (
-                    <TabsTrigger
-                      key={label}
-                      value={label.toLowerCase()}
-                      activeTab={activeTab}
-                      setActiveTab={setActiveTab}
-                    >
-                      {label}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
+                {!hideControls && (
+                  <TabsList>
+                    {tabLabels.map((label) => (
+                      <TabsTrigger
+                        key={label}
+                        value={label.toLowerCase()}
+                        activeTab={activeTab}
+                        setActiveTab={setActiveTab}
+                      >
+                        {label}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                )}
 
                 <TabsContent value="supply" activeTab={activeTab}>
                   <ShieldedSupplyChart chartRef={divChartRef} />
