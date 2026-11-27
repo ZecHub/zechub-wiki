@@ -31,7 +31,7 @@ const TIMEOUT_MS = 30_000;
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = path.join(root, "public", "content-images");
 
-// Must stay identical to mirroredContentImage() in src/components/MdxComponents/MdxComponent.tsx.
+// Must stay identical to mirroredContentImage() in src/lib/mirroredContentImage.ts.
 export function mirrorName(url) {
   const m = /^https:\/\/raw\.githubusercontent\.com\/ZecHub\/zechub\/main\/site\/(.+)\.(png|jpe?g)$/i.exec(url);
   if (!m) return "";
