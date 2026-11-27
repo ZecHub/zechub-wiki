@@ -1008,14 +1008,14 @@
         "merkleRoot": "मर्कल रूट"
       },
       "difficulty": {
-        "zcashBlockTime": "75 सेकंड",
+        "zcashBlockTime": "25 सेकंड",
         "targetBlockTime": "लक्षित ब्लॉक समय",
         "bitcoinBlockTime": "10 मिनट",
         "forComparison": "तुलना के लिए",
         "adjustmentTitle": "कठिनाई समायोजन",
         "hashrateIncreases": "हैशरेट बढ़ती है",
         "difficultyUp": "कठिनाई बढ़ जाती है",
-        "target": "लक्ष्य: 75 सेकंड",
+        "target": "लक्ष्य: 25 सेकंड",
         "staysConstant": "स्थिर रहता है",
         "hashrateDecreases": "हैशरेट घटती है",
         "difficultyDown": "कठिनाई घट जाती है",

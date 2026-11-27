@@ -1058,14 +1058,14 @@
         "merkleRoot": "Merkle Kökü"
       },
       "difficulty": {
-        "zcashBlockTime": "75 saniye",
+        "zcashBlockTime": "25 saniye",
         "targetBlockTime": "Hedef blok süresi",
         "bitcoinBlockTime": "10 dakika",
         "forComparison": "Karşılaştırma için",
         "adjustmentTitle": "Zorluk Ayarlaması",
         "hashrateIncreases": "Hashrate Artar",
         "difficultyUp": "Zorluk artar",
-        "target": "Hedef: 75 sn",
+        "target": "Hedef: 25 sn",
         "staysConstant": "Sabit kalır",
         "hashrateDecreases": "Hashrate Azalır",
         "difficultyDown": "Zorluk azalır",

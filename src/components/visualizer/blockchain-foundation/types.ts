@@ -76,7 +76,7 @@ export const stages: Stage[] = [
     title: "Block Time & Difficulty",
     subtitle: "Maintaining Consistency",
     description:
-      "Zcash targets 75-second blocks. Difficulty adjusts automatically to maintain this rate regardless of hashrate.",
+      "Since NU7, Zcash targets 25-second blocks. Difficulty adjusts as hashrate changes to keep block times near the target.",
     type: "blockchain",
     blockchainType: "difficulty",
   },

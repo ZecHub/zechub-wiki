@@ -1008,14 +1008,14 @@
         "merkleRoot": "Gbẹ̀rẹ̀ Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 ìṣẹ́jú àáyá",
+        "zcashBlockTime": "25 ìṣẹ́jú àáyá",
         "targetBlockTime": "Akoko idaduro afojusun",
         "bitcoinBlockTime": "Ìṣẹ́jú mẹ́wàá",
         "forComparison": "Fún ìfiwéra",
         "adjustmentTitle": "Ìṣòro Tó Yẹ Kó O Borí",
         "hashrateIncreases": "Àwọn Ìlànà Tí Wọ́n Ń Tẹ̀ Síwájú",
         "difficultyUp": "Ìṣòro ń lọ sókè",
-        "target": "Àfojúsùn: 75 ìṣẹ́jú",
+        "target": "Àfojúsùn: 25 ìṣẹ́jú",
         "staysConstant": "Kò yí padà",
         "hashrateDecreases": "Àwọn Ìyípadà Tó Ń Ṣẹlẹ̀",
         "difficultyDown": "Ìṣòro ń lọ sílẹ̀",

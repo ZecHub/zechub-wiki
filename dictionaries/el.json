@@ -1008,14 +1008,14 @@
         "merkleRoot": "Ρίζα Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 δευτερόλεπτα",
+        "zcashBlockTime": "25 δευτερόλεπτα",
         "targetBlockTime": "Στοχευμένος χρόνος μπλοκ",
         "bitcoinBlockTime": "10 λεπτά",
         "forComparison": "Για σύγκριση",
         "adjustmentTitle": "Προσαρμογή δυσκολίας",
         "hashrateIncreases": "Αυξήσεις hashrate",
         "difficultyUp": "Η δυσκολία αυξάνεται",
-        "target": "Στόχος: 75 δευτ.",
+        "target": "Στόχος: 25 δευτ.",
         "staysConstant": "Παραμένει σταθερό",
         "hashrateDecreases": "Μειώσεις hashrate",
         "difficultyDown": "Η δυσκολία μειώνεται",

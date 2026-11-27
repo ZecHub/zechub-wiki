@@ -19,7 +19,7 @@ export const Difficulty = () => {
             <Clock className="w-8 h-8 text-primary" />
             <div>
               <h3 className="font-bold text-foreground">Zcash</h3>
-              <p className="text-2xl font-bold text-primary">{s.zcashBlockTime ?? "75 seconds"}</p>
+              <p className="text-2xl font-bold text-primary">{s.zcashBlockTime ?? "25 seconds"}</p>
             </div>
           </div>
           <p className="text-sm text-muted-foreground">{s.targetBlockTime ?? "Target block time"}</p>
@@ -72,7 +72,7 @@ export const Difficulty = () => {
                 <Gauge className="w-8 h-8 text-primary mx-auto mb-2" />
               </motion.div>
               <p className="text-sm font-semibold text-foreground">
-                {s.target ?? "Target: 75 sec"}
+                {s.target ?? "Target: 25 sec"}
               </p>
               <p className="text-xs text-muted-foreground">{s.staysConstant ?? "Stays constant"}</p>
             </div>

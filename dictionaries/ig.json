@@ -1008,14 +1008,14 @@
         "merkleRoot": "Mgbọrọgwụ Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 sekọnd",
+        "zcashBlockTime": "25 sekọnd",
         "targetBlockTime": "Oge ngọngọ ebumnuche",
         "bitcoinBlockTime": "Nkeji iri",
         "forComparison": "Maka ntụnyere",
         "adjustmentTitle": "Ime Mgbanwe Mgbe O Siiri M Ike",
         "hashrateIncreases": "Hashrate Na-amụba",
         "difficultyUp": "Ihe isi ike na-arị elu",
-        "target": "Ebumnuche: 75 sec",
+        "target": "Ebumnuche: 25 sec",
         "staysConstant": "Na-adịgide adịgide",
         "hashrateDecreases": "Hashrate Na-ebelata",
         "difficultyDown": "Ihe isi ike na-ebelata",

@@ -1008,14 +1008,14 @@
         "merkleRoot": "ریشه Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 ثانیه",
+        "zcashBlockTime": "25 ثانیه",
         "targetBlockTime": "زمان هدف بلوک",
         "bitcoinBlockTime": "10 دقیقه",
         "forComparison": "برای مقایسه",
         "adjustmentTitle": "تنظیم سختی",
         "hashrateIncreases": "افزایش هش‌ریت",
         "difficultyUp": "سختی بالا می‌رود",
-        "target": "هدف: 75 ثانیه",
+        "target": "هدف: 25 ثانیه",
         "staysConstant": "ثابت می‌ماند",
         "hashrateDecreases": "کاهش هش‌ریت",
         "difficultyDown": "سختی پایین می‌آید",

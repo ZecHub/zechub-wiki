@@ -1008,14 +1008,14 @@
         "merkleRoot": "Chanzo cha Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "Sekunde 75",
+        "zcashBlockTime": "Sekunde 25",
         "targetBlockTime": "Lengo kuzuia wakati",
         "bitcoinBlockTime": "Dakika 10",
         "forComparison": "Kwa kulinganisha",
         "adjustmentTitle": "Marekebisho ya Ugumu",
         "hashrateIncreases": "Viwango vya Hash Vinaongezeka",
         "difficultyUp": "Ugumu huongezeka",
-        "target": "Lengo: sekunde 75",
+        "target": "Lengo: sekunde 25",
         "staysConstant": "Inabaki thabiti",
         "hashrateDecreases": "Kiwango cha Hash Hupungua",
         "difficultyDown": "Ugumu hupungua",

@@ -1080,14 +1080,14 @@
         "merkleRoot": "Radice di Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 secondi",
+        "zcashBlockTime": "25 secondi",
         "targetBlockTime": "Tempo di blocco previsto",
         "bitcoinBlockTime": "10 minuti",
         "forComparison": "Per confronto",
         "adjustmentTitle": "Aggiustamento della difficoltà",
         "hashrateIncreases": "L hashrate aumenta",
         "difficultyUp": "La difficoltà aumenta",
-        "target": "Obiettivo: 75 sec",
+        "target": "Obiettivo: 25 sec",
         "staysConstant": "Resta costante",
         "hashrateDecreases": "L hashrate diminuisce",
         "difficultyDown": "La difficoltà diminuisce",

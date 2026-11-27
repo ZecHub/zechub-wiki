@@ -1008,14 +1008,14 @@
         "merkleRoot": "Merkle-Root"
       },
       "difficulty": {
-        "zcashBlockTime": "75 Sekunden",
+        "zcashBlockTime": "25 Sekunden",
         "targetBlockTime": "Ziel-Blockzeit",
         "bitcoinBlockTime": "10 Minuten",
         "forComparison": "Zum Vergleich",
         "adjustmentTitle": "Schwierigkeitsanpassung",
         "hashrateIncreases": "Hashrate steigt",
         "difficultyUp": "Schwierigkeit steigt",
-        "target": "Ziel: 75 Sek.",
+        "target": "Ziel: 25 Sek.",
         "staysConstant": "Bleibt konstant",
         "hashrateDecreases": "Hashrate sinkt",
         "difficultyDown": "Schwierigkeit sinkt",

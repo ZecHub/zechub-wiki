@@ -1008,14 +1008,14 @@
         "merkleRoot": "Корень Меркла"
       },
       "difficulty": {
-        "zcashBlockTime": "75 секунд",
+        "zcashBlockTime": "25 секунд",
         "targetBlockTime": "Целевое время блока",
         "bitcoinBlockTime": "10 минут",
         "forComparison": "Для сравнения",
         "adjustmentTitle": "Корректировка сложности",
         "hashrateIncreases": "Хешрейт растёт",
         "difficultyUp": "Сложность растёт",
-        "target": "Цель: 75 сек",
+        "target": "Цель: 25 сек",
         "staysConstant": "Остаётся постоянным",
         "hashrateDecreases": "Хешрейт падает",
         "difficultyDown": "Сложность падает",

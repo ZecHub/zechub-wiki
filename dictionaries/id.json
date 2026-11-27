@@ -1008,14 +1008,14 @@
         "merkleRoot": "Akar Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 detik",
+        "zcashBlockTime": "25 detik",
         "targetBlockTime": "Target waktu blok",
         "bitcoinBlockTime": "10 menit",
         "forComparison": "Untuk perbandingan",
         "adjustmentTitle": "Penyesuaian Kesulitan",
         "hashrateIncreases": "Hashrate Meningkat",
         "difficultyUp": "Kesulitan meningkat",
-        "target": "Target: 75 detik",
+        "target": "Target: 25 detik",
         "staysConstant": "Tetap konstan",
         "hashrateDecreases": "Hashrate Menurun",
         "difficultyDown": "Kesulitan menurun",

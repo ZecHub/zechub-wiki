@@ -60,7 +60,7 @@ export const Miners = () => {
       >
         <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
           <Coins className="w-5 h-5 text-primary" />
-          Block Reward Distribution (Current: 1.5625 ZEC)
+          Block Reward Distribution (0.52083333 ZEC after NU7)
         </h3>
 
         <div className="space-y-4">

@@ -1008,14 +1008,14 @@
         "merkleRoot": "Merkleルート"
       },
       "difficulty": {
-        "zcashBlockTime": "75秒",
+        "zcashBlockTime": "25秒",
         "targetBlockTime": "目標ブロック時間",
         "bitcoinBlockTime": "10分",
         "forComparison": "比較用",
         "adjustmentTitle": "難易度調整",
         "hashrateIncreases": "ハッシュレートが増加",
         "difficultyUp": "難易度が上がる",
-        "target": "目標: 75秒",
+        "target": "目標: 25秒",
         "staysConstant": "一定に保たれる",
         "hashrateDecreases": "ハッシュレートが減少",
         "difficultyDown": "難易度が下がる",

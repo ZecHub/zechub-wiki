@@ -1008,14 +1008,14 @@
         "merkleRoot": "Merkle Ntini a ɛwɔ hɔ"
       },
       "difficulty": {
-        "zcashBlockTime": "75 na ɛyɛ sikani",
+        "zcashBlockTime": "25 na ɛyɛ sikani",
         "targetBlockTime": "Target block bere",
         "bitcoinBlockTime": "Simma 10 na ɛyɛ",
         "forComparison": "Sɛ yɛde toto ho a",
         "adjustmentTitle": "Nsakrae a Ɛyɛ Den",
         "hashrateIncreases": "Hashrate Nkɔanim",
         "difficultyUp": "Ɔhaw kɔ soro",
-        "target": "Botae: 75 sec",
+        "target": "Botae: 25 sec",
         "staysConstant": "Ɔtra hɔ daa",
         "hashrateDecreases": "Hashrate So Tew",
         "difficultyDown": "Ɔhaw kɔ fam",

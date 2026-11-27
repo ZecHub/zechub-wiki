@@ -1008,14 +1008,14 @@
         "merkleRoot": "Merkle Root"
       },
       "difficulty": {
-        "zcashBlockTime": "75 秒",
+        "zcashBlockTime": "25 秒",
         "targetBlockTime": "目标出块时间",
         "bitcoinBlockTime": "10 分钟",
         "forComparison": "对比参考",
         "adjustmentTitle": "难度调整",
         "hashrateIncreases": "算力上升",
         "difficultyUp": "难度上升",
-        "target": "目标：75 秒",
+        "target": "目标：25 秒",
         "staysConstant": "保持不变",
         "hashrateDecreases": "算力下降",
         "difficultyDown": "难度下降",

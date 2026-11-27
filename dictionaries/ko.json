@@ -1008,14 +1008,14 @@
         "merkleRoot": "Merkle Root"
       },
       "difficulty": {
-        "zcashBlockTime": "75초",
+        "zcashBlockTime": "25초",
         "targetBlockTime": "목표 블록 시간",
         "bitcoinBlockTime": "10분",
         "forComparison": "비교용",
         "adjustmentTitle": "난이도 조정",
         "hashrateIncreases": "해시레이트 증가",
         "difficultyUp": "난이도가 올라감",
-        "target": "목표: 75초",
+        "target": "목표: 25초",
         "staysConstant": "일정하게 유지됨",
         "hashrateDecreases": "해시레이트 감소",
         "difficultyDown": "난이도가 내려감",

@@ -1008,14 +1008,14 @@
         "merkleRoot": "جذر Merkle"
       },
       "difficulty": {
-        "zcashBlockTime": "75 ثانية",
+        "zcashBlockTime": "25 ثانية",
         "targetBlockTime": "الوقت المستهدف للكتلة",
         "bitcoinBlockTime": "10 دقائق",
         "forComparison": "للمقارنة",
         "adjustmentTitle": "تعديل الصعوبة",
         "hashrateIncreases": "يزداد معدل التجزئة",
         "difficultyUp": "ترتفع الصعوبة",
-        "target": "الهدف: 75 ثانية",
+        "target": "الهدف: 25 ثانية",
         "staysConstant": "يبقى ثابتًا",
         "hashrateDecreases": "ينخفض معدل التجزئة",
         "difficultyDown": "تنخفض الصعوبة",
