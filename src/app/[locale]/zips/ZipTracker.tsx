@@ -148,8 +148,16 @@ export default function ZipTracker({
       if (status !== "all" && z.status !== status) return false;
       if (cat !== "all" && !z.tags.includes(cat)) return false;
       if (!tokens.length) return true;
-      const hay =
-        `${z.num} zip-${z.num} ${z.title} ${z.tags.join(" ")} ${z.summary || ""}`.toLowerCase();
+      const formattedNumber = fmtZipNum(z.num);
+      const hay = [
+        z.num,
+        `zip-${z.num}`,
+        formattedNumber,
+        `zip-${formattedNumber}`,
+        z.title,
+        ...z.tags,
+        z.summary,
+      ].join(" ").toLowerCase();
       return tokens.every((t) => hay.includes(t));
     });
     arr = [...arr];
