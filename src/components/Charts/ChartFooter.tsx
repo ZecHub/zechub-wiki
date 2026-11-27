@@ -14,67 +14,41 @@ type ChartFooterProps = {
 };
 
 const ChartFooter = (props: ChartFooterProps) => {
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const tab = props.lastUpdatedDate;
+  const [lastUpdated, setLastUpdated] = useState<{ tab: string; date: Date } | null>(null);
+  const displayedDate = lastUpdated?.tab === tab ? lastUpdated.date : null;
 
   useEffect(() => {
     const controller = new AbortController();
+    const { signal } = controller;
 
-    const fetchAllData = async () => {
-      try {
-        // Prefer the latest date actually present in the data files for this tab.
-        // This updates whenever the local (or remote) JSON is refreshed.
-        const dataDate = await getLatestDataDateForTab(
-          props.lastUpdatedDate,
-          controller.signal,
-        );
-        if (dataDate) {
-          const d = new Date(dataDate);
-          if (!isNaN(d.getTime())) {
-            setLastUpdated(d);
-            return;
-          }
-        }
+    const loadDate = async () => {
+      const dataDate = await getLatestDataDateForTab(tab, signal);
+      if (signal.aborted) return;
 
-        // Fallback: GitHub commit date of the corresponding data file
-        const commitDate = await getLastUpdatedDate(
-          getCommitUrlForTab(props.lastUpdatedDate),
-          controller.signal,
-        );
-        if (commitDate && commitDate !== "N/A") {
-          setLastUpdated(new Date(commitDate));
-        }
-      } catch (err) {
-        console.error("Error fetching dashboard data:", err);
+      const commitUrl = getCommitUrlForTab(tab);
+      const value =
+        dataDate ?? (commitUrl ? await getLastUpdatedDate(commitUrl, signal) : null);
+      const date = value ? new Date(value) : null;
+      if (!signal.aborted) {
+        setLastUpdated(date && Number.isFinite(date.getTime()) ? { tab, date } : null);
       }
     };
 
-    fetchAllData();
-
-    return () => {
-      controller.abort();
-    };
-  }, [props.lastUpdatedDate]);
+    void loadDate();
+    return () => controller.abort();
+  }, [tab]);
 
   return (
-    <>
-      {lastUpdated && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: 48,
-          }}
-        >
-          <SupplyDataLastUpdated lastUpdated={lastUpdated} />
-
-          <ExportButton
-            handleSaveToPng={props.handleSaveToPng}
-            imgLabel={props.imgLabel}
-          />
-        </div>
-      )}
-    </>
+    <div className="mt-12 flex items-center justify-between">
+      <div>
+        {displayedDate && <SupplyDataLastUpdated lastUpdated={displayedDate} />}
+      </div>
+      <ExportButton
+        handleSaveToPng={props.handleSaveToPng}
+        imgLabel={props.imgLabel}
+      />
+    </div>
   );
 };
 

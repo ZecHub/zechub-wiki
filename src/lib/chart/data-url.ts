@@ -70,4 +70,6 @@ export const DATE_URL = {
     "/api/data-updated?path=public/data/zcash/shieldedStatsJSON.json",
   totalSupplyUrl:
     "/api/data-updated?path=public/data/zcash/total_supply.json",
+  blockFeesUrl: "/api/data-updated?path=public/data/zcash/blockFeesZEC.json",
+  networkSolpsUrl: "/api/data-updated?path=public/data/zcash/networksolps.json",
 } as const;

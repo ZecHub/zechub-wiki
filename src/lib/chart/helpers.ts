@@ -109,7 +109,7 @@ export async function getLastUpdatedDate(
   }
 }
 
-export function getCommitUrlForTab(tabLabel: string): string {
+export function getCommitUrlForTab(tabLabel: string): string | undefined {
   const urlMap: Record<string, string> = {
     supply: DATE_URL.shieldedUrl,
     difficulty: DATE_URL.difficultyUrl,
@@ -119,14 +119,17 @@ export function getCommitUrlForTab(tabLabel: string): string {
     "tx summary": DATE_URL.txsummaryUrl,
     "privacy set": DATE_URL.shieldedTxCountUrl,
     rewards: DATE_URL.namadaRewardUrl,
+    "namada supply": DATE_URL.namadaSupplyUrl,
     transparent: DATE_URL.transparentSupplyUrl,
     "shielded stats": DATE_URL.zcashShieldedStatsUrl,
-    "mining pools": "",
-    "Halving Meter": "",
+    "block fees": DATE_URL.blockFeesUrl,
+    "network solps": DATE_URL.networkSolpsUrl,
     "total supply": DATE_URL.totalSupplyUrl,
     ironwood: DATE_URL.ironwoodUrl, // ← added
   };
-  return urlMap[tabLabel] || DATE_URL.defaultUrl;
+  return Object.prototype.hasOwnProperty.call(urlMap, tabLabel)
+    ? urlMap[tabLabel]
+    : undefined;
 }
 
 
@@ -188,6 +191,7 @@ export function getDataUrlsForTab(tabLabel: string): string[] {
     "tx summary": DATA_URL.txsummaryUrl,
     "privacy set": DATA_URL.shieldedTxCountUrl,
     rewards: DATA_URL.namadaRewardUrl,
+    "namada supply": DATA_URL.namadaSupplyUrl,
     transparent: DATA_URL.transparentSupplyUrl,
     "shielded stats": DATA_URL.zcashShieldedStatsUrl,
     "total supply": DATA_URL.totalSupplyUrl,
