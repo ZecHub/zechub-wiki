@@ -1,6 +1,7 @@
 "use client";
 
 import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/TextLayer.css";
 
 import { POOL_MIGRATION_PDF_URL } from "./pdfUrl";
 
@@ -29,7 +30,6 @@ export default function PDFViewer({
       <Page
         pageNumber={pageNumber}
         width={pageWidth}
-        renderTextLayer={false}
         renderAnnotationLayer={false}
       />
     </Document>
