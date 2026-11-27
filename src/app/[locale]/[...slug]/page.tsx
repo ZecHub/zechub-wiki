@@ -49,6 +49,7 @@ import { rewriteBuyingZecGuide } from "@/lib/pageOverrides/buyingZecGuide";
 import { rewriteGovernanceGuide } from "@/lib/pageOverrides/governanceGuide";
 import { rewriteZipListGuide } from "@/lib/pageOverrides/zipListGuide";
 import { rewriteTransactionsGuide } from "@/lib/pageOverrides/transactionsGuide";
+import { removeDateLabels } from "@/lib/pageOverrides/dateLabels";
 import { rewriteHelpBuildGuide } from "@/lib/pageOverrides/helpBuildGuide";
 import { rewriteUsingThisWikiPage } from "@/lib/pageOverrides/usingThisWikiPage";
 import ContinueReading from "@/components/ContinueReading";
@@ -6599,6 +6600,9 @@ export default async function Page(props: {
     processedMarkdown
   ) {
     processedMarkdown = rewriteVerifyReleasesGuide(processedMarkdown);
+  }
+  if (locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = removeDateLabels(processedMarkdown);
   }
 
   const imgUrl = getBanner(slug[0]) || "";
