@@ -15,7 +15,7 @@ export default function VideoCarousel(props: Record<string, unknown>) {
   const max = Number(props.max ?? 0) || 0;
   const [videos, setVideos] = useState<Video[] | null>(null);
   const [active, setActive] = useState(compact ? -1 : 0);
-  const rail = useRef<HTMLDivElement>(null);
+  const rail = useRef<HTMLUListElement>(null);
 
   // Several carousels can sit on one page; each loads its playlist only when it comes near the viewport.
   const host = useRef<HTMLDivElement>(null);
@@ -104,48 +104,48 @@ export default function VideoCarousel(props: Record<string, unknown>) {
         </div>
       </div>
 
-      <div
+      <ul
         ref={rail}
-        className="mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:thin]"
         role="list"
+        className="mb-0 mt-3 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto pb-3 ps-0 [scrollbar-width:thin]"
       >
         {videos.map((v, i) => (
-          <button
-            key={v.id}
-            type="button"
-            role="listitem"
-            onClick={() => setActive(compact && i === active ? -1 : i)}
-            aria-current={i === active}
-            className={`group w-60 shrink-0 snap-start overflow-hidden rounded-xl border bg-slate-50/60 text-left transition-colors dark:bg-white/[0.03] ${
-              i === active ? "border-brand" : "border-slate-200 hover:border-brand/40 dark:border-white/10 dark:hover:border-brand/40"
-            }`}
-          >
-            <span className="relative block aspect-video bg-slate-200 dark:bg-slate-800">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`}
-                alt=""
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className="m-0 h-full w-full object-cover"
-              />
-              <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white opacity-90">
-                  <Play aria-hidden="true" className="h-4 w-4 fill-current" />
+          <li key={v.id} className="w-60 shrink-0 snap-start">
+            <button
+              type="button"
+              onClick={() => setActive(compact && i === active ? -1 : i)}
+              aria-current={i === active}
+              className={`group h-full w-full overflow-hidden rounded-xl border bg-slate-50/60 text-left transition-colors dark:bg-white/[0.03] ${
+                i === active ? "border-brand" : "border-slate-200 hover:border-brand/40 dark:border-white/10 dark:hover:border-brand/40"
+              }`}
+            >
+              <span className="relative block aspect-video bg-slate-200 dark:bg-slate-800">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`}
+                  alt=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  className="m-0 h-full w-full object-cover"
+                />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white opacity-90">
+                    <Play aria-hidden="true" className="h-4 w-4 fill-current" />
+                  </span>
                 </span>
               </span>
-            </span>
-            <span className="block p-3 text-sm font-semibold leading-snug text-slate-900 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden dark:text-white">
-              {v.title}
-            </span>
-            {(v.when || v.length) && (
-              <span className="block px-3 pb-3 text-xs text-slate-500 dark:text-slate-400">
-                {[v.when, v.length].filter(Boolean).join(" \u00b7 ")}
+              <span className="block p-3 text-sm font-semibold leading-snug text-slate-900 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden dark:text-white">
+                {v.title}
               </span>
-            )}
-          </button>
+              {(v.when || v.length) && (
+                <span className="block px-3 pb-3 text-xs text-slate-500 dark:text-slate-400">
+                  {[v.when, v.length].filter(Boolean).join(" \u00b7 ")}
+                </span>
+              )}
+            </button>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
