@@ -1,30 +1,40 @@
 'use client';
 import { useEffect, useState } from 'react';
 import type { RefObject } from 'react';
+import { DATA_URL } from '@/lib/chart/data-url';
+import { getBlockchainData } from '@/lib/chart/helpers';
 
-// Same-origin proxy for on-chain data (Cipherscan; see pages/api/blockchain-data).
-const api = ['/api/blockchain-data'];
+const SECOND_HALVING_HEIGHT = 2_726_400;
+const PRE_NU7_INTERVAL = 1_680_000;
+const NU7_HEIGHT = 3_543_405;
+const PRE_NU7_SECONDS = 75;
+const POST_NU7_SECONDS = 25;
+const SPACING_RATIO = PRE_NU7_SECONDS / POST_NU7_SECONDS;
+const POST_NU7_INTERVAL = PRE_NU7_INTERVAL * SPACING_RATIO;
 
-function fetchData(url: any) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        try {
-          resolve(JSON.parse(xhr.responseText));
-        } catch {
-          reject(new Error(`Invalid JSON from ${url}`));
-        }
-      } else {
-        reject(new Error(`API request error: ${xhr.status} ${xhr.statusText}`));
-      }
-    };
-    xhr.onerror = function () {
-      reject(new Error('Network error'));
-    };
-    xhr.send();
-  });
+// ZIP 218 preserves elapsed target time when the spacing changes at the
+// ZIP 259 mainnet activation height. The remaining legacy blocks take three
+// times as many post-activation blocks to cover the same duration.
+const FIRST_NU7_HALVING_HEIGHT = NU7_HEIGHT
+  + (SECOND_HALVING_HEIGHT + PRE_NU7_INTERVAL - NU7_HEIGHT) * SPACING_RATIO;
+
+function estimateHalving(height: number) {
+  const elapsedIntervals = Math.max(
+    0,
+    Math.floor((height - FIRST_NU7_HALVING_HEIGHT) / POST_NU7_INTERVAL) + 1,
+  );
+  const targetHeight = FIRST_NU7_HALVING_HEIGHT + elapsedIntervals * POST_NU7_INTERVAL;
+  const beforeNu7 = Math.max(0, NU7_HEIGHT - height);
+  const afterNu7 = targetHeight - Math.max(height, NU7_HEIGHT);
+  const secondsRemaining = beforeNu7 * PRE_NU7_SECONDS + afterNu7 * POST_NU7_SECONDS;
+  const intervalSeconds = POST_NU7_INTERVAL * POST_NU7_SECONDS;
+  return {
+    height,
+    targetHeight,
+    blocksRemaining: targetHeight - height,
+    at: Date.now() + secondsRemaining * 1000,
+    progressPercent: Math.max(0, (1 - secondsRemaining / intervalSeconds) * 100),
+  };
 }
 
 type HalvingMeterProps = {
@@ -32,58 +42,31 @@ type HalvingMeterProps = {
 };
 
 export const HalvingMeter = (props: HalvingMeterProps) => {
-  const [halvingDate, setHalvingDate] = useState(0);
-  const [currentBlock, setCurrentBlock] = useState(0);
-  const [blocksToHalving, setBlocksToHalving] = useState(0);
-  const [countDownDate, setCountDownDate] = useState(0);
+  const [estimate, setEstimate] = useState<ReturnType<typeof estimateHalving> | null>(null);
   const [days, setDays] = useState('00');
   const [hours, setHours] = useState('00');
   const [minutes, setMinutes] = useState('00');
   const [seconds, setSeconds] = useState('00');
   const [loading, setLoading] = useState(true);
-  const [unavailable, setUnavailable] = useState(false);
 
-  const previousHalvingBlock = 2726400; // Block 2726400 (Nov 28, 2024)
-  const nextHalvingBlock = 4406400;     // Block 4406400 (estimated Nov 28, 2028)
-
-  // Fetch data once on mount
   useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        const apiData = await Promise.all(api.map((url) => fetchData(url)));
-        const z_stats: any = apiData[0];
-        const blocks = z_stats?.data?.blocks;
-        if (typeof blocks !== "number" || !Number.isFinite(blocks)) {
-          throw new Error("Missing block height from blockchain-data");
-        }
-        const remaining = nextHalvingBlock - blocks;
-        
-        setCurrentBlock(blocks);
-        setBlocksToHalving(remaining);
-        
-        const secsToHalving = remaining * 75;
-        const cntDownDate = new Date().getTime() + secsToHalving * 1000;
-        
-        setCountDownDate(cntDownDate);
-        setHalvingDate(cntDownDate);
-        setLoading(false);
-      } catch (err) {
-        console.log('An error occurred:', err);
-        setUnavailable(true);
-        setLoading(false);
+    const controller = new AbortController();
+    getBlockchainData(DATA_URL.blockchainDataUrl, controller.signal).then((chain) => {
+      if (controller.signal.aborted) return;
+      const height = chain?.blocks;
+      if (typeof height === 'number' && Number.isSafeInteger(height) && height >= 0) {
+        setEstimate(estimateHalving(height));
       }
-    };
+        setLoading(false);
+    });
+    return () => controller.abort();
+  }, []);
 
-    fetchAllData();
-  }, []); // Empty dependency array - only run once
-
-  // Halving progress data - calculated from previous halving block
-  const progressPercent = currentBlock > 0 ? 
-    ((currentBlock - previousHalvingBlock) / (nextHalvingBlock - previousHalvingBlock)) * 100 : 0;
+  const countDownDate = estimate?.at;
 
   // Separate effect for the countdown timer
   useEffect(() => {
-    if (!countDownDate || countDownDate === 0) return;
+    if (countDownDate === undefined) return;
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -136,7 +119,7 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
     );
   }
 
-  if (unavailable) {
+  if (!estimate) {
     return (
       <div className='flex flex-col my-8 space-y-4 border-2 border-blue-200 p-4'>
         <h2 className='font-bold'>Halving Meter</h2>
@@ -159,17 +142,17 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
           </h2>
           <div className='pt-2'>
             <div>
-              <span>{currentBlock.toLocaleString('en-US')}</span>
+              <span>{estimate.height.toLocaleString('en-US')}</span>
             </div>
           </div>
         </div>
         <div className='shadow-lg p-4 rounded-md'>
           <h2 className='font-bold capitalize text-lg text-blue-500 py-2'>
-            Halving Date
+            Estimated Halving Date (UTC)
           </h2>
           <div className='pt-2'>
             <div>
-              <span>{new Date(halvingDate).toDateString()}</span>
+              <span>{new Date(estimate.at).toISOString().slice(0, 10)}</span>
             </div>
           </div>
         </div>
@@ -179,7 +162,8 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
           </h2>
           <div className='pt-2'>
             <div>
-              <span>{blocksToHalving.toLocaleString('en-US')}</span>
+              <span>{estimate.blocksRemaining.toLocaleString('en-US')}</span>
+              <p className='mt-1 text-sm'>Target block {estimate.targetHeight.toLocaleString('en-US')}</p>
             </div>
           </div>
         </div>
@@ -189,10 +173,10 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
         <div className='relative w-full h-12 bg-gray-200 rounded-lg overflow-hidden'>
           <div
             className='absolute top-0 left-0 h-full bg-blue-500 transition-all duration-300'
-            style={{ width: `${Math.min(progressPercent, 100).toFixed(2)}%` }}
+            style={{ width: `${estimate.progressPercent.toFixed(2)}%` }}
           ></div>
           <span className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-gray-800 z-10'>
-            {Math.min(progressPercent, 100).toFixed(2) + '%'}
+            {estimate.progressPercent.toFixed(2) + '%'}
           </span>
         </div>
         <h2 className='flex justify-center text-xl font-bold'>
@@ -203,20 +187,20 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
       {/* Highlighted Information Box */}
       <div className='bg-yellow-50 dark:bg-gray-800 border border-yellow-200 rounded-lg p-4 mt-4'>
         <p className='text-sm dark:text-white text-yellow-800 font-medium'>
-          Zcash issuance schedule may change
+          The date is an estimate based on target block spacing.
         </p>
         <p className='text-sm dark:text-white text-yellow-700 mt-2'>
-          The Network Sustainability Mechanism is a draft set of features planned for Network Upgrade 7 (NU7). If implemented the Block Subsidy schedule will be smoothed.
+          NU7 targets 25-second blocks. ZIP 237 preserves scheduled halvings and reissues funds from the Network Sustainability Mechanism balance separately.
         </p>
         <div className='text-sm dark:text-white text-yellow-700 mt-2'>
           <p className='font-medium'>Learn More:</p>
           <a 
-            href='https://zips.z.cash/zip-0234' 
+            href='https://zips.z.cash/zip-0237'
             target='_blank' 
             rel='noopener noreferrer'
             className='text-blue-600 hover:text-blue-800 underline'
           >
-            https://zips.z.cash/zip-0234
+            ZIP 237
           </a>
         </div>
       </div>
