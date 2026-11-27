@@ -54,7 +54,7 @@ Senders are not required to add a memo, so do not rely on memos alone.
 
 ### Step 5: Confirm the payment
 
-Watch your wallet or processor for the incoming shielded payment and match it to the order. Zcash produces a block about every 75 seconds. Decide how many confirmations you need before shipping, and ask for more on higher-value orders.
+Watch your wallet or processor for the incoming shielded payment and match it to the order. Since NU7, Zcash targets a block interval of [25 seconds](https://zips.z.cash/zip-0218), though actual block intervals vary. Decide how many confirmations you need before shipping, and ask for more on higher-value orders.
 
 ### Step 6: Keep your books
 
