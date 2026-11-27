@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const HEIGHT_RE = /^\d{1,8}$/;
 const HASH_RE = /^[0-9a-f]{64}$/i;
@@ -49,7 +49,11 @@ export default function BlockTime() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<BlockTime | null>(null);
-  const zone = useMemo(timezoneName, []);
+  const [zone, setZone] = useState<string | null>(null);
+
+  useEffect(() => {
+    setZone(timezoneName());
+  }, []);
 
   async function lookup(event: FormEvent) {
     event.preventDefault();
@@ -99,7 +103,7 @@ export default function BlockTime() {
         Looks up a Zcash block header time from{" "}
         <span className="font-mono text-[#F4B728]">CipherScan</span> and converts
         the Unix timestamp into your current timezone
-        {zone !== "local" ? (
+        {zone && zone !== "local" ? (
           <>
             {" "}
             (<span className="font-mono text-zinc-700 dark:text-[#c5d0dc]">{zone}</span>)
@@ -141,7 +145,7 @@ export default function BlockTime() {
 
       {result && (
         <div className="space-y-3 rounded-xl border border-zinc-200 dark:border-[#243040] bg-zinc-50 dark:bg-[#0f1720] px-4 py-4">
-          <Row label={`Local (${zone})`} value={format(result.timestamp, "local")} />
+          <Row label={zone && zone !== "local" ? `Local (${zone})` : "Local"} value={format(result.timestamp, "local")} />
           <Row label="UTC" value={format(result.timestamp, "utc")} />
           <Row label="Unix timestamp" value={String(result.timestamp)} mono />
           <Row label="Height" value={String(result.height)} mono />
