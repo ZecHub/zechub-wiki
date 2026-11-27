@@ -61,6 +61,12 @@ type Results = {
   per_day: Day[];
 };
 const NU7_HEIGHT = 3_543_405;
+const ZOOM_PRESETS = [
+  { label: "Day", windows: 1 },
+  { label: "Week", windows: 7 },
+  { label: "Month", windows: 30 },
+  { label: "Year", windows: 365 },
+];
 
 const CHARTS = [
   { id: "txs", label: "Transactions", keys: ["txs"], group: "counts" },
@@ -236,15 +242,15 @@ export default function ChainStatePage() {
   useEffect(() => {
     fetch(DATA_URL)
       .then((r) => r.json())
-      .then(setData)
+      .then((results: Results) => {
+        if (results?.per_day?.length) {
+          setZoomStart(results.per_day[0].start);
+          setZoomEnd(results.per_day[results.per_day.length - 1].end);
+        }
+        setData(results);
+      })
       .catch(console.error);
   }, []);
-  useEffect(() => {
-    if (data?.per_day?.length) {
-      setZoomStart(data.per_day[0].start);
-      setZoomEnd(data.per_day[data.per_day.length - 1].end);
-    }
-  }, [data]);
   useEffect(() => {
     if (chartId === "shielded_cb" || chartId === "nsm") setLogScale(false);
   }, [chartId]);
@@ -492,7 +498,7 @@ export default function ChainStatePage() {
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Line type="monotone" dataKey="nsm_cumul" stroke="#f59e0b" dot={false} strokeWidth={2} name="Cumulative reserve" />
+              <Line type="monotone" dataKey="nsm_cumul" stroke="#f59e0b" dot={series.length === 1} strokeWidth={2} name="Cumulative reserve" />
             </LineChart>
           ) : (
             <LineChart data={series}>
@@ -511,7 +517,7 @@ export default function ChainStatePage() {
                 <span style={{ color: hidden.has(value as string) ? "#64748b" : undefined, textDecoration: hidden.has(value as string) ? "line-through" : undefined }}>{value}</span>
               )} />
               {active.keys.map((k) => (
-                <Line key={k} type="monotone" dataKey={k} stroke={COLORS[k] || "#3b82f6"} dot={false} strokeWidth={2} hide={hidden.has(k)} />
+                <Line key={k} type="monotone" dataKey={k} stroke={COLORS[k] || "#3b82f6"} dot={series.length === 1} strokeWidth={2} hide={hidden.has(k)} />
               ))}
             </LineChart>
           )}
@@ -545,23 +551,22 @@ export default function ChainStatePage() {
             <span>{zoomStart.toLocaleString()}</span>
             <div className="flex flex-col items-center gap-1">
               <div className="flex gap-1">
-                {[
-                  { label: "Day", blocks: 1152 },
-                  { label: "Week", blocks: 8064 },
-                  { label: "Month", blocks: 34560 },
-                  { label: "Year", blocks: 420480 },
-                ].map((b) => (
+                {ZOOM_PRESETS.map((preset) => (
                   <button
-                    key={b.label}
+                    key={preset.label}
+                    title="Use daily windows ending near the selected right edge"
                     onClick={() => {
-                      const mid = Math.round((rangeStart + rangeEnd) / 2);
-                      const half = Math.floor(b.blocks / 2);
-                      setZoomStart(Math.max(rangeStart, mid - half));
-                      setZoomEnd(Math.min(rangeEnd, mid + half));
+                      const end = Math.max(
+                        0,
+                        days.findLastIndex((day) => day.start <= zoomEnd),
+                      );
+                      const start = Math.max(0, end - preset.windows + 1);
+                      setZoomStart(days[start].start);
+                      setZoomEnd(days[end].end);
                     }}
                     className="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200"
                   >
-                    {b.label}
+                    {preset.label}
                   </button>
                 ))}
                 <button
