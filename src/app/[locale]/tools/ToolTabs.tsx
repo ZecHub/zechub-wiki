@@ -8,6 +8,7 @@ import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 import Faucet from "./Faucet";
 import BlockTime from "./BlockTime";
+import WalletBirthday from "./WalletBirthday";
 import CrosslinkTools from "./CrosslinkTools";
 import DepositCheck from "./DepositCheck";
 
@@ -21,6 +22,7 @@ type TabId =
   | "linkability"
   | "faucet"
   | "block-time"
+  | "wallet-birthday"
   | "deposit-check"
   | "crosslink";
 
@@ -89,6 +91,14 @@ const TABS: Tab[] = [
     badge: "CipherScan",
     title: "Block Time",
     subtitle: "Convert a Zcash block height or hash into your local timezone",
+  },
+  {
+    id: "wallet-birthday",
+    label: "Wallet Birthday",
+    shortLabel: "Birthday",
+    badge: "Restore",
+    title: "Wallet Birthday",
+    subtitle: "Find the block height to restore a wallet from, given the date you created it",
   },
   {
     id: "deposit-check",
@@ -201,6 +211,7 @@ export default function ToolTabs() {
           {active === "linkability" && <LinkabilityCheck />}
           {active === "faucet" && <Faucet />}
           {active === "block-time" && <BlockTime />}
+          {active === "wallet-birthday" && <WalletBirthday />}
           {active === "deposit-check" && <DepositCheck />}
           {active === "crosslink" && <CrosslinkTools />}
         </div>
