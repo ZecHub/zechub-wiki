@@ -5807,9 +5807,9 @@ export async function generateMetadata({
   // prefix in the canonical URL (matches localePrefix: "as-needed").
   const localePrefix = locale && locale !== "en" ? `/${locale}` : "";
   const path = `/${slug.join("/")}`;
-  const canonicalUrl = `https://zechub.wiki${localePrefix}${path}`;
   const availableLocales = await localesForPath(path);
   const alternates = buildAlternates(path, locale, availableLocales);
+  const canonicalUrl = alternates.canonical;
 
   if (slug.length === 0) {
     return genMetadata({

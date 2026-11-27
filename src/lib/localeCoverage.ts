@@ -42,12 +42,12 @@ export const toWikiUrl = (locale: string, path: string): string => {
  * locale coverage and server-built search index cannot drift on route shape.
  */
 
-// Normalize an arbitrary wiki path to the lowercase, single-leading-slash,
-// no-trailing-slash form that keyToWikiPath emits, so path comparisons match.
+// Match the lowercase, hyphenated paths used by the sitemap and manifests.
+// Older underscores in article links still resolve to those same pages.
 const normalizeWikiPath = (path: string): string => {
   if (path === "/") return "/";
   const p = "/" + path.replace(/^\/+/, "").replace(/\/+$/, "");
-  return p.toLowerCase();
+  return p.toLowerCase().replace(/_/g, "-");
 };
 
 /**
@@ -113,7 +113,7 @@ export function buildAlternates(
   path: string,
   currentLocale: string,
   availableLocales: string[],
-): Metadata["alternates"] {
+): NonNullable<Metadata["alternates"]> & { canonical: string } {
   const normalized = normalizeWikiPath(path);
 
   // Keep only locales the app actually ships, preserving input order.
