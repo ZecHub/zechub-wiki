@@ -1,7 +1,7 @@
 import Image from "next/image";
 import WalletLogo from "./WalletLogo";
 import { Link } from "@/i18n/navigation";
-import React, { useMemo, useState } from "react";
+import React, { useId, useMemo, useState } from "react";
 import {
   MdThumbDown as Dislike,
   MdThumbUp as Like,
@@ -108,6 +108,9 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
+  // Not derived from the title: "SSP Wallet" gave an id with a space, which
+  // aria-controls reads as two ids.
+  const featuresId = useId();
   const key = title.toLowerCase().replace(/[^a-z0-9]/g, "");
   const logoOverride = walletLogoOverrides[key];
   const note = walletNotes[key];
@@ -291,7 +294,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                   onClick={() => setFeaturesOpen((v) => !v)}
                   className="inline-flex cursor-pointer items-center gap-1 text-[13px] font-medium text-slate-500 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                   aria-expanded={featuresOpen}
-                  aria-controls={`${title}-features`}
+                  aria-controls={featuresId}
                 >
                   <span>{featuresOpen ? "Hide" : "Show all"}</span>
                   <Icon
@@ -301,7 +304,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                   />
                 </button>
               </div>
-              <div id={`${title}-features`} className="mt-1.5 flex flex-wrap gap-1.5">
+              <div id={featuresId} className="mt-1.5 flex flex-wrap gap-1.5">
                 {(featuresOpen ? allFeatures : collapsedFeatures).map((value, index) => {
                   const displayValue = typeof value === "string" ? value : (value as FeatureLink).name;
                   const linkUrl =
@@ -337,14 +340,26 @@ const WalletItem: React.FC<WalletItemProps> = ({
       {/* Rating pinned at bottom */}
       <div className="mt-auto flex items-center border-t border-slate-200 px-4 py-3 dark:border-white/10">
         <div className="flex-grow text-sm text-gray-400">Rating: {likes}</div>
-        <div className="pr-2 text-xs text-pink-700 dark:text-red-300">{error}</div>
-        <div className="pr-2 text-xs text-green-700 dark:text-green-300">{success}</div>
+        <div role="status" className="pr-2 text-xs text-pink-700 dark:text-red-300">{error}</div>
+        <div role="status" className="pr-2 text-xs text-green-700 dark:text-green-300">{success}</div>
         <div className="flex gap-4">
-          <button onClick={handleLike} className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
-            <Icon icon={Like} size="small" />
+          <button
+            type="button"
+            onClick={handleLike}
+            aria-label={`Like ${title}`}
+            aria-pressed={liked}
+            className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}
+          >
+            <Icon icon={Like} size="small" aria-hidden="true" />
           </button>
-          <button onClick={handleDislike} className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
-            <Icon icon={Dislike} size="small" />
+          <button
+            type="button"
+            onClick={handleDislike}
+            aria-label={`Dislike ${title}`}
+            aria-pressed={disliked}
+            className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}
+          >
+            <Icon icon={Dislike} size="small" aria-hidden="true" />
           </button>
         </div>
       </div>
