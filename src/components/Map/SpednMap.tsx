@@ -44,6 +44,7 @@ export default function SPEDNMap() {
   const [mapReady, setMapReady] = useState(false);
   // Don't contact CARTO (third-party map tiles) until the user opts in.
   const [mapEnabled, setMapEnabled] = useState(false);
+  const cartoKey = process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY?.trim();
 
   //   load data
   useEffect(() => {
@@ -88,47 +89,51 @@ export default function SPEDNMap() {
     [allStores],
   );
 
-  // init Leaflet (only after the user opts in to loading CARTO tiles)
+  // Initialize either base map only when the reader opens the map.
   useEffect(() => {
     if (!mapEnabled) return;
     if (!mapContainerRef.current || mapRef.current) return;
+    const controller = new AbortController();
 
     import("leaflet").then((L) => {
-      if (mapRef.current) return;
+      const container = mapContainerRef.current;
+      if (controller.signal.aborted || !container || mapRef.current) return;
 
-      const map = L.map(mapContainerRef.current!, {
+      const map = L.map(container, {
         center: [37.5, -96],
         zoom: 4,
+        maxZoom: cartoKey ? 19 : 9,
         zoomControl: true,
         attributionControl: true,
       });
 
-      // Tile Layer
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
-        {
-          maxZoom: 19,
-          subdomains: "abcd",
+      if (cartoKey) {
+        const tiles = "https://{s}.basemaps.cartocdn.com/rastertiles";
+        const query = `?key=${encodeURIComponent(cartoKey)}`;
+        const options = { maxZoom: 19, subdomains: "abcd" };
+        L.tileLayer(`${tiles}/voyager_nolabels/{z}/{x}/{y}{r}.png${query}`, {
+          ...options,
           opacity: 0.7,
-        },
-      ).addTo(map);
-
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png",
-        {
-          maxZoom: 19,
-          subdomains: "abcd",
+          attribution: '© <a href="https://carto.com">CARTO</a> · © <a href="https://openstreetmap.org">OSM</a>',
+        }).addTo(map);
+        L.tileLayer(`${tiles}/voyager_only_labels/{z}/{x}/{y}{r}.png${query}`, {
+          ...options,
           opacity: 0.6,
-        },
-      ).addTo(map);
-
-      L.control
-        .attribution({ position: "bottomright", prefix: false })
-        .addAttribution(
-          '© <a href="https://carto.com">CARTO</a> · © <a href="https://openstreetmap.org">OSM</a>',
-        )
-        .addTo(map);
-
+        }).addTo(map);
+      } else {
+        fetch("/map-data/merchant-land.geojson", { signal: controller.signal })
+          .then((response) => response.ok ? response.json() : null)
+          .then((land) => {
+            if (!controller.signal.aborted && land?.type === "FeatureCollection") {
+              L.geoJSON(land, {
+                interactive: false,
+                attribution: 'Made with <a href="https://www.naturalearthdata.com/">Natural Earth</a>',
+                style: { color: "#94a3b8", fillColor: "#cbd5e1", fillOpacity: 0.8, weight: 1 },
+              }).addTo(map);
+            }
+          })
+          .catch(() => {});
+      }
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
       layerRef.current = L.layerGroup().addTo(map);
@@ -137,13 +142,14 @@ export default function SPEDNMap() {
     });
 
     return () => {
+      controller.abort();
       if (mapRef.current) {
         mapRef.current?.remove();
         mapRef.current = null;
         layerRef.current = null;
       }
     };
-  }, [mapEnabled]);
+  }, [cartoKey, mapEnabled]);
 
   // Sync markers wiht filtered stores
   const handleSelectedStore = useCallback((id: string) => {
@@ -186,15 +192,15 @@ export default function SPEDNMap() {
 
   //   Jump to selected store
   useEffect(() => {
-    if (!mapRef.current || !selectedStore) {
+    if (!mapReady || !mapRef.current || !selectedStore) {
       return;
     }
 
-    mapRef.current.flyTo([selectedStore.lat, selectedStore.lng], 14, {
+    mapRef.current.flyTo([selectedStore.lat, selectedStore.lng], cartoKey ? 14 : 7, {
       duration: 0.9,
-      easrLinearity: 0.35,
+      easeLinearity: 0.35,
     });
-  }, [selectedStore]);
+  }, [cartoKey, mapReady, selectedStore]);
 
   // Scroll active list item into view
   useEffect(() => {
@@ -558,7 +564,9 @@ export default function SPEDNMap() {
                       color: "var(--spedn-text-secondary)",
                     }}
                   >
-                    Loads map tiles from a third party (CARTO). Click to load.
+                    {cartoKey
+                      ? "Loads map tiles from a third party (CARTO). Click to load."
+                      : "Shows a local map overview. Select a store to see its street address."}
                   </p>
                   <button
                     type="button"

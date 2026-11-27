@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import SPEDNMap from "../SpednMap";
 import fs from "fs";
 import path from "path";
@@ -13,23 +13,32 @@ jest.mock("next/head", () => {
   };
 });
 
+const mockFlyTo = jest.fn();
+const mockTileLayer = jest.fn();
+const mockGeoJson = jest.fn();
+const mockMap = { flyTo: mockFlyTo, remove: jest.fn() };
 jest.mock("leaflet", () => {
   const noop = () => {};
   return {
     __esModule: true,
-    default: {
-      map: noop,
-      tileLayer: () => ({ addTo: noop }),
-      divIcon: () => ({}),
-      marker: () => ({
-        bindTooltip: noop,
-        on: noop,
-      }),
-      layerGroup: () => ({ addTo: noop, clearLayers: noop }),
-      control: {
-        attribution: () => ({ addAttribution: noop, addTo: noop }),
-        zoom: () => ({ addTo: noop }),
-      },
+    map: () => mockMap,
+    tileLayer: (...args: unknown[]) => {
+      mockTileLayer(...args);
+      return { addTo: noop };
+    },
+    geoJSON: (...args: unknown[]) => {
+      mockGeoJson(...args);
+      return { addTo: noop };
+    },
+    divIcon: () => ({}),
+    marker: () => ({
+      bindTooltip: noop,
+      on: noop,
+    }),
+    layerGroup: () => ({ addTo: () => ({ clearLayers: noop, addLayer: noop }) }),
+    control: {
+      attribution: () => ({ addAttribution: () => ({ addTo: noop }) }),
+      zoom: () => ({ addTo: noop }),
     },
   };
 });
@@ -54,6 +63,54 @@ beforeEach(() => {
 
 afterEach(() => {
   jest.restoreAllMocks();
+  jest.clearAllMocks();
+});
+
+describe("SPEDNMap base map loading", () => {
+  const originalKey = process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY;
+  const fallback = { type: "FeatureCollection", features: [] };
+
+  afterEach(() => {
+    if (originalKey === undefined) delete process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY;
+    else process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY = originalKey;
+  });
+
+  it("uses local outlines and focuses a preselected store when there is no tile key", async () => {
+    delete process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY;
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      json: async () => ({
+        ExampleStore: {
+          Duarte: {
+            Castillo: [{ address: "Castillo, Dominican Republic", coordinates: { latitude: 19.64, longitude: -69.91 } }],
+          },
+        },
+      }),
+    }).mockResolvedValueOnce({ ok: true, json: async () => fallback });
+    render(<SPEDNMap />);
+    fireEvent.click(await screen.findByRole("listitem"));
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(mockTileLayer).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Load interactive map" }));
+
+    await waitFor(() => expect(mockGeoJson).toHaveBeenCalledWith(fallback, expect.any(Object)));
+    expect(mockTileLayer).not.toHaveBeenCalled();
+    expect(mockFlyTo).toHaveBeenCalledWith([19.64, -69.91], 7, expect.any(Object));
+  });
+
+  it("preserves click-to-load and uses the configured key for both CARTO layers", async () => {
+    process.env.NEXT_PUBLIC_CARTO_MAP_API_KEY = "example test key";
+    render(<SPEDNMap />);
+    await screen.findByRole("listitem");
+    expect(mockTileLayer).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Load interactive map" }));
+
+    await waitFor(() => expect(mockTileLayer).toHaveBeenCalledTimes(2));
+    for (const [url] of mockTileLayer.mock.calls) {
+      expect(url).toMatch(/\.png\?key=example%20test%20key$/);
+    }
+    expect(mockGeoJson).not.toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe("SPEDNMap mobile responsiveness", () => {
