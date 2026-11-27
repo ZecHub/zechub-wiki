@@ -1,6 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
+// Published by the ZecHub/Namada repo (namada.zechub.wiki). The copies that used
+// to live in this repo under public/data/namada were deleted.
+const NAMADA_DATA_URL = 'https://raw.githubusercontent.com/ZecHub/Namada/main/public/data';
+
 const GovernanceDashboard = () => {
   const [activeTab, setActiveTab] = useState<'parameters' | 'proposals'>('parameters');
   const [paramsData, setParamsData] = useState<any>(null);
@@ -12,9 +16,7 @@ const GovernanceDashboard = () => {
     // Fetch Parameters Data
     const fetchParams = async () => {
       try {
-        const response = await fetch(
-          'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/namada/protocol_parameters.json'
-        );
+        const response = await fetch(`${NAMADA_DATA_URL}/protocol_parameters.json`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const jsonData = await response.json();
         setParamsData(jsonData[0]);
@@ -28,9 +30,7 @@ const GovernanceDashboard = () => {
     // Fetch Proposals Data
     const fetchProps = async () => {
       try {
-        const response = await fetch(
-          'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/namada/props.json'
-        );
+        const response = await fetch(`${NAMADA_DATA_URL}/props.json`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const jsonData = await response.json();
         setPropsData(jsonData[0]);
@@ -126,6 +126,11 @@ const ParametersTab = ({ data, loading, error }: any) => {
 
   if (!data) return null;
 
+  const governance = data.Governance_Parameters?.[0];
+  const publicGoodsFunding = data.Public_Goods_Funding_Parameters?.[0];
+  const protocol = data.Protocol_Parameters?.[0];
+  const proofOfStake = data.Proof_Of_Stake_Parameters?.[0];
+
   return (
     <div>
       <div>
@@ -140,7 +145,7 @@ const ParametersTab = ({ data, loading, error }: any) => {
               Governance Parameters
             </h2>
             <div className="space-y-3">
-              {Object.entries(data.Governance_Parameters[0]).map(([key, value]) => (
+              {Object.entries(governance ?? {}).map(([key, value]) => (
                 <div key={key} className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-300">{key.replace(/_/g, ' ')}</span>
                   <span className="font-medium text-gray-800 dark:text-gray-100">
@@ -157,11 +162,11 @@ const ParametersTab = ({ data, loading, error }: any) => {
               Public Goods Funding
             </h2>
             <div className="space-y-3">
-              {Object.entries(data.Public_Goods_Funding_Parameters[0]).map(([key, value]) => (
+              {Object.entries(publicGoodsFunding ?? {}).map(([key, value]) => (
                 <div key={key} className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-300">{key.replace(/_/g, ' ')}</span>
                   <span className="font-medium text-gray-800 dark:text-gray-100">
-                    {typeof value === 'number' ? `${value * 100}%` : String(value)}
+                    {typeof value === 'number' && key.includes('rate') ? `${value * 100}%` : String(value)}
                   </span>
                 </div>
               ))}
@@ -174,7 +179,7 @@ const ParametersTab = ({ data, loading, error }: any) => {
               Protocol Parameters
             </h2>
             <div className="space-y-3">
-              {Object.entries(data.Protocol_Parameters[0])
+              {Object.entries(protocol ?? {})
                 .filter(([key]) => !['VP_allowlist', 'Transactions_allowlist', 'Protocol_Parameters'].includes(key))
                 .map(([key, value]) => (
                   <div key={key} className="flex justify-between">
@@ -193,7 +198,7 @@ const ParametersTab = ({ data, loading, error }: any) => {
               Proof of Stake
             </h2>
             <div className="space-y-3">
-              {Object.entries(data.Proof_Of_Stake_Parmeters[0]).map(([key, value]) => (
+              {Object.entries(proofOfStake ?? {}).map(([key, value]) => (
                 <div key={key} className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-300">{key.replace(/_/g, ' ')}</span>
                   <span className="font-medium text-gray-800 dark:text-gray-100">
@@ -215,7 +220,7 @@ const ParametersTab = ({ data, loading, error }: any) => {
             <div>
               <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">VP Allowlist</h3>
               <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-md max-h-60 overflow-y-auto">
-                {data.Protocol_Parameters[0].VP_allowlist.map((hash: string, i: number) => (
+                {(protocol?.VP_allowlist ?? []).map((hash: string, i: number) => (
                   <div key={i} className="text-sm font-mono text-gray-600 dark:text-gray-300 mb-1 break-all">
                     {hash}
                   </div>
@@ -226,7 +231,7 @@ const ParametersTab = ({ data, loading, error }: any) => {
             <div>
               <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Transactions Allowlist</h3>
               <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-md max-h-60 overflow-y-auto">
-                {data.Protocol_Parameters[0].Transactions_allowlist.map((hash: string, i: number) => (
+                {(protocol?.Transactions_allowlist ?? []).map((hash: string, i: number) => (
                   <div key={i} className="text-sm font-mono text-gray-600 dark:text-gray-300 mb-1 break-all">
                     {hash}
                   </div>
