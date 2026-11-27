@@ -143,14 +143,14 @@
       "views": 622
     },
     {
+      "title": "Por que a Zcash é melhor que a Monero para privacidade.",
+      "video_id": "XW53tyjerd4",
+      "views": 612
+    },
+    {
       "title": "Soberania Econômica e Blockchain.",
       "video_id": "3aWWRJXtZKI",
       "views": 611
-    },
-    {
-      "title": "Por que a Zcash é melhor que a Monero para privacidade.",
-      "video_id": "XW53tyjerd4",
-      "views": 609
     },
     {
       "title": "Bitcoin deveria adotar um nível de proteção semelhante ao da Zcash.",
@@ -185,7 +185,7 @@
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 495
+      "views": 503
     },
     {
       "title": "O Impacto dos #Assistentes #Virtuais",
@@ -250,7 +250,7 @@
     {
       "title": "Como Usar a Vizor Wallet Para Zcash",
       "video_id": "SqPIYvzsg5M",
-      "views": 399
+      "views": 401
     },
     {
       "title": "A Ilusão da Capacidade iIimitada",
@@ -373,13 +373,13 @@
       "views": 289
     },
     {
-      "title": "Privacidade Centralizada é Contradição",
-      "video_id": "T4XK2Ez0Ol0",
-      "views": 284
-    },
-    {
       "title": "Como atacar uma hardware wallet comercial",
       "video_id": "h2KE2xeeXsQ",
+      "views": 289
+    },
+    {
+      "title": "Privacidade Centralizada é Contradição",
+      "video_id": "T4XK2Ez0Ol0",
       "views": 284
     },
     {
@@ -700,7 +700,7 @@
     {
       "title": "A IA é o Apocalipse?",
       "video_id": "H9UofLSfRrU",
-      "views": 166
+      "views": 167
     },
     {
       "title": "Workshop Zodl em Português | ZK AV Club x Zcash Brasil",
@@ -1088,6 +1088,11 @@
       "views": 114
     },
     {
+      "title": "Facilidade de Uso do Navegador Tor",
+      "video_id": "M4BU4Kcszv4",
+      "views": 113
+    },
+    {
       "title": "Propriedade intelectual descentralizada na Web3",
       "video_id": "vq0eMki-UmU",
       "views": 113
@@ -1096,11 +1101,6 @@
       "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
       "video_id": "NkpD4kCPwdI",
       "views": 113
-    },
-    {
-      "title": "Facilidade de Uso do Navegador Tor",
-      "video_id": "M4BU4Kcszv4",
-      "views": 112
     },
     {
       "title": "Alternativas Tecnológicas.",
@@ -1188,6 +1188,11 @@
       "views": 107
     },
     {
+      "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
+      "video_id": "jrWNz29nHKk",
+      "views": 107
+    },
+    {
       "title": "Desobediência Digital.",
       "video_id": "exgM1AtOX6w",
       "views": 106
@@ -1195,11 +1200,6 @@
     {
       "title": "Rastreabilidade das criptomoedas e segurança contra crimes",
       "video_id": "RZk9GtLDzA8",
-      "views": 106
-    },
-    {
-      "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
-      "video_id": "jrWNz29nHKk",
       "views": 106
     },
     {
@@ -1718,6 +1718,11 @@
       "views": 72
     },
     {
+      "title": "ZEC Shielded com Cake Wallet em Poucos Passos",
+      "video_id": "xtBPgzaKzYc",
+      "views": 72
+    },
+    {
       "title": "Zcash Contra a Computação Quântica",
       "video_id": "e6PhXhPXSxY",
       "views": 71
@@ -1790,11 +1795,6 @@
     {
       "title": "Chamath: sem privacidade não existe independência econômica.",
       "video_id": "Lg4jH28cx0c",
-      "views": 69
-    },
-    {
-      "title": "ZEC Shielded com Cake Wallet em Poucos Passos",
-      "video_id": "xtBPgzaKzYc",
       "views": 69
     },
     {
@@ -1973,8 +1973,18 @@
       "views": 57
     },
     {
+      "title": "A Expansão Monetária",
+      "video_id": "rkyNpzbUqGo",
+      "views": 57
+    },
+    {
       "title": "Como Criar sua Foto de Perfil da Zcash com o Gerador de PFP | Zcash Brasil",
       "video_id": "R7WJPUt2zaY",
+      "views": 57
+    },
+    {
+      "title": "RWA: A Nova Infraestrutura Global do Capital | Marcos Crivelaro | Zcon Vozes 2",
+      "video_id": "6d1sk0stmc0",
       "views": 57
     },
     {
@@ -2008,11 +2018,6 @@
       "views": 56
     },
     {
-      "title": "A Expansão Monetária",
-      "video_id": "rkyNpzbUqGo",
-      "views": 56
-    },
-    {
       "title": "Vigilância vs Liberdade: O Imperativo da Privacidade",
       "video_id": "PoZNYIgfGR8",
       "views": 56
@@ -2023,14 +2028,14 @@
       "views": 56
     },
     {
-      "title": "RWA: A Nova Infraestrutura Global do Capital | Marcos Crivelaro | Zcon Vozes 2",
-      "video_id": "6d1sk0stmc0",
-      "views": 56
-    },
-    {
       "title": "Data centers na órbita e a Zcash | Michael",
       "video_id": "4WEE5HOeyW8",
       "views": 56
+    },
+    {
+      "title": "O comodismo gerado pela IA.  #ai #podcast #privacidade",
+      "video_id": "FcQcO3JVJUc",
+      "views": 55
     },
     {
       "title": "Valocracia e o futuro das DAOs com CastaCrypto",
@@ -2050,11 +2055,6 @@
     {
       "title": "O rastreamento de dados oculto no seu dia a dia",
       "video_id": "YYodQdvqHqc",
-      "views": 54
-    },
-    {
-      "title": "O comodismo gerado pela IA.  #ai #podcast #privacidade",
-      "video_id": "FcQcO3JVJUc",
       "views": 54
     },
     {
@@ -2090,6 +2090,11 @@
     {
       "title": "Pagamentos Divididos com Zcash, Privacidade Total.",
       "video_id": "Qblvjc02wAE",
+      "views": 53
+    },
+    {
+      "title": "Zcash Protocol Study #10: What Zcash Changed from Bitcoin",
+      "video_id": "U7DUBYfh2Ws",
       "views": 53
     },
     {
@@ -2188,6 +2193,11 @@
       "views": 50
     },
     {
+      "title": "Zooko Wilcox - A história da privacidade na Internet",
+      "video_id": "1_RgywGeWMY",
+      "views": 49
+    },
+    {
       "title": "Mini Workshop 5 - Zcash Nodes e Zebra Launcher",
       "video_id": "lJ6aX0qs-As",
       "views": 49
@@ -2228,18 +2238,8 @@
       "views": 49
     },
     {
-      "title": "Zcash Protocol Study #10: What Zcash Changed from Bitcoin",
-      "video_id": "U7DUBYfh2Ws",
-      "views": 49
-    },
-    {
       "title": "RadioTimes - Zooko da #zcash",
       "video_id": "lpd6KFuxA0w",
-      "views": 48
-    },
-    {
-      "title": "Zooko Wilcox - A história da privacidade na Internet",
-      "video_id": "1_RgywGeWMY",
       "views": 48
     },
     {
@@ -2308,6 +2308,11 @@
       "views": 46
     },
     {
+      "title": "Segurança para chaves privadas e novas soluções.",
+      "video_id": "hoSTXRO-4Ng",
+      "views": 46
+    },
+    {
       "title": "Provas de Conhecimento Zero Recursivas um divisor de aguas.",
       "video_id": "d35v9ddPgYw",
       "views": 46
@@ -2320,11 +2325,6 @@
     {
       "title": "Zoe - Conheça os tipos de endereços utilizados no protocolo #Zcash",
       "video_id": "6DPwkRh_ajE",
-      "views": 45
-    },
-    {
-      "title": "Segurança para chaves privadas e novas soluções.",
-      "video_id": "hoSTXRO-4Ng",
       "views": 45
     },
     {
@@ -2355,6 +2355,11 @@
     {
       "title": "O maior hacker da humanidade  vicio em informacoes rasas",
       "video_id": "0UQMJJwu9mg",
+      "views": 44
+    },
+    {
+      "title": "A jornada da Zcash: de moeda de privacidade desafiadora a solução escalável e acessível.",
+      "video_id": "ySuuPxOmBcQ",
       "views": 44
     },
     {
@@ -2418,11 +2423,6 @@
       "views": 43
     },
     {
-      "title": "A jornada da Zcash: de moeda de privacidade desafiadora a solução escalável e acessível.",
-      "video_id": "ySuuPxOmBcQ",
-      "views": 43
-    },
-    {
       "title": "Gasto Duplo: Como a Rede Detecta em Tempo Real",
       "video_id": "q1qnm_I2GaE",
       "views": 43
@@ -2460,6 +2460,11 @@
     {
       "title": "Vitalik pediu uma IA offline no Android. Alguém fez.",
       "video_id": "yefgJ3m3GjY",
+      "views": 43
+    },
+    {
+      "title": "Como votar na NU7.1 da Zcash com a ZODL",
+      "video_id": "vYgm0bdwGPA",
       "views": 43
     },
     {
@@ -2525,11 +2530,6 @@
     {
       "title": "A Verdadeira Força da Zcash Está nas Pessoas",
       "video_id": "FN03Tn7U7L8",
-      "views": 42
-    },
-    {
-      "title": "Como votar na NU7.1 da Zcash com a ZODL",
-      "video_id": "vYgm0bdwGPA",
       "views": 42
     },
     {
@@ -2673,6 +2673,11 @@
       "views": 39
     },
     {
+      "title": "Votação da NU7.1, mineradores e ETF da Bitwise | Zec Insider",
+      "video_id": "Y5GNjcxX7no",
+      "views": 39
+    },
+    {
       "title": "Zcash Ceremony - Legendado Português",
       "video_id": "LwyQogHZbSI",
       "views": 38
@@ -2778,6 +2783,11 @@
       "views": 37
     },
     {
+      "title": "Daira-Emma Hopwood podia ganhar o dobro em outra empresa. Ficou na Zcash.",
+      "video_id": "xY7lOG-4KC8",
+      "views": 37
+    },
+    {
       "title": "Zcon4 - Zcash Brazil #zcash",
       "video_id": "EA9pvC_5Qf0",
       "views": 36
@@ -2873,6 +2883,11 @@
       "views": 35
     },
     {
+      "title": "Ninguém precisa ficar sabendo o que você faz com o seu dinheiro",
+      "video_id": "dwX31w_4A1w",
+      "views": 35
+    },
+    {
       "title": "Dizzy Bot - Transações Zcash Blindadas no Discord",
       "video_id": "B5sbO2vVgqs",
       "views": 34
@@ -2930,11 +2945,6 @@
     {
       "title": "NU7, Tachyon e PIR na Vizor | Zec Insider",
       "video_id": "tY--OxflKsM",
-      "views": 34
-    },
-    {
-      "title": "Ninguém precisa ficar sabendo o que você faz com o seu dinheiro",
-      "video_id": "dwX31w_4A1w",
       "views": 34
     },
     {
@@ -2998,11 +3008,6 @@
       "views": 33
     },
     {
-      "title": "Daira-Emma Hopwood podia ganhar o dobro em outra empresa. Ficou na Zcash.",
-      "video_id": "xY7lOG-4KC8",
-      "views": 33
-    },
-    {
       "title": "Zcash Brasil - Weekly Call - 2 Edição",
       "video_id": "T7G4DoPWB_U",
       "views": 32
@@ -3058,8 +3063,8 @@
       "views": 32
     },
     {
-      "title": "Votação da NU7.1, mineradores e ETF da Bitwise | Zec Insider",
-      "video_id": "Y5GNjcxX7no",
+      "title": "Balaji Srinivasan: o \"problema\" da Zcash era ser PhD demais",
+      "video_id": "75UioLxRPXU",
       "views": 32
     },
     {
@@ -3193,6 +3198,11 @@
       "views": 29
     },
     {
+      "title": "Fedimint Explicado: Privacidade Comunitária para Bitcoin",
+      "video_id": "piit1bFeVGc",
+      "views": 29
+    },
+    {
       "title": "Frank Braun: Privacidade Vem do Valor em Repouso, Não em Movimento.",
       "video_id": "E8p3hCvoheE",
       "views": 29
@@ -3248,14 +3258,14 @@
       "views": 28
     },
     {
-      "title": "Fedimint Explicado: Privacidade Comunitária para Bitcoin",
-      "video_id": "piit1bFeVGc",
-      "views": 28
-    },
-    {
       "title": "O vazamento de privacidade que você não sabia que tinha",
       "video_id": "jADaC3QIrRs",
       "views": 28
+    },
+    {
+      "title": "Jill Carlson - Perspectivas da Desintermediação LEGENDADO",
+      "video_id": "6-OMqpeWgxg",
+      "views": 27
     },
     {
       "title": "Sean Bowe - Privacidade e Regulamentação  LEGENDADO",
@@ -3330,11 +3340,6 @@
     {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
-      "views": 26
-    },
-    {
-      "title": "Jill Carlson - Perspectivas da Desintermediação LEGENDADO",
-      "video_id": "6-OMqpeWgxg",
       "views": 26
     },
     {
@@ -3743,6 +3748,16 @@
       "views": 20
     },
     {
+      "title": "Zcash Protocol Study #11: Network Upgrades, Sprout to NU7",
+      "video_id": "dH7vbAxGgX4",
+      "views": 20
+    },
+    {
+      "title": "Como aceitar Zcash na sua loja com a CipherPay",
+      "video_id": "_KdSIi5L0ho",
+      "views": 20
+    },
+    {
       "title": "Sebastian Wain - Visão Geral Segurança na Web3",
       "video_id": "IkRLf2xATbw",
       "views": 19
@@ -3765,6 +3780,11 @@
     {
       "title": "Zcash e Solana Colaboram no Brasil e Atualizações no Zebra | Zec Insider",
       "video_id": "UfzFK-axPTo",
+      "views": 19
+    },
+    {
+      "title": "Tushar Jain: Zcash é o retorno aos valores cypherpunk",
+      "video_id": "XFiTBlV4cFU",
       "views": 19
     },
     {
@@ -3810,11 +3830,6 @@
     {
       "title": "O que são ZIPs e por que eles importam para a Zcash",
       "video_id": "lvOcj0M6PPw",
-      "views": 18
-    },
-    {
-      "title": "Tushar Jain: Zcash é o retorno aos valores cypherpunk",
-      "video_id": "XFiTBlV4cFU",
       "views": 18
     },
     {
@@ -4058,8 +4073,8 @@
       "views": 13
     },
     {
-      "title": "Zcash Protocol Study #11: Network Upgrades, Sprout to NU7",
-      "video_id": "dH7vbAxGgX4",
+      "title": "Zcash direto na sua carteira #zcash #cipherpay #zcashbrasil",
+      "video_id": "5C83Xw_5Q9k",
       "views": 13
     },
     {
@@ -4120,6 +4135,11 @@
     {
       "title": "NSA, Bitcoin sujo e a revolução cripto‐anarquista.",
       "video_id": "Eda3LX7g4Vk",
+      "views": 12
+    },
+    {
+      "title": "Victor Lacôrte: se o dinheiro não está disponível para mim, está para quem?",
+      "video_id": "1ycRQ6x-9W0",
       "views": 12
     },
     {
@@ -4258,11 +4278,6 @@
       "views": 8
     },
     {
-      "title": "Victor Lacôrte: se o dinheiro não está disponível para mim, está para quem?",
-      "video_id": "1ycRQ6x-9W0",
-      "views": 8
-    },
-    {
       "title": "WEEKLYCALL #18 - Eleição para o Comitê + ZCAP",
       "video_id": "CixY2m3Gaow",
       "views": 7
@@ -4326,6 +4341,11 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
+    },
+    {
+      "title": "A conta fecha?",
+      "video_id": "5yjj-5vt08g",
+      "views": 0
     }
   ]
 }
