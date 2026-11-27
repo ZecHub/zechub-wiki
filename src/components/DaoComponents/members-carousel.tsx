@@ -9,6 +9,19 @@ const CARD_WIDTH = 300;
 const SPACING = 280; // enough so sides sit beside the center without overlapping
 const MAX_VISIBLE = 1; // only show immediate neighbors
 
+/**
+ * True while the visitor is typing or working inside a dialog (a member's
+ * Read More, search, the mobile menu). Arrow keys there belong to that
+ * control; moving the carousel would also unmount the card that owns an
+ * open member dialog and close it.
+ */
+function isBusy(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false;
+  if (target.isContentEditable) return true;
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return true;
+  return Boolean(target.closest('[role="dialog"]'));
+}
+
 export default function MembersCarousel() {
   const [index, setIndex] = useState(0);
   const reduced = useReducedMotion();
@@ -26,8 +39,8 @@ export default function MembersCarousel() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      const tag = (e.target as HTMLElement)?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA") return;
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (isBusy(e.target)) return;
       if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     };

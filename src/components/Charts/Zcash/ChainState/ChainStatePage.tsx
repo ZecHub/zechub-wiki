@@ -248,6 +248,25 @@ export default function ChainStatePage() {
   useEffect(() => {
     if (chartId === "shielded_cb" || chartId === "nsm") setLogScale(false);
   }, [chartId]);
+  // NSM only covers the windows since NU7. A zoom chosen on another chart can
+  // lie before NU7, which would leave the NSM chart empty and its range
+  // handles off the track, so keep the zoom inside the NSM range.
+  useEffect(() => {
+    if (chartId !== "nsm" || !data?.per_day?.length) return;
+    const nsmDays = data.per_day.filter((d) => d.end >= NU7_HEIGHT);
+    if (!nsmDays.length) return;
+    const first = nsmDays[0].start;
+    const last = nsmDays[nsmDays.length - 1].end;
+    const start = Math.max(zoomStart, first);
+    const end = Math.min(zoomEnd, last);
+    if (start >= end) {
+      setZoomStart(first);
+      setZoomEnd(last);
+    } else if (start !== zoomStart || end !== zoomEnd) {
+      setZoomStart(start);
+      setZoomEnd(end);
+    }
+  }, [chartId, data, zoomStart, zoomEnd]);
   if (!data) return <div className="p-4 text-slate-300">Loading chain stats…</div>;
   const days = chartId === "nsm"
     ? (data.per_day || []).filter((d) => d.end >= NU7_HEIGHT)
@@ -276,9 +295,11 @@ export default function ChainStatePage() {
     cumul.set(d.start, { sap: sapC, orch: orchC, iron: ironC, sprout: sproutC });
   }
   const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
+  // The reserve is cumulative from NU7, so sum every NSM window, not only the
+  // zoomed ones: a zoom must not drop the NU7 seed and earlier fees.
   let nsmCumul = 0;
   const nsmCumulMap = new Map<number, number>();
-  for (const d of filtered) {
+  for (const d of data.per_day || []) {
     if (d.end >= NU7_HEIGHT) {
       nsmCumul += n(d.shielded?.nsm_value_balance) / 1e8;
     }
