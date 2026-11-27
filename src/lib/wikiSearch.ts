@@ -4,10 +4,12 @@ export function escapeRegExp(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+export function foldSearchAccents(text: string): string {
+  return text.normalize("NFKD").replace(/\p{M}+/gu, "");
+}
+
 export function normalizeQuery(q: string): string {
-  return q
-    .normalize("NFKD")
-    .replace(/\p{M}+/gu, "")
+  return foldSearchAccents(q)
     .replace(/[^\p{L}\p{N}]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim()
