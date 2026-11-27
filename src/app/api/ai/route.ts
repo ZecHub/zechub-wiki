@@ -4,8 +4,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { CHAT_MODEL, getOpenAIClient, hasOpenAIApiKey } from "@/lib/ai/openai";
 import { searchDocs } from "@/lib/ai/vectorSearch";
-import { checkRateLimit } from "@/lib/ai/rateLimit";
+import { rateLimit, tryConsumeDailyBudget } from "@/lib/rateLimit";
+import { readBoundedJsonBody } from "@/lib/apiRequestGuards";
 import type { ChatMessage, RetrievedDocChunk } from "@/lib/ai/types";
+
+// Per-caller request limit (first line of defence; durable across instances).
+const RATE_LIMIT_PER_MIN = 20;
+// Hard global cap on paid model calls per UTC day. Bounds worst-case OpenAI spend
+// even when a caller spoofs X-Forwarded-For to dodge the per-caller limit above.
+const AI_DAILY_MODEL_CALL_BUDGET = Number(process.env.AI_DAILY_MODEL_CALL_BUDGET) || 2000;
 
 // Block Zcash private keys, seed phrases, and addresses from reaching OpenAI.
 const SENSITIVE_PATTERNS: { pattern: RegExp; label: string }[] = [
@@ -52,6 +59,10 @@ After your answer, output exactly this block (replace the placeholder with the a
 const SYSTEM_PROMPT_FALLBACK = `You are the ZecHub AI assistant — a knowledgeable assistant about Zcash, ZecHub, and the broader Zcash ecosystem.
 The documentation search did not return results for this question, so answer from your general knowledge about Zcash and ZecHub.
 Be accurate and helpful. Remind the user at the end of your answer that for the most up-to-date details they can visit zechub.wiki.`;
+
+const AI_BUDGET_EXCEEDED_ANSWER =
+  "The ZecHub AI assistant has reached its usage limit for today and is temporarily unavailable.\n\n" +
+  "Please try again later, or browse the full documentation at [zechub.wiki](https://zechub.wiki).";
 
 const OUT_OF_SCOPE_ANSWER =
   "I'm ZecHub AI, specialized in answering questions about the **ZecHub wiki** and the **Zcash ecosystem** — topics like shielded transactions, ZEC, wallets, privacy features, the ZecHub DAO, and community resources.\n\n" +
@@ -130,7 +141,11 @@ function buildSourceLinks(chunks: RetrievedDocChunk[]): string {
 
 export async function POST(req: NextRequest) {
   const ip = getCallerIp(req);
-  const { allowed, retryAfterMs } = checkRateLimit(ip);
+  const { allowed, retryAfterMs } = await rateLimit({
+    key: `ai:${ip}`,
+    limit: RATE_LIMIT_PER_MIN,
+    windowSeconds: 60,
+  });
   if (!allowed) {
     return NextResponse.json(
       { error: "Too many requests. Please slow down." },
@@ -138,12 +153,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let body: unknown;
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+  const bodyResult = await readBoundedJsonBody(req);
+  if (!bodyResult.ok) {
+    return NextResponse.json({ error: bodyResult.error }, { status: bodyResult.status });
   }
+  const body: unknown = bodyResult.body;
 
   const parsed = RequestSchema.safeParse(body);
   if (!parsed.success) {
@@ -215,6 +229,14 @@ export async function POST(req: NextRequest) {
           })),
           { role: "user", content: message },
         ];
+
+        // Hard global daily cap on paid model calls. When exhausted, degrade
+        // gracefully rather than spending beyond budget — this is the backstop
+        // that bounds worst-case cost even if per-caller limiting is bypassed.
+        if (!(await tryConsumeDailyBudget("ai-model-calls", AI_DAILY_MODEL_CALL_BUDGET))) {
+          console.warn("[/api/ai] daily model-call budget exhausted — skipping OpenAI call");
+          return AI_BUDGET_EXCEEDED_ANSWER;
+        }
 
         const llmStart = Date.now();
         const openai = getOpenAIClient();
