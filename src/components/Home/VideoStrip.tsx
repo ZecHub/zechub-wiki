@@ -26,6 +26,9 @@ const SHOWN = 8;
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
 
+const horizontalDirection = (track: HTMLElement) =>
+  window.getComputedStyle(track).direction === "rtl" ? -1 : 1;
+
 const fmtDate = (iso: string | undefined, locale: string) =>
   iso
     ? new Date(iso).toLocaleDateString(locale, {
@@ -107,7 +110,7 @@ function VideoCard({
 // "Watch": a swipeable row of tutorials (the PINNED list, or the newest uploads
 // if it is empty). Hidden when there is nothing to show.
 export default function VideoStrip() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const copy = t?.homeLanding?.videos;
   const [videos, setVideos] = useState<Video[]>(PINNED);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -133,18 +136,21 @@ export default function VideoStrip() {
   const update = () => {
     const el = trackRef.current;
     if (!el) return;
-    setCanPrev(el.scrollLeft > 4);
-    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+    const distanceFromStart = Math.max(0, horizontalDirection(el) * el.scrollLeft);
+    setCanPrev(distanceFromStart > 4);
+    setCanNext(distanceFromStart + el.clientWidth < el.scrollWidth - 4);
   };
   useEffect(() => {
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
-  }, [videos.length]);
+  }, [videos.length, locale]);
 
-  const scrollBy = (dir: 1 | -1) => {
+  const scrollBy = (step: 1 | -1) => {
     const el = trackRef.current;
-    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.9, behavior: "smooth" });
+    if (el) {
+      el.scrollBy({ left: step * horizontalDirection(el) * el.clientWidth * 0.9, behavior: "smooth" });
+    }
   };
 
   if (videos.length === 0) return null;
@@ -180,7 +186,7 @@ export default function VideoStrip() {
             aria-label={copy?.previous ?? "Previous videos"}
             className={arrow}
           >
-            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            <ChevronLeft className="h-5 w-5 rtl:rotate-180" aria-hidden="true" />
           </button>
           <button
             type="button"
@@ -189,7 +195,7 @@ export default function VideoStrip() {
             aria-label={copy?.next ?? "Next videos"}
             className={arrow}
           >
-            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            <ChevronRight className="h-5 w-5 rtl:rotate-180" aria-hidden="true" />
           </button>
         </div>
       </div>

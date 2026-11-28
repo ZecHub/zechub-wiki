@@ -57,6 +57,41 @@ test("video controls localize labels and keep original video titles", () => {
   expect(screen.getByTitle("What is Zcash?")).toHaveAttribute("src", expect.stringContaining("J1Nr1VL5dGU"));
 });
 
+test.each([
+  ["ltr", 1],
+  ["rtl", -1],
+] as const)("scrolls the home video row in %s reading order", (direction, sign) => {
+  const { container } = render(<VideoStrip />);
+  const track = container.querySelector<HTMLDivElement>(".snap-x")!;
+  const scrollBy = jest.fn();
+  track.style.direction = direction;
+  Object.defineProperties(track, {
+    scrollBy: { value: scrollBy },
+    scrollWidth: { value: 800 },
+    clientWidth: { value: 300 },
+  });
+  fireEvent.scroll(track);
+
+  const previous = screen.getByRole("button", { name: "Previous videos" });
+  const next = screen.getByRole("button", { name: "Next videos" });
+  expect(previous).toBeDisabled();
+  expect(next).toBeEnabled();
+  fireEvent.click(next);
+  expect(scrollBy).toHaveBeenLastCalledWith({ left: sign * 270, behavior: "smooth" });
+
+  track.scrollLeft = sign * 300;
+  fireEvent.scroll(track);
+  expect(previous).toBeEnabled();
+  expect(next).toBeEnabled();
+  fireEvent.click(previous);
+  expect(scrollBy).toHaveBeenLastCalledWith({ left: -sign * 270, behavior: "smooth" });
+
+  track.scrollLeft = sign * 500;
+  fireEvent.scroll(track);
+  expect(previous).toBeEnabled();
+  expect(next).toBeDisabled();
+});
+
 test("stats use locale-aware numbers and translated percentage captions/aria labels", async () => {
   language = { locale: "de", t: { homeLanding: {
     ...en.homeLanding,
