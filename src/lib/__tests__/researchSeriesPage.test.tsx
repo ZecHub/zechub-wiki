@@ -1,5 +1,5 @@
 import Page from "@/app/[locale]/[...slug]/page";
-import { getAllMarkdownRecursively, getFileContentCached, getRootCached } from "@/lib/authAndFetch";
+import { getAllMarkdownRecursively, getFileContentCached, getMenuTitlesCached, getRootCached } from "@/lib/authAndFetch";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import React from "react";
 import { extractFirstContentImage, transformGithubFilePathToWikiLink } from "@/lib/helpers";
@@ -99,8 +99,23 @@ it("renders the research index without fetching unused series trees", async () =
   expect(listing).not.toHaveBeenCalled();
 });
 
-it("propagates research-index root listing failures", async () => {
-  const error = new Error("GitHub unavailable");
-  rootListing.mockRejectedValue(error);
-  await expect(Page({ params: Promise.resolve({ locale: "en", slug: ["research"] }) })).rejects.toBe(error);
+// A rate-limited root listing must not 500 the research index: it degrades to
+// the article files the English manifest knows about (series cards come from
+// RESEARCH_SERIES and render regardless).
+it("degrades the research index to manifest articles when the root listing fails", async () => {
+  const manifest = {
+    "Research/Intro.md": "Intro",
+    "Research/zcash-foundations-series/article-0/intro.md": "Series intro",
+    "Zcash_Tech/NU5.md": "NU5",
+  };
+  jest.mocked(getMenuTitlesCached).mockResolvedValueOnce(manifest).mockResolvedValueOnce(manifest);
+  rootListing.mockRejectedValue(new Error("API rate limit exceeded"));
+  const page = await Page({ params: Promise.resolve({ locale: "en", slug: ["research"] }) });
+  expect(findGrid(page)?.props.roots).toEqual(["site/Research/Intro.md"]);
+});
+
+it("still renders the research index when both the listing and the manifest are down", async () => {
+  rootListing.mockRejectedValue(new Error("API rate limit exceeded"));
+  const page = await Page({ params: Promise.resolve({ locale: "en", slug: ["research"] }) });
+  expect(findGrid(page)?.props.roots).toEqual([]);
 });

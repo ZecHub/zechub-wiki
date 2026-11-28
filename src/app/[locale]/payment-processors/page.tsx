@@ -41,9 +41,9 @@ export default async function Page(props: {
   const urlRoot = `/site/using-zcash`;
 
   const [markdown, roots, dict] = await Promise.all([
-    getLocalizedFileContentCached(url, locale),
-    getRootCached(urlRoot),
-    getDictionary(locale),
+    getLocalizedFileContentCached(url, locale).catch(() => null),
+    getRootCached(urlRoot).catch(() => []),
+    getDictionary(locale).catch(() => ({})),
   ] as const);
   const typedDict = dict as { pages?: { paymentProcessors?: { noData?: string } } };
   const content = markdown ?? (typedDict?.pages?.paymentProcessors?.noData ?? "No Data or Wrong file");

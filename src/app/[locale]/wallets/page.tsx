@@ -49,8 +49,8 @@ export default async function Page(props: {
   const urlRoot = `/site/using-zcash`;
 
   const [markdown, roots] = await Promise.all([
-    getLocalizedFileContentCached(url, locale || "en"),
-    getRootCached(urlRoot),
+    getLocalizedFileContentCached(url, locale || "en").catch(() => null),
+    getRootCached(urlRoot).catch(() => []),
   ]);
 
   const dict = (await getDictionary(locale).catch(() => ({}))) as WalletsDictionary;

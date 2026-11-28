@@ -1,4 +1,4 @@
-import { isKnownContentPath } from "../contentPaths";
+import { isKnownContentPath, isServableContentPath } from "../contentPaths";
 
 // A slice of the real manifest: flat section files plus the nested folders.
 const keys = [
@@ -12,9 +12,12 @@ const keys = [
 ];
 
 describe("isKnownContentPath", () => {
-  it("treats a section root as browsable", () => {
+  it("treats a known section root as browsable and rejects unknown top-level paths", () => {
     expect(isKnownContentPath(["zcash-tech"], keys)).toBe(true);
-    expect(isKnownContentPath(["anything-at-all"], keys)).toBe(true);
+    expect(isKnownContentPath(["guides"], keys)).toBe(true);
+    expect(isKnownContentPath(["using-zcash"], keys)).toBe(true);
+    expect(isKnownContentPath(["anything-at-all"], keys)).toBe(false);
+    expect(isKnownContentPath(["qwerty-nonsense"], keys)).toBe(false);
   });
 
   it("recognises a nested folder that files live under", () => {
@@ -81,9 +84,41 @@ describe("isKnownContentPath", () => {
     expect(isKnownContentPath(["zcash-tech", "light-wallet-node"], [])).toBe(
       true,
     );
+    expect(isKnownContentPath(["anything-at-all"], [])).toBe(true);
   });
 
   it("returns false for an empty slug", () => {
     expect(isKnownContentPath([], keys)).toBe(false);
+  });
+});
+
+describe("isServableContentPath", () => {
+  // The real manifest lists Gallery.md but not Infographics.md, which lives in
+  // a folder of the same name beside it and is a live page.
+  const withGallery = [...keys, "Glossary_and_FAQs/Gallery.md"];
+
+  it("serves a live page the manifest omits when its parent is known", () => {
+    expect(
+      isServableContentPath(
+        ["glossary-and-faqs", "gallery", "infographics"],
+        withGallery,
+      ),
+    ).toBe(true);
+    expect(isServableContentPath(["guides", "frostdemo", "new-page"], keys)).toBe(
+      true,
+    );
+  });
+
+  it("still accepts everything isKnownContentPath accepts", () => {
+    expect(isServableContentPath(["zcash-tech"], keys)).toBe(true);
+    expect(isServableContentPath(["zcash-tech", "nu5"], keys)).toBe(true);
+    expect(isServableContentPath(["anything-at-all"], [])).toBe(true);
+  });
+
+  it("rejects pages under a made-up folder", () => {
+    expect(isServableContentPath(["anything-at-all"], keys)).toBe(false);
+    expect(isServableContentPath(["guides", "fake1", "fake2"], keys)).toBe(false);
+    expect(isServableContentPath(["scanner-a1", "x"], keys)).toBe(false);
+    expect(isServableContentPath([], keys)).toBe(false);
   });
 });

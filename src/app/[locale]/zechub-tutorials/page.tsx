@@ -30,7 +30,7 @@ export async function generateMetadata({
 const ZechubTutorial = async () => {
   const slug = "tutorials";
   const urlRoot = `/site/tutorials`;
-  const roots = await getRootCached(urlRoot);
+  const roots = await getRootCached(urlRoot).catch(() => []);
 
   return (
     <main>

@@ -124,7 +124,7 @@ import { rewritePaymentProcessorsGuide, PROCESSORS_MARKER, type ProcessorCardDat
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
-import { isKnownContentPath } from "@/lib/contentPaths";
+import { isKnownContentPath, isServableContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -5951,6 +5951,15 @@ export default async function Page(props: {
   // covers what has been translated, so it would under-report folders.
   const manifestPaths = Object.keys(enMenuTitles ?? {});
 
+  // If the English manifest is loaded and this path is not known content,
+  // short-circuit to notFound() before any directory or file fetches.
+  // This protects the shared GITHUB_TOKEN from scanner-induced rate-limit
+  // exhaustion: garbage paths 404 with zero API calls. A page in a known
+  // folder still proceeds, since the manifest omits a few live files.
+  if (manifestPaths.length > 0 && !isServableContentPath(slug, manifestPaths)) {
+    return notFound();
+  }
+
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
 
@@ -5978,7 +5987,13 @@ export default async function Page(props: {
 
   try {
     if (isResearchIndex) {
-      const topLevel = await getRootCached(urlRoot);
+      const topLevelRaw = await getRootCached(urlRoot).catch(() => []);
+      let topLevel = Array.isArray(topLevelRaw) ? topLevelRaw : [];
+      if (topLevel.length === 0 && manifestPaths.length > 0) {
+        topLevel = manifestPaths
+          .filter((k) => /^Research\/[^/]+\.md$/i.test(k.replace(/^site\//i, "")))
+          .map((k) => (k.startsWith("site/") ? k : `site/${k}`));
+      }
       // Series cards come from RESEARCH_SERIES. Their article trees are only
       // needed on the individual series pages, not on this index.
       const nonSeriesRoots = topLevel.filter(
@@ -6196,8 +6211,12 @@ export default async function Page(props: {
       markdown = md;
     }
   } catch (e) {
-    // Listing failures belong to Next's default error boundary; optional
-    // thumbnail failures are handled separately above.
+    // Section listings already degrade above (getRootCached + the manifest
+    // fallback), so they never reach here. The research index and series
+    // views still rethrow: falling through would render the generic browse
+    // view of every Research file, or — with the manifest also down — 404 a
+    // real series during an outage. The route error boundary is the honest
+    // answer for those. Optional thumbnail failures are handled above.
     if (isResearchIndex || isResearchSeries) throw e;
     console.error("Failed to fetch and parse .md file: ", e);
     markdown = null;
@@ -6626,21 +6645,26 @@ export default async function Page(props: {
   });
 
   if (!markdown) {
-    // A null `markdown` has two very different causes. Section landing pages
-    // (e.g. /guides, /start-here) have no single article file but DO have a
-    // populated `roots` folder listing, and correctly render the browse view
-    // below. A genuinely missing URL (e.g. /qwerty-nonsense) has neither an
-    // article NOR a folder to browse — `getRootCached` caught its 404 and
-    // returned []. Only that second case is a real 404; return notFound() so
-    // the app stops serving HTTP 200 empty placeholder pages for dead URLs.
-    //
-    // A dead article URL under a real section (e.g. /zcash-tech/light-wallet-
-    // node) passes the `roots` check, because `roots` lists the section rather
-    // than the article. isKnownContentPath tells the two apart from the
-    // manifest: anything naming a real file or folder keeps the behaviour it
-    // has today, and only a URL the manifest has never heard of becomes a 404.
-    if (roots.length === 0 || !isKnownContentPath(slug, manifestPaths)) {
+    // When the English manifest loaded and roots is empty from a listing failure,
+    // let the manifest decide: manifest-known paths keep rendering, unknown paths 404.
+    const isManifestLoaded = manifestPaths.length > 0;
+    if (isManifestLoaded ? !isKnownContentPath(slug, manifestPaths) : roots.length === 0) {
       return notFound();
+    }
+
+    // Degrade roots from the manifest if a listing failure emptied roots,
+    // so section landings and sidebars can still render their items.
+    if (roots.length === 0 && isManifestLoaded) {
+      const normPrefix = slug[0].toLowerCase().replace(/[-_ ]/g, "");
+      roots = manifestPaths
+        .filter((k) => {
+          const firstFolder = k.replace(/^site\//i, "").split("/")[0];
+          return (
+            firstFolder &&
+            firstFolder.toLowerCase().replace(/[-_ ]/g, "") === normPrefix
+          );
+        })
+        .map((k) => (k.startsWith("site/") ? k : `site/${k}`));
     }
     // Glossary & FAQs has a real index page instead of the banner and placeholder text.
     if (slug.length === 1 && slug[0] === "glossary-and-faqs" && locale === routing.defaultLocale) {

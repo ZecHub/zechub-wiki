@@ -791,12 +791,23 @@ const getRootAtRefCached = unstable_cache(
 /**
  * Directory listing for a content folder.
  *
- * Carries the build-phase boundary: the cached reader above throws on a
- * transient so nothing is stored, and this degrades to [] during a build so a
- * GitHub 429 cannot abort the ~985 static pages.
+ * Carries the resilience boundary: the cached reader above throws on a
+ * transient so nothing is stored, and this degrades to [] during a build
+ * or runtime listing failure (e.g. GitHub 403/429 rate-limit) so an outage
+ * or scanner spike does not 500 consuming pages.
  */
 export async function getRootCached(path: string): Promise<string[]> {
-  return (await degradeOnBuildRateLimit(() => getRootAtRefCached(path))) ?? [];
+  try {
+    return (await degradeOnBuildRateLimit(() => getRootAtRefCached(path))) ?? [];
+  } catch (err: any) {
+    if (isMissing(err) || isRateLimited(err)) {
+      return [];
+    }
+    console.error(
+      `[authAndFetch] getRootCached listing failed for "${path}": ${err?.message}`,
+    );
+    return [];
+  }
 }
 
 async function listSiteFoldersUncached(
