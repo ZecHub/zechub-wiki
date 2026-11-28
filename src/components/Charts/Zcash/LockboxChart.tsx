@@ -21,8 +21,7 @@ type LockboxChartProps = {
 };
 
 export default function LockboxChart(props: LockboxChartProps) {
-  const [loading, setLoading] = useState(false);
-  const [lockboxData, setLockboxData] = useState<LockBox[]>([]);
+  const [loading, setLoading] = useState(true);
   const [processedData, setProcessedData] = useState<LockBox[]>([]);
   const [copied, setCopied] = useState(false);
   const fontSize = useResponsiveFontSize();
@@ -35,34 +34,23 @@ export default function LockboxChart(props: LockboxChartProps) {
     const controller = new AbortController();
 
     const fetchAllData = async () => {
-      setLoading(true);
-
       try {
-        const [rawData] = await Promise.all([
-          getLockboxData(DATA_URL.lockboxUrl, controller.signal),
-        ]);
-
-        if (rawData) {
-          setLockboxData(rawData);
-
-          const sorted = [...rawData].sort(
-            (a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime(),
-          );
-
-          const cleanedData = Array.from(
-            new Map(sorted.map((item) => [item.Date, item])).values(),
-          );
-
-          const MAX_POINTS = 1200;
-          const step = Math.max(1, Math.floor(cleanedData.length / MAX_POINTS));
-          const sampled = cleanedData.filter((_, index) => index % step === 0);
-
-          setProcessedData(sampled);
-        }
+        const rawData = await getLockboxData(DATA_URL.lockboxUrl, controller.signal);
+        if (controller.signal.aborted) return;
+        const sorted = [...rawData].sort(
+          (a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime(),
+        );
+        const cleanedData = Array.from(
+          new Map(sorted.map((item) => [item.Date, item])).values(),
+        );
+        const lastIndex = cleanedData.length - 1;
+        const maxPoints = 1200;
+        const step = Math.max(1, Math.ceil(lastIndex / (maxPoints - 1)));
+        setProcessedData(cleanedData.filter((_, index) => index === lastIndex || index % step === 0));
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     };
 
@@ -102,10 +90,7 @@ export default function LockboxChart(props: LockboxChartProps) {
     return null;
   };
 
-  const latestData = processedData[processedData.length - 1];
-  const lockboxTotal = latestData?.lockbox || 0;
-  const coinholdersTotal = latestData?.coinholders_fund || 0;
-  const grandTotal = lockboxTotal + coinholdersTotal;
+  const latestData = processedData.at(-1);
 
   const handleCopyAddress = async () => {
     try {
@@ -264,33 +249,47 @@ export default function LockboxChart(props: LockboxChartProps) {
         </AreaChart>
       </ChartContainer>
 
-      {/* Totals Section */}
-      <div className="grid grid-cols-1 imd:grid-cols-3 gap-4 mt-8">
-        <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl p-4">
-          <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">
-            Lockbox Total
+      {latestData ? (
+        <>
+          <p className="mt-8 text-sm text-muted-foreground">
+            Balances as of {new Date(latestData.Date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </p>
-          <p className="text-2xl font-semibold text-blue-700 dark:text-blue-300 mt-1">
-            {lockboxTotal.toLocaleString()}
-          </p>
-        </div>
-        <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-2xl p-4">
-          <p className="text-xs text-red-600 dark:text-red-400 font-medium">
-            Coinholders Fund Total
-          </p>
-          <p className="text-2xl font-semibold text-red-700 dark:text-red-300 mt-1">
-            {coinholdersTotal.toLocaleString()}
-          </p>
-        </div>
-        <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-            Grand Total
-          </p>
-          <p className="text-2xl font-semibold text-slate-700 dark:text-slate-300 mt-1">
-            {grandTotal.toLocaleString()}
-          </p>
-        </div>
-      </div>
+          <div className="grid grid-cols-1 imd:grid-cols-3 gap-4 mt-2">
+            <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl p-4">
+              <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                Lockbox Total
+              </p>
+              <p className="text-2xl font-semibold text-blue-700 dark:text-blue-300 mt-1">
+                {latestData.lockbox.toLocaleString()}
+              </p>
+            </div>
+            <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-2xl p-4">
+              <p className="text-xs text-red-600 dark:text-red-400 font-medium">
+                Coinholders Fund Total
+              </p>
+              <p className="text-2xl font-semibold text-red-700 dark:text-red-300 mt-1">
+                {latestData.coinholders_fund.toLocaleString()}
+              </p>
+            </div>
+            <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                Grand Total
+              </p>
+              <p className="text-2xl font-semibold text-slate-700 dark:text-slate-300 mt-1">
+                {(latestData.lockbox + latestData.coinholders_fund).toLocaleString()}
+              </p>
+            </div>
+          </div>
+        </>
+      ) : (
+        <p className="mt-8 text-sm text-muted-foreground" role="status">
+          {loading ? "Loading balances…" : "Balance data unavailable."}
+        </p>
+      )}
     </ErrorBoundary>
   );
 }
