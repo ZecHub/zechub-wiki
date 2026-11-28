@@ -81,6 +81,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     NU7: new Set<string>(),
   });
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
+  const votesDuringLoad = useRef<Map<string, number> | null>(null);
   const [error, setError] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState<{ [key: string]: string }>({});
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -124,6 +125,10 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     .sort((a, b) => a.title.localeCompare(b.title));
 
   useEffect(() => {
+    let active = true;
+    const confirmed = new Map<string, number>();
+    votesDuringLoad.current = confirmed;
+
     const fetchLikes = async () => {
       const devicesSet = new Set<string>();
       const operatingSystemSet = new Set<string>();
@@ -180,10 +185,18 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       allWallets.forEach((wallet) => {
         if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0;
       });
+      if (!active) return;
+      // An older snapshot must not replace a vote already confirmed by the server.
+      for (const [title, rating] of confirmed) initialLikes[title] = rating;
+      votesDuringLoad.current = null;
       setLikes(initialLikes);
     };
 
     fetchLikes();
+    return () => {
+      active = false;
+      votesDuringLoad.current = null;
+    };
   }, [allWallets]);
 
   function toggleFilter(filterCategory: string, filterValue: string) {
@@ -195,43 +208,27 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     );
   }
 
-  const handleLike = async (walletTitle: string) => {
+  const submitRating = async (walletTitle: string, delta: 1 | -1) => {
     setSuccess({});
     setError({});
     try {
       const response = await fetch("/api/wallet-likes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: walletTitle, delta: 1 }),
+        body: JSON.stringify({ title: walletTitle, delta }),
       });
-      if (response.ok) {
-        setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] + 1 }));
-        setSuccess({ [walletTitle]: savedReviewMsg });
-      } else {
-        const data = await response.json();
+      const data = await response.json();
+      if (!response.ok) {
         setError({ [walletTitle]: data.message });
+        return;
       }
-    } catch (error) {
-      setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
-    }
-  };
-
-  const handleDislike = async (walletTitle: string) => {
-    setSuccess({});
-    setError({});
-    try {
-      const response = await fetch("/api/wallet-likes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: walletTitle, delta: -1 }),
-      });
-      if (response.ok) {
-        setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] - 1 }));
-        setSuccess({ [walletTitle]: savedReviewMsg });
-      } else {
-        const data = await response.json();
-        setError({ [walletTitle]: data.message });
+      const rating = data.likes;
+      if (typeof rating !== "number" || !Number.isFinite(rating)) {
+        throw new Error("Vote confirmed without a rating.");
       }
+      votesDuringLoad.current?.set(walletTitle, rating);
+      setLikes((prev) => ({ ...prev, [walletTitle]: rating }));
+      setSuccess({ [walletTitle]: savedReviewMsg });
     } catch (error) {
       setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
     }
@@ -286,8 +283,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       sourceCode={wallet.sourceCode}
       source={wallet.source}
       deprecated={deprecated}
-      onLike={() => handleLike(wallet.title)}
-      onDislike={() => handleDislike(wallet.title)}
+      onLike={() => submitRating(wallet.title, 1)}
+      onDislike={() => submitRating(wallet.title, -1)}
       error={error[wallet.title]}
       success={success[wallet.title]}
     />

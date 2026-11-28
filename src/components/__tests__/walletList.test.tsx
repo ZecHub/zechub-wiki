@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WalletList from "@/components/Wallet/WalletList";
 import { parseMarkdown } from "@/lib/parseMarkdown";
@@ -46,7 +46,40 @@ beforeEach(() => {
   global.fetch = jest.fn(async () => ({ ok: true, json: async () => ({}) })) as any;
 });
 
+const jsonResponse = (body: unknown) => ({ ok: true, json: async () => body }) as Response;
+
 describe("WalletList", () => {
+  it("shows the confirmed score when another vote changed the displayed total", async () => {
+    const user = userEvent.setup();
+    jest.mocked(global.fetch)
+      .mockResolvedValueOnce(jsonResponse({ Alive: 9 }))
+      .mockResolvedValueOnce(jsonResponse({ likes: 15 }));
+    render(<WalletList allWallets={wallets} />);
+    const card = (await screen.findByText("Rating: 9")).closest(".wallet-item") as HTMLElement;
+
+    await user.click(within(card).getAllByRole("button")[0]);
+
+    expect(await within(card).findByText("Rating: 15")).toBeInTheDocument();
+  });
+
+  it("keeps a confirmed score when the initial list arrives late", async () => {
+    const user = userEvent.setup();
+    let resolveSnapshot!: (response: Response) => void;
+    const snapshot = new Promise<Response>((resolve) => { resolveSnapshot = resolve; });
+    jest.mocked(global.fetch)
+      .mockReturnValueOnce(snapshot)
+      .mockResolvedValueOnce(jsonResponse({ likes: 8 }));
+    render(<WalletList allWallets={wallets} />);
+    const card = screen.getAllByText("Rating: 0")[0].closest(".wallet-item") as HTMLElement;
+
+    await user.click(within(card).getAllByRole("button")[0]);
+    await within(card).findByText("We saved your review!");
+    await act(async () => { resolveSnapshot(jsonResponse({ Alive: 4, Gone: 2 })); });
+
+    expect(within(card).getByText("Rating: 8")).toBeInTheDocument();
+    expect(screen.getByText("Rating: 2")).toBeInTheDocument();
+  });
+
   it("lists a deprecated wallet only in the bottom section, with its reason", async () => {
     render(<WalletList allWallets={wallets} />);
 
