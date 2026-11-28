@@ -74,7 +74,7 @@ export const PrivacyUseCasesVisualizer = ({
     }, STAGE_INTERVAL);
 
     return () => clearTimeout(timer);
-  }, [isPlaying, goToNext]);
+  }, [isPlaying, currentStage, goToNext]);
 
   return (
     <VisualizerCanvas
