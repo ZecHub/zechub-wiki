@@ -36,6 +36,8 @@ const sample = (height: number, sapling: number) => ({
 const transactionSummary = [
   sample(8064, 1000),
   sample(16128, 10),
+  sample(18500, 31),
+  sample(19700, 47),
   sample(24192, 20),
   sample(25000, 5000),
 ];
@@ -112,6 +114,24 @@ describe("Transactions Summary height range", () => {
         expect(screen.queryByText("#25000")).not.toBeInTheDocument(),
       );
       expect(screen.getByText("#16128")).toBeInTheDocument();
+    },
+  );
+
+  it.each([true, false])(
+    "includes the final in-range sample between full periods (cumulative=%s)",
+    async (cumulative) => {
+      await renderChart();
+      if (!cumulative) {
+        fireEvent.click(screen.getByRole("checkbox", { name: /Cumulative/ }));
+      }
+      fireEvent.change(screen.getByLabelText(/^Start Height/), {
+        target: { value: "16000" },
+      });
+      fireEvent.change(screen.getByLabelText(/^End Height/), {
+        target: { value: "20000" },
+      });
+      expect(await screen.findByText("#19700")).toBeInTheDocument();
+      expect(screen.queryByText("#24192")).not.toBeInTheDocument();
     },
   );
 });

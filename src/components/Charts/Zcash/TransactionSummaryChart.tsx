@@ -97,12 +97,12 @@ export default function TransactionsSummaryChart(
       };
     });
 
-    const last = cumData[cumData.length - 1];
     const inRange = (height: number) =>
       height >= startHeight && height <= endHeight;
+    const lastSelectedHeight = cumData.findLast(({ height }) => inRange(height))?.height;
     const isPlotted = (height: number) =>
       inRange(height) &&
-      (height % BLOCKS_PERIOD === 0 || height === last.height);
+      (height % BLOCKS_PERIOD === 0 || height === lastSelectedHeight);
 
     let filteredData: any[] = [];
 
