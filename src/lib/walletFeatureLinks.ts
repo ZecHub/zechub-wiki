@@ -79,6 +79,7 @@ const featureLinks: Record<string, string> = {
   // Payments
   "payment request": PAYMENT_REQUESTS,
   "payment requests": PAYMENT_REQUESTS,
+  "batch payments": "/using-zcash/transactions",
   "flexa payments": PAYMENT_PROCESSORS,
   cipherpay: PAYMENT_PROCESSORS,
   crosspay: `${GLOSSARY_URL}#c`,
