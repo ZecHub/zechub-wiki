@@ -1,5 +1,5 @@
 import { createRef, type ReactElement } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import ShieldedSupplyChart from "../Charts/Zcash/ShieldedSupplyChart";
 
 // JSDOM has no layout measurements; give the real chart a fixed viewport so
@@ -84,5 +84,61 @@ describe("Shielded supply summary", () => {
     expect(
       screen.getByText("Sapling and Orchard Shielded: 911,074 ZEC"),
     ).toBeInTheDocument();
+  });
+
+  it("keeps January 1 in the published year in both pool views", async () => {
+    const yearBoundary: typeof poolSupply = {
+      "/data/zcash/sprout_supply.json": [
+        { supply: 25511, close: "12/31/2025" },
+        { supply: 25481, close: "01/01/2026" },
+      ],
+      "/data/zcash/sapling_supply.json": [
+        { supply: 627846, close: "12/31/2025" },
+        { supply: 627866, close: "01/01/2026" },
+      ],
+      "/data/zcash/orchard_supply.json": [
+        { supply: 4412583, close: "12/31/2025" },
+        { supply: 4411761, close: "01/01/2026" },
+      ],
+      "/data/zcash/ironwood_supply.json": [
+        { supply: 0, close: "12/31/2025" },
+        { supply: 0, close: "01/01/2026" },
+      ],
+    };
+    jest.mocked(global.fetch).mockImplementation(async (input) =>
+      ({ ok: true, json: async () => yearBoundary[String(input)] }) as Response,
+    );
+    render(<ShieldedSupplyChart chartRef={createRef<HTMLDivElement>()} />);
+    await screen.findByText("Total Shielded: 5,065,108 ZEC");
+
+    const [pool, year] = screen.getAllByRole("combobox");
+    fireEvent.change(year, { target: { value: "2025" } });
+    expect(screen.getByText("Total Shielded: 5,065,940 ZEC")).toBeInTheDocument();
+    fireEvent.change(year, { target: { value: "2026" } });
+    expect(screen.getByText("Total Shielded: 5,065,108 ZEC")).toBeInTheDocument();
+    fireEvent.change(pool, { target: { value: "orchard" } });
+    expect(year).toHaveValue("2026");
+    expect(screen.getByText("Orchard Shielded: 4,411,761 ZEC")).toBeInTheDocument();
+  });
+
+  it("restores all years when the selected pool has no data for that year", async () => {
+    const historicPools: typeof poolSupply = {
+      "/data/zcash/sprout_supply.json": [{ supply: 2573, close: "01/02/2017" }],
+      "/data/zcash/sapling_supply.json": [{ supply: 41124, close: "01/02/2019" }],
+      "/data/zcash/orchard_supply.json": [],
+      "/data/zcash/ironwood_supply.json": [],
+    };
+    jest.mocked(global.fetch).mockImplementation(async (input) =>
+      ({ ok: true, json: async () => historicPools[String(input)] }) as Response,
+    );
+    render(<ShieldedSupplyChart chartRef={createRef<HTMLDivElement>()} />);
+    await screen.findByText("Total Shielded: 43,697 ZEC");
+
+    const [pool, year] = screen.getAllByRole("combobox");
+    fireEvent.change(year, { target: { value: "2017" } });
+    fireEvent.change(pool, { target: { value: "sapling" } });
+    expect(within(year).queryByRole("option", { name: "2017" })).not.toBeInTheDocument();
+    expect(year).toHaveValue("all");
+    expect(screen.getByText("Sapling Shielded: 41,124 ZEC")).toBeInTheDocument();
   });
 });

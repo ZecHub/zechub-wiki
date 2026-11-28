@@ -17,6 +17,11 @@ type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
 
+function calendarYear(date: string) {
+  // Pool data uses MM/DD/YYYY; combined rows use YYYY-MM-DD.
+  return date.includes("/") ? date.split("/")[2] : date.slice(0, 4);
+}
+
 export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
@@ -85,8 +90,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     setSelectedYear("all");
   }, [network]);
 
-  const extractYear = useCallback((dateStr: string) => new Date(dateStr).getFullYear().toString(), []);
-
   const normalizePools = useCallback(() => {
     const normalizeDate = (dateStr: string) => {
       const [m, d, y] = dateStr.split("/");
@@ -121,9 +124,9 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     }
 
     return Object.values(dataMap).filter((d: any) =>
-      selectedYear === "all" || extractYear(d.close) === selectedYear
+      selectedYear === "all" || calendarYear(d.close) === selectedYear
     );
-  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, ironwoodSupplyData, selectedYear, extractYear]);
+  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, ironwoodSupplyData, selectedYear]);
 
   const combinedPoolData = useMemo(() => normalizePools(), [normalizePools]);
 
@@ -136,9 +139,9 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       ironwood: ironwoodSupplyData,
     };
     return (map[selectedPool] || []).filter((d: any) =>
-      selectedYear === "all" || extractYear(d.close) === selectedYear
+      selectedYear === "all" || calendarYear(d.close) === selectedYear
     );
-  }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, ironwoodSupplyData, selectedYear, extractYear]);
+  }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, ironwoodSupplyData, selectedYear]);
 
   const getAvailableYears = useCallback((poolKey: PoolKey): string[] => {
 	  const allData = [
@@ -160,9 +163,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 		  } as Record<PoolKey, SupplyData[]>
 		)[poolKey] || [];
 
-	  const years = [
-	    ...new Set(data.map((d) => extractYear(d.close))),
-	  ].sort();
+	  const years = [...new Set(data.map((d) => calendarYear(d.close)))].sort();
 
 	  return ["all", ...years];
 	}, [
@@ -170,8 +171,12 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 	  saplingSupplyData,
 	  orchardSupplyData,
 	  ironwoodSupplyData,
-	  extractYear,
 	]);
+
+  function selectPool(pool: PoolKey) {
+    setSelectedPool(pool);
+    if (!getAvailableYears(pool).includes(selectedYear)) setSelectedYear("all");
+  }
 
   const latest = combinedPoolData[combinedPoolData.length - 1] || {};
   const latestTotals = {
@@ -298,7 +303,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
             <DefaultSelect
               value={selectedPool}
-              onChange={setSelectedPool}
+              onChange={selectPool}
               options={["all", "sprout", "sapling", "orchard", "ironwood"]}
               className="w-44"
               renderOption={(val) => val === "all" ? "All Pools" : val.charAt(0).toUpperCase() + val.slice(1)}
