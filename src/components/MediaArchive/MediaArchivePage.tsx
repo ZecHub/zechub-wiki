@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type KeyboardEvent } from "react";
 import { ExternalLink, FileText, Play, Search, Video } from "lucide-react";
 import VideoCarousel from "@/components/MdxComponents/VideoCarousel";
 import LiteYouTube from "@/components/LiteYouTube";
@@ -65,6 +65,7 @@ export default function MediaArchivePage({
   // The newest regular recording that can be played gets its own spot above the tabs.
   const featured = useMemo(() => archive.find((e) => e.videoId && !e.dedicated), [archive]);
   const [tab, setTab] = useState<"previous" | "archive" | "dedicated">("previous");
+  const [tabStop, setTabStop] = useState(tab);
   const [query, setQuery] = useState("");
   const [year, setYear] = useState("all");
 
@@ -87,6 +88,21 @@ export default function MediaArchivePage({
     { id: "archive" as const, label: "Archive" },
     ...(dedicated.length > 0 ? [{ id: "dedicated" as const, label: "Dedicated editions" }] : []),
   ];
+
+  const moveTabFocus = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let next: number;
+    if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = tabs.length - 1;
+    else if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      const isRtl = event.currentTarget.closest("[dir]")?.getAttribute("dir") === "rtl";
+      const distance = (event.key === "ArrowRight") !== isRtl ? 1 : -1;
+      next = (index + distance + tabs.length) % tabs.length;
+    } else return;
+
+    event.preventDefault();
+    event.currentTarget.parentElement
+      ?.querySelectorAll<HTMLButtonElement>("button[role='tab']")[next]?.focus();
+  };
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 md:py-12">
@@ -162,8 +178,15 @@ export default function MediaArchivePage({
         </section>
       )}
 
-      <div role="tablist" aria-label="Browse calls" className="mb-6 flex flex-wrap gap-1 border-b border-slate-200 dark:border-white/10">
-        {tabs.map((t) => (
+      <div
+        role="tablist"
+        aria-label="Browse calls"
+        className="mb-6 flex flex-wrap gap-1 border-b border-slate-200 dark:border-white/10"
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) setTabStop(tab);
+        }}
+      >
+        {tabs.map((t, index) => (
           <button
             key={t.id}
             type="button"
@@ -171,8 +194,14 @@ export default function MediaArchivePage({
             id={`tab-${t.id}`}
             aria-selected={tab === t.id}
             aria-controls={`panel-${t.id}`}
-            onClick={() => setTab(t.id)}
-            className={`-mb-px border-b-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+            tabIndex={tabStop === t.id ? 0 : -1}
+            onFocus={() => setTabStop(t.id)}
+            onKeyDown={(event) => moveTabFocus(event, index)}
+            onClick={() => {
+              setTab(t.id);
+              setTabStop(t.id);
+            }}
+            className={`-mb-px border-b-2 px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand ${
               tab === t.id
                 ? "border-brand text-brand dark:text-brand-soft"
                 : "border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
@@ -183,17 +212,18 @@ export default function MediaArchivePage({
         ))}
       </div>
 
-      {tab === "previous" && (
-        <section id="panel-previous" role="tabpanel" aria-labelledby="tab-previous" aria-label="Previous calls">
+      <section id="panel-previous" role="tabpanel" aria-labelledby="tab-previous" hidden={tab !== "previous"} tabIndex={0}>
+        {tab === "previous" && <>
           <p className="mb-4 text-sm text-slate-600 dark:text-slate-300">
             Browse earlier recordings from the playlist. Use the arrows or scroll sideways.
           </p>
           <VideoCarousel list={playlistId} compact="true" label={carouselLabel} />
-        </section>
-      )}
+        </>}
+      </section>
 
-      {tab === "dedicated" && dedicated.length > 0 && (
-        <section id="panel-dedicated" role="tabpanel" aria-labelledby="tab-dedicated" aria-label="Dedicated editions">
+      {dedicated.length > 0 && (
+        <section id="panel-dedicated" role="tabpanel" aria-labelledby="tab-dedicated" hidden={tab !== "dedicated"} tabIndex={0}>
+          {tab === "dedicated" && <>
           <h2 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
             {dedicatedTitle}
           </h2>
@@ -237,11 +267,12 @@ export default function MediaArchivePage({
               </a>
             ))}
           </div>
+          </>}
         </section>
       )}
 
-      {tab === "archive" && (
-      <section id="panel-archive" role="tabpanel" aria-labelledby="tab-archive" aria-label="Archive">
+      <section id="panel-archive" role="tabpanel" aria-labelledby="tab-archive" hidden={tab !== "archive"} tabIndex={0}>
+        {tab === "archive" && <>
         <h2 className="mb-1 text-xl font-bold text-slate-900 dark:text-white">
           {archiveTitle}
         </h2>
@@ -348,8 +379,8 @@ export default function MediaArchivePage({
             </li>
           )}
         </ul>
+        </>}
       </section>
-      )}
     </div>
   );
 }
