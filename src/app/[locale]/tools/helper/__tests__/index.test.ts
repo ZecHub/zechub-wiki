@@ -41,6 +41,14 @@ describe("detectZcashNetwork", () => {
     ).toBe("mainnet");
   });
 
+  it("detects mainnet P2SH (t3) transparent addresses", () => {
+    // A valid mainnet P2SH / multisig address. Before this was recognized it
+    // fell through to "unknown", which the payment tools render as "Testnet".
+    expect(detectZcashNetwork("t3ev37Q2uL1sfTsiJQJiWJoFzQpDhmnUwYo")).toBe(
+      "mainnet",
+    );
+  });
+
   it("returns unknown for unrecognized or empty input", () => {
     expect(detectZcashNetwork("")).toBe("unknown");
     expect(detectZcashNetwork("not-a-zcash-address")).toBe("unknown");
