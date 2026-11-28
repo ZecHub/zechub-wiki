@@ -47,7 +47,7 @@ export const STAGES: Stage[] = [
     id: "remittances-flow",
     title: "Cross-Border Remittances",
     subtitle: "Global Payments",
-    description: "Send money internationally with privacy and low fees",
+    description: "See where a shielded Zcash transfer fits into an international payment",
     type: "remittances",
     link: "https://z.cash/learn/how-to-use-zcash",
     linkText: "Remittances Guide",
@@ -251,20 +251,28 @@ const RemittancesAnimation = () => {
         <div className="p-3 md:p-4 rounded-lg bg-red-500/10 border border-red-500/30">
           <div className="text-sm md:text-base font-semibold text-red-400 mb-2">Traditional</div>
           <div className="text-xs md:text-sm space-y-1">
-            <div>• 5-10% fees</div>
-            <div>• 2-5 days</div>
-            <div>• Full tracking</div>
+            <div>• Fees and exchange rates depend on the provider</div>
+            <div>• Delivery depends on the route and payout method</div>
+            <div>• Providers may collect sender and recipient details</div>
           </div>
         </div>
         <div className="p-3 md:p-4 rounded-lg bg-green-500/10 border border-green-500/30">
           <div className="text-sm md:text-base font-semibold text-green-400 mb-2">Zcash</div>
           <div className="text-xs md:text-sm space-y-1">
-            <div>• ~$0.01 fees</div>
-            <div>• ~75 seconds</div>
-            <div>• Full privacy</div>
+            <div>• Network fees are one part of the total cost</div>
+            <div>
+              • <a className="underline" href="https://zips.z.cash/zip-0218">
+                25-second target per block
+              </a>
+            </div>
+            <div>• Shielded transfers hide payment details on-chain</div>
           </div>
         </div>
       </div>
+      <p className="text-xs md:text-sm text-muted-foreground">
+        Block spacing is a network target. Currency conversion and local payout
+        can add fees, time, and provider checks.
+      </p>
     </div>
   );
 };
