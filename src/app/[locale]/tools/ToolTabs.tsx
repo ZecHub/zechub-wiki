@@ -10,6 +10,7 @@ import Faucet from "./Faucet";
 import BlockTime from "./BlockTime";
 import CrosslinkTools from "./CrosslinkTools";
 import DepositCheck from "./DepositCheck";
+import FeeCalculator from "./FeeCalculator";
 
 // Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
 // Renaming one changes a shareable link, so treat them as part of the API.
@@ -18,6 +19,7 @@ type TabId =
   | "payment-request"
   | "payment-request-widget"
   | "address-decoder"
+  | "fee-calculator"
   | "linkability"
   | "faucet"
   | "block-time"
@@ -65,6 +67,14 @@ const TABS: Tab[] = [
     badge: "Unified Address",
     title: "Address Decoder",
     subtitle: "Extract transparent, sapling & orchard receivers from a UA",
+  },
+  {
+    id: "fee-calculator",
+    label: "Fee Calculator",
+    shortLabel: "Fee",
+    badge: "ZIP-317",
+    title: "Fee Calculator",
+    subtitle: "Work out a transaction's conventional fee from its inputs and outputs",
   },
   {
     id: "linkability",
@@ -198,6 +208,7 @@ export default function ToolTabs() {
           {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
           {active === "address-decoder" && <AddressDecoder />}
+          {active === "fee-calculator" && <FeeCalculator />}
           {active === "linkability" && <LinkabilityCheck />}
           {active === "faucet" && <Faucet />}
           {active === "block-time" && <BlockTime />}

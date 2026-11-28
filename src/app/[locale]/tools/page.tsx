@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'Zcash Developer Tools | ZecHub',
   description:
-    'ZEC/Zats converter, ZIP-321 payment request builder, and unified address decoder.',
+    'ZEC/Zats converter, ZIP-321 payment request builder, unified address decoder, and ZIP-317 fee calculator.',
   openGraph: {
     title: 'Zcash Developer Tools',
     description:
@@ -28,7 +28,7 @@ export default function ToolsPage() {
           Zcash Tools
         </h1>
         <p className="m-0 text-base leading-7 text-slate-600 dark:text-slate-300">
-          Convert, build payment requests, decode addresses, look up block times, check shielded deposits, claim testnet ZEC, and follow Crosslink.
+          Convert, build payment requests, decode addresses, estimate fees, look up block times, check shielded deposits, claim testnet ZEC, and follow Crosslink.
         </p>
       </header>
       <ToolTabs />
