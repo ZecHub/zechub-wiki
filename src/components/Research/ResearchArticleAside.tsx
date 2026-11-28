@@ -11,23 +11,27 @@ type Props = {
 };
 
 export default function ResearchArticleAside({ title, shareUrl }: Props) {
-  const [discordCopied, setDiscordCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "manual">("idle");
   const copyResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const copyAttempt = useRef(0);
 
   useEffect(() => {
     return () => {
+      copyAttempt.current += 1;
       if (copyResetRef.current) clearTimeout(copyResetRef.current);
     };
   }, []);
 
   const copyLinkForDiscord = useCallback(async () => {
+    const attempt = ++copyAttempt.current;
+    if (copyResetRef.current) clearTimeout(copyResetRef.current);
     try {
       await navigator.clipboard.writeText(shareUrl);
-      setDiscordCopied(true);
-      if (copyResetRef.current) clearTimeout(copyResetRef.current);
-      copyResetRef.current = setTimeout(() => setDiscordCopied(false), 2500);
+      if (attempt !== copyAttempt.current) return;
+      setCopyStatus("copied");
+      copyResetRef.current = setTimeout(() => setCopyStatus("idle"), 2500);
     } catch {
-      /* clipboard may be denied in insecure contexts */
+      if (attempt === copyAttempt.current) setCopyStatus("manual");
     }
   }, [shareUrl]);
 
@@ -97,14 +101,22 @@ export default function ResearchArticleAside({ title, shareUrl }: Props) {
             <FaDiscord className="h-5 w-5 shrink-0" aria-hidden />
           </button>
         </div>
-        {discordCopied ? (
-          <p className="mt-2 text-xs font-medium text-muted-foreground" role="status">
-            Link copied to clipboard!
-          </p>
-        ) : null}
-        <p className="sr-only" aria-live="polite">
-          {discordCopied ? "Link copied to clipboard." : ""}
+        <p className={copyStatus === "idle" ? "sr-only" : "mt-2 text-xs font-medium text-muted-foreground"} role="status">
+          {copyStatus === "copied"
+            ? "Link copied to clipboard!"
+            : copyStatus === "manual"
+              ? "Copy the article link manually."
+              : ""}
         </p>
+        {copyStatus === "manual" && (
+          <input
+            aria-label="Article link"
+            readOnly
+            value={shareUrl}
+            onFocus={(event) => event.currentTarget.select()}
+            className="mt-2 w-full rounded-md border bg-background px-2 py-1 text-xs text-foreground"
+          />
+        )}
       </div>
 
       <div>
