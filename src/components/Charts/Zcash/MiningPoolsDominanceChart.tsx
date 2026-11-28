@@ -6,7 +6,6 @@ import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getMiningPoolsDominance } from "@/lib/chart/helpers";
 import { MiningPoolDominanceResponse } from "@/lib/chart/types";
-import * as dateFns from "date-fns";
 import { RefObject, useEffect, useMemo, useState } from "react";
 import {
   Area,
@@ -25,6 +24,10 @@ type MiningPoolsDominanceChartProps = {
 type MiningRange = "1w" | "1m" | "3m" | "6m" | "1y" | "all";
 
 const RANGE_OPTIONS: MiningRange[] = ["1w", "1m", "3m", "6m", "1y", "all"];
+const bucketDateFormatter = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "long",
+  timeZone: "UTC",
+});
 const COLORS = [
   "hsl(var(--chart-1))",
   "hsl(var(--chart-2))",
@@ -95,7 +98,7 @@ export default function MiningPoolsDominanceChart(
     const rows = buckets.map((bucket) => {
       const date = new Date(bucket.timestamp * 1000);
       const row: Record<string, number | string> = {
-        dateKey: dateFns.format(date, "yyyy-MM-dd"),
+        dateKey: date.toISOString().slice(0, 10),
       };
       let topTotal = 0;
 
@@ -115,15 +118,15 @@ export default function MiningPoolsDominanceChart(
     return { chartData: rows, seriesKeys: [...topPools, "Other"] };
   }, [dominance, isMobile]);
 
-  const xTickFormatter = (value: string) => {
-    const date = new Date(`${value}T00:00:00Z`);
-    if (range === "1w") return dateFns.format(date, "MMM d");
-    if (range === "1m") return dateFns.format(date, "MMM d");
-    if (range === "all") return dateFns.format(date, "yyyy");
-    return isMobile
-      ? dateFns.format(date, "MMM yy")
-      : dateFns.format(date, "MMM yyyy");
-  };
+  const tickOptions: Intl.DateTimeFormatOptions = range === "1w" || range === "1m"
+    ? { month: "short", day: "numeric" }
+    : range === "all"
+      ? { year: "numeric" }
+      : { month: "short", year: isMobile ? "2-digit" : "numeric" };
+  const tickFormatter = new Intl.DateTimeFormat("en-US", {
+    ...tickOptions,
+    timeZone: "UTC",
+  });
 
   return (
     <ErrorBoundary
@@ -159,7 +162,7 @@ export default function MiningPoolsDominanceChart(
             dataKey="dateKey"
             type="category"
             allowDuplicatedCategory={false}
-            tickFormatter={(value) => xTickFormatter(String(value))}
+            tickFormatter={(value) => tickFormatter.format(new Date(`${value}T00:00:00Z`))}
             tick={{ fontSize, fill: "#94a3b8" }}
             tickCount={isMobile ? 4 : 6}
             minTickGap={isMobile ? 24 : 36}
@@ -178,7 +181,7 @@ export default function MiningPoolsDominanceChart(
               String(name),
             ]}
             labelFormatter={(value) =>
-              dateFns.format(new Date(`${String(value)}T00:00:00Z`), "PPP")
+              `${bucketDateFormatter.format(new Date(`${value}T00:00:00Z`))} (UTC)`
             }
             itemSorter={(item) => -Number(item.value)}
             contentStyle={{
