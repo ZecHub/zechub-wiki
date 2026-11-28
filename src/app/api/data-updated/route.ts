@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { DATA_URL, DATE_URL } from "@/lib/chart/data-url";
 
 // Same-origin proxy for the GitHub "commits for a data file" call that charts
 // use to show a "last updated" date. Previously the browser hit
@@ -10,8 +11,20 @@ import { NextRequest, NextResponse } from "next/server";
 // (helpers.getLastUpdatedDate) is unchanged.
 const CACHE_CONTROL = "public, s-maxage=3600, stale-while-revalidate=86400";
 
-// Only allow reading commit history for in-repo data files.
-const PATH_RE = /^public\/data\/[A-Za-z0-9._/-]+\.json$/;
+// Only proxy commit history for the specific data files the app itself asks
+// about. DATA_URL/DATE_URL are the single source of every /api/data-updated
+// request the client issues (via getCommitUrlForTab), so deriving the allowlist
+// from them keeps the two in lockstep: add a chart's entry there and it is
+// covered here. Anything else is rejected before it can spend a metered,
+// GITHUB_TOKEN-authenticated call — otherwise any well-formed public/data/*.json
+// path (existing or not) is one such call, cached per-URL only, so a flood of
+// unique paths drains the shared 5,000/hour core quota.
+const ALLOWED_PATHS: ReadonlySet<string> = new Set(
+  [...Object.values(DATA_URL), ...Object.values(DATE_URL)].flatMap((u) => {
+    const i = u.indexOf("path=");
+    return i === -1 ? [] : [decodeURIComponent(u.slice(i + 5).split("&")[0])];
+  }),
+);
 
 function cached(body: unknown, status = 200) {
   return NextResponse.json(body, {
@@ -22,7 +35,7 @@ function cached(body: unknown, status = 200) {
 
 export async function GET(req: NextRequest) {
   const path = req.nextUrl.searchParams.get("path");
-  if (!path || path.includes("..") || !PATH_RE.test(path)) {
+  if (!path || !ALLOWED_PATHS.has(path)) {
     return NextResponse.json({ error: "invalid path" }, { status: 400 });
   }
 
