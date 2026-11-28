@@ -39,7 +39,7 @@ interface AnalyticsDashboardProps {
 
 function formatMonth(dateStr: string) {
   const d = new Date(dateStr);
-  return d.toLocaleDateString("en-US", { month: "short", year: "2-digit" });
+  return d.toLocaleDateString("en-US", { month: "short", year: "2-digit", timeZone: "UTC" });
 }
 
 function CustomTooltip({
@@ -271,19 +271,19 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
   const chartMeta: Record<ChartTab, { title: string; subtitle: string }> = {
     Submissions: {
       title: "Submissions Over Time",
-      subtitle: "Cumulative proposal count by month",
+      subtitle: "Cumulative proposal count by month (UTC)",
     },
     Members: {
       title: "DAO Members Over Time",
-      subtitle: "Peak total power recorded per month",
+      subtitle: "Peak total power recorded per month (UTC)",
     },
     "Approval Rate": {
       title: "Approval Rate",
-      subtitle: "Yes votes as % of total votes per month",
+      subtitle: "Yes votes as % of total votes per month (UTC)",
     },
     "Voter Turnout": {
       title: "Voter Turnout Over Time",
-      subtitle: "Average votes cast as % of total voting power per month",
+      subtitle: "Average votes cast as % of total voting power per month (UTC)",
     },
     "Voting Power": {
       title: "Voting Power by Proposal",

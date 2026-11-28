@@ -59,8 +59,8 @@ const proposals = [
   }),
 ];
 
-async function openTabAndHover(tab: string) {
-  const { container } = render(<AnalyticsDashboard proposals={proposals} />);
+async function openTabAndHover(tab: string, items = proposals) {
+  const { container } = render(<AnalyticsDashboard proposals={items} />);
   fireEvent.click(screen.getByRole("button", { name: tab }));
 
   await act(async () => {
@@ -95,5 +95,40 @@ describe("Governance analytics tooltips", () => {
     const tooltip = await openTabAndHover(tab);
 
     expect(tooltip.textContent).toContain(expected);
+  });
+});
+
+describe("governance analytics months", () => {
+  const formatDate = Date.prototype.toLocaleDateString;
+
+  afterEach(() => jest.restoreAllMocks());
+
+  function setViewerTimeZone(timeZone: string) {
+    jest.spyOn(Date.prototype, "toLocaleDateString").mockImplementation(function (
+      this: Date,
+      locales?: Intl.LocalesArgument,
+      options?: Intl.DateTimeFormatOptions,
+    ) {
+      return formatDate.call(this, locales, { timeZone, ...options });
+    });
+  }
+
+  it.each(["Submissions", "Members", "Approval Rate", "Voter Turnout"])(
+    "keeps proposal 27 in the February UTC bucket on the %s chart",
+    async (tab) => {
+      setViewerTimeZone("America/Los_Angeles");
+      const tooltip = await openTabAndHover(tab, [
+        proposal(27, "2024-02-01T00:02:48Z", { yes: "5", no: "0", abstain: "0" }),
+      ]);
+      expect(tooltip.textContent).toContain("Feb 24");
+    },
+  );
+
+  it("does not move a late July UTC proposal into August in Shanghai", async () => {
+    setViewerTimeZone("Asia/Shanghai");
+    const tooltip = await openTabAndHover("Submissions", [
+      proposal(168, "2026-07-31T23:56:55Z", { yes: "5", no: "0", abstain: "0" }),
+    ]);
+    expect(tooltip.textContent).toContain("Jul 26");
   });
 });
