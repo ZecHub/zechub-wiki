@@ -62,6 +62,19 @@ describe("YouTube dashboard view bars", () => {
     window.history.pushState({}, "", "/");
   });
 
+  it("keeps the view controls and their focus while metrics load", async () => {
+    render(<Dashboard zipsData={{} as any} />);
+    await screen.findByRole("button", { name: "Latest 15 Videos" }, { timeout: 3000 });
+
+    const codePulse = screen.getByRole("button", { name: "Code Pulse" });
+    codePulse.focus();
+    fireEvent.click(codePulse);
+
+    expect(screen.getByRole("button", { name: "Code Pulse" })).toBe(codePulse);
+    expect(codePulse).toHaveFocus();
+    expect(screen.getByText("Loading dashboard metrics...")).toHaveAttribute("role", "status");
+  });
+
   it("scales the latest videos against the most viewed one", async () => {
     render(<Dashboard zipsData={{} as any} />);
 

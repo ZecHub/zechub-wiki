@@ -223,13 +223,7 @@ const Dashboard = ({
       setCurrentView(tab as ViewType);
     }
   }, [pathname]);
-  if (loadingDashboard) {
-    return (
-      <div className="flex h-64 items-center justify-center text-slate-400 font-medium animate-pulse">
-        Loading dashboard metrics...
-      </div>
-    );
-    }
+  const loadedView = loadingDashboard ? null : currentView;
     
   const tabs = [
     {
@@ -457,15 +451,21 @@ const Dashboard = ({
           )}
         </div>
 
+        {loadingDashboard && (
+          <div role="status" className="flex h-64 items-center justify-center text-slate-400 font-medium animate-pulse">
+            Loading dashboard metrics...
+          </div>
+        )}
+
         {/* CODE PULSE */}
-        {currentView === "codepulse" && (
+        {loadedView === "codepulse" && (
           <div className="max-w-7xl mx-auto">
             <CodePulse />
           </div>
         )}
 
         {/* YOUTUBE SECTION - FULL */}
-        {currentView === "youtube" && (
+        {loadedView === "youtube" && (
           <div className="space-y-8">
             {/* Persistent Selector Bar with real YouTube icons */}
             <div className="flex items-center bg-card border border-border rounded-2xl px-5 py-3 mb-6 shadow-sm">
@@ -735,7 +735,7 @@ const Dashboard = ({
         )}
 
         {/* OTHER SECTIONS */}
-        {currentView === "dashboard" && (
+        {loadedView === "dashboard" && (
           <>
             {selectedCrypto === "zcash" && (
               <ZcashChart
@@ -755,8 +755,8 @@ const Dashboard = ({
           </>
         )}
 
-        {currentView === "proposals" && <ProposalsList />}
-        {currentView === "zcg" && <ZCGDashboard zipsData={zipsData} />}
+        {loadedView === "proposals" && <ProposalsList />}
+        {loadedView === "zcg" && <ZCGDashboard zipsData={zipsData} />}
       </div>
     </div>
   );
