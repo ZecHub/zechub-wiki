@@ -588,6 +588,11 @@ export const transformGithubFilePathToWikiLink = (path: string) => {
 
 export const formatString = {
   titleCase: (txt: string) => {
+    // Guard against empty or non-string input: `""[0]` is undefined, so the
+    // original `txt[0].toUpperCase()` threw a TypeError. Callers such as the
+    // feature lists in Card/VideoCard map over content-derived arrays that can
+    // contain an empty string.
+    if (!txt) return "";
     return txt[0].toUpperCase() + txt.slice(1);
   },
   removeUnderscore: (str: string) => {
