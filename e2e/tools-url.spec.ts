@@ -67,3 +67,24 @@ test("the locale prefix survives a tool switch", async ({ page }) => {
   await clickTab(page, "Address Decoder", "address-decoder");
   await expect(page).toHaveURL(`${BASE}/es/tools?tool=address-decoder`);
 });
+
+test("the URI inspector reads a payment link from the url", async ({ page }) => {
+  const uri =
+    "zcash:?address=tmEZhbWHTpdKMw5it8YDspUXSMGQyFwovpU&amount=123.456&address.1=ztestsapling10yy2ex5dcqkclhc7z7yrnjq2z6feyjad56ptwlfgmy77dmaqqrl9gyhprdx59qgmsnyfska2kez&amount.1=0.789";
+  await page.goto(`${BASE}/tools?tool=uri-inspector&uri=${encodeURIComponent(uri)}`);
+  await expect(heading(page)).toHaveText("Payment URI Inspector");
+  await expect(page.getByTestId("zip321-status")).toHaveText("Valid ZIP 321 request");
+  await expect(page.getByTestId("zip321-payment")).toHaveCount(2);
+  await expect(page.getByText("total 124.245 ZEC")).toBeVisible();
+});
+
+test("the URI inspector names every problem in a broken link", async ({ page }) => {
+  await page.goto(`${BASE}/tools?tool=uri-inspector`);
+  const box = page.getByLabel("Payment URI");
+  await expect(async () => {
+    await box.fill("zcash:tmEZhbWHTpdKMw5it8YDspUXSMGQyFwovpU?amount=1,5&memo=SGk");
+    await expect(page.getByTestId("zip321-status")).toHaveText("Invalid: 2 problems");
+  }).toPass({ timeout: 30_000 });
+  await expect(page.getByText(/uses a comma/)).toBeVisible();
+  await expect(page.getByText(/transparent address, which cannot carry one/)).toBeVisible();
+});

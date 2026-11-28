@@ -6,6 +6,7 @@ import AddressDecoder from "./AddressDecoder";
 import LinkabilityCheck from "./LinkabilityCheck";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
+import PaymentUriInspector from "./PaymentUriInspector";
 import Faucet from "./Faucet";
 import BlockTime from "./BlockTime";
 import CrosslinkTools from "./CrosslinkTools";
@@ -17,6 +18,7 @@ type TabId =
   | "converter"
   | "payment-request"
   | "payment-request-widget"
+  | "uri-inspector"
   | "address-decoder"
   | "linkability"
   | "faucet"
@@ -57,6 +59,14 @@ const TABS: Tab[] = [
     badge: "ZIP-321",
     title: "Payment Request Widget",
     subtitle: "Generate zcash: URIs with QR codes for easy payment requests",
+  },
+  {
+    id: "uri-inspector",
+    label: "URI Inspector",
+    shortLabel: "Inspect",
+    badge: "ZIP-321",
+    title: "Payment URI Inspector",
+    subtitle: "See exactly what a zcash: payment link or QR asks you to send",
   },
   {
     id: "address-decoder",
@@ -197,6 +207,7 @@ export default function ToolTabs() {
           {active === "converter" && <ZecToZatsConverter />}
           {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
+          {active === "uri-inspector" && <PaymentUriInspector />}
           {active === "address-decoder" && <AddressDecoder />}
           {active === "linkability" && <LinkabilityCheck />}
           {active === "faucet" && <Faucet />}
