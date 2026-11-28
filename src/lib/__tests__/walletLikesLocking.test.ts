@@ -15,17 +15,30 @@ const handler: Handler = require("@/pages/api/wallet-likes").default;
 const queries: { text: string; values?: unknown[] }[] = [];
 const results: Record<string, { rows: unknown[] }> = {};
 
-jest.mock("pg", () => ({
-  Client: jest.fn().mockImplementation(() => ({
-    connect: jest.fn(),
-    end: jest.fn(),
-    query: jest.fn(async (text: string, values?: unknown[]) => {
+const releases: jest.Mock[] = [];
+
+// The handler uses a shared pg Pool: pool.query() for the read path, and
+// pool.connect() -> { query, release } for the vote transaction. Both record
+// into the same `queries` log so the ordering assertions below still apply.
+jest.mock("pg", () => {
+  const makeQuery = () =>
+    jest.fn(async (text: string, values?: unknown[]) => {
       queries.push({ text, values });
       const key = Object.keys(results).find((k) => text.includes(k));
       return key ? results[key] : { rows: [] };
-    }),
-  })),
-}));
+    });
+  return {
+    Pool: jest.fn().mockImplementation(() => ({
+      on: jest.fn(),
+      query: makeQuery(),
+      connect: jest.fn(async () => {
+        const release = jest.fn();
+        releases.push(release);
+        return { query: makeQuery(), release };
+      }),
+    })),
+  };
+});
 
 const vote = (title: string, ip = "10.0.0.1") =>
   new Promise<{ code: number; body: unknown }>((done) => {
@@ -53,6 +66,7 @@ beforeEach(() => {
   // Without a database URL the handler reports ratings as unavailable.
   process.env.POSTGRES_URL = "postgres://test";
   queries.length = 0;
+  releases.length = 0;
   for (const k of Object.keys(results)) delete results[k];
 });
 
@@ -110,5 +124,21 @@ describe("wallet-likes vote path", () => {
     expect(index("SELECT votes")).toBeGreaterThan(index("pg_advisory_xact_lock"));
     expect(index("ROLLBACK")).toBeGreaterThan(index("SELECT votes"));
     expect(index("COMMIT")).toBe(-1);
+  });
+
+  it("returns the pooled client after a successful vote", async () => {
+    results["SELECT EXISTS"] = { rows: [{ exists: false }] };
+    await vote("Zashi");
+    expect(releases).toHaveLength(1);
+    expect(releases[0]).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects an invalid title before opening a connection", async () => {
+    const tooLong = await vote("x".repeat(65));
+    expect(tooLong.code).toBe(400);
+    const controlChar = await vote("bad\u0000name");
+    expect(controlChar.code).toBe(400);
+    expect(queries).toHaveLength(0);
+    expect(releases).toHaveLength(0);
   });
 });
