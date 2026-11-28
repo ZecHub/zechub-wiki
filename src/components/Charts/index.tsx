@@ -10,6 +10,7 @@ import {
   Eye,
   Rss,
   Activity,
+  TrendingUp,
   ChevronDown,
   Check,
 } from "lucide-react";
@@ -28,6 +29,7 @@ import ZcashChart from "./Zcash/ZcashChart";
 import { ProposalsList } from "@/components/Proposals";
 import type { ZipsData } from "@/app/[locale]/zips-grants/ZipAndGrantsGovernance";
 import CodePulse from "@/components/CodePulse";
+import PriceTrend from "./PriceTrend";
 
 const ZCGDashboard = dynamic(
   () =>
@@ -37,7 +39,7 @@ const ZCGDashboard = dynamic(
   { ssr: false },
 );
 
-type ViewType = "dashboard" | "proposals" | "zcg" | "youtube" | "codepulse";
+type ViewType = "dashboard" | "price" | "proposals" | "zcg" | "youtube" | "codepulse";
 type SubViewType = "top" | "latest";
 type ChannelType =
   | "ZecHub"
@@ -84,6 +86,7 @@ type DashboardDictionary = {
           zcgDashboard?: string;
           youtubeDashboard?: string;
           codePulse?: string;
+          priceTrend?: string;
         };
       };
     };
@@ -114,6 +117,7 @@ const Dashboard = ({
 
   const allowedTabs: ViewType[] = [
     "dashboard",
+    "price",
     "proposals",
     "zcg",
     "youtube",
@@ -224,11 +228,7 @@ const Dashboard = ({
     }
   }, [pathname]);
   if (loadingDashboard) {
-    return (
-      <div className="flex h-64 items-center justify-center text-slate-400 font-medium animate-pulse">
-        Loading dashboard metrics...
-      </div>
-    );
+    return null;
     }
     
   const tabs = [
@@ -236,6 +236,11 @@ const Dashboard = ({
       key: "dashboard" as const,
       label: t?.tabs?.zechubDashboard || "ZecHub Dashboard",
       icon: <BarChart3 className="w-5 h-5" />,
+    },
+    {
+      key: "price" as const,
+      label: t?.tabs?.priceTrend || "Price Trend",
+      icon: <TrendingUp className="w-5 h-5" />,
     },
     {
       key: "proposals" as const,
@@ -321,7 +326,8 @@ const Dashboard = ({
   const formatViews = (views: number) => views.toLocaleString();
 
   return (
-    <div className="min-h-screen p-4 md:p-6">
+    <div className="relative min-h-screen overflow-hidden p-4 md:p-6">
+      <PriceTrend background />
       <div className="max-w-7xl mx-auto space-y-8 relative">
         {/* HEADER */}
         <div className="mt-12 text-center">
@@ -753,6 +759,15 @@ const Dashboard = ({
               <PenumbraChart divChartRef={divChartRef} />
             )}
           </>
+        )}
+
+        {currentView === "price" && (
+          <div className="relative max-w-7xl mx-auto overflow-hidden rounded-2xl">
+            <PriceTrend background />
+            <div className="relative z-10">
+              <PriceTrend />
+            </div>
+          </div>
         )}
 
         {currentView === "proposals" && <ProposalsList />}
