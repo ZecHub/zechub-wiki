@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { ErrorBoundary } from "../../../ErrorBoundary/ErrorBoundary";
 import { MetricCard, MetricCardSkeleton } from "./MetricCard";
+import { format, isValid, parse } from "date-fns";
 import Link from "next/link";
 
 // Icons
@@ -90,6 +91,14 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
     };
   }, []);
 
+  const shieldedSnapshot = shieldedTxCount?.at(-1);
+  const observation = typeof shieldedSnapshot?.timestamp === "string"
+    ? parse(shieldedSnapshot.timestamp, "M/d/yyyy", new Date(2000, 0, 1))
+    : null;
+  const shieldedObservationDate = observation && isValid(observation)
+    ? format(observation, "yyyy-MM-dd")
+    : undefined;
+
   const metricsObj = [
     {
       label: metricT?.marketCap || "Market Cap",
@@ -143,15 +152,16 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       icon: <Activity size={18} />,
     },
     {
-      label: metricT?.shieldedTx24h || "Shielded TX (24h)",
-      value: shieldedTxCount?.length
+      label: metricT?.shieldedTxByPool || "Shielded transactions",
+      value: shieldedSnapshot && shieldedObservationDate
         ? [
-            `Sprout: ${(shieldedTxCount.at(-1)!.sprout ?? 0).toLocaleString()}`,
-            `Sapling: ${(shieldedTxCount.at(-1)!.sapling ?? 0).toLocaleString()}`,
-            `Orchard: ${(shieldedTxCount.at(-1)!.orchard ?? 0).toLocaleString()}`,
-            `Ironwood: ${(shieldedTxCount.at(-1)!.ironwood ?? 0).toLocaleString()}`,
+            `Sprout: ${(shieldedSnapshot.sprout ?? 0).toLocaleString()}`,
+            `Sapling: ${(shieldedSnapshot.sapling ?? 0).toLocaleString()}`,
+            `Orchard: ${(shieldedSnapshot.orchard ?? 0).toLocaleString()}`,
+            `Ironwood: ${(shieldedSnapshot.ironwood ?? 0).toLocaleString()}`,
           ].join("\n")
         : notAvailable,
+      observationDate: shieldedObservationDate,
       icon: <ShieldCheck size={18} />,
       isShielded: true,
     },
@@ -178,6 +188,7 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
                   value={metric.value}
                   icon={metric.icon}
                   isShielded={metric.isShielded}
+                  observationDate={metric.observationDate}
                 />
               ))}
         </div>

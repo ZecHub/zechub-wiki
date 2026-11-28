@@ -677,7 +677,7 @@
           "blocks": "Blok",
           "transactions24h": "Transaksi 24j",
           "shieldedValue": "Nilai Terlindungi",
-          "shieldedTx24h": "Transaksi Terlindungi (24j)",
+          "shieldedTxByPool": "Transaksi Terlindungi",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },

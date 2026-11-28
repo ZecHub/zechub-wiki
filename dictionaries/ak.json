@@ -676,7 +676,7 @@
           "marketPriceBtc": "Guadi Bo (BTC) .",
           "blocks": "Nneɛma a wɔde siw ano",
           "transactions24h": "24h Nkitahodi",
-          "shieldedTx24h": "TX a wɔabɔ ho ban (24h) .",
+          "shieldedTxByPool": "TX a wɔabɔ ho ban",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
           "shieldedValue": "Boɔ a Wɔabɔ ho Ban"

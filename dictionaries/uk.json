@@ -676,7 +676,7 @@
           "marketPriceBtc": "Ринкова ціна (BTC)",
           "blocks": "Блоки",
           "transactions24h": "Транзакції за 24 год",
-          "shieldedTx24h": "Екрановані TX (24 год)",
+          "shieldedTxByPool": "Екрановані TX",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Орк",
           "shieldedValue": "Екранована вартість"

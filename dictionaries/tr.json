@@ -726,7 +726,7 @@
           "marketPriceBtc": "Piyasa Fiyatı (BTC)",
           "blocks": "Bloklar",
           "transactions24h": "24 sa İşlem",
-          "shieldedTx24h": "Korumalı TX (24 sa)",
+          "shieldedTxByPool": "Korumalı TX",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Ork",
           "shieldedValue": "Korumalı Değer"

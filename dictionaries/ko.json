@@ -676,7 +676,7 @@
           "marketPriceBtc": "시장 가격 (BTC)",
           "blocks": "블록",
           "transactions24h": "24시간 거래 수",
-          "shieldedTx24h": "실드 TX (24시간)",
+          "shieldedTxByPool": "실드 TX",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
           "shieldedValue": "실드 가치"

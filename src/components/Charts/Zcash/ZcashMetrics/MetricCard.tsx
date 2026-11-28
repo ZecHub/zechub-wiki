@@ -5,6 +5,7 @@ interface MetricCardProps {
   value: string | number;
   icon?: ReactNode;
   isShielded?: boolean;
+  observationDate?: string;
 
   // Optional custom sizing/styles
   className?: string;
@@ -17,6 +18,7 @@ export const MetricCard = ({
   value,
   icon,
   isShielded = false,
+  observationDate,
   className = "",
   width = "w-full",
   height = "min-h-[118px] md:min-h-[128px]",
@@ -64,6 +66,15 @@ export const MetricCard = ({
         <p className="break-words text-[15px] font-semibold tracking-tighter text-slate-800 tabular-nums [overflow-wrap:anywhere] dark:text-white sm:text-lg md:text-xl">
           {value}
         </p>
+      )}
+      {observationDate && (
+        <time
+          dateTime={observationDate}
+          dir="ltr"
+          className="mt-1 block text-xs tabular-nums text-gray-500 dark:text-gray-400"
+        >
+          {observationDate}
+        </time>
       )}
     </div>
   </div>

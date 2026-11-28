@@ -676,7 +676,7 @@
           "marketPriceBtc": "बाज़ार मूल्य (BTC)",
           "blocks": "ब्लॉक",
           "transactions24h": "24घं लेनदेन",
-          "shieldedTx24h": "शील्डेड TX (24घं)",
+          "shieldedTxByPool": "शील्डेड TX",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "ओर्क",
           "shieldedValue": "शील्डेड मूल्य"

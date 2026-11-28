@@ -676,7 +676,7 @@
           "marketPriceBtc": "Preço de mercado (BTC)",
           "blocks": "Blocos",
           "transactions24h": "Transações em 24h",
-          "shieldedTx24h": "TX blindadas (24h)",
+          "shieldedTxByPool": "TX blindadas",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
           "shieldedValue": "Valor blindado"

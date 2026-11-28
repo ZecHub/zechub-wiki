@@ -677,7 +677,7 @@
           "blocks": "Μπλοκ",
           "transactions24h": "Συναλλαγές 24 ωρών",
           "shieldedValue": "Θωρακισμένη αξία",
-          "shieldedTx24h": "Θωρακισμένες συναλλαγές 24 ωρών",
+          "shieldedTxByPool": "Θωρακισμένες συναλλαγές",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },

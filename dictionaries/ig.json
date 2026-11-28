@@ -676,7 +676,7 @@
           "marketPriceBtc": "Ọnụahịa ahịa (BTC)",
           "blocks": "Mpempe akwụkwọ",
           "transactions24h": "24h Azụmahịa",
-          "shieldedTx24h": "TX a na-echebe (24h)",
+          "shieldedTxByPool": "TX a na-echebe",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
           "shieldedValue": "Uru E Chebere"

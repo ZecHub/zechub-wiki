@@ -676,7 +676,7 @@
           "marketPriceBtc": "سعر السوق (BTC)",
           "blocks": "الكتل",
           "transactions24h": "معاملات 24 ساعة",
-          "shieldedTx24h": "TX المحمية (24 ساعة)",
+          "shieldedTxByPool": "TX المحمية",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
           "shieldedValue": "القيمة المحمية"

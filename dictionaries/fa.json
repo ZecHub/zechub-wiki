@@ -677,7 +677,7 @@
           "blocks": "بلوک‌ها",
           "transactions24h": "تراکنش‌های 24 ساعت اخیر",
           "shieldedValue": "ارزش محافظت‌شده",
-          "shieldedTx24h": "تراکنش‌های محافظت‌شده (24 ساعت)",
+          "shieldedTxByPool": "تراکنش‌های محافظت‌شده",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },
