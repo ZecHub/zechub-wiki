@@ -5,6 +5,7 @@ import QRCode from "qrcode";
 import * as bindings from "@elemental-zcash/zaddr_wasm_parser/zaddr_wasm_parser_bg.js";
 import { qrCodeBodySchema } from "./schema/qrcode.schema";
 import { buildZip321Uri, validateZip321Payment } from "@/lib/zip321";
+import { readBoundedJsonBody } from "@/lib/apiRequestGuards";
 
 type ZaddrBindings = typeof bindings & {
   __wbg_set_wasm: (exports: WebAssembly.Exports) => void;
@@ -96,9 +97,15 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const bodyResult = await readBoundedJsonBody(req);
+    if (!bodyResult.ok) {
+      return NextResponse.json(
+        { error: bodyResult.error },
+        { status: bodyResult.status },
+      );
+    }
 
-    const parsed = qrCodeBodySchema.safeParse(body);
+    const parsed = qrCodeBodySchema.safeParse(bodyResult.body);
     if (!parsed.success) {
       return NextResponse.json(
         { error: parsed.error.issues[0]?.message || "Invalid request payload" },
